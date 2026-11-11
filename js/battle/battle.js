@@ -496,13 +496,10 @@ FF.Battle = class {
     ctx.drawImage(set.images[ceu[0]], ceu[1], ceu[2], ceu[3], ceu[4],
       (FF.W - ceu[3] * sc) / 2, this.groundY + (st.ceuDesce || 40) - ceu[4] * sc, ceu[3] * sc, ceu[4] * sc);
     const chao = set.anim(st.chao).frames[0];
-    const cs = st.chaoEscala || 2;
+    // o chão tem árvores nas pontas: em vez de repetir (fica emendado), amplia até cobrir a largura toda
+    const cs = Math.max(st.chaoEscala || 2, FF.W / chao[3]);
     const ch = chao[4] * cs;
-    let x0 = (FF.W - chao[3] * cs) / 2;           // centralizado e repetido até cobrir a largura toda
-    while (x0 > 0) x0 -= chao[3] * cs;
-    for (let x = x0; x < FF.W; x += chao[3] * cs) {
-      ctx.drawImage(set.images[chao[0]], chao[1], chao[2], chao[3], chao[4], x, this.groundY - (st.chaoTopo || 18) * cs, chao[3] * cs, ch);
-    }
+    ctx.drawImage(set.images[chao[0]], chao[1], chao[2], chao[3], chao[4], (FF.W - chao[3] * cs) / 2, this.groundY - (st.chaoTopo || 18) * cs, chao[3] * cs, ch);
     const base = this.groundY - (st.chaoTopo || 18) * cs + ch;
     if (base < FF.H) { ctx.fillStyle = st.corTerra || '#5a8f2a'; ctx.fillRect(0, base, FF.W, FF.H - base); }
   }
