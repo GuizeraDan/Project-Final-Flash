@@ -244,7 +244,7 @@
       "descricao": "Combo em dupla com o Piccolo (30 KI de cada).",
       "tipo": "energia",
       "custoKi": 30,
-      "poder": 2.6,
+      "poder": 3.4,
       "requer": { "parceiro": { "id": "piccolo", "ki": 30 } },
       "roteiro": [
         { "mensagem": "SPARKING COMBO!", "mensagemDur": 1.4, "flash": 0.4 },

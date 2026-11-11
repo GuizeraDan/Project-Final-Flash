@@ -158,6 +158,73 @@ FF.Save = {
   apagar() { try { localStorage.removeItem(this.KEY); } catch (e) { /* nada */ } },
 };
 
+// ---------- AP e treinamento: vitórias dão AP, que compra níveis de atributo por herói ----------
+FF.Treino = {
+  herois: { goku: 'Goku', piccolo: 'Piccolo', krillin: 'Kuririn' },
+  // passo por nível (multiplicativo, exceto kiPorTurno que soma)
+  attrs: {
+    hp: { nome: 'Vida', passo: 0.08 },
+    ataque: { nome: 'Ataque', passo: 0.06 },
+    defesa: { nome: 'Defesa', passo: 0.10 },
+    kiPorTurno: { nome: 'Ki/turno', soma: 1 },
+  },
+  max: 5,
+  custo(nivel) { return 40 * (nivel + 1); },
+  nivel(heroi, attr) { return ((FF.Save.get().treino || {})[heroi] || {})[attr] || 0; },
+  comprar(heroi, attr) {
+    const save = FF.Save.get(), n = this.nivel(heroi, attr), c = this.custo(n);
+    if (n >= this.max || (save.ap || 0) < c) return false;
+    const treino = save.treino || {};
+    treino[heroi] = Object.assign({}, treino[heroi], { [attr]: n + 1 });
+    FF.Save.set({ ap: save.ap - c, treino });
+    return true;
+  },
+  // atributos com as melhorias aplicadas (usado em Battle.addFighter para heróis)
+  aplicar(id, atributos) {
+    if (!this.herois[id]) return atributos;
+    const a = Object.assign({}, atributos);
+    for (const [k, d] of Object.entries(this.attrs)) {
+      const n = this.nivel(id, k);
+      if (!n || a[k] == null) continue;
+      a[k] = d.soma ? a[k] + d.soma * n : Math.round(a[k] * (1 + d.passo * n));
+    }
+    return a;
+  },
+  // AP por vitória: batalha pode definir "ap"; senão 30 + 10 por 1000 de vida inimiga
+  premio(battle) {
+    if (battle && battle.def && battle.def.ap) return battle.def.ap;
+    const vida = battle ? battle.enemies.reduce((s, e) => s + e.hpMax, 0) : 0;
+    return 30 + Math.round(vida / 100);
+  },
+  render() {
+    const save = FF.Save.get();
+    document.getElementById('ap-valor').textContent = save.ap || 0;
+    const lista = document.getElementById('treino-lista');
+    lista.innerHTML = '';
+    for (const [id, nome] of Object.entries(this.herois)) {
+      const box = document.createElement('div');
+      box.className = 'treino-heroi';
+      box.innerHTML = '<h4>' + nome + '</h4>';
+      for (const [k, d] of Object.entries(this.attrs)) {
+        const n = this.nivel(id, k), c = this.custo(n);
+        const row = document.createElement('div');
+        row.className = 'treino-attr';
+        row.innerHTML = '<span>' + d.nome + ' <span class="niv">' + '★'.repeat(n) + '<i>' + '★'.repeat(this.max - n) + '</i></span></span>';
+        const bt = document.createElement('button');
+        bt.textContent = n >= this.max ? 'Máx.' : c + ' AP';
+        bt.disabled = n >= this.max || (save.ap || 0) < c;
+        bt.onclick = (e) => {
+          e.stopPropagation();
+          if (this.comprar(id, k)) { FF.Audio.play('decide_charasel', 0.6); this.render(); }
+        };
+        row.appendChild(bt);
+        box.appendChild(row);
+      }
+      lista.appendChild(box);
+    }
+  },
+};
+
 FF.aplicarVolumes = function () {
   const v = FF.Save.get().volumes;
   if (!v) return;
@@ -233,6 +300,12 @@ FF.jogarCapitulo = async function (n) {
 const _showEnd = FF.UI.showEnd.bind(FF.UI);
 FF.UI.showEnd = async function (win) {
   const mh = FF.modoHistoria;
+  const apEl = document.getElementById('ap-ganho');
+  if (win) {
+    const ganho = FF.Treino.premio(FF.battle) * (mh ? 2 : 1);   // modo história vale o dobro
+    FF.Save.set({ ap: (FF.Save.get().ap || 0) + ganho });
+    apEl.textContent = '+' + ganho + ' AP (gaste em Treinamento)';
+  } else apEl.textContent = '';
   if (!mh) return _showEnd(win);
   const el = document.getElementById('fim');
   const prox = mh.hist.capitulos.find(c => c.id === mh.cap.id + 1);
@@ -288,7 +361,8 @@ window.addEventListener('load', () => {
   const mostrar = (modo) => {
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes' }[modo];
+    if (modo === 'treino') FF.Treino.render();
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino' }[modo];
     const bt = vis && intro.querySelector(vis + ' button:not([disabled])');
     if (bt) bt.focus(); else if (primeiro) primeiro.focus();
   };
@@ -312,7 +386,7 @@ window.addEventListener('load', () => {
   window.addEventListener('keydown', (e) => {
     if (!intro.className || intro.classList.contains('hide')) return;
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') return;
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes' }[intro.className];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino' }[intro.className];
     const bts = [...intro.querySelectorAll(vis + ' button:not([disabled])')];
     const i = bts.indexOf(document.activeElement);
     const j = (i + (e.code === 'ArrowDown' ? 1 : -1) + bts.length) % bts.length;
@@ -328,9 +402,10 @@ window.addEventListener('load', () => {
     if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') return mostrar('livre');
+    if (ac === 'treino') return mostrar('treino');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {
-      if (confirm('Apagar o progresso do modo história?')) { const v = FF.Save.get().volumes; FF.Save.apagar(); if (v) FF.Save.set({ volumes: v }); }
+      if (confirm('Apagar o progresso (capítulos, AP e treinamento)?')) { const v = FF.Save.get().volumes; FF.Save.apagar(); if (v) FF.Save.set({ volumes: v }); }
       return;
     }
     if (ac === 'opcoes') {

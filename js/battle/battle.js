@@ -45,6 +45,8 @@ FF.Battle = class {
     // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
     const aj = (this.def.ajustes || {})[charDef.id];
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
+    // melhorias compradas com AP (só heróis)
+    if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
     const f = new FF.Fighter(charDef, lado, pos[idx] != null ? pos[idx] : pos[0], this.groundY, this.scale);
     const lista = lado === 'heroi' ? this.heroes : this.enemies;
     const iguais = lista.filter(x => x.id === f.id);

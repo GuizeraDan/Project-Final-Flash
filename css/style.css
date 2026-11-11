@@ -3,7 +3,7 @@ html, body { margin: 0; height: 100%; background: #0c0a14; overflow: hidden; }
 body { display: flex; align-items: center; justify-content: center; font-family: "Trebuchet MS", Arial, sans-serif; color: #fff; }
 
 /* área do jogo mantém 1084x580 e escala para caber na tela */
-#jogo { position: relative; width: min(100vw, calc(100vh * 1084 / 580)); aspect-ratio: 1084 / 580; container-type: inline-size; }
+#jogo { position: relative; width: min(100vw, calc(100vh * 1084 / 580)); width: min(100vw, calc(100dvh * 1084 / 580)); aspect-ratio: 1084 / 580; container-type: inline-size; }
 #tela { width: 100%; height: 100%; display: block; image-rendering: pixelated; touch-action: none; }
 
 #menu { position: absolute; left: 24cqw; bottom: 3.2cqw; width: 52cqw; display: none; grid-template-columns: 1fr 1fr; gap: 0.6cqw; }
@@ -52,8 +52,8 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 /* tela de título e menus */
 #inicio { cursor: default; }
 .menu-titulo { display: none; flex-direction: column; gap: 0.9cqw; align-items: stretch; min-width: 26cqw; }
-#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.opcoes #opcoes { display: flex; }
-#inicio.menu #carregando, #inicio.livre #carregando, #inicio.opcoes #carregando { display: none; }
+#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.opcoes #opcoes, #inicio.treino #treino { display: flex; }
+#inicio.menu #carregando, #inicio.livre #carregando, #inicio.opcoes #carregando, #inicio.treino #carregando { display: none; }
 #escolha { position: static; }
 .menu-titulo button { font: inherit; font-size: 1.8cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
 .menu-titulo button:hover, .menu-titulo button:focus { background: rgba(90,60,150,0.95); outline: none; }
@@ -74,3 +74,33 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #dialogo .texto { font-size: 1.9cqw; line-height: 1.35; color: #fff; }
 #dialogo.sem-retrato .texto { font-style: italic; color: #e0d8ff; }
 #dialogo .dica { text-align: right; font-size: 1.2cqw; opacity: 0.7; margin-top: 0.5cqw; }
+
+/* Treinamento (AP) */
+.ap-total { font-size: 2cqw; font-weight: 900; color: #ffd84a; text-align: center; }
+#treino-lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1cqw; }
+.treino-heroi { background: rgba(20,12,45,0.85); border: 0.2cqw solid #ffd84a; border-radius: 1cqw; padding: 0.8cqw; display: flex; flex-direction: column; gap: 0.5cqw; }
+.treino-heroi h4 { margin: 0; font-size: 1.8cqw; text-align: center; }
+.treino-attr { display: flex; justify-content: space-between; align-items: center; gap: 0.6cqw; font-size: 1.35cqw; font-weight: 700; }
+.treino-attr .niv { color: #ffd84a; letter-spacing: 0.1cqw; }
+.treino-attr .niv i { font-style: normal; color: rgba(255,255,255,0.18); }
+#treino .treino-attr button { font-size: 1.3cqw; padding: 0.4cqw 0.8cqw; min-width: 6cqw; }
+#ap-ganho { font-size: 2.4cqw; font-weight: 900; color: #7df; margin: 0 0 1.5cqw; min-height: 1em; }
+/* celular: alvos de toque maiores */
+@media (pointer: coarse) {
+  .menu-titulo button, #fim button { min-height: 44px; }
+  #treino .treino-attr button { min-height: 36px; }
+}
+
+/* celular em pé: pede para girar (o jogo é em paisagem) */
+#girar { display: none; }
+@media (orientation: portrait) and (pointer: coarse) {
+  #girar { display: flex; position: fixed; inset: 0; z-index: 50; background: #0b0716; color: #ffd84a; font-weight: 900; font-size: 6vw;
+    flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4vw; padding: 8vw; }
+  #girar span { font-size: 18vw; animation: girar 1.6s ease-in-out infinite; }
+  @keyframes girar { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
+}
+@media (pointer: coarse) {
+  #menu { gap: 1cqw; }
+  #menu button { min-height: 40px; }
+  #menu button .desc { display: none; }   /* tela pequena: só nome e custo de ki */
+}

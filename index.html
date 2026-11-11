@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="girar"><span>📱</span>Gire o celular para jogar deitado</div>
 <div id="jogo">
   <canvas id="tela" width="1084" height="580"></canvas>
 
@@ -22,6 +23,7 @@
       <button data-acao="novo">Novo Jogo</button>
       <button data-acao="continuar">Continuar</button>
       <button data-acao="livre">Batalha Livre</button>
+      <button data-acao="treino">Treinamento (AP)</button>
       <button data-acao="opcoes">Opções</button>
     </div>
     <div id="escolha" class="menu-titulo">
@@ -30,6 +32,11 @@
       <button data-batalha="saiyajin_03">Trio vs Saibamen</button>
       <button data-batalha="saiyajin_04">Trio vs Nappa</button>
       <button data-batalha="saiyajin_05">Trio vs Vegeta</button>
+      <button data-acao="voltar">Voltar</button>
+    </div>
+    <div id="treino" class="menu-titulo">
+      <div class="ap-total">AP: <b id="ap-valor">0</b></div>
+      <div id="treino-lista"></div>
       <button data-acao="voltar">Voltar</button>
     </div>
     <div id="opcoes" class="menu-titulo">
@@ -52,6 +59,7 @@
 
   <div id="fim">
     <h2>Vitória!</h2>
+    <p id="ap-ganho"></p>
     <button id="denovo">Lutar de novo</button>
     <button id="proximo">Próximo capítulo</button>
     <button id="titulo">Tela de título</button>
