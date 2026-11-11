@@ -15,6 +15,10 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 ## Ferramentas
 - `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons), laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe) e editor de cenas `index.html?editor=1&batalha=<id>` (monta golpes e exporta o JSON do roteiro; o usuário pode colar esse JSON na conversa). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
 
+## Biblioteca do usuário (sprites importados)
+- `js/core/biblioteca.js` guarda pacotes importados no IndexedDB do navegador (ids `bib:<nome>`, mesmo formato de sprite + `def.escala`). `FF.Assets.loadSprite('bib:...')` carrega; as batalhas carregam todos e `battle.fxSet` acha efeitos deles pelo nome da animação.
+- Importador (`js/ferramentas/importador.js`, botão "📥 Importar sprites" no visualizador): lê imagens/GIF/WebP animados, detecta quadros (automático por componentes ou grade), remove cor de fundo, monta animações e salva. "⬇ Exportar" gera `<nome>.ffpacote.json` (imagens embutidas): se o usuário mandar um desses, dá para virar sprite fixo do jogo em `data/sprites` + `assets/img`.
+
 ## Retratos e seleção
 - Sprite `retratos`: anim `retrato` (46 rostos de seleção do ZL3) e `banner` (44 artes inclinadas). Cada forma do personagem aponta os seus em `"retrato": {"quadro": N, "banner": M}` (sem isso, usa o sprite de batalha). `cenarios_preview` tem as 32 prévias de cenário do ZL3 (para uma futura escolha de cenário).
 - Batalha Livre: `js/ui/selecao.js` monta a batalha na hora (até 3 por lado, qualquer personagem). Personagens sem `ia` usam a IA automática de `js/battle/ai.js`.

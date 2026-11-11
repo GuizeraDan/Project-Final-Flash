@@ -53,6 +53,7 @@
         <label>Usado nos golpes <select id="sel-uso"></select></label>
         <div id="eventos"></div>
       </div>
+      <button id="bt-importar" class="bt-destaque" title="Importar sprite sheets e montar animações na sua biblioteca">📥 Importar sprites</button>
       <button id="bt-enviar" title="Manda esta animação (e o quadro atual) para o Editor de cenas">➕ Enviar para o editor</button>
       <button id="bt-copiar">📋 Copiar referência</button>
       <span id="copiado"></span>
@@ -69,11 +70,61 @@
   <div id="sons"></div>
 </main>
 
+<div id="imp" hidden>
+  <div class="imp-topo"><b>📥 Importar sprites</b><span id="imp-aviso">Escolha ou arraste imagens: PNG, JPG, GIF/WebP animados, BMP, AVIF, SVG…</span><button id="imp-fechar">✕ Fechar</button></div>
+  <div class="imp-corpo">
+    <aside class="imp-lado">
+      <label class="imp-arquivo">📂 Escolher imagens<input id="imp-file" type="file" multiple accept="image/*,.gif,.webp,.bmp,.avif,.svg,.ico,.apng"></label>
+      <div id="imp-arqs"></div>
+      <h4>Fundo</h4>
+      <label><input type="checkbox" id="imp-fundo"> remover cor de fundo</label>
+      <label>cor <input type="color" id="imp-cor" value="#ff00ff"> tolerância <input type="number" id="imp-tol" value="12" min="0" max="120" style="width:56px"></label>
+      <h4>Recorte</h4>
+      <label>modo <select id="imp-modo"><option value="auto">Automático (detecta cada boneco)</option><option value="grade">Grade (quadros do mesmo tamanho)</option><option value="inteiro">Imagem inteira (1 quadro)</option></select></label>
+      <div data-modo="auto">
+        <label>juntar pedaços a até <input type="number" id="imp-juncao" value="3" min="0" max="40" style="width:52px"> px</label>
+        <label>ignorar menores que <input type="number" id="imp-min" value="20" min="1" style="width:60px"> px</label>
+      </div>
+      <div data-modo="grade" hidden>
+        <label>colunas <input type="number" id="imp-gc" min="1" style="width:52px"> linhas <input type="number" id="imp-gl" min="1" style="width:52px"></label>
+        <label>ou quadro <input type="number" id="imp-gw" placeholder="larg." style="width:56px"> × <input type="number" id="imp-gh" placeholder="alt." style="width:56px"></label>
+        <label>margem <input type="number" id="imp-gm" value="0" style="width:48px"> espaço <input type="number" id="imp-gs" value="0" style="width:48px"></label>
+        <label><input type="checkbox" id="imp-pular" checked> pular quadros vazios</label>
+      </div>
+      <button id="imp-detectar">🔍 Detectar quadros</button>
+      <div class="imp-linha"><button id="imp-todos">todos</button><button id="imp-limpar">nenhum</button></div>
+      <small id="imp-cont"></small>
+    </aside>
+    <section id="imp-meio">
+      <div class="imp-linha">Zoom <input type="range" id="imp-zoom" min="1" max="8" step="0.5" value="2"> <small>Toque nos quadros na ordem da animação · arraste arquivos aqui</small></div>
+      <div class="imp-scroll"><canvas id="imp-tela" width="1" height="1"></canvas></div>
+    </section>
+    <aside class="imp-lado">
+      <h4>Nova animação</h4>
+      <label>nome <input id="imp-anome" placeholder="ex.: Parado, Kamehameha"></label>
+      <label>fps <input type="number" id="imp-fps" value="12" min="1" max="60" style="width:56px"> <input type="checkbox" id="imp-loop" checked> repetir</label>
+      <label>origem <select id="imp-origem"><option value="pes">pés (base do quadro)</option><option value="centro">centro (efeitos)</option></select></label>
+      <button id="imp-criar">➕ Criar com os escolhidos</button>
+      <canvas id="imp-previa" width="220" height="150"></canvas>
+      <h4>Pacote</h4>
+      <div id="imp-anims"></div>
+      <label>nome <input id="imp-pnome" placeholder="ex.: Goku HD"></label>
+      <label>tamanho no jogo <input type="number" id="imp-escala" value="1" step="0.05" min="0.05" style="width:64px">×</label>
+      <button id="imp-salvar" class="bt-destaque">💾 Salvar na biblioteca</button>
+      <h4>Biblioteca</h4>
+      <div id="imp-bib"></div>
+      <label class="imp-arquivo pequeno">📦 Importar pacote (.json)<input id="imp-pacfile" type="file" accept=".json,application/json" multiple></label>
+    </aside>
+  </div>
+</div>
+
 <script src="data/bundle.js"></script>
 <script src="js/core/assets.js"></script>
 <script src="js/core/sprite.js"></script>
+<script src="js/core/biblioteca.js"></script>
 <script src="js/core/audio.js"></script>
 <script src="js/core/retrato.js"></script>
 <script src="js/ferramentas/visualizador.js"></script>
+<script src="js/ferramentas/importador.js"></script>
 </body>
 </html>

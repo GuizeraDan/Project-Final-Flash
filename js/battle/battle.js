@@ -320,6 +320,11 @@ FF.Battle = class {
   fxSet(name) {
     if (this.fx.has(name)) return this.fx;
     if (this.fx2 && this.fx2.has(name)) return this.fx2;
+    // efeitos da biblioteca do usuário: "bib:pacote/animação" ou só o nome da animação
+    for (const [id, set] of Object.entries(FF.Assets.sprites)) {
+      if (!id.startsWith('bib:')) continue;
+      if (set.has(name)) return set;
+    }
     return null;
   }
 
@@ -329,7 +334,7 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
     a.play(name, { loop: !!dur, fps: opts && opts.fps });
-    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale, alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null };
+    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null };
     this.fxList.push(e);
     return e;
   }
@@ -398,7 +403,7 @@ FF.Battle = class {
     if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6);
     let res;
     const p = {
-      a, set, base: (spec.escala || 1) * this.scale, scale: (spec.escala || 1) * this.scale,
+      a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1),
       x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel,
       vx: (to.x - from.x) / travel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],

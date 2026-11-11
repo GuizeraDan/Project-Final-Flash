@@ -122,3 +122,35 @@
 .som-linha { display: flex; gap: 3px; } .som-linha > button:first-child { flex: 1; min-width: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #editor .ed-sub { width: 100%; display: flex; gap: 4px; align-items: center; flex-wrap: wrap; padding-left: 18px; font-size: 12px; opacity: 0.95; }
 #editor .ed-sub > input:not(.ed-mini) { flex: 1; min-width: 80px; }
+
+/* botões em destaque no visualizador */
+.vis nav a.bt-editor { color: #1a1020; background: #ffd84a; padding: 5px 12px; border-radius: 6px; font-weight: bold; text-decoration: none; }
+.vis button.bt-destaque { background: #6b3fd0; border-color: #ffd84a; font-weight: bold; }
+
+/* ---------- Importador de sprites ---------- */
+#imp { position: fixed; inset: 0; z-index: 60; background: #0f0c1c; display: flex; flex-direction: column; }
+#imp[hidden] { display: none; }
+.imp-topo { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: #221b3a; }
+.imp-topo b { color: #ffd84a; }
+#imp-aviso { flex: 1; color: #7dffb0; font-size: 13px; }
+.imp-corpo { flex: 1; display: grid; grid-template-columns: 260px 1fr 260px; min-height: 0; }
+.imp-lado { padding: 8px; background: #1b1630; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+.imp-lado h4 { margin: 8px 0 0; color: #9fd0ff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.imp-lado label { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; font-size: 13px; }
+.imp-lado label input:not([type=checkbox]):not([type=color]), .imp-lado label select { flex: 1; min-width: 0; }
+.imp-arquivo { position: relative; justify-content: center; padding: 10px; border: 2px dashed #5b4bb0; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.imp-arquivo.pequeno { padding: 6px; font-weight: normal; }
+.imp-arquivo input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+#imp-arqs { display: flex; flex-direction: column; gap: 3px; }
+#imp-arqs button { text-align: left; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#imp-arqs button.sel { border-color: #ffd84a; }
+.imp-linha { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+#imp-meio { display: flex; flex-direction: column; gap: 6px; padding: 8px; min-width: 0; }
+#imp-meio.arrastando { outline: 3px dashed #ffd84a; outline-offset: -6px; }
+.imp-scroll { flex: 1; overflow: auto; background: #000; border-radius: 6px; }
+#imp-tela { display: block; image-rendering: pixelated; cursor: crosshair; }
+#imp-previa { width: 100%; image-rendering: pixelated; border-radius: 6px; }
+.imp-pac { display: flex; gap: 4px; align-items: center; font-size: 12px; }
+.imp-pac span { flex: 1; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.imp-pac button { padding: 1px 6px; }
+@media (max-width: 900px) { .imp-corpo { grid-template-columns: 1fr; overflow-y: auto; } .imp-scroll { min-height: 50vh; } }

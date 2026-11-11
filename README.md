@@ -144,3 +144,9 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
   - 🎯 alinha um efeito clicando na tela; ▶ testa na batalha real; dá para abrir um golpe existente para modificar;
   - salva cenas no navegador; "Copiar JSON" gera o golpe pronto para entrar no jogo;
   - no visualizador, "➕ Enviar para o editor" (animações) e o ➕ ao lado dos sons mandam itens direto para o editor.
+- **Importar sprites** (botão "📥 Importar sprites" no visualizador):
+  - abra ou arraste imagens: PNG, JPG, GIF e WebP animados, BMP, AVIF, SVG…;
+  - detecção automática de cada boneco na folha (ou por grade), remoção da cor de fundo, escolha dos quadros na ordem, fps, repetição e origem (pés ou centro);
+  - salva pacotes na **Minha biblioteca** (fica no navegador), com tamanho ajustável no jogo;
+  - os pacotes aparecem no visualizador (📦) e as animações podem ser usadas como efeitos e projéteis no editor de cenas;
+  - "⬇" exporta o pacote como arquivo `.ffpacote.json` para guardar, levar para outro aparelho ou mandar para virar parte fixa do jogo.

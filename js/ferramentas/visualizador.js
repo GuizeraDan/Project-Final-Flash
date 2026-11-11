@@ -358,10 +358,34 @@
     renderInfo();
   }
 
+  // lista de sprites: os do jogo + os pacotes da biblioteca do usuário (📦)
+  async function preencherSprites(abrirId) {
+    const sel = $('#sel-sprite');
+    const atual = abrirId || sel.value;
+    sel.innerHTML = '';
+    const g1 = document.createElement('optgroup'); g1.label = 'Do jogo';
+    IDX.sprites.forEach(id => { const o = document.createElement('option'); o.value = id; o.textContent = id; g1.appendChild(o); });
+    sel.appendChild(g1);
+    const bib = FF.Biblioteca ? await FF.Biblioteca.listar() : [];
+    if (bib.length) {
+      const g2 = document.createElement('optgroup'); g2.label = 'Minha biblioteca';
+      bib.forEach(p => { const o = document.createElement('option'); o.value = p.id; o.textContent = '📦 ' + p.nome; g2.appendChild(o); });
+      sel.appendChild(g2);
+    }
+    if (atual && [...sel.options].some(o => o.value === atual)) sel.value = atual;
+  }
+  window.FFVis = {
+    async recarregarLista(id) {
+      if (id) delete FF.Assets.sprites[id];
+      await preencherSprites(id);
+      if (id) await abrirSprite(id);
+    },
+  };
+
   async function iniciar() {
     st.usos = indexarUsos();
     const sel = $('#sel-sprite');
-    IDX.sprites.forEach(id => { const o = document.createElement('option'); o.value = id; o.textContent = id; sel.appendChild(o); });
+    await preencherSprites();
     ligar();
     FF.Assets.loadSprite('stage_campo').catch(() => {});
     const params = new URLSearchParams(location.search);
