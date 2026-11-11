@@ -69,6 +69,7 @@ FF.Editor = {
         <select data-ed="novoPasso">
           <option value="cena">+ Cena livre (mover sprites na tela)</option>
           <option value="anim">+ Animação do lutador</option>
+          <option value="animAlvo">+ Animação do alvo (cair, ser lançado…)</option>
           <option value="irAte">+ Avançar até o alvo</option>
           <option value="voltar">+ Voltar (teleporte)</option>
           <option value="esperar">+ Esperar</option>
@@ -172,6 +173,7 @@ FF.Editor = {
 
   tipoPasso(p) {
     if (p.cena) return 'cena';
+    if (typeof p.animAlvo === 'string') return 'animAlvo';
     if (typeof p.anim === 'string') return 'anim';
     if (p.irAte) return 'irAte';
     if (p.voltar) return 'voltar';
@@ -208,7 +210,7 @@ FF.Editor = {
     card.className = 'ed-passo' + (i === this.passoSel ? ' sel' : '');
     card.onclick = (e) => { if (e.target === card || e.target.classList.contains('ed-cab')) { this.passoSel = i; this.render(); } };
     const tipo = this.tipoPasso(p);
-    const nomes = { cena: 'Cena livre', anim: 'Animação', irAte: 'Avançar até o alvo', voltar: 'Voltar (teleporte)', esperar: 'Esperar', mensagem: 'Mensagem', json: 'Passo avançado' };
+    const nomes = { cena: 'Cena livre', animAlvo: 'Animação do alvo', anim: 'Animação', irAte: 'Avançar até o alvo', voltar: 'Voltar (teleporte)', esperar: 'Esperar', mensagem: 'Mensagem', json: 'Passo avançado' };
     const cab = document.createElement('div');
     cab.className = 'ed-cab';
     cab.textContent = '#' + (i + 1) + ' ' + nomes[tipo];
@@ -259,6 +261,49 @@ FF.Editor = {
       add.onclick = () => { p.eventos.push(this.eventoNovo(tipoEv.value, a)); this.passoSel = i; this.render(); };
       l3.append(tipoEv, add);
       corpo.appendChild(l3);
+    } else if (tipo === 'animAlvo') {
+      const alvo = this.alvo();
+      const gen = [['caido', 'Caído no chão'], ['lancado', 'Sendo lançado'], ['dano1', 'Tomando dano 1'], ['dano2', 'Tomando dano 2'], ['guarda', 'Defendendo'], ['parado', 'Parado'], ['avancar', 'Andando para frente'], ['recuar', 'Andando para trás']];
+      const s = document.createElement('select');
+      const og1 = document.createElement('optgroup'); og1.label = 'Servem para qualquer inimigo';
+      gen.forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; og1.appendChild(o); });
+      const og2 = document.createElement('optgroup'); og2.label = 'Só de ' + (alvo ? alvo.def.nome : 'este alvo');
+      (alvo ? Object.keys(alvo.sprite.def.anims) : []).forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; og2.appendChild(o); });
+      s.append(og1, og2);
+      if (![...s.options].some(o => o.value === p.animAlvo)) { const o = document.createElement('option'); o.value = p.animAlvo; o.textContent = p.animAlvo + ' (?)'; s.prepend(o); }
+      s.value = p.animAlvo;
+      s.onchange = () => { p.animAlvo = s.value; this.render(); this.atualizarJSON(); };
+      corpo.appendChild(this.campo('Animação', this.previaAnim(s, p.animAlvo, (v) => { p.animAlvo = v; this.render(); this.atualizarJSON(); }, alvo)));
+      const a = alvo && alvo.sprite.anim(alvo.animName(p.animAlvo));
+      const info = document.createElement('small');
+      info.textContent = !alvo ? 'Escolha um alvo lá em cima.' : a ? 'Em ' + alvo.def.nome + ': ' + a.frames.length + ' quadros · ' + (a.fps || 0) + ' fps' + (gen.some(x => x[0] === p.animAlvo) ? ' · funciona com qualquer inimigo' : ' · ⚠ só existe neste personagem') : '⚠ ' + alvo.def.nome + ' não tem essa animação';
+      corpo.appendChild(info);
+      const l2 = document.createElement('div'); l2.className = 'ed-linha';
+      l2.appendChild(this.campo('empurrão', this.inp(p.empurrao, v => this.set(p, 'empurrao', v), 'number', { min: 0, step: 50, placeholder: '0 = não move', title: 'desliza para trás (300 a 700 fica bom)' })));
+      l2.appendChild(this.campo('fps', this.inp(p.fps, v => this.set(p, 'fps', v), 'number', { min: 1, step: 1, placeholder: 'padrão' })));
+      l2.appendChild(this.campo('repetir por (s)', this.inp(p.duracao, v => this.set(p, 'duracao', v), 'number', { min: 0, step: 0.1, placeholder: 'não' })));
+      corpo.appendChild(l2);
+      const ck = (k, rot, ti) => {
+        const c = document.createElement('input'); c.type = 'checkbox'; c.checked = !!p[k];
+        c.onchange = () => { this.set(p, k, c.checked || undefined); this.atualizarJSON(); };
+        const l = this.campo(rot, c); l.title = ti; return l;
+      };
+      const l3 = document.createElement('div'); l3.className = 'ed-linha';
+      l3.append(ck('semEsperar', 'junto com a próxima etapa', 'Não espera esta animação acabar: o golpe continua enquanto o inimigo cai'),
+        ck('voltarNormal', 'levanta no fim', 'Ao terminar, volta à pose parada (sem marcar, fica na última pose até o fim do golpe)'));
+      corpo.appendChild(l3);
+      p.eventos = p.eventos || [];
+      const evs = document.createElement('div');
+      evs.className = 'ed-eventos';
+      p.eventos.forEach((ev, k) => evs.appendChild(this.linhaEvento(p, ev, k, a)));
+      corpo.appendChild(evs);
+      const l4 = document.createElement('div'); l4.className = 'ed-linha';
+      const tipoEv = this.sel([['som', '+ Som'], ['voz', '+ Voz'], ['efeito', '+ Efeito visual'], ['tremer', '+ Tremer tela'], ['flash', '+ Flash']], 'som', () => {});
+      const add = document.createElement('button');
+      add.textContent = 'Adicionar evento';
+      add.onclick = () => { const ev = this.eventoNovo(tipoEv.value, a); if (ev.efeito) ev.efeito.em = 'origem'; p.eventos.push(ev); this.passoSel = i; this.render(); };
+      l4.append(tipoEv, add);
+      corpo.appendChild(l4);
     } else if (tipo === 'irAte') {
       const l = document.createElement('div'); l.className = 'ed-linha';
       l.appendChild(this.campo('distância', this.inp(p.dist, v => this.set(p, 'dist', v), 'number', { step: 1, placeholder: '22' })));
@@ -352,7 +397,7 @@ FF.Editor = {
       fx.setAttribute('list', 'ed-efeitos');
       fx.addEventListener('change', () => this.render());
       row.append('✨', this.previaEfeito(fx, e.fx, v => { e.fx = v; this.render(); this.atualizarJSON(); }),
-        this.sel([['alvo', 'no alvo'], ['disparo', 'na mão'], ['origem', 'nos pés']], e.em || 'origem', v => this.set(e, 'em', v)),
+        this.sel(p.animAlvo ? [['origem', 'no inimigo (pés)'], ['disparo', 'no inimigo (mão)'], ['alvo', 'em quem soltou']] : [['alvo', 'no alvo'], ['disparo', 'na mão'], ['origem', 'nos pés']], e.em || 'origem', v => this.set(e, 'em', v)),
         this.mini('x', e.dx, v => this.set(e, 'dx', v)), this.mini('y', e.dy, v => this.set(e, 'dy', v)),
         this.mini('tam', e.escala, v => this.set(e, 'escala', v), 0.05));
       const al = document.createElement('button');
@@ -361,7 +406,7 @@ FF.Editor = {
       const ver = document.createElement('button');
       ver.textContent = '👁'; ver.title = 'Ver só este efeito agora';
       ver.onclick = () => this.verEfeito(e);
-      row.append(al, ver);
+      if (p.animAlvo) row.append(ver); else row.append(al, ver);
     } else if (ev.som != null || ev.voz != null) {
       const k2 = ev.som != null ? 'som' : 'voz';
       row.append(k2 === 'som' ? '🔊' : '🗣', this.campoAudio(ev[k2], v => { ev[k2] = v || ''; }, k2 === 'voz'));
@@ -424,6 +469,7 @@ FF.Editor = {
     g.roteiro = g.roteiro || [];
     const novo = { cena: { cena: { duracao: 2, camadas: [], sons: [], acertos: [], esconderAtacante: false } },
       anim: { anim: this.animsDoAtor().find(n => /^Special/.test(n)) || this.animsDoAtor()[0], eventos: [] },
+      animAlvo: { animAlvo: 'lancado', empurrao: 300, eventos: [{ quadro: 0, som: 'blow_down' }] },
       irAte: { irAte: 'alvo', dist: 22, tempo: 0.22, animMov: 'Dash', som: 'jetdash' },
       voltar: { voltar: true, som: 'teletransporte' }, esperar: { esperar: 0.3 }, mensagem: { mensagem: 'Texto' }, json: {} }[tipo];
     g.roteiro.splice(this.passoSel + 1, 0, novo);

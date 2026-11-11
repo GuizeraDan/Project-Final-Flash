@@ -159,8 +159,9 @@ Object.assign(FF.Editor, {
   },
 
   // campo de animação do lutador (select) com prévia + 🖼
-  previaAnim(select, nome, aoEscolher) {
-    const actor = this.ator();
+  previaAnim(select, nome, aoEscolher, lutador) {
+    const actor = lutador || this.ator();
+    if (!actor) return select;
     const set = actor.sprite;
     const real = nome ? actor.animName(nome) : null;
     return this.embrulhoPrevia(select, set, real, () => FF.Previa.abrir({

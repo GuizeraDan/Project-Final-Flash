@@ -33,6 +33,7 @@ FF.Script = {
     if (s.voz && !s.anim) FF.Audio.voice(this.pick(s.voz));
     if (s.vozTipo) actor.voz(s.vozTipo);
 
+    if (s.animAlvo) return this.animAlvo(b, actor, target, move, s);
     if (s.anim) return this.playAnim(b, actor, target, move, s);
     if (s.cena) return FF.Cena.tocar(b, actor, target, move, s.cena);   // cena livre (editor de cenas)
 
@@ -116,6 +117,25 @@ FF.Script = {
     }
     if (typeof q === 'number') return q < 0 ? n + q : Math.min(q, n - 1);
     return 0;
+  },
+
+  // animação no ALVO (ex.: cair depois do poder). Nomes genéricos (caido, lancado, dano1, guarda…) servem
+  // para qualquer inimigo. semEsperar: roda junto com as próximas etapas. voltarNormal: fica parado no fim.
+  // empurrao: desliza para trás. Eventos aceitos: som, voz, efeito, tremer, flash (sem acerto).
+  async animAlvo(b, actor, target, move, s) {
+    if (!target) return;
+    target.react = null;
+    const sub = { anim: s.animAlvo, fps: s.fps, duracao: s.duracao, loop: s.loop,
+      eventos: (s.eventos || []).filter(e => !e.acerto && !e.projetil && !e.lancarObjeto) };
+    if (s.empurrao) { target.vx = -target.dir * s.empurrao; target.voando = true; }
+    const roda = (async () => {
+      await this.playAnim(b, target, actor, move, sub);
+      // com empurrão e sem tempo fixo: espera o deslize acabar (animações de 1 quadro, como "lançado")
+      for (let t = 0; s.empurrao && !s.duracao && target.vx && t < 2; t += 0.05) await FF.Clock.wait(0.05);
+      if (s.voltarNormal && !target.ko) target.idle();
+    })();
+    if (s.semEsperar) { b.paralelos.push(roda); return; }
+    await roda;
   },
 
   async playAnim(b, actor, target, move, s) {
