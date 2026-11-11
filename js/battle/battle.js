@@ -27,7 +27,8 @@ FF.Battle = class {
     this.turnLabel = '';
     this.fx = FF.Assets.sprites.fx;
     this.fx2 = FF.Assets.sprites.fx_extra || null;   // explosões, rochas, Genki Dama...
-    this.objs = {};                                  // objetos persistentes de golpes (ex.: Genki Dama crescendo)
+    this.objs = {};
+    this.paralelos = [];                             // sub-roteiros de parceiros (Sparking Combo)                                  // objetos persistentes de golpes (ex.: Genki Dama crescendo)
     this.stageSprite = FF.Assets.sprites[stage.sprite];
     FF.Input.onAction(() => this.onPress());
   }
@@ -101,6 +102,11 @@ FF.Battle = class {
   async execute(actor, target, move) {
     actor.addKi(-(move.custoKi || 0));
     if (move.custoKi) this.popup(actor, '-' + move.custoKi + ' KI', '#7fd0ff');
+    const parc = move.requer && move.requer.parceiro;
+    if (parc) {
+      const pf = this.all.find(f => f.id === parc.id);
+      if (pf && parc.ki) { pf.addKi(-parc.ki); this.popup(pf, '-' + parc.ki + ' KI', '#7fd0ff'); }
+    }
     if (move.supremo) {
       actor.rage = 0;
       this.flash(0.5);
@@ -109,6 +115,8 @@ FF.Battle = class {
     actor.busy = true;
     if (move.anuncio !== false) this.banner(move.nome, move.supremo ? 2.0 : 1.2);
     await FF.Script.run(this, actor, target, move);
+    await Promise.all(this.paralelos);
+    this.paralelos = [];
     await Promise.all(this.projectiles.map(p => p.done));
     await FF.Clock.wait(0.25);
     actor.busy = false;

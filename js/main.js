@@ -17,6 +17,7 @@ FF.UI = {
           '<span class="desc">' + (m.descricao || '') + '</span>';
         const can = (m.custoKi || 0) <= hero.ki && !(m.requer && !this.meets(hero, m.requer)) && !(m.supremo && !hero.rageCheia);
         if (m.supremo) b.classList.add('supremo');
+        if (m.requer && m.requer.parceiro) b.classList.add('sparking');
         b.disabled = !can;
         b.onclick = () => { if (!b.disabled) done(id); };
         b.onmouseenter = () => focus(i);
@@ -55,6 +56,10 @@ FF.UI = {
   meets(hero, req) {
     if (req.forma && hero.formId !== req.forma) return false;
     if (req.semBuff && hero.buffs[req.semBuff]) return false;
+    if (req.parceiro) {   // Sparking Combo: parceiro de pé e com ki suficiente
+      const pf = FF.battle && FF.battle.all.find(f => f.id === req.parceiro.id && !f.ko);
+      if (!pf || pf.ki < (req.parceiro.ki || 0)) return false;
+    }
     return true;
   },
   showEnd(win) {
@@ -64,14 +69,14 @@ FF.UI = {
   },
 };
 
-FF.start = async function () {
+FF.start = async function (escolhida) {
   const canvas = document.getElementById('tela');
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;
   FF.Input.init(canvas);
 
   const params = new URLSearchParams(location.search);
-  const battleId = params.get('batalha') || 'saiyajin_01';
+  const battleId = params.get('batalha') || escolhida || 'saiyajin_01';
   const def = await FF.Assets.loadJSON('data/battles/' + battleId + '.json');
   const stage = await FF.Assets.loadJSON('data/stages/' + def.cenario + '.json');
 
@@ -103,12 +108,14 @@ FF.start = async function () {
 
 window.addEventListener('load', () => {
   const intro = document.getElementById('inicio');
+  let escolhida = null;
+  intro.querySelectorAll('#escolha button').forEach(bt => bt.addEventListener('click', () => { escolhida = bt.dataset.batalha; }, true));
   const go = async () => {
     intro.removeEventListener('click', go);
     window.removeEventListener('keydown', goKey);
     intro.querySelector('p').textContent = 'Carregando...';
     try {
-      const battle = await FF.start();
+      const battle = await FF.start(escolhida);
       intro.classList.add('hide');
       battle.run();
     } catch (err) {

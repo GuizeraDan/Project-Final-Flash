@@ -26,7 +26,7 @@
         "lancado": "SendoLancado_LADO", "caido": "Caido", "avancar": "MovimentoParaFrente",
         "recuar": "MovimentoParaTras", "teleporte": "Teletransporte_Chao"
       },
-      "golpes": ["combo", "kamehameha", "kaioken", "carregar_ki", "transformar_ssj", "genkidama"],
+      "golpes": ["combo", "kamehameha", "kaioken", "carregar_ki", "transformar_ssj", "genkidama", "sparking_goku_piccolo"],
       "vitoria": [
         { "anim": "Vitoria_Pt1", "fps": 14, "eventos": [ { "quadro": 0, "som": "winstart_effect" }, { "quadro": 0, "voz": ["vgkn402", "vgkn403", "vgkn404", "vgkn405"] } ] },
         { "anim": "Vitoria_Pt2", "duracao": 60 }
@@ -236,6 +236,34 @@
               { "fracao": 0.2, "forca": "energia" },
               { "fracao": 0.2, "forca": "energia" },
               { "fracao": 0.3, "forca": "energia", "lanca": true, "empurrao": 700 } ] } } ] }
+      ]
+    },
+
+    "sparking_goku_piccolo": {
+      "nome": "Sparking: Kamehameha + Makankosappo",
+      "descricao": "Combo em dupla com o Piccolo (30 KI de cada).",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 2.6,
+      "requer": { "parceiro": { "id": "piccolo", "ki": 30 } },
+      "roteiro": [
+        { "mensagem": "SPARKING COMBO!", "mensagemDur": 1.4, "flash": 0.4 },
+        { "quem": "piccolo", "paralelo": [
+          { "anim": "Special_SpecialBeamCannon_Pt1", "eventos": [ { "quadro": 0, "som": "makankou_charg" }, { "quadro": 0, "voz": ["vpcn206", "vpcn207"] } ] },
+          { "anim": "Special_SpecialBeamCannon_Pt2", "duracao": 0.5, "eventos": [ { "quadro": 0, "som": "makankou_max" } ] },
+          { "anim": "Special_SpecialBeamCannon_Final", "fps": 12, "eventos": [
+            { "quadro": 4, "som": "makankou_fire" }, { "quadro": 4, "tremer": 10 },
+            { "quadro": 4, "efeito": { "fx": "Pt1", "em": "disparo", "escala": 0.45 } },
+            { "quadro": 5, "efeito": { "fx": "Pt2", "em": "disparo", "escala": 0.45, "duracao": 0.6 } },
+            { "quadro": 5, "acerto": { "fracao": 0.5, "forca": "energia" } } ] } ] },
+        { "anim": "Special_Kamehameha_Chao_Frente", "fps": 12, "eventos": [
+          { "quadro": 0, "som": "goku_kamehame_chrg" },
+          { "quadro": 0, "voz": ["vgkn134", "vgkn206"] },
+          { "quadro": 6, "som": "goku_kamehame_fire" },
+          { "quadro": 6, "tremer": 8 },
+          { "quadro": 9, "acerto": { "fracao": 0.4, "forca": "energia" } },
+          { "quadro": 10, "acerto": { "fracao": 0.4, "forca": "energia" } },
+          { "quadro": 11, "acerto": { "fracao": 0.7, "forca": "energia", "lanca": true, "empurrao": 650 } } ] }
       ]
     },
 

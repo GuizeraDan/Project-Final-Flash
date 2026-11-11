@@ -41,3 +41,8 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #menu button.supremo:not(:disabled) { animation: brilhoSupremo 0.8s infinite alternate; }
 #menu button.supremo .nome { color: #ffe25a; }
 @keyframes brilhoSupremo { from { box-shadow: 0 0 0.4cqw #ff9a2a; } to { box-shadow: 0 0 1.6cqw #ffd84a; } }
+#menu button.sparking { border-color: #3fd0ff; background: linear-gradient(180deg, rgba(20,70,120,0.95), rgba(10,30,70,0.95)); }
+#menu button.sparking .nome { color: #9ff0ff; }
+#escolha { position: absolute; bottom: 4cqw; display: flex; gap: 1.5cqw; }
+#escolha button { font: inherit; font-size: 1.6cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
+#escolha button:hover { background: rgba(90,60,150,0.95); }

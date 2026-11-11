@@ -14,6 +14,20 @@ FF.Script = {
   },
 
   async step(b, actor, target, move, s) {
+    // Sparking Combo: "quem" faz um parceiro executar um sub-roteiro em paralelo (ex.: Piccolo junto com o Goku)
+    if (s.quem) {
+      const outro = b.all.find(f => f.id === s.quem && !f.ko);
+      if (!outro) return;
+      const sub = (async () => {
+        outro.busy = true;
+        await this.run(b, outro, target, move, s.paralelo || []);
+        outro.busy = false;
+        outro.idle();
+      })();
+      b.paralelos.push(sub);
+      if (s.esperarFim) await sub;
+      return;
+    }
     if (s.mensagem) b.banner(s.mensagem, s.mensagemDur || 1.3);
     if (s.som && !s.anim) FF.Audio.play(s.som);
     if (s.voz && !s.anim) FF.Audio.voice(this.pick(s.voz));
