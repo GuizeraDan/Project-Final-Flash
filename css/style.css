@@ -36,3 +36,8 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #fim h2 { font-size: 6cqw; margin: 0 0 2cqw; color: #ffd84a; text-shadow: 0 0.4cqw 0 #a0400a; }
 #fim button { font: inherit; font-size: 2cqw; padding: 1cqw 3cqw; border-radius: 1cqw; border: 0.3cqw solid #ffd84a; background: #2b1d5c; color: #fff; cursor: pointer; }
 @keyframes pisca { 50% { opacity: 0.35; } }
+/* golpe supremo (precisa da Rage cheia) */
+#menu button.supremo { border-color: #ff7a1a; background: linear-gradient(180deg, rgba(150,50,10,0.95), rgba(70,18,8,0.95)); }
+#menu button.supremo:not(:disabled) { animation: brilhoSupremo 0.8s infinite alternate; }
+#menu button.supremo .nome { color: #ffe25a; }
+@keyframes brilhoSupremo { from { box-shadow: 0 0 0.4cqw #ff9a2a; } to { box-shadow: 0 0 1.6cqw #ffd84a; } }

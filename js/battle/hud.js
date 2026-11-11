@@ -1,5 +1,5 @@
 // HUD desenhado no canvas: barras de vida e ki, nomes, textos flutuantes e faixas.
-// (Provisório: depois trocamos pelas artes do HUD do Z Legends 3.)
+// Usa as artes originais do HUD do Z Legends 3 (hud_zl3), com Rage Gauge.
 window.FF = window.FF || {};
 
 FF.HUD = {
@@ -30,7 +30,93 @@ FF.HUD = {
     ctx.fillRect(rtl ? x + w - fw : x, y, fw, Math.max(2, h * 0.3));
   },
 
-  panel(ctx, f, x, rtl) {
+  // ---- painel com as artes originais do HUD do Z Legends 3 (hud_zl3) ----
+  S: 1.6,          // escala do painel (241x73 na arte original)
+  PW: 241,
+
+  // desenha um quadro de animação do hud_zl3 recortado (frac = parte visível, da esquerda ou da direita)
+  part(ctx, set, anim, i, x, y, frac, fromRight) {
+    const a = set.anim(anim); if (!a) return;
+    const f = a.frames[Math.min(i, a.frames.length - 1)];
+    const S = this.S;
+    frac = Math.max(0, Math.min(1, frac == null ? 1 : frac));
+    const w = Math.round(f[3] * frac); if (w <= 0) return;
+    const sx = fromRight ? f[1] + f[3] - w : f[1];
+    const dx = fromRight ? x + (f[3] - w) * S : x;
+    ctx.drawImage(set.images[f[0]], sx, f[2], w, f[4], dx, y, w * S, f[4] * S);
+  },
+
+  panel(ctx, f, rtl) {
+    const set = FF.Assets.sprites.hud_zl3;
+    if (!set) return this.panelSimples(ctx, f, rtl ? FF.W - 24 : 24, rtl);
+    const S = this.S, PW = this.PW;
+    const X = rtl ? FF.W - 6 - PW * S : 6, Y = 4;
+    // converte x da arte (metade do jogador) para tela; o inimigo usa a metade espelhada
+    const sxp = (xs, w) => X + (rtl ? (PW - xs - (w || 0)) : xs) * S;
+    const bg = set.anim('fundo_barras').frames[0];
+    ctx.drawImage(set.images[bg[0]], bg[1] + (rtl ? PW : 0), bg[2], PW, bg[4], X, Y, PW * S, bg[4] * S);
+
+    // retrato: cabeça do próprio sprite (acompanha a forma atual)
+    const bx = sxp(13, 37), by = Y + 9 * S, bw = 37 * S, bh = 53 * S;
+    ctx.save();
+    const g = ctx.createLinearGradient(0, by, 0, by + bh);
+    g.addColorStop(0, f.formId !== (f.def.formaInicial || 'base') ? '#7a5a10' : '#24305a'); g.addColorStop(1, '#0c0f22');
+    ctx.fillStyle = g; ctx.fillRect(bx, by, bw, bh);
+    ctx.beginPath(); ctx.rect(bx, by, bw, bh); ctx.clip();
+    const pa = f.sprite.anim(f.animName('parado'));
+    if (pa) {
+      const fr = pa.frames[0], sc = 2.6;
+      FF.drawFrame(ctx, f.sprite, fr, bx + bw / 2 + (rtl ? -8 : 8), by + 6 + fr[6] * sc, sc, rtl, f.ko ? { tint: 'rgba(40,0,0,0.55)' } : undefined);
+    }
+    ctx.restore();
+
+    // vida (com rastro vermelho)
+    if (f._hpShow == null) f._hpShow = f.hp;
+    f._hpShow += (f.hp - f._hpShow) * 0.08;
+    if (Math.abs(f._hpShow - f.hp) < 0.5) f._hpShow = f.hp;
+    const lado = rtl ? 'inimigo' : 'jogador';
+    const hx = sxp(57, 121), hy = Y + 17 * S;
+    const fr = f.hp / f.hpMax;
+    this.part(ctx, set, 'vida_red_' + lado, 0, hx, hy, f._hpShow / f.hpMax, rtl);
+    this.part(ctx, set, 'vida_' + lado, fr > 0.5 ? 0 : fr > 0.25 ? 1 : 2, hx, hy, fr, rtl);
+    this.text(ctx, Math.ceil(f.hp) + '/' + f.hpMax, rtl ? hx + 6 : hx + 121 * S - 6, hy + 5 * S, 12, '#fff', rtl ? 'left' : 'right');
+
+    // ki (barra segmentada)
+    const kx = sxp(57, 127), ky = Y + 31 * S;
+    this.part(ctx, set, 'fundo_ki_jogador', 0, kx, ky, 1, false);
+    this.part(ctx, set, 'ki_' + lado, 5, kx, ky, f.ki / f.kiMax, rtl);
+
+    // nome e ki na parte de baixo da placa
+    const nomeCor = f.formId !== (f.def.formaInicial || 'base') ? '#ffe25a' : '#fff';
+    this.text(ctx, f.nome, rtl ? sxp(57) : sxp(60), Y + 47 * S, 18, nomeCor, rtl ? 'right' : 'left');
+    this.text(ctx, 'KI ' + Math.floor(f.ki), rtl ? sxp(172) : sxp(172), Y + 47 * S, 13, '#9fe2ff', rtl ? 'left' : 'right');
+
+    // Rage Gauge: barra abaixo da placa + ícone (vazio / cheio pulsando)
+    const rw = 104 * S, rh = 9, rx = rtl ? sxp(60, 104) : sxp(60), ry = Y + 59 * S;
+    ctx.fillStyle = 'rgba(10,8,20,0.85)'; ctx.fillRect(rx - 2, ry - 2, rw + 4, rh + 4);
+    const rf = f.rage / 100, rfw = rw * rf;
+    const cheia = f.rageCheia;
+    const rg = ctx.createLinearGradient(0, ry, 0, ry + rh);
+    const pulse = 0.5 + 0.5 * Math.sin(FF.Clock.t * 12);
+    rg.addColorStop(0, cheia ? 'rgb(255,' + Math.round(230 + 25 * pulse) + ',120)' : '#ffb347'); rg.addColorStop(1, cheia ? '#ff5a00' : '#c0300a');
+    ctx.fillStyle = rg; ctx.fillRect(rtl ? rx + rw - rfw : rx, ry, rfw, rh);
+    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+    for (let k = 1; k < 10; k++) ctx.fillRect(rx + rw * k / 10, ry, 1, rh);
+    const ix = rtl ? rx - 14 : rx + rw + 14, iy = ry + rh / 2;
+    const ic = set.anim(cheia ? 'Full' : 'Empty');
+    if (ic) {
+      const fi = ic.frames[Math.floor(FF.Clock.t * 10) % ic.frames.length];
+      FF.drawFrame(ctx, set, fi, ix, iy, cheia ? 0.62 + 0.06 * pulse : 0.75, false);
+    }
+    this.text(ctx, cheia ? 'SUPREMO PRONTO!' : 'RAGE', rtl ? rx + rw : rx, ry + rh + 10, 11, cheia ? '#ffe25a' : '#ffb39a', rtl ? 'right' : 'left');
+
+    // buffs
+    const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
+    if (tags.length) this.text(ctx, tags.join('  '), rtl ? rx : rx + rw, ry + rh + 10, 13, '#ff9c9c', rtl ? 'left' : 'right');
+  },
+
+  // painel antigo (sem as artes), usado se o hud_zl3 não carregar
+  panelSimples(ctx, f, x, rtl) {
     const w = 330;
     const bx = rtl ? x - w : x;
     if (f._hpShow == null) f._hpShow = f.hp;
@@ -56,9 +142,9 @@ FF.HUD = {
   },
 
   draw(ctx, b) {
-    b.heroes.forEach((h, i) => this.panel(ctx, h, 24 + i * 0, false));
-    b.enemies.forEach((e, i) => this.panel(ctx, e, FF.W - 24, true));
-    if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 26, 16, '#ffe9a8', 'center');
+    b.heroes.forEach((h, i) => this.panel(ctx, h, false));
+    b.enemies.forEach((e, i) => this.panel(ctx, e, true));
+    if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 22, 16, '#ffe9a8', 'center');
     for (const t of b.texts) {
       const a = 1 - Math.max(0, (t.t - t.life * 0.6) / (t.life * 0.4));
       ctx.save(); ctx.globalAlpha = a;
