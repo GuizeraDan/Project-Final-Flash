@@ -336,7 +336,8 @@ window.addEventListener('load', () => {
     try {
       const battle = await FF.start(id);
       intro.classList.add('hide');
-      battle.run();
+      if (params.get('teste')) FF.Lab.run(battle);   // laboratório: sem turnos, executa qualquer golpe
+      else battle.run();
     } catch (err) {
       console.error(err);
       msg.textContent = 'Erro: ' + err.message;
@@ -346,6 +347,11 @@ window.addEventListener('load', () => {
   // modo história direto pela URL (?historia=N)
   if (params.get('historia')) {
     FF.jogarCapitulo(+params.get('historia')).catch(err => { console.error(err); intro.classList.remove('hide'); msg.textContent = 'Erro: ' + err.message; });
+    return;
+  }
+  // laboratório direto (?teste=1&batalha=id): carrega sem precisar tocar
+  if (params.get('teste')) {
+    batalhaLivre(params.get('batalha') || 'saiyajin_02');
     return;
   }
   // batalha pela URL (?batalha=id): toque para começar, como antes (usado pelo teste automático)
@@ -398,10 +404,12 @@ window.addEventListener('load', () => {
     e.stopPropagation();
     FF.Audio.play('decide_charasel', 0.6);
     const ac = bt.dataset.acao;
-    if (bt.dataset.batalha) return batalhaLivre(bt.dataset.batalha);
+    if (bt.dataset.batalha) return FF._modoLab ? ir('?teste=1&batalha=' + bt.dataset.batalha) : batalhaLivre(bt.dataset.batalha);
+    if (ac === 'lab') { FF._modoLab = true; return mostrar('livre'); }
+    if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
-    if (ac === 'livre') return mostrar('livre');
+    if (ac === 'livre') { FF._modoLab = false; return mostrar('livre'); }
     if (ac === 'treino') return mostrar('treino');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {

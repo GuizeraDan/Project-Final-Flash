@@ -125,3 +125,16 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
 - Sparking Combo de 3 heróis e Sparking do Goku SSJ.
 - Saibaman com animações próprias de dano/caído; conferir quadro a quadro os golpes de Nappa/Vegeta.
 - Cenas de diálogo do modo história com o cenário ao fundo.
+
+## Ferramentas de desenvolvimento
+
+- **Visualizador de animações** (`visualizador.html`, ou pelo botão na tela de título):
+  - todas as animações de todos os sprites, quadro a quadro;
+  - mostra o ponto dos pés, a caixa do quadro e os pontos de disparo;
+  - marca na linha do tempo os quadros onde cada golpe tem acerto, som ou voz;
+  - aba **Sons** para ouvir todos os áudios.
+  - Atalhos: Espaço toca/pausa, ←/→ mudam o quadro, ↑/↓ mudam a animação. "Copiar referência" gera um texto pronto para relatar um problema.
+- **Laboratório de golpes** (`index.html?teste=1&batalha=<id>`, ou pelo botão na tela de título):
+  - batalha sem turnos para executar qualquer golpe de qualquer lutador, incluindo outras formas, supremos e Sparking;
+  - opções de ki e vida infinitos, câmera lenta (até 0,1×) e guarda ou crítico automáticos;
+  - registro do dano de cada golpe. Atalhos: Enter executa, R repete.

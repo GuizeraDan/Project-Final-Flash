@@ -104,3 +104,4 @@ body { display: flex; align-items: center; justify-content: center; font-family:
   #menu button { min-height: 40px; }
   #menu button .desc { display: none; }   /* tela pequena: só nome e custo de ki */
 }
+.menu-titulo button.ferramenta { font-size: 1.35cqw; padding: 0.5cqw 1.6cqw; border-color: #7a6bd0; opacity: 0.85; }

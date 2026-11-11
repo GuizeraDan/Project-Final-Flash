@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Flash — Visualizador de animações</title>
+<link rel="stylesheet" href="css/ferramentas.css">
+</head>
+<body class="vis">
+<header>
+  <b>FINAL FLASH</b> · Visualizador de animações
+  <nav>
+    <button class="aba sel" data-aba="anims">Animações</button>
+    <button class="aba" data-aba="sons">Sons</button>
+    <a href="index.html">← Voltar ao jogo</a>
+  </nav>
+</header>
+
+<main id="aba-anims">
+  <aside id="lista">
+    <label>Sprite <select id="sel-sprite"></select></label>
+    <input id="busca" type="search" placeholder="Filtrar animações (ex.: Kamehameha, Dano)">
+    <div id="anims"></div>
+  </aside>
+
+  <section id="palco">
+    <div id="tela-wrap"><canvas id="tela" width="900" height="560"></canvas></div>
+
+    <div id="controles">
+      <button id="bt-ant" title="Quadro anterior (←)">◀︎</button>
+      <button id="bt-play" title="Tocar/pausar (Espaço)">▶︎</button>
+      <button id="bt-prox" title="Próximo quadro (→)">▶︎|</button>
+      <span id="quadro-txt">—</span>
+      <label>Velocidade <select id="sel-vel">
+        <option value="0.25">0,25×</option><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option>
+      </select></label>
+      <label>Zoom <input id="zoom" type="range" min="1" max="10" step="0.5" value="4"></label>
+      <label><input type="checkbox" id="ck-loop" checked> repetir</label>
+      <label><input type="checkbox" id="ck-espelho"> espelhar</label>
+      <label><input type="checkbox" id="ck-caixa" checked> caixa</label>
+      <label><input type="checkbox" id="ck-pontos" checked> pontos</label>
+      <label><input type="checkbox" id="ck-fantasma"> quadro anterior</label>
+      <label>Fundo <select id="sel-fundo">
+        <option value="xadrez">xadrez</option><option value="escuro">escuro</option><option value="cenario">cenário</option>
+      </select></label>
+    </div>
+
+    <div id="linha"></div>
+
+    <div id="info">
+      <div id="info-quadro"></div>
+      <div id="usos-box">
+        <label>Usado nos golpes <select id="sel-uso"></select></label>
+        <div id="eventos"></div>
+      </div>
+      <button id="bt-copiar">📋 Copiar referência</button>
+      <span id="copiado"></span>
+    </div>
+  </section>
+</main>
+
+<main id="aba-sons" hidden>
+  <div class="sons-topo">
+    <input id="busca-som" type="search" placeholder="Filtrar sons (ex.: vgkn, piccolo, hit, kame)">
+    <span id="sons-total"></span>
+  </div>
+  <p class="legenda">Vozes: <b>vgkn</b> Goku · <b>vgks</b> Goku SSJ · <b>vpcn</b> Piccolo · <b>vkrn</b> Kuririn · <b>vnpn</b> Nappa · <b>vvgn</b> Vegeta · <b>vtnn</b> Tenshinhan · <b>raditz_</b> Raditz. Números: 0xx dano/lançado · 1xx golpes · 2xx especiais · 4xx intro/vitória.</p>
+  <div id="sons"></div>
+</main>
+
+<script src="data/bundle.js"></script>
+<script src="js/core/assets.js"></script>
+<script src="js/core/sprite.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/ferramentas/visualizador.js"></script>
+</body>
+</html>

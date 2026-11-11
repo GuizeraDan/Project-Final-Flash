@@ -11,6 +11,16 @@ for d, _, files in os.walk(os.path.join(root, 'data')):
             rel = os.path.relpath(p, root).replace(os.sep, '/')
             with open(p, encoding='utf-8') as fh:
                 out[rel] = json.load(fh)
+# índice para as ferramentas (visualizador/laboratório): o navegador não consegue listar pastas
+def nomes(pasta, ext):
+    d = os.path.join(root, pasta)
+    return sorted(f[:-len(ext)] for f in os.listdir(d) if f.endswith(ext)) if os.path.isdir(d) else []
+out['_indice'] = {
+    'sprites': nomes('data/sprites', '.json'),
+    'personagens': nomes('data/characters', '.json'),
+    'batalhas': nomes('data/battles', '.json'),
+    'audios': nomes('assets/audio', '.ogg'),
+}
 with open(os.path.join(root, 'data', 'bundle.js'), 'w', encoding='utf-8') as fh:
     fh.write('// Gerado por tools/build_bundle.py — não edite à mão.\nwindow.FF_BUNDLE = ')
     json.dump(out, fh, ensure_ascii=False, separators=(',', ':'))

@@ -12,6 +12,9 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - Falas/história: escreva texto próprio em português (pode resumir os acontecimentos da saga), sem copiar diálogos do anime/mangá.
 - Commits com autor `GuizeraDan <GuizeraDan@users.noreply.github.com>` (nunca o e-mail pessoal).
 
+## Ferramentas
+- `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons) e laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
+
 ## Onde está o quê
 - `docs/ROADMAP.md` — lista priorizada de tarefas.
 - `docs/DIARIO.md` — registro de cada sessão de trabalho (o que foi feito, o que falta). Leia antes de começar; atualize ao terminar.
