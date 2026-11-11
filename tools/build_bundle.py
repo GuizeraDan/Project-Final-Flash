@@ -26,3 +26,19 @@ with open(os.path.join(root, 'data', 'bundle.js'), 'w', encoding='utf-8') as fh:
     json.dump(out, fh, ensure_ascii=False, separators=(',', ':'))
     fh.write(';\n')
 print('bundle:', len(out), 'arquivos')
+
+# versao.json: impressão digital de todos os arquivos do jogo. O app instalado (PWA) compara
+# com a versão que abriu e mostra "Nova versão disponível" quando muda.
+import hashlib
+h = hashlib.sha1()
+for pasta in ['index.html', 'visualizador.html', 'sw.js', 'manifest.webmanifest', 'css', 'js', 'data', 'assets']:
+    base = os.path.join(root, pasta)
+    arquivos = [base] if os.path.isfile(base) else sorted(os.path.join(d, f) for d, _, fs in os.walk(base) for f in fs)
+    for a in arquivos:
+        h.update(os.path.relpath(a, root).encode())
+        with open(a, 'rb') as fh:
+            h.update(fh.read())
+with open(os.path.join(root, 'versao.json'), 'w', encoding='utf-8') as fh:
+    json.dump({'versao': h.hexdigest()[:12]}, fh)
+print('versao:', h.hexdigest()[:12])
+

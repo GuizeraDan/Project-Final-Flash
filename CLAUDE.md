@@ -5,7 +5,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 ## Regras
 - HTML/JS puro, scripts clássicos (precisa abrir por `file://` e pelo GitHub Pages). Nada de build step, nada de dependência externa em runtime.
 - **Motor separado do conteúdo.** Personagens, golpes, inimigos, falas e batalhas ficam em JSON (`data/`). Golpes são roteiros (veja README).
-- Depois de editar qualquer JSON: `python3 tools/build_bundle.py`.
+- Antes de cada commit (e sempre depois de editar JSON): `python3 tools/build_bundle.py` — gera o bundle e o `versao.json` (usado pelo aviso de "nova versão" do app instalado).
 - Antes de cada commit: `node tools/testes/batalha.js --plano 1,2,4,5,1` precisa terminar com "luta terminou" e sem ERROS. Para batalhas novas use `--batalha <id>`.
 - O motor deve continuar suportando transformação no meio da luta.
 - Sprites novos só saem do APK do Z Legends 3 (`tools/extract_sprites.py`). Sem o APK, use o que já está em `data/sprites/` e `assets/`. `docs/catalogo_zl3.json` lista todos os objetos/animações do jogo original; `docs/audios_zl3_disponiveis.txt` lista todos os áudios.

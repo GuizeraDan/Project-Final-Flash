@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Final Flash</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0c0a14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="assets/icones/apple-touch-icon.png">
+<link rel="icon" href="assets/icones/icone-192.png">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/ferramentas.css">
 </head>
@@ -26,6 +33,7 @@
       <button data-acao="livre">Batalha Livre</button>
       <button data-acao="treino">Treinamento (AP)</button>
       <button data-acao="opcoes">Opções</button>
+      <button data-acao="instalar" class="ferramenta" hidden>📲 Instalar no celular</button>
       <button data-acao="lab" class="ferramenta">🧪 Laboratório de golpes</button>
       <button data-acao="visualizador" class="ferramenta">🎞 Visualizador de animações</button>
     </div>
@@ -81,6 +89,7 @@
 <script src="js/battle/hud.js"></script>
 <script src="js/battle/battle.js"></script>
 <script src="js/ferramentas/laboratorio.js"></script>
+<script src="js/pwa.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

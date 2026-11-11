@@ -406,6 +406,7 @@ window.addEventListener('load', () => {
     const ac = bt.dataset.acao;
     if (bt.dataset.batalha) return FF._modoLab ? ir('?teste=1&batalha=' + bt.dataset.batalha) : batalhaLivre(bt.dataset.batalha);
     if (ac === 'lab') { FF._modoLab = true; return mostrar('livre'); }
+    if (ac === 'instalar') { FF.PWA.instalar(); return; }
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
