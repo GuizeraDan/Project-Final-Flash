@@ -23,3 +23,23 @@
 **Problemas/observações:** com guardas perfeitas o Raditz da batalha 3v1 ainda causa pouco dano (o jogador automático defende tudo); balancear no Bloco 4. A Rage do inimigo enche e fica parada porque o Raditz não tem supremo. O feixe do Makankosappo passa “por cima” dos aliados que estão na frente (é só visual).
 
 **Próxima sessão:** começar o Bloco 3 (Saibamen, Nappa, Vegeta com Galick Gun; modo história com telas de diálogo; título/menus e salvamento). Se sobrar tempo: supremos de Piccolo/Kuririn/inimigos e destacar no HUD o herói da vez. Testes: `node tools/testes/batalha.js --plano 1,2,4,5,1` e `--batalha saiyajin_02 --plano 1,7,1 --tempo 250` (a 3v1 demora mais de 2 min).
+
+## 11/11/2026 02:30–02:50 — sessão noturna 2 de 4
+Os 4 itens principais do Bloco 2 já tinham sido feitos na sessão 1, então esta sessão fechou os subitens que sobraram.
+
+**Feito:**
+- **Supremos** (`"supremo": true`, só com a Rage cheia): Piccolo — *Granada de Luz* (`Ultimate_LightGrenade_*`, esfera `Homing_Energy_Blast` grande + `Explosao_Granada2`, sons `piccolo_gkrtkdn_*`); Kuririn — *Onda de Energia Dispersa* (`Ultimate_ScatteringEnergyWave_*`, 8 rajadas caindo do alto + 1 grande que lança, sons `krillin_kksne_*`); Raditz — *Double Sunday* (`UltimateAttack_*`, dois disparos grandes; a IA já usava o supremo quando a Rage enche).
+- **Sparking Combos** novos: Piccolo + Kuririn (Makankosappo + Kienzan) e Kuririn + Goku (Kienzan + Kamehameha), 30 KI de cada, poder 3.4 (mais forte que o Kienzan sozinho, para valer o ki dos dois).
+- **Golpes extras:** *Hellzone Grenade* (Piccolo, 30 KI: 6 esferas `HellzoneGrenade_InAir` + explosão que fecha o cerco) e *Taiyoken* (Kuririn, 25 KI).
+- **Estado atordoado** (motor): passo de roteiro `{"atordoar": N}` deixa o alvo sem as próximas N vezes (`fighter.atordoado`, não acumula). Na vez dele aparece “ATORDOADO!” e só roda o fim de turno (regenera ki).
+- **Projétil `deCima`**: a rajada nasce acima do alvo e cai em diagonal (usado na chuva do Kuririn).
+- **HUD:** `battle.atual` = quem está escolhendo/agindo; moldura dourada pulsante no painel dele (com 3 heróis) e seta sobre a cabeça enquanto escolhe.
+
+**Menus agora:** Piccolo = Sequência, Makankosappo, Rajada Teleguiada, Hellzone, Sparking c/ Kuririn, Granada de Luz, Carregar Ki. Kuririn = Sequência, Kienzan, Taiyoken, Semente, Sparking c/ Goku, Onda Dispersa, Carregar Ki.
+
+**Observações:** o Sparking Goku + Piccolo continua com poder 2.6 (ficou mais fraco que os novos; revisar no balanceamento). O Taiyoken torna o Raditz bem mais fácil na 3v1; se ficar forte demais, subir o custo ou dar chance de falhar. Os quadros reais do `UltimateAttack` do Raditz não foram conferidos um a um (pode ser que o original seja outro tipo de golpe).
+
+**Testes:** `--plano 1,2,4,5,1` (1v1) termina sem erros; 3v1: `--batalha saiyajin_02 --plano 6,1 --rage 100` (supremo do Kuririn), `--plano 3,1,4,1` (Taiyoken → Raditz perde a vez), `--plano 1,1,4,1` (Hellzone).
+
+**Próxima sessão:** Bloco 3 (Saibamen, Nappa, Vegeta; modo história com diálogos; título/menus e salvamento).
+

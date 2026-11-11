@@ -14,9 +14,11 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [x] **Sparking Combo**: ataque em dupla (dois heróis com ki/condição) — começar com Goku + Piccolo (Kamehameha + Makankosappo).
 - [x] Guarda cronometrada funcionando para qualquer herói atacado.
 
-- [ ] Kamehameha do Kuririn (o raio dele é um objeto separado no ZL3, t282–t284, ainda não extraído) e Masenko/outros golpes extras.
-- [ ] Mais Sparking Combos (Goku + Kuririn, Piccolo + Kuririn) e destacar no HUD qual herói está agindo.
-- [ ] Ataque supremo dos inimigos (Raditz já enche a Rage, mas não tem supremo) e supremos de Piccolo (Light Grenade) e Kuririn (Scattering Energy Wave).
+- [ ] Kamehameha do Kuririn (o raio dele é um objeto separado no ZL3, t282–t284, ainda não extraído; precisa do APK).
+- [x] Mais Sparking Combos (Piccolo + Kuririn, Kuririn + Goku) e destaque no HUD do herói da vez (moldura pulsante + seta).
+- [x] Supremos: Raditz (Double Sunday), Piccolo (Granada de Luz), Kuririn (Onda de Energia Dispersa, chuva de rajadas do alto).
+- [x] Golpes extras: Hellzone Grenade (Piccolo) e Taiyoken (Kuririn, novo estado **atordoado**: o alvo perde a vez).
+- [ ] Sparking Combo de 3 (Goku + Piccolo + Kuririn) e Sparking do Goku SSJ.
 
 ## Bloco 3 — Saga Saiyajin jogável
 - [ ] Inimigos: Saibaman (vários), Nappa, Vegeta (Galick Gun, etc.).

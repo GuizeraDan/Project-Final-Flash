@@ -363,18 +363,99 @@
        "projetil": {
         "fx": "kiblast_amarelo",
         "escala": 0.55,
-        "velocidade": 600,
+        "velocidade": 480,
         "som": "krillin_kksne_fire",
         "impacto": "kiblast_hit",
         "impactoEscala": 1,
         "acerto": {
          "fracao": 0.1,
          "forca": "energia"
-        }
+        },
+        "deCima": true
        }
       },
       {
        "quadro": 1,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 505,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        },
+        "deCima": true
+       }
+      },
+      {
+       "quadro": 2,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 530,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        },
+        "deCima": true
+       }
+      },
+      {
+       "quadro": 3,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 555,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        },
+        "deCima": true
+       }
+      },
+      {
+       "quadro": 4,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 580,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        },
+        "deCima": true
+       }
+      },
+      {
+       "quadro": 5,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 605,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        },
+        "deCima": true
+       }
+      },
+      {
+       "quadro": 6,
        "projetil": {
         "fx": "kiblast_amarelo",
         "escala": 0.55,
@@ -385,82 +466,8 @@
         "acerto": {
          "fracao": 0.1,
          "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 2,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 0.55,
-        "velocidade": 660,
-        "som": "krillin_kksne_fire",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 3,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 0.55,
-        "velocidade": 690,
-        "som": "krillin_kksne_fire",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 4,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 0.55,
-        "velocidade": 720,
-        "som": "krillin_kksne_fire",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 5,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 0.55,
-        "velocidade": 750,
-        "som": "krillin_kksne_fire",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 6,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 0.55,
-        "velocidade": 780,
-        "som": "krillin_kksne_fire",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
+        },
+        "deCima": true
        }
       },
       {
@@ -468,14 +475,15 @@
        "projetil": {
         "fx": "kiblast_amarelo",
         "escala": 0.55,
-        "velocidade": 810,
+        "velocidade": 655,
         "som": "krillin_kksne_fire",
         "impacto": "kiblast_hit",
         "impactoEscala": 1,
         "acerto": {
          "fracao": 0.1,
          "forca": "energia"
-        }
+        },
+        "deCima": true
        }
       }
      ]

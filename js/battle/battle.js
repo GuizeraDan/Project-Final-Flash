@@ -354,11 +354,14 @@ FF.Battle = class {
   }
 
   spawnProjectile(att, def, move, spec) {
-    const from = att.pontoDisparo();
     const to = def.peito();
+    // "deCima": a rajada cai do alto sobre o alvo (chuva de energia, ex.: Onda de Energia Dispersa)
+    const from = spec.deCima
+      ? { x: to.x - att.dir * (20 + Math.random() * 110) * this.scale, y: to.y - (230 + Math.random() * 60) * this.scale }
+      : att.pontoDisparo();
     const vel = spec.velocidade || 800;
-    const dist = Math.abs(to.x - from.x);
-    const travel = dist / vel;
+    const dist = spec.deCima ? Math.hypot(to.x - from.x, to.y - from.y) : Math.abs(to.x - from.x);
+    const travel = Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
     const fxName = spec.fx || 'kiblast_amarelo';
@@ -367,7 +370,7 @@ FF.Battle = class {
     a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
     let res;
-    const p = { a, set, scale: (spec.escala || 1) * this.scale, x: from.x, y: from.y, vx: (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
+    const p = { a, set, scale: (spec.escala || 1) * this.scale, x: from.x, y: from.y, vx: spec.deCima ? (to.x - from.x) / travel : (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, left: travel, done: new Promise(r => (res = r)) };
     p.hit = () => {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x, to.y, att.dir < 0, spec.impactoEscala || 1);
