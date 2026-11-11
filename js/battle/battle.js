@@ -47,7 +47,9 @@ FF.Battle = class {
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
     // melhorias compradas com AP (só heróis)
     if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
-    const f = new FF.Fighter(charDef, lado, pos[idx] != null ? pos[idx] : pos[0], this.groundY, this.scale);
+    // posições do JSON são para a tela base de 1084 px; em telas mais largas, centraliza
+    const offX = (FF.W - 1084) / 2;
+    const f = new FF.Fighter(charDef, lado, (pos[idx] != null ? pos[idx] : pos[0]) + offX, this.groundY, this.scale);
     const lista = lado === 'heroi' ? this.heroes : this.enemies;
     const iguais = lista.filter(x => x.id === f.id);
     if (iguais.length) {   // vários do mesmo (ex.: Saibamen): A, B, C...
@@ -496,7 +498,9 @@ FF.Battle = class {
     const chao = set.anim(st.chao).frames[0];
     const cs = st.chaoEscala || 2;
     const ch = chao[4] * cs;
-    for (let x = -((chao[3] * cs - FF.W) / 2); x < FF.W; x += chao[3] * cs) {
+    let x0 = (FF.W - chao[3] * cs) / 2;           // centralizado e repetido até cobrir a largura toda
+    while (x0 > 0) x0 -= chao[3] * cs;
+    for (let x = x0; x < FF.W; x += chao[3] * cs) {
       ctx.drawImage(set.images[chao[0]], chao[1], chao[2], chao[3], chao[4], x, this.groundY - (st.chaoTopo || 18) * cs, chao[3] * cs, ch);
     }
     const base = this.groundY - (st.chaoTopo || 18) * cs + ch;

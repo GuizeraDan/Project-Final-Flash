@@ -104,8 +104,8 @@ FF.Fighter = class {
       this.x += this.vx * dt;
       this.vx *= Math.pow(0.02, dt);
       if (Math.abs(this.vx) < 20) { this.vx = 0; if (this.voando) { this.voando = false; this.pousou = true; } }
-      this.x = Math.max(40, Math.min(1044, this.x));
-      if (this.voando && (this.x <= 40 || this.x >= 1044)) { this.vx = 0; this.voando = false; this.pousou = true; }
+      this.x = Math.max(40, Math.min(FF.W - 40, this.x));
+      if (this.voando && (this.x <= 40 || this.x >= FF.W - 40)) { this.vx = 0; this.voando = false; this.pousou = true; }
     }
     if (this.react && FF.Clock.t >= this.react.ate) {
       if (this.ko) { this.react = null; this.anim.play(this.animName('caido')); }

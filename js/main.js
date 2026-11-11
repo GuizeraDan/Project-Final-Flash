@@ -102,8 +102,19 @@ FF.UI = {
   },
 };
 
+// Ajusta a largura lógica do jogo à proporção da tela (celulares compridos ganham campo mais largo
+// em vez de faixas pretas). Altura fixa em 580; largura entre 1084 e 1300.
+FF.ajustarTela = function () {
+  const canvas = document.getElementById('tela');
+  const asp = Math.max(1084 / 580, Math.min(1300 / 580, window.innerWidth / Math.max(1, window.innerHeight)));
+  FF.W = Math.round(580 * asp);
+  canvas.width = FF.W;
+  document.getElementById('jogo').style.setProperty('--asp', (FF.W / 580).toFixed(4));
+};
+
 FF.start = async function (escolhida) {
   const canvas = document.getElementById('tela');
+  FF.ajustarTela();
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;
   FF.Input.init(canvas);
@@ -321,6 +332,7 @@ FF.UI.showEnd = async function (win) {
 };
 
 window.addEventListener('load', () => {
+  FF.ajustarTela();
   FF.aplicarVolumes();
   const intro = document.getElementById('inicio');
   const msg = document.getElementById('carregando');
