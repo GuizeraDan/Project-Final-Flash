@@ -61,3 +61,17 @@ Nada pela metade da sessão 2. Foco: Bloco 3 inteiro.
 **Observações:** com guarda perfeita automática os inimigos causam pouco dano (balancear no Bloco 4). Os golpes de Nappa/Vegeta não foram conferidos visualmente quadro a quadro (economia de uso). Só existem 2 músicas (tournament_theme e results_victory_theme).
 
 **Próxima sessão:** Bloco 4 — AP e melhorias salvas no `FF.Save`, balanceamento por simulação (as batalhas 04/05 estão longas), responsividade no celular e README.
+
+
+## 11/11/2026 04:30–04:55 — sessão noturna 4 de 4
+Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). Foco: Bloco 4.
+
+**Feito:**
+- **AP e Treinamento** (`FF.Treino`, `js/main.js`): vitória dá 30 + vida inimiga/100 de AP (dobro no modo história; `"ap"` no JSON da batalha sobrescreve). Tela *Treinamento (AP)* no título: Goku/Piccolo/Kuririn × Vida (+8%), Ataque (+6%), Defesa (+10%), Ki/turno (+1), até 5 níveis, custo 40×(nível+1). Salvo em `FF.Save` (`ap`, `treino`). Aplicado em `Battle.addFighter` só para heróis. Tela de fim mostra “+N AP”.
+- **Balanceamento por simulação** (sem plano = só Sequência): saiyajin_02 erro 0 → vence (todos > 790 de vida); 0.3 → vence (Piccolo 372); 1 → Piccolo e Kuririn caem, não termina. saiyajin_04 erro 0 → vence; 0.3 → vence (Kuririn 248); 1 → Kuririn cai, Nappa com 487. saiyajin_05 erro 0 → vence (Kuririn 68). Curva boa; só mudei o Sparking Goku+Piccolo 2.6 → 3.4 (igual aos outros).
+- **Celular:** aviso “Gire o celular” em retrato com toque; botões maiores (`pointer: coarse`); descrição dos golpes some no toque; altura com `100dvh`.
+- README: seções AP/Treinamento e Celular; lista de pendências atualizada.
+
+**Testes (novo código):** `--plano 1,2,4,5,1`; `--batalha saiyajin_03 --plano 1,2,1,4,1`; `--batalha saiyajin_02 --erro 0.3` (sem ERROS; com o tempo padrão de 170 s não chega ao fim rodando em paralelo — use `--tempo 240`); tela de Treinamento testada por script (compra, desconto de AP, salvamento).
+
+**Pendente:** AP para desbloquear golpes; lutas 04/05 longas; testar no celular de verdade; itens antigos do Bloco 2/3 (Kamehameha do Kuririn, Sparking de 3, quadros de Nappa/Vegeta, cenário nos diálogos).

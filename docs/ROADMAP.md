@@ -29,7 +29,9 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [ ] Cena de vitória/derrota do modo história com fundo do cenário (hoje o diálogo de abertura aparece sobre fundo escuro, antes de a batalha carregar).
 
 ## Bloco 4 — Progressão e polimento
-- [ ] **AP**: ganhar AP ao vencer; gastar em melhorias de atributos e para desbloquear golpes (árvore simples por personagem). Salvar.
-- [ ] Balanceamento por simulação (rodar várias lutas automáticas com taxas de erro 0 / 0.3 / 1 e ajustar para: jogador bom vence com folga, jogador ruim perde).
-- [ ] Responsividade no celular (menus, botões grandes, orientação paisagem).
-- [ ] Atualizar README.
+- [x] **AP**: ganhar AP ao vencer; gastar em melhorias de atributos (Treinamento, 5 níveis por atributo por herói). Salvo.
+- [ ] AP para desbloquear golpes (árvore por personagem) — aguardando decisão do usuário sobre quais golpes ficam bloqueados.
+- [x] Balanceamento por simulação (erro 0 / 0.3 / 1 nas batalhas 02 e 04): bom vence com folga, ruim perde. Sparking Goku+Piccolo subiu para 3.4.
+- [ ] Lutas 04/05 longas (~30 turnos, ~4 min). Considerar inimigos mais agressivos em vez de menos vida.
+- [x] Responsividade no celular (aviso para girar em pé, botões ≥ 40px no toque, menu sem descrição, 100dvh). Não testado em aparelho real.
+- [x] Atualizar README.
