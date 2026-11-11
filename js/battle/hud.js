@@ -145,10 +145,35 @@ FF.HUD = {
     if (tags.length) this.text(ctx, tags.join('  '), rtl ? x : x, 96, 13, '#ff9c9c', rtl ? 'right' : 'left');
   },
 
+  // destaca quem está escolhendo/agindo: moldura pulsante no painel (3 heróis) e seta sobre o lutador
+  destaque(ctx, b) {
+    const f = b.atual; if (!f || f.ko) return;
+    const pulso = 0.55 + 0.45 * Math.sin(FF.Clock.t * 7);
+    const i = b.heroes.indexOf(f);
+    ctx.save();
+    if (i >= 0 && b.heroes.length > 1) {
+      const S = 1.05, y = 2 + i * 76;
+      ctx.strokeStyle = 'rgba(255,226,90,' + pulso + ')';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#ffd23a'; ctx.shadowBlur = 10;
+      ctx.strokeRect(4, y, this.PW * S + 4, 73 * S);
+    }
+    if (!f.busy) {
+      const p = f.peito();
+      const y = p.y - 62 * (f.scale || 1) + Math.sin(FF.Clock.t * 5) * 4;
+      ctx.fillStyle = i >= 0 ? '#ffe25a' : '#ff6a5a';
+      ctx.strokeStyle = '#1a1020'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(p.x - 10, y - 14); ctx.lineTo(p.x + 10, y - 14); ctx.lineTo(p.x, y); ctx.closePath();
+      ctx.stroke(); ctx.fill();
+    }
+    ctx.restore();
+  },
+
   draw(ctx, b) {
     const n = b.heroes.length;
     b.heroes.forEach((h, i) => n > 1 ? this.panel(ctx, h, false, 1.05, 2 + i * 76) : this.panel(ctx, h, false));
     b.enemies.forEach((e, i) => this.panel(ctx, e, true));
+    this.destaque(ctx, b);
     if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 22, 16, '#ffe9a8', 'center');
     for (const t of b.texts) {
       const a = 1 - Math.max(0, (t.t - t.life * 0.6) / (t.life * 0.4));

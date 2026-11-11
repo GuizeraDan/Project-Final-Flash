@@ -42,6 +42,8 @@
     "combo",
     "kienzan",
     "senzu",
+    "sparking_kuririn_goku",
+    "onda_dispersa",
     "carregar_ki"
    ],
    "vitoria": [
@@ -289,6 +291,345 @@
     },
     {
      "ki": 40
+    }
+   ]
+  },
+  "onda_dispersa": {
+   "nome": "Onda de Energia Dispersa",
+   "descricao": "SUPREMO (Rage cheia): salta e faz chover dezenas de rajadas sobre o alvo.",
+   "tipo": "energia",
+   "supremo": true,
+   "poder": 6.0,
+   "roteiro": [
+    {
+     "anim": "Ultimate_ScatteringEnergyWave_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kksne_chrg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn214",
+        "vkrn215"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Ultimate_ScatteringEnergyWave_Pt2",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kksne_hand"
+      },
+      {
+       "quadro": 3,
+       "tremer": 5
+      },
+      {
+       "quadro": 3,
+       "efeito": {
+        "fx": "genkidama_efeito",
+        "em": "disparo",
+        "escala": 0.25,
+        "duracao": 0.8
+       }
+      }
+     ]
+    },
+    {
+     "mensagem": "Desvia dessa, se for capaz!",
+     "mensagemDur": 1.2
+    },
+    {
+     "anim": "Ultimate_ScatteringEnergyWave_Pt3",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn216",
+        "vkrn217"
+       ]
+      },
+      {
+       "quadro": 0,
+       "som": "krillin_kksne_lottafall"
+      },
+      {
+       "quadro": 0,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 600,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 1,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 630,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 2,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 660,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 3,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 690,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 4,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 720,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 5,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 750,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 6,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 780,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 7,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.55,
+        "velocidade": 810,
+        "som": "krillin_kksne_fire",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Ultimate_ScatteringEnergyWave_Pt4",
+     "eventos": [
+      {
+       "quadro": 1,
+       "projetil": {
+        "fx": "kiblast_amarelo",
+        "escala": 0.9,
+        "velocidade": 650,
+        "som": "krillin_kksne_fire",
+        "impacto": "Explosao15",
+        "impactoEscala": 0.6,
+        "acerto": {
+         "fracao": 0.2,
+         "forca": "energia",
+         "lanca": true,
+         "empurrao": 650
+        }
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Ultimate_ScatteringEnergyWave_Final",
+     "fps": 10,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kksne_expl"
+      },
+      {
+       "quadro": 0,
+       "tremer": 14
+      },
+      {
+       "quadro": 0,
+       "flash": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  "sparking_kuririn_goku": {
+   "nome": "Sparking: Kienzan + Kamehameha",
+   "descricao": "Combo em dupla com o Goku (30 KI de cada).",
+   "tipo": "energia",
+   "custoKi": 30,
+   "poder": 3.4,
+   "requer": {
+    "parceiro": {
+     "id": "goku",
+     "ki": 30
+    }
+   },
+   "roteiro": [
+    {
+     "mensagem": "SPARKING COMBO!",
+     "mensagemDur": 1.4,
+     "flash": 0.4
+    },
+    {
+     "quem": "goku",
+     "paralelo": [
+      {
+       "anim": "Special_Kamehameha_Chao_Frente",
+       "fps": 12,
+       "eventos": [
+        {
+         "quadro": 0,
+         "som": "goku_kamehame_chrg"
+        },
+        {
+         "quadro": 0,
+         "voz": [
+          "vgkn134",
+          "vgkn206"
+         ]
+        },
+        {
+         "quadro": 6,
+         "som": "goku_kamehame_fire"
+        },
+        {
+         "quadro": 6,
+         "tremer": 8
+        },
+        {
+         "quadro": 9,
+         "acerto": {
+          "fracao": 0.4,
+          "forca": "energia"
+         }
+        },
+        {
+         "quadro": 11,
+         "acerto": {
+          "fracao": 0.5,
+          "forca": "energia"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_DestructoDisc_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kienzan_chrg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn208",
+        "vkrn209"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_DestructoDisc_Pt2",
+     "duracao": 0.6,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kienzan_born"
+      }
+     ]
+    },
+    {
+     "anim": "Special_DestructoDisc_Pt3",
+     "eventos": [
+      {
+       "quadro": 6,
+       "projetil": {
+        "fx": "Krillin_1",
+        "escala": 0.6,
+        "velocidade": 750,
+        "som": "krillin_kienzan_fire",
+        "impacto": "hit_forte",
+        "impactoEscala": 1.2,
+        "acerto": {
+         "fracao": 0.8,
+         "forca": "forte",
+         "lanca": true,
+         "empurrao": 650
+        }
+       }
+      }
+     ]
     }
    ]
   }

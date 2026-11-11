@@ -42,6 +42,8 @@
     "combo",
     "makankosappo",
     "rajada_teleguiada",
+    "sparking_piccolo_kuririn",
+    "granada_de_luz",
     "carregar_ki"
    ],
    "vitoria": [
@@ -356,6 +358,249 @@
     },
     {
      "ki": 40
+    }
+   ]
+  },
+  "granada_de_luz": {
+   "nome": "Granada de Luz",
+   "descricao": "SUPREMO (Rage cheia): esfera de luz concentrada que explode no alvo.",
+   "tipo": "energia",
+   "supremo": true,
+   "poder": 6.2,
+   "roteiro": [
+    {
+     "anim": "Ultimate_LightGrenade_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "piccolo_gkrtkdn_charge"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn210",
+        "vpcn211"
+       ]
+      },
+      {
+       "quadro": 3,
+       "tremer": 5
+      }
+     ]
+    },
+    {
+     "anim": "Ultimate_LightGrenade_Pt2",
+     "duracao": 1.4,
+     "mensagem": "Isso aqui não se defende fácil!",
+     "mensagemDur": 1.4,
+     "eventos": [
+      {
+       "quadro": 0,
+       "tremer": 6
+      },
+      {
+       "quadro": 0,
+       "efeito": {
+        "fx": "genkidama_efeito",
+        "em": "disparo",
+        "escala": 0.35,
+        "duracao": 1.3
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Ultimate_LightGrenade_Final",
+     "fps": 6,
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn212",
+        "vpcn213"
+       ]
+      },
+      {
+       "quadro": 0,
+       "flash": 0.4
+      },
+      {
+       "quadro": 0,
+       "tremer": 12
+      },
+      {
+       "quadro": 0,
+       "projetil": {
+        "fx": "Homing_Energy_Blast",
+        "escala": 1.0,
+        "velocidade": 520,
+        "som": "piccolo_gkrtkdn_fire",
+        "impacto": "Explosao_Granada2",
+        "impactoEscala": 1.0,
+        "acerto": {
+         "fracao": 1.0,
+         "forca": "energia",
+         "lanca": true,
+         "empurrao": 720
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "sparking_piccolo_kuririn": {
+   "nome": "Sparking: Makankosappo + Kienzan",
+   "descricao": "Combo em dupla com o Kuririn (30 KI de cada).",
+   "tipo": "energia",
+   "custoKi": 30,
+   "poder": 3.4,
+   "requer": {
+    "parceiro": {
+     "id": "krillin",
+     "ki": 30
+    }
+   },
+   "roteiro": [
+    {
+     "mensagem": "SPARKING COMBO!",
+     "mensagemDur": 1.4,
+     "flash": 0.4
+    },
+    {
+     "quem": "krillin",
+     "paralelo": [
+      {
+       "anim": "Special_DestructoDisc_Pt1",
+       "eventos": [
+        {
+         "quadro": 0,
+         "som": "krillin_kienzan_chrg"
+        },
+        {
+         "quadro": 0,
+         "voz": [
+          "vkrn208",
+          "vkrn209"
+         ]
+        }
+       ]
+      },
+      {
+       "anim": "Special_DestructoDisc_Pt2",
+       "duracao": 0.5,
+       "eventos": [
+        {
+         "quadro": 0,
+         "som": "krillin_kienzan_born"
+        }
+       ]
+      },
+      {
+       "anim": "Special_DestructoDisc_Pt3",
+       "eventos": [
+        {
+         "quadro": 6,
+         "projetil": {
+          "fx": "Krillin_1",
+          "escala": 0.6,
+          "velocidade": 750,
+          "som": "krillin_kienzan_fire",
+          "impacto": "hit_forte",
+          "impactoEscala": 1.2,
+          "acerto": {
+           "fracao": 0.5,
+           "forca": "forte"
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_SpecialBeamCannon_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "makankou_charg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn206",
+        "vpcn207"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_SpecialBeamCannon_Pt2",
+     "duracao": 0.7,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "makankou_max"
+      },
+      {
+       "quadro": 0,
+       "tremer": 4
+      }
+     ]
+    },
+    {
+     "anim": "Special_SpecialBeamCannon_Final",
+     "fps": 12,
+     "eventos": [
+      {
+       "quadro": 4,
+       "som": "makankou_fire"
+      },
+      {
+       "quadro": 4,
+       "tremer": 10
+      },
+      {
+       "quadro": 4,
+       "flash": 0.25
+      },
+      {
+       "quadro": 4,
+       "efeito": {
+        "fx": "Pt1",
+        "em": "disparo",
+        "escala": 0.45
+       }
+      },
+      {
+       "quadro": 4,
+       "acerto": {
+        "fracao": 0.5,
+        "forca": "energia"
+       }
+      },
+      {
+       "quadro": 5,
+       "efeito": {
+        "fx": "Pt2",
+        "em": "disparo",
+        "escala": 0.45,
+        "duracao": 0.6
+       }
+      },
+      {
+       "quadro": 5,
+       "acerto": {
+        "fracao": 0.8,
+        "forca": "energia",
+        "lanca": true,
+        "empurrao": 650
+       }
+      }
+     ]
+    },
+    {
+     "esperar": 0.3
     }
    ]
   }

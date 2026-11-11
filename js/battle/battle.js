@@ -85,6 +85,7 @@ FF.Battle = class {
       target = foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
     }
     this.turnLabel = 'Vez de ' + actor.nome;
+    this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
     if (isHero) moveId = await this.ui.chooseMove(actor, this);
     else {
@@ -94,6 +95,7 @@ FF.Battle = class {
     }
     const move = actor.def.golpes[moveId];
     await this.execute(actor, target, move);
+    this.atual = null;
     if (this.checkEnd()) return;
     await this.endTurn(actor);
     this.checkEnd();
