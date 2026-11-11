@@ -1,4 +1,6 @@
-# Final Flash: protótipo de batalha (Goku vs Raditz)
+# Final Flash: Saga Saiyajin
+
+> **Modo história:** na tela de título escolha *Novo Jogo* (4 capítulos: Raditz → Saibamen → Nappa → Vegeta, com diálogos entre as lutas). *Continuar* retoma o capítulo salvo no navegador; *Batalha Livre* abre qualquer luta; *Treinamento (AP)* gasta os pontos ganhos nas vitórias; *Opções* ajusta os volumes. Atalhos: `?historia=N` e `?batalha=saiyajin_0N` na URL.
 
 Batalha por turnos em HTML/JavaScript puro que reaproveita os sprites e áudios do Z Legends 3. Não usa o editor do Construct.
 
@@ -99,10 +101,27 @@ python3 -I tools/extract_sprites.py --www <pasta assets/www> --out . --id nappa 
 | `vgks401` | Transformação em SSJ |
 | `vgks209` | Super Kamehameha |
 
+## AP e Treinamento
+
+Cada vitória dá **AP** (30 + 1 por 100 de vida inimiga; no modo história vale o dobro; uma batalha pode fixar o valor com `"ap"` no JSON). Na tela de título, *Treinamento (AP)* compra níveis (até 5) para Goku, Piccolo e Kuririn:
+
+| Atributo | Por nível | Custo |
+|---|---|---|
+| Vida | +8% | 40, 80, 120, 160, 200 AP |
+| Ataque | +6% | idem |
+| Defesa | +10% | idem |
+| Ki por turno | +1 | idem |
+
+Tudo fica salvo no navegador (`FF.Save`, chave `finalflash_save_v1`); *Opções → Apagar progresso* zera capítulos, AP e treino. As melhorias valem em todas as batalhas (código em `FF.Treino`, `js/main.js`).
+
+## Celular
+
+Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de toque os botões ficam maiores e o menu de golpes esconde a descrição para caber.
+
 ## Ainda não implementado (próximas etapas)
 
-- Rage Gauge e ataque supremo. A Genki Dama do Goku base já existe no jogo original: `Special_EveryoneLendMeYourEnergy`, `Special_SpiritBomb` e `Ultimate_SuperSpiritBomb`.
-- Sparking Combo e grupo de 3 heróis. O motor já recebe uma lista de heróis e posições, mas o menu e a escolha de alvo ainda tratam só um.
-- AP e árvore de habilidades.
-- HUD com as artes originais.
-- Ultimate do Raditz.
+- Desbloquear golpes com AP (hoje o AP só melhora atributos).
+- Kamehameha do Kuririn (precisa extrair o objeto do raio do APK).
+- Sparking Combo de 3 heróis e Sparking do Goku SSJ.
+- Saibaman com animações próprias de dano/caído; conferir quadro a quadro os golpes de Nappa/Vegeta.
+- Cenas de diálogo do modo história com o cenário ao fundo.

@@ -1,0 +1,181 @@
+{
+ "titulo": "Saga Saiyajin",
+ "retratos": {
+  "goku": "gokubase",
+  "piccolo": "piccolo",
+  "krillin": "krillin",
+  "raditz": "raditz",
+  "nappa": "nappa",
+  "vegeta": "vegeta_saiyajin",
+  "saibaman": "saibaman",
+  "narrador": null
+ },
+ "nomes": {
+  "goku": "Goku",
+  "piccolo": "Piccolo",
+  "krillin": "Kuririn",
+  "raditz": "Raditz",
+  "nappa": "Nappa",
+  "vegeta": "Vegeta",
+  "saibaman": "Saibaman",
+  "narrador": ""
+ },
+ "capitulos": [
+  {
+   "id": 1,
+   "titulo": "Capítulo 1 — O visitante do espaço",
+   "batalha": "saiyajin_01",
+   "antes": [
+    {
+     "quem": "narrador",
+     "texto": "Anos de paz se passaram desde o último Torneio de Artes Marciais. Até que uma nave caiu em uma plantação distante..."
+    },
+    {
+     "quem": "raditz",
+     "texto": "Então este é o planeta que você deveria ter conquistado, Kakarotto. Pelo visto, esqueceu quem você é."
+    },
+    {
+     "quem": "goku",
+     "texto": "Kakarotto? Meu nome é Goku! E não faço ideia do que você está falando."
+    },
+    {
+     "quem": "raditz",
+     "texto": "Você é um guerreiro Saiyajin, como eu. Seu próprio irmão veio buscá-lo. Venha por bem... ou por mal."
+    },
+    {
+     "quem": "goku",
+     "texto": "Se você acha que vou ajudar alguém a destruir a Terra, pode tirar o cavalinho da chuva. Vamos lutar!"
+    }
+   ],
+   "depois": [
+    {
+     "quem": "raditz",
+     "texto": "Impossível... um Saiyajin de classe baixa me derrubando? Não pense que acabou. Outros dois virão, muito mais fortes que eu."
+    },
+    {
+     "quem": "piccolo",
+     "texto": "Se o que ele disse é verdade, temos um ano até a chegada deles. Goku, você vai precisar treinar como nunca."
+    },
+    {
+     "quem": "goku",
+     "texto": "Um ano, hein? Já estou ficando animado!"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "titulo": "Capítulo 2 — As sementes do terror",
+   "batalha": "saiyajin_03",
+   "antes": [
+    {
+     "quem": "narrador",
+     "texto": "Um ano depois, duas naves aterrissam. Goku ainda está a caminho, e os guerreiros da Terra precisam ganhar tempo."
+    },
+    {
+     "quem": "nappa",
+     "texto": "Vegeta, deixa eu me divertir um pouco. Que tal plantar uns Saibamen e ver quanto esses terráqueos aguentam?"
+    },
+    {
+     "quem": "vegeta",
+     "texto": "Faça como quiser. Mas não perca tempo demais com esses insetos."
+    },
+    {
+     "quem": "saibaman",
+     "texto": "Kiiih! Kiiiiiih!"
+    },
+    {
+     "quem": "krillin",
+     "texto": "Essas coisas saíram da terra?! Cuidado, pessoal, eles parecem pequenos, mas não estão de brincadeira."
+    },
+    {
+     "quem": "piccolo",
+     "texto": "Não deixem que eles se agarrem em vocês. Algo me diz que é exatamente isso que querem."
+    }
+   ],
+   "depois": [
+    {
+     "quem": "krillin",
+     "texto": "Ufa... foi por pouco! Se um deles tivesse explodido em cima de mim, eu já era."
+    },
+    {
+     "quem": "nappa",
+     "texto": "Ha! Nada mal para quem mora num planetinha desses. Agora é a minha vez de brincar."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "titulo": "Capítulo 3 — O gigante Saiyajin",
+   "batalha": "saiyajin_04",
+   "antes": [
+    {
+     "quem": "nappa",
+     "texto": "Vou acabar com vocês três de uma vez. Quem quer ser o primeiro a virar poeira?"
+    },
+    {
+     "quem": "piccolo",
+     "texto": "Ele é forte, mas é lento e confiante demais. Ataquem juntos e não deem espaço para ele respirar."
+    },
+    {
+     "quem": "goku",
+     "texto": "Desculpem a demora! Deixem esse grandalhão comigo, mas vou aceitar uma ajudinha."
+    },
+    {
+     "quem": "vegeta",
+     "texto": "Kakarotto chegou, afinal. Nappa, mostre a ele o que é um verdadeiro Saiyajin."
+    }
+   ],
+   "depois": [
+    {
+     "quem": "nappa",
+     "texto": "Vegeta... me ajuda... eu não consigo me mexer..."
+    },
+    {
+     "quem": "vegeta",
+     "texto": "Um Saiyajin que não consegue lutar não me serve para nada. Saia do meu caminho."
+    },
+    {
+     "quem": "krillin",
+     "texto": "Ele... atacou o próprio parceiro?! Esse cara é ainda mais assustador."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "titulo": "Capítulo 4 — O orgulho do Príncipe",
+   "batalha": "saiyajin_05",
+   "antes": [
+    {
+     "quem": "vegeta",
+     "texto": "Eu sou o Príncipe de todos os Saiyajins. Vocês tiveram sorte até agora, mas a sorte acaba aqui."
+    },
+    {
+     "quem": "goku",
+     "texto": "Você fala demais, Vegeta. Vamos ver se a sua força é tão grande quanto o seu orgulho."
+    },
+    {
+     "quem": "piccolo",
+     "texto": "Não subestime esse sujeito. O poder dele está em outro nível."
+    },
+    {
+     "quem": "krillin",
+     "texto": "Juntos a gente consegue! Pelo menos... eu espero que consiga."
+    }
+   ],
+   "depois": [
+    {
+     "quem": "vegeta",
+     "texto": "Isso não vai ficar assim, Kakarotto! Eu vou voltar mais forte, e então você vai conhecer o verdadeiro terror!"
+    },
+    {
+     "quem": "goku",
+     "texto": "Pode voltar quando quiser. Vou estar esperando... e treinando!"
+    },
+    {
+     "quem": "narrador",
+     "texto": "A ameaça Saiyajin foi contida, mas o universo é grande. Uma nova jornada está prestes a começar... Fim da Saga Saiyajin."
+    }
+   ]
+  }
+ ]
+}

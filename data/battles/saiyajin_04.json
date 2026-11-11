@@ -1,0 +1,44 @@
+{
+ "saga": "saiyajin",
+ "cenario": "campo",
+ "escala": 2.2,
+ "musica": "tournament_theme",
+ "herois": [
+  "goku",
+  "piccolo",
+  "krillin"
+ ],
+ "posicoes": {
+  "herois": [
+   250,
+   150,
+   350
+  ],
+  "inimigos": [
+   930
+  ]
+ },
+ "id": "saiyajin_04",
+ "titulo": "Saga Saiyajin — A fúria de Nappa",
+ "inimigos": [
+  "nappa"
+ ],
+ "ajustes": {
+  "nappa": {
+   "hp": 3600
+  }
+ },
+ "intro": [
+  {
+   "quem": "nappa",
+   "voz": "vnpn400",
+   "anim": "Intro",
+   "esperar": 2.4
+  },
+  {
+   "quem": "goku",
+   "voz": "vgkn400",
+   "esperar": 1.6
+  }
+ ]
+}

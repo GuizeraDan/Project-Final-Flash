@@ -1,0 +1,223 @@
+{
+ "id": "saibaman",
+ "nome": "Saibaman",
+ "formaInicial": "base",
+ "atributos": {
+  "hp": 650,
+  "ataque": 82,
+  "defesa": 40,
+  "kiMax": 100,
+  "kiInicial": 0,
+  "kiPorTurno": 10,
+  "velocidade": 11
+ },
+ "vozes": {},
+ "formas": {
+  "base": {
+   "nome": "Saibaman",
+   "sprite": "saibaman",
+   "animsDerivadas": {
+    "Parado": {
+     "de": "Ataque_1",
+     "quadros": [
+      0,
+      1
+     ],
+     "fps": 4,
+     "loop": true
+    },
+    "Dano": {
+     "de": "Ataque_3",
+     "quadros": [
+      6
+     ]
+    },
+    "Guarda": {
+     "de": "Ataque_2",
+     "quadros": [
+      2
+     ]
+    },
+    "Lancado": {
+     "de": "Ataque_4",
+     "quadros": [
+      5
+     ]
+    },
+    "Caido": {
+     "de": "Ataque_3",
+     "quadros": [
+      6
+     ]
+    }
+   },
+   "anims": {
+    "parado": "Parado",
+    "dano1": "Dano",
+    "dano2": "Dano",
+    "guarda": "Guarda",
+    "lancado": "Lancado",
+    "caido": "Caido",
+    "avancar": "Parado",
+    "recuar": "Parado",
+    "teleporte": "Desaparecer"
+   },
+   "golpes": [
+    "garra",
+    "acido",
+    "autodestruicao"
+   ],
+   "vitoria": [
+    {
+     "anim": "Parado",
+     "duracao": 60
+    }
+   ]
+  }
+ },
+ "ia": [
+  {
+   "golpe": "garra",
+   "peso": 5
+  },
+  {
+   "golpe": "acido",
+   "peso": 4
+  },
+  {
+   "golpe": "autodestruicao",
+   "peso": 6,
+   "hpAbaixo": 0.3
+  }
+ ],
+ "golpes": {
+  "garra": {
+   "nome": "Garras do Saibaman",
+   "poder": 1.5,
+   "roteiro": [
+    {
+     "irAte": "alvo",
+     "dist": 26,
+     "tempo": 0.25,
+     "som": "nappa_saibaplant_jump"
+    },
+    {
+     "anim": "Ataque_2",
+     "eventos": [
+      {
+       "quadro": 2,
+       "som": "nappa_saibaplant_kick"
+      },
+      {
+       "quadro": 4,
+       "acerto": {
+        "fracao": 0.5,
+        "forca": "media"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Ataque_3",
+     "eventos": [
+      {
+       "quadro": 2,
+       "som": "nappa_saibaplant_lokick"
+      },
+      {
+       "quadro": 4,
+       "acerto": {
+        "fracao": 0.5,
+        "forca": "forte",
+        "lanca": true
+       }
+      }
+     ]
+    },
+    {
+     "voltar": true,
+     "som": "teletransporte"
+    }
+   ]
+  },
+  "acido": {
+   "nome": "Cuspe Ácido",
+   "descricao": "Ácido que corrói a defesa.",
+   "poder": 2.0,
+   "roteiro": [
+    {
+     "irAte": "alvo",
+     "dist": 34,
+     "tempo": 0.25,
+     "som": "nappa_saibaplant_jump"
+    },
+    {
+     "anim": "Ataque_1",
+     "eventos": [
+      {
+       "quadro": 4,
+       "som": "nappa_saibaplant_ekifire"
+      },
+      {
+       "quadro": 6,
+       "som": "nappa_saibaplant_ekihit"
+      },
+      {
+       "quadro": 6,
+       "acerto": {
+        "fracao": 1.0,
+        "forca": "energia"
+       }
+      }
+     ]
+    },
+    {
+     "voltar": true,
+     "som": "teletransporte"
+    }
+   ]
+  },
+  "autodestruicao": {
+   "nome": "Autodestruição",
+   "descricao": "Agarra o alvo e explode junto.",
+   "poder": 4.2,
+   "roteiro": [
+    {
+     "mensagem": "O Saibaman se agarrou!",
+     "mensagemDur": 1.0
+    },
+    {
+     "irAte": "alvo",
+     "dist": 10,
+     "tempo": 0.3,
+     "som": "nappa_saibaplant_jpmch"
+    },
+    {
+     "anim": "Ataque_4",
+     "eventos": [
+      {
+       "quadro": 3,
+       "som": "nappa_saibaplant_hold"
+      },
+      {
+       "quadro": 7,
+       "tremer": 8
+      },
+      {
+       "quadro": 8,
+       "acerto": {
+        "fracao": 1.0,
+        "forca": "forte",
+        "lanca": true,
+        "empurrao": 600
+       }
+      }
+     ]
+    },
+    {
+     "autoNocaute": true
+    }
+   ]
+  }
+ }
+}

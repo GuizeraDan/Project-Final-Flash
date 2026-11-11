@@ -26,16 +26,35 @@ FF.Battle = class {
     this.lockUntil = 0;
     this.turnLabel = '';
     this.fx = FF.Assets.sprites.fx;
+    this.fx2 = FF.Assets.sprites.fx_extra || null;   // explosões, rochas, Genki Dama...
+    this.objs = {};
+    this.paralelos = [];                             // sub-roteiros de parceiros (Sparking Combo)                                  // objetos persistentes de golpes (ex.: Genki Dama crescendo)
     this.stageSprite = FF.Assets.sprites[stage.sprite];
     FF.Input.onAction(() => this.onPress());
   }
 
   get all() { return this.heroes.concat(this.enemies); }
 
+  static ofensivo(mv) {
+    const j = JSON.stringify(mv.roteiro || []);
+    return /"(acerto|projetil|lancarObjeto|atordoar)"/.test(j);
+  }
+
   addFighter(charDef, lado, idx) {
     const pos = lado === 'heroi' ? this.def.posicoes.herois : this.def.posicoes.inimigos;
-    const f = new FF.Fighter(charDef, lado, pos[idx] || pos[0], this.groundY, this.scale);
-    (lado === 'heroi' ? this.heroes : this.enemies).push(f);
+    // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
+    const aj = (this.def.ajustes || {})[charDef.id];
+    if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
+    // melhorias compradas com AP (só heróis)
+    if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
+    const f = new FF.Fighter(charDef, lado, pos[idx] != null ? pos[idx] : pos[0], this.groundY, this.scale);
+    const lista = lado === 'heroi' ? this.heroes : this.enemies;
+    const iguais = lista.filter(x => x.id === f.id);
+    if (iguais.length) {   // vários do mesmo (ex.: Saibamen): A, B, C...
+      if (iguais.length === 1) iguais[0].sufixo = ' A';
+      f.sufixo = ' ' + String.fromCharCode(65 + iguais.length);
+    }
+    lista.push(f);
     return f;
   }
 
@@ -44,13 +63,11 @@ FF.Battle = class {
     FF.Audio.music(this.def.musica);
     await this.intro();
     while (!this.over) {
-      for (const h of this.heroes) {
-        if (this.over || h.ko) continue;
-        await this.turn(h, true);
-      }
-      for (const e of this.enemies) {
-        if (this.over || e.ko) continue;
-        await this.turn(e, false);
+      // ordem de turno pela velocidade (empate: heróis primeiro)
+      const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
+      for (const f of ordem) {
+        if (this.over || f.ko) continue;
+        await this.turn(f, f.isHero);
       }
     }
   }
@@ -71,15 +88,41 @@ FF.Battle = class {
   }
 
   async turn(actor, isHero) {
-    const foes = isHero ? this.enemies : this.heroes;
-    const target = foes.find(f => !f.ko);
-    if (!target) return;
+    const foes = (isHero ? this.enemies : this.heroes).filter(f => !f.ko);
+    if (!foes.length) return;
+    // herói ataca o primeiro inimigo de pé; inimigo escolhe um herói (prefere quem está mais fraco)
+    let target = foes[0];
+    if (!isHero && foes.length > 1) {
+      const pesos = foes.map(f => 1 + 2 * (1 - f.hp / f.hpMax));
+      let x = Math.random() * pesos.reduce((a, b) => a + b, 0);
+      target = foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
+    }
+    // atordoado (ex.: Taiyoken do Kuririn): perde a vez
+    if (actor.atordoado > 0) {
+      actor.atordoado--;
+      this.popup(actor, 'ATORDOADO!', '#fff27a');
+      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
+      await FF.Clock.wait(1.2);
+      await this.endTurn(actor);
+      return;
+    }
     this.turnLabel = 'Vez de ' + actor.nome;
+    this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
-    if (isHero) moveId = await this.ui.chooseMove(actor, this);
-    else { await FF.Clock.wait(0.6); moveId = FF.AI.choose(actor, target, this); }
+    if (isHero) {
+      moveId = await this.ui.chooseMove(actor, this);
+      // vários inimigos de pé: o jogador escolhe o alvo (golpes que acertam alguém)
+      const mv = actor.def.golpes[moveId];
+      if (foes.length > 1 && FF.Battle.ofensivo(mv)) target = await this.ui.chooseTarget(foes, this);
+    }
+    else {
+      await FF.Clock.wait(0.6);
+      const sup = actor.rageCheia && actor.form.golpes.find(id => (actor.def.golpes[id] || {}).supremo);
+      moveId = sup || FF.AI.choose(actor, target, this);
+    }
     const move = actor.def.golpes[moveId];
     await this.execute(actor, target, move);
+    this.atual = null;
     if (this.checkEnd()) return;
     await this.endTurn(actor);
     this.checkEnd();
@@ -88,9 +131,21 @@ FF.Battle = class {
   async execute(actor, target, move) {
     actor.addKi(-(move.custoKi || 0));
     if (move.custoKi) this.popup(actor, '-' + move.custoKi + ' KI', '#7fd0ff');
+    const parc = move.requer && move.requer.parceiro;
+    if (parc) {
+      const pf = this.all.find(f => f.id === parc.id);
+      if (pf && parc.ki) { pf.addKi(-parc.ki); this.popup(pf, '-' + parc.ki + ' KI', '#7fd0ff'); }
+    }
+    if (move.supremo) {
+      actor.rage = 0;
+      this.flash(0.5);
+      FF.Audio.play('sprkngbrst_expl', 0.8);
+    }
     actor.busy = true;
-    if (move.anuncio !== false) this.banner(move.nome, 1.2);
+    if (move.anuncio !== false) this.banner(move.nome, move.supremo ? 2.0 : 1.2);
     await FF.Script.run(this, actor, target, move);
+    await Promise.all(this.paralelos);
+    this.paralelos = [];
     await Promise.all(this.projectiles.map(p => p.done));
     await FF.Clock.wait(0.25);
     actor.busy = false;
@@ -214,6 +269,10 @@ FF.Battle = class {
 
     dmg = Math.max(1, Math.round(dmg));
     def.hp = Math.max(0, def.hp - dmg);
+    // Rage Gauge: enche ao causar e (mais) ao receber dano; guarda perfeita também enche
+    const fr = dmg / def.hpMax;
+    if (!move.supremo) att.addRage(fr * (FF.RAGE_CAUSAR || 90));
+    def.addRage(fr * (FF.RAGE_RECEBER || 120) * (move.supremo ? 0.4 : 1) + (guard && res === 'perfeito' ? 8 : 0));
     this.popup(def, String(dmg), guard ? '#cfe8ff' : '#ffffff');
 
     const p = def.peito();
@@ -225,12 +284,21 @@ FF.Battle = class {
       const fxName = spec.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
       this.spawnFx(fxName, p.x + (spec.dx || 0), p.y + (spec.dy || 0), att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1));
       FF.Audio.play({ leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
+      if (spec.lanca || def.hp <= 0) {
+        // golpe final: impacto extra (corpo a corpo) ou explosão no alvo (energia)
+        if (forca === 'forte') this.spawnFx('Extreme', p.x, p.y, att.dir < 0, 0.7);
+        if (forca === 'energia') this.spawnFx('Explosao4', p.x, p.y, att.dir < 0, 0.8);
+      }
       if (def.hp <= 0) {
         def.ko = true;
         def.voz('lancado');
         def.lancar(700);
         FF.Audio.play('blow_down');
-        FF.Clock.hitstop(0.25);
+        FF.Audio.play('explosao', 0.8);
+        this.spawnFx('Explosao11', p.x, p.y + 30, att.dir < 0, 0.55);
+        this.flash(0.45);
+        this.shake(16);
+        FF.Clock.hitstop(0.35);
       } else if (spec.lanca) {
         def.lancar(spec.empurrao || 520);
         def.voz('lancado');
@@ -245,27 +313,82 @@ FF.Battle = class {
     return dmg;
   }
 
-  spawnFx(name, x, y, flip, scale) {
-    const set = this.fx.has(name) ? this.fx : null;
+  fxSet(name) {
+    if (this.fx.has(name)) return this.fx;
+    if (this.fx2 && this.fx2.has(name)) return this.fx2;
+    return null;
+  }
+
+  spawnFx(name, x, y, flip, scale, opts) {
+    const set = this.fxSet(name);
+    if (!set) { console.log('[FF] efeito inexistente:', name); return null; }
+    const a = new FF.Animator(set);
+    const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
+    a.play(name, { loop: !!dur, fps: opts && opts.fps });
+    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale, alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null };
+    this.fxList.push(e);
+    return e;
+  }
+
+  // Objeto persistente preso ao golpe (ex.: Genki Dama): cresce de escala[0] a escala[1] em "tempo" s.
+  criarObjeto(actor, o) {
+    const set = this.fxSet(o.fx);
     if (!set) return;
     const a = new FF.Animator(set);
-    a.play(name, { loop: false });
-    this.fxList.push({ a, set, x, y, flip, scale: (scale || 1) * this.scale });
+    a.play(o.fx, { loop: true });
+    const esc = o.escala || [1, 1];
+    const base = { x: actor.x, y: actor.y - 60 * actor.scale };
+    this.objs[o.id] = { a, set, x: base.x + (o.dx || 0) * actor.dir, y: base.y + (o.dy || 0), s0: esc[0], s1: esc[1],
+      t: 0, dur: o.tempo || 1, flip: actor.dir < 0, particulas: o.particulas, pt: 0 };
+  }
+
+  // Arremessa o objeto no alvo; ao chegar, solta efeitos e uma série de acertos.
+  lancarObjeto(att, def, move, o) {
+    const ob = this.objs[o.id];
+    if (!ob || !def) return;
+    delete this.objs[o.id];
+    const to = def.peito();
+    const travel = o.tempo || 1;
+    const qteMode = this.qteMode(att, def);
+    const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
+    if (o.som) FF.Audio.play(o.som);
+    let res;
+    const sc = ob.s1 * this.scale;
+    const p = { a: ob.a, set: ob.set, scale: sc, x: ob.x, y: ob.y, vx: (to.x - ob.x) / travel, vy: (to.y + (o.alvoDy || 0) - ob.y) / travel,
+      flip: ob.flip, left: travel, done: new Promise(r => (res = r)) };
+    p.hit = async () => {
+      for (const ef of (o.impacto || [])) this.spawnFx(ef.fx, to.x + (ef.dx || 0), (ef.chao ? def.groundY : to.y) + (ef.dy || 0), false, ef.escala || 1, ef);
+      for (const s of [].concat(o.somImpacto || [])) FF.Audio.play(s);
+      this.flash(o.flash || 0.8);
+      this.shake(o.tremer || 16);
+      const hits = o.acertos || [{ fracao: 1, forca: 'energia', lanca: true }];
+      for (let i = 0; i < hits.length; i++) {
+        this.applyHit(att, def, move, hits[i], qte);
+        if (i < hits.length - 1) { this.shake(o.tremer || 16); await FF.Clock.wait(o.intervalo || 0.18); }
+      }
+      res();
+    };
+    this.projectiles.push(p);
   }
 
   spawnProjectile(att, def, move, spec) {
-    const from = att.pontoDisparo();
     const to = def.peito();
+    // "deCima": a rajada cai do alto sobre o alvo (chuva de energia, ex.: Onda de Energia Dispersa)
+    const from = spec.deCima
+      ? { x: to.x - att.dir * (20 + Math.random() * 110) * this.scale, y: to.y - (230 + Math.random() * 60) * this.scale }
+      : att.pontoDisparo();
     const vel = spec.velocidade || 800;
-    const dist = Math.abs(to.x - from.x);
-    const travel = dist / vel;
+    const dist = spec.deCima ? Math.hypot(to.x - from.x, to.y - from.y) : Math.abs(to.x - from.x);
+    const travel = Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
-    const a = new FF.Animator(this.fx);
-    a.play(spec.fx || 'kiblast_amarelo', { loop: true });
+    const fxName = spec.fx || 'kiblast_amarelo';
+    const set = this.fxSet(fxName) || this.fx;
+    const a = new FF.Animator(set);
+    a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
     let res;
-    const p = { a, x: from.x, y: from.y, vx: (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
+    const p = { a, set, scale: (spec.escala || 1) * this.scale, x: from.x, y: from.y, vx: spec.deCima ? (to.x - from.x) / travel : (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, left: travel, done: new Promise(r => (res = r)) };
     p.hit = () => {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x, to.y, att.dir < 0, spec.impactoEscala || 1);
@@ -300,7 +423,28 @@ FF.Battle = class {
   update(dt) {
     this.all.forEach(f => f.update(dt));
     this.fxList.forEach(e => e.a.update(dt));
-    this.fxList = this.fxList.filter(e => !e.a.done);
+    this.fxList = this.fxList.filter(e => !e.a.done && !(e.ate && FF.Clock.t > e.ate));
+    for (const ob of Object.values(this.objs)) {
+      ob.a.update(dt);
+      ob.t += dt;
+      const k = Math.min(1, ob.t / ob.dur);
+      ob.scale = (ob.s0 + (ob.s1 - ob.s0) * (1 - Math.pow(1 - k, 2))) * this.scale;
+      if (ob.particulas && k < 1) {
+        ob.pt -= dt;
+        if (ob.pt <= 0) {
+          ob.pt = 0.12;
+          const ang = Math.random() * Math.PI * 2, r = 120 + Math.random() * 160;
+          this.spawnFx(ob.particulas, ob.x + Math.cos(ang) * r, ob.y + Math.sin(ang) * r * 0.6, false, 0.5);
+        }
+      }
+    }
+    // quem foi lançado e parou: poeira e rochas no chão
+    for (const f of this.all) if (f.pousou) {
+      f.pousou = false;
+      this.spawnFx('Poeira_De_Colisao_Com_O_Solo_Frente', f.x, f.groundY + 4, f.dir > 0, 0.55);
+      this.spawnFx('Rochas', f.x + f.dir * 10, f.groundY, f.dir > 0, 0.9);
+      this.shake(5);
+    }
     for (const tw of this.tweens) {
       tw.t += dt;
       const k = Math.min(1, tw.t / tw.dur);
@@ -329,8 +473,9 @@ FF.Battle = class {
     // quem está agindo fica na frente
     const order = this.all.slice().sort((a, b) => (a.busy ? 1 : 0) - (b.busy ? 1 : 0));
     order.forEach(f => f.draw(ctx, this.fx));
-    this.projectiles.forEach(p => FF.drawFrame(ctx, this.fx, p.a.frame(), p.x, p.y, this.scale, p.flip));
-    this.fxList.forEach(e => FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip));
+    Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
+    this.projectiles.forEach(p => FF.drawFrame(ctx, p.set || this.fx, p.a.frame(), p.x, p.y, p.scale || this.scale, p.flip));
+    this.fxList.forEach(e => FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, e.alpha != null ? { alpha: e.alpha } : undefined));
     ctx.restore();
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);

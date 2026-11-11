@@ -2,7 +2,7 @@
   "id": "goku",
   "nome": "Goku",
   "formaInicial": "base",
-  "atributos": { "hp": 1200, "ataque": 100, "defesa": 60, "kiMax": 100, "kiInicial": 30, "kiPorTurno": 8 },
+  "atributos": { "hp": 1200, "ataque": 100, "defesa": 60, "kiMax": 100, "kiInicial": 30, "kiPorTurno": 8, "velocidade": 10 },
   "vozes": {
     "dano": ["vgkn002", "vgkn003", "vgkn004"],
     "lancado": ["vgkn012", "vgkn013", "vgkn014"]
@@ -26,7 +26,7 @@
         "lancado": "SendoLancado_LADO", "caido": "Caido", "avancar": "MovimentoParaFrente",
         "recuar": "MovimentoParaTras", "teleporte": "Teletransporte_Chao"
       },
-      "golpes": ["combo", "kamehameha", "kaioken", "carregar_ki", "transformar_ssj"],
+      "golpes": ["combo", "kamehameha", "kaioken", "carregar_ki", "transformar_ssj", "genkidama", "sparking_goku_piccolo"],
       "vitoria": [
         { "anim": "Vitoria_Pt1", "fps": 14, "eventos": [ { "quadro": 0, "som": "winstart_effect" }, { "quadro": 0, "voz": ["vgkn402", "vgkn403", "vgkn404", "vgkn405"] } ] },
         { "anim": "Vitoria_Pt2", "duracao": 60 }
@@ -200,6 +200,70 @@
           { "quadro": 22, "acerto": { "fracao": 0.2, "forca": "energia" } },
           { "quadro": 24, "acerto": { "fracao": 0.25, "forca": "energia" } },
           { "quadro": 26, "acerto": { "fracao": 0.35, "forca": "energia", "lanca": true } } ] }
+      ]
+    },
+
+    "genkidama": {
+      "nome": "Genki Dama",
+      "descricao": "SUPREMO (Rage cheia): a energia de todos os seres vivos.",
+      "tipo": "energia",
+      "supremo": true,
+      "poder": 7.0,
+      "roteiro": [
+        { "anim": "Special_EveryoneLendMeYourEnergy", "fps": 12, "eventos": [
+          { "quadro": 0, "som": "goku_gnkdm_start" },
+          { "quadro": 0, "voz": "vgkn201demo" },
+          { "quadro": 1, "tremer": 5 },
+          { "quadro": 5, "som": "gnkdm_charge" } ] },
+        { "objeto": { "id": "gd", "fx": "genkidama", "dy": -105, "escala": [0.03, 0.32], "tempo": 2.4, "particulas": "genkidama_efeito" },
+          "som": "goku_gnkdm_charge", "mensagem": "Montanhas, mares, florestas... me emprestem sua energia!", "mensagemDur": 2.4 },
+        { "tremer": 7 },
+        { "esperar": 2.5 },
+        { "anim": "Special_SpiritBomb", "fps": 10, "eventos": [
+          { "quadro": 0, "voz": "vgkn209" },
+          { "quadro": 4, "som": "goku_gnkdm_fire" },
+          { "quadro": 4, "tremer": 10 },
+          { "quadro": 4, "lancarObjeto": {
+            "id": "gd", "tempo": 1.1, "som": "goku_gnkdm_tosky", "flash": 1.0, "tremer": 20, "intervalo": 0.22,
+            "somImpacto": ["goku_gnkdm_impct", "goku_s_gnkdm_expl"],
+            "impacto": [
+              { "fx": "genkidama_chao", "chao": true, "escala": 0.5, "duracao": 1.2 },
+              { "fx": "genkidama_explosao", "escala": 0.45, "duracao": 1.0 },
+              { "fx": "Explosao15", "escala": 0.7, "dy": 40 } ],
+            "acertos": [
+              { "fracao": 0.15, "forca": "energia" },
+              { "fracao": 0.15, "forca": "energia" },
+              { "fracao": 0.2, "forca": "energia" },
+              { "fracao": 0.2, "forca": "energia" },
+              { "fracao": 0.3, "forca": "energia", "lanca": true, "empurrao": 700 } ] } } ] }
+      ]
+    },
+
+    "sparking_goku_piccolo": {
+      "nome": "Sparking: Kamehameha + Makankosappo",
+      "descricao": "Combo em dupla com o Piccolo (30 KI de cada).",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 3.4,
+      "requer": { "parceiro": { "id": "piccolo", "ki": 30 } },
+      "roteiro": [
+        { "mensagem": "SPARKING COMBO!", "mensagemDur": 1.4, "flash": 0.4 },
+        { "quem": "piccolo", "paralelo": [
+          { "anim": "Special_SpecialBeamCannon_Pt1", "eventos": [ { "quadro": 0, "som": "makankou_charg" }, { "quadro": 0, "voz": ["vpcn206", "vpcn207"] } ] },
+          { "anim": "Special_SpecialBeamCannon_Pt2", "duracao": 0.5, "eventos": [ { "quadro": 0, "som": "makankou_max" } ] },
+          { "anim": "Special_SpecialBeamCannon_Final", "fps": 12, "eventos": [
+            { "quadro": 4, "som": "makankou_fire" }, { "quadro": 4, "tremer": 10 },
+            { "quadro": 4, "efeito": { "fx": "Pt1", "em": "disparo", "escala": 0.45 } },
+            { "quadro": 5, "efeito": { "fx": "Pt2", "em": "disparo", "escala": 0.45, "duracao": 0.6 } },
+            { "quadro": 5, "acerto": { "fracao": 0.5, "forca": "energia" } } ] } ] },
+        { "anim": "Special_Kamehameha_Chao_Frente", "fps": 12, "eventos": [
+          { "quadro": 0, "som": "goku_kamehame_chrg" },
+          { "quadro": 0, "voz": ["vgkn134", "vgkn206"] },
+          { "quadro": 6, "som": "goku_kamehame_fire" },
+          { "quadro": 6, "tremer": 8 },
+          { "quadro": 9, "acerto": { "fracao": 0.4, "forca": "energia" } },
+          { "quadro": 10, "acerto": { "fracao": 0.4, "forca": "energia" } },
+          { "quadro": 11, "acerto": { "fracao": 0.7, "forca": "energia", "lanca": true, "empurrao": 650 } } ] }
       ]
     },
 
