@@ -353,7 +353,7 @@ Object.assign(FF.Editor, {
       r.append(t, ir, ...campos, x);
       box.appendChild(r);
     };
-    (c.sons || []).forEach((s, k) => linha('sons', s, k, [s.voz ? '🗣' : '🔊', this.campoAudio(s.som, v => { s.som = v || ''; })]));
+    (c.sons || []).forEach((s, k) => linha('sons', s, k, [s.voz ? '🗣' : '🔊', this.campoAudio(s.som, v => { s.som = v || ''; }, s.voz)]));
     (c.acertos || []).forEach((h, k) => {
       const lanca = document.createElement('input'); lanca.type = 'checkbox'; lanca.checked = !!h.lanca;
       lanca.onchange = () => { this.set(h, 'lanca', lanca.checked || undefined); this.atualizarJSON(); };

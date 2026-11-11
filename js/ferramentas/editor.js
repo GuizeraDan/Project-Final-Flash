@@ -288,7 +288,7 @@ FF.Editor = {
     return t;
   },
 
-  campoAudio(valor, onchange) {
+  campoAudio(valor, onchange, voz) {
     const w = document.createElement('span');
     w.className = 'ed-audio';
     const i = this.inp(Array.isArray(valor) ? valor.join(', ') : valor, v => {
@@ -299,7 +299,19 @@ FF.Editor = {
     const b = document.createElement('button');
     b.textContent = '▶'; b.title = 'Ouvir';
     b.onclick = () => { const n = i.value.split(',')[0].trim(); if (n) FF.Audio.play(n, 1); };
-    w.append(i, b);
+    // 🎧 navegador: ouvir todos antes de escolher
+    const nav = document.createElement('button');
+    nav.textContent = '🎧'; nav.title = 'Procurar ouvindo';
+    nav.onclick = (e) => {
+      e.stopPropagation();
+      const atual = i.value.split(',').map(x => x.trim()).filter(Boolean);
+      const at = this.ator();
+      FF.Sons.abrir({
+        atual, grupo: voz ? 'Voz: ' + (FF.Sons.VOZES[FF.Sons.vozDe(at.id, at.formId)] || at.def.nome) : null,
+        aoEscolher: (lista) => { i.value = lista.join(', '); onchange(lista.length > 1 ? lista : lista[0]); this.atualizarJSON(); },
+      });
+    };
+    w.append(i, b, nav);
     return w;
   },
 
@@ -352,7 +364,7 @@ FF.Editor = {
       row.append(al, ver);
     } else if (ev.som != null || ev.voz != null) {
       const k2 = ev.som != null ? 'som' : 'voz';
-      row.append(k2 === 'som' ? '🔊' : '🗣', this.campoAudio(ev[k2], v => { ev[k2] = v || ''; }));
+      row.append(k2 === 'som' ? '🔊' : '🗣', this.campoAudio(ev[k2], v => { ev[k2] = v || ''; }, k2 === 'voz'));
     } else if (ev.acerto) {
       const a = ev.acerto;
       const lanca = document.createElement('input'); lanca.type = 'checkbox'; lanca.checked = !!a.lanca; lanca.title = 'lança o alvo';

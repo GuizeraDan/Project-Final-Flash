@@ -202,3 +202,138 @@ Object.assign(FF.Editor, {
     return d;
   },
 });
+
+// ---------- navegador de sons e vozes: ouvir antes de escolher ----------
+FF.Sons = {
+  VOZES: { vgkn: 'Goku', vgks: 'Goku SSJ', vpcn: 'Piccolo', vkrn: 'Kuririn', vnpn: 'Nappa', vvgn: 'Vegeta', vtnn: 'Tenshinhan', vgs: 'Goku (extra)', raditz: 'Raditz' },
+  GOLPES: { goku: 'Goku', gokubase: 'Goku', krillin: 'Kuririn', nappa: 'Nappa', piccolo: 'Piccolo', raditz: 'Raditz', vegeta: 'Vegeta', tienshinhan: 'Tenshinhan', tenshinhan: 'Tenshinhan' },
+  // voz do lutador de acordo com personagem/forma
+  vozDe(id, forma) { return id === 'goku' && forma === 'ssj' ? 'vgks' : { goku: 'vgkn', piccolo: 'vpcn', krillin: 'vkrn', nappa: 'vnpn', vegeta: 'vvgn', tenshinhan: 'vtnn', tienshinhan: 'vtnn', raditz: 'raditz' }[id]; },
+
+  // em que grupo cada áudio entra
+  grupo(n) {
+    const m = n.match(/^(v[a-z]{2,3}n|vgks|vgs)(\d+)/);
+    if (m && this.VOZES[m[1]]) {
+      const d = +m[2], tipo = d < 100 ? 'dano/lançado' : d < 200 ? 'golpes' : d < 400 ? 'especiais' : 'intro/vitória';
+      return { g: '🗣 Voz: ' + this.VOZES[m[1]], tipo };
+    }
+    if (/^raditz_/.test(n)) return { g: '🗣 Voz: Raditz' };
+    if (/^narrador_|^na_|^versus|^battlecall/.test(n)) return { g: '📢 Narrador e anúncios' };
+    const p = n.split(/[_-]/)[0];
+    if (this.GOLPES[p]) return { g: '💥 Golpes de ' + this.GOLPES[p] };
+    if (/^(hit|guard|defesa|blow|foot|throw|backdash|dragonrush|ataque)/.test(n)) return { g: '👊 Impactos e movimentos' };
+    if (/(expl|kame|kidan|masenko|galick|makankou|kikouho|laser|ki|beam|fire|chrg)/.test(n)) return { g: '✨ Energia e explosões' };
+    return { g: '🔊 Outros efeitos' };
+  },
+
+  todos() {
+    const lista = (window.FF_BUNDLE && FF_BUNDLE._indice && FF_BUNDLE._indice.audios) || [];
+    return lista.map(n => Object.assign({ n }, this.grupo(n)));
+  },
+
+  tocar(n) {
+    if (this.atual) { try { this.atual.pause(); } catch (e) { /* nada */ } }
+    this.atual = FF.Audio.play(n, 1);
+  },
+
+  // opts: { atual: [nomes], grupo: 'rótulo inicial' ou prefixo de voz, aoEscolher(lista) }
+  abrir(opts) {
+    let el = document.getElementById('pv-sons');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'pv-sons';
+      el.innerHTML = `<div class="ps-caixa">
+        <div class="pv-topo"><b>🎧 Sons e vozes</b><button data-ps="fechar">✕</button></div>
+        <div class="pv-linha"><select data-ps="grupo"></select><input data-ps="filtro" placeholder="filtrar pelo nome…"></div>
+        <div class="ps-dica">Toque num som para ouvir. ✔ usa só ele · ＋ junta vários (o jogo sorteia um a cada vez).</div>
+        <div class="ps-lista"></div>
+        <div class="ps-rodape"><span data-ps="escolhidos"></span><button data-ps="ok">✔ Usar os marcados</button></div>
+      </div>`;
+      document.body.appendChild(el);
+      ['pointerdown', 'wheel'].forEach(t => el.addEventListener(t, e => e.stopPropagation()));
+      el.onclick = (e) => { if (e.target === el) this.fechar(); };
+      el.querySelector('[data-ps="fechar"]').onclick = () => this.fechar();
+      el.querySelector('[data-ps="grupo"]').onchange = () => this.lista();
+      el.querySelector('[data-ps="filtro"]').oninput = () => this.lista();
+      el.querySelector('[data-ps="ok"]').onclick = () => { const l = this.marcados.slice(); this.fechar(); this.op.aoEscolher(l); };
+      // teclado: ↑↓ anda e toca, Enter usa, Esc fecha
+      el.addEventListener('keydown', (e) => {
+        e.stopPropagation();
+        if (e.target.tagName === 'INPUT' && !/Arrow(Up|Down)|Enter|Escape/.test(e.code)) return;
+        const itens = [...el.querySelectorAll('.ps-item')];
+        let i = itens.findIndex(x => x.classList.contains('foco'));
+        if (e.code === 'ArrowDown' || e.code === 'ArrowUp') {
+          e.preventDefault();
+          i = Math.max(0, Math.min(itens.length - 1, i + (e.code === 'ArrowDown' ? 1 : -1)));
+          if (itens[i]) itens[i].click();
+        } else if (e.code === 'Enter' && itens[i]) { e.preventDefault(); itens[i].querySelector('.ps-usar').click(); }
+        else if (e.code === 'Escape') this.fechar();
+      });
+    }
+    this.op = opts;
+    this.marcados = (opts.atual || []).filter(Boolean);
+    this.dados = this.todos();
+    const grupos = [...new Set(this.dados.map(d => d.g))].sort();
+    const sg = el.querySelector('[data-ps="grupo"]');
+    sg.innerHTML = '<option value="">Todos (' + this.dados.length + ')</option>';
+    grupos.forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g + ' (' + this.dados.filter(d => d.g === g).length + ')'; sg.appendChild(o); });
+    // grupo inicial: o do som atual, ou o pedido (ex.: voz do lutador)
+    const doAtual = this.marcados[0] && this.grupo(this.marcados[0]).g;
+    const pedido = opts.grupo && grupos.find(g => g.includes(opts.grupo));
+    sg.value = doAtual && grupos.includes(doAtual) ? doAtual : (pedido || '');
+    el.querySelector('[data-ps="filtro"]').value = '';
+    el.hidden = false;
+    this.lista();
+    el.querySelector('[data-ps="filtro"]').focus({ preventScroll: true });
+  },
+
+  fechar() {
+    const el = document.getElementById('pv-sons');
+    if (el) el.hidden = true;
+    if (this.atual) { try { this.atual.pause(); } catch (e) { /* nada */ } }
+  },
+
+  lista() {
+    const el = document.getElementById('pv-sons');
+    const g = el.querySelector('[data-ps="grupo"]').value;
+    const f = el.querySelector('[data-ps="filtro"]').value.toLowerCase();
+    const box = el.querySelector('.ps-lista');
+    box.innerHTML = '';
+    this.dados.filter(d => (!g || d.g === g) && (!f || d.n.toLowerCase().includes(f))).forEach(d => {
+      const row = document.createElement('div');
+      row.className = 'ps-item' + (this.marcados.includes(d.n) ? ' marcado' : '');
+      row.tabIndex = -1;
+      const play = document.createElement('span'); play.className = 'ps-play'; play.textContent = '▶';
+      const nome = document.createElement('span'); nome.className = 'ps-nome'; nome.textContent = d.n;
+      const tipo = document.createElement('small'); tipo.textContent = d.tipo || (g ? '' : d.g);
+      const mais = document.createElement('button'); mais.className = 'ps-mais'; mais.title = 'Juntar ao sorteio';
+      mais.textContent = this.marcados.includes(d.n) ? '−' : '＋';
+      const usar = document.createElement('button'); usar.className = 'ps-usar'; usar.textContent = '✔'; usar.title = 'Usar só este';
+      row.append(play, nome, tipo, mais, usar);
+      row.onclick = () => {
+        el.querySelectorAll('.ps-item.foco').forEach(x => x.classList.remove('foco'));
+        row.classList.add('foco');
+        row.scrollIntoView({ block: 'nearest' });
+        this.tocar(d.n);
+      };
+      mais.onclick = (e) => {
+        e.stopPropagation();
+        const k = this.marcados.indexOf(d.n);
+        if (k >= 0) this.marcados.splice(k, 1); else { this.marcados.push(d.n); this.tocar(d.n); }
+        row.classList.toggle('marcado', k < 0);
+        mais.textContent = k < 0 ? '−' : '＋';
+        this.rodape();
+      };
+      usar.onclick = (e) => { e.stopPropagation(); this.fechar(); this.op.aoEscolher([d.n]); };
+      box.appendChild(row);
+    });
+    if (!box.children.length) box.textContent = 'Nenhum som encontrado.';
+    this.rodape();
+  },
+
+  rodape() {
+    const el = document.getElementById('pv-sons');
+    el.querySelector('[data-ps="escolhidos"]').textContent = this.marcados.length ? 'Marcados: ' + this.marcados.join(', ') : 'Nenhum marcado';
+    el.querySelector('[data-ps="ok"]').disabled = !this.marcados.length;
+  },
+};
