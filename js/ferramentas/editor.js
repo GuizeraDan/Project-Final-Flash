@@ -232,11 +232,11 @@ FF.Editor = {
       ed.className = 'ed-grande';
       ed.textContent = '✏ Editar na tela';
       ed.onclick = (e) => { e.stopPropagation(); this.abrirCena(i); };
-      corpo.append(info, ed);
+      corpo.append(info, this.previaCamadas(c), ed);
     } else if (tipo === 'anim') {
       const lista = this.animsDoAtor();
       const s = this.sel(lista.includes(p.anim) ? lista : [p.anim].concat(lista), p.anim, (v) => { p.anim = v; this.render(); });
-      corpo.appendChild(this.campo('Animação', s));
+      corpo.appendChild(this.campo('Animação', this.previaAnim(s, p.anim, (v) => { p.anim = v; this.render(); this.atualizarJSON(); })));
       const a = this.ator().sprite.anim(this.ator().animName(p.anim));
       const info = document.createElement('small');
       info.textContent = a ? a.frames.length + ' quadros (0 a ' + (a.frames.length - 1) + ') · ' + (a.fps || 0) + ' fps' : '⚠ animação não existe neste lutador';
@@ -262,8 +262,9 @@ FF.Editor = {
       const l = document.createElement('div'); l.className = 'ed-linha';
       l.appendChild(this.campo('distância', this.inp(p.dist, v => this.set(p, 'dist', v), 'number', { step: 1, placeholder: '22' })));
       l.appendChild(this.campo('tempo (s)', this.inp(p.tempo, v => this.set(p, 'tempo', v), 'number', { step: 0.05, placeholder: '0.22' })));
-      l.appendChild(this.campo('animação', this.sel([''].concat(this.animsDoAtor()), p.animMov || '', v => this.set(p, 'animMov', v || undefined))));
+      const sm = this.sel([''].concat(this.animsDoAtor()), p.animMov || '', v => { this.set(p, 'animMov', v || undefined); this.render(); });
       corpo.appendChild(l);
+      corpo.appendChild(this.campo('animação', this.previaAnim(sm, p.animMov || 'avancar', v => { p.animMov = v; this.render(); this.atualizarJSON(); })));
       corpo.appendChild(this.campo('som', this.campoAudio(p.som, v => this.set(p, 'som', v))));
     } else if (tipo === 'voltar') {
       corpo.appendChild(this.campo('som', this.campoAudio(p.som, v => this.set(p, 'som', v))));
@@ -336,7 +337,8 @@ FF.Editor = {
       const e = ev.efeito;
       const fx = this.inp(e.fx, v => this.set(e, 'fx', v), null, { placeholder: 'efeito' });
       fx.setAttribute('list', 'ed-efeitos');
-      row.append('✨', fx,
+      fx.addEventListener('change', () => this.render());
+      row.append('✨', this.previaEfeito(fx, e.fx, v => { e.fx = v; this.render(); this.atualizarJSON(); }),
         this.sel([['alvo', 'no alvo'], ['disparo', 'na mão'], ['origem', 'nos pés']], e.em || 'origem', v => this.set(e, 'em', v)),
         this.mini('x', e.dx, v => this.set(e, 'dx', v)), this.mini('y', e.dy, v => this.set(e, 'dy', v)),
         this.mini('tam', e.escala, v => this.set(e, 'escala', v), 0.05));
@@ -360,7 +362,12 @@ FF.Editor = {
     } else if (ev.projetil) {
       const pr = ev.projetil;
       pr.acerto = pr.acerto || { fracao: 0.5, forca: 'energia' };
-      const efx = (k, ph) => { const i = this.inp(pr[k], v => this.set(pr, k, v), null, { placeholder: ph }); i.setAttribute('list', 'ed-efeitos'); return i; };
+      const efx = (k, ph) => {
+        const i = this.inp(pr[k], v => this.set(pr, k, v), null, { placeholder: ph });
+        i.setAttribute('list', 'ed-efeitos');
+        i.addEventListener('change', () => this.render());
+        return this.previaEfeito(i, pr[k], v => { pr[k] = v; this.render(); this.atualizarJSON(); });
+      };
       const ck = (k, rot, padrao) => {
         const c = document.createElement('input'); c.type = 'checkbox';
         c.checked = pr[k] != null ? !!pr[k] : padrao;

@@ -86,3 +86,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Editor: "⭐ Salvar como habilidade" (nome + custo de ki; atualiza se já for uma habilidade), habilidades no "Abrir golpe existente", rota `?editor=1&hab=<id>`.
 - Seleção da Batalha Livre: botão "⭐ Habilidades" (liga/desliga, editar, apagar, criar no editor com os times). Pausa: "⭐ Habilidades" liga/desliga no meio da luta.
 - IA: inimigos com `ia` própria (Raditz, Nappa…) não usam habilidades; os de IA automática usam.
+
+## 2026-11-11 — Prévias de sprites no roteiro
+- `js/ferramentas/previa.js` (`FF.Previa`): miniatura animada ao lado de cada campo de animação/efeito do roteiro (animação do passo, animação do avançar, efeito visual, projétil, efeito na mão e no alvo); "?" vermelho quando o nome não existe. Botão 🖼 abre seletor em grade com todas as animações (efeitos extras, básicos e pacotes 📦 da biblioteca), filtro e prévia grande animada. O cartão da cena livre mostra as miniaturas das camadas.
