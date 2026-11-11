@@ -1,778 +1,782 @@
 {
- "id": "piccolo",
- "nome": "Piccolo",
- "formaInicial": "base",
- "atributos": {
-  "hp": 1050,
-  "ataque": 95,
-  "defesa": 62,
-  "velocidade": 9,
-  "kiMax": 100,
-  "kiInicial": 30,
-  "kiPorTurno": 8
- },
- "vozes": {
-  "dano": [
-   "vpcn001",
-   "vpcn002",
-   "vpcn003"
-  ],
-  "lancado": [
-   "vpcn011",
-   "vpcn012",
-   "vpcn015"
-  ]
- },
- "formas": {
-  "base": {
-   "nome": "Piccolo",
-   "sprite": "piccolo",
-   "anims": {
-    "parado": "Parado",
-    "dano1": "Dano_Chao1",
-    "dano2": "Dano_Chao2",
-    "guarda": "Defesa_Chao",
-    "lancado": "SendoLancado_LADO",
-    "caido": "Caido",
-    "avancar": "MovimentoParaFrente",
-    "recuar": "MovimentoParaTras",
-    "teleporte": "Teletransporte_Chao"
-   },
-   "golpes": [
-    "combo",
-    "makankosappo",
-    "rajada_teleguiada",
-    "hellzone",
-    "sparking_piccolo_kuririn",
-    "granada_de_luz",
-    "carregar_ki"
-   ],
-   "vitoria": [
-    {
-     "anim": "Vitoria",
-     "fps": 10,
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn402",
-        "vpcn403",
-        "vpcn404"
-       ]
-      }
-     ]
-    },
-    {
-     "anim": "Pose_De_Vitoria",
-     "duracao": 60
-    }
-   ]
-  }
- },
- "golpes": {
-  "combo": {
-   "nome": "Sequência de Golpes",
-   "descricao": "Avança e ataca. Aperte no tempo para crítico.",
-   "tipo": "corpo",
-   "poder": 1.6,
-   "roteiro": [
-    {
-     "irAte": "alvo",
-     "dist": 24,
-     "tempo": 0.22,
-     "animMov": "Dash",
-     "som": "jetdash"
-    },
-    {
-     "anim": "Attack_Light_1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn100",
-        "vpcn101",
-        "vpcn102"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "som": "movimento_basa"
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Light_2",
-     "eventos": [
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Light_3",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn103",
-        "vpcn104"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.25,
-        "forca": "media"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Heavy",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn105",
-        "vpcn106",
-        "vpcn107"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.35,
-        "forca": "forte",
-        "lanca": true
-       }
-      }
-     ]
-    },
-    {
-     "voltar": true,
-     "som": "teletransporte"
-    }
-   ]
+  "id": "piccolo",
+  "nome": "Piccolo",
+  "formaInicial": "base",
+  "atributos": {
+    "hp": 1050,
+    "ataque": 95,
+    "defesa": 62,
+    "velocidade": 9,
+    "kiMax": 100,
+    "kiInicial": 30,
+    "kiPorTurno": 8
   },
-  "makankosappo": {
-   "nome": "Makankosappo",
-   "descricao": "Raio perfurante em espiral. Muito forte.",
-   "tipo": "energia",
-   "custoKi": 40,
-   "poder": 3.8,
-   "roteiro": [
-    {
-     "anim": "Special_SpecialBeamCannon_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "makankou_charg"
-      },
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn206",
-        "vpcn207"
-       ]
-      }
-     ]
-    },
-    {
-     "anim": "Special_SpecialBeamCannon_Pt2",
-     "duracao": 1.2,
-     "eventos": [
-      {
-       "quadro": 0,
-       "tremer": 4
-      },
-      {
-       "quadro": 0,
-       "som": "makankou_max"
-      }
-     ]
-    },
-    {
-     "anim": "Special_SpecialBeamCannon_Final",
-     "fps": 12,
-     "eventos": [
-      {
-       "quadro": 4,
-       "som": "makankou_fire"
-      },
-      {
-       "quadro": 4,
-       "flash": 0.25
-      },
-      {
-       "quadro": 4,
-       "tremer": 10
-      },
-      {
-       "quadro": 4,
-       "efeito": {
-        "fx": "Pt1",
-        "em": "disparo",
-        "escala": 0.45
-       }
-      },
-      {
-       "quadro": 4,
-       "acerto": {
-        "fracao": 0.45,
-        "forca": "energia"
-       }
-      },
-      {
-       "quadro": 5,
-       "efeito": {
-        "fx": "Pt2",
-        "em": "disparo",
-        "escala": 0.45,
-        "duracao": 0.5
-       }
-      },
-      {
-       "quadro": 5,
-       "acerto": {
-        "fracao": 0.55,
-        "forca": "energia",
-        "lanca": true
-       }
-      }
-     ]
-    },
-    {
-     "esperar": 0.3
-    }
-   ]
+  "vozes": {
+    "dano": [
+      "vpcn001",
+      "vpcn002",
+      "vpcn003"
+    ],
+    "lancado": [
+      "vpcn011",
+      "vpcn012",
+      "vpcn015"
+    ]
   },
-  "rajada_teleguiada": {
-   "nome": "Rajada Teleguiada",
-   "descricao": "Três esferas de energia que perseguem o alvo.",
-   "tipo": "energia",
-   "custoKi": 20,
-   "poder": 2.2,
-   "roteiro": [
-    {
-     "anim": "Special_HomingEnergyBlast",
-     "fps": 10,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "piccolo_hmngsht_chrg"
+  "formas": {
+    "base": {
+      "nome": "Piccolo",
+      "sprite": "piccolo",
+      "anims": {
+        "parado": "Parado",
+        "dano1": "Dano_Chao1",
+        "dano2": "Dano_Chao2",
+        "guarda": "Defesa_Chao",
+        "lancado": "SendoLancado_LADO",
+        "caido": "Caido",
+        "avancar": "MovimentoParaFrente",
+        "recuar": "MovimentoParaTras",
+        "teleporte": "Teletransporte_Chao"
       },
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn200",
-        "vpcn201",
-        "vpcn202"
-       ]
-      },
-      {
-       "quadro": 3,
-       "projetil": {
-        "fx": "Homing_Energy_Blast",
-        "escala": 0.35,
-        "velocidade": 650,
-        "som": "piccolo_hmngsht_fire",
-        "impacto": "kiblast_hit",
-        "acerto": {
-         "fracao": 0.33,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 4,
-       "projetil": {
-        "fx": "Homing_Energy_Blast",
-        "escala": 0.35,
-        "velocidade": 620,
-        "som": "piccolo_hmngsht_fire",
-        "impacto": "kiblast_hit",
-        "acerto": {
-         "fracao": 0.33,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 5,
-       "projetil": {
-        "fx": "Homing_Energy_Blast",
-        "escala": 0.35,
-        "velocidade": 590,
-        "som": "piccolo_hmngsht_fire",
-        "impacto": "Explosao4",
-        "acerto": {
-         "fracao": 0.34,
-         "forca": "energia"
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  "carregar_ki": {
-   "nome": "Carregar Ki",
-   "descricao": "Recupera 40 de ki.",
-   "tipo": "suporte",
-   "roteiro": [
-    {
-     "anim": "CarregandoKi_Stage1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_start"
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage2",
-     "duracao": 1.0,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_loop"
-      },
-      {
-       "quadro": 0,
-       "tremer": 3
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage3"
-    },
-    {
-     "ki": 40
-    }
-   ]
-  },
-  "granada_de_luz": {
-   "nome": "Granada de Luz",
-   "descricao": "SUPREMO (Rage cheia): esfera de luz concentrada que explode no alvo.",
-   "tipo": "energia",
-   "supremo": true,
-   "poder": 6.2,
-   "roteiro": [
-    {
-     "anim": "Ultimate_LightGrenade_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "piccolo_gkrtkdn_charge"
-      },
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn210",
-        "vpcn211"
-       ]
-      },
-      {
-       "quadro": 3,
-       "tremer": 5
-      }
-     ]
-    },
-    {
-     "anim": "Ultimate_LightGrenade_Pt2",
-     "duracao": 1.4,
-     "mensagem": "Isso aqui não se defende fácil!",
-     "mensagemDur": 1.4,
-     "eventos": [
-      {
-       "quadro": 0,
-       "tremer": 6
-      },
-      {
-       "quadro": 0,
-       "efeito": {
-        "fx": "genkidama_efeito",
-        "em": "disparo",
-        "escala": 0.35,
-        "duracao": 1.3
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Ultimate_LightGrenade_Final",
-     "fps": 6,
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn212",
-        "vpcn213"
-       ]
-      },
-      {
-       "quadro": 0,
-       "flash": 0.4
-      },
-      {
-       "quadro": 0,
-       "tremer": 12
-      },
-      {
-       "quadro": 0,
-       "projetil": {
-        "fx": "Homing_Energy_Blast",
-        "escala": 1.0,
-        "velocidade": 520,
-        "som": "piccolo_gkrtkdn_fire",
-        "impacto": "Explosao_Granada2",
-        "impactoEscala": 1.0,
-        "acerto": {
-         "fracao": 1.0,
-         "forca": "energia",
-         "lanca": true,
-         "empurrao": 720
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  "sparking_piccolo_kuririn": {
-   "nome": "Sparking: Makankosappo + Kienzan",
-   "descricao": "Combo em dupla com o Kuririn (30 KI de cada).",
-   "tipo": "energia",
-   "custoKi": 30,
-   "poder": 3.4,
-   "requer": {
-    "parceiro": {
-     "id": "krillin",
-     "ki": 30
-    }
-   },
-   "roteiro": [
-    {
-     "mensagem": "SPARKING COMBO!",
-     "mensagemDur": 1.4,
-     "flash": 0.4
-    },
-    {
-     "quem": "krillin",
-     "paralelo": [
-      {
-       "anim": "Special_DestructoDisc_Pt1",
-       "eventos": [
+      "golpes": [
+        "combo",
+        "makankosappo",
+        "rajada_teleguiada",
+        "hellzone",
+        "sparking_piccolo_kuririn",
+        "granada_de_luz",
+        "carregar_ki"
+      ],
+      "vitoria": [
         {
-         "quadro": 0,
-         "som": "krillin_kienzan_chrg"
+          "anim": "Vitoria",
+          "fps": 10,
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn402",
+                "vpcn403",
+                "vpcn404"
+              ]
+            }
+          ]
         },
         {
-         "quadro": 0,
-         "voz": [
-          "vkrn208",
-          "vkrn209"
-         ]
+          "anim": "Pose_De_Vitoria",
+          "duracao": 60
         }
-       ]
-      },
-      {
-       "anim": "Special_DestructoDisc_Pt2",
-       "duracao": 0.5,
-       "eventos": [
-        {
-         "quadro": 0,
-         "som": "krillin_kienzan_born"
-        }
-       ]
-      },
-      {
-       "anim": "Special_DestructoDisc_Pt3",
-       "eventos": [
-        {
-         "quadro": 6,
-         "projetil": {
-          "fx": "Krillin_1",
-          "escala": 0.6,
-          "velocidade": 750,
-          "som": "krillin_kienzan_fire",
-          "impacto": "hit_forte",
-          "impactoEscala": 1.2,
-          "acerto": {
-           "fracao": 0.5,
-           "forca": "forte"
-          }
-         }
-        }
-       ]
+      ],
+      "retrato": {
+        "quadro": 31,
+        "banner": 27
       }
-     ]
-    },
-    {
-     "anim": "Special_SpecialBeamCannon_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "makankou_charg"
-      },
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn206",
-        "vpcn207"
-       ]
-      }
-     ]
-    },
-    {
-     "anim": "Special_SpecialBeamCannon_Pt2",
-     "duracao": 0.7,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "makankou_max"
-      },
-      {
-       "quadro": 0,
-       "tremer": 4
-      }
-     ]
-    },
-    {
-     "anim": "Special_SpecialBeamCannon_Final",
-     "fps": 12,
-     "eventos": [
-      {
-       "quadro": 4,
-       "som": "makankou_fire"
-      },
-      {
-       "quadro": 4,
-       "tremer": 10
-      },
-      {
-       "quadro": 4,
-       "flash": 0.25
-      },
-      {
-       "quadro": 4,
-       "efeito": {
-        "fx": "Pt1",
-        "em": "disparo",
-        "escala": 0.45
-       }
-      },
-      {
-       "quadro": 4,
-       "acerto": {
-        "fracao": 0.5,
-        "forca": "energia"
-       }
-      },
-      {
-       "quadro": 5,
-       "efeito": {
-        "fx": "Pt2",
-        "em": "disparo",
-        "escala": 0.45,
-        "duracao": 0.6
-       }
-      },
-      {
-       "quadro": 5,
-       "acerto": {
-        "fracao": 0.8,
-        "forca": "energia",
-        "lanca": true,
-        "empurrao": 650
-       }
-      }
-     ]
-    },
-    {
-     "esperar": 0.3
     }
-   ]
   },
-  "hellzone": {
-   "nome": "Hellzone Grenade",
-   "descricao": "Cerca o alvo de esferas de energia e fecha o cerco.",
-   "tipo": "energia",
-   "custoKi": 30,
-   "poder": 3.4,
-   "roteiro": [
-    {
-     "anim": "Special_HellzoneGrenade_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn203",
-        "vpcn204"
-       ]
-      }
-     ]
+  "golpes": {
+    "combo": {
+      "nome": "Sequência de Golpes",
+      "descricao": "Avança e ataca. Aperte no tempo para crítico.",
+      "tipo": "corpo",
+      "poder": 1.6,
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 24,
+          "tempo": 0.22,
+          "animMov": "Dash",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Attack_Light_1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn100",
+                "vpcn101",
+                "vpcn102"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "som": "movimento_basa"
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_2",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_3",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn103",
+                "vpcn104"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Heavy",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn105",
+                "vpcn106",
+                "vpcn107"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
+      ]
     },
-    {
-     "anim": "Special_HellzoneGrenade_Pt2",
-     "fps": 12,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "piccolo_mkhdn_lottashot"
-      },
-      {
-       "quadro": 0,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 520,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
+    "makankosappo": {
+      "nome": "Makankosappo",
+      "descricao": "Raio perfurante em espiral. Muito forte.",
+      "tipo": "energia",
+      "custoKi": 40,
+      "poder": 3.8,
+      "roteiro": [
+        {
+          "anim": "Special_SpecialBeamCannon_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "makankou_charg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn206",
+                "vpcn207"
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Special_SpecialBeamCannon_Pt2",
+          "duracao": 1.2,
+          "eventos": [
+            {
+              "quadro": 0,
+              "tremer": 4
+            },
+            {
+              "quadro": 0,
+              "som": "makankou_max"
+            }
+          ]
+        },
+        {
+          "anim": "Special_SpecialBeamCannon_Final",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 4,
+              "som": "makankou_fire"
+            },
+            {
+              "quadro": 4,
+              "flash": 0.25
+            },
+            {
+              "quadro": 4,
+              "tremer": 10
+            },
+            {
+              "quadro": 4,
+              "efeito": {
+                "fx": "Pt1",
+                "em": "disparo",
+                "escala": 0.45
+              }
+            },
+            {
+              "quadro": 4,
+              "acerto": {
+                "fracao": 0.45,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 5,
+              "efeito": {
+                "fx": "Pt2",
+                "em": "disparo",
+                "escala": 0.45,
+                "duracao": 0.5
+              }
+            },
+            {
+              "quadro": 5,
+              "acerto": {
+                "fracao": 0.55,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "esperar": 0.3
         }
-       }
-      },
-      {
-       "quadro": 1,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 580,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 2,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 640,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 3,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 700,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
-        }
-       }
-      }
-     ]
+      ]
     },
-    {
-     "anim": "Special_HellzoneGrenade_Pt2",
-     "fps": 12,
-     "eventos": [
-      {
-       "quadro": 0,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 560,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
+    "rajada_teleguiada": {
+      "nome": "Rajada Teleguiada",
+      "descricao": "Três esferas de energia que perseguem o alvo.",
+      "tipo": "energia",
+      "custoKi": 20,
+      "poder": 2.2,
+      "roteiro": [
+        {
+          "anim": "Special_HomingEnergyBlast",
+          "fps": 10,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "piccolo_hmngsht_chrg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn200",
+                "vpcn201",
+                "vpcn202"
+              ]
+            },
+            {
+              "quadro": 3,
+              "projetil": {
+                "fx": "Homing_Energy_Blast",
+                "escala": 0.35,
+                "velocidade": 650,
+                "som": "piccolo_hmngsht_fire",
+                "impacto": "kiblast_hit",
+                "acerto": {
+                  "fracao": 0.33,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 4,
+              "projetil": {
+                "fx": "Homing_Energy_Blast",
+                "escala": 0.35,
+                "velocidade": 620,
+                "som": "piccolo_hmngsht_fire",
+                "impacto": "kiblast_hit",
+                "acerto": {
+                  "fracao": 0.33,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 5,
+              "projetil": {
+                "fx": "Homing_Energy_Blast",
+                "escala": 0.35,
+                "velocidade": 590,
+                "som": "piccolo_hmngsht_fire",
+                "impacto": "Explosao4",
+                "acerto": {
+                  "fracao": 0.34,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
         }
-       }
-      },
-      {
-       "quadro": 1,
-       "projetil": {
-        "fx": "HellzoneGrenade_InAir",
-        "escala": 0.45,
-        "velocidade": 620,
-        "som": "piccolo_mkhdn_kidanattk",
-        "impacto": "kiblast_hit",
-        "impactoEscala": 1,
-        "acerto": {
-         "fracao": 0.1,
-         "forca": "energia"
+      ]
+    },
+    "carregar_ki": {
+      "nome": "Carregar Ki",
+      "descricao": "Recupera 40 de ki.",
+      "tipo": "suporte",
+      "roteiro": [
+        {
+          "anim": "CarregandoKi_Stage1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage2",
+          "duracao": 1.0,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            },
+            {
+              "quadro": 0,
+              "tremer": 3
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage3"
+        },
+        {
+          "ki": 40
         }
-       }
-      }
-     ]
+      ]
     },
-    {
-     "esperar": 0.5
+    "granada_de_luz": {
+      "nome": "Granada de Luz",
+      "descricao": "SUPREMO (Rage cheia): esfera de luz concentrada que explode no alvo.",
+      "tipo": "energia",
+      "supremo": true,
+      "poder": 6.2,
+      "roteiro": [
+        {
+          "anim": "Ultimate_LightGrenade_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "piccolo_gkrtkdn_charge"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn210",
+                "vpcn211"
+              ]
+            },
+            {
+              "quadro": 3,
+              "tremer": 5
+            }
+          ]
+        },
+        {
+          "anim": "Ultimate_LightGrenade_Pt2",
+          "duracao": 1.4,
+          "mensagem": "Isso aqui não se defende fácil!",
+          "mensagemDur": 1.4,
+          "eventos": [
+            {
+              "quadro": 0,
+              "tremer": 6
+            },
+            {
+              "quadro": 0,
+              "efeito": {
+                "fx": "genkidama_efeito",
+                "em": "disparo",
+                "escala": 0.35,
+                "duracao": 1.3
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Ultimate_LightGrenade_Final",
+          "fps": 6,
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn212",
+                "vpcn213"
+              ]
+            },
+            {
+              "quadro": 0,
+              "flash": 0.4
+            },
+            {
+              "quadro": 0,
+              "tremer": 12
+            },
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "Homing_Energy_Blast",
+                "escala": 1.0,
+                "velocidade": 520,
+                "som": "piccolo_gkrtkdn_fire",
+                "impacto": "Explosao_Granada2",
+                "impactoEscala": 1.0,
+                "acerto": {
+                  "fracao": 1.0,
+                  "forca": "energia",
+                  "lanca": true,
+                  "empurrao": 720
+                }
+              }
+            }
+          ]
+        }
+      ]
     },
-    {
-     "anim": "Special_HellzoneGrenade_Final",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vpcn205"
-       ]
+    "sparking_piccolo_kuririn": {
+      "nome": "Sparking: Makankosappo + Kienzan",
+      "descricao": "Combo em dupla com o Kuririn (30 KI de cada).",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 3.4,
+      "requer": {
+        "parceiro": {
+          "id": "krillin",
+          "ki": 30
+        }
       },
-      {
-       "quadro": 2,
-       "efeito": {
-        "fx": "Explosao_Granada2",
-        "em": "alvo",
-        "escala": 0.7
-       }
-      },
-      {
-       "quadro": 2,
-       "som": "explosaodeenergia"
-      },
-      {
-       "quadro": 2,
-       "tremer": 12
-      },
-      {
-       "quadro": 2,
-       "acerto": {
-        "fracao": 0.4,
-        "forca": "energia",
-        "lanca": true,
-        "empurrao": 600
-       }
-      }
-     ]
+      "roteiro": [
+        {
+          "mensagem": "SPARKING COMBO!",
+          "mensagemDur": 1.4,
+          "flash": 0.4
+        },
+        {
+          "quem": "krillin",
+          "paralelo": [
+            {
+              "anim": "Special_DestructoDisc_Pt1",
+              "eventos": [
+                {
+                  "quadro": 0,
+                  "som": "krillin_kienzan_chrg"
+                },
+                {
+                  "quadro": 0,
+                  "voz": [
+                    "vkrn208",
+                    "vkrn209"
+                  ]
+                }
+              ]
+            },
+            {
+              "anim": "Special_DestructoDisc_Pt2",
+              "duracao": 0.5,
+              "eventos": [
+                {
+                  "quadro": 0,
+                  "som": "krillin_kienzan_born"
+                }
+              ]
+            },
+            {
+              "anim": "Special_DestructoDisc_Pt3",
+              "eventos": [
+                {
+                  "quadro": 6,
+                  "projetil": {
+                    "fx": "Krillin_1",
+                    "escala": 0.6,
+                    "velocidade": 750,
+                    "som": "krillin_kienzan_fire",
+                    "impacto": "hit_forte",
+                    "impactoEscala": 1.2,
+                    "acerto": {
+                      "fracao": 0.5,
+                      "forca": "forte"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Special_SpecialBeamCannon_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "makankou_charg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn206",
+                "vpcn207"
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Special_SpecialBeamCannon_Pt2",
+          "duracao": 0.7,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "makankou_max"
+            },
+            {
+              "quadro": 0,
+              "tremer": 4
+            }
+          ]
+        },
+        {
+          "anim": "Special_SpecialBeamCannon_Final",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 4,
+              "som": "makankou_fire"
+            },
+            {
+              "quadro": 4,
+              "tremer": 10
+            },
+            {
+              "quadro": 4,
+              "flash": 0.25
+            },
+            {
+              "quadro": 4,
+              "efeito": {
+                "fx": "Pt1",
+                "em": "disparo",
+                "escala": 0.45
+              }
+            },
+            {
+              "quadro": 4,
+              "acerto": {
+                "fracao": 0.5,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 5,
+              "efeito": {
+                "fx": "Pt2",
+                "em": "disparo",
+                "escala": 0.45,
+                "duracao": 0.6
+              }
+            },
+            {
+              "quadro": 5,
+              "acerto": {
+                "fracao": 0.8,
+                "forca": "energia",
+                "lanca": true,
+                "empurrao": 650
+              }
+            }
+          ]
+        },
+        {
+          "esperar": 0.3
+        }
+      ]
     },
-    {
-     "esperar": 0.3
+    "hellzone": {
+      "nome": "Hellzone Grenade",
+      "descricao": "Cerca o alvo de esferas de energia e fecha o cerco.",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 3.4,
+      "roteiro": [
+        {
+          "anim": "Special_HellzoneGrenade_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn203",
+                "vpcn204"
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Special_HellzoneGrenade_Pt2",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "piccolo_mkhdn_lottashot"
+            },
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 520,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 1,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 580,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 2,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 640,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 3,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 700,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_HellzoneGrenade_Pt2",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 560,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 1,
+              "projetil": {
+                "fx": "HellzoneGrenade_InAir",
+                "escala": 0.45,
+                "velocidade": 620,
+                "som": "piccolo_mkhdn_kidanattk",
+                "impacto": "kiblast_hit",
+                "impactoEscala": 1,
+                "acerto": {
+                  "fracao": 0.1,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "esperar": 0.5
+        },
+        {
+          "anim": "Special_HellzoneGrenade_Final",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vpcn205"
+              ]
+            },
+            {
+              "quadro": 2,
+              "efeito": {
+                "fx": "Explosao_Granada2",
+                "em": "alvo",
+                "escala": 0.7
+              }
+            },
+            {
+              "quadro": 2,
+              "som": "explosaodeenergia"
+            },
+            {
+              "quadro": 2,
+              "tremer": 12
+            },
+            {
+              "quadro": 2,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "energia",
+                "lanca": true,
+                "empurrao": 600
+              }
+            }
+          ]
+        },
+        {
+          "esperar": 0.3
+        }
+      ]
     }
-   ]
   }
- }
 }

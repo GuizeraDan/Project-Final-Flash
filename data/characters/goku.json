@@ -2,63 +2,173 @@
   "id": "goku",
   "nome": "Goku",
   "formaInicial": "base",
-  "atributos": { "hp": 1200, "ataque": 100, "defesa": 60, "kiMax": 100, "kiInicial": 30, "kiPorTurno": 8, "velocidade": 10 },
+  "atributos": {
+    "hp": 1200,
+    "ataque": 100,
+    "defesa": 60,
+    "kiMax": 100,
+    "kiInicial": 30,
+    "kiPorTurno": 8,
+    "velocidade": 10
+  },
   "vozes": {
-    "dano": ["vgkn002", "vgkn003", "vgkn004"],
-    "lancado": ["vgkn012", "vgkn013", "vgkn014"]
+    "dano": [
+      "vgkn002",
+      "vgkn003",
+      "vgkn004"
+    ],
+    "lancado": [
+      "vgkn012",
+      "vgkn013",
+      "vgkn014"
+    ]
   },
   "buffs": {
     "kaioken": {
       "nome": "Kaioken",
       "turnos": 4,
-      "multiplicadores": { "ataque": 1.5, "defesa": 0.9 },
+      "multiplicadores": {
+        "ataque": 1.5,
+        "defesa": 0.9
+      },
       "hpPorTurno": 0.03,
       "tint": "rgba(255,30,30,$a)"
     }
   },
-
   "formas": {
     "base": {
       "nome": "Goku",
       "sprite": "gokubase",
       "anims": {
-        "parado": "Parado", "dano1": "Dano_Chao1", "dano2": "Dano_Chao2", "guarda": "Defesa_Chao",
-        "lancado": "SendoLancado_LADO", "caido": "Caido", "avancar": "MovimentoParaFrente",
-        "recuar": "MovimentoParaTras", "teleporte": "Teletransporte_Chao"
+        "parado": "Parado",
+        "dano1": "Dano_Chao1",
+        "dano2": "Dano_Chao2",
+        "guarda": "Defesa_Chao",
+        "lancado": "SendoLancado_LADO",
+        "caido": "Caido",
+        "avancar": "MovimentoParaFrente",
+        "recuar": "MovimentoParaTras",
+        "teleporte": "Teletransporte_Chao"
       },
-      "golpes": ["combo", "kamehameha", "kaioken", "carregar_ki", "transformar_ssj", "genkidama", "sparking_goku_piccolo"],
+      "golpes": [
+        "combo",
+        "kamehameha",
+        "kaioken",
+        "carregar_ki",
+        "transformar_ssj",
+        "genkidama",
+        "sparking_goku_piccolo"
+      ],
       "vitoria": [
-        { "anim": "Vitoria_Pt1", "fps": 14, "eventos": [ { "quadro": 0, "som": "winstart_effect" }, { "quadro": 0, "voz": ["vgkn402", "vgkn403", "vgkn404", "vgkn405"] } ] },
-        { "anim": "Vitoria_Pt2", "duracao": 60 }
-      ]
+        {
+          "anim": "Vitoria_Pt1",
+          "fps": 14,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "winstart_effect"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn402",
+                "vgkn403",
+                "vgkn404",
+                "vgkn405"
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Vitoria_Pt2",
+          "duracao": 60
+        }
+      ],
+      "retrato": {
+        "quadro": 6,
+        "banner": 13
+      }
     },
-
     "ssj": {
       "nome": "Goku Super Saiyajin",
       "sprite": "gokussj",
-      "multiplicadores": { "ataque": 1.7, "defesa": 1.4 },
+      "multiplicadores": {
+        "ataque": 1.7,
+        "defesa": 1.4
+      },
       "kiPorTurno": 15,
       "anims": {
-        "parado": "Parado", "dano1": "Dano_Chao1", "dano2": "Dano_Chao2", "guarda": "Defesa_Chao",
-        "lancado": "SendoLancado_LADO", "caido": "Caido", "avancar": "MovimentoParaFrente",
-        "recuar": "MovimentoParaTras", "teleporte": "Teletransporte_Chao"
+        "parado": "Parado",
+        "dano1": "Dano_Chao1",
+        "dano2": "Dano_Chao2",
+        "guarda": "Defesa_Chao",
+        "lancado": "SendoLancado_LADO",
+        "caido": "Caido",
+        "avancar": "MovimentoParaFrente",
+        "recuar": "MovimentoParaTras",
+        "teleporte": "Teletransporte_Chao"
       },
       "vozes": {
-        "dano": ["vgks002", "vgks003", "vgks004"],
-        "lancado": ["vgks113", "vgks114"]
+        "dano": [
+          "vgks002",
+          "vgks003",
+          "vgks004"
+        ],
+        "lancado": [
+          "vgks113",
+          "vgks114"
+        ]
       },
-      "golpes": ["combo_ssj", "super_kamehameha", "kamehameha_ssj", "carregar_ki", "voltar_base"],
+      "golpes": [
+        "combo_ssj",
+        "super_kamehameha",
+        "kamehameha_ssj",
+        "carregar_ki",
+        "voltar_base"
+      ],
       "reverter": [
-        { "mensagem": "O ki acabou!", "esperar": 0.6 },
-        { "anim": "Destransformation_Base", "eventos": [ { "quadro": 0, "som": "carregamentodeki_start" } ] },
-        { "transformar": "base" }
+        {
+          "mensagem": "O ki acabou!",
+          "esperar": 0.6
+        },
+        {
+          "anim": "Destransformation_Base",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "transformar": "base"
+        }
       ],
       "vitoria": [
-        { "anim": "Pose_De_Vitoria", "duracao": 60, "eventos": [ { "quadro": 0, "som": "winstart_effect" }, { "quadro": 0, "voz": ["vgks402", "vgks403"] } ] }
-      ]
+        {
+          "anim": "Pose_De_Vitoria",
+          "duracao": 60,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "winstart_effect"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vgks402",
+                "vgks403"
+              ]
+            }
+          ]
+        }
+      ],
+      "retrato": {
+        "quadro": 7,
+        "banner": 14
+      }
     }
   },
-
   "golpes": {
     "combo": {
       "nome": "Sequência de Golpes",
@@ -66,23 +176,95 @@
       "tipo": "corpo",
       "poder": 1.7,
       "roteiro": [
-        { "irAte": "alvo", "dist": 24, "tempo": 0.22, "animMov": "Dash", "som": "jetdash" },
-        { "anim": "Attack_Light_1", "eventos": [
-          { "quadro": 0, "voz": ["vgkn100", "vgkn101", "vgkn102"] },
-          { "quadro": "pico", "som": "movimento_basa" },
-          { "quadro": "pico", "acerto": { "fracao": 0.18, "forca": "leve" } } ] },
-        { "anim": "Attack_Light_2", "eventos": [
-          { "quadro": "pico", "acerto": { "fracao": 0.18, "forca": "leve" } } ] },
-        { "anim": "Attack_Light_3", "eventos": [
-          { "quadro": 0, "voz": ["vgkn105", "vgkn106", "vgkn107"] },
-          { "quadro": "pico", "acerto": { "fracao": 0.26, "forca": "media" } } ] },
-        { "anim": "Attack_Heavy", "eventos": [
-          { "quadro": 5, "voz": ["vgkn103", "vgkn104"] },
-          { "quadro": 7, "acerto": { "fracao": 0.38, "forca": "forte", "lanca": true } } ] },
-        { "voltar": true, "som": "teletransporte" }
+        {
+          "irAte": "alvo",
+          "dist": 24,
+          "tempo": 0.22,
+          "animMov": "Dash",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Attack_Light_1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn100",
+                "vgkn101",
+                "vgkn102"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "som": "movimento_basa"
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.18,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_2",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.18,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_3",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn105",
+                "vgkn106",
+                "vgkn107"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.26,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Heavy",
+          "eventos": [
+            {
+              "quadro": 5,
+              "voz": [
+                "vgkn103",
+                "vgkn104"
+              ]
+            },
+            {
+              "quadro": 7,
+              "acerto": {
+                "fracao": 0.38,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
       ]
     },
-
     "kamehameha": {
       "nome": "Kamehameha",
       "descricao": "Onda de energia de longa distância.",
@@ -90,80 +272,265 @@
       "custoKi": 30,
       "poder": 3.0,
       "roteiro": [
-        { "anim": "Special_Kamehameha_Chao_Frente", "fps": 12, "eventos": [
-          { "quadro": 0, "som": "goku_kamehame_chrg" },
-          { "quadro": 0, "voz": ["vgkn134", "vgkn206"] },
-          { "quadro": 6, "som": "goku_kamehame_fire" },
-          { "quadro": 6, "tremer": 6 },
-          { "quadro": 9, "acerto": { "fracao": 0.3, "forca": "energia" } },
-          { "quadro": 10, "acerto": { "fracao": 0.3, "forca": "energia" } },
-          { "quadro": 11, "acerto": { "fracao": 0.4, "forca": "energia", "lanca": true } } ] }
+        {
+          "anim": "Special_Kamehameha_Chao_Frente",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_kamehame_chrg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn134",
+                "vgkn206"
+              ]
+            },
+            {
+              "quadro": 6,
+              "som": "goku_kamehame_fire"
+            },
+            {
+              "quadro": 6,
+              "tremer": 6
+            },
+            {
+              "quadro": 9,
+              "acerto": {
+                "fracao": 0.3,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 10,
+              "acerto": {
+                "fracao": 0.3,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 11,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        }
       ]
     },
-
     "kaioken": {
       "nome": "Kaioken",
       "descricao": "Ataque x1,5 por 3 turnos. Gasta 3% da vida por turno.",
       "tipo": "suporte",
       "custoKi": 20,
-      "requer": { "semBuff": "kaioken" },
+      "requer": {
+        "semBuff": "kaioken"
+      },
       "roteiro": [
-        { "anim": "Special_Kaioken_Start", "eventos": [
-          { "quadro": 0, "voz": ["vgkn211", "vgkn213"] },
-          { "quadro": 2, "som": "goku_kaioken_2a" },
-          { "quadro": 2, "flash": 0.35 },
-          { "quadro": 2, "tremer": 6 } ] },
-        { "aplicar": "kaioken" }
+        {
+          "anim": "Special_Kaioken_Start",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn211",
+                "vgkn213"
+              ]
+            },
+            {
+              "quadro": 2,
+              "som": "goku_kaioken_2a"
+            },
+            {
+              "quadro": 2,
+              "flash": 0.35
+            },
+            {
+              "quadro": 2,
+              "tremer": 6
+            }
+          ]
+        },
+        {
+          "aplicar": "kaioken"
+        }
       ]
     },
-
     "carregar_ki": {
       "nome": "Carregar Ki",
       "descricao": "Recupera 40 de ki.",
       "tipo": "suporte",
       "roteiro": [
-        { "anim": "CarregandoKi_Stage1", "eventos": [ { "quadro": 0, "som": "carregamentodeki_start" } ] },
-        { "anim": "CarregandoKi_Stage2", "duracao": 1.1, "eventos": [ { "quadro": 0, "som": "carregamentodeki_loop" }, { "quadro": 0, "tremer": 3 } ] },
-        { "anim": "CarregandoKi_Stage3" },
-        { "ki": 40 }
+        {
+          "anim": "CarregandoKi_Stage1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage2",
+          "duracao": 1.1,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            },
+            {
+              "quadro": 0,
+              "tremer": 3
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage3"
+        },
+        {
+          "ki": 40
+        }
       ]
     },
-
     "transformar_ssj": {
       "nome": "Super Saiyajin",
       "descricao": "Teste do motor: transforma no meio da luta. Gasta ki a cada turno.",
       "tipo": "transformacao",
       "custoKi": 50,
-      "requer": { "semBuff": "kaioken" },
+      "requer": {
+        "semBuff": "kaioken"
+      },
       "roteiro": [
-        { "anim": "Transformation_Pt1", "eventos": [ { "quadro": 0, "som": "carregamentodeki_start" }, { "quadro": 0, "voz": "vgks401" } ] },
-        { "anim": "Transformation_Pt2", "duracao": 1.8, "eventos": [ { "quadro": 0, "som": "carregamentodeki_loop" }, { "quadro": 0, "tremer": 8 } ] },
-        { "anim": "Transformation_Final", "eventos": [ { "quadro": 0, "flash": 0.8 }, { "quadro": 0, "som": "sprkngbrst_expl" } ] },
-        { "transformar": "ssj" }
+        {
+          "anim": "Transformation_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            },
+            {
+              "quadro": 0,
+              "voz": "vgks401"
+            }
+          ]
+        },
+        {
+          "anim": "Transformation_Pt2",
+          "duracao": 1.8,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            },
+            {
+              "quadro": 0,
+              "tremer": 8
+            }
+          ]
+        },
+        {
+          "anim": "Transformation_Final",
+          "eventos": [
+            {
+              "quadro": 0,
+              "flash": 0.8
+            },
+            {
+              "quadro": 0,
+              "som": "sprkngbrst_expl"
+            }
+          ]
+        },
+        {
+          "transformar": "ssj"
+        }
       ]
     },
-
     "combo_ssj": {
       "nome": "Sequência Saiyajin",
       "descricao": "Golpes mais fortes na forma Super Saiyajin.",
       "tipo": "corpo",
       "poder": 1.7,
       "roteiro": [
-        { "irAte": "alvo", "dist": 24, "tempo": 0.18, "animMov": "Dash", "som": "jetdash" },
-        { "anim": "Attack_Light_1", "eventos": [
-          { "quadro": 0, "voz": ["vgks200", "vgks201"] },
-          { "quadro": "pico", "acerto": { "fracao": 0.18, "forca": "leve" } } ] },
-        { "anim": "Attack_Light_2", "eventos": [
-          { "quadro": "pico", "acerto": { "fracao": 0.18, "forca": "leve" } } ] },
-        { "anim": "Attack_Light_3", "eventos": [
-          { "quadro": "pico", "acerto": { "fracao": 0.26, "forca": "media" } } ] },
-        { "anim": "Attack_Heavy", "eventos": [
-          { "quadro": 0, "voz": ["vgks200", "vgks201"] },
-          { "quadro": "pico", "acerto": { "fracao": 0.38, "forca": "forte", "lanca": true } } ] },
-        { "voltar": true, "som": "teletransporte" }
+        {
+          "irAte": "alvo",
+          "dist": 24,
+          "tempo": 0.18,
+          "animMov": "Dash",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Attack_Light_1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgks200",
+                "vgks201"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.18,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_2",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.18,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_3",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.26,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Heavy",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgks200",
+                "vgks201"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.38,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
       ]
     },
-
     "kamehameha_ssj": {
       "nome": "Kamehameha",
       "descricao": "Onda de energia rápida.",
@@ -171,17 +538,55 @@
       "custoKi": 25,
       "poder": 3.0,
       "roteiro": [
-        { "anim": "Special_Kamehameha_Chao_Frente", "fps": 12, "eventos": [
-          { "quadro": 0, "som": "goku_kamehame_chrg" },
-          { "quadro": 0, "voz": ["vgks206", "vgks207"] },
-          { "quadro": 6, "som": "goku_kamehame_fire" },
-          { "quadro": 6, "tremer": 6 },
-          { "quadro": 9, "acerto": { "fracao": 0.3, "forca": "energia" } },
-          { "quadro": 10, "acerto": { "fracao": 0.3, "forca": "energia" } },
-          { "quadro": 11, "acerto": { "fracao": 0.4, "forca": "energia", "lanca": true } } ] }
+        {
+          "anim": "Special_Kamehameha_Chao_Frente",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_kamehame_chrg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vgks206",
+                "vgks207"
+              ]
+            },
+            {
+              "quadro": 6,
+              "som": "goku_kamehame_fire"
+            },
+            {
+              "quadro": 6,
+              "tremer": 6
+            },
+            {
+              "quadro": 9,
+              "acerto": {
+                "fracao": 0.3,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 10,
+              "acerto": {
+                "fracao": 0.3,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 11,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        }
       ]
     },
-
     "super_kamehameha": {
       "nome": "Super Kamehameha",
       "descricao": "A onda mais forte do Goku.",
@@ -189,20 +594,67 @@
       "custoKi": 40,
       "poder": 4.4,
       "roteiro": [
-        { "anim": "Special_SuperKamehameha_Chao_Frente", "fps": 14, "eventos": [
-          { "quadro": 0, "som": "goku_sprkameha_chrg" },
-          { "quadro": 0, "voz": "vgks209" },
-          { "quadro": 3, "tremer": 4 },
-          { "quadro": 17, "som": "goku_sprkameha_fire" },
-          { "quadro": 17, "flash": 0.3 },
-          { "quadro": 17, "tremer": 10 },
-          { "quadro": 20, "acerto": { "fracao": 0.2, "forca": "energia" } },
-          { "quadro": 22, "acerto": { "fracao": 0.2, "forca": "energia" } },
-          { "quadro": 24, "acerto": { "fracao": 0.25, "forca": "energia" } },
-          { "quadro": 26, "acerto": { "fracao": 0.35, "forca": "energia", "lanca": true } } ] }
+        {
+          "anim": "Special_SuperKamehameha_Chao_Frente",
+          "fps": 14,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_sprkameha_chrg"
+            },
+            {
+              "quadro": 0,
+              "voz": "vgks209"
+            },
+            {
+              "quadro": 3,
+              "tremer": 4
+            },
+            {
+              "quadro": 17,
+              "som": "goku_sprkameha_fire"
+            },
+            {
+              "quadro": 17,
+              "flash": 0.3
+            },
+            {
+              "quadro": 17,
+              "tremer": 10
+            },
+            {
+              "quadro": 20,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 22,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 24,
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 26,
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        }
       ]
     },
-
     "genkidama": {
       "nome": "Genki Dama",
       "descricao": "SUPREMO (Rage cheia): a energia de todos os seres vivos.",
@@ -210,71 +662,282 @@
       "supremo": true,
       "poder": 7.0,
       "roteiro": [
-        { "anim": "Special_EveryoneLendMeYourEnergy", "fps": 12, "eventos": [
-          { "quadro": 0, "som": "goku_gnkdm_start" },
-          { "quadro": 0, "voz": "vgkn201demo" },
-          { "quadro": 1, "tremer": 5 },
-          { "quadro": 5, "som": "gnkdm_charge" } ] },
-        { "objeto": { "id": "gd", "fx": "genkidama", "dy": -105, "escala": [0.03, 0.32], "tempo": 2.4, "particulas": "genkidama_efeito" },
-          "som": "goku_gnkdm_charge", "mensagem": "Montanhas, mares, florestas... me emprestem sua energia!", "mensagemDur": 2.4 },
-        { "tremer": 7 },
-        { "esperar": 2.5 },
-        { "anim": "Special_SpiritBomb", "fps": 10, "eventos": [
-          { "quadro": 0, "voz": "vgkn209" },
-          { "quadro": 4, "som": "goku_gnkdm_fire" },
-          { "quadro": 4, "tremer": 10 },
-          { "quadro": 4, "lancarObjeto": {
-            "id": "gd", "tempo": 1.1, "som": "goku_gnkdm_tosky", "flash": 1.0, "tremer": 20, "intervalo": 0.22,
-            "somImpacto": ["goku_gnkdm_impct", "goku_s_gnkdm_expl"],
-            "impacto": [
-              { "fx": "genkidama_chao", "chao": true, "escala": 0.5, "duracao": 1.2 },
-              { "fx": "genkidama_explosao", "escala": 0.45, "duracao": 1.0 },
-              { "fx": "Explosao15", "escala": 0.7, "dy": 40 } ],
-            "acertos": [
-              { "fracao": 0.15, "forca": "energia" },
-              { "fracao": 0.15, "forca": "energia" },
-              { "fracao": 0.2, "forca": "energia" },
-              { "fracao": 0.2, "forca": "energia" },
-              { "fracao": 0.3, "forca": "energia", "lanca": true, "empurrao": 700 } ] } } ] }
+        {
+          "anim": "Special_EveryoneLendMeYourEnergy",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_gnkdm_start"
+            },
+            {
+              "quadro": 0,
+              "voz": "vgkn201demo"
+            },
+            {
+              "quadro": 1,
+              "tremer": 5
+            },
+            {
+              "quadro": 5,
+              "som": "gnkdm_charge"
+            }
+          ]
+        },
+        {
+          "objeto": {
+            "id": "gd",
+            "fx": "genkidama",
+            "dy": -105,
+            "escala": [
+              0.03,
+              0.32
+            ],
+            "tempo": 2.4,
+            "particulas": "genkidama_efeito"
+          },
+          "som": "goku_gnkdm_charge",
+          "mensagem": "Montanhas, mares, florestas... me emprestem sua energia!",
+          "mensagemDur": 2.4
+        },
+        {
+          "tremer": 7
+        },
+        {
+          "esperar": 2.5
+        },
+        {
+          "anim": "Special_SpiritBomb",
+          "fps": 10,
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "vgkn209"
+            },
+            {
+              "quadro": 4,
+              "som": "goku_gnkdm_fire"
+            },
+            {
+              "quadro": 4,
+              "tremer": 10
+            },
+            {
+              "quadro": 4,
+              "lancarObjeto": {
+                "id": "gd",
+                "tempo": 1.1,
+                "som": "goku_gnkdm_tosky",
+                "flash": 1.0,
+                "tremer": 20,
+                "intervalo": 0.22,
+                "somImpacto": [
+                  "goku_gnkdm_impct",
+                  "goku_s_gnkdm_expl"
+                ],
+                "impacto": [
+                  {
+                    "fx": "genkidama_chao",
+                    "chao": true,
+                    "escala": 0.5,
+                    "duracao": 1.2
+                  },
+                  {
+                    "fx": "genkidama_explosao",
+                    "escala": 0.45,
+                    "duracao": 1.0
+                  },
+                  {
+                    "fx": "Explosao15",
+                    "escala": 0.7,
+                    "dy": 40
+                  }
+                ],
+                "acertos": [
+                  {
+                    "fracao": 0.15,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.15,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.2,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.2,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.3,
+                    "forca": "energia",
+                    "lanca": true,
+                    "empurrao": 700
+                  }
+                ]
+              }
+            }
+          ]
+        }
       ]
     },
-
     "sparking_goku_piccolo": {
       "nome": "Sparking: Kamehameha + Makankosappo",
       "descricao": "Combo em dupla com o Piccolo (30 KI de cada).",
       "tipo": "energia",
       "custoKi": 30,
       "poder": 3.4,
-      "requer": { "parceiro": { "id": "piccolo", "ki": 30 } },
+      "requer": {
+        "parceiro": {
+          "id": "piccolo",
+          "ki": 30
+        }
+      },
       "roteiro": [
-        { "mensagem": "SPARKING COMBO!", "mensagemDur": 1.4, "flash": 0.4 },
-        { "quem": "piccolo", "paralelo": [
-          { "anim": "Special_SpecialBeamCannon_Pt1", "eventos": [ { "quadro": 0, "som": "makankou_charg" }, { "quadro": 0, "voz": ["vpcn206", "vpcn207"] } ] },
-          { "anim": "Special_SpecialBeamCannon_Pt2", "duracao": 0.5, "eventos": [ { "quadro": 0, "som": "makankou_max" } ] },
-          { "anim": "Special_SpecialBeamCannon_Final", "fps": 12, "eventos": [
-            { "quadro": 4, "som": "makankou_fire" }, { "quadro": 4, "tremer": 10 },
-            { "quadro": 4, "efeito": { "fx": "Pt1", "em": "disparo", "escala": 0.45 } },
-            { "quadro": 5, "efeito": { "fx": "Pt2", "em": "disparo", "escala": 0.45, "duracao": 0.6 } },
-            { "quadro": 5, "acerto": { "fracao": 0.5, "forca": "energia" } } ] } ] },
-        { "anim": "Special_Kamehameha_Chao_Frente", "fps": 12, "eventos": [
-          { "quadro": 0, "som": "goku_kamehame_chrg" },
-          { "quadro": 0, "voz": ["vgkn134", "vgkn206"] },
-          { "quadro": 6, "som": "goku_kamehame_fire" },
-          { "quadro": 6, "tremer": 8 },
-          { "quadro": 9, "acerto": { "fracao": 0.4, "forca": "energia" } },
-          { "quadro": 10, "acerto": { "fracao": 0.4, "forca": "energia" } },
-          { "quadro": 11, "acerto": { "fracao": 0.7, "forca": "energia", "lanca": true, "empurrao": 650 } } ] }
+        {
+          "mensagem": "SPARKING COMBO!",
+          "mensagemDur": 1.4,
+          "flash": 0.4
+        },
+        {
+          "quem": "piccolo",
+          "paralelo": [
+            {
+              "anim": "Special_SpecialBeamCannon_Pt1",
+              "eventos": [
+                {
+                  "quadro": 0,
+                  "som": "makankou_charg"
+                },
+                {
+                  "quadro": 0,
+                  "voz": [
+                    "vpcn206",
+                    "vpcn207"
+                  ]
+                }
+              ]
+            },
+            {
+              "anim": "Special_SpecialBeamCannon_Pt2",
+              "duracao": 0.5,
+              "eventos": [
+                {
+                  "quadro": 0,
+                  "som": "makankou_max"
+                }
+              ]
+            },
+            {
+              "anim": "Special_SpecialBeamCannon_Final",
+              "fps": 12,
+              "eventos": [
+                {
+                  "quadro": 4,
+                  "som": "makankou_fire"
+                },
+                {
+                  "quadro": 4,
+                  "tremer": 10
+                },
+                {
+                  "quadro": 4,
+                  "efeito": {
+                    "fx": "Pt1",
+                    "em": "disparo",
+                    "escala": 0.45
+                  }
+                },
+                {
+                  "quadro": 5,
+                  "efeito": {
+                    "fx": "Pt2",
+                    "em": "disparo",
+                    "escala": 0.45,
+                    "duracao": 0.6
+                  }
+                },
+                {
+                  "quadro": 5,
+                  "acerto": {
+                    "fracao": 0.5,
+                    "forca": "energia"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "anim": "Special_Kamehameha_Chao_Frente",
+          "fps": 12,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_kamehame_chrg"
+            },
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn134",
+                "vgkn206"
+              ]
+            },
+            {
+              "quadro": 6,
+              "som": "goku_kamehame_fire"
+            },
+            {
+              "quadro": 6,
+              "tremer": 8
+            },
+            {
+              "quadro": 9,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 10,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 11,
+              "acerto": {
+                "fracao": 0.7,
+                "forca": "energia",
+                "lanca": true,
+                "empurrao": 650
+              }
+            }
+          ]
+        }
       ]
     },
-
     "voltar_base": {
       "nome": "Destransformar",
       "descricao": "Volta à forma normal.",
       "tipo": "transformacao",
       "anuncio": false,
       "roteiro": [
-        { "anim": "Destransformation_Base", "eventos": [ { "quadro": 0, "som": "carregamentodeki_start" } ] },
-        { "transformar": "base" }
+        {
+          "anim": "Destransformation_Base",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "transformar": "base"
+        }
       ]
     }
   }

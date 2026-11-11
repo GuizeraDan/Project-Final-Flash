@@ -1,401 +1,405 @@
 {
- "id": "nappa",
- "nome": "Nappa",
- "formaInicial": "base",
- "atributos": {
-  "hp": 2600,
-  "ataque": 120,
-  "defesa": 70,
-  "kiMax": 100,
-  "kiInicial": 30,
-  "kiPorTurno": 10,
-  "velocidade": 7
- },
- "vozes": {
-  "dano": [
-   "vnpn003",
-   "vnpn004",
-   "vnpn005"
+  "id": "nappa",
+  "nome": "Nappa",
+  "formaInicial": "base",
+  "atributos": {
+    "hp": 2600,
+    "ataque": 120,
+    "defesa": 70,
+    "kiMax": 100,
+    "kiInicial": 30,
+    "kiPorTurno": 10,
+    "velocidade": 7
+  },
+  "vozes": {
+    "dano": [
+      "vnpn003",
+      "vnpn004",
+      "vnpn005"
+    ],
+    "lancado": [
+      "vnpn011",
+      "vnpn012",
+      "vnpn013"
+    ]
+  },
+  "formas": {
+    "base": {
+      "nome": "Nappa",
+      "sprite": "nappa",
+      "anims": {
+        "parado": "Parado",
+        "dano1": "Dano_Chao1",
+        "dano2": "Dano_Chao2",
+        "guarda": "Defesa_Chao",
+        "lancado": "SendoLancado_LADO",
+        "caido": "Caido",
+        "avancar": "MovimentoParaFrente",
+        "recuar": "MovimentoParaTras",
+        "teleporte": "Teletransporte_Chao"
+      },
+      "golpes": [
+        "combo",
+        "tempestade",
+        "braco",
+        "carregar_ki",
+        "break_cannon"
+      ],
+      "vitoria": [
+        {
+          "anim": "Vitoria",
+          "fps": 10,
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "vnpn402"
+            }
+          ]
+        },
+        {
+          "anim": "Pose_De_Vitoria",
+          "duracao": 60
+        }
+      ],
+      "retrato": {
+        "quadro": 20,
+        "banner": 20
+      }
+    }
+  },
+  "ia": [
+    {
+      "golpe": "combo",
+      "peso": 5
+    },
+    {
+      "golpe": "tempestade",
+      "peso": 4
+    },
+    {
+      "golpe": "braco",
+      "peso": 3
+    },
+    {
+      "golpe": "carregar_ki",
+      "peso": 3,
+      "kiAbaixo": 25
+    }
   ],
-  "lancado": [
-   "vnpn011",
-   "vnpn012",
-   "vnpn013"
-  ]
- },
- "formas": {
-  "base": {
-   "nome": "Nappa",
-   "sprite": "nappa",
-   "anims": {
-    "parado": "Parado",
-    "dano1": "Dano_Chao1",
-    "dano2": "Dano_Chao2",
-    "guarda": "Defesa_Chao",
-    "lancado": "SendoLancado_LADO",
-    "caido": "Caido",
-    "avancar": "MovimentoParaFrente",
-    "recuar": "MovimentoParaTras",
-    "teleporte": "Teletransporte_Chao"
-   },
-   "golpes": [
-    "combo",
-    "tempestade",
-    "braco",
-    "carregar_ki",
-    "break_cannon"
-   ],
-   "vitoria": [
-    {
-     "anim": "Vitoria",
-     "fps": 10,
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": "vnpn402"
-      }
-     ]
-    },
-    {
-     "anim": "Pose_De_Vitoria",
-     "duracao": 60
-    }
-   ]
-  }
- },
- "ia": [
-  {
-   "golpe": "combo",
-   "peso": 5
-  },
-  {
-   "golpe": "tempestade",
-   "peso": 4
-  },
-  {
-   "golpe": "braco",
-   "peso": 3
-  },
-  {
-   "golpe": "carregar_ki",
-   "peso": 3,
-   "kiAbaixo": 25
-  }
- ],
- "golpes": {
-  "combo": {
-   "nome": "Fúria de Nappa",
-   "poder": 1.7,
-   "roteiro": [
-    {
-     "irAte": "alvo",
-     "dist": 26,
-     "tempo": 0.25,
-     "animMov": "Dash",
-     "som": "jetdash"
-    },
-    {
-     "anim": "Attack_Light_1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vnpn100",
-        "vnpn101",
-        "vnpn102"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Light_2",
-     "eventos": [
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Medium",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vnpn103",
-        "vnpn104"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.25,
-        "forca": "media"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Heavy",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vnpn105",
-        "vnpn106",
-        "vnpn107"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.35,
-        "forca": "forte",
-        "lanca": true
-       }
-      }
-     ]
-    },
-    {
-     "voltar": true,
-     "som": "teletransporte"
-    }
-   ]
-  },
-  "tempestade": {
-   "nome": "Tempestade Ardente",
-   "descricao": "Explosões erguem o chão sob o alvo.",
-   "tipo": "energia",
-   "custoKi": 25,
-   "poder": 2.4,
-   "roteiro": [
-    {
-     "anim": "Special_BlazingStorm_Chao",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vnpn200",
-        "vnpn201"
-       ]
-      },
-      {
-       "quadro": 0,
-       "som": "nappa_kun_kidame"
-      },
-      {
-       "quadro": 4,
-       "som": "nappa_kun_expl"
-      },
-      {
-       "quadro": 4,
-       "tremer": 7
-      },
-      {
-       "quadro": 4,
-       "efeito": {
-        "fx": "Explosao4",
-        "em": "alvo",
-        "escala": 0.9
-       }
-      },
-      {
-       "quadro": 4,
-       "acerto": {
-        "fracao": 0.45,
-        "forca": "energia"
-       }
-      },
-      {
-       "quadro": 6,
-       "acerto": {
-        "fracao": 0.55,
-        "forca": "energia",
-        "lanca": true
-       }
-      }
-     ]
-    }
-   ]
-  },
-  "braco": {
-   "nome": "Quebra-Braço",
-   "descricao": "Investida que esmaga a guarda.",
-   "custoKi": 15,
-   "poder": 2.1,
-   "roteiro": [
-    {
-     "irAte": "alvo",
-     "dist": 28,
-     "tempo": 0.3,
-     "animMov": "Dash",
-     "som": "nappa_armbreak_c_dash"
-    },
-    {
-     "anim": "Special_ArmBreak",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "vnpn202",
-        "vnpn203"
-       ]
-      },
-      {
-       "quadro": 6,
-       "som": "nappa_armbreak_b1"
-      },
-      {
-       "quadro": 6,
-       "acerto": {
-        "fracao": 0.4,
-        "forca": "media"
-       }
-      },
-      {
-       "quadro": 12,
-       "som": "nappa_armbreak_b2"
-      },
-      {
-       "quadro": 12,
-       "acerto": {
-        "fracao": 0.6,
-        "forca": "forte",
-        "lanca": true
-       }
-      }
-     ]
-    },
-    {
-     "voltar": true,
-     "som": "teletransporte"
-    }
-   ]
-  },
-  "carregar_ki": {
-   "nome": "Carregar Ki",
-   "roteiro": [
-    {
-     "anim": "CarregandoKi_Stage1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_start"
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage2",
-     "duracao": 1.0,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_loop"
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage3"
-    },
-    {
-     "ki": 35
-    }
-   ]
-  },
-  "break_cannon": {
-   "nome": "Break Cannon",
-   "descricao": "SUPREMO: um canhão de energia disparado pela boca.",
-   "tipo": "energia",
-   "supremo": true,
-   "poder": 4.6,
-   "roteiro": [
-    {
-     "anim": "Ultimate_BreakCannon_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": "vnpn210"
-      },
-      {
-       "quadro": 0,
-       "som": "nappa_kapa_start"
-      }
-     ]
-    },
-    {
-     "anim": "Ultimate_BreakCannon_Pt2",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "nappa_kapa_posechrg"
-      },
-      {
-       "quadro": 2,
-       "tremer": 5
-      }
-     ]
-    },
-    {
-     "mensagem": "Nappa: Vou transformar este lugar numa cratera!",
-     "mensagemDur": 1.3
-    },
-    {
-     "anim": "Ultimate_BreakCannon_Pt3",
-     "eventos": [
-      {
-       "quadro": 2,
-       "som": "nappa_kapa_fire"
-      },
-      {
-       "quadro": 2,
-       "flash": 0.3
-      },
-      {
-       "quadro": 4,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 2.0,
-        "velocidade": 760,
-        "impacto": "Explosao15",
-        "impactoEscala": 0.7,
-        "acerto": {
-         "fracao": 0.6,
-         "forca": "energia"
+  "golpes": {
+    "combo": {
+      "nome": "Fúria de Nappa",
+      "poder": 1.7,
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 26,
+          "tempo": 0.25,
+          "animMov": "Dash",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Attack_Light_1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vnpn100",
+                "vnpn101",
+                "vnpn102"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_2",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Medium",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vnpn103",
+                "vnpn104"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Heavy",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vnpn105",
+                "vnpn106",
+                "vnpn107"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
         }
-       }
-      },
-      {
-       "quadro": 10,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 2.2,
-        "velocidade": 760,
-        "impacto": "Explosao4",
-        "impactoEscala": 1.0,
-        "acerto": {
-         "fracao": 0.4,
-         "forca": "energia",
-         "lanca": true,
-         "empurrao": 650
-        }
-       }
-      }
-     ]
+      ]
     },
-    {
-     "anim": "Ultimate_BreakCannon_Final"
+    "tempestade": {
+      "nome": "Tempestade Ardente",
+      "descricao": "Explosões erguem o chão sob o alvo.",
+      "tipo": "energia",
+      "custoKi": 25,
+      "poder": 2.4,
+      "roteiro": [
+        {
+          "anim": "Special_BlazingStorm_Chao",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vnpn200",
+                "vnpn201"
+              ]
+            },
+            {
+              "quadro": 0,
+              "som": "nappa_kun_kidame"
+            },
+            {
+              "quadro": 4,
+              "som": "nappa_kun_expl"
+            },
+            {
+              "quadro": 4,
+              "tremer": 7
+            },
+            {
+              "quadro": 4,
+              "efeito": {
+                "fx": "Explosao4",
+                "em": "alvo",
+                "escala": 0.9
+              }
+            },
+            {
+              "quadro": 4,
+              "acerto": {
+                "fracao": 0.45,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 6,
+              "acerto": {
+                "fracao": 0.55,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "braco": {
+      "nome": "Quebra-Braço",
+      "descricao": "Investida que esmaga a guarda.",
+      "custoKi": 15,
+      "poder": 2.1,
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 28,
+          "tempo": 0.3,
+          "animMov": "Dash",
+          "som": "nappa_armbreak_c_dash"
+        },
+        {
+          "anim": "Special_ArmBreak",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vnpn202",
+                "vnpn203"
+              ]
+            },
+            {
+              "quadro": 6,
+              "som": "nappa_armbreak_b1"
+            },
+            {
+              "quadro": 6,
+              "acerto": {
+                "fracao": 0.4,
+                "forca": "media"
+              }
+            },
+            {
+              "quadro": 12,
+              "som": "nappa_armbreak_b2"
+            },
+            {
+              "quadro": 12,
+              "acerto": {
+                "fracao": 0.6,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
+      ]
+    },
+    "carregar_ki": {
+      "nome": "Carregar Ki",
+      "roteiro": [
+        {
+          "anim": "CarregandoKi_Stage1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage2",
+          "duracao": 1.0,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage3"
+        },
+        {
+          "ki": 35
+        }
+      ]
+    },
+    "break_cannon": {
+      "nome": "Break Cannon",
+      "descricao": "SUPREMO: um canhão de energia disparado pela boca.",
+      "tipo": "energia",
+      "supremo": true,
+      "poder": 4.6,
+      "roteiro": [
+        {
+          "anim": "Ultimate_BreakCannon_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "vnpn210"
+            },
+            {
+              "quadro": 0,
+              "som": "nappa_kapa_start"
+            }
+          ]
+        },
+        {
+          "anim": "Ultimate_BreakCannon_Pt2",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "nappa_kapa_posechrg"
+            },
+            {
+              "quadro": 2,
+              "tremer": 5
+            }
+          ]
+        },
+        {
+          "mensagem": "Nappa: Vou transformar este lugar numa cratera!",
+          "mensagemDur": 1.3
+        },
+        {
+          "anim": "Ultimate_BreakCannon_Pt3",
+          "eventos": [
+            {
+              "quadro": 2,
+              "som": "nappa_kapa_fire"
+            },
+            {
+              "quadro": 2,
+              "flash": 0.3
+            },
+            {
+              "quadro": 4,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "escala": 2.0,
+                "velocidade": 760,
+                "impacto": "Explosao15",
+                "impactoEscala": 0.7,
+                "acerto": {
+                  "fracao": 0.6,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 10,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "escala": 2.2,
+                "velocidade": 760,
+                "impacto": "Explosao4",
+                "impactoEscala": 1.0,
+                "acerto": {
+                  "fracao": 0.4,
+                  "forca": "energia",
+                  "lanca": true,
+                  "empurrao": 650
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Ultimate_BreakCannon_Final"
+        }
+      ]
     }
-   ]
   }
- }
 }

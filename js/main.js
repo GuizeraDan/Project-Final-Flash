@@ -3,44 +3,97 @@ window.FF = window.FF || {};
 
 FF.UI = {
   menu: null,
+  // ícone por tipo de golpe
+  icone(m) {
+    if (m.supremo) return '💥';
+    if (m.requer && m.requer.parceiro) return '🤝';
+    const t = m.tipo || (JSON.stringify(m.roteiro || []).includes('"irAte"') ? 'corpo' : /"(acerto|projetil|lancarObjeto)"/.test(JSON.stringify(m.roteiro || [])) ? 'energia' : 'suporte');
+    return { corpo: '👊', energia: '🔥', suporte: '✨', transformacao: '⚡' }[t] || '•';
+  },
+
+  // motivo de um golpe estar bloqueado (mostrado na linha de descrição)
+  motivo(hero, m) {
+    if (m.supremo && !hero.rageCheia) return 'A Barra de Fúria precisa estar cheia.';
+    if ((m.custoKi || 0) > hero.ki) return 'Precisa de ' + m.custoKi + ' de ki (você tem ' + Math.floor(hero.ki) + ').';
+    if (m.requer && m.requer.parceiro) {
+      const pf = FF.battle && FF.battle.all.find(f => f.id === m.requer.parceiro.id && !f.ko);
+      if (!pf) return 'Precisa do parceiro de pé na batalha.';
+      if (pf.ki < (m.requer.parceiro.ki || 0)) return pf.nome + ' precisa de ' + m.requer.parceiro.ki + ' de ki.';
+    }
+    if (m.requer && m.requer.semBuff && hero.buffs[m.requer.semBuff]) return 'Já está ativo.';
+    return '';
+  },
+
+  // cabeçalho do painel: retrato + nome + ki/fúria do herói da vez
+  cabecalho(box, f, sub) {
+    const topo = document.createElement('div');
+    topo.className = 'cmd-topo';
+    const cv = document.createElement('canvas');
+    cv.width = 40; cv.height = 56; cv.className = 'cmd-face';
+    topo.appendChild(cv);
+    const t = document.createElement('div');
+    t.innerHTML = '<b class="cmd-nome"></b><span class="cmd-sub"></span>';
+    t.querySelector('.cmd-nome').textContent = f.nome;
+    t.querySelector('.cmd-sub').textContent = sub;
+    topo.appendChild(t);
+    box.appendChild(topo);
+    FF.Retrato.noCanvas(cv, f.def, f.formId, 'retrato', { espelhar: !f.isHero });
+  },
+
   chooseMove(hero, battle) {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
       box.innerHTML = '';
+      box.classList.remove('alvos');
+      this.cabecalho(box, hero, 'KI ' + Math.floor(hero.ki) + '/' + hero.kiMax + '  ·  Fúria ' + Math.floor(hero.rage) + '%');
+      const grade = document.createElement('div');
+      grade.className = 'cmd-golpes';
+      box.appendChild(grade);
+      const desc = document.createElement('div');
+      desc.className = 'cmd-desc';
+      box.appendChild(desc);
       const ids = hero.form.golpes;
       const btns = [];
       ids.forEach((id, i) => {
         const m = hero.def.golpes[id];
         const b = document.createElement('button');
-        const custo = m.custoKi ? '<span class="ki">' + m.custoKi + ' KI</span>' : '';
-        b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="nome">' + m.nome + '</span>' + custo +
-          '<span class="desc">' + (m.descricao || '') + '</span>';
-        const can = (m.custoKi || 0) <= hero.ki && !(m.requer && !this.meets(hero, m.requer)) && !(m.supremo && !hero.rageCheia);
+        b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="ic">' + this.icone(m) + '</span><span class="nome"></span>' +
+          (m.custoKi ? '<span class="ki">' + m.custoKi + '</span>' : '');
+        b.querySelector('.nome').textContent = m.nome;
+        const can = !this.motivo(hero, m) && !(m.requer && !this.meets(hero, m.requer));
         if (m.supremo) b.classList.add('supremo');
         if (m.requer && m.requer.parceiro) b.classList.add('sparking');
-        b.disabled = !can;
-        b.onclick = () => { if (!b.disabled) done(id); };
+        b.classList.toggle('bloq', !can);
+        b.onclick = () => { focus(i); if (can) done(id); else FF.Audio.play('tap_sound', 0.3); };
         b.onmouseenter = () => focus(i);
-        box.appendChild(b);
+        b._can = can;
+        grade.appendChild(b);
         btns.push(b);
       });
-      let sel = btns.findIndex(b => !b.disabled);
-      const focus = (i) => { sel = i; btns.forEach((b, k) => b.classList.toggle('sel', k === i)); };
+      let sel = btns.findIndex(b => b._can);
+      const focus = (i) => {
+        sel = i;
+        btns.forEach((b, k) => b.classList.toggle('sel', k === i));
+        const m = hero.def.golpes[ids[i]];
+        const mot = this.motivo(hero, m);
+        desc.innerHTML = '';
+        const d1 = document.createElement('span'); d1.textContent = m.descricao || m.nome; desc.appendChild(d1);
+        if (mot) { const d2 = document.createElement('em'); d2.textContent = ' ' + mot; desc.appendChild(d2); }
+      };
       focus(Math.max(0, sel));
       const key = (e) => {
-        if (e.code === 'ArrowDown' || e.code === 'ArrowUp') {
+        const cols = getComputedStyle(grade).gridTemplateColumns.split(' ').length || 2;
+        const mv = { ArrowDown: cols, ArrowUp: -cols, ArrowRight: 1, ArrowLeft: -1 }[e.code];
+        if (mv) {
           e.preventDefault();
-          const d = e.code === 'ArrowDown' ? 1 : -1;
-          let i = sel;
-          for (let k = 0; k < btns.length; k++) { i = (i + d + btns.length) % btns.length; if (!btns[i].disabled) break; }
-          focus(i);
+          focus((sel + mv + btns.length) % btns.length);
           FF.Audio.play('tap_sound', 0.5);
         } else if (e.code === 'Enter') {
           e.preventDefault();
-          if (btns[sel] && !btns[sel].disabled) done(ids[sel]);
+          if (btns[sel] && btns[sel]._can) done(ids[sel]);
         } else if (/^Digit[1-9]$/.test(e.code)) {
           const i = +e.code.slice(5) - 1;
-          if (btns[i] && !btns[i].disabled) done(ids[i]);
+          if (btns[i] && btns[i]._can) done(ids[i]);
         }
       };
       const done = (id) => {
@@ -57,21 +110,41 @@ FF.UI = {
   chooseTarget(foes, battle) {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
-      box.innerHTML = '<div class="titulo-alvo">Escolha o alvo</div>';
+      box.innerHTML = '';
       box.classList.add('alvos');
+      const tit = document.createElement('div');
+      tit.className = 'cmd-titulo';
+      tit.textContent = '🎯 Escolha o alvo';
+      box.appendChild(tit);
+      const grade = document.createElement('div');
+      grade.className = 'cmd-golpes';
+      box.appendChild(grade);
       let sel = 0;
       const btns = foes.map((f, i) => {
         const b = document.createElement('button');
-        b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="nome">' + f.nome + '</span><span class="desc">Vida ' + Math.ceil(f.hp) + ' / ' + f.hpMax + '</span>';
+        b.className = 'alvo';
+        const cv = document.createElement('canvas');
+        cv.width = 40; cv.height = 56;
+        b.appendChild(cv);
+        const t = document.createElement('span');
+        t.className = 'nome';
+        t.innerHTML = '';
+        t.textContent = f.nome;
+        const v = document.createElement('small');
+        v.textContent = 'Vida ' + Math.ceil(f.hp) + '/' + f.hpMax;
+        t.appendChild(document.createElement('br'));
+        t.appendChild(v);
+        b.appendChild(t);
+        FF.Retrato.noCanvas(cv, f.def, f.formId, 'retrato', { espelhar: true });
         b.onclick = () => done(i);
         b.onmouseenter = () => focus(i);
-        box.appendChild(b);
+        grade.appendChild(b);
         return b;
       });
       const focus = (i) => { sel = i; battle.alvoMarcado = foes[i]; btns.forEach((b, k) => b.classList.toggle('sel', k === i)); };
       focus(0);
       const key = (e) => {
-        if (e.code === 'ArrowDown' || e.code === 'ArrowUp') { e.preventDefault(); focus((sel + (e.code === 'ArrowDown' ? 1 : -1) + btns.length) % btns.length); FF.Audio.play('tap_sound', 0.5); }
+        if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.code)) { e.preventDefault(); focus((sel + (e.code === 'ArrowDown' || e.code === 'ArrowRight' ? 1 : -1) + btns.length) % btns.length); FF.Audio.play('tap_sound', 0.5); }
         else if (e.code === 'Enter') { e.preventDefault(); done(sel); }
         else if (/^Digit[1-9]$/.test(e.code)) { const i = +e.code.slice(5) - 1; if (btns[i]) done(i); }
       };
@@ -120,14 +193,15 @@ FF.start = async function (escolhida) {
   FF.Input.init(canvas);
 
   const params = new URLSearchParams(location.search);
-  const battleId = params.get('batalha') || escolhida || 'saiyajin_01';
-  const def = await FF.Assets.loadJSON('data/battles/' + battleId + '.json');
+  let def;
+  if (escolhida && typeof escolhida === 'object') def = escolhida;     // Batalha Livre (montada na seleção)
+  else def = await FF.Assets.loadJSON('data/battles/' + (params.get('batalha') || escolhida || 'saiyajin_01') + '.json');
   const stage = await FF.Assets.loadJSON('data/stages/' + def.cenario + '.json');
 
   // personagens e todos os sprites de todas as formas (transformação sem espera)
   const heroDefs = await Promise.all(def.herois.map(id => FF.Assets.loadCharacter(id)));
   const foeDefs = await Promise.all(def.inimigos.map(id => FF.Assets.loadCharacter(id)));
-  const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', stage.sprite]);
+  const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', 'retratos', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
   await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)));
   // animações derivadas: sprites incompletos (ex.: Saibaman só tem ataques) ganham parado/dano/caído
@@ -331,8 +405,19 @@ FF.UI.showEnd = async function (win) {
   if (win && !prox) el.querySelector('h2').textContent = 'Fim da Saga Saiyajin!';
 };
 
+// arte estática da tela de título: banners do Z Legends 3 (Goku de um lado, Vegeta do outro)
+FF.bannersTitulo = async function () {
+  try {
+    const [g, v] = await Promise.all([FF.Assets.loadCharacter('goku'), FF.Assets.loadCharacter('vegeta')]);
+    const e = document.querySelector('.titulo-banner.esq'), d = document.querySelector('.titulo-banner.dir');
+    if (e) FF.Retrato.noCanvas(e, g, 'base', 'banner', { fundo: false });
+    if (d) FF.Retrato.noCanvas(d, v, 'base', 'banner', { fundo: false, espelhar: true });
+  } catch (err) { /* sem banners */ }
+};
+
 window.addEventListener('load', () => {
   FF.ajustarTela();
+  FF.bannersTitulo();
   FF.aplicarVolumes();
   const intro = document.getElementById('inicio');
   const msg = document.getElementById('carregando');
@@ -361,6 +446,13 @@ window.addEventListener('load', () => {
     FF.jogarCapitulo(+params.get('historia')).catch(err => { console.error(err); intro.classList.remove('hide'); msg.textContent = 'Erro: ' + err.message; });
     return;
   }
+  // Batalha Livre montada na seleção: guarda a definição e recarrega com ?livre=1 (assim "Lutar de novo" funciona)
+  FF._iniciarLivre = (def) => ir('?livre=1');
+  if (params.get('livre')) {
+    let def = null;
+    try { def = JSON.parse(sessionStorage.getItem('ff_livre_def') || 'null'); } catch (e) { /* nada */ }
+    if (def) { batalhaLivre(def); return; }
+  }
   // laboratório direto (?teste=1&batalha=id): carrega sem precisar tocar
   if (params.get('teste')) {
     batalhaLivre(params.get('batalha') || 'saiyajin_02');
@@ -377,6 +469,7 @@ window.addEventListener('load', () => {
 
   // tela de título: toque → menu principal
   const mostrar = (modo) => {
+    FF.Selecao && FF.Selecao.fechar();
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
@@ -399,13 +492,16 @@ window.addEventListener('load', () => {
   };
   intro.addEventListener('click', abrir);
   window.addEventListener('keydown', abrir);
+  FF._mostrarTitulo = mostrar;
 
   // setas para navegar entre os botões do menu visível
   window.addEventListener('keydown', (e) => {
     if (!intro.className || intro.classList.contains('hide')) return;
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') return;
     const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino' }[intro.className];
+    if (!vis) return;
     const bts = [...intro.querySelectorAll(vis + ' button:not([disabled])')];
+    if (!bts.length) return;
     const i = bts.indexOf(document.activeElement);
     const j = (i + (e.code === 'ArrowDown' ? 1 : -1) + bts.length) % bts.length;
     bts[j].focus(); e.preventDefault();
@@ -422,7 +518,7 @@ window.addEventListener('load', () => {
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
-    if (ac === 'livre') { FF._modoLab = false; return mostrar('livre'); }
+    if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); return; }
     if (ac === 'treino') return mostrar('treino');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {

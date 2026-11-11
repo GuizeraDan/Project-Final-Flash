@@ -1,335 +1,339 @@
 {
- "id": "raditz",
- "nome": "Raditz",
- "formaInicial": "base",
- "atributos": {
-  "hp": 1500,
-  "ataque": 105,
-  "defesa": 55,
-  "kiMax": 100,
-  "kiInicial": 20,
-  "kiPorTurno": 10,
-  "velocidade": 8
- },
- "vozes": {
-  "dano": [
-   "raditz_dmg_1",
-   "raditz_dmg_2",
-   "raditz_dmg_3"
+  "id": "raditz",
+  "nome": "Raditz",
+  "formaInicial": "base",
+  "atributos": {
+    "hp": 1500,
+    "ataque": 105,
+    "defesa": 55,
+    "kiMax": 100,
+    "kiInicial": 20,
+    "kiPorTurno": 10,
+    "velocidade": 8
+  },
+  "vozes": {
+    "dano": [
+      "raditz_dmg_1",
+      "raditz_dmg_2",
+      "raditz_dmg_3"
+    ],
+    "lancado": [
+      "raditz_lancado_1",
+      "raditz_lancado_2",
+      "raditz_lancado_3"
+    ]
+  },
+  "formas": {
+    "base": {
+      "nome": "Raditz",
+      "sprite": "raditz",
+      "anims": {
+        "parado": "Parado",
+        "dano1": "Dano_Chao1",
+        "dano2": "Dano_Chao2",
+        "guarda": "Defesa_Chao",
+        "lancado": "SendoLancado_LADO",
+        "caido": "Caido",
+        "avancar": "MovimentoParaFrente",
+        "recuar": "MovimentoParaTras",
+        "teleporte": "Teletransporte_Chao"
+      },
+      "golpes": [
+        "combo",
+        "rajada",
+        "carregar_ki",
+        "domingo_duplo"
+      ],
+      "vitoria": [
+        {
+          "anim": "Vitoria",
+          "fps": 10,
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "raditz_victory_voice"
+            }
+          ]
+        },
+        {
+          "anim": "Pose_De_Vitoria",
+          "duracao": 60
+        }
+      ],
+      "retrato": {
+        "quadro": 23,
+        "banner": 6
+      }
+    }
+  },
+  "ia": [
+    {
+      "golpe": "combo",
+      "peso": 5
+    },
+    {
+      "golpe": "rajada",
+      "peso": 4
+    },
+    {
+      "golpe": "carregar_ki",
+      "peso": 3,
+      "kiAbaixo": 20
+    }
   ],
-  "lancado": [
-   "raditz_lancado_1",
-   "raditz_lancado_2",
-   "raditz_lancado_3"
-  ]
- },
- "formas": {
-  "base": {
-   "nome": "Raditz",
-   "sprite": "raditz",
-   "anims": {
-    "parado": "Parado",
-    "dano1": "Dano_Chao1",
-    "dano2": "Dano_Chao2",
-    "guarda": "Defesa_Chao",
-    "lancado": "SendoLancado_LADO",
-    "caido": "Caido",
-    "avancar": "MovimentoParaFrente",
-    "recuar": "MovimentoParaTras",
-    "teleporte": "Teletransporte_Chao"
-   },
-   "golpes": [
-    "combo",
-    "rajada",
-    "carregar_ki",
-    "domingo_duplo"
-   ],
-   "vitoria": [
-    {
-     "anim": "Vitoria",
-     "fps": 10,
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": "raditz_victory_voice"
-      }
-     ]
+  "golpes": {
+    "combo": {
+      "nome": "Ataque de Raditz",
+      "poder": 1.6,
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 24,
+          "tempo": 0.22,
+          "animMov": "Dash",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Attack_Light_1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "raditz_atk_1",
+                "raditz_atk_2",
+                "raditz_atk_3"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Light_2",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Medium",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "raditz_atk_4",
+                "raditz_atk_5"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Attack_Heavy",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "raditz_atk_6",
+                "raditz_atk_7",
+                "raditz_atk_8"
+              ]
+            },
+            {
+              "quadro": 2,
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
+      ]
     },
-    {
-     "anim": "Pose_De_Vitoria",
-     "duracao": 60
+    "rajada": {
+      "nome": "Rajada de Energia",
+      "custoKi": 20,
+      "poder": 2.2,
+      "roteiro": [
+        {
+          "anim": "Special_Frente",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "raditz_spm_1",
+                "raditz_spm_2",
+                "raditz_spm_3"
+              ]
+            },
+            {
+              "quadro": 2,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "impacto": "kiblast_hit",
+                "velocidade": 620,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.5,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_Frente",
+          "eventos": [
+            {
+              "quadro": 2,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "impacto": "kiblast_hit",
+                "velocidade": 620,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.5,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "carregar_ki": {
+      "nome": "Carregar Ki",
+      "roteiro": [
+        {
+          "anim": "CarregandoKi_Stage1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage2",
+          "duracao": 1.0,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            }
+          ]
+        },
+        {
+          "anim": "CarregandoKi_Stage3"
+        },
+        {
+          "ki": 35
+        }
+      ]
+    },
+    "domingo_duplo": {
+      "nome": "Double Sunday",
+      "descricao": "SUPREMO: dois feixes de energia, um de cada mão.",
+      "tipo": "energia",
+      "supremo": true,
+      "poder": 4.5,
+      "roteiro": [
+        {
+          "anim": "UltimateAttack_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "raditz_intro_voice"
+            },
+            {
+              "quadro": 0,
+              "som": "kidan_chrg"
+            },
+            {
+              "quadro": 6,
+              "tremer": 5
+            }
+          ]
+        },
+        {
+          "mensagem": "Raditz: Vou acabar com essa brincadeira!",
+          "mensagemDur": 1.3
+        },
+        {
+          "anim": "UltimateAttack_Pt2",
+          "eventos": [
+            {
+              "quadro": 0,
+              "tremer": 4
+            }
+          ]
+        },
+        {
+          "anim": "UltimateAttack_Pt3",
+          "eventos": [
+            {
+              "quadro": 1,
+              "flash": 0.3
+            },
+            {
+              "quadro": 1,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "escala": 1.6,
+                "velocidade": 700,
+                "som": "kidan_fire",
+                "impacto": "Explosao4",
+                "impactoEscala": 0.9,
+                "acerto": {
+                  "fracao": 0.45,
+                  "forca": "energia"
+                }
+              }
+            },
+            {
+              "quadro": 3,
+              "projetil": {
+                "fx": "kiblast_amarelo",
+                "escala": 1.8,
+                "velocidade": 700,
+                "som": "kidan_fire",
+                "impacto": "Explosao15",
+                "impactoEscala": 0.6,
+                "acerto": {
+                  "fracao": 0.55,
+                  "forca": "energia",
+                  "lanca": true,
+                  "empurrao": 650
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "UltimateAttack_Final"
+        }
+      ]
     }
-   ]
   }
- },
- "ia": [
-  {
-   "golpe": "combo",
-   "peso": 5
-  },
-  {
-   "golpe": "rajada",
-   "peso": 4
-  },
-  {
-   "golpe": "carregar_ki",
-   "peso": 3,
-   "kiAbaixo": 20
-  }
- ],
- "golpes": {
-  "combo": {
-   "nome": "Ataque de Raditz",
-   "poder": 1.6,
-   "roteiro": [
-    {
-     "irAte": "alvo",
-     "dist": 24,
-     "tempo": 0.22,
-     "animMov": "Dash",
-     "som": "jetdash"
-    },
-    {
-     "anim": "Attack_Light_1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "raditz_atk_1",
-        "raditz_atk_2",
-        "raditz_atk_3"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Light_2",
-     "eventos": [
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.2,
-        "forca": "leve"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Medium",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "raditz_atk_4",
-        "raditz_atk_5"
-       ]
-      },
-      {
-       "quadro": "pico",
-       "acerto": {
-        "fracao": 0.25,
-        "forca": "media"
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Attack_Heavy",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "raditz_atk_6",
-        "raditz_atk_7",
-        "raditz_atk_8"
-       ]
-      },
-      {
-       "quadro": 2,
-       "acerto": {
-        "fracao": 0.35,
-        "forca": "forte",
-        "lanca": true
-       }
-      }
-     ]
-    },
-    {
-     "voltar": true,
-     "som": "teletransporte"
-    }
-   ]
-  },
-  "rajada": {
-   "nome": "Rajada de Energia",
-   "custoKi": 20,
-   "poder": 2.2,
-   "roteiro": [
-    {
-     "anim": "Special_Frente",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": [
-        "raditz_spm_1",
-        "raditz_spm_2",
-        "raditz_spm_3"
-       ]
-      },
-      {
-       "quadro": 2,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "impacto": "kiblast_hit",
-        "velocidade": 620,
-        "som": "kidan_fire",
-        "acerto": {
-         "fracao": 0.5,
-         "forca": "energia"
-        }
-       }
-      }
-     ]
-    },
-    {
-     "anim": "Special_Frente",
-     "eventos": [
-      {
-       "quadro": 2,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "impacto": "kiblast_hit",
-        "velocidade": 620,
-        "som": "kidan_fire",
-        "acerto": {
-         "fracao": 0.5,
-         "forca": "energia"
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  "carregar_ki": {
-   "nome": "Carregar Ki",
-   "roteiro": [
-    {
-     "anim": "CarregandoKi_Stage1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_start"
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage2",
-     "duracao": 1.0,
-     "eventos": [
-      {
-       "quadro": 0,
-       "som": "carregamentodeki_loop"
-      }
-     ]
-    },
-    {
-     "anim": "CarregandoKi_Stage3"
-    },
-    {
-     "ki": 35
-    }
-   ]
-  },
-  "domingo_duplo": {
-   "nome": "Double Sunday",
-   "descricao": "SUPREMO: dois feixes de energia, um de cada mão.",
-   "tipo": "energia",
-   "supremo": true,
-   "poder": 4.5,
-   "roteiro": [
-    {
-     "anim": "UltimateAttack_Pt1",
-     "eventos": [
-      {
-       "quadro": 0,
-       "voz": "raditz_intro_voice"
-      },
-      {
-       "quadro": 0,
-       "som": "kidan_chrg"
-      },
-      {
-       "quadro": 6,
-       "tremer": 5
-      }
-     ]
-    },
-    {
-     "mensagem": "Raditz: Vou acabar com essa brincadeira!",
-     "mensagemDur": 1.3
-    },
-    {
-     "anim": "UltimateAttack_Pt2",
-     "eventos": [
-      {
-       "quadro": 0,
-       "tremer": 4
-      }
-     ]
-    },
-    {
-     "anim": "UltimateAttack_Pt3",
-     "eventos": [
-      {
-       "quadro": 1,
-       "flash": 0.3
-      },
-      {
-       "quadro": 1,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 1.6,
-        "velocidade": 700,
-        "som": "kidan_fire",
-        "impacto": "Explosao4",
-        "impactoEscala": 0.9,
-        "acerto": {
-         "fracao": 0.45,
-         "forca": "energia"
-        }
-       }
-      },
-      {
-       "quadro": 3,
-       "projetil": {
-        "fx": "kiblast_amarelo",
-        "escala": 1.8,
-        "velocidade": 700,
-        "som": "kidan_fire",
-        "impacto": "Explosao15",
-        "impactoEscala": 0.6,
-        "acerto": {
-         "fracao": 0.55,
-         "forca": "energia",
-         "lanca": true,
-         "empurrao": 650
-        }
-       }
-      }
-     ]
-    },
-    {
-     "anim": "UltimateAttack_Final"
-    }
-   ]
-  }
- }
 }

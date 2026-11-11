@@ -60,19 +60,11 @@ FF.HUD = {
     const bg = set.anim('fundo_barras').frames[0];
     ctx.drawImage(set.images[bg[0]], bg[1] + (rtl ? PW : 0), bg[2], PW, bg[4], X, Y, PW * S, bg[4] * S);
 
-    // retrato: cabeça do próprio sprite (acompanha a forma atual)
+    // retrato: arte de seleção do Z Legends 3 (acompanha a forma atual; sem arte, usa o sprite)
     const bx = sxp(13, 37), by = Y + 9 * S, bw = 37 * S, bh = 53 * S;
-    ctx.save();
-    const g = ctx.createLinearGradient(0, by, 0, by + bh);
-    g.addColorStop(0, f.formId !== (f.def.formaInicial || 'base') ? '#7a5a10' : '#24305a'); g.addColorStop(1, '#0c0f22');
-    ctx.fillStyle = g; ctx.fillRect(bx, by, bw, bh);
-    ctx.beginPath(); ctx.rect(bx, by, bw, bh); ctx.clip();
-    const pa = f.sprite.anim(f.animName('parado'));
-    if (pa) {
-      const fr = pa.frames[0], sc = 2.6 * T;
-      FF.drawFrame(ctx, f.sprite, fr, bx + bw / 2 + (rtl ? -8 : 8) * T, by + 6 * T + fr[6] * sc, sc, rtl, f.ko ? { tint: 'rgba(40,0,0,0.55)' } : undefined);
-    }
-    ctx.restore();
+    const trans = f.formId !== (f.def.formaInicial || 'base');
+    FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', bx, by, bw, bh, {
+      espelhar: rtl, cor1: trans ? '#7a5a10' : '#24305a', escurecer: f.ko ? 'rgba(60,0,0,0.6)' : null });
 
     // vida (com rastro vermelho)
     if (f._hpShow == null) f._hpShow = f.hp;
@@ -177,6 +169,23 @@ FF.HUD = {
     ctx.restore();
   },
 
+  // faixa com os retratos na ordem dos turnos (quem age agora fica destacado em dourado)
+  ordemTurno(ctx, b) {
+    const lista = (b.ordem || []).filter(f => !f.ko);
+    if (!lista.length || b.over) return;
+    const w = 22, h = 30, gap = 4;
+    const total = lista.length * (w + gap) - gap;
+    let x = FF.W / 2 - total / 2;
+    const y = 36;
+    for (const f of lista) {
+      const atual = f === b.atual;
+      ctx.fillStyle = atual ? '#ffd84a' : (f.isHero ? '#3a6ad0' : '#c03030');
+      ctx.fillRect(x - 2, y - 2, w + 4, h + 4);
+      FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', x, y, w, h, { espelhar: !f.isHero });
+      x += w + gap;
+    }
+  },
+
   draw(ctx, b) {
     const n = b.heroes.length;
     b.heroes.forEach((h, i) => n > 1 ? this.panel(ctx, h, false, 1.05, 2 + i * 76) : this.panel(ctx, h, false));
@@ -184,6 +193,7 @@ FF.HUD = {
     b.enemies.forEach((e, i) => ne > 1 ? this.panel(ctx, e, true, 1.05, 2 + i * 76) : this.panel(ctx, e, true));
     this.destaque(ctx, b);
     if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 22, 16, '#ffe9a8', 'center');
+    this.ordemTurno(ctx, b);
     for (const t of b.texts) {
       const a = 1 - Math.max(0, (t.t - t.life * 0.6) / (t.life * 0.4));
       ctx.save(); ctx.globalAlpha = a;

@@ -24,6 +24,8 @@
   <div id="ajuda">Espaço / toque na tela: <b>guarda</b> quando o anel azul fechar · <b>crítico</b> quando o anel dourado fechar</div>
 
   <div id="inicio">
+    <canvas class="titulo-banner esq" width="134" height="163"></canvas>
+    <canvas class="titulo-banner dir" width="134" height="163"></canvas>
     <h1>FINAL FLASH</h1>
     <h3>Saga Saiyajin</h3>
     <p id="carregando">Toque ou aperte Enter para começar</p>
@@ -59,6 +61,25 @@
     </div>
   </div>
 
+  <div id="selecao">
+    <div class="sel-topo"><h2>Batalha Livre</h2><span>Toque nos lutadores para montar os times · toque num retrato do time para tirar</span></div>
+    <div class="sel-corpo">
+      <div class="sel-time" data-lado="herois"><h3>Seu time</h3><div class="slots"></div></div>
+      <div class="sel-centro">
+        <div class="sel-abas"><button data-lado="herois">+ Seu time</button><button data-lado="inimigos">+ Inimigos</button></div>
+        <div class="sel-grade"></div>
+        <div class="sel-info">Escolha até 3 lutadores para cada lado.</div>
+      </div>
+      <div class="sel-time" data-lado="inimigos"><h3>Inimigos</h3><div class="slots"></div></div>
+    </div>
+    <div class="sel-rodape">
+      <button data-sel="voltar">Voltar</button>
+      <button data-sel="limpar">Limpar</button>
+      <button data-sel="aleatorio">🎲 Aleatório</button>
+      <button data-sel="lutar" class="lutar">LUTAR!</button>
+    </div>
+  </div>
+
   <div id="dialogo">
     <div class="cap"></div>
     <div class="caixa">
@@ -83,12 +104,14 @@
 <script src="js/core/sprite.js"></script>
 <script src="js/core/audio.js"></script>
 <script src="js/core/input.js"></script>
+<script src="js/core/retrato.js"></script>
 <script src="js/battle/fighter.js"></script>
 <script src="js/battle/script.js"></script>
 <script src="js/battle/ai.js"></script>
 <script src="js/battle/hud.js"></script>
 <script src="js/battle/battle.js"></script>
 <script src="js/ferramentas/laboratorio.js"></script>
+<script src="js/ui/selecao.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/main.js"></script>
 </body>

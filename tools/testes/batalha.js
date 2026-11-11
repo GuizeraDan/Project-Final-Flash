@@ -62,8 +62,8 @@ const hpInimigos = opt('hpInimigos', null);   // --hpInimigos 100: inimigos come
       console.log('  alvo escolhido');
     } else if (aberto) {
       const mv = plano[Math.min(k, plano.length - 1)]; k++;
-      const ok = await p.evaluate((mv) => { const bt = document.querySelector(`#menu button:nth-child(${mv})`); if (!bt || bt.disabled) return false; bt.click(); return true; }, mv);
-      if (!ok) await p.evaluate(() => { const bt = document.querySelector('#menu button:not([disabled])'); if (bt) bt.click(); });
+      const ok = await p.evaluate((mv) => { const bt = document.querySelector(`#menu button:nth-child(${mv})`); if (!bt || bt.disabled || bt.classList.contains('bloq')) return false; bt.click(); return true; }, mv);
+      if (!ok) await p.evaluate(() => { const bt = document.querySelector('#menu button:not([disabled]):not(.bloq)'); if (bt) bt.click(); });
       const st = await p.evaluate(() => FF.battle.all.map(f => `${f.id}:${f.formId} hp${Math.round(f.hp)} ki${Math.round(f.ki)} rage${Math.round(f.rage)}`).join(' | '));
       console.log(`turno ${k} escolha ${mv}${ok ? '' : '(desab.)'} -> ${st}`);
     }

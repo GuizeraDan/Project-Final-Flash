@@ -6,20 +6,6 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #jogo { position: relative; width: min(100vw, calc(100vh * var(--asp, 1.869))); width: min(100vw, calc(100dvh * var(--asp, 1.869))); aspect-ratio: var(--asp, 1.869); container-type: inline-size; }
 #tela { width: 100%; height: 100%; display: block; image-rendering: pixelated; touch-action: none; }
 
-#menu { position: absolute; left: 24cqw; bottom: 3.2cqw; width: 52cqw; display: none; grid-template-columns: 1fr 1fr; gap: 0.6cqw; }
-#menu.open { display: grid; }
-#menu button {
-  position: relative; text-align: left; font: inherit; color: #fff; cursor: pointer;
-  background: linear-gradient(180deg, rgba(40,30,80,0.92), rgba(20,14,44,0.92));
-  border: 0.25cqw solid #5b4bb0; border-radius: 0.9cqw; padding: 0.7cqw 1cqw 0.7cqw 3.4cqw;
-  font-size: 1.55cqw; line-height: 1.2;
-}
-#menu button .n { position: absolute; left: 0.9cqw; top: 0.75cqw; color: #ffd84a; font-weight: 900; }
-#menu button .nome { font-weight: 900; }
-#menu button .ki { float: right; color: #8fe0ff; font-weight: 700; }
-#menu button .desc { display: block; font-size: 1.15cqw; opacity: 0.75; }
-#menu button.sel { border-color: #ffd84a; background: linear-gradient(180deg, rgba(90,60,150,0.95), rgba(40,24,90,0.95)); }
-#menu button:disabled { opacity: 0.4; cursor: default; }
 
 #ajuda { position: absolute; left: 0; right: 0; bottom: 0.6cqw; font-size: 1.15cqw; opacity: 0.8; text-align: center; text-shadow: 0 0 0.3cqw #000; pointer-events: none; }
 
@@ -37,17 +23,11 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #fim button { font: inherit; font-size: 2cqw; padding: 1cqw 3cqw; border-radius: 1cqw; border: 0.3cqw solid #ffd84a; background: #2b1d5c; color: #fff; cursor: pointer; }
 @keyframes pisca { 50% { opacity: 0.35; } }
 /* golpe supremo (precisa da Rage cheia) */
-#menu button.supremo { border-color: #ff7a1a; background: linear-gradient(180deg, rgba(150,50,10,0.95), rgba(70,18,8,0.95)); }
-#menu button.supremo:not(:disabled) { animation: brilhoSupremo 0.8s infinite alternate; }
-#menu button.supremo .nome { color: #ffe25a; }
 @keyframes brilhoSupremo { from { box-shadow: 0 0 0.4cqw #ff9a2a; } to { box-shadow: 0 0 1.6cqw #ffd84a; } }
-#menu button.sparking { border-color: #3fd0ff; background: linear-gradient(180deg, rgba(20,70,120,0.95), rgba(10,30,70,0.95)); }
-#menu button.sparking .nome { color: #9ff0ff; }
 #escolha { position: absolute; bottom: 4cqw; gap: 1.5cqw; }
 #escolha button { font: inherit; font-size: 1.6cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
 #escolha button:hover { background: rgba(90,60,150,0.95); }
 
-#menu .titulo-alvo { grid-column: 1 / -1; color: #ffd84a; font-weight: 900; text-shadow: 0 0 4px #000, 1px 1px 0 #000; font-size: 1.5cqw; }
 
 /* tela de título e menus */
 #inicio { cursor: default; }
@@ -99,12 +79,6 @@ body { display: flex; align-items: center; justify-content: center; font-family:
   #girar span { font-size: 18vw; animation: girar 1.6s ease-in-out infinite; }
   @keyframes girar { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
 }
-@media (pointer: coarse) {
-  #menu { gap: 0.7cqw; left: 27cqw; width: 46cqw; bottom: 2.4cqw; }
-  #menu button { min-height: 30px; font-size: 1.3cqw; padding: 0.45cqw 0.8cqw 0.45cqw 2.6cqw; border-width: 0.2cqw; }
-  #menu button .n { left: 0.8cqw; top: 0.5cqw; }
-  #menu button .desc { display: none; }   /* tela pequena: só nome e custo de ki */
-}
 .menu-titulo button.ferramenta { font-size: 1.35cqw; padding: 0.5cqw 1.6cqw; border-color: #7a6bd0; opacity: 0.85; }
 
 /* aviso de versão nova (PWA) */
@@ -127,3 +101,98 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 .menu-titulo button:disabled { opacity: 0.4 !important; }
+
+
+/* ---- painel de comandos da batalha (golpes / alvo) ---- */
+#menu { position: absolute; left: 23cqw; width: 54cqw; bottom: 2cqw; display: none; flex-direction: column; gap: 0.6cqw;
+  padding: 0.8cqw; border-radius: 1.2cqw; border: 0.25cqw solid #c9a227;
+  background: linear-gradient(180deg, rgba(26,18,52,0.94), rgba(10,7,24,0.94)); box-shadow: 0 0.6cqw 2cqw rgba(0,0,0,0.6); }
+#menu.open { display: flex; }
+.cmd-topo { display: flex; align-items: center; gap: 0.8cqw; }
+.cmd-face { width: 3.6cqw; height: 5cqw; border: 0.2cqw solid #ffd84a; border-radius: 0.4cqw; image-rendering: pixelated; background: #0c0f22; }
+.cmd-nome { display: block; font-size: 1.7cqw; color: #ffd84a; font-weight: 900; text-shadow: 0.15cqw 0.15cqw 0 #000; }
+.cmd-sub { display: block; font-size: 1.15cqw; color: #9fe2ff; }
+.cmd-titulo { font-size: 1.6cqw; font-weight: 900; color: #ffd84a; text-shadow: 0.15cqw 0.15cqw 0 #000; }
+.cmd-golpes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5cqw; }
+.cmd-golpes button { position: relative; display: flex; align-items: center; gap: 0.6cqw; text-align: left; font: inherit; color: #fff; cursor: pointer;
+  background: linear-gradient(180deg, #2d2463, #1a1440); border: 0.18cqw solid #5b4bb0; border-radius: 0.7cqw;
+  padding: 0.55cqw 0.8cqw; font-size: 1.35cqw; line-height: 1.15; min-height: 3.4cqw; }
+.cmd-golpes button .n { position: absolute; top: 0.15cqw; left: 0.35cqw; font-size: 0.85cqw; color: #ffd84a; opacity: 0.7; }
+.cmd-golpes button .ic { font-size: 1.5cqw; width: 2cqw; text-align: center; flex: none; }
+.cmd-golpes button .nome { flex: 1; font-weight: 800; }
+.cmd-golpes button .ki { flex: none; font-size: 1.1cqw; font-weight: 900; color: #0c1a2a; background: #8fe0ff; border-radius: 99px; padding: 0.1cqw 0.6cqw; }
+.cmd-golpes button.sel { border-color: #ffd84a; background: linear-gradient(180deg, #5a3fa8, #2d1d6a); box-shadow: 0 0 0 0.15cqw #ffd84a inset; }
+.cmd-golpes button.bloq { opacity: 0.42; }
+.cmd-golpes button.supremo { border-color: #ff8a2a; background: linear-gradient(180deg, #8a2e0a, #4a1406); }
+.cmd-golpes button.supremo.sel { border-color: #ffd84a; }
+.cmd-golpes button.supremo:not(.bloq) .nome { color: #ffe25a; }
+.cmd-golpes button.sparking { border-color: #3fc8ff; background: linear-gradient(180deg, #164a7a, #0a2448); }
+.cmd-golpes button.sparking .nome { color: #a8f0ff; }
+.cmd-golpes button.alvo canvas { width: 2.9cqw; height: 4cqw; image-rendering: pixelated; border: 0.15cqw solid #c03030; border-radius: 0.3cqw; }
+.cmd-golpes button.alvo small { font-weight: 400; color: #ffb0b0; font-size: 1.05cqw; }
+.cmd-desc { min-height: 2.6cqw; font-size: 1.15cqw; color: #ddd; border-top: 0.12cqw solid rgba(201,162,39,0.35); padding-top: 0.5cqw; }
+.cmd-desc em { color: #ff9a8a; font-style: normal; }
+@media (pointer: coarse) {
+  .cmd-golpes button .n { display: none; }
+  .cmd-golpes button { min-height: 30px; }
+}
+/* painel no alto, entre os HUDs: não cobre os lutadores (3 heróis à esquerda, até 3 inimigos à direita) */
+#menu { top: 6.8cqw; bottom: auto; left: 50%; transform: translateX(-50%); width: 41cqw; padding: 0.6cqw; gap: 0.45cqw; }
+.cmd-face { width: 2.6cqw; height: 3.6cqw; }
+.cmd-nome { font-size: 1.45cqw; display: inline; margin-right: 0.8cqw; }
+.cmd-sub { display: inline; font-size: 1.1cqw; }
+.cmd-golpes { gap: 0.4cqw; }
+.cmd-golpes button { min-height: 3.1cqw; padding: 0.4cqw 0.6cqw; font-size: 1.22cqw; }
+.cmd-golpes button .ic { font-size: 1.3cqw; width: 1.7cqw; }
+.cmd-golpes button .ki { font-size: 1cqw; }
+.cmd-desc { min-height: 2.2cqw; font-size: 1.08cqw; padding-top: 0.35cqw; }
+@media (pointer: coarse) { .cmd-golpes button { min-height: 26px; } }
+
+/* ---- Batalha Livre: seleção de times ---- */
+#selecao { position: absolute; inset: 0; display: none; flex-direction: column; gap: 1cqw; padding: 1.4cqw 2cqw; z-index: 5;
+  background: radial-gradient(ellipse at 50% 40%, #2a1d55 0%, #120c26 60%, #08060f 100%); }
+#selecao.open { display: flex; }
+.sel-topo { display: flex; align-items: baseline; gap: 1.5cqw; border-bottom: 0.2cqw solid #c9a227; padding-bottom: 0.6cqw; }
+.sel-topo h2 { margin: 0; font-size: 2.6cqw; color: #ffd84a; text-shadow: 0 0.25cqw 0 #a0400a; }
+.sel-topo span { font-size: 1.2cqw; opacity: 0.75; }
+.sel-corpo { flex: 1; display: grid; grid-template-columns: 19cqw 1fr 19cqw; gap: 1.5cqw; min-height: 0; }
+.sel-time { display: flex; flex-direction: column; gap: 0.6cqw; padding: 0.8cqw; border-radius: 1cqw; cursor: pointer;
+  background: rgba(10,8,24,0.6); border: 0.2cqw solid #3a2f70; }
+.sel-time[data-lado="herois"].ativo { border-color: #4a8aff; box-shadow: 0 0 1.4cqw rgba(74,138,255,0.45); }
+.sel-time[data-lado="inimigos"].ativo { border-color: #ff4a4a; box-shadow: 0 0 1.4cqw rgba(255,74,74,0.45); }
+.sel-time h3 { margin: 0; font-size: 1.6cqw; text-align: center; }
+.sel-time[data-lado="herois"] h3 { color: #8ab8ff; }
+.sel-time[data-lado="inimigos"] h3 { color: #ff9a9a; }
+.slots { flex: 1; display: flex; flex-direction: column; gap: 0.6cqw; }
+.slot { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 0.7cqw; overflow: hidden;
+  border: 0.18cqw dashed rgba(255,255,255,0.25); color: rgba(255,255,255,0.35); font-size: 2.6cqw; font-weight: 900; min-height: 0; }
+.slot.cheio { border: 0.18cqw solid #c9a227; color: #fff; }
+.slot canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.slot span { position: absolute; left: 0.6cqw; bottom: 0.3cqw; font-size: 1.35cqw; font-weight: 900; text-shadow: 0.15cqw 0.15cqw 0 #000, 0 0 0.5cqw #000; }
+.sel-centro { display: flex; flex-direction: column; gap: 0.8cqw; min-width: 0; }
+.sel-abas { display: flex; gap: 0.8cqw; justify-content: center; }
+.sel-abas button { font: inherit; font-size: 1.4cqw; font-weight: 800; color: #fff; cursor: pointer; padding: 0.5cqw 1.6cqw; border-radius: 99px;
+  background: #241c48; border: 0.18cqw solid #5b4bb0; }
+.sel-abas button[data-lado="herois"].sel { background: #1d3a7a; border-color: #8ab8ff; }
+.sel-abas button[data-lado="inimigos"].sel { background: #6a1414; border-color: #ff9a9a; }
+.sel-grade { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8cqw; align-content: start; overflow-y: auto; }
+.sel-card { display: flex; flex-direction: column; align-items: center; gap: 0.3cqw; padding: 0.5cqw; cursor: pointer; font: inherit; color: #fff;
+  background: linear-gradient(180deg, #2d2463, #17123a); border: 0.18cqw solid #5b4bb0; border-radius: 0.8cqw; }
+.sel-card:hover, .sel-card:focus { border-color: #ffd84a; outline: none; }
+.sel-card canvas { width: 6.4cqw; height: 9cqw; image-rendering: pixelated; border-radius: 0.4cqw; }
+.sel-card span { font-size: 1.2cqw; font-weight: 800; }
+.sel-info { min-height: 2.4cqw; font-size: 1.15cqw; color: #ddd; text-align: center; }
+.sel-info b { color: #ffd84a; }
+.sel-rodape { display: flex; gap: 1cqw; justify-content: center; }
+.sel-rodape button { font: inherit; font-size: 1.5cqw; font-weight: 800; color: #fff; cursor: pointer; padding: 0.6cqw 2cqw; border-radius: 0.8cqw;
+  background: #241c48; border: 0.2cqw solid #5b4bb0; }
+.sel-rodape button.lutar { background: linear-gradient(180deg, #ff9a2a, #c0400a); border-color: #ffd84a; font-size: 1.8cqw; padding: 0.6cqw 3cqw; }
+.sel-rodape button:disabled { opacity: 0.4; cursor: default; }
+@media (pointer: coarse) { .sel-rodape button, .sel-abas button { min-height: 32px; } }
+
+/* banners estáticos nas laterais da tela de título */
+.titulo-banner { position: absolute; top: 50%; transform: translateY(-50%); height: 78%; width: auto; aspect-ratio: 134 / 163;
+  image-rendering: pixelated; pointer-events: none; opacity: 0.92; z-index: -1; }
+.titulo-banner.esq { left: 2cqw; }
+.titulo-banner.dir { right: 2cqw; }
+#inicio { isolation: isolate; }

@@ -15,6 +15,10 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 ## Ferramentas
 - `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons) e laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
 
+## Retratos e seleção
+- Sprite `retratos`: anim `retrato` (46 rostos de seleção do ZL3) e `banner` (44 artes inclinadas). Cada forma do personagem aponta os seus em `"retrato": {"quadro": N, "banner": M}` (sem isso, usa o sprite de batalha). `cenarios_preview` tem as 32 prévias de cenário do ZL3 (para uma futura escolha de cenário).
+- Batalha Livre: `js/ui/selecao.js` monta a batalha na hora (até 3 por lado, qualquer personagem). Personagens sem `ia` usam a IA automática de `js/battle/ai.js`.
+
 ## Onde está o quê
 - `docs/ROADMAP.md` — lista priorizada de tarefas.
 - `docs/DIARIO.md` — registro de cada sessão de trabalho (o que foi feito, o que falta). Leia antes de começar; atualize ao terminar.

@@ -43,7 +43,8 @@ FF.Battle = class {
   addFighter(charDef, lado, idx) {
     const pos = lado === 'heroi' ? this.def.posicoes.herois : this.def.posicoes.inimigos;
     // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
-    const aj = (this.def.ajustes || {})[charDef.id];
+    // ajustes valem para o lado inimigo (na Batalha Livre o mesmo personagem pode estar nos dois lados)
+    const aj = lado === 'inimigo' ? (this.def.ajustes || {})[charDef.id] : (this.def.ajustesHerois || {})[charDef.id];
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
     // melhorias compradas com AP (só heróis)
     if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
@@ -67,6 +68,7 @@ FF.Battle = class {
     while (!this.over) {
       // ordem de turno pela velocidade (empate: heróis primeiro)
       const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
+      this.ordem = ordem;   // mostrada no HUD
       for (const f of ordem) {
         if (this.over || f.ko) continue;
         await this.turn(f, f.isHero);
