@@ -1,4 +1,6 @@
-# Final Flash: protótipo de batalha (Goku vs Raditz)
+# Final Flash: Saga Saiyajin
+
+> **Modo história:** na tela de título escolha *Novo Jogo* (4 capítulos: Raditz → Saibamen → Nappa → Vegeta, com diálogos entre as lutas). *Continuar* retoma o capítulo salvo no navegador; *Batalha Livre* abre qualquer luta; *Opções* ajusta os volumes. Atalhos: `?historia=N` e `?batalha=saiyajin_0N` na URL.
 
 Batalha por turnos em HTML/JavaScript puro que reaproveita os sprites e áudios do Z Legends 3. Não usa o editor do Construct.
 

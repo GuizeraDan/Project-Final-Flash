@@ -43,3 +43,21 @@ Os 4 itens principais do Bloco 2 já tinham sido feitos na sessão 1, então est
 
 **Próxima sessão:** Bloco 3 (Saibamen, Nappa, Vegeta; modo história com diálogos; título/menus e salvamento).
 
+
+## 11/11/2026 03:30–03:55 — sessão noturna 3 de 4
+Nada pela metade da sessão 2. Foco: Bloco 3 inteiro.
+
+**Feito:**
+- **Inimigos novos** (`data/characters/`): **Saibaman** (Garras, Cuspe Ácido, Autodestruição quando a vida cai abaixo de 30%: agarra o alvo, explode e sai da luta), **Nappa** (Fúria de Nappa, Tempestade Ardente, Quebra-Braço, supremo Break Cannon) e **Vegeta** (Orgulho Saiyajin, Rajada Contínua, Joelhada Mortal, Galick Ho, supremo Galaxy Breaker). Vozes vnpn/vvgn e sons nappa_*/galickgun_*.
+- **Batalhas** `saiyajin_03` (trio vs 3 Saibamen), `saiyajin_04` (trio vs Nappa, vida 3600) e `saiyajin_05` (trio vs Vegeta, vida 4200).
+- **Motor:** vários inimigos — o jogador escolhe o alvo num submenu (“Escolha o alvo”, seta vermelha sobre o inimigo marcado) quando o golpe é ofensivo (`FF.Battle.ofensivo`: tem acerto/projétil/objeto/atordoar); painéis dos inimigos empilham como os dos heróis; nomes repetidos ganham sufixo (Saibaman A, B, C). Novo passo de roteiro `{"autoNocaute": true}`. Formas aceitam `animsDerivadas` (monta animações a partir de quadros de outras — o sprite do Saibaman só tem ataques).
+- **Modo história** (`data/historia.json`): 4 capítulos (Raditz → Saibamen → Nappa → Vegeta) com diálogos próprios antes e depois de cada luta, retrato desenhado do sprite, efeito de máquina de escrever (toque completa/avança, Esc pula). URL `?historia=N`. Ao vencer, salva o próximo capítulo e mostra “Próximo capítulo”; ao perder, “Tentar de novo”.
+- **Tela de título:** Novo Jogo, Continuar (mostra o capítulo salvo), Batalha Livre (todas as 5 batalhas), Opções (volume de música/efeitos/vozes, apagar progresso). Navegação por setas/Enter ou toque.
+- **Salvamento:** `FF.Save` em `localStorage` (`finalflash_save_v1`), tudo em try/catch (sem armazenamento o jogo funciona, só não salva).
+- **Teste:** sem `--batalha` usa `?batalha=saiyajin_01`; submenu de alvo é respondido sozinho (não gasta o plano); novos `--historia N` (avança os diálogos) e `--hpInimigos N`.
+
+**Testes rodados (todos sem ERROS):** `--plano 1,2,4,5,1`; `--batalha saiyajin_03 --plano 1,2,1,4,1`; `--batalha saiyajin_03 --plano 7,4,7 --hpInimigos 150` (autodestruição); `--batalha saiyajin_04 --plano 1,2,1,4,1 --rage 100`; `--historia 2`. A luta contra o Vegeta (antes com vida 5200) não terminou em 280 s só com a Sequência — baixei para 4200; use `--tempo 300`.
+
+**Observações:** com guarda perfeita automática os inimigos causam pouco dano (balancear no Bloco 4). Os golpes de Nappa/Vegeta não foram conferidos visualmente quadro a quadro (economia de uso). Só existem 2 músicas (tournament_theme e results_victory_theme).
+
+**Próxima sessão:** Bloco 4 — AP e melhorias salvas no `FF.Save`, balanceamento por simulação (as batalhas 04/05 estão longas), responsividade no celular e README.

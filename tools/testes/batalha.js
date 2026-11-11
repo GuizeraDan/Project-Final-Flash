@@ -17,7 +17,8 @@ const fotos = opt('fotos', null);
 const batalha = opt('batalha', null);
 const tempo = parseFloat(opt('tempo', '170')) * 1000;
 const rage = opt('rage', null);
-const historia = opt('historia', null);   // --historia N: joga o capítulo N do modo história (pula os diálogos)   // --rage 100: começa com a Rage cheia (testar o supremo)
+const historia = opt('historia', null);
+const hpInimigos = opt('hpInimigos', null);   // --hpInimigos 100: inimigos começam com essa vida (testar golpes de vida baixa)   // --historia N: joga o capítulo N do modo história (pula os diálogos)   // --rage 100: começa com a Rage cheia (testar o supremo)
 
 (async () => {
   const exe = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(p => require('fs').existsSync(p));
@@ -36,6 +37,7 @@ const historia = opt('historia', null);   // --historia N: joga o capítulo N do
     }
     console.log('diálogos de abertura ok');
   }
+  if (hpInimigos) await p.waitForFunction(() => FF.battle && FF.battle.enemies.length).then(() => p.evaluate((v) => FF.battle.enemies.forEach(e => (e.hp = +v)), hpInimigos));
   if (rage) await p.waitForFunction(() => FF.battle && FF.battle.heroes.length).then(() => p.evaluate((r) => FF.battle.heroes.forEach(h => (h.rage = +r)), rage));
   await p.evaluate((erro) => {
     setInterval(() => {

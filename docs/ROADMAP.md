@@ -21,9 +21,12 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [ ] Sparking Combo de 3 (Goku + Piccolo + Kuririn) e Sparking do Goku SSJ.
 
 ## Bloco 3 — Saga Saiyajin jogável
-- [ ] Inimigos: Saibaman (vários), Nappa, Vegeta (Galick Gun, etc.).
-- [ ] Modo história: sequência de batalhas com telas de diálogo (texto próprio, retratos/faces), começando por Raditz → Saibamen → Nappa → Vegeta.
-- [ ] Tela de título/menus (novo jogo, continuar, opções de volume), salvar progresso em localStorage (com try/catch).
+- [x] Inimigos: Saibaman (vários), Nappa, Vegeta (Galick Gun, etc.).
+- [x] Modo história: sequência de batalhas com telas de diálogo (texto próprio, retratos/faces), começando por Raditz → Saibamen → Nappa → Vegeta.
+- [x] Tela de título/menus (novo jogo, continuar, opções de volume), salvar progresso em localStorage (com try/catch).
+- [ ] Saibaman com animações próprias de dano/caído (o sprite do ZL3 só tem ataques; hoje usa quadros emprestados via `animsDerivadas`).
+- [ ] Conferir quadro a quadro os golpes de Nappa/Vegeta (o Galick Ho e o Break Cannon usam projéteis `kiblast_amarelo` grandes; se o raio estiver desenhado nos quadros, trocar por acertos nos quadros como no Kamehameha).
+- [ ] Cena de vitória/derrota do modo história com fundo do cenário (hoje o diálogo de abertura aparece sobre fundo escuro, antes de a batalha carregar).
 
 ## Bloco 4 — Progressão e polimento
 - [ ] **AP**: ganhar AP ao vencer; gastar em melhorias de atributos e para desbloquear golpes (árvore simples por personagem). Salvar.
