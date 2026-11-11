@@ -1,4 +1,4 @@
-// Alterações do usuário em animações de sprites (do jogo ou da biblioteca), feitas no visualizador
+// Alterações do usuário em animações de sprites do jogo, feitas no visualizador
 // (✂ Editar quadros). Ficam no navegador e são aplicadas ao carregar o sprite, então valem no jogo
 // todo. "Exportar" gera um JSON para o Claude gravar de vez em data/sprites.
 window.FF = window.FF || {};

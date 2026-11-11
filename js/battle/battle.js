@@ -320,11 +320,6 @@ FF.Battle = class {
   fxSet(name) {
     if (this.fx.has(name)) return this.fx;
     if (this.fx2 && this.fx2.has(name)) return this.fx2;
-    // efeitos da biblioteca do usuário: "bib:pacote/animação" ou só o nome da animação
-    for (const [id, set] of Object.entries(FF.Assets.sprites)) {
-      if (!id.startsWith('bib:')) continue;
-      if (set.has(name)) return set;
-    }
     return null;
   }
 

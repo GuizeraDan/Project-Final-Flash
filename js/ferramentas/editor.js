@@ -39,7 +39,6 @@ FF.Editor = {
   efeitos() {
     const n = [];
     [this.b.fx, this.b.fx2].forEach(s => s && n.push(...Object.keys(s.def.anims)));
-    Object.entries(FF.Assets.sprites).forEach(([id, s]) => { if (id.startsWith('bib:')) n.push(...Object.keys(s.def.anims)); });
     return [...new Set(n)];
   },
   audios() { return (window.FF_BUNDLE && FF_BUNDLE._indice && FF_BUNDLE._indice.audios) || []; },

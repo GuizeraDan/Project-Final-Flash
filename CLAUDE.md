@@ -8,7 +8,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - Antes de cada commit (e sempre depois de editar JSON): `python3 tools/build_bundle.py` — gera o bundle e o `versao.json` (usado pelo aviso de "nova versão" do app instalado).
 - Antes de cada commit: `node tools/testes/batalha.js --plano 1,2,4,5,1` precisa terminar com "luta terminou" e sem ERROS. Para batalhas novas use `--batalha <id>`.
 - O motor deve continuar suportando transformação no meio da luta.
-- Sprites novos só saem do APK do Z Legends 3 (`tools/extract_sprites.py`). Sem o APK, use o que já está em `data/sprites/` e `assets/`. `docs/catalogo_zl3.json` lista todos os objetos/animações do jogo original; `docs/audios_zl3_disponiveis.txt` lista todos os áudios.
+- Sprites novos saem do APK do Z Legends 3 (`tools/extract_sprites.py`) ou de imagens/sprite sheets que o usuário mandar na conversa (você recorta, monta as animações e grava como sprite fixo). Sem isso, use o que já está em `data/sprites/` e `assets/`. `docs/catalogo_zl3.json` lista todos os objetos/animações do jogo original; `docs/audios_zl3_disponiveis.txt` lista todos os áudios.
 - Falas/história: escreva texto próprio em português (pode resumir os acontecimentos da saga), sem copiar diálogos do anime/mangá.
 - Ao terminar cada pedido, mande os links do GitHub Pages do que mudou: jogo https://guizeradan.github.io/Project-Final-Flash/ · visualizador https://guizeradan.github.io/Project-Final-Flash/visualizador.html · editor de cenas https://guizeradan.github.io/Project-Final-Flash/index.html?editor=1&batalha=saiyajin_01
 - Commits com autor `GuizeraDan <GuizeraDan@users.noreply.github.com>` (nunca o e-mail pessoal).
@@ -16,9 +16,8 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 ## Ferramentas
 - `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons), laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe) e editor de cenas `index.html?editor=1&batalha=<id>` (monta golpes e exporta o JSON do roteiro; o usuário pode colar esse JSON na conversa). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
 
-## Biblioteca do usuário (sprites importados)
-- `js/core/biblioteca.js` guarda pacotes importados no IndexedDB do navegador (ids `bib:<nome>`, mesmo formato de sprite + `def.escala`). `FF.Assets.loadSprite('bib:...')` carrega; as batalhas carregam todos e `battle.fxSet` acha efeitos deles pelo nome da animação.
-- Importador (`js/ferramentas/importador.js`, botão "📥 Importar sprites" no visualizador): lê imagens/GIF/WebP animados, detecta quadros (automático por componentes ou grade), remove cor de fundo, monta animações e salva. "⬇ Exportar" gera `<nome>.ffpacote.json` (imagens embutidas): se o usuário mandar um desses, dá para virar sprite fixo do jogo em `data/sprites` + `assets/img`.
+## Sprites enviados pelo usuário
+- O importador no app foi descontinuado (o usuário ainda vai decidir como quer). Quem importa é você: quando o usuário mandar imagens/sprite sheets, recorte os quadros (fundo transparente), empacote num atlas em `assets/img/<id>.png` e crie `data/sprites/<id>.json` no mesmo formato dos outros (quadro `[atlas, x, y, w, h, ox, oy, dur, pontos?]`, origem nos pés para lutadores e no centro para efeitos) e rode o build (o índice do bundle pega os sprites novos sozinho). O código antigo (`js/ferramentas/importador.js`, `js/core/biblioteca.js`) está no histórico do Git.
 
 ## Quadros editados pelo usuário
 - `js/core/modificacoes.js` (`FF.Mods`, localStorage `ff_sprite_mods`): animações alteradas no visualizador (✂ Editar quadros: apagar, reordenar, duplicar, duração, posição, fps, inserir quadros de outra animação, salvar como nova). Aplicadas em `FF.Assets.loadSprite`. "📤 Exportar alterações" gera `{"final_flash_mods":1,"sprites":{id:{anim:{fps,loop,repeatTo,frames}}}}`: se o usuário colar isso, grave em `data/sprites/<id>.json` (`anims`) e rode o build.

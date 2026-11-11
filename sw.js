@@ -6,7 +6,7 @@ const CACHE = 'finalflash-v1';
 const ESSENCIAIS = [
   './', 'index.html', 'visualizador.html', 'manifest.webmanifest', 'versao.json',
   'css/style.css', 'css/ferramentas.css', 'data/bundle.js',
-  'js/core/clock.js', 'js/core/biblioteca.js', 'js/ferramentas/importador.js', 'js/core/modificacoes.js', 'js/core/assets.js', 'js/core/sprite.js', 'js/core/audio.js', 'js/core/input.js', 'js/core/retrato.js',
+  'js/core/clock.js', 'js/core/modificacoes.js', 'js/core/assets.js', 'js/core/sprite.js', 'js/core/audio.js', 'js/core/input.js', 'js/core/retrato.js',
   'js/core/habilidades.js', 'js/ui/selecao.js', 'js/ui/pausa.js',
   'js/battle/fighter.js', 'js/battle/script.js', 'js/battle/ai.js', 'js/battle/hud.js', 'js/battle/battle.js', 'js/battle/cena.js',
   'js/ferramentas/laboratorio.js', 'js/ferramentas/editor.js', 'js/ferramentas/editor_cena.js', 'js/ferramentas/previa.js', 'js/ferramentas/visualizador.js', 'js/pwa.js', 'js/main.js',

@@ -154,7 +154,6 @@ Object.assign(FF.Editor, {
     const c = [];
     if (this.b.fx2) c.push({ rotulo: 'Efeitos extras (explosões, auras…)', set: this.b.fx2 });
     if (this.b.fx) c.push({ rotulo: 'Efeitos básicos', set: this.b.fx });
-    Object.entries(FF.Assets.sprites).forEach(([id, s]) => { if (id.startsWith('bib:')) c.push({ rotulo: '📦 ' + id.slice(4), set: s }); });
     return c;
   },
 

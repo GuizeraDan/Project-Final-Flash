@@ -563,7 +563,7 @@
     renderInfo();
   }
 
-  // lista de sprites: os do jogo + os pacotes da biblioteca do usuário (📦)
+  // lista de sprites do jogo
   async function preencherSprites(abrirId) {
     const sel = $('#sel-sprite');
     const atual = abrirId || sel.value;
@@ -571,12 +571,6 @@
     const g1 = document.createElement('optgroup'); g1.label = 'Do jogo';
     IDX.sprites.forEach(id => { const o = document.createElement('option'); o.value = id; o.textContent = id; g1.appendChild(o); });
     sel.appendChild(g1);
-    const bib = FF.Biblioteca ? await FF.Biblioteca.listar() : [];
-    if (bib.length) {
-      const g2 = document.createElement('optgroup'); g2.label = 'Minha biblioteca';
-      bib.forEach(p => { const o = document.createElement('option'); o.value = p.id; o.textContent = '📦 ' + p.nome; g2.appendChild(o); });
-      sel.appendChild(g2);
-    }
     if (atual && [...sel.options].some(o => o.value === atual)) sel.value = atual;
   }
   window.FFVis = {

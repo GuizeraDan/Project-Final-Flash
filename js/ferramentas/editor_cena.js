@@ -1,5 +1,5 @@
 // Editor de cenas — modo "Cena livre": palco onde se coloca qualquer sprite (personagens, efeitos e os
-// da biblioteca), arrastando, mudando tamanho/giro/transparência e animando com quadros-chave no tempo.
+// do jogo), arrastando, mudando tamanho/giro/transparência e animando com quadros-chave no tempo.
 // Também sons, acertos, tremores e flashes em instantes. Extende FF.Editor (js/ferramentas/editor.js).
 window.FF = window.FF || {};
 
@@ -131,8 +131,6 @@ Object.assign(FF.Editor, {
     const ordem = ['fx_extra', 'fx'].concat(IDX.sprites.filter(s => !['fx_extra', 'fx'].includes(s)));
     sel.innerHTML = '';
     ordem.forEach(id => { const o = document.createElement('option'); o.value = id; o.textContent = nomes[id] || ('Lutador: ' + id); sel.appendChild(o); });
-    const bib = FF.Biblioteca ? await FF.Biblioteca.listar() : [];
-    bib.forEach(p => { const o = document.createElement('option'); o.value = p.id; o.textContent = '📦 ' + p.nome; sel.appendChild(o); });
   },
 
   // miniaturas de todas as animações do conjunto escolhido
@@ -181,7 +179,7 @@ Object.assign(FF.Editor, {
     const set = FF.Assets.sprites[setId];
     const a = set.anim(anim);
     const dur = a.frames.reduce((s, f) => s + (f[7] || 1), 0) / (a.fps || 10);
-    const lutador = !/^(fx|fx_extra|bib:)/.test(setId) && !['hud_zl3', 'retratos', 'cenarios_preview', 'stage_campo'].includes(setId);
+    const lutador = !/^(fx|fx_extra)$/.test(setId) && !['hud_zl3', 'retratos', 'cenarios_preview', 'stage_campo'].includes(setId);
     const nova = {
       sprite: setId, anim, ancora: lutador ? 'atacante' : 'alvo', x: lutador ? 60 : 0, y: 0, escala: 1,
       inicio: +this.cenaT.toFixed(2), loop: !!a.loop,
@@ -254,7 +252,7 @@ Object.assign(FF.Editor, {
       olho.textContent = cm.oculta ? '🙈' : '👁'; olho.title = 'Mostrar/esconder no editor';
       olho.onclick = (e) => { e.stopPropagation(); cm.oculta = !cm.oculta || undefined; this.renderCena(); };
       const nome = document.createElement('span');
-      nome.textContent = cm.anim + ' (' + cm.sprite.replace('bib:', '📦') + ')';
+      nome.textContent = cm.anim + ' (' + cm.sprite + ')';
       const ini = this.inp(cm.inicio, v => { cm.inicio = v || 0; this.renderTempo(); }, 'number', { step: 0.05, title: 'começa (s)' });
       const fim = this.inp(cm.fim, v => { cm.fim = v; }, 'number', { step: 0.05, title: 'termina (s)' });
       ini.className = fim.className = 'ed-mini';
