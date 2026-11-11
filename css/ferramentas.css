@@ -213,3 +213,5 @@ body.com-editor #tela { touch-action: none; }
 #editor .ed-evento .pv-campo, #editor .ed-sub .pv-campo { flex: 1 1 150px; }
 #editor .pv-campo > select, #editor .pv-campo > input { min-width: 70px; }
 #editor label > .pv-campo { flex: 1; }
+#editor .ed-passo.tocando { border-color: #6fd36f; box-shadow: 0 0 0 2px #6fd36f55; }
+#editor .ed-acoes button:first-child { background: #1f5a2a; border-color: #6fd36f; }

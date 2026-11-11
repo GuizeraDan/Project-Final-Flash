@@ -215,6 +215,7 @@ FF.Editor = {
     const acoes = document.createElement('span');
     acoes.className = 'ed-acoes';
     const bt = (t, title, fn) => { const b = document.createElement('button'); b.textContent = t; b.title = title; b.onclick = (e) => { e.stopPropagation(); fn(); }; acoes.appendChild(b); };
+    bt('▶', 'Ver só esta etapa', () => { this.passoSel = i; this.testar(i); });
     bt('▲', 'Subir', () => { if (i > 0) { [g.roteiro[i - 1], g.roteiro[i]] = [g.roteiro[i], g.roteiro[i - 1]]; this.passoSel = i - 1; this.render(); } });
     bt('▼', 'Descer', () => { if (i < g.roteiro.length - 1) { [g.roteiro[i + 1], g.roteiro[i]] = [g.roteiro[i], g.roteiro[i + 1]]; this.passoSel = i + 1; this.render(); } });
     bt('⧉', 'Duplicar', () => { g.roteiro.splice(i + 1, 0, JSON.parse(JSON.stringify(p))); this.render(); });
@@ -463,16 +464,29 @@ FF.Editor = {
   },
 
   // ---------- teste ----------
-  async testar() {
+  // so = índice de uma etapa: toca só ela (sem anúncio nem gasto de ki)
+  async testar(so) {
     if (this.ocupado) return;
     const b = this.b, actor = this.ator(), target = this.alvo();
     if (!target || actor === target) return this.log('Escolha um alvo diferente de quem solta.');
+    const soPasso = typeof so === 'number';
+    if (soPasso && this.cenaIdx != null) this.fecharCena();
     this.ocupado = true;
     this.$('testar').disabled = true;
+    this.el.querySelectorAll('.ed-passo').forEach((c, k) => c.classList.toggle('tocando', soPasso && k === so));
     const move = JSON.parse(JSON.stringify(this.cena.golpe));
+    if (soPasso) {
+      // posição em que o lutador estaria ao chegar nesta etapa (depois de um "avançar", fica perto do alvo)
+      let perto = null;
+      move.roteiro.slice(0, so).forEach(p => { if (p.irAte === 'alvo') perto = p; else if (p.voltar) perto = null; });
+      if (perto) actor.x = target.x - actor.dir * (perto.dist || 22) * actor.scale;
+      move.roteiro = [move.roteiro[so]];
+      move.anuncio = false;
+      delete move.custoKi;
+    }
     b.all.forEach(f => { f.ki = f.kiMax; f.ko = false; f.hp = f.hpMax; if (move.supremo) f.rage = 100; });
     this.dano = 0;
-    this.log('▶ ' + actor.nome + ': ' + (move.nome || 'cena'));
+    this.log('▶ ' + actor.nome + ': ' + (soPasso ? 'etapa #' + (so + 1) + ' de ' : '') + (move.nome || 'cena'));
     try {
       b.atual = actor;
       await b.execute(actor, target, move);
@@ -482,6 +496,7 @@ FF.Editor = {
     b.all.forEach(f => { f.ko = false; f.hp = f.hpMax; f.ki = f.kiMax; if (!f.busy) f.idle(); });
     this.ocupado = false;
     this.$('testar').disabled = false;
+    this.el.querySelectorAll('.ed-passo.tocando').forEach(c => c.classList.remove('tocando'));
   },
 
   // ponto de referência do efeito (igual ao usado pelo motor em script.js)

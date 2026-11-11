@@ -89,3 +89,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-11 — Prévias de sprites no roteiro
 - `js/ferramentas/previa.js` (`FF.Previa`): miniatura animada ao lado de cada campo de animação/efeito do roteiro (animação do passo, animação do avançar, efeito visual, projétil, efeito na mão e no alvo); "?" vermelho quando o nome não existe. Botão 🖼 abre seletor em grade com todas as animações (efeitos extras, básicos e pacotes 📦 da biblioteca), filtro e prévia grande animada. O cartão da cena livre mostra as miniaturas das camadas.
+- Botão ▶ em cada etapa do roteiro: toca só aquela etapa (sem anúncio nem gasto de ki); se houver "Avançar até o alvo" antes, o lutador já começa perto do alvo.
