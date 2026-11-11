@@ -129,8 +129,10 @@
       const d = document.createElement('div');
       d.dataset.n = nome;
       if (usos[nome]) d.classList.add('usada');
-      d.innerHTML = '<span>' + nome + '</span><small>' + a.frames.length + 'q · ' + (a.fps || 0) + 'fps' + (a.loop ? ' ↻' : '') + '</small>';
-      d.onclick = () => abrirAnim(nome);
+      const alt = FF.Mods && FF.Mods.alterada(st.setId, nome);
+      d.innerHTML = '<span>' + (alt ? '✏ ' : '') + nome + '</span><small>' + a.frames.length + 'q · ' + (a.fps || 0) + 'fps' + (a.loop ? ' ↻' : '') + '</small>';
+      if (alt) d.title = 'Alterada por você';
+      d.onclick = () => { if (sairEdicao()) abrirAnim(nome); };
       if (nome === st.animName) d.classList.add('sel');
       box.appendChild(d);
     });
@@ -157,6 +159,16 @@
         q.appendChild(m);
       }
       if (f[8] && f[8].length) q.title = 'tem ponto de disparo';
+      if (st.edit) {
+        if ((f[7] || 1) !== 1) { const d = document.createElement('span'); d.className = 'dur'; d.textContent = (f[7] || 1) + '×'; q.appendChild(d); }
+        if (st.edit.sel.has(i)) q.classList.add('marcado');
+        q.draggable = true;
+        q.ondragstart = (e) => { st.edit.arrasto = i; e.dataTransfer.effectAllowed = 'move'; };
+        q.ondragover = (e) => { e.preventDefault(); q.classList.add('alvo'); };
+        q.ondragleave = () => q.classList.remove('alvo');
+        q.ondrop = (e) => { e.preventDefault(); moverPara(st.edit.arrasto, i); };
+        q.onclick = (e) => escolherQuadro(i, e);
+      } else
       q.onclick = () => { st.i = i; st.t = 0; st.playing = false; renderInfo(); };
       box.appendChild(q);
     });
@@ -310,9 +322,191 @@
     else prompt('Copie:', txt);
   }
 
+  // ---------- ✂ editor de quadros (alterações ficam no navegador: FF.Mods) ----------
+  function iniciarEdicao() {
+    if (!st.anim) return;
+    const copia = JSON.parse(JSON.stringify(st.anim));
+    st.edit = { nome: st.animName, copia, hist: [], sel: new Set([st.i]), mudou: false };
+    st.anim = copia;
+    $('#edq').hidden = false;
+    $('#bt-edq').hidden = true;
+    document.body.classList.add('editando-q');
+    $('#edq-fps').value = copia.fps || 10;
+    $('#edq-loop').checked = !!copia.loop;
+    $('#edq-rep').value = copia.repeatTo || 0;
+    const so = $('#edq-outra');
+    so.innerHTML = '<option value="">outra animação…</option>';
+    Object.keys(st.set.def.anims).forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; so.appendChild(o); });
+    $('#edq-outros').hidden = true;
+    msgQ(FF.Mods.alterada(st.setId, st.animName) ? 'Esta animação já tem alterações suas.' : '');
+    renderLinha(); renderInfo(); renderEdicao();
+  }
+
+  function sairEdicao(forcar) {
+    if (!st.edit) return true;
+    if (!forcar && st.edit.mudou && !confirm('Sair sem salvar? As mudanças nesta animação serão perdidas.')) return false;
+    const nome = st.edit.nome;
+    st.edit = null;
+    $('#edq').hidden = true;
+    $('#bt-edq').hidden = false;
+    document.body.classList.remove('editando-q');
+    if (st.set.has(nome)) abrirAnim(nome); else abrirAnim(Object.keys(st.set.def.anims)[0]);
+    return true;
+  }
+
+  function msgQ(t) { $('#edq-msg').textContent = t; }
+  function guardar() { const e = st.edit; e.hist.push(JSON.stringify({ c: e.copia, i: st.i })); if (e.hist.length > 60) e.hist.shift(); e.mudou = true; }
+  function escolhidos() { return [...st.edit.sel].filter(i => i < st.anim.frames.length).sort((a, b) => a - b); }
+
+  function escolherQuadro(i, e) {
+    const sel = st.edit.sel;
+    if (e && e.shiftKey && sel.size) {
+      const base = Math.min(...sel) <= i ? Math.min(...sel) : Math.max(...sel);
+      for (let k = Math.min(base, i); k <= Math.max(base, i); k++) sel.add(k);
+    } else if (e && (e.ctrlKey || e.metaKey)) { sel.has(i) ? sel.delete(i) : sel.add(i); }
+    else { sel.clear(); sel.add(i); }
+    st.i = i; st.t = 0; st.playing = false;
+    renderLinha(); renderInfo(); renderEdicao();
+  }
+
+  function aplicarMudanca(fn, novoI) {
+    guardar();
+    fn(st.anim.frames);
+    const n = st.anim.frames.length;
+    st.i = Math.max(0, Math.min(n - 1, novoI != null ? novoI : st.i));
+    if ((st.anim.repeatTo || 0) >= n) st.anim.repeatTo = 0;
+    renderLinha(); renderInfo(); renderEdicao();
+  }
+
+  function moverPara(de, para) {
+    if (de == null || de === para) return;
+    aplicarMudanca(fr => { const [q] = fr.splice(de, 1); fr.splice(para, 0, q); }, para);
+    st.edit.sel = new Set([para]);
+    renderLinha(); renderInfo();
+  }
+
+  function acaoQ(a) {
+    const e = st.edit, fr = st.anim.frames, sel = escolhidos();
+    if (a === 'apagar') {
+      if (!sel.length) return;
+      if (sel.length >= fr.length) return msgQ('A animação precisa de pelo menos 1 quadro.');
+      aplicarMudanca(f => { for (let k = sel.length - 1; k >= 0; k--) f.splice(sel[k], 1); }, sel[0]);
+      e.sel = new Set([Math.min(sel[0], st.anim.frames.length - 1)]);
+      renderLinha(); renderInfo();
+      msgQ(sel.length + ' quadro(s) apagado(s).');
+    } else if (a === 'duplicar') {
+      if (!sel.length) return;
+      const fim = sel[sel.length - 1];
+      aplicarMudanca(f => f.splice(fim + 1, 0, ...sel.map(k => JSON.parse(JSON.stringify(f[k])))), fim + 1);
+      e.sel = new Set(sel.map((_, k) => fim + 1 + k));
+      renderLinha(); renderInfo();
+    } else if (a === 'esq' || a === 'dir') {
+      const d = a === 'esq' ? -1 : 1;
+      if (!sel.length || (d < 0 && sel[0] === 0) || (d > 0 && sel[sel.length - 1] === fr.length - 1)) return;
+      aplicarMudanca(f => {
+        const ordem = d < 0 ? sel : sel.slice().reverse();
+        ordem.forEach(k => { [f[k], f[k + d]] = [f[k + d], f[k]]; });
+      }, st.i + d);
+      e.sel = new Set(sel.map(k => k + d));
+      renderLinha(); renderInfo();
+    } else if (a === 'dmais' || a === 'dmenos') {
+      aplicarMudanca(f => sel.forEach(k => { f[k][7] = Math.max(1, Math.min(30, (f[k][7] || 1) + (a === 'dmais' ? 1 : -1))); }));
+    } else if (/^o[xy][+-]$/.test(a)) {
+      // mexer na origem desloca o desenho ao contrário (origem é o ponto dos pés)
+      const idx = a[1] === 'x' ? 5 : 6, sinal = a[2] === '+' ? -1 : 1;
+      aplicarMudanca(f => sel.forEach(k => { f[k][idx] += sinal; }));
+    } else if (a === 'desfazer') {
+      const h = e.hist.pop();
+      if (!h) return msgQ('Nada para desfazer.');
+      const o = JSON.parse(h);
+      e.copia = st.anim = o.c; st.i = o.i;
+      e.sel = new Set([o.i]);
+      renderLinha(); renderInfo(); renderEdicao();
+    } else if (a === 'salvar') {
+      if (!FF.Mods.salvar(st.setId, e.nome, st.anim)) return msgQ('❌ Não deu para salvar neste navegador.');
+      e.mudou = false;
+      renderLista();
+      msgQ('💾 Salvo! "' + e.nome + '" já está assim no jogo e no editor de cenas (recarregue as outras abas).');
+    } else if (a === 'salvarnova') {
+      const nome = prompt('Nome da nova animação:', e.nome + '_editada');
+      if (!nome) return;
+      if (st.set.has(nome) && !FF.Mods.alterada(st.setId, nome) && !confirm('"' + nome + '" já existe no jogo. Substituir?')) return;
+      if (!FF.Mods.salvar(st.setId, nome, st.anim)) return msgQ('❌ Não deu para salvar neste navegador.');
+      e.mudou = false;
+      // a original fica como estava
+      const orig = (st.set.def._orig && st.set.def._orig[e.nome]) || st.set.def.anims[e.nome];
+      e.nome = nome;
+      renderLista();
+      document.querySelectorAll('#anims div').forEach(d => d.classList.toggle('sel', d.dataset.n === nome));
+      st.animName = nome;
+      msgQ('💾 Criada "' + nome + '". Ela aparece nas listas de animação do editor de cenas.' + (orig ? '' : ''));
+    } else if (a === 'original') {
+      if (!FF.Mods.alterada(st.setId, e.nome)) {
+        if (!e.mudou) return msgQ('Esta animação está como no jogo original.');
+        if (!confirm('Descartar as mudanças não salvas?')) return;
+      } else if (!confirm(FF.Mods.criada(st.setId, e.nome) ? 'Apagar a animação "' + e.nome + '" (criada por você)?' : 'Voltar "' + e.nome + '" ao original do jogo? Suas alterações salvas nela serão apagadas.')) return;
+      const nome = e.nome;
+      FF.Mods.restaurar(st.setId, nome);
+      st.edit.mudou = false;
+      sairEdicao(true);
+      renderLista();
+      if (st.set.has(nome)) abrirAnim(nome);
+    } else if (a === 'exportar') {
+      const n = FF.Mods.total();
+      if (!n) return msgQ('Você ainda não salvou nenhuma alteração.');
+      copiar(FF.Mods.exportar());
+      msgQ('📤 ' + n + ' animação(ões) copiada(s). Cole na conversa com o Claude para virar parte fixa do jogo.');
+    } else if (a === 'sair') sairEdicao();
+  }
+
+  function renderEdicao() {
+    if (!st.edit) return;
+    const sel = escolhidos();
+    const durs = [...new Set(sel.map(k => st.anim.frames[k][7] || 1))];
+    $('#edq-dur').textContent = durs.length === 1 ? durs[0] + '×' : 'vários';
+    $('#edq-rep').max = st.anim.frames.length - 1;
+    document.querySelectorAll('#edq [data-q="apagar"], #edq [data-q="duplicar"]').forEach(b => (b.textContent = b.textContent.replace(/ \(\d+\)$/, '') + (sel.length > 1 ? ' (' + sel.length + ')' : '')));
+  }
+
+  function mostrarOutros(nome) {
+    const box = $('#edq-outros');
+    box.innerHTML = '';
+    if (!nome) { box.hidden = true; return; }
+    const a = (st.set.def._orig && st.set.def._orig[nome] && !FF.Mods.alterada(st.setId, nome)) ? st.set.def._orig[nome] : st.set.def.anims[nome];
+    const tit = document.createElement('small');
+    tit.textContent = 'Toque num quadro de "' + nome + '" para inserir depois do quadro ' + st.i + ':';
+    box.appendChild(tit);
+    a.frames.forEach((f, k) => {
+      const q = document.createElement('div'); q.className = 'q';
+      const c = document.createElement('canvas'); const s = Math.min(1.2, 48 / f[4]);
+      c.width = Math.max(8, Math.ceil(f[3] * s)); c.height = Math.ceil(f[4] * s);
+      const g = c.getContext('2d'); g.imageSmoothingEnabled = false;
+      g.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], 0, 0, c.width, c.height);
+      q.append(c, document.createTextNode(String(k)));
+      q.onclick = () => {
+        const pos = st.i + 1;
+        aplicarMudanca(fr => fr.splice(pos, 0, JSON.parse(JSON.stringify(f))), pos);
+        st.edit.sel = new Set([pos]);
+        renderLinha(); renderInfo();
+        msgQ('Quadro ' + k + ' de "' + nome + '" inserido na posição ' + pos + '.');
+      };
+      box.appendChild(q);
+    });
+    const todos = document.createElement('button');
+    todos.textContent = '➕ inserir todos';
+    todos.onclick = () => {
+      const pos = st.i + 1;
+      aplicarMudanca(fr => fr.splice(pos, 0, ...JSON.parse(JSON.stringify(a.frames))), pos);
+      st.edit.sel = new Set(a.frames.map((_, k) => pos + k));
+      renderLinha(); renderInfo();
+    };
+    box.appendChild(todos);
+    box.hidden = false;
+  }
+
   // ---------- eventos da interface ----------
   function ligar() {
-    $('#sel-sprite').onchange = (e) => abrirSprite(e.target.value);
+    $('#sel-sprite').onchange = (e) => { if (!sairEdicao()) { e.target.value = st.setId; return; } abrirSprite(e.target.value); };
     $('#busca').oninput = renderLista;
     $('#bt-play').onclick = () => { st.playing = !st.playing; if (st.playing && st.i === st.anim.frames.length - 1) st.i = 0; renderInfo(); };
     $('#bt-ant').onclick = () => passo(-1);
@@ -329,6 +523,12 @@
     $('#bt-enviar').onclick = () => enviar({ tipo: 'anim', sprite: st.setId, anim: st.animName, quadro: st.i });
     $('#bt-copiar').onclick = () => copiar('sprite ' + st.setId + ' · animação ' + st.animName + ' · quadro ' + st.i + ' de ' + (st.anim.frames.length - 1));
     $('#busca-som').oninput = renderSons;
+    $('#bt-edq').onclick = iniciarEdicao;
+    document.querySelectorAll('#edq [data-q]').forEach(b => b.onclick = () => acaoQ(b.dataset.q));
+    $('#edq-fps').onchange = (e) => { if (!st.edit) return; guardar(); st.anim.fps = Math.max(1, +e.target.value || 10); renderInfo(); };
+    $('#edq-loop').onchange = (e) => { if (!st.edit) return; guardar(); st.anim.loop = e.target.checked; };
+    $('#edq-rep').onchange = (e) => { if (!st.edit) return; guardar(); st.anim.repeatTo = Math.max(0, Math.min(st.anim.frames.length - 1, +e.target.value || 0)); };
+    $('#edq-outra').onchange = (e) => mostrarOutros(e.target.value);
     document.querySelectorAll('.aba').forEach(b => b.onclick = () => {
       document.querySelectorAll('.aba').forEach(x => x.classList.toggle('sel', x === b));
       $('#aba-anims').hidden = b.dataset.aba !== 'anims';
@@ -337,9 +537,13 @@
     });
     window.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' && e.target.type === 'search') return;
+      if (st.edit && /INPUT|SELECT/.test(e.target.tagName)) return;
+      if (st.edit && (e.code === 'Delete' || e.code === 'Backspace')) { e.preventDefault(); return acaoQ('apagar'); }
+      if (st.edit && (e.ctrlKey || e.metaKey) && e.code === 'KeyZ') { e.preventDefault(); return acaoQ('desfazer'); }
       if (e.code === 'Space') { e.preventDefault(); $('#bt-play').click(); }
       else if (e.code === 'ArrowLeft') { e.preventDefault(); passo(-1); }
       else if (e.code === 'ArrowRight') { e.preventDefault(); passo(1); }
+      else if (st.edit && (e.code === 'ArrowUp' || e.code === 'ArrowDown')) { /* na edição, ↑↓ não troca de animação */ }
       else if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
         e.preventDefault();
         const vis = [...document.querySelectorAll('#anims div')];
@@ -355,6 +559,7 @@
     st.playing = false;
     st.i = (st.i + d + n) % n;
     st.t = 0;
+    if (st.edit) { st.edit.sel = new Set([st.i]); renderLinha(); renderEdicao(); }
     renderInfo();
   }
 
@@ -375,6 +580,7 @@
     if (atual && [...sel.options].some(o => o.value === atual)) sel.value = atual;
   }
   window.FFVis = {
+    editar() { if (!st.edit) iniciarEdicao(); },
     async recarregarLista(id) {
       if (id) delete FF.Assets.sprites[id];
       await preencherSprites(id);

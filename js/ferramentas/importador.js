@@ -360,6 +360,7 @@
     if (!$('#imp')) return;
     $('#bt-importar').onclick = abrir;
     $('#imp-fechar').onclick = fechar;
+    $('#imp-editar-existente').onclick = () => { fechar(); window.FFVis && window.FFVis.editar(); };
     $('#imp-file').onchange = (e) => { adicionarArquivos([...e.target.files]); e.target.value = ''; };
     const zona = $('#imp-meio');
     zona.addEventListener('dragover', (e) => { e.preventDefault(); zona.classList.add('arrastando'); });

@@ -46,6 +46,40 @@
       </select></label>
     </div>
 
+    <div id="edq" hidden>
+      <div class="edq-linha">
+        <b>✂ Editando quadros</b>
+        <span class="edq-dica">Toque num quadro para escolher (Ctrl/Shift = vários) · arraste para mudar a ordem</span>
+      </div>
+      <div class="edq-linha">
+        <button data-q="apagar" title="Apagar os quadros escolhidos (Delete)">✕ Apagar</button>
+        <button data-q="duplicar" title="Duplicar os escolhidos">⧉ Duplicar</button>
+        <button data-q="esq" title="Mover para a esquerda">◀ Mover</button>
+        <button data-q="dir" title="Mover para a direita">Mover ▶</button>
+        <span class="edq-sep"></span>
+        duração <button data-q="dmenos" title="Quadro mais curto">−</button><span id="edq-dur">1×</span><button data-q="dmais" title="Quadro mais longo (segura mais tempo)">+</button>
+        <span class="edq-sep"></span>
+        posição <button data-q="ox-" title="Mover o desenho para a esquerda">←</button><button data-q="ox+" title="Para a direita">→</button><button data-q="oy-" title="Para cima">↑</button><button data-q="oy+" title="Para baixo">↓</button>
+        <span class="edq-sep"></span>
+        <button data-q="desfazer" title="Desfazer (Ctrl+Z)">↶ Desfazer</button>
+      </div>
+      <div class="edq-linha">
+        fps <input type="number" id="edq-fps" min="1" max="60" style="width:56px">
+        <label><input type="checkbox" id="edq-loop"> repete</label>
+        <label>a partir do quadro <input type="number" id="edq-rep" min="0" style="width:52px"></label>
+        <span class="edq-sep"></span>
+        <label>➕ quadros de <select id="edq-outra"><option value="">outra animação…</option></select></label>
+      </div>
+      <div id="edq-outros" hidden></div>
+      <div class="edq-linha">
+        <button data-q="salvar" class="bt-destaque">💾 Salvar nesta animação</button>
+        <button data-q="salvarnova">💾 Salvar como nova…</button>
+        <button data-q="original" title="Desfaz todas as suas alterações nesta animação">↺ Voltar ao original</button>
+        <button data-q="exportar" title="Copia todas as suas alterações para mandar ao Claude gravar no jogo">📤 Exportar alterações</button>
+        <button data-q="sair">Sair da edição</button>
+        <span id="edq-msg"></span>
+      </div>
+    </div>
     <div id="linha"></div>
 
     <div id="info">
@@ -54,6 +88,7 @@
         <label>Usado nos golpes <select id="sel-uso"></select></label>
         <div id="eventos"></div>
       </div>
+      <button id="bt-edq" class="bt-destaque" title="Apagar, reordenar, duplicar quadros e mudar duração/posição desta animação">✂ Editar quadros</button>
       <button id="bt-importar" class="bt-destaque" title="Importar sprite sheets e montar animações na sua biblioteca">📥 Importar sprites</button>
       <button id="bt-enviar" title="Manda esta animação (e o quadro atual) para o Editor de cenas">➕ Enviar para o editor</button>
       <button id="bt-copiar">📋 Copiar referência</button>
@@ -112,6 +147,8 @@
       <label>nome <input id="imp-pnome" placeholder="ex.: Goku HD"></label>
       <label>tamanho no jogo <input type="number" id="imp-escala" value="1" step="0.05" min="0.05" style="width:64px">×</label>
       <button id="imp-salvar" class="bt-destaque">💾 Salvar na biblioteca</button>
+      <h4>Sprites já existentes</h4>
+      <button id="imp-editar-existente" title="Fecha o importador e abre o editor de quadros na animação escolhida no visualizador">✂ Editar quadros de animações do jogo</button>
       <h4>Biblioteca</h4>
       <div id="imp-bib"></div>
       <label class="imp-arquivo pequeno">📦 Importar pacote (.json)<input id="imp-pacfile" type="file" accept=".json,application/json" multiple></label>
@@ -120,6 +157,7 @@
 </div>
 
 <script src="data/bundle.js"></script>
+<script src="js/core/modificacoes.js"></script>
 <script src="js/core/assets.js"></script>
 <script src="js/core/sprite.js"></script>
 <script src="js/core/biblioteca.js"></script>

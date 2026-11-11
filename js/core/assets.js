@@ -36,12 +36,14 @@ FF.Assets = {
     if (this.sprites[id]) return this.sprites[id];
     if (id.startsWith('bib:') && FF.Biblioteca) {     // sprite importado pelo usuário (biblioteca do navegador)
       const set = await FF.Biblioteca.carregarSprite(id);
+      if (FF.Mods) FF.Mods.aplicar(id, set);
       this.sprites[id] = set;
       return set;
     }
     const def = await this.loadJSON('data/sprites/' + id + '.json');
     const imgs = await Promise.all(def.atlases.map(p => this.loadImage(p)));
     const set = new FF.SpriteSet(def, imgs);
+    if (FF.Mods) FF.Mods.aplicar(id, set);          // quadros editados pelo usuário (✂ no visualizador)
     this.sprites[id] = set;
     return set;
   },

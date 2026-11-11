@@ -19,6 +19,9 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - `js/core/biblioteca.js` guarda pacotes importados no IndexedDB do navegador (ids `bib:<nome>`, mesmo formato de sprite + `def.escala`). `FF.Assets.loadSprite('bib:...')` carrega; as batalhas carregam todos e `battle.fxSet` acha efeitos deles pelo nome da animação.
 - Importador (`js/ferramentas/importador.js`, botão "📥 Importar sprites" no visualizador): lê imagens/GIF/WebP animados, detecta quadros (automático por componentes ou grade), remove cor de fundo, monta animações e salva. "⬇ Exportar" gera `<nome>.ffpacote.json` (imagens embutidas): se o usuário mandar um desses, dá para virar sprite fixo do jogo em `data/sprites` + `assets/img`.
 
+## Quadros editados pelo usuário
+- `js/core/modificacoes.js` (`FF.Mods`, localStorage `ff_sprite_mods`): animações alteradas no visualizador (✂ Editar quadros: apagar, reordenar, duplicar, duração, posição, fps, inserir quadros de outra animação, salvar como nova). Aplicadas em `FF.Assets.loadSprite`. "📤 Exportar alterações" gera `{"final_flash_mods":1,"sprites":{id:{anim:{fps,loop,repeatTo,frames}}}}`: se o usuário colar isso, grave em `data/sprites/<id>.json` (`anims`) e rode o build.
+
 ## Retratos e seleção
 - Sprite `retratos`: anim `retrato` (46 rostos de seleção do ZL3) e `banner` (44 artes inclinadas). Cada forma do personagem aponta os seus em `"retrato": {"quadro": N, "banner": M}` (sem isso, usa o sprite de batalha). Personagem sem arte no ZL3 (ex.: Saibaman): `tools/gerar_retrato.py` cria retrato + banner a partir do sprite e grava em `assets/img/retratos_extra.png`. `cenarios_preview` tem as 32 prévias de cenário do ZL3 (para uma futura escolha de cenário).
 - Batalha Livre: `js/ui/selecao.js` monta a batalha na hora (até 3 por lado, qualquer personagem). Personagens sem `ia` usam a IA automática de `js/battle/ai.js`.
