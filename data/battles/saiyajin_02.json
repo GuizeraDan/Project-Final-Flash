@@ -1,0 +1,54 @@
+{
+ "id": "saiyajin_02",
+ "saga": "saiyajin",
+ "titulo": "Saga Saiyajin — Trio contra Raditz",
+ "cenario": "campo",
+ "musica": "tournament_theme",
+ "escala": 2.2,
+ "posicoes": {
+  "herois": [
+   250,
+   150,
+   350
+  ],
+  "inimigos": [
+   930
+  ]
+ },
+ "herois": [
+  "goku",
+  "piccolo",
+  "krillin"
+ ],
+ "inimigos": [
+  "raditz"
+ ],
+ "ajustes": {
+  "raditz": {
+   "hp": 3600,
+   "ataque": 135
+  }
+ },
+ "intro": [
+  {
+   "quem": "raditz",
+   "voz": "raditz_intro_voice",
+   "esperar": 4.6
+  },
+  {
+   "quem": "piccolo",
+   "voz": "vpcn400",
+   "esperar": 1.8
+  },
+  {
+   "quem": "krillin",
+   "voz": "vkrn400",
+   "esperar": 1.6
+  },
+  {
+   "quem": "goku",
+   "voz": "vgkn400",
+   "esperar": 1.6
+  }
+ ]
+}

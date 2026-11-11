@@ -1,0 +1,296 @@
+{
+ "id": "krillin",
+ "nome": "Kuririn",
+ "formaInicial": "base",
+ "atributos": {
+  "hp": 880,
+  "ataque": 85,
+  "defesa": 48,
+  "velocidade": 12,
+  "kiMax": 100,
+  "kiInicial": 30,
+  "kiPorTurno": 10
+ },
+ "vozes": {
+  "dano": [
+   "vkrn001",
+   "vkrn002",
+   "vkrn003"
+  ],
+  "lancado": [
+   "vkrn010",
+   "vkrn011",
+   "vkrn012"
+  ]
+ },
+ "formas": {
+  "base": {
+   "nome": "Kuririn",
+   "sprite": "krillin",
+   "anims": {
+    "parado": "Parado",
+    "dano1": "Dano_Chao1",
+    "dano2": "Dano_Chao2",
+    "guarda": "Defesa_Chao",
+    "lancado": "SendoLancado_LADO",
+    "caido": "Caido",
+    "avancar": "MovimentoParaFrente",
+    "recuar": "MovimentoParaTras",
+    "teleporte": "Teletransporte_Chao"
+   },
+   "golpes": [
+    "combo",
+    "kienzan",
+    "senzu",
+    "carregar_ki"
+   ],
+   "vitoria": [
+    {
+     "anim": "Vitoria",
+     "fps": 10,
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn402",
+        "vkrn403",
+        "vkrn404"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Pose_De_Vitoria",
+     "duracao": 60
+    }
+   ]
+  }
+ },
+ "golpes": {
+  "combo": {
+   "nome": "Sequência de Golpes",
+   "descricao": "Avança e ataca. Aperte no tempo para crítico.",
+   "tipo": "corpo",
+   "poder": 1.6,
+   "roteiro": [
+    {
+     "irAte": "alvo",
+     "dist": 24,
+     "tempo": 0.22,
+     "animMov": "Dash",
+     "som": "jetdash"
+    },
+    {
+     "anim": "Attack_Light_1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn100",
+        "vkrn101",
+        "vkrn102"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "som": "movimento_basa"
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.2,
+        "forca": "leve"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Light_2",
+     "eventos": [
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.2,
+        "forca": "leve"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Light_3",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn103",
+        "vkrn104"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.25,
+        "forca": "media"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Heavy",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn105",
+        "vkrn106",
+        "vkrn107"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.35,
+        "forca": "forte",
+        "lanca": true
+       }
+      }
+     ]
+    },
+    {
+     "voltar": true,
+     "som": "teletransporte"
+    }
+   ]
+  },
+  "kienzan": {
+   "nome": "Kienzan",
+   "descricao": "Disco cortante de energia. Dano altíssimo.",
+   "tipo": "energia",
+   "custoKi": 40,
+   "poder": 4.0,
+   "roteiro": [
+    {
+     "anim": "Special_DestructoDisc_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kienzan_chrg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn208",
+        "vkrn209"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_DestructoDisc_Pt2",
+     "duracao": 1.0,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "krillin_kienzan_born"
+      },
+      {
+       "quadro": 0,
+       "tremer": 3
+      }
+     ]
+    },
+    {
+     "anim": "Special_DestructoDisc_Pt3",
+     "eventos": [
+      {
+       "quadro": 6,
+       "projetil": {
+        "fx": "Krillin_1",
+        "escala": 0.6,
+        "velocidade": 750,
+        "som": "krillin_kienzan_fire",
+        "impacto": "hit_forte",
+        "impactoEscala": 1.2,
+        "acerto": {
+         "fracao": 1.0,
+         "forca": "forte",
+         "lanca": true
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "senzu": {
+   "nome": "Semente dos Deuses",
+   "descricao": "Recupera 30% da vida de todo o time.",
+   "tipo": "suporte",
+   "custoKi": 50,
+   "roteiro": [
+    {
+     "anim": "Special_SenzuBean",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn214",
+        "vkrn215"
+       ]
+      },
+      {
+       "quadro": 6,
+       "som": "krillin_senzu_throw"
+      },
+      {
+       "quadro": "fim",
+       "som": "krillin_senzu_hit"
+      }
+     ]
+    },
+    {
+     "curar": {
+      "fracao": 0.3,
+      "todos": true
+     }
+    }
+   ]
+  },
+  "carregar_ki": {
+   "nome": "Carregar Ki",
+   "descricao": "Recupera 40 de ki.",
+   "tipo": "suporte",
+   "roteiro": [
+    {
+     "anim": "CarregandoKi_Stage1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "carregamentodeki_start"
+      }
+     ]
+    },
+    {
+     "anim": "CarregandoKi_Stage2",
+     "duracao": 1.0,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "carregamentodeki_loop"
+      },
+      {
+       "quadro": 0,
+       "tremer": 3
+      }
+     ]
+    },
+    {
+     "anim": "CarregandoKi_Stage3"
+    },
+    {
+     "ki": 40
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,363 @@
+{
+ "id": "piccolo",
+ "nome": "Piccolo",
+ "formaInicial": "base",
+ "atributos": {
+  "hp": 1050,
+  "ataque": 95,
+  "defesa": 62,
+  "velocidade": 9,
+  "kiMax": 100,
+  "kiInicial": 30,
+  "kiPorTurno": 8
+ },
+ "vozes": {
+  "dano": [
+   "vpcn001",
+   "vpcn002",
+   "vpcn003"
+  ],
+  "lancado": [
+   "vpcn011",
+   "vpcn012",
+   "vpcn015"
+  ]
+ },
+ "formas": {
+  "base": {
+   "nome": "Piccolo",
+   "sprite": "piccolo",
+   "anims": {
+    "parado": "Parado",
+    "dano1": "Dano_Chao1",
+    "dano2": "Dano_Chao2",
+    "guarda": "Defesa_Chao",
+    "lancado": "SendoLancado_LADO",
+    "caido": "Caido",
+    "avancar": "MovimentoParaFrente",
+    "recuar": "MovimentoParaTras",
+    "teleporte": "Teletransporte_Chao"
+   },
+   "golpes": [
+    "combo",
+    "makankosappo",
+    "rajada_teleguiada",
+    "carregar_ki"
+   ],
+   "vitoria": [
+    {
+     "anim": "Vitoria",
+     "fps": 10,
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn402",
+        "vpcn403",
+        "vpcn404"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Pose_De_Vitoria",
+     "duracao": 60
+    }
+   ]
+  }
+ },
+ "golpes": {
+  "combo": {
+   "nome": "Sequência de Golpes",
+   "descricao": "Avança e ataca. Aperte no tempo para crítico.",
+   "tipo": "corpo",
+   "poder": 1.6,
+   "roteiro": [
+    {
+     "irAte": "alvo",
+     "dist": 24,
+     "tempo": 0.22,
+     "animMov": "Dash",
+     "som": "jetdash"
+    },
+    {
+     "anim": "Attack_Light_1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn100",
+        "vpcn101",
+        "vpcn102"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "som": "movimento_basa"
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.2,
+        "forca": "leve"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Light_2",
+     "eventos": [
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.2,
+        "forca": "leve"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Light_3",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn103",
+        "vpcn104"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.25,
+        "forca": "media"
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Attack_Heavy",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn105",
+        "vpcn106",
+        "vpcn107"
+       ]
+      },
+      {
+       "quadro": "pico",
+       "acerto": {
+        "fracao": 0.35,
+        "forca": "forte",
+        "lanca": true
+       }
+      }
+     ]
+    },
+    {
+     "voltar": true,
+     "som": "teletransporte"
+    }
+   ]
+  },
+  "makankosappo": {
+   "nome": "Makankosappo",
+   "descricao": "Raio perfurante em espiral. Muito forte.",
+   "tipo": "energia",
+   "custoKi": 40,
+   "poder": 3.8,
+   "roteiro": [
+    {
+     "anim": "Special_SpecialBeamCannon_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "makankou_charg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn206",
+        "vpcn207"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_SpecialBeamCannon_Pt2",
+     "duracao": 1.2,
+     "eventos": [
+      {
+       "quadro": 0,
+       "tremer": 4
+      },
+      {
+       "quadro": 0,
+       "som": "makankou_max"
+      }
+     ]
+    },
+    {
+     "anim": "Special_SpecialBeamCannon_Final",
+     "fps": 12,
+     "eventos": [
+      {
+       "quadro": 4,
+       "som": "makankou_fire"
+      },
+      {
+       "quadro": 4,
+       "flash": 0.25
+      },
+      {
+       "quadro": 4,
+       "tremer": 10
+      },
+      {
+       "quadro": 4,
+       "efeito": {
+        "fx": "Pt1",
+        "em": "disparo",
+        "escala": 0.45
+       }
+      },
+      {
+       "quadro": 4,
+       "acerto": {
+        "fracao": 0.45,
+        "forca": "energia"
+       }
+      },
+      {
+       "quadro": 5,
+       "efeito": {
+        "fx": "Pt2",
+        "em": "disparo",
+        "escala": 0.45,
+        "duracao": 0.5
+       }
+      },
+      {
+       "quadro": 5,
+       "acerto": {
+        "fracao": 0.55,
+        "forca": "energia",
+        "lanca": true
+       }
+      }
+     ]
+    },
+    {
+     "esperar": 0.3
+    }
+   ]
+  },
+  "rajada_teleguiada": {
+   "nome": "Rajada Teleguiada",
+   "descricao": "Três esferas de energia que perseguem o alvo.",
+   "tipo": "energia",
+   "custoKi": 20,
+   "poder": 2.2,
+   "roteiro": [
+    {
+     "anim": "Special_HomingEnergyBlast",
+     "fps": 10,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "piccolo_hmngsht_chrg"
+      },
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn200",
+        "vpcn201",
+        "vpcn202"
+       ]
+      },
+      {
+       "quadro": 3,
+       "projetil": {
+        "fx": "Homing_Energy_Blast",
+        "escala": 0.35,
+        "velocidade": 650,
+        "som": "piccolo_hmngsht_fire",
+        "impacto": "kiblast_hit",
+        "acerto": {
+         "fracao": 0.33,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 4,
+       "projetil": {
+        "fx": "Homing_Energy_Blast",
+        "escala": 0.35,
+        "velocidade": 620,
+        "som": "piccolo_hmngsht_fire",
+        "impacto": "kiblast_hit",
+        "acerto": {
+         "fracao": 0.33,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 5,
+       "projetil": {
+        "fx": "Homing_Energy_Blast",
+        "escala": 0.35,
+        "velocidade": 590,
+        "som": "piccolo_hmngsht_fire",
+        "impacto": "Explosao4",
+        "acerto": {
+         "fracao": 0.34,
+         "forca": "energia"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "carregar_ki": {
+   "nome": "Carregar Ki",
+   "descricao": "Recupera 40 de ki.",
+   "tipo": "suporte",
+   "roteiro": [
+    {
+     "anim": "CarregandoKi_Stage1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "carregamentodeki_start"
+      }
+     ]
+    },
+    {
+     "anim": "CarregandoKi_Stage2",
+     "duracao": 1.0,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "carregamentodeki_loop"
+      },
+      {
+       "quadro": 0,
+       "tremer": 3
+      }
+     ]
+    },
+    {
+     "anim": "CarregandoKi_Stage3"
+    },
+    {
+     "ki": 40
+    }
+   ]
+  }
+ }
+}

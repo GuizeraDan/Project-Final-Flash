@@ -2,7 +2,7 @@
   "id": "raditz",
   "nome": "Raditz",
   "formaInicial": "base",
-  "atributos": { "hp": 1500, "ataque": 105, "defesa": 55, "kiMax": 100, "kiInicial": 20, "kiPorTurno": 10 },
+  "atributos": { "hp": 1500, "ataque": 105, "defesa": 55, "kiMax": 100, "kiInicial": 20, "kiPorTurno": 10, "velocidade": 8 },
   "vozes": {
     "dano": ["raditz_dmg_1", "raditz_dmg_2", "raditz_dmg_3"],
     "lancado": ["raditz_lancado_1", "raditz_lancado_2", "raditz_lancado_3"]

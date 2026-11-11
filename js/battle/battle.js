@@ -36,7 +36,10 @@ FF.Battle = class {
 
   addFighter(charDef, lado, idx) {
     const pos = lado === 'heroi' ? this.def.posicoes.herois : this.def.posicoes.inimigos;
-    const f = new FF.Fighter(charDef, lado, pos[idx] || pos[0], this.groundY, this.scale);
+    // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
+    const aj = (this.def.ajustes || {})[charDef.id];
+    if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
+    const f = new FF.Fighter(charDef, lado, pos[idx] != null ? pos[idx] : pos[0], this.groundY, this.scale);
     (lado === 'heroi' ? this.heroes : this.enemies).push(f);
     return f;
   }
@@ -46,13 +49,11 @@ FF.Battle = class {
     FF.Audio.music(this.def.musica);
     await this.intro();
     while (!this.over) {
-      for (const h of this.heroes) {
-        if (this.over || h.ko) continue;
-        await this.turn(h, true);
-      }
-      for (const e of this.enemies) {
-        if (this.over || e.ko) continue;
-        await this.turn(e, false);
+      // ordem de turno pela velocidade (empate: heróis primeiro)
+      const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
+      for (const f of ordem) {
+        if (this.over || f.ko) continue;
+        await this.turn(f, f.isHero);
       }
     }
   }
@@ -73,9 +74,15 @@ FF.Battle = class {
   }
 
   async turn(actor, isHero) {
-    const foes = isHero ? this.enemies : this.heroes;
-    const target = foes.find(f => !f.ko);
-    if (!target) return;
+    const foes = (isHero ? this.enemies : this.heroes).filter(f => !f.ko);
+    if (!foes.length) return;
+    // herói ataca o primeiro inimigo de pé; inimigo escolhe um herói (prefere quem está mais fraco)
+    let target = foes[0];
+    if (!isHero && foes.length > 1) {
+      const pesos = foes.map(f => 1 + 2 * (1 - f.hp / f.hpMax));
+      let x = Math.random() * pesos.reduce((a, b) => a + b, 0);
+      target = foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
+    }
     this.turnLabel = 'Vez de ' + actor.nome;
     let moveId;
     if (isHero) moveId = await this.ui.chooseMove(actor, this);
@@ -335,11 +342,13 @@ FF.Battle = class {
     const travel = dist / vel;
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
-    const a = new FF.Animator(this.fx);
-    a.play(spec.fx || 'kiblast_amarelo', { loop: true });
+    const fxName = spec.fx || 'kiblast_amarelo';
+    const set = this.fxSet(fxName) || this.fx;
+    const a = new FF.Animator(set);
+    a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
     let res;
-    const p = { a, x: from.x, y: from.y, vx: (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
+    const p = { a, set, scale: (spec.escala || 1) * this.scale, x: from.x, y: from.y, vx: (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, left: travel, done: new Promise(r => (res = r)) };
     p.hit = () => {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x, to.y, att.dir < 0, spec.impactoEscala || 1);

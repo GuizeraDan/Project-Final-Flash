@@ -38,7 +38,7 @@ FF.HUD = {
   part(ctx, set, anim, i, x, y, frac, fromRight) {
     const a = set.anim(anim); if (!a) return;
     const f = a.frames[Math.min(i, a.frames.length - 1)];
-    const S = this.S;
+    const S = this._s || this.S;
     frac = Math.max(0, Math.min(1, frac == null ? 1 : frac));
     const w = Math.round(f[3] * frac); if (w <= 0) return;
     const sx = fromRight ? f[1] + f[3] - w : f[1];
@@ -46,11 +46,15 @@ FF.HUD = {
     ctx.drawImage(set.images[f[0]], sx, f[2], w, f[4], dx, y, w * S, f[4] * S);
   },
 
-  panel(ctx, f, rtl) {
+  // S: escala (1.6 com um lutador por lado; menor quando há 3 heróis empilhados), Y: topo do painel
+  panel(ctx, f, rtl, S, Y) {
     const set = FF.Assets.sprites.hud_zl3;
     if (!set) return this.panelSimples(ctx, f, rtl ? FF.W - 24 : 24, rtl);
-    const S = this.S, PW = this.PW;
-    const X = rtl ? FF.W - 6 - PW * S : 6, Y = 4;
+    S = S || this.S; Y = Y == null ? 4 : Y;
+    this._s = S;
+    const PW = this.PW;
+    const X = rtl ? FF.W - 6 - PW * S : 6;
+    const T = S / this.S;   // fator para o tamanho dos textos
     // converte x da arte (metade do jogador) para tela; o inimigo usa a metade espelhada
     const sxp = (xs, w) => X + (rtl ? (PW - xs - (w || 0)) : xs) * S;
     const bg = set.anim('fundo_barras').frames[0];
@@ -65,8 +69,8 @@ FF.HUD = {
     ctx.beginPath(); ctx.rect(bx, by, bw, bh); ctx.clip();
     const pa = f.sprite.anim(f.animName('parado'));
     if (pa) {
-      const fr = pa.frames[0], sc = 2.6;
-      FF.drawFrame(ctx, f.sprite, fr, bx + bw / 2 + (rtl ? -8 : 8), by + 6 + fr[6] * sc, sc, rtl, f.ko ? { tint: 'rgba(40,0,0,0.55)' } : undefined);
+      const fr = pa.frames[0], sc = 2.6 * T;
+      FF.drawFrame(ctx, f.sprite, fr, bx + bw / 2 + (rtl ? -8 : 8) * T, by + 6 * T + fr[6] * sc, sc, rtl, f.ko ? { tint: 'rgba(40,0,0,0.55)' } : undefined);
     }
     ctx.restore();
 
@@ -79,7 +83,7 @@ FF.HUD = {
     const fr = f.hp / f.hpMax;
     this.part(ctx, set, 'vida_red_' + lado, 0, hx, hy, f._hpShow / f.hpMax, rtl);
     this.part(ctx, set, 'vida_' + lado, fr > 0.5 ? 0 : fr > 0.25 ? 1 : 2, hx, hy, fr, rtl);
-    this.text(ctx, Math.ceil(f.hp) + '/' + f.hpMax, rtl ? hx + 6 : hx + 121 * S - 6, hy + 5 * S, 12, '#fff', rtl ? 'left' : 'right');
+    this.text(ctx, Math.ceil(f.hp) + '/' + f.hpMax, rtl ? hx + 6 : hx + 121 * S - 6, hy + 5 * S, Math.round(12 * Math.max(0.75, T)), '#fff', rtl ? 'left' : 'right');
 
     // ki (barra segmentada)
     const kx = sxp(57, 127), ky = Y + 31 * S;
@@ -88,11 +92,11 @@ FF.HUD = {
 
     // nome e ki na parte de baixo da placa
     const nomeCor = f.formId !== (f.def.formaInicial || 'base') ? '#ffe25a' : '#fff';
-    this.text(ctx, f.nome, rtl ? sxp(57) : sxp(60), Y + 47 * S, 18, nomeCor, rtl ? 'right' : 'left');
-    this.text(ctx, 'KI ' + Math.floor(f.ki), rtl ? sxp(172) : sxp(172), Y + 47 * S, 13, '#9fe2ff', rtl ? 'left' : 'right');
+    this.text(ctx, f.nome, rtl ? sxp(57) : sxp(60), Y + 47 * S, Math.round(18 * Math.max(0.75, T)), nomeCor, rtl ? 'right' : 'left');
+    this.text(ctx, 'KI ' + Math.floor(f.ki), rtl ? sxp(172) : sxp(172), Y + 47 * S, Math.round(13 * Math.max(0.75, T)), '#9fe2ff', rtl ? 'left' : 'right');
 
     // Rage Gauge: barra abaixo da placa + ícone (vazio / cheio pulsando)
-    const rw = 104 * S, rh = 9, rx = rtl ? sxp(60, 104) : sxp(60), ry = Y + 59 * S;
+    const rw = 104 * S, rh = Math.round(9 * T), rx = rtl ? sxp(60, 104) : sxp(60), ry = Y + 59 * S;
     ctx.fillStyle = 'rgba(10,8,20,0.85)'; ctx.fillRect(rx - 2, ry - 2, rw + 4, rh + 4);
     const rf = f.rage / 100, rfw = rw * rf;
     const cheia = f.rageCheia;
@@ -106,13 +110,13 @@ FF.HUD = {
     const ic = set.anim(cheia ? 'Full' : 'Empty');
     if (ic) {
       const fi = ic.frames[Math.floor(FF.Clock.t * 10) % ic.frames.length];
-      FF.drawFrame(ctx, set, fi, ix, iy, cheia ? 0.62 + 0.06 * pulse : 0.75, false);
+      FF.drawFrame(ctx, set, fi, ix, iy, (cheia ? 0.62 + 0.06 * pulse : 0.75) * T, false);
     }
-    this.text(ctx, cheia ? 'SUPREMO PRONTO!' : 'RAGE', rtl ? rx + rw : rx, ry + rh + 10, 11, cheia ? '#ffe25a' : '#ffb39a', rtl ? 'right' : 'left');
+    this.text(ctx, cheia ? 'SUPREMO PRONTO!' : 'RAGE', rtl ? rx + rw : rx, ry + rh + 10 * T, Math.round(11 * Math.max(0.75, T)), cheia ? '#ffe25a' : '#ffb39a', rtl ? 'right' : 'left');
 
     // buffs
     const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
-    if (tags.length) this.text(ctx, tags.join('  '), rtl ? rx : rx + rw, ry + rh + 10, 13, '#ff9c9c', rtl ? 'left' : 'right');
+    if (tags.length) this.text(ctx, tags.join('  '), rtl ? rx : rx + rw, ry + rh + 10 * T, Math.round(13 * Math.max(0.75, T)), '#ff9c9c', rtl ? 'left' : 'right');
   },
 
   // painel antigo (sem as artes), usado se o hud_zl3 não carregar
@@ -142,7 +146,8 @@ FF.HUD = {
   },
 
   draw(ctx, b) {
-    b.heroes.forEach((h, i) => this.panel(ctx, h, false));
+    const n = b.heroes.length;
+    b.heroes.forEach((h, i) => n > 1 ? this.panel(ctx, h, false, 1.05, 2 + i * 76) : this.panel(ctx, h, false));
     b.enemies.forEach((e, i) => this.panel(ctx, e, true));
     if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 22, 16, '#ffe9a8', 'center');
     for (const t of b.texts) {

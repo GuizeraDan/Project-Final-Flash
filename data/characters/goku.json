@@ -2,7 +2,7 @@
   "id": "goku",
   "nome": "Goku",
   "formaInicial": "base",
-  "atributos": { "hp": 1200, "ataque": 100, "defesa": 60, "kiMax": 100, "kiInicial": 30, "kiPorTurno": 8 },
+  "atributos": { "hp": 1200, "ataque": 100, "defesa": 60, "kiMax": 100, "kiInicial": 30, "kiPorTurno": 8, "velocidade": 10 },
   "vozes": {
     "dano": ["vgkn002", "vgkn003", "vgkn004"],
     "lancado": ["vgkn012", "vgkn013", "vgkn014"]

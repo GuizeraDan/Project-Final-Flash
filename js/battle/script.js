@@ -63,6 +63,15 @@ FF.Script = {
     if (s.flash) { b.flash(s.flash); return; }
     if (s.parado) { actor.idle(); return; }
     if (s.objeto) { b.criarObjeto(actor, s.objeto); return; }
+    if (s.curar) {   // { fracao, todos }: recupera vida do próprio lutador ou de todo o time
+      const time = s.curar.todos ? (actor.isHero ? b.heroes : b.enemies) : [actor];
+      time.filter(f => !f.ko).forEach(f => {
+        const v = Math.round(f.hpMax * (s.curar.fracao || 0.3));
+        f.hp = Math.min(f.hpMax, f.hp + v);
+        b.popup(f, '+' + v, '#7dff8a');
+      });
+      return;
+    }
     if (s.lancarObjeto) { b.lancarObjeto(actor, target, move, s.lancarObjeto); return; }
   },
 
@@ -125,7 +134,7 @@ FF.Script = {
     if (e.flash) b.flash(e.flash);
     if (e.efeito) {
       const p = e.efeito.em === 'alvo' && target ? target.peito() : e.efeito.em === 'disparo' ? actor.pontoDisparo() : { x: actor.x, y: actor.groundY };
-      b.spawnFx(e.efeito.fx, p.x + (e.efeito.dx || 0) * actor.dir, p.y + (e.efeito.dy || 0), actor.dir < 0, e.efeito.escala);
+      b.spawnFx(e.efeito.fx, p.x + (e.efeito.dx || 0) * actor.dir, p.y + (e.efeito.dy || 0), actor.dir < 0, e.efeito.escala, e.efeito);
     }
     if (e.ki) actor.addKi(e.ki);
     if (e.acerto && target) b.applyHit(actor, target, move, e.acerto, qte);
