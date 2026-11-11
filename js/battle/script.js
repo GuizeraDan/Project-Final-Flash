@@ -62,6 +62,8 @@ FF.Script = {
     if (s.tremer) { b.shake(s.tremer); return; }
     if (s.flash) { b.flash(s.flash); return; }
     if (s.parado) { actor.idle(); return; }
+    if (s.objeto) { b.criarObjeto(actor, s.objeto); return; }
+    if (s.lancarObjeto) { b.lancarObjeto(actor, target, move, s.lancarObjeto); return; }
   },
 
   pick(v) { return Array.isArray(v) ? v[Math.floor(Math.random() * v.length)] : v; },
@@ -128,5 +130,7 @@ FF.Script = {
     if (e.ki) actor.addKi(e.ki);
     if (e.acerto && target) b.applyHit(actor, target, move, e.acerto, qte);
     if (e.projetil && target) b.spawnProjectile(actor, target, move, e.projetil);
+    if (e.objeto) b.criarObjeto(actor, e.objeto);
+    if (e.lancarObjeto && target) b.lancarObjeto(actor, target, move, e.lancarObjeto);
   },
 };

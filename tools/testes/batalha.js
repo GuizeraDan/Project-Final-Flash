@@ -3,6 +3,7 @@
 // - plano: ordem das escolhas no menu (índice do botão, 1 = primeiro). Se o botão estiver desabilitado, usa o primeiro habilitado.
 // - erro: probabilidade (0..1) de o "jogador automático" NÃO apertar no tempo.
 // - fotos: se informado, salva capturas periódicas nessa pasta.
+// - rage: valor inicial da Rage Gauge dos heróis (ex.: 100 para testar o ataque supremo).
 // Sai com código 1 se houver erro de JavaScript na página ou se a luta não terminar.
 const path = require('path');
 let chromium;
@@ -15,6 +16,7 @@ const erro = parseFloat(opt('erro', '0'));
 const fotos = opt('fotos', null);
 const batalha = opt('batalha', null);
 const tempo = parseFloat(opt('tempo', '170')) * 1000;
+const rage = opt('rage', null);   // --rage 100: começa com a Rage cheia (testar o supremo)
 
 (async () => {
   const exe = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(p => require('fs').existsSync(p));
@@ -26,6 +28,7 @@ const tempo = parseFloat(opt('tempo', '170')) * 1000;
   const raiz = path.resolve(__dirname, '..', '..');
   await p.goto('file://' + raiz + '/index.html' + (batalha ? '?batalha=' + batalha : ''));
   await p.click('#inicio');
+  if (rage) await p.waitForFunction(() => FF.battle && FF.battle.heroes.length).then(() => p.evaluate((r) => FF.battle.heroes.forEach(h => (h.rage = +r)), rage));
   await p.evaluate((erro) => {
     setInterval(() => {
       const b = FF.battle; if (!b) return;
@@ -46,7 +49,7 @@ const tempo = parseFloat(opt('tempo', '170')) * 1000;
       const mv = plano[Math.min(k, plano.length - 1)]; k++;
       const ok = await p.evaluate((mv) => { const bt = document.querySelector(`#menu button:nth-child(${mv})`); if (!bt || bt.disabled) return false; bt.click(); return true; }, mv);
       if (!ok) await p.evaluate(() => { const bt = document.querySelector('#menu button:not([disabled])'); if (bt) bt.click(); });
-      const st = await p.evaluate(() => FF.battle.all.map(f => `${f.id}:${f.formId} hp${Math.round(f.hp)} ki${Math.round(f.ki)}`).join(' | '));
+      const st = await p.evaluate(() => FF.battle.all.map(f => `${f.id}:${f.formId} hp${Math.round(f.hp)} ki${Math.round(f.ki)} rage${Math.round(f.rage)}`).join(' | '));
       console.log(`turno ${k} escolha ${mv}${ok ? '' : '(desab.)'} -> ${st}`);
     }
     if (fotos) { await p.screenshot({ path: path.join(fotos, String(n).padStart(4, '0') + '.png') }); n++; }

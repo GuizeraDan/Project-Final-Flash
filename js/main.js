@@ -15,7 +15,8 @@ FF.UI = {
         const custo = m.custoKi ? '<span class="ki">' + m.custoKi + ' KI</span>' : '';
         b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="nome">' + m.nome + '</span>' + custo +
           '<span class="desc">' + (m.descricao || '') + '</span>';
-        const can = (m.custoKi || 0) <= hero.ki && !(m.requer && !this.meets(hero, m.requer));
+        const can = (m.custoKi || 0) <= hero.ki && !(m.requer && !this.meets(hero, m.requer)) && !(m.supremo && !hero.rageCheia);
+        if (m.supremo) b.classList.add('supremo');
         b.disabled = !can;
         b.onclick = () => { if (!b.disabled) done(id); };
         b.onmouseenter = () => focus(i);
@@ -77,7 +78,7 @@ FF.start = async function () {
   // personagens e todos os sprites de todas as formas (transformação sem espera)
   const heroDefs = await Promise.all(def.herois.map(id => FF.Assets.loadCharacter(id)));
   const foeDefs = await Promise.all(def.inimigos.map(id => FF.Assets.loadCharacter(id)));
-  const spriteIds = new Set(['fx', stage.sprite]);
+  const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
   await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)));
 

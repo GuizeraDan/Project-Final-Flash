@@ -19,6 +19,7 @@ FF.Fighter = class {
     this.kiMax = def.atributos.kiMax || 100;
     this.ki = def.atributos.kiInicial || 0;
     this.buffs = {};
+    this.rage = 0;         // Rage Gauge (0..100): cheia libera o ataque supremo
     this.ko = false;
     this.busy = false;     // executando um golpe (o roteiro controla a animação)
     this.react = null;     // reação temporária (dano, guarda, lançado)
@@ -67,6 +68,8 @@ FF.Fighter = class {
   }
 
   addKi(n) { this.ki = Math.max(0, Math.min(this.kiMax, this.ki + n)); }
+  addRage(n) { this.rage = Math.max(0, Math.min(100, this.rage + n)); }
+  get rageCheia() { return this.rage >= 100; }
 
   tint() {
     for (const b of Object.values(this.buffs)) if (b.tint) {
@@ -91,6 +94,7 @@ FF.Fighter = class {
 
   lancar(forca) {
     this.vx = -this.dir * (forca || 520);
+    this.voando = true;   // ao parar, a batalha solta poeira/rochas no chão
     this.reagir('lancado', 0.38);
   }
 
@@ -99,8 +103,9 @@ FF.Fighter = class {
     if (this.vx) {
       this.x += this.vx * dt;
       this.vx *= Math.pow(0.02, dt);
-      if (Math.abs(this.vx) < 20) this.vx = 0;
+      if (Math.abs(this.vx) < 20) { this.vx = 0; if (this.voando) { this.voando = false; this.pousou = true; } }
       this.x = Math.max(40, Math.min(1044, this.x));
+      if (this.voando && (this.x <= 40 || this.x >= 1044)) { this.vx = 0; this.voando = false; this.pousou = true; }
     }
     if (this.react && FF.Clock.t >= this.react.ate) {
       if (this.ko) { this.react = null; this.anim.play(this.animName('caido')); }
