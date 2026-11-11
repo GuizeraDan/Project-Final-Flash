@@ -1,4 +1,4 @@
-/* Estilos das ferramentas de desenvolvimento (visualizador e laboratório) */
+/* Estilos das ferramentas de desenvolvimento (visualizador e editor de cenas) */
 .vis { margin: 0; background: #14111f; color: #eee; font: 14px/1.35 "Trebuchet MS", Arial, sans-serif; height: 100vh; display: flex; flex-direction: column; }
 .vis header { padding: 8px 12px; background: #221b3a; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .vis header b { color: #ffd84a; letter-spacing: 1px; }
@@ -52,30 +52,6 @@
   .vis main { flex-direction: column; overflow-y: auto; }
   #lista { width: auto; max-height: 34vh; }
   #palco { overflow: visible; }
-}
-
-/* ---------- Laboratório (painel dentro da batalha) ---------- */
-#lab { position: fixed; top: 8px; right: 8px; width: 300px; max-height: calc(100vh - 16px); overflow-y: auto; z-index: 50;
-  background: rgba(20,16,36,0.94); border: 2px solid #5b4bb0; border-radius: 10px; padding: 10px; color: #eee;
-  font: 13px/1.35 "Trebuchet MS", Arial, sans-serif; box-shadow: 0 6px 24px rgba(0,0,0,0.6); }
-#lab.min > :not(.lab-topo) { display: none; }
-#lab .lab-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-#lab .lab-topo b { color: #ffd84a; }
-#lab h4 { margin: 10px 0 4px; color: #9fd0ff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-#lab label { display: block; margin: 3px 0; }
-#lab select, #lab button { font: inherit; color: #fff; background: #2d2550; border: 1px solid #5b4bb0; border-radius: 6px; padding: 4px 6px; }
-#lab select { width: 100%; box-sizing: border-box; }
-#lab button { cursor: pointer; }
-#lab button:hover { border-color: #ffd84a; }
-#lab .linha { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-#lab .grande { width: 100%; padding: 8px; font-weight: bold; background: #6b3fd0; margin-top: 8px; }
-#lab #lab-log { font-family: monospace; font-size: 11px; background: #0e0b18; border-radius: 6px; padding: 6px; max-height: 140px; overflow-y: auto; white-space: pre-wrap; }
-#lab .desc { opacity: 0.75; font-size: 12px; margin: 2px 0 0; }
-
-/* no PC, o jogo encolhe para o painel do laboratório não cobrir a luta */
-@media (min-width: 900px) {
-  body.com-lab { justify-content: flex-start; }
-  body.com-lab #jogo { width: min(calc(100vw - 330px), calc(100vh * var(--asp, 1.869))); margin-left: 8px; }
 }
 
 /* ---------- Editor de cenas ---------- */

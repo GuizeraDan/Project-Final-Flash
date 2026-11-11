@@ -14,7 +14,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - Commits com autor `GuizeraDan <GuizeraDan@users.noreply.github.com>` (nunca o e-mail pessoal).
 
 ## Ferramentas
-- `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons), laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe) e editor de cenas `index.html?editor=1&batalha=<id>` (monta golpes e exporta o JSON do roteiro; o usuário pode colar esse JSON na conversa). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
+- `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons) e editor de cenas `index.html?editor=1&batalha=<id>` (monta e testa golpes, inclusive os existentes — o laboratório de golpes foi removido, tudo novo é feito aqui; exporta o JSON do roteiro; o usuário pode colar esse JSON na conversa). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
 
 ## Sprites enviados pelo usuário
 - O importador no app foi descontinuado (o usuário ainda vai decidir como quer). Quem importa é você: quando o usuário mandar imagens/sprite sheets, recorte os quadros (fundo transparente), empacote num atlas em `assets/img/<id>.png` e crie `data/sprites/<id>.json` no mesmo formato dos outros (quadro `[atlas, x, y, w, h, ox, oy, dur, pontos?]`, origem nos pés para lutadores e no centro para efeitos) e rode o build (o índice do bundle pega os sprites novos sozinho). O código antigo (`js/ferramentas/importador.js`, `js/core/biblioteca.js`) está no histórico do Git.

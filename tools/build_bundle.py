@@ -11,7 +11,7 @@ for d, _, files in os.walk(os.path.join(root, 'data')):
             rel = os.path.relpath(p, root).replace(os.sep, '/')
             with open(p, encoding='utf-8') as fh:
                 out[rel] = json.load(fh)
-# índice para as ferramentas (visualizador/laboratório): o navegador não consegue listar pastas
+# índice para as ferramentas (visualizador/editor de cenas): o navegador não consegue listar pastas
 def nomes(pasta, ext):
     d = os.path.join(root, pasta)
     return sorted(f[:-len(ext)] for f in os.listdir(d) if f.endswith(ext)) if os.path.isdir(d) else []
