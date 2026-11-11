@@ -73,6 +73,10 @@ FF.Script = {
 
     if (s.removerBuff) { delete actor.buffs[s.removerBuff]; return; }
     if (s.ki) { actor.addKi(s.ki); b.popup(actor, (s.ki > 0 ? '+' : '') + s.ki + ' KI', '#7fd0ff'); return; }
+    if (s.atordoar) {   // o alvo perde as próximas N vezes (não acumula)
+      if (target && !target.ko) { target.atordoado = Math.max(target.atordoado || 0, s.atordoar); b.popup(target, 'ATORDOADO!', '#fff27a'); }
+      return;
+    }
     if (s.tremer) { b.shake(s.tremer); return; }
     if (s.flash) { b.flash(s.flash); return; }
     if (s.parado) { actor.idle(); return; }

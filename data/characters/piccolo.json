@@ -42,6 +42,7 @@
     "combo",
     "makankosappo",
     "rajada_teleguiada",
+    "hellzone",
     "sparking_piccolo_kuririn",
     "granada_de_luz",
     "carregar_ki"
@@ -595,6 +596,175 @@
         "forca": "energia",
         "lanca": true,
         "empurrao": 650
+       }
+      }
+     ]
+    },
+    {
+     "esperar": 0.3
+    }
+   ]
+  },
+  "hellzone": {
+   "nome": "Hellzone Grenade",
+   "descricao": "Cerca o alvo de esferas de energia e fecha o cerco.",
+   "tipo": "energia",
+   "custoKi": 30,
+   "poder": 3.4,
+   "roteiro": [
+    {
+     "anim": "Special_HellzoneGrenade_Pt1",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn203",
+        "vpcn204"
+       ]
+      }
+     ]
+    },
+    {
+     "anim": "Special_HellzoneGrenade_Pt2",
+     "fps": 12,
+     "eventos": [
+      {
+       "quadro": 0,
+       "som": "piccolo_mkhdn_lottashot"
+      },
+      {
+       "quadro": 0,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 520,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 1,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 580,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 2,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 640,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 3,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 700,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "anim": "Special_HellzoneGrenade_Pt2",
+     "fps": 12,
+     "eventos": [
+      {
+       "quadro": 0,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 560,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      },
+      {
+       "quadro": 1,
+       "projetil": {
+        "fx": "HellzoneGrenade_InAir",
+        "escala": 0.45,
+        "velocidade": 620,
+        "som": "piccolo_mkhdn_kidanattk",
+        "impacto": "kiblast_hit",
+        "impactoEscala": 1,
+        "acerto": {
+         "fracao": 0.1,
+         "forca": "energia"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "esperar": 0.5
+    },
+    {
+     "anim": "Special_HellzoneGrenade_Final",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vpcn205"
+       ]
+      },
+      {
+       "quadro": 2,
+       "efeito": {
+        "fx": "Explosao_Granada2",
+        "em": "alvo",
+        "escala": 0.7
+       }
+      },
+      {
+       "quadro": 2,
+       "som": "explosaodeenergia"
+      },
+      {
+       "quadro": 2,
+       "tremer": 12
+      },
+      {
+       "quadro": 2,
+       "acerto": {
+        "fracao": 0.4,
+        "forca": "energia",
+        "lanca": true,
+        "empurrao": 600
        }
       }
      ]

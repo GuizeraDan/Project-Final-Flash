@@ -41,6 +41,7 @@
    "golpes": [
     "combo",
     "kienzan",
+    "taiyoken",
     "senzu",
     "sparking_kuririn_goku",
     "onda_dispersa",
@@ -630,6 +631,48 @@
        }
       }
      ]
+    }
+   ]
+  },
+  "taiyoken": {
+   "nome": "Taiyoken",
+   "descricao": "Clarão que cega o inimigo: ele perde a próxima vez.",
+   "tipo": "suporte",
+   "custoKi": 25,
+   "roteiro": [
+    {
+     "anim": "Special_SolarFlare",
+     "eventos": [
+      {
+       "quadro": 0,
+       "voz": [
+        "vkrn210",
+        "vkrn211"
+       ]
+      },
+      {
+       "quadro": 8,
+       "som": "krillin_taiyouken_fire"
+      },
+      {
+       "quadro": 8,
+       "flash": 1.0
+      },
+      {
+       "quadro": 8,
+       "efeito": {
+        "fx": "flash_branco",
+        "em": "disparo",
+        "escala": 1.2
+       }
+      }
+     ]
+    },
+    {
+     "atordoar": 1
+    },
+    {
+     "esperar": 0.4
     }
    ]
   }

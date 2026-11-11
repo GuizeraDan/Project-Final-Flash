@@ -84,6 +84,15 @@ FF.Battle = class {
       let x = Math.random() * pesos.reduce((a, b) => a + b, 0);
       target = foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
     }
+    // atordoado (ex.: Taiyoken do Kuririn): perde a vez
+    if (actor.atordoado > 0) {
+      actor.atordoado--;
+      this.popup(actor, 'ATORDOADO!', '#fff27a');
+      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
+      await FF.Clock.wait(1.2);
+      await this.endTurn(actor);
+      return;
+    }
     this.turnLabel = 'Vez de ' + actor.nome;
     this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
