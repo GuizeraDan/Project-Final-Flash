@@ -20,7 +20,7 @@ FF.PWA = {
     });
     this.checarVersao();
     document.addEventListener('visibilitychange', () => { if (!document.hidden) this.checarVersao(); });
-    setInterval(() => this.checarVersao(), 5 * 60 * 1000);
+    setInterval(() => this.checarVersao(), 60 * 1000);
   },
 
   async instalar() {
