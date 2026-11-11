@@ -110,3 +110,41 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #nova-versao { position: fixed; left: 50%; top: 10px; transform: translateX(-50%); z-index: 100; font: 700 15px "Trebuchet MS", Arial, sans-serif;
   color: #1a1020; background: #ffd84a; border: 0; border-radius: 999px; padding: 10px 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); cursor: pointer; }
 .menu-titulo button[hidden] { display: none; }
+
+/* ---- tela de título responsiva (celular deitado tem pouca altura) ---- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+#inicio { overflow-y: auto; justify-content: safe center; padding: 1.5cqw 0; box-sizing: border-box; }
+#inicio.menu h1, #inicio.livre h1, #inicio.opcoes h1, #inicio.treino h1 { font-size: 4.6cqw; }
+#inicio.menu h3, #inicio.livre h3, #inicio.opcoes h3, #inicio.treino h3 { margin: 0.2cqw 0 1.6cqw; font-size: 1.5cqw; }
+#inicio.menu #titulo-menu, #inicio.livre #escolha { display: grid; grid-template-columns: 1fr 1fr; width: 56cqw; gap: 0.9cqw 1.2cqw; }
+#titulo-menu > button:first-child { grid-column: 1 / -1; }
+#escolha > button[data-acao="voltar"] { grid-column: 1 / -1; }
+.menu-titulo button { font-size: 1.6cqw; padding: 0.7cqw 1.4cqw; }
+.menu-titulo button.ferramenta { font-size: 1.3cqw; }
+@media (pointer: coarse) {
+  .menu-titulo button, #fim button { min-height: 36px; }
+}
+
+/* ---- movimento na tela de título ---- */
+#inicio::before { content: ""; position: absolute; inset: -20%; pointer-events: none; z-index: -1;
+  background: radial-gradient(circle at 50% 45%, rgba(255,160,40,0.28), transparent 45%);
+  animation: aura 3.2s ease-in-out infinite; }
+#inicio { isolation: isolate; }
+#inicio h1 { animation: brilho 2.4s ease-in-out infinite; }
+#inicio.menu .menu-titulo > button, #inicio.livre .menu-titulo > button, #inicio.opcoes .menu-titulo > *, #inicio.treino .menu-titulo > * {
+  animation: entra 0.35s ease-out both; }
+.menu-titulo > :nth-child(2) { animation-delay: 0.04s !important; }
+.menu-titulo > :nth-child(3) { animation-delay: 0.08s !important; }
+.menu-titulo > :nth-child(4) { animation-delay: 0.12s !important; }
+.menu-titulo > :nth-child(5) { animation-delay: 0.16s !important; }
+.menu-titulo > :nth-child(6) { animation-delay: 0.20s !important; }
+.menu-titulo > :nth-child(7) { animation-delay: 0.24s !important; }
+.menu-titulo > :nth-child(8) { animation-delay: 0.28s !important; }
+.menu-titulo button:not(:disabled):hover, .menu-titulo button:not(:disabled):focus { transform: scale(1.04); }
+.menu-titulo button { transition: transform 0.12s, background 0.12s; }
+.menu-titulo button:not(:disabled):active { transform: scale(0.97); }
+@keyframes aura { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.12); opacity: 1; } }
+@keyframes brilho { 0%, 100% { text-shadow: 0 0.4cqw 0 #a0400a, 0 0 1.5cqw rgba(255,180,40,0.5); } 50% { text-shadow: 0 0.4cqw 0 #a0400a, 0 0 3.5cqw rgba(255,200,60,0.95); } }
+@keyframes entra { from { opacity: 0; transform: translateY(1.2cqw); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #inicio::before, #inicio h1, .menu-titulo > * { animation: none !important; } }
+.menu-titulo button:disabled { opacity: 0.4 !important; }
