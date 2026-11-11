@@ -120,3 +120,5 @@
 }
 @media (max-width: 899px) { #editor { width: auto; left: 6px; top: auto; height: 55vh; } }
 .som-linha { display: flex; gap: 3px; } .som-linha > button:first-child { flex: 1; min-width: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#editor .ed-sub { width: 100%; display: flex; gap: 4px; align-items: center; flex-wrap: wrap; padding-left: 18px; font-size: 12px; opacity: 0.95; }
+#editor .ed-sub > input:not(.ed-mini) { flex: 1; min-width: 80px; }

@@ -375,14 +375,18 @@ FF.Battle = class {
     this.projectiles.push(p);
   }
 
+  // Projétil que atravessa a tela até o alvo. Campos opcionais do "projetil" no JSON:
+  //  velocidade, escala, som, impacto, impactoEscala, somImpacto, tremerImpacto,
+  //  disparo (efeito na mão ao soltar), rastro (padrão: sim), crescer (padrão: sim),
+  //  curva (altura do arco em px), ondular (amplitude em px), girar (graus/s),
+  //  atravessar (depois de acertar, segue até sair da tela), deCima (cai do alto).
   spawnProjectile(att, def, move, spec) {
     const to = def.peito();
-    // "deCima": a rajada cai do alto sobre o alvo (chuva de energia, ex.: Onda de Energia Dispersa)
     const from = spec.deCima
       ? { x: to.x - att.dir * (20 + Math.random() * 110) * this.scale, y: to.y - (230 + Math.random() * 60) * this.scale }
       : att.pontoDisparo();
-    const vel = spec.velocidade || 800;
-    const dist = spec.deCima ? Math.hypot(to.x - from.x, to.y - from.y) : Math.abs(to.x - from.x);
+    const vel = spec.velocidade || 650;
+    const dist = Math.hypot(to.x - from.x, to.y - from.y);
     const travel = Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
@@ -391,15 +395,67 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
+    if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6);
     let res;
-    const p = { a, set, scale: (spec.escala || 1) * this.scale, x: from.x, y: from.y, vx: spec.deCima ? (to.x - from.x) / travel : (to.x > from.x ? 1 : -1) * vel, vy: (to.y - from.y) / travel,
-      flip: att.dir < 0, left: travel, done: new Promise(r => (res = r)) };
+    const p = {
+      a, set, base: (spec.escala || 1) * this.scale, scale: (spec.escala || 1) * this.scale,
+      x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel,
+      vx: (to.x - from.x) / travel, vy: (to.y - from.y) / travel,
+      flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
+      crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
+      girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
+      done: new Promise(r => (res = r)),
+    };
     p.hit = () => {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x, to.y, att.dir < 0, spec.impactoEscala || 1);
+      if (spec.somImpacto) FF.Audio.play(spec.somImpacto);
+      if (spec.tremerImpacto) this.shake(spec.tremerImpacto);
       this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);
       res();
     };
     this.projectiles.push(p);
+  }
+
+  atualizarProjetil(p, dt) {
+    if (p.left != null) {   // objeto arremessado (ex.: Genki Dama): movimento reto simples
+      p.a.update(dt);
+      p.x += p.vx * dt; p.y += p.vy * dt; p.left -= dt;
+      if (p.left <= 0) { p.dead = true; p.hit(); }
+      return;
+    }
+    p.a.update(dt);
+    p.t += dt;
+    const k = p.t / p.travel;                       // 0 → 1 até o alvo; > 1 se atravessar
+    let x = p.x0 + p.vx * p.t, y = p.y0 + p.vy * p.t;
+    if (p.curva && k <= 1) y -= Math.sin(Math.PI * k) * p.curva;
+    if (p.ondular) y += Math.sin(p.t * 18) * p.ondular * (k <= 1 ? 1 - k * 0.5 : 0.5);
+    if (p.rastroOn) { p.rastro.unshift({ x: p.x, y: p.y, f: p.a.frame(), ang: p.ang }); if (p.rastro.length > 7) p.rastro.pop(); }
+    // em arco (sem giro), o projétil aponta para onde está indo
+    if (p.curva && !p.girar && (x !== p.x || y !== p.y)) p.ang = Math.atan2(y - p.y, Math.abs(x - p.x)) * p.dir;
+    p.x = x; p.y = y;
+    p.ang += (p.girar * Math.PI / 180) * dt;
+    p.scale = p.base * (p.crescer ? Math.min(1, 0.55 + p.t * 4) : 1);
+    if (k >= 1 && !p.acertou) {
+      p.acertou = true;
+      p.hit();
+      if (!p.atravessar) p.dead = true;
+    }
+    if (p.acertou && p.atravessar && (p.x < -150 || p.x > FF.W + 150)) p.dead = true;
+  }
+
+  desenharProjetil(ctx, p) {
+    if (!p.rastro) return FF.drawFrame(ctx, p.set || this.fx, p.a.frame(), p.x, p.y, p.scale || this.scale, p.flip);
+    const draw = (f, x, y, sc, ang, alpha) => {
+      if (!ang) return FF.drawFrame(ctx, p.set, f, x, y, sc, p.flip, alpha != null ? { alpha } : undefined);
+      ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
+      FF.drawFrame(ctx, p.set, f, 0, 0, sc, p.flip, alpha != null ? { alpha } : undefined);
+      ctx.restore();
+    };
+    p.rastro.forEach((r, i) => draw(r.f, r.x, r.y, p.scale * (1 - i * 0.08), r.ang, 0.35 * (1 - i / p.rastro.length)));
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    draw(p.a.frame(), p.x, p.y, p.scale * 1.08, p.ang, 0.25);  // brilho
+    ctx.restore();
+    draw(p.a.frame(), p.x, p.y, p.scale, p.ang);
   }
 
   tween(f, toX, dur) {
@@ -456,11 +512,7 @@ FF.Battle = class {
       if (k >= 1) tw.res();
     }
     this.tweens = this.tweens.filter(tw => tw.t < tw.dur);
-    for (const p of this.projectiles) {
-      p.a.update(dt);
-      p.x += p.vx * dt; p.y += p.vy * dt; p.left -= dt;
-      if (p.left <= 0 && !p.dead) { p.dead = true; p.hit(); }
-    }
+    for (const p of this.projectiles) if (!p.dead) this.atualizarProjetil(p, dt);
     this.projectiles = this.projectiles.filter(p => !p.dead);
     this.texts.forEach(t => { t.t += dt; t.y -= 40 * dt; });
     this.texts = this.texts.filter(t => t.t < t.life);
@@ -478,7 +530,7 @@ FF.Battle = class {
     const order = this.all.slice().sort((a, b) => (a.busy ? 1 : 0) - (b.busy ? 1 : 0));
     order.forEach(f => f.draw(ctx, this.fx));
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
-    this.projectiles.forEach(p => FF.drawFrame(ctx, p.set || this.fx, p.a.frame(), p.x, p.y, p.scale || this.scale, p.flip));
+    this.projectiles.forEach(p => this.desenharProjetil(ctx, p));
     this.fxList.forEach(e => FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, e.alpha != null ? { alpha: e.alpha } : undefined));
     ctx.restore();
     this.drawQtes(ctx);

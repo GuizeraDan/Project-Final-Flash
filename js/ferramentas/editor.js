@@ -284,7 +284,7 @@ FF.Editor = {
       case 'som': return { quadro: 0, som: 'hit_midle-a' };
       case 'voz': return { quadro: 0, voz: '' };
       case 'acerto': return { quadro: pico, acerto: { fracao: 0.5, forca: 'media' } };
-      case 'projetil': return { quadro: pico, projetil: { fx: 'kiblast_amarelo', impacto: 'kiblast_hit', velocidade: 700, acerto: { fracao: 0.5, forca: 'energia' } } };
+      case 'projetil': return { quadro: pico, projetil: { fx: 'kiblast_amarelo', velocidade: 600, disparo: 'kiblast_hit', impacto: 'explosao1', impactoEscala: 0.8, som: 'kidan_fire', somImpacto: 'explosao', tremerImpacto: 5, acerto: { fracao: 0.5, forca: 'energia' } } };
       case 'tremer': return { quadro: 0, tremer: 6 };
       case 'flash': return { quadro: 0, flash: 0.4 };
       default: return { quadro: 0 };
@@ -335,10 +335,28 @@ FF.Editor = {
         this.campo('lança', lanca));
     } else if (ev.projetil) {
       const pr = ev.projetil;
-      const fx = this.inp(pr.fx, v => this.set(pr, 'fx', v), null, { placeholder: 'projétil' }); fx.setAttribute('list', 'ed-efeitos');
-      const im = this.inp(pr.impacto, v => this.set(pr, 'impacto', v), null, { placeholder: 'impacto' }); im.setAttribute('list', 'ed-efeitos');
       pr.acerto = pr.acerto || { fracao: 0.5, forca: 'energia' };
-      row.append('🔸', fx, im, this.mini('vel', pr.velocidade, v => this.set(pr, 'velocidade', v), 50), this.mini('dano', pr.acerto.fracao, v => this.set(pr.acerto, 'fracao', v), 0.05));
+      const efx = (k, ph) => { const i = this.inp(pr[k], v => this.set(pr, k, v), null, { placeholder: ph }); i.setAttribute('list', 'ed-efeitos'); return i; };
+      const ck = (k, rot, padrao) => {
+        const c = document.createElement('input'); c.type = 'checkbox';
+        c.checked = pr[k] != null ? !!pr[k] : padrao;
+        c.onchange = () => { this.set(pr, k, c.checked === padrao ? undefined : c.checked); this.atualizarJSON(); };
+        return this.campo(rot, c);
+      };
+      row.append('🔸', efx('fx', 'projétil'), this.mini('vel', pr.velocidade, v => this.set(pr, 'velocidade', v), 50),
+        this.mini('tam', pr.escala, v => this.set(pr, 'escala', v), 0.1), this.mini('dano', pr.acerto.fracao, v => this.set(pr.acerto, 'fracao', v), 0.05));
+      const l2 = document.createElement('div'); l2.className = 'ed-sub';
+      l2.append('na mão:', efx('disparo', 'efeito ao soltar'), 'no alvo:', efx('impacto', 'explosão'),
+        this.mini('tam', pr.impactoEscala, v => this.set(pr, 'impactoEscala', v), 0.1));
+      const l3 = document.createElement('div'); l3.className = 'ed-sub';
+      l3.append('som ao soltar', this.campoAudio(pr.som, v => this.set(pr, 'som', v)));
+      const l4 = document.createElement('div'); l4.className = 'ed-sub';
+      l4.append('som do impacto', this.campoAudio(pr.somImpacto, v => this.set(pr, 'somImpacto', v)), this.mini('tremer', pr.tremerImpacto, v => this.set(pr, 'tremerImpacto', v)));
+      const l5 = document.createElement('div'); l5.className = 'ed-sub';
+      l5.append(ck('rastro', 'rastro', true), ck('atravessar', 'atravessa a tela', false),
+        this.mini('arco', pr.curva, v => this.set(pr, 'curva', v), 5), this.mini('onda', pr.ondular, v => this.set(pr, 'ondular', v), 1),
+        this.mini('giro', pr.girar, v => this.set(pr, 'girar', v), 90));
+      row.append(l2, l3, l4, l5);
     } else if (ev.tremer != null) {
       row.append('〰', this.mini('força', ev.tremer, v => this.set(ev, 'tremer', v)));
     } else if (ev.flash != null) {
