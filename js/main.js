@@ -382,10 +382,13 @@ FF.jogarCapitulo = async function (n) {
   FF.modoHistoria = { hist, cap };
   const battle = await FF.start(cap.batalha);
   battle.run();
+  FF.Pausa.mostrarBotao();
+  FF.Voltar.armar();
 };
 
 const _showEnd = FF.UI.showEnd.bind(FF.UI);
 FF.UI.showEnd = async function (win) {
+  document.getElementById('bt-pausa').hidden = true;
   const mh = FF.modoHistoria;
   const apEl = document.getElementById('ap-ganho');
   if (win) {
@@ -437,7 +440,7 @@ window.addEventListener('load', () => {
       intro.classList.add('hide');
       if (params.get('editor')) FF.Editor.run(battle);       // editor de cenas (sandbox de golpes)
       else if (params.get('teste')) FF.Lab.run(battle);   // laboratório: sem turnos, executa qualquer golpe
-      else battle.run();
+      else { battle.run(); FF.Pausa.mostrarBotao(); FF.Voltar.armar(); }
     } catch (err) {
       console.error(err);
       msg.textContent = 'Erro: ' + err.message;
@@ -473,6 +476,7 @@ window.addEventListener('load', () => {
   // tela de título: toque → menu principal
   const mostrar = (modo) => {
     FF.Selecao && FF.Selecao.fechar();
+    if (modo !== 'menu') FF.Voltar.armar();
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
@@ -522,7 +526,7 @@ window.addEventListener('load', () => {
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
-    if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); return; }
+    if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {

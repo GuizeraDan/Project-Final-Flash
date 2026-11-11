@@ -7,7 +7,12 @@ FF.Clock = {
   freeze: 0,     // hitstop restante (tempo real)
   waits: [],
 
+  pausado: false,      // menu de pausa aberto: o tempo de jogo para
+  velocidade: 1,       // velocidade da batalha escolhida nas opções (1×, 1,5×, 2×)
+
   tick(realDt) {
+    if (this.pausado) return 0;
+    realDt *= this.velocidade;
     if (this.freeze > 0) {
       this.freeze -= realDt;
       return 0;

@@ -26,7 +26,7 @@ FF.Lab = {
     const el = document.createElement('div');
     el.id = 'lab';
     el.innerHTML = `
-      <div class="lab-topo"><b>🧪 Laboratório</b><button id="lab-min" title="Minimizar">—</button></div>
+      <div class="lab-topo"><b>🧪 Laboratório</b><span><button id="lab-sair" title="Voltar à tela de título">🏠 Sair</button> <button id="lab-min" title="Minimizar">—</button></span></div>
       <label>Quem ataca <select id="lab-ator"></select></label>
       <label>Golpe <select id="lab-golpe"></select></label>
       <p class="desc" id="lab-desc"></p>
@@ -54,6 +54,7 @@ FF.Lab = {
     const $ = (s) => el.querySelector(s);
     this.$ = $;
     $('#lab-min').onclick = () => el.classList.toggle('min');
+    $('#lab-sair').onclick = () => { location.href = location.pathname; };
     el.querySelectorAll('[data-o]').forEach(ck => {
       ck.checked = !!this.opts[ck.dataset.o];
       ck.onchange = () => { this.opts[ck.dataset.o] = ck.checked; this.aplicarOpcoes(); };

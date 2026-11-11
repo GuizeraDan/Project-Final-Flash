@@ -49,7 +49,7 @@ FF.Editor = {
     const el = document.createElement('div');
     el.id = 'editor';
     el.innerHTML = `
-      <div class="ed-topo"><b>🎬 Editor de cenas</b><button data-ed="min" title="Minimizar">—</button></div>
+      <div class="ed-topo"><b>🎬 Editor de cenas</b><span><button data-ed="sair" title="Voltar à tela de título">🏠 Sair</button> <button data-ed="min" title="Minimizar">—</button></span></div>
       <div class="ed-linha">
         <label>Quem solta <select data-ed="atacante"></select></label>
         <label>Alvo <select data-ed="alvo"></select></label>
@@ -96,6 +96,7 @@ FF.Editor = {
     this.$ = $;
     el.addEventListener('pointerdown', (e) => e.stopPropagation());
     $('min').onclick = () => el.classList.toggle('min');
+    $('sair').onclick = () => { if (confirm('Sair do editor? Cenas não salvas serão perdidas.')) location.href = location.pathname; };
     const preencher = (sel, lado) => {
       sel.innerHTML = '';
       this.b.all.forEach((f, i) => { const o = document.createElement('option'); o.value = i; o.textContent = (f.isHero ? '🟦 ' : '🟥 ') + f.def.nome + (f.sufixo || ''); sel.appendChild(o); });

@@ -90,6 +90,33 @@
     <div class="dica">toque / Enter para continuar · Esc para pular</div>
   </div>
 
+  <button id="bt-pausa" title="Pausa / opções (Esc)" hidden>⏸</button>
+  <div id="pausa" hidden>
+    <div class="pausa-caixa">
+      <h2>Pausa</h2>
+      <div class="pausa-botoes" data-tela="principal">
+        <button data-p="continuar">▶ Continuar</button>
+        <button data-p="opcoes">🔊 Som e velocidade</button>
+        <button data-p="reiniciar">↻ Reiniciar luta</button>
+        <button data-p="salvar">💾 Salvar e sair</button>
+        <button data-p="sair">🏠 Sair para o título</button>
+      </div>
+      <div class="pausa-opcoes" data-tela="opcoes" hidden>
+        <label>Música <input type="range" data-vol="musica" min="0" max="100"></label>
+        <label>Efeitos <input type="range" data-vol="sfx" min="0" max="100"></label>
+        <label>Vozes <input type="range" data-vol="voz" min="0" max="100"></label>
+        <label>Velocidade da batalha
+          <select data-p="velocidade"><option value="1">Normal</option><option value="1.5">Rápida (1,5×)</option><option value="2">Muito rápida (2×)</option></select>
+        </label>
+        <label>Tempo da guarda/crítico
+          <select data-p="janela"><option value="0.3">Normal</option><option value="0.42">Mais fácil</option><option value="0.2">Mais difícil</option></select>
+        </label>
+        <button data-p="voltar">← Voltar</button>
+      </div>
+      <p class="pausa-aviso"></p>
+    </div>
+  </div>
+
   <div id="fim">
     <h2>Vitória!</h2>
     <p id="ap-ganho"></p>
@@ -116,6 +143,7 @@
 <script src="js/ferramentas/editor.js"></script>
 <script src="js/ui/selecao.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/ui/pausa.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

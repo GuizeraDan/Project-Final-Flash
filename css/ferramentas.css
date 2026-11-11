@@ -154,3 +154,4 @@
 .imp-pac span { flex: 1; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .imp-pac button { padding: 1px 6px; }
 @media (max-width: 900px) { .imp-corpo { grid-template-columns: 1fr; overflow-y: auto; } .imp-scroll { min-height: 50vh; } }
+#lab .lab-topo button, #editor .ed-topo button { padding: 2px 8px; }

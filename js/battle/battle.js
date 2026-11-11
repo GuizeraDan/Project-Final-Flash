@@ -237,15 +237,15 @@ FF.Battle = class {
   }
 
   onPress() {
-    if (this.over) return;
+    if (this.over || FF.Clock.pausado) return;
     const now = FF.Clock.t;
     if (now < this.lockUntil) return;
     const pend = this.qtes.filter(q => q.result === undefined && !q.press).sort((a, b) => a.at - b.at)[0];
     if (!pend) return;
     const left = pend.at - now;
-    if (left <= 0.30 && left >= -0.02) {
+    if (left <= (FF.janela || 0.30) && left >= -0.02) {
       pend.press = now;
-    } else if (left > 0.30) {
+    } else if (left > (FF.janela || 0.30)) {
       this.lockUntil = now + 0.35;
       this.popup(pend.alvo, 'Cedo demais!', '#ffcf6b', -40);
     }
@@ -570,7 +570,7 @@ FF.Battle = class {
       const p = q.alvo.peito();
       const span = Math.max(0.05, q.at - q.start);
       const k = Math.max(0, (q.at - now) / span);
-      const inWin = q.at - now <= 0.30;
+      const inWin = q.at - now <= (FF.janela || 0.30);
       const col = q.mode === 'guarda' ? '120,220,255' : '255,210,70';
       ctx.save();
       ctx.lineWidth = 4;

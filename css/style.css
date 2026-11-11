@@ -196,3 +196,25 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .titulo-banner.esq { left: 2cqw; }
 .titulo-banner.dir { right: 2cqw; }
 #inicio { isolation: isolate; }
+
+/* ---- botão de pausa e menu de pausa ---- */
+#bt-pausa { position: absolute; right: 1.2cqw; bottom: 1.2cqw; z-index: 6; width: 4.6cqw; height: 4.6cqw; min-width: 36px; min-height: 36px;
+  font-size: 2cqw; color: #fff; cursor: pointer; border-radius: 50%; border: 0.22cqw solid #ffd84a; background: rgba(20,14,44,0.85); }
+#bt-pausa[hidden] { display: none; }
+#jogo.pausado #menu { visibility: hidden; }
+#pausa { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; background: rgba(6,4,14,0.72); }
+#pausa[hidden] { display: none; }
+.pausa-caixa { min-width: 34cqw; padding: 2cqw 2.6cqw; border-radius: 1.4cqw; border: 0.3cqw solid #c9a227; text-align: center;
+  background: linear-gradient(180deg, #241a4e, #0f0a24); box-shadow: 0 1cqw 3cqw rgba(0,0,0,0.6); }
+.pausa-caixa h2 { margin: 0 0 1.4cqw; font-size: 3.2cqw; color: #ffd84a; text-shadow: 0 0.3cqw 0 #a0400a; }
+.pausa-botoes, .pausa-opcoes { display: flex; flex-direction: column; gap: 0.9cqw; }
+.pausa-botoes[hidden], .pausa-opcoes[hidden] { display: none; }
+.pausa-caixa button { font: inherit; font-size: 1.7cqw; font-weight: 800; color: #fff; cursor: pointer; padding: 0.8cqw 2cqw; border-radius: 0.9cqw;
+  border: 0.22cqw solid #5b4bb0; background: #2b1d5c; }
+.pausa-caixa button:hover, .pausa-caixa button:focus { border-color: #ffd84a; background: #4a2f9a; outline: none; }
+.pausa-caixa button[hidden] { display: none; }
+.pausa-opcoes label { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; font-size: 1.6cqw; font-weight: 800; }
+.pausa-opcoes input[type=range] { width: 18cqw; accent-color: #ffd84a; }
+.pausa-opcoes select { font: inherit; font-size: 1.4cqw; color: #fff; background: #2b1d5c; border: 0.15cqw solid #5b4bb0; border-radius: 0.6cqw; padding: 0.3cqw 0.6cqw; }
+.pausa-aviso { margin: 1.2cqw 0 0; font-size: 1.25cqw; color: #9fe2ff; min-height: 1em; }
+@media (pointer: coarse) { .pausa-caixa button { min-height: 38px; } }
