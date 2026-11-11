@@ -13,7 +13,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - Commits com autor `GuizeraDan <GuizeraDan@users.noreply.github.com>` (nunca o e-mail pessoal).
 
 ## Ferramentas
-- `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons) e laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
+- `visualizador.html` (animações quadro a quadro + eventos dos golpes + sons), laboratório `index.html?teste=1&batalha=<id>` (executa qualquer golpe) e editor de cenas `index.html?editor=1&batalha=<id>` (monta golpes e exporta o JSON do roteiro; o usuário pode colar esse JSON na conversa). O `data/bundle.js` traz `_indice` (sprites, personagens, batalhas, áudios) usado por elas.
 
 ## Retratos e seleção
 - Sprite `retratos`: anim `retrato` (46 rostos de seleção do ZL3) e `banner` (44 artes inclinadas). Cada forma do personagem aponta os seus em `"retrato": {"quadro": N, "banner": M}` (sem isso, usa o sprite de batalha). `cenarios_preview` tem as 32 prévias de cenário do ZL3 (para uma futura escolha de cenário).

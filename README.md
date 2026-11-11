@@ -138,3 +138,9 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
   - batalha sem turnos para executar qualquer golpe de qualquer lutador, incluindo outras formas, supremos e Sparking;
   - opções de ki e vida infinitos, câmera lenta (até 0,1×) e guarda ou crítico automáticos;
   - registro do dano de cada golpe. Atalhos: Enter executa, R repete.
+- **Editor de cenas** (`index.html?editor=1&batalha=<id>`, ou "🎬 Editor de cenas" na tela de título):
+  - sandbox para montar golpes: escolha quem solta e o alvo e monte o roteiro passo a passo (animações do lutador, avançar, teleporte, espera);
+  - em cada quadro dá para prender efeitos visuais, sons, vozes, acertos, projéteis, tremor e flash;
+  - 🎯 alinha um efeito clicando na tela; ▶ testa na batalha real; dá para abrir um golpe existente para modificar;
+  - salva cenas no navegador; "Copiar JSON" gera o golpe pronto para entrar no jogo;
+  - no visualizador, "➕ Enviar para o editor" (animações) e o ➕ ao lado dos sons mandam itens direto para o editor.

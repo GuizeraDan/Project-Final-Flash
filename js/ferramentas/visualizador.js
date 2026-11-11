@@ -283,8 +283,25 @@
       b.title = n + ' (clique para tocar, botão direito copia o nome)';
       b.onclick = () => FF.Audio.play(n, 1);
       b.oncontextmenu = (e) => { e.preventDefault(); copiar(n); };
-      box.appendChild(b);
+      const linha = document.createElement('span');
+      linha.className = 'som-linha';
+      const env = document.createElement('button');
+      env.textContent = '➕'; env.title = 'Enviar para o Editor de cenas';
+      env.onclick = () => enviar({ tipo: 'som', som: n });
+      linha.append(b, env);
+      box.appendChild(linha);
     });
+  }
+
+  // fila compartilhada com o Editor de cenas (mesmo navegador)
+  function enviar(item) {
+    try {
+      const fila = JSON.parse(localStorage.getItem('ff_editor_fila') || '[]');
+      fila.push(item);
+      localStorage.setItem('ff_editor_fila', JSON.stringify(fila.slice(-30)));
+      $('#copiado').textContent = 'enviado para o editor!';
+      setTimeout(() => ($('#copiado').textContent = ''), 1500);
+    } catch (e) { alert('Não deu para enviar (armazenamento do navegador bloqueado).'); }
   }
 
   function copiar(txt) {
@@ -309,6 +326,7 @@
     $('#ck-fantasma').onchange = (e) => (st.fantasma = e.target.checked);
     $('#sel-fundo').onchange = (e) => (st.fundo = e.target.value);
     $('#sel-uso').onchange = (e) => { st.uso = ((st.usos[st.setId] || {})[st.animName] || [])[+e.target.value] || null; renderLinha(); renderInfo(); };
+    $('#bt-enviar').onclick = () => enviar({ tipo: 'anim', sprite: st.setId, anim: st.animName, quadro: st.i });
     $('#bt-copiar').onclick = () => copiar('sprite ' + st.setId + ' · animação ' + st.animName + ' · quadro ' + st.i + ' de ' + (st.anim.frames.length - 1));
     $('#busca-som').oninput = renderSons;
     document.querySelectorAll('.aba').forEach(b => b.onclick = () => {
