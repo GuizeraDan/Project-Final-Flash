@@ -1,0 +1,12 @@
+{
+  "id": "campo",
+  "nome": "Campo (Saga Saiyajin)",
+  "sprite": "stage_campo",
+  "ceu": "ceu",
+  "chao": "chao2",
+  "chaoY": 478,
+  "chaoEscala": 1.5,
+  "chaoTopo": 120,
+  "ceuDesce": 40,
+  "corTerra": "#6aa531"
+}

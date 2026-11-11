@@ -1,0 +1,15 @@
+{
+  "id": "saiyajin_01",
+  "saga": "saiyajin",
+  "titulo": "Saga Saiyajin — Goku vs Raditz",
+  "cenario": "campo",
+  "musica": "tournament_theme",
+  "escala": 2.5,
+  "posicoes": { "herois": [170], "inimigos": [915] },
+  "herois": ["goku"],
+  "inimigos": ["raditz"],
+  "intro": [
+    { "quem": "raditz", "voz": "raditz_intro_voice", "esperar": 4.6 },
+    { "quem": "goku", "voz": "vgkn400", "esperar": 1.8 }
+  ]
+}

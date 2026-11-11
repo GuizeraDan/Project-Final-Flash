@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Final Flash — protótipo de batalha</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="jogo">
+  <canvas id="tela" width="1084" height="580"></canvas>
+
+  <div id="menu"></div>
+
+  <div id="ajuda">Espaço / toque na tela: <b>guarda</b> quando o anel azul fechar · <b>crítico</b> quando o anel dourado fechar</div>
+
+  <div id="inicio">
+    <h1>FINAL FLASH</h1>
+    <h3>Protótipo · Saga Saiyajin · Goku vs Raditz</h3>
+    <p>Toque ou aperte Enter para começar</p>
+  </div>
+
+  <div id="fim">
+    <h2>Vitória!</h2>
+    <button id="denovo">Lutar de novo</button>
+  </div>
+</div>
+
+<script src="data/bundle.js"></script>
+<script src="js/core/clock.js"></script>
+<script src="js/core/assets.js"></script>
+<script src="js/core/sprite.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/core/input.js"></script>
+<script src="js/battle/fighter.js"></script>
+<script src="js/battle/script.js"></script>
+<script src="js/battle/ai.js"></script>
+<script src="js/battle/hud.js"></script>
+<script src="js/battle/battle.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

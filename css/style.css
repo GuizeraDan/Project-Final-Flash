@@ -1,0 +1,38 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #0c0a14; overflow: hidden; }
+body { display: flex; align-items: center; justify-content: center; font-family: "Trebuchet MS", Arial, sans-serif; color: #fff; }
+
+/* área do jogo mantém 1084x580 e escala para caber na tela */
+#jogo { position: relative; width: min(100vw, calc(100vh * 1084 / 580)); aspect-ratio: 1084 / 580; container-type: inline-size; }
+#tela { width: 100%; height: 100%; display: block; image-rendering: pixelated; touch-action: none; }
+
+#menu { position: absolute; left: 24cqw; bottom: 3.2cqw; width: 52cqw; display: none; grid-template-columns: 1fr 1fr; gap: 0.6cqw; }
+#menu.open { display: grid; }
+#menu button {
+  position: relative; text-align: left; font: inherit; color: #fff; cursor: pointer;
+  background: linear-gradient(180deg, rgba(40,30,80,0.92), rgba(20,14,44,0.92));
+  border: 0.25cqw solid #5b4bb0; border-radius: 0.9cqw; padding: 0.7cqw 1cqw 0.7cqw 3.4cqw;
+  font-size: 1.55cqw; line-height: 1.2;
+}
+#menu button .n { position: absolute; left: 0.9cqw; top: 0.75cqw; color: #ffd84a; font-weight: 900; }
+#menu button .nome { font-weight: 900; }
+#menu button .ki { float: right; color: #8fe0ff; font-weight: 700; }
+#menu button .desc { display: block; font-size: 1.15cqw; opacity: 0.75; }
+#menu button.sel { border-color: #ffd84a; background: linear-gradient(180deg, rgba(90,60,150,0.95), rgba(40,24,90,0.95)); }
+#menu button:disabled { opacity: 0.4; cursor: default; }
+
+#ajuda { position: absolute; left: 0; right: 0; bottom: 0.6cqw; font-size: 1.15cqw; opacity: 0.8; text-align: center; text-shadow: 0 0 0.3cqw #000; pointer-events: none; }
+
+#inicio, #fim {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 45%, rgba(255,140,30,0.35), rgba(10,6,20,0.92) 60%); cursor: pointer; text-align: center;
+}
+#inicio h1 { font-size: 7cqw; margin: 0; color: #ffd84a; letter-spacing: 0.4cqw; text-shadow: 0 0.4cqw 0 #a0400a, 0 0 2cqw rgba(255,180,40,0.6); }
+#inicio h3 { font-size: 1.8cqw; margin: 0.6cqw 0 3cqw; opacity: 0.85; }
+#inicio p { font-size: 2cqw; animation: pisca 1.2s infinite; }
+#inicio.hide { display: none; }
+#fim { display: none; cursor: default; background: rgba(10,6,20,0.55); }
+#fim.open { display: flex; }
+#fim h2 { font-size: 6cqw; margin: 0 0 2cqw; color: #ffd84a; text-shadow: 0 0.4cqw 0 #a0400a; }
+#fim button { font: inherit; font-size: 2cqw; padding: 1cqw 3cqw; border-radius: 1cqw; border: 0.3cqw solid #ffd84a; background: #2b1d5c; color: #fff; cursor: pointer; }
+@keyframes pisca { 50% { opacity: 0.35; } }
