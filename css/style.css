@@ -125,26 +125,4 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .menu-titulo button, #fim button { min-height: 36px; }
 }
 
-/* ---- movimento na tela de título ---- */
-#inicio::before { content: ""; position: absolute; inset: -20%; pointer-events: none; z-index: -1;
-  background: radial-gradient(circle at 50% 45%, rgba(255,160,40,0.28), transparent 45%);
-  animation: aura 3.2s ease-in-out infinite; }
-#inicio { isolation: isolate; }
-#inicio h1 { animation: brilho 2.4s ease-in-out infinite; }
-#inicio.menu .menu-titulo > button, #inicio.livre .menu-titulo > button, #inicio.opcoes .menu-titulo > *, #inicio.treino .menu-titulo > * {
-  animation: entra 0.35s ease-out both; }
-.menu-titulo > :nth-child(2) { animation-delay: 0.04s !important; }
-.menu-titulo > :nth-child(3) { animation-delay: 0.08s !important; }
-.menu-titulo > :nth-child(4) { animation-delay: 0.12s !important; }
-.menu-titulo > :nth-child(5) { animation-delay: 0.16s !important; }
-.menu-titulo > :nth-child(6) { animation-delay: 0.20s !important; }
-.menu-titulo > :nth-child(7) { animation-delay: 0.24s !important; }
-.menu-titulo > :nth-child(8) { animation-delay: 0.28s !important; }
-.menu-titulo button:not(:disabled):hover, .menu-titulo button:not(:disabled):focus { transform: scale(1.04); }
-.menu-titulo button { transition: transform 0.12s, background 0.12s; }
-.menu-titulo button:not(:disabled):active { transform: scale(0.97); }
-@keyframes aura { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.12); opacity: 1; } }
-@keyframes brilho { 0%, 100% { text-shadow: 0 0.4cqw 0 #a0400a, 0 0 1.5cqw rgba(255,180,40,0.5); } 50% { text-shadow: 0 0.4cqw 0 #a0400a, 0 0 3.5cqw rgba(255,200,60,0.95); } }
-@keyframes entra { from { opacity: 0; transform: translateY(1.2cqw); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { #inicio::before, #inicio h1, .menu-titulo > * { animation: none !important; } }
 .menu-titulo button:disabled { opacity: 0.4 !important; }
