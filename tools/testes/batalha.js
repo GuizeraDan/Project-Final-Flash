@@ -45,7 +45,11 @@ const rage = opt('rage', null);   // --rage 100: começa com a Rage cheia (testa
     fim = await p.evaluate(() => document.querySelector('#fim').classList.contains('open'));
     if (fim) break;
     const aberto = await p.evaluate(() => document.querySelector('#menu').classList.contains('open'));
-    if (aberto) {
+    const alvos = aberto && await p.evaluate(() => document.querySelector('#menu').classList.contains('alvos'));
+    if (alvos) {   // escolha de alvo: pega o primeiro (não consome o plano)
+      await p.evaluate(() => document.querySelector('#menu button').click());
+      console.log('  alvo escolhido');
+    } else if (aberto) {
       const mv = plano[Math.min(k, plano.length - 1)]; k++;
       const ok = await p.evaluate((mv) => { const bt = document.querySelector(`#menu button:nth-child(${mv})`); if (!bt || bt.disabled) return false; bt.click(); return true; }, mv);
       if (!ok) await p.evaluate(() => { const bt = document.querySelector('#menu button:not([disabled])'); if (bt) bt.click(); });

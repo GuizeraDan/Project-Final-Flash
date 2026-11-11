@@ -29,7 +29,7 @@ FF.Fighter = class {
   }
 
   get form() { return this.def.formas[this.formId]; }
-  get nome() { return this.form.nome || this.def.nome; }
+  get nome() { return (this.form.nome || this.def.nome) + (this.sufixo || ''); }
 
   setForm(id) {
     const keep = this.anim && this.anim.name;

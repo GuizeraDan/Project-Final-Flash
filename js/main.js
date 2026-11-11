@@ -53,6 +53,39 @@ FF.UI = {
       box.classList.add('open');
     });
   },
+  // escolha do alvo quando há vários inimigos de pé (setas/números/clique)
+  chooseTarget(foes, battle) {
+    return new Promise(resolve => {
+      const box = document.getElementById('menu');
+      box.innerHTML = '<div class="titulo-alvo">Escolha o alvo</div>';
+      box.classList.add('alvos');
+      let sel = 0;
+      const btns = foes.map((f, i) => {
+        const b = document.createElement('button');
+        b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="nome">' + f.nome + '</span><span class="desc">Vida ' + Math.ceil(f.hp) + ' / ' + f.hpMax + '</span>';
+        b.onclick = () => done(i);
+        b.onmouseenter = () => focus(i);
+        box.appendChild(b);
+        return b;
+      });
+      const focus = (i) => { sel = i; battle.alvoMarcado = foes[i]; btns.forEach((b, k) => b.classList.toggle('sel', k === i)); };
+      focus(0);
+      const key = (e) => {
+        if (e.code === 'ArrowDown' || e.code === 'ArrowUp') { e.preventDefault(); focus((sel + (e.code === 'ArrowDown' ? 1 : -1) + btns.length) % btns.length); FF.Audio.play('tap_sound', 0.5); }
+        else if (e.code === 'Enter') { e.preventDefault(); done(sel); }
+        else if (/^Digit[1-9]$/.test(e.code)) { const i = +e.code.slice(5) - 1; if (btns[i]) done(i); }
+      };
+      const done = (i) => {
+        window.removeEventListener('keydown', key, true);
+        box.classList.remove('open', 'alvos');
+        battle.alvoMarcado = null;
+        FF.Audio.play('decide_charasel', 0.6);
+        resolve(foes[i]);
+      };
+      window.addEventListener('keydown', key, true);
+      box.classList.add('open');
+    });
+  },
   meets(hero, req) {
     if (req.forma && hero.formId !== req.forma) return false;
     if (req.semBuff && hero.buffs[req.semBuff]) return false;
@@ -86,6 +119,17 @@ FF.start = async function (escolhida) {
   const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
   await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)));
+  // animações derivadas: sprites incompletos (ex.: Saibaman só tem ataques) ganham parado/dano/caído
+  // montados a partir de quadros de outras animações ({"Parado": {"de": "Ataque_1", "quadros": [0, 1], "fps": 4, "loop": true}})
+  heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => {
+    const set = FF.Assets.sprites[f.sprite];
+    for (const [nome, d] of Object.entries(f.animsDerivadas || {})) {
+      if (set.has(nome) || !set.has(d.de)) continue;
+      const src = set.anim(d.de);
+      set.def.anims[nome] = { fps: d.fps || 0, loop: !!d.loop, repeatTo: 0, pingpong: false,
+        frames: d.quadros.map(i => src.frames[Math.min(i, src.frames.length - 1)]) };
+    }
+  }));
 
   const battle = new FF.Battle(def, stage, FF.UI);
   heroDefs.forEach((c, i) => battle.addFighter(c, 'heroi', i));

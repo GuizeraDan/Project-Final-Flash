@@ -57,6 +57,14 @@ FF.Script = {
 
     if (s.esperar) return FF.Clock.wait(s.esperar);
 
+    if (s.autoNocaute) {   // ex.: autodestruição do Saibaman — some numa explosão
+      b.spawnFx('Explosao11', actor.x, actor.y - 20 * actor.scale, false, 1, {});
+      FF.Audio.play(s.som || 'nappa_saibaplant_expl', 1);
+      b.flash(0.4); b.shake(8);
+      actor.hp = 0; actor.ko = true; actor.alpha = 0;
+      return FF.Clock.wait(0.6);
+    }
+
     if (s.transformar) {
       actor.setForm(s.transformar);
       actor.transformouAgora = true;

@@ -1,0 +1,44 @@
+{
+ "saga": "saiyajin",
+ "cenario": "campo",
+ "escala": 2.2,
+ "musica": "tournament_theme",
+ "herois": [
+  "goku",
+  "piccolo",
+  "krillin"
+ ],
+ "posicoes": {
+  "herois": [
+   250,
+   150,
+   350
+  ],
+  "inimigos": [
+   930
+  ]
+ },
+ "id": "saiyajin_05",
+ "titulo": "Saga Saiyajin — O Príncipe Vegeta",
+ "inimigos": [
+  "vegeta"
+ ],
+ "ajustes": {
+  "vegeta": {
+   "hp": 4200
+  }
+ },
+ "intro": [
+  {
+   "quem": "vegeta",
+   "voz": "vvgn400",
+   "anim": "Intro_Pt4",
+   "esperar": 2.6
+  },
+  {
+   "quem": "goku",
+   "voz": "vgkn400",
+   "esperar": 1.6
+  }
+ ]
+}

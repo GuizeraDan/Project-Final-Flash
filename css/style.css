@@ -46,3 +46,5 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 #escolha { position: absolute; bottom: 4cqw; display: flex; gap: 1.5cqw; }
 #escolha button { font: inherit; font-size: 1.6cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
 #escolha button:hover { background: rgba(90,60,150,0.95); }
+
+#menu .titulo-alvo { grid-column: 1 / -1; color: #ffd84a; font-weight: 900; text-shadow: 0 0 4px #000, 1px 1px 0 #000; font-size: 1.5cqw; }

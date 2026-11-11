@@ -166,13 +166,22 @@ FF.HUD = {
       ctx.beginPath(); ctx.moveTo(p.x - 10, y - 14); ctx.lineTo(p.x + 10, y - 14); ctx.lineTo(p.x, y); ctx.closePath();
       ctx.stroke(); ctx.fill();
     }
+    const m = b.alvoMarcado;   // alvo sendo escolhido no menu
+    if (m && !m.ko) {
+      const p = m.peito();
+      const y = p.y - 62 * (m.scale || 1) + Math.sin(FF.Clock.t * 8) * 5;
+      ctx.fillStyle = '#ff4a3a'; ctx.strokeStyle = '#1a1020'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(p.x - 13, y - 18); ctx.lineTo(p.x + 13, y - 18); ctx.lineTo(p.x, y); ctx.closePath();
+      ctx.stroke(); ctx.fill();
+    }
     ctx.restore();
   },
 
   draw(ctx, b) {
     const n = b.heroes.length;
     b.heroes.forEach((h, i) => n > 1 ? this.panel(ctx, h, false, 1.05, 2 + i * 76) : this.panel(ctx, h, false));
-    b.enemies.forEach((e, i) => this.panel(ctx, e, true));
+    const ne = b.enemies.length;
+    b.enemies.forEach((e, i) => ne > 1 ? this.panel(ctx, e, true, 1.05, 2 + i * 76) : this.panel(ctx, e, true));
     this.destaque(ctx, b);
     if (b.turnLabel) this.text(ctx, b.turnLabel, FF.W / 2, 22, 16, '#ffe9a8', 'center');
     for (const t of b.texts) {

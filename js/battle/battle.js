@@ -35,13 +35,24 @@ FF.Battle = class {
 
   get all() { return this.heroes.concat(this.enemies); }
 
+  static ofensivo(mv) {
+    const j = JSON.stringify(mv.roteiro || []);
+    return /"(acerto|projetil|lancarObjeto|atordoar)"/.test(j);
+  }
+
   addFighter(charDef, lado, idx) {
     const pos = lado === 'heroi' ? this.def.posicoes.herois : this.def.posicoes.inimigos;
     // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
     const aj = (this.def.ajustes || {})[charDef.id];
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
     const f = new FF.Fighter(charDef, lado, pos[idx] != null ? pos[idx] : pos[0], this.groundY, this.scale);
-    (lado === 'heroi' ? this.heroes : this.enemies).push(f);
+    const lista = lado === 'heroi' ? this.heroes : this.enemies;
+    const iguais = lista.filter(x => x.id === f.id);
+    if (iguais.length) {   // vários do mesmo (ex.: Saibamen): A, B, C...
+      if (iguais.length === 1) iguais[0].sufixo = ' A';
+      f.sufixo = ' ' + String.fromCharCode(65 + iguais.length);
+    }
+    lista.push(f);
     return f;
   }
 
@@ -96,7 +107,12 @@ FF.Battle = class {
     this.turnLabel = 'Vez de ' + actor.nome;
     this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
-    if (isHero) moveId = await this.ui.chooseMove(actor, this);
+    if (isHero) {
+      moveId = await this.ui.chooseMove(actor, this);
+      // vários inimigos de pé: o jogador escolhe o alvo (golpes que acertam alguém)
+      const mv = actor.def.golpes[moveId];
+      if (foes.length > 1 && FF.Battle.ofensivo(mv)) target = await this.ui.chooseTarget(foes, this);
+    }
     else {
       await FF.Clock.wait(0.6);
       const sup = actor.rageCheia && actor.form.golpes.find(id => (actor.def.golpes[id] || {}).supremo);

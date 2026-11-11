@@ -1,0 +1,42 @@
+{
+ "saga": "saiyajin",
+ "cenario": "campo",
+ "escala": 2.2,
+ "musica": "tournament_theme",
+ "herois": [
+  "goku",
+  "piccolo",
+  "krillin"
+ ],
+ "posicoes": {
+  "herois": [
+   250,
+   150,
+   350
+  ],
+  "inimigos": [
+   820,
+   930,
+   1020
+  ]
+ },
+ "id": "saiyajin_03",
+ "titulo": "Saga Saiyajin — Os Saibamen",
+ "inimigos": [
+  "saibaman",
+  "saibaman",
+  "saibaman"
+ ],
+ "intro": [
+  {
+   "quem": "piccolo",
+   "voz": "vpcn400",
+   "esperar": 1.6
+  },
+  {
+   "quem": "krillin",
+   "voz": "vkrn400",
+   "esperar": 1.4
+  }
+ ]
+}
