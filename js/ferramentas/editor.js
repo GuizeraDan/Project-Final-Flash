@@ -242,10 +242,17 @@ FF.Editor = {
       corpo.appendChild(this.campo('Animação', this.previaAnim(s, p.anim, (v) => { p.anim = v; this.render(); this.atualizarJSON(); })));
       const a = this.ator().sprite.anim(this.ator().animName(p.anim));
       const info = document.createElement('small');
-      info.textContent = a ? a.frames.length + ' quadros (0 a ' + (a.frames.length - 1) + ') · ' + (a.fps || 0) + ' fps' : '⚠ animação não existe neste lutador';
+      // duração total em segundos (muda na hora ao digitar o fps)
+      const tempoAnim = () => {
+        if (!a) return '⚠ animação não existe neste lutador';
+        const fps = p.fps || a.fps || 10, q = a.frames.reduce((t, f) => t + (f[7] || 1), 0);
+        return a.frames.length + ' quadros (0 a ' + (a.frames.length - 1) + ') · ' + fps + ' fps' + (p.fps ? ' (o normal é ' + (a.fps || 10) + ')' : '') +
+          ' · dura ' + (q / fps).toFixed(2).replace('.', ',') + ' s · mais fps = mais rápido';
+      };
+      info.textContent = tempoAnim();
       corpo.appendChild(info);
       const l2 = document.createElement('div'); l2.className = 'ed-linha';
-      l2.appendChild(this.campo('fps', this.inp(p.fps, v => this.set(p, 'fps', v), 'number', { min: 1, step: 1, placeholder: 'padrão' })));
+      l2.appendChild(this.campo('fps', this.inp(p.fps, v => { this.set(p, 'fps', v); info.textContent = tempoAnim(); }, 'number', { min: 1, step: 1, placeholder: 'padrão (' + ((a && a.fps) || 10) + ')' })));
       l2.appendChild(this.campo('repetir por (s)', this.inp(p.duracao, v => this.set(p, 'duracao', v), 'number', { min: 0, step: 0.1, placeholder: 'não' })));
       corpo.appendChild(l2);
       // eventos
