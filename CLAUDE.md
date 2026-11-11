@@ -10,6 +10,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - O motor deve continuar suportando transformação no meio da luta.
 - Sprites novos só saem do APK do Z Legends 3 (`tools/extract_sprites.py`). Sem o APK, use o que já está em `data/sprites/` e `assets/`. `docs/catalogo_zl3.json` lista todos os objetos/animações do jogo original; `docs/audios_zl3_disponiveis.txt` lista todos os áudios.
 - Falas/história: escreva texto próprio em português (pode resumir os acontecimentos da saga), sem copiar diálogos do anime/mangá.
+- Ao terminar cada pedido, mande os links do GitHub Pages do que mudou: jogo https://guizeradan.github.io/Project-Final-Flash/ · visualizador https://guizeradan.github.io/Project-Final-Flash/visualizador.html · editor de cenas https://guizeradan.github.io/Project-Final-Flash/index.html?editor=1&batalha=saiyajin_01
 - Commits com autor `GuizeraDan <GuizeraDan@users.noreply.github.com>` (nunca o e-mail pessoal).
 
 ## Ferramentas
