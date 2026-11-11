@@ -48,7 +48,7 @@ FF.Editor = {
   montar() {
     const el = document.createElement('div');
     el.id = 'editor';
-    el.innerHTML = `
+    el.innerHTML = `<div class="ed-main">
       <div class="ed-topo"><b>🎬 Editor de cenas</b><span><button data-ed="sair" title="Voltar à tela de título">🏠 Sair</button> <button data-ed="min" title="Minimizar">—</button></span></div>
       <div class="ed-linha">
         <label>Quem solta <select data-ed="atacante"></select></label>
@@ -67,6 +67,7 @@ FF.Editor = {
       <div class="ed-passos"></div>
       <div class="ed-linha">
         <select data-ed="novoPasso">
+          <option value="cena">+ Cena livre (mover sprites na tela)</option>
           <option value="anim">+ Animação do lutador</option>
           <option value="irAte">+ Avançar até o alvo</option>
           <option value="voltar">+ Voltar (teleporte)</option>
@@ -89,7 +90,8 @@ FF.Editor = {
       </div>
       <textarea data-ed="json" rows="5" spellcheck="false" placeholder="O JSON do golpe aparece aqui. Mande para o Claude colocar no jogo."></textarea>
       <div class="ed-log"></div>
-      <div class="ed-linha"><a href="visualizador.html" target="_blank">Abrir visualizador ↗</a></div>`;
+      <div class="ed-linha"><a href="visualizador.html" target="_blank">Abrir visualizador ↗</a></div></div>
+      <div class="ed-cena" hidden></div>`;
     document.body.appendChild(el);
     this.el = el;
     const $ = (s) => el.querySelector('[data-ed="' + s + '"]');
@@ -159,6 +161,7 @@ FF.Editor = {
   },
 
   tipoPasso(p) {
+    if (p.cena) return 'cena';
     if (typeof p.anim === 'string') return 'anim';
     if (p.irAte) return 'irAte';
     if (p.voltar) return 'voltar';
@@ -195,7 +198,7 @@ FF.Editor = {
     card.className = 'ed-passo' + (i === this.passoSel ? ' sel' : '');
     card.onclick = (e) => { if (e.target === card || e.target.classList.contains('ed-cab')) { this.passoSel = i; this.render(); } };
     const tipo = this.tipoPasso(p);
-    const nomes = { anim: 'Animação', irAte: 'Avançar até o alvo', voltar: 'Voltar (teleporte)', esperar: 'Esperar', mensagem: 'Mensagem', json: 'Passo avançado' };
+    const nomes = { cena: 'Cena livre', anim: 'Animação', irAte: 'Avançar até o alvo', voltar: 'Voltar (teleporte)', esperar: 'Esperar', mensagem: 'Mensagem', json: 'Passo avançado' };
     const cab = document.createElement('div');
     cab.className = 'ed-cab';
     cab.textContent = '#' + (i + 1) + ' ' + nomes[tipo];
@@ -211,7 +214,16 @@ FF.Editor = {
     const corpo = document.createElement('div');
     corpo.className = 'ed-corpo';
 
-    if (tipo === 'anim') {
+    if (tipo === 'cena') {
+      const c = p.cena;
+      const info = document.createElement('small');
+      info.textContent = (c.camadas || []).length + ' sprites · ' + (c.duracao || 0) + ' s · ' + (c.sons || []).length + ' sons · ' + (c.acertos || []).length + ' acertos';
+      const ed = document.createElement('button');
+      ed.className = 'ed-grande';
+      ed.textContent = '✏ Editar na tela';
+      ed.onclick = (e) => { e.stopPropagation(); this.abrirCena(i); };
+      corpo.append(info, ed);
+    } else if (tipo === 'anim') {
       const lista = this.animsDoAtor();
       const s = this.sel(lista.includes(p.anim) ? lista : [p.anim].concat(lista), p.anim, (v) => { p.anim = v; this.render(); });
       corpo.appendChild(this.campo('Animação', s));
@@ -380,12 +392,14 @@ FF.Editor = {
   addPasso(tipo) {
     const g = this.cena.golpe;
     g.roteiro = g.roteiro || [];
-    const novo = { anim: { anim: this.animsDoAtor().find(n => /^Special/.test(n)) || this.animsDoAtor()[0], eventos: [] },
+    const novo = { cena: { cena: { duracao: 2, camadas: [], sons: [], acertos: [], esconderAtacante: false } },
+      anim: { anim: this.animsDoAtor().find(n => /^Special/.test(n)) || this.animsDoAtor()[0], eventos: [] },
       irAte: { irAte: 'alvo', dist: 22, tempo: 0.22, animMov: 'Dash', som: 'jetdash' },
       voltar: { voltar: true, som: 'teletransporte' }, esperar: { esperar: 0.3 }, mensagem: { mensagem: 'Texto' }, json: {} }[tipo];
     g.roteiro.splice(this.passoSel + 1, 0, novo);
     this.passoSel = Math.min(g.roteiro.length - 1, this.passoSel + 1);
     this.render();
+    if (tipo === 'cena') this.abrirCena(this.passoSel);
   },
 
   // ---------- itens enviados pelo visualizador ----------
@@ -473,6 +487,7 @@ FF.Editor = {
     // clique de alinhamento na tela
     const cv = document.getElementById('tela');
     cv.addEventListener('pointerdown', (ev) => {
+      if (this.cenaIdx != null && this.cenaPointer) { this.cenaPointer(ev); return; }
       if (!this.alinhando) return;
       ev.stopImmediatePropagation(); ev.preventDefault();
       const r = cv.getBoundingClientRect();
@@ -490,6 +505,7 @@ FF.Editor = {
     const draw = b.draw.bind(b);
     b.draw = (ctx) => {
       draw(ctx);
+      if (this.cenaIdx != null && this.desenharEdicaoCena) this.desenharEdicaoCena(ctx);
       if (this.alinhando) {
         const p = this.ancora(this.alinhando.e);
         ctx.save(); ctx.strokeStyle = '#ffd84a'; ctx.lineWidth = 2; ctx.setLineDash([4, 4]);

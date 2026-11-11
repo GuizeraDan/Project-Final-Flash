@@ -518,6 +518,7 @@ FF.Battle = class {
     }
     this.tweens = this.tweens.filter(tw => tw.t < tw.dur);
     for (const p of this.projectiles) if (!p.dead) this.atualizarProjetil(p, dt);
+    (this.cenasVivas || []).slice().forEach(v => v.tick && v.tick(dt));   // cenas livres em andamento
     this.projectiles = this.projectiles.filter(p => !p.dead);
     this.texts.forEach(t => { t.t += dt; t.y -= 40 * dt; });
     this.texts = this.texts.filter(t => t.t < t.life);
@@ -535,6 +536,7 @@ FF.Battle = class {
     const order = this.all.slice().sort((a, b) => (a.busy ? 1 : 0) - (b.busy ? 1 : 0));
     order.forEach(f => f.draw(ctx, this.fx));
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
+    (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t));
     this.projectiles.forEach(p => this.desenharProjetil(ctx, p));
     this.fxList.forEach(e => FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, e.alpha != null ? { alpha: e.alpha } : undefined));
     ctx.restore();

@@ -75,3 +75,8 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 **Testes (novo código):** `--plano 1,2,4,5,1`; `--batalha saiyajin_03 --plano 1,2,1,4,1`; `--batalha saiyajin_02 --erro 0.3` (sem ERROS; com o tempo padrão de 170 s não chega ao fim rodando em paralelo — use `--tempo 240`); tela de Treinamento testada por script (compra, desconto de AP, salvamento).
 
 **Pendente:** AP para desbloquear golpes; lutas 04/05 longas; testar no celular de verdade; itens antigos do Bloco 2/3 (Kamehameha do Kuririn, Sparking de 3, quadros de Nappa/Vegeta, cenário nos diálogos).
+
+## 2026-11-11 — Cena livre no editor de cenas
+- Novo passo de roteiro `cena` (motor em `js/battle/cena.js`): camadas de sprites com âncora (quem solta/alvo/tela), x/y, escala, giro, opacidade, espelhar, fps, início/fim e quadros-chave interpolados; eventos no tempo (sons/vozes, acertos com QTE, tremores, flashes); pode esconder atacante/alvo.
+- Editor (`js/ferramentas/editor_cena.js`): paleta com miniaturas de todos os sprites (inclui pacotes 📦 da biblioteca), arrastar na tela, alça/rodinha/+/- para tamanho, setas para ajuste fino, gravar posição por tempo, linha do tempo com ▶.
+- Falta: arrastar quadros-chave numa linha do tempo visual; giro pela tela (hoje só pelo campo).

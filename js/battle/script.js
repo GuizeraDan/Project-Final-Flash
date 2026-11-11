@@ -34,6 +34,7 @@ FF.Script = {
     if (s.vozTipo) actor.voz(s.vozTipo);
 
     if (s.anim) return this.playAnim(b, actor, target, move, s);
+    if (s.cena) return FF.Cena.tocar(b, actor, target, move, s.cena);   // cena livre (editor de cenas)
 
     if (s.irAte) {
       const alvo = s.irAte === 'alvo' ? target : actor;
