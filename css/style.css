@@ -43,8 +43,34 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 @keyframes brilhoSupremo { from { box-shadow: 0 0 0.4cqw #ff9a2a; } to { box-shadow: 0 0 1.6cqw #ffd84a; } }
 #menu button.sparking { border-color: #3fd0ff; background: linear-gradient(180deg, rgba(20,70,120,0.95), rgba(10,30,70,0.95)); }
 #menu button.sparking .nome { color: #9ff0ff; }
-#escolha { position: absolute; bottom: 4cqw; display: flex; gap: 1.5cqw; }
+#escolha { position: absolute; bottom: 4cqw; gap: 1.5cqw; }
 #escolha button { font: inherit; font-size: 1.6cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
 #escolha button:hover { background: rgba(90,60,150,0.95); }
 
 #menu .titulo-alvo { grid-column: 1 / -1; color: #ffd84a; font-weight: 900; text-shadow: 0 0 4px #000, 1px 1px 0 #000; font-size: 1.5cqw; }
+
+/* tela de título e menus */
+#inicio { cursor: default; }
+.menu-titulo { display: none; flex-direction: column; gap: 0.9cqw; align-items: stretch; min-width: 26cqw; }
+#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.opcoes #opcoes { display: flex; }
+#inicio.menu #carregando, #inicio.livre #carregando, #inicio.opcoes #carregando { display: none; }
+#escolha { position: static; }
+.menu-titulo button { font: inherit; font-size: 1.8cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
+.menu-titulo button:hover, .menu-titulo button:focus { background: rgba(90,60,150,0.95); outline: none; }
+.menu-titulo button:disabled { opacity: 0.4; cursor: default; }
+#opcoes label { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; font-size: 1.7cqw; font-weight: 900; }
+#opcoes input { width: 16cqw; accent-color: #ffd84a; }
+#fim button { margin: 0.5cqw; }
+#fim #proximo, #fim #titulo { display: none; }
+#fim.historia #proximo, #fim.historia #titulo { display: inline-block; }
+/* diálogo do modo história */
+#dialogo { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: flex-end; padding: 2cqw; box-sizing: border-box; background: radial-gradient(ellipse at 50% 30%, rgba(70,50,140,0.55), rgba(5,3,15,0.92) 75%); cursor: pointer; z-index: 20; }
+#dialogo.open { display: flex; }
+#dialogo .cap { position: absolute; top: 3cqw; left: 0; right: 0; text-align: center; font-size: 3cqw; font-weight: 900; color: #ffd84a; text-shadow: 0 0.3cqw 0 #a0400a, 0 0 1cqw #000; }
+#dialogo .caixa { display: flex; gap: 1.5cqw; align-items: center; background: rgba(20,14,50,0.92); border: 0.3cqw solid #ffd84a; border-radius: 1.2cqw; padding: 1.2cqw 1.6cqw; min-height: 11cqw; }
+#dialogo .retrato { width: 10cqw; height: 10cqw; background: radial-gradient(#4a3a8a, #1a1030); border-radius: 0.8cqw; border: 0.2cqw solid #8a7ad0; image-rendering: pixelated; flex: none; }
+#dialogo.sem-retrato .retrato { display: none; }
+#dialogo .nome { font-size: 2cqw; font-weight: 900; color: #ffd84a; margin-bottom: 0.4cqw; }
+#dialogo .texto { font-size: 1.9cqw; line-height: 1.35; color: #fff; }
+#dialogo.sem-retrato .texto { font-style: italic; color: #e0d8ff; }
+#dialogo .dica { text-align: right; font-size: 1.2cqw; opacity: 0.7; margin-top: 0.5cqw; }

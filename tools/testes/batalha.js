@@ -16,7 +16,8 @@ const erro = parseFloat(opt('erro', '0'));
 const fotos = opt('fotos', null);
 const batalha = opt('batalha', null);
 const tempo = parseFloat(opt('tempo', '170')) * 1000;
-const rage = opt('rage', null);   // --rage 100: começa com a Rage cheia (testar o supremo)
+const rage = opt('rage', null);
+const historia = opt('historia', null);   // --historia N: joga o capítulo N do modo história (pula os diálogos)   // --rage 100: começa com a Rage cheia (testar o supremo)
 
 (async () => {
   const exe = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(p => require('fs').existsSync(p));
@@ -26,8 +27,15 @@ const rage = opt('rage', null);   // --rage 100: começa com a Rage cheia (testa
   p.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') erros.push(m.type() + ': ' + m.text()); });
   p.on('pageerror', e => erros.push('PAGEERROR: ' + e.message));
   const raiz = path.resolve(__dirname, '..', '..');
-  await p.goto('file://' + raiz + '/index.html' + (batalha ? '?batalha=' + batalha : ''));
-  await p.click('#inicio');
+  await p.goto('file://' + raiz + '/index.html' + (historia ? '?historia=' + historia : '?batalha=' + (batalha || 'saiyajin_01')));
+  if (!historia) await p.click('#inicio');
+  else {   // avança os diálogos até a batalha começar
+    while (!(await p.evaluate(() => !!(FF.battle && FF.battle.heroes.length)))) {
+      await p.evaluate(() => { const d = document.querySelector('#dialogo'); if (d.classList.contains('open')) d.click(); });
+      await p.waitForTimeout(80);
+    }
+    console.log('diálogos de abertura ok');
+  }
   if (rage) await p.waitForFunction(() => FF.battle && FF.battle.heroes.length).then(() => p.evaluate((r) => FF.battle.heroes.forEach(h => (h.rage = +r)), rage));
   await p.evaluate((erro) => {
     setInterval(() => {
@@ -42,6 +50,7 @@ const rage = opt('rage', null);   // --rage 100: começa com a Rage cheia (testa
   let k = 0, n = 0, fim = false;
   const t0 = Date.now();
   while (Date.now() - t0 < tempo) {
+    if (historia) await p.evaluate(() => { const d = document.querySelector('#dialogo'); if (d.classList.contains('open')) { d.click(); d.click(); } });
     fim = await p.evaluate(() => document.querySelector('#fim').classList.contains('open'));
     if (fim) break;
     const aberto = await p.evaluate(() => document.querySelector('#menu').classList.contains('open'));

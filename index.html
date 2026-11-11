@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Final Flash — protótipo de batalha</title>
+<title>Final Flash</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,17 +16,45 @@
 
   <div id="inicio">
     <h1>FINAL FLASH</h1>
-    <h3>Protótipo · Saga Saiyajin · Goku vs Raditz</h3>
-    <p>Toque ou aperte Enter para começar</p>
-    <div id="escolha">
-      <button data-batalha="saiyajin_01">Goku vs Raditz</button>
-      <button data-batalha="saiyajin_02">Trio vs Raditz (3 heróis)</button>
+    <h3>Saga Saiyajin</h3>
+    <p id="carregando">Toque ou aperte Enter para começar</p>
+    <div id="titulo-menu" class="menu-titulo">
+      <button data-acao="novo">Novo Jogo</button>
+      <button data-acao="continuar">Continuar</button>
+      <button data-acao="livre">Batalha Livre</button>
+      <button data-acao="opcoes">Opções</button>
     </div>
+    <div id="escolha" class="menu-titulo">
+      <button data-batalha="saiyajin_01">Goku vs Raditz</button>
+      <button data-batalha="saiyajin_02">Trio vs Raditz</button>
+      <button data-batalha="saiyajin_03">Trio vs Saibamen</button>
+      <button data-batalha="saiyajin_04">Trio vs Nappa</button>
+      <button data-batalha="saiyajin_05">Trio vs Vegeta</button>
+      <button data-acao="voltar">Voltar</button>
+    </div>
+    <div id="opcoes" class="menu-titulo">
+      <label>Música <input type="range" id="vol-musica" min="0" max="100"></label>
+      <label>Efeitos <input type="range" id="vol-sfx" min="0" max="100"></label>
+      <label>Vozes <input type="range" id="vol-voz" min="0" max="100"></label>
+      <button data-acao="apagar">Apagar progresso</button>
+      <button data-acao="voltar">Voltar</button>
+    </div>
+  </div>
+
+  <div id="dialogo">
+    <div class="cap"></div>
+    <div class="caixa">
+      <canvas class="retrato" width="120" height="120"></canvas>
+      <div class="corpo"><div class="nome"></div><div class="texto"></div></div>
+    </div>
+    <div class="dica">toque / Enter para continuar · Esc para pular</div>
   </div>
 
   <div id="fim">
     <h2>Vitória!</h2>
     <button id="denovo">Lutar de novo</button>
+    <button id="proximo">Próximo capítulo</button>
+    <button id="titulo">Tela de título</button>
   </div>
 </div>
 
