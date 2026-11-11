@@ -218,3 +218,23 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .pausa-opcoes select { font: inherit; font-size: 1.4cqw; color: #fff; background: #2b1d5c; border: 0.15cqw solid #5b4bb0; border-radius: 0.6cqw; padding: 0.3cqw 0.6cqw; }
 .pausa-aviso { margin: 1.2cqw 0 0; font-size: 1.25cqw; color: #9fe2ff; min-height: 1em; }
 @media (pointer: coarse) { .pausa-caixa button { min-height: 38px; } }
+/* ---------- habilidades do usuário (seleção e pausa) ---------- */
+#selecao .sel-hab { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; background: rgba(5,5,20,.72); }
+#selecao .sel-hab[hidden] { display: none; }
+.sel-hab-caixa { width: min(560px, 70cqw); max-height: 86%; overflow-y: auto; padding: 1.6cqw 2cqw; border-radius: 1.4cqw; border: 0.3cqw solid #c9a227;
+  background: linear-gradient(#2a1d5c, #140e30); color: #fff; }
+.sel-hab-caixa h3 { margin: 0 0 .4em; color: #ffd84a; font-size: 2.4cqw; }
+.sel-hab-caixa p { margin: 0 0 .8em; font-size: 1.4cqw; opacity: .85; }
+.sel-hab-botoes { display: flex; gap: 1cqw; justify-content: flex-end; margin-top: 1cqw; }
+.sel-hab-botoes button { font: inherit; font-weight: 800; font-size: 1.6cqw; color: #fff; cursor: pointer; padding: .6cqw 1.8cqw; border-radius: .8cqw; border: .2cqw solid #6b56c9; background: #3a2580; }
+.hab-lista { display: flex; flex-direction: column; gap: .5cqw; text-align: left; max-height: 44cqh; overflow-y: auto; }
+.hab-grupo { margin-top: .6cqw; color: #9fc4ff; font-weight: 800; font-size: 1.4cqw; text-transform: uppercase; letter-spacing: .05em; }
+.hab-item { display: flex; align-items: center; gap: .8cqw; padding: .5cqw .8cqw; border-radius: .8cqw; background: #1a1438; border: .2cqw solid #3a2f70; cursor: pointer; font-size: 1.5cqw; }
+.hab-item.on { border-color: #ffd84a; background: #2c2160; }
+.hab-item input { width: 1.8cqw; height: 1.8cqw; min-width: 16px; min-height: 16px; accent-color: #ffd84a; }
+.hab-item .hab-nome { flex: 1; font-weight: 800; }
+.hab-item small { opacity: .7; }
+.hab-item button { font: inherit; padding: .2cqw .7cqw !important; min-height: 0 !important; background: #2a2150; border: .15cqw solid #4a3f90; border-radius: .6cqw; color: #fff; cursor: pointer; }
+.hab-vazio, .hab-dica { font-size: 1.4cqw; opacity: .85; margin: 0 0 .8cqw; }
+.pausa-hab { display: flex; flex-direction: column; gap: .9cqw; min-width: 40cqw; }
+.pausa-hab[hidden] { display: none; }

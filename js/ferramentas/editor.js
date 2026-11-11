@@ -84,7 +84,10 @@ FF.Editor = {
         <select data-ed="salvas"><option value="">Cenas salvas…</option></select>
       </div>
       <div class="ed-linha">
-        <button data-ed="salvar">💾 Salvar cena</button>
+        <button data-ed="salvarHab" class="ed-hab">⭐ Salvar como habilidade</button>
+      </div>
+      <div class="ed-linha">
+        <button data-ed="salvar">💾 Salvar rascunho</button>
         <button data-ed="exportar">📋 Copiar JSON</button>
         <button data-ed="nova">🗋 Nova</button>
       </div>
@@ -115,9 +118,10 @@ FF.Editor = {
     $('vel').onchange = (e) => { FF.Clock.scale = +e.target.value; };
     $('addPasso').onclick = () => this.addPasso($('novoPasso').value);
     $('salvar').onclick = () => this.salvar();
+    $('salvarHab').onclick = () => this.salvarHabilidade();
     $('exportar').onclick = () => this.exportar();
     $('nova').onclick = () => { if (confirm('Começar uma cena nova? A atual não salva será perdida.')) { this.cena = this.cenaVazia(); this.render(); } };
-    $('importar').onchange = (e) => { if (e.target.value) this.importar(e.target.value); e.target.value = ''; };
+    $('importar').onchange = (e) => { const v = e.target.value; if (v.startsWith('hab:')) this.abrirHabilidade(v.slice(4)); else if (v) this.importar(v); e.target.value = ''; };
     $('salvas').onchange = (e) => { if (e.target.value) this.carregar(e.target.value); e.target.value = ''; };
     $('json').onchange = (e) => { try { this.cena.golpe = JSON.parse(e.target.value); this.render(); this.log('JSON aplicado.'); } catch (err) { this.log('❌ JSON inválido: ' + err.message); } };
     window.addEventListener('keydown', (e) => {
@@ -136,7 +140,13 @@ FF.Editor = {
     const s = this.$('importar');
     s.length = 1;
     const f = this.ator();
-    Object.entries(f.def.golpes || {}).forEach(([id, m]) => { const o = document.createElement('option'); o.value = id; o.textContent = m.nome || id; s.appendChild(o); });
+    Object.entries(f.def.golpes || {}).forEach(([id, m]) => { if (id.startsWith('hab_')) return; const o = document.createElement('option'); o.value = id; o.textContent = m.nome || id; s.appendChild(o); });
+    const habs = FF.Habilidades ? FF.Habilidades.listar(f.id) : [];
+    if (habs.length) {
+      const og = document.createElement('optgroup'); og.label = '⭐ Suas habilidades';
+      habs.forEach(h => { const o = document.createElement('option'); o.value = 'hab:' + h.id; o.textContent = '⭐ ' + h.nome + (h.equipada ? '' : ' (desligada)'); og.appendChild(o); });
+      s.appendChild(og);
+    }
   },
 
   preencherSalvas() {
@@ -527,6 +537,41 @@ FF.Editor = {
     s[nome] = { atacante: this.ator().id, golpe: this.cena.golpe };
     try { localStorage.setItem(this.CHAVE, JSON.stringify(s)); this.log('💾 Cena "' + nome + '" salva neste navegador.'); } catch (e) { this.log('❌ Não deu para salvar neste navegador.'); }
     this.preencherSalvas();
+  },
+  // vira golpe de verdade: aparece no menu do personagem nas batalhas (liga/desliga na seleção ou na pausa)
+  salvarHabilidade() {
+    const g = this.cena.golpe, ator = this.ator();
+    let id = g.habId;
+    const ex = id && FF.Habilidades.ler()[id];
+    if (ex && ex.personagem !== ator.id) id = null;          // aberta em outro lutador: vira uma nova
+    if (ex && id && !confirm('Atualizar a habilidade "' + ex.nome + '"?\n(Cancelar = salvar como uma nova)')) id = null;
+    const nome = prompt('Nome da habilidade (aparece no menu de golpes de ' + ator.def.nome + '):', g.nome && g.nome !== 'Novo golpe' ? g.nome : '');
+    if (!nome) return;
+    if (g.custoKi == null) {
+      const ki = prompt('Custo de ki (0 = grátis):', '20');
+      if (ki === null) return;
+      if (+ki > 0) g.custoKi = +ki;
+    }
+    const h = FF.Habilidades.salvar({ id, nome, personagem: ator.id, forma: ator.formId, golpe: g });
+    if (!h) return this.log('❌ Não deu para salvar neste navegador.');
+    this.cena.golpe = JSON.parse(JSON.stringify(h.golpe));
+    FF.Habilidades.atualizarBatalha(this.b);
+    this.render();
+    this.preencherImportar();
+    this.log('⭐ Habilidade "' + nome + '" salva para ' + ator.def.nome + (h.equipada ? ' e já equipada' : '') + '. Teste em Batalha Livre (botão ⭐ Habilidades) ou no ⏸ durante a luta.');
+  },
+  abrirHabilidade(id) {
+    const h = FF.Habilidades.ler()[id];
+    if (!h) return this.log('Habilidade não encontrada.');
+    const i = this.b.all.findIndex(f => f.id === h.personagem);
+    if (i >= 0) this.cena.atacante = i;
+    const ator = this.ator();
+    if (h.forma && ator.def.formas[h.forma] && ator.formId !== h.forma) { ator.setForm(h.forma); ator.idle(); }
+    this.cena.golpe = JSON.parse(JSON.stringify(h.golpe));
+    this.passoSel = 0;
+    this.render();
+    this.preencherImportar();
+    this.log('✏ Editando a habilidade "' + h.nome + '". Use ⭐ Salvar como habilidade para atualizar.');
   },
   carregar(nome) {
     const c = this.lerSalvas()[nome];

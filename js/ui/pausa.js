@@ -76,6 +76,14 @@ FF.Pausa = {
   tela(nome) {
     const el = document.getElementById('pausa');
     el.querySelectorAll('[data-tela]').forEach(t => (t.hidden = t.dataset.tela !== nome));
+    if (nome === 'habilidades') {
+      const b = FF.battle;
+      const nomes = {}; b.all.forEach(f => (nomes[f.id] = f.def.nome + (f.isHero ? ' (seu time)' : ' (inimigo)')));
+      FF.Habilidades.painel(el.querySelector('.pausa-hab .hab-lista'), {
+        personagens: [...new Set(b.all.map(f => f.id))], nomes,
+        aoMudar: () => FF.Habilidades.atualizarBatalha(b),
+      });
+    }
     if (nome === 'opcoes') {
       const v = FF.Save.get().volumes || { musica: FF.Audio.volMusica, sfx: FF.Audio.volSfx, voz: FF.Audio.volVoz };
       el.querySelectorAll('[data-vol]').forEach(r => (r.value = Math.round(v[r.dataset.vol] * 100)));
@@ -100,6 +108,7 @@ FF.Pausa = {
     const ir = (q) => { location.href = location.pathname + q; };
     if (a === 'continuar') return this.fechar();
     if (a === 'opcoes') return this.tela('opcoes');
+    if (a === 'habilidades') return this.tela('habilidades');
     if (a === 'voltar') return this.tela('principal');
     if (a === 'reiniciar') { if (confirm('Reiniciar esta luta do começo?')) location.reload(); return; }
     if (a === 'salvar') {

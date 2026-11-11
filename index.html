@@ -73,10 +73,19 @@
       </div>
       <div class="sel-time" data-lado="inimigos"><h3>Inimigos</h3><div class="slots"></div></div>
     </div>
+    <div class="sel-hab" hidden>
+      <div class="sel-hab-caixa">
+        <h3>⭐ Suas habilidades</h3>
+        <p>Marque as que cada lutador leva para a luta. Elas aparecem no menu de golpes com ⭐.</p>
+        <div class="hab-lista"></div>
+        <div class="sel-hab-botoes"><button data-sel="habnova">＋ Criar no editor</button><button data-sel="habok">OK</button></div>
+      </div>
+    </div>
     <div class="sel-rodape">
       <button data-sel="voltar">Voltar</button>
       <button data-sel="limpar">Limpar</button>
       <button data-sel="aleatorio">🎲 Aleatório</button>
+      <button data-sel="habilidades">⭐ Habilidades</button>
       <button data-sel="lutar" class="lutar">LUTAR!</button>
     </div>
   </div>
@@ -96,6 +105,7 @@
       <h2>Pausa</h2>
       <div class="pausa-botoes" data-tela="principal">
         <button data-p="continuar">▶ Continuar</button>
+        <button data-p="habilidades">⭐ Habilidades</button>
         <button data-p="opcoes">🔊 Som e velocidade</button>
         <button data-p="reiniciar">↻ Reiniciar luta</button>
         <button data-p="salvar">💾 Salvar e sair</button>
@@ -111,6 +121,11 @@
         <label>Tempo da guarda/crítico
           <select data-p="janela"><option value="0.3">Normal</option><option value="0.42">Mais fácil</option><option value="0.2">Mais difícil</option></select>
         </label>
+        <button data-p="voltar">← Voltar</button>
+      </div>
+      <div class="pausa-hab" data-tela="habilidades" hidden>
+        <p class="hab-dica">Ligue ou desligue para testar agora: muda o menu de golpes na hora.</p>
+        <div class="hab-lista"></div>
         <button data-p="voltar">← Voltar</button>
       </div>
       <p class="pausa-aviso"></p>
@@ -134,6 +149,7 @@
 <script src="js/core/audio.js"></script>
 <script src="js/core/input.js"></script>
 <script src="js/core/retrato.js"></script>
+<script src="js/core/habilidades.js"></script>
 <script src="js/battle/fighter.js"></script>
 <script src="js/battle/script.js"></script>
 <script src="js/battle/ai.js"></script>

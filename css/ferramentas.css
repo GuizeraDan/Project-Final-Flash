@@ -173,3 +173,4 @@
 #editor .ed-thumb canvas { width: 56px; height: 56px; image-rendering: pixelated; background: repeating-conic-gradient(#2c2c3a 0% 25%, #3a3a4a 0% 50%) 50% / 12px 12px; border-radius: 4px; }
 #editor .ed-thumb span { font-size: 9px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 body.com-editor #tela { touch-action: none; }
+#editor .ed-hab { background: #6a4a00; border-color: #ffd84a; color: #ffe9a0; font-weight: bold; flex: 1; }

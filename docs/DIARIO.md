@@ -80,3 +80,9 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Novo passo de roteiro `cena` (motor em `js/battle/cena.js`): camadas de sprites com âncora (quem solta/alvo/tela), x/y, escala, giro, opacidade, espelhar, fps, início/fim e quadros-chave interpolados; eventos no tempo (sons/vozes, acertos com QTE, tremores, flashes); pode esconder atacante/alvo.
 - Editor (`js/ferramentas/editor_cena.js`): paleta com miniaturas de todos os sprites (inclui pacotes 📦 da biblioteca), arrastar na tela, alça/rodinha/+/- para tamanho, setas para ajuste fino, gravar posição por tempo, linha do tempo com ▶.
 - Falta: arrastar quadros-chave numa linha do tempo visual; giro pela tela (hoje só pelo campo).
+
+## 2026-11-11 — Habilidades do usuário
+- `js/core/habilidades.js` (`FF.Habilidades`): golpes criados no editor salvos no navegador (`ff_habilidades`), por personagem; as equipadas entram como `hab_<id>` no menu de golpes (⭐) em qualquer batalha. Golpe com passos `anim` entra só na forma em que foi criado; só com cena livre, em todas.
+- Editor: "⭐ Salvar como habilidade" (nome + custo de ki; atualiza se já for uma habilidade), habilidades no "Abrir golpe existente", rota `?editor=1&hab=<id>`.
+- Seleção da Batalha Livre: botão "⭐ Habilidades" (liga/desliga, editar, apagar, criar no editor com os times). Pausa: "⭐ Habilidades" liga/desliga no meio da luta.
+- IA: inimigos com `ia` própria (Raditz, Nappa…) não usam habilidades; os de IA automática usam.

@@ -59,7 +59,7 @@ FF.UI = {
         const b = document.createElement('button');
         b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="ic">' + this.icone(m) + '</span><span class="nome"></span>' +
           (m.custoKi ? '<span class="ki">' + m.custoKi + '</span>' : '');
-        b.querySelector('.nome').textContent = m.nome;
+        b.querySelector('.nome').textContent = (m.habId ? '⭐ ' : '') + m.nome;
         const can = !this.motivo(hero, m) && !(m.requer && !this.meets(hero, m.requer));
         if (m.supremo) b.classList.add('supremo');
         if (m.requer && m.requer.parceiro) b.classList.add('sparking');
@@ -217,6 +217,12 @@ FF.start = async function (escolhida) {
         frames: d.quadros.map(i => src.frames[Math.min(i, src.frames.length - 1)]) };
     }
   }));
+
+  // habilidades criadas pelo usuário no editor (equipadas) entram no menu de golpes
+  if (FF.Habilidades) {
+    new Set(heroDefs.concat(foeDefs)).forEach(c => FF.Habilidades.sincronizar(c));
+    await FF.Habilidades.preparar(heroDefs.concat(foeDefs)).catch(() => null);
+  }
 
   const battle = new FF.Battle(def, stage, FF.UI);
   heroDefs.forEach((c, i) => battle.addFighter(c, 'heroi', i));
@@ -438,7 +444,7 @@ window.addEventListener('load', () => {
     try {
       const battle = await FF.start(id);
       intro.classList.add('hide');
-      if (params.get('editor')) FF.Editor.run(battle);       // editor de cenas (sandbox de golpes)
+      if (params.get('editor')) { FF.Editor.run(battle); if (params.get('hab')) FF.Editor.abrirHabilidade(params.get('hab')); }   // editor de cenas
       else if (params.get('teste')) FF.Lab.run(battle);   // laboratório: sem turnos, executa qualquer golpe
       else { battle.run(); FF.Pausa.mostrarBotao(); FF.Voltar.armar(); }
     } catch (err) {
@@ -458,6 +464,15 @@ window.addEventListener('load', () => {
     let def = null;
     try { def = JSON.parse(sessionStorage.getItem('ff_livre_def') || 'null'); } catch (e) { /* nada */ }
     if (def) { batalhaLivre(def); return; }
+  }
+  // editar uma habilidade salva (?editor=1&hab=<id>): batalha 1x1 com o dono dela
+  if (params.get('editor') && params.get('hab') && !params.get('batalha')) {
+    const h = FF.Habilidades.ler()[params.get('hab')];
+    if (h) {
+      const rival = h.personagem === 'raditz' ? 'goku' : 'raditz';
+      batalhaLivre(FF.Selecao.montarBatalha({ herois: [h.personagem], inimigos: [rival] }));
+      return;
+    }
   }
   // laboratório direto (?teste=1&batalha=id): carrega sem precisar tocar
   if (params.get('teste') || params.get('editor')) {

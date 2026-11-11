@@ -61,6 +61,14 @@ FF.Selecao = {
       this.render();
     };
     el.querySelector('[data-sel="lutar"]').onclick = () => this.lutar();
+    el.querySelector('[data-sel="habilidades"]').onclick = () => this.abrirHabilidades();
+    el.querySelector('[data-sel="habok"]').onclick = () => { el.querySelector('.sel-hab').hidden = true; this.render(); };
+    el.querySelector('[data-sel="habnova"]').onclick = () => {
+      // abre o editor com os times escolhidos (ou Goku x Raditz)
+      const t = this.times.herois.length && this.times.inimigos.length ? this.times : { herois: ['goku'], inimigos: ['raditz'] };
+      try { sessionStorage.setItem('ff_livre_def', JSON.stringify(this.montarBatalha(t))); } catch (e) { /* nada */ }
+      location.href = location.pathname + '?livre=1&editor=1';
+    };
   },
 
   adicionar(id) {
@@ -97,7 +105,21 @@ FF.Selecao = {
     const s = document.createElement('span');
     s.textContent = ' · Vida ' + a.hp + ' · Ataque ' + a.ataque + ' · Defesa ' + a.defesa +
       (sup ? ' · Supremo: ' + sup.nome : '') + (formas.length > 1 ? ' · Formas: ' + formas.join(', ') : '');
+    const habs = FF.Habilidades ? FF.Habilidades.listar(id).filter(h => h.equipada) : [];
+    if (habs.length) s.textContent += ' · ⭐ ' + habs.map(h => h.nome).join(', ');
     el.appendChild(s);
+  },
+
+  abrirHabilidades() {
+    const el = document.querySelector('#selecao .sel-hab');
+    const nomes = {}; Object.entries(this.defs).forEach(([id, d]) => (nomes[id] = d.nome));
+    FF.Habilidades.painel(el.querySelector('.hab-lista'), {
+      nomes,
+      editar: (h) => { location.href = location.pathname + '?editor=1&hab=' + encodeURIComponent(h.id); },
+      apagar: true,
+    });
+    el.hidden = false;
+    FF.Audio.play('menuopen', 0.5);
   },
 
   aviso(txt) {
