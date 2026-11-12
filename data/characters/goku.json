@@ -60,6 +60,7 @@
         "combo",
         "combo_kaioken",
         "kamehameha",
+        "kamehameha_kaioken",
         "kaioken",
         "carregar_ki",
         "transformar_ssj",
@@ -446,6 +447,101 @@
               }
             }
           ]
+        }
+      ],
+      "esconder": {
+        "buff": "kaioken"
+      }
+    },
+    "kamehameha_kaioken": {
+      "nome": "Kamehameha Kaioken",
+      "descricao": "Só com o Kaioken ativo: um Kamehameha turbinado que atravessa a tela.",
+      "tipo": "energia",
+      "custoKi": 40,
+      "poder": 3.8,
+      "mostrar": {
+        "buff": "kaioken"
+      },
+      "roteiro": [
+        {
+          "anim": "Special_20xKaiokenKamehameha_Pt1",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": "vgkn214"
+            },
+            {
+              "quadro": 0,
+              "som": "goku_spkame_charge"
+            },
+            {
+              "quadro": 4,
+              "tremer": 3
+            },
+            {
+              "quadro": 9,
+              "tremer": 4
+            }
+          ]
+        },
+        {
+          "anim": "Special_20xKaiokenKamehameha_Pt2",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_spkame_fire"
+            },
+            {
+              "quadro": 0,
+              "flash": 0.35
+            },
+            {
+              "quadro": 0,
+              "tremer": 10
+            }
+          ]
+        },
+        {
+          "anim": "Special_20xKaiokenKamehameha_Pt3",
+          "duracao": 0.9,
+          "eventos": [
+            {
+              "quadro": 0,
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 1,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 2,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "energia"
+              }
+            },
+            {
+              "quadro": 3,
+              "tremer": 8
+            },
+            {
+              "quadro": 3,
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "energia",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_20xKaiokenKamehameha_Final"
         }
       ]
     },

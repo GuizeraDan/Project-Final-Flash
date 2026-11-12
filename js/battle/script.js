@@ -158,18 +158,22 @@ FF.Script = {
       });
     };
 
-    const ended = actor.anim.play(name, { fps: s.fps, loop, onFrame });
-
-    // Anel de tempo: segura o 1º quadro se o primeiro acerto vier rápido demais.
+    // Anel de tempo: segura o 1º quadro se o primeiro acerto vier rápido demais. A espera é calculada
+    // ANTES de tocar, para que um acerto no quadro 0 só aconteça quando o anel fechar.
     const hits = evs.filter(e => e.acerto);
+    let hold = 0;
     if (mode && hits.length && target && !target.ko) {
       const first = Math.min(...hits.map(e => e._i));
-      const tFirst = actor.anim.timeToFrame(first);
-      actor.anim.hold = Math.max(0, this.LEAD - tFirst);
-      qte = b.addQte(mode, target, actor.anim.hold + tFirst);
+      let fps = s.fps != null ? s.fps : anim.fps;
+      if (!fps && anim.frames.length > 1) fps = 10;
+      let tFirst = 0;
+      for (let k = 0; k < first; k++) tFirst += fps > 0 ? (anim.frames[k][7] || 1) / fps : 0;
+      hold = Math.max(0, this.LEAD - tFirst);
+      qte = b.addQte(mode, target, hold + tFirst);
     }
+    const ended = actor.anim.play(name, { fps: s.fps, loop, onFrame, hold });
 
-    if (s.duracao) await FF.Clock.wait(s.duracao);
+    if (s.duracao) await FF.Clock.wait(s.duracao + hold);
     else await ended;
   },
 

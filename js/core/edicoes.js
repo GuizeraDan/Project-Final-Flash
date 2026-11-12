@@ -15,7 +15,18 @@ FF.Edicoes = {
   PEND: 'ff_edicoes_pendentes',
   TOKEN: 'ff_github_token',
 
-  base() { const e = window.FF_EDICOES || {}; return { golpes: e.golpes || {}, habilidades: e.habilidades || {}, sprites: e.sprites || {} }; },
+  ULT: 'ff_edicoes_ultimo',
+  // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
+  // vale a de "rev" mais nova
+  base() {
+    let e = window.FF_EDICOES || {};
+    try {
+      const u = JSON.parse(localStorage.getItem(this.ULT) || 'null');
+      if (u && (u.rev || 0) > (e.rev || 0)) e = u;
+      else if (u) localStorage.removeItem(this.ULT);     // o site já tem esta (ou uma mais nova)
+    } catch (x) { /* sem armazenamento */ }
+    return { golpes: e.golpes || {}, habilidades: e.habilidades || {}, sprites: e.sprites || {} };
+  },
   pendentes() { try { return JSON.parse(localStorage.getItem(this.PEND) || '[]'); } catch (e) { return []; } },
   gravarPendentes(l) { try { localStorage.setItem(this.PEND, JSON.stringify(l)); } catch (e) { /* sem armazenamento */ } },
 
@@ -96,6 +107,7 @@ FF.Edicoes = {
         const obj = atual ? this.ler(this.de64(atual.content)) : { versao: 1 };
         obj.golpes = obj.golpes || {}; obj.habilidades = obj.habilidades || {}; obj.sprites = obj.sprites || {};
         this.aplicarLista(obj, l);
+        obj.rev = Math.max(Date.now(), (obj.rev || 0) + 1);
         const corpo = {
           message: 'Editor: ' + l.length + ' alteração(ões) feitas no jogo',
           content: this.b64(this.escrever(obj)), branch: 'main',
@@ -108,6 +120,7 @@ FF.Edicoes = {
         } catch (e) { if (e.status === 409 && tent < 2) continue; throw e; }   // outro aparelho gravou junto: tenta de novo
         // sucesso: o publicado passa a ser o novo; tira só as pendentes enviadas
         window.FF_EDICOES = obj;
+        try { localStorage.setItem(this.ULT, JSON.stringify(obj)); } catch (x) { /* sem armazenamento */ }
         const resto = this.pendentes().slice(l.length);
         this.gravarPendentes(resto);
         this._cache = null;

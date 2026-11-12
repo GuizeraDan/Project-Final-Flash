@@ -36,8 +36,9 @@ FF.Animator = class {
     this.onFrame = opts.onFrame || null;
     this.done = false;
     this.ended = new Promise(r => (this._end = r));
-    if (this.onFrame) this.onFrame(0);
-    if (!this.loop && a.frames.length === 1 && !this.fps) { this.done = true; this._end(); }
+    // com "hold", o 1º quadro só "acontece" (eventos do quadro 0) quando a espera acabar
+    if (this.onFrame && !(this.hold > 0)) this.onFrame(0);
+    if (!this.loop && a.frames.length === 1 && !this.fps) { if (this.onFrame && this.hold > 0) this.onFrame(0); this.done = true; this._end(); }
     return this.ended;
   }
 
@@ -62,6 +63,7 @@ FF.Animator = class {
       if (this.hold > 0) return;
       dt = -this.hold;
       this.hold = 0;
+      if (this.onFrame && this.i === 0) this.onFrame(0);
     }
     this.t += dt;
     let guard = 0;
