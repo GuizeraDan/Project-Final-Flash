@@ -25,6 +25,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
   2. Escreva a receita `tools/receitas/<id>.json` (quadros de cada animação, fps, loop, `origem: centro` para efeitos, `disparo: auto` onde sai energia) e rode `python3 -I tools/importar_sprites.py tools/receitas/<id>.json --origem <pasta ou zip>` → `assets/img/<id>_0.png` + `data/sprites/<id>.json` (fundo da borda vira transparente, origem nos pés alinhada pela cabeça).
   3. Nomeie efeitos com prefixo do personagem (ex.: `Bills_Esfera`): o motor acha efeitos no sprite de qualquer lutador carregado (`fxSet`).
   4. Crie `data/characters/<id>.json` (formas/anims/golpes) e o retrato: `tools/gerar_retrato.py` (`--topo`, `--centrar-cabeca` para orelhas/cabelo altos).
+     Se o usuário mandar uma **arte** do personagem, use `tools/retrato_de_imagem.py --imagem … --personagem <id> --rosto x0,y0,x1,y1 --banner x0,y0,x1,y1` (rosto da seleção e do HUD + banner, em 2× de resolução; troca os antigos dele). Guarde a arte em `tools/receitas/arte/<id>.png`.
   5. Teste numa batalha temporária (`data/battles/teste_<id>.json` + `node tools/testes/batalha.js --batalha teste_<id> --plano … --rage 100 --fotos …`), apague o arquivo de teste e rode o build.
 - O importador do Estúdio foi removido (histórico do Git: commit "Estúdio: importar dentro da aba Sprites"). Sprites já importados por ele (`spritesNovos`, `spritesInfo[id].atlas`) continuam funcionando e editáveis.
 
