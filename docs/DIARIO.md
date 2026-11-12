@@ -172,3 +172,8 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 ## 12/11/2026 — Retrato e banner do Bills com a arte do usuário
 - `tools/retrato_de_imagem.py` (novo): arte → rosto (80×112, usado na seleção e no HUD/faixa de turnos) e banner (268×326 no recorte inclinado do molde 41, com contorno). Remonta `assets/img/retratos_extra.png` trocando os quadros antigos do personagem (Bills continua nos quadros 47/45; Saibaman intacto). Arte guardada em `tools/receitas/arte/bills.png`; caixas usadas: `--rosto 255,170,705,800 --banner 275,140,745,712`.
 - Conferido na Batalha Livre (grade, cartão do time) e no HUD da batalha.
+
+## 12/11/2026 — HUD novo (arte do usuário)
+- `tools/hud_moderno.py` + arte em `tools/receitas/arte/hud.png` → `assets/img/hud_moderno.png`: moldura com retrato, vida, ki, nome, KI e rage apagados (fundo escuro em volta vira transparente pelo contorno `CONTORNO`), mais uma camada com os cantos ciano da janela do retrato (desenhada por cima do rosto).
+- `FF.HUD.panelModerno` (`js/battle/hud.js`): retrato na janela (com cantos por cima), vida em paralelogramo com rastro vermelho e cor por faixa (verde/amarelo/laranja), número "atual / máx", ki em 7 gomos inclinados (último parcial), NOME em itálico (amarelo transformado), "KI n", RAGE em 5 gomos + ícone do sol apagado até encher e pulsando cheio, "SUPREMO PRONTO!" e buffs embaixo. Inimigo espelhado. 1×1: 400 px de largura; 3×3: 288 px empilhados (destaque dourado acompanha). A imagem é carregada em `FF.start` (main.js); sem ela, volta ao HUD do ZL3.
+- Conferido em 1×1 (Goku × Raditz, com Rage cheia) e 3×3 (Goku/Piccolo/Bills × Raditz/Nappa/Vegeta).

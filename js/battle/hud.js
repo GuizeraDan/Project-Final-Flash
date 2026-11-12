@@ -47,7 +47,10 @@ FF.HUD = {
   },
 
   // S: escala (1.6 com um lutador por lado; menor quando há 3 heróis empilhados), Y: topo do painel
+  // largura do painel novo: 400 px com um lutador por lado; 288 px empilhado (3 por lado)
+  LARG: 400, LARG3: 288,
   panel(ctx, f, rtl, S, Y) {
+    if (this.img()) return this.panelModerno(ctx, f, rtl, S && S < this.S ? this.LARG3 : this.LARG, Y == null ? 4 : Y);
     const set = FF.Assets.sprites.hud_zl3;
     if (!set) return this.panelSimples(ctx, f, rtl ? FF.W - 24 : 24, rtl);
     S = S || this.S; Y = Y == null ? 4 : Y;
@@ -111,6 +114,134 @@ FF.HUD = {
     if (tags.length) this.text(ctx, tags.join('  '), rtl ? rx : rx + rw, ry + rh + 10 * T, Math.round(13 * Math.max(0.75, T)), '#ff9c9c', rtl ? 'left' : 'right');
   },
 
+  // ---- HUD novo (arte do usuário: assets/img/hud_moderno.png, montado por tools/hud_moderno.py) ----
+  // Posições em pixels da arte recortada (2125×545). A imagem guarda a moldura (em cima) e a camada dos
+  // cantos ciano da janela do retrato (embaixo), em meia resolução.
+  L: {
+    W: 2125, H: 545,
+    retrato: [92, 50, 526, 483],
+    vida: { y0: 102, y1: 176, xe0: 602, xe1: 576, xd0: 1900, xd1: 1872 },   // topo/base; x da esquerda e da direita no topo (0) e na base (1)
+    vidaTxt: [1840, 140],
+    ki: { x0: 588, y0: 220, y1: 266, n: 7, passo: 177.5, larg: 166, incl: 24 },
+    nome: [638, 345, 420], kiTxt: [1755, 345],
+    rageTxt: [697, 470],
+    rage: { x0: 822, y0: 438, y1: 502, n: 5, passo: 168, larg: 158, incl: 20 },
+    icone: [1765, 465, 58],
+  },
+  img() { const i = FF.Assets.images['assets/img/hud_moderno.png']; return i && i.width ? i : null; },
+
+  // texto em itálico grosso como o da arte
+  textoHud(ctx, s, x, y, size, color, align, maxW) {
+    ctx.save();
+    ctx.font = 'italic 900 ' + size + 'px "Trebuchet MS", "Arial Black", sans-serif';
+    ctx.textAlign = align || 'left'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
+    ctx.lineWidth = Math.max(2, size / 5); ctx.strokeStyle = '#05070c';
+    ctx.strokeText(s, x, y, maxW); ctx.fillStyle = color || '#fff'; ctx.fillText(s, x, y, maxW);
+    ctx.restore();
+  },
+
+  panelModerno(ctx, f, rtl, W, Y) {
+    const img = this.img(), L = this.L;
+    const k = W / L.W, H = L.H * k;
+    const X = rtl ? FF.W - 6 - W : 6;
+    const px = (x) => (rtl ? X + W - x * k : X + x * k);
+    const py = (y) => Y + y * k;
+    const poly = (pts) => { ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(px(x), py(y)) : ctx.moveTo(px(x), py(y)))); ctx.closePath(); };
+    const hi = img.height, hm = (hi - 1) / 2;
+    const camada = (oy) => {
+      ctx.save();
+      if (rtl) { ctx.translate(X + W, Y); ctx.scale(-1, 1); ctx.drawImage(img, 0, oy, img.width, hm, 0, 0, W, H); }
+      else ctx.drawImage(img, 0, oy, img.width, hm, X, Y, W, H);
+      ctx.restore();
+    };
+    ctx.save();
+    ctx.imageSmoothingEnabled = true;
+    camada(0);
+
+    // retrato
+    const [r0, r1, r2, r3] = L.retrato;
+    const rx = Math.min(px(r0), px(r2)), rw = Math.abs(px(r2) - px(r0)), ry = py(r1), rh = (r3 - r1) * k;
+    const trans = f.formId !== (f.def.formaInicial || 'base');
+    ctx.save();
+    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(rx, ry, rw, rh, 9 * k * 2); else ctx.rect(rx, ry, rw, rh); ctx.clip();
+    FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', rx, ry, rw, rh, { espelhar: rtl, fundo: !(f.def.formas[f.formId] || {}).retrato, cor1: trans ? '#7a5a10' : '#0e4a58', cor2: '#06222a', escurecer: f.ko ? 'rgba(60,0,0,0.6)' : null });
+    ctx.restore();
+    camada(hm + 1);   // cantos ciano por cima do retrato
+
+    // vida: rastro vermelho + barra (verde → amarelo → laranja)
+    if (f._hpShow == null) f._hpShow = f.hp;
+    f._hpShow += (f.hp - f._hpShow) * 0.08;
+    if (Math.abs(f._hpShow - f.hp) < 0.5) f._hpShow = f.hp;
+    const V = L.vida;
+    const barra = (frac, cores, brilho) => {
+      frac = Math.max(0, Math.min(1, frac)); if (frac <= 0) return;
+      const d0 = V.xe0 + (V.xd0 - V.xe0) * frac, d1 = V.xe1 + (V.xd1 - V.xe1) * frac;
+      poly([[V.xe0, V.y0], [d0, V.y0], [d1, V.y1], [V.xe1, V.y1]]);
+      const g = ctx.createLinearGradient(0, py(V.y0), 0, py(V.y1));
+      cores.forEach((c, i) => g.addColorStop(i / (cores.length - 1), c));
+      ctx.fillStyle = g; ctx.fill();
+      if (brilho) {
+        ctx.save(); ctx.clip();
+        ctx.fillStyle = 'rgba(255,255,255,0.28)'; ctx.fillRect(Math.min(px(V.xe1), px(d0)), py(V.y0), Math.abs(px(d0) - px(V.xe1)), (V.y1 - V.y0) * k * 0.32);
+        ctx.fillStyle = 'rgba(0,0,0,0.12)';
+        for (let x = V.xe1; x < d0; x += 46) ctx.fillRect(px(x), py(V.y0), 1, (V.y1 - V.y0) * k);
+        ctx.restore();
+      }
+    };
+    const fr = f.hp / f.hpMax;
+    barra(f._hpShow / f.hpMax, ['#ff8a7a', '#c01818', '#6a0808']);
+    barra(fr, fr > 0.5 ? ['#b6ff6a', '#2fd81a', '#0e7a08'] : fr > 0.25 ? ['#fff27a', '#e0b010', '#7a5a04'] : ['#ffb07a', '#e0400a', '#7a1804'], true);
+    this.textoHud(ctx, Math.ceil(f.hp) + ' / ' + f.hpMax, px(L.vidaTxt[0]), py(L.vidaTxt[1]), Math.round(60 * k), '#fff', rtl ? 'left' : 'right');
+
+    // ki: 7 gomos inclinados (o último parcial)
+    const K = L.ki, porGomo = f.kiMax / K.n;
+    for (let i = 0; i < K.n; i++) {
+      const a = K.x0 + i * K.passo, fracG = Math.max(0, Math.min(1, (f.ki - i * porGomo) / porGomo));
+      const pts = [[a + K.incl, K.y0], [a + K.incl + K.larg, K.y0], [a + K.larg, K.y1], [a, K.y1]];
+      poly(pts);
+      ctx.strokeStyle = 'rgba(80,220,255,0.55)'; ctx.lineWidth = Math.max(1, 3 * k); ctx.stroke();
+      if (fracG > 0) {
+        const w = K.larg * fracG;
+        poly([[a + K.incl, K.y0], [a + K.incl + w, K.y0], [a + w, K.y1], [a, K.y1]]);
+        const g = ctx.createLinearGradient(0, py(K.y0), 0, py(K.y1));
+        g.addColorStop(0, '#9ff4ff'); g.addColorStop(0.5, '#1ec4ff'); g.addColorStop(1, '#0a6ad8');
+        ctx.fillStyle = g; ctx.fill();
+      }
+    }
+
+    // nome e KI
+    this.textoHud(ctx, (f.nome || '').toUpperCase(), px(L.nome[0]), py(L.nome[1]), Math.round(70 * k), trans ? '#ffe25a' : '#fff', rtl ? 'right' : 'left', L.nome[2] * k);
+    this.textoHud(ctx, 'KI ' + Math.floor(f.ki), px(L.kiTxt[0]), py(L.kiTxt[1]), Math.round(64 * k), '#fff', rtl ? 'left' : 'right');
+
+    // RAGE: 5 gomos laranja + ícone (apagado até encher; pulsa cheio)
+    const R = L.rage, cheia = f.rageCheia, pulso = 0.5 + 0.5 * Math.sin(FF.Clock.t * 12);
+    this.textoHud(ctx, 'RAGE', px(L.rageTxt[0]), py(L.rageTxt[1]), Math.round(58 * k), cheia ? '#ffe25a' : '#fff', 'center');
+    for (let i = 0; i < R.n; i++) {
+      const a = R.x0 + i * R.passo, fracG = Math.max(0, Math.min(1, (f.rage - i * (100 / R.n)) / (100 / R.n)));
+      poly([[a + R.incl, R.y0], [a + R.incl + R.larg, R.y0], [a + R.larg, R.y1], [a, R.y1]]);
+      ctx.strokeStyle = 'rgba(255,120,40,0.5)'; ctx.lineWidth = Math.max(1, 3 * k); ctx.stroke();
+      if (fracG > 0) {
+        const w = R.larg * fracG;
+        poly([[a + R.incl, R.y0], [a + R.incl + w, R.y0], [a + w, R.y1], [a, R.y1]]);
+        const g = ctx.createLinearGradient(0, py(R.y0), 0, py(R.y1));
+        g.addColorStop(0, cheia ? 'rgb(255,' + Math.round(235 + 20 * pulso) + ',150)' : '#ffd84a'); g.addColorStop(1, cheia ? '#ff5a00' : '#ff8a00');
+        ctx.fillStyle = g; ctx.fill();
+      }
+    }
+    const [ix, iy, ir] = L.icone;
+    ctx.beginPath(); ctx.arc(px(ix), py(iy), ir * k, 0, Math.PI * 2);
+    if (!cheia) { ctx.fillStyle = 'rgba(10,10,20,0.6)'; ctx.fill(); }
+    else { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = 'rgba(255,200,60,' + (0.25 + 0.35 * pulso) + ')'; ctx.fill(); ctx.restore(); }
+
+    // abaixo do painel: supremo pronto e buffs
+    const by = Y + H + 9 * Math.max(0.7, W / 400);
+    const ts = Math.round(12 * Math.max(0.75, W / 400));
+    if (cheia) this.textoHud(ctx, 'SUPREMO PRONTO!', px(R.x0), by, ts, '#ffe25a', rtl ? 'right' : 'left');
+    const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
+    if (tags.length) this.textoHud(ctx, tags.join('  '), px(R.x0 + R.passo * R.n), by, ts, '#ff9c9c', rtl ? 'left' : 'right');
+    ctx.restore();
+  },
+
   // painel antigo (sem as artes), usado se o hud_zl3 não carregar
   panelSimples(ctx, f, x, rtl) {
     const w = 330;
@@ -148,7 +279,8 @@ FF.HUD = {
       ctx.strokeStyle = 'rgba(255,226,90,' + pulso + ')';
       ctx.lineWidth = 3;
       ctx.shadowColor = '#ffd23a'; ctx.shadowBlur = 10;
-      ctx.strokeRect(4, y, this.PW * S + 4, 73 * S);
+      if (this.img()) ctx.strokeRect(4, y, this.LARG3 + 4, this.L.H * this.LARG3 / this.L.W + 2);
+      else ctx.strokeRect(4, y, this.PW * S + 4, 73 * S);
     }
     if (!f.busy) {
       const p = f.peito();

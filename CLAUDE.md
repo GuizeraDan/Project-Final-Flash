@@ -35,6 +35,9 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - O Estúdio ("💾 Salvar no jogo", "↺ Original") grava via `FF.Edicoes.set(caminho, valor)`: vale na hora no aparelho e, se ele estiver conectado (chave fine-grained do GitHub com Contents: Read and write, guardada em localStorage `ff_github_token`, painel "☁"), faz um commit em `data/edicoes.js` pela API (autor GuizeraDan noreply). Sem chave, fica em `ff_edicoes_pendentes` e é enviado depois.
 - Para tornar uma edição parte "de verdade" dos JSON (ex.: limpar o arquivo), copie de `data/edicoes.js` para `data/characters`/`data/sprites`, remova de lá e rode o build.
 
+## HUD da batalha
+- HUD novo com a arte do usuário (`tools/receitas/arte/hud.png`): `python3 -I tools/hud_moderno.py` gera `assets/img/hud_moderno.png` (moldura com as partes que mudam apagadas + camada dos cantos ciano). O desenho fica em `FF.HUD.panelModerno` (`js/battle/hud.js`; posições em `FF.HUD.L`, em pixels da arte recortada 2125×545; inimigo = espelhado). Sem a imagem, cai no HUD antigo do ZL3 (`hud_zl3`).
+
 ## Retratos e seleção
 - Sprite `retratos`: anim `retrato` (46 rostos de seleção do ZL3) e `banner` (44 artes inclinadas). Cada forma do personagem aponta os seus em `"retrato": {"quadro": N, "banner": M}` (sem isso, usa o sprite de batalha). Personagem sem arte no ZL3 (ex.: Saibaman): `tools/gerar_retrato.py` cria retrato + banner a partir do sprite e grava em `assets/img/retratos_extra.png`. `cenarios_preview` tem as 32 prévias de cenário do ZL3 (para uma futura escolha de cenário).
 - Batalha Livre: `js/ui/selecao.js` monta a batalha na hora (até 3 por lado, qualquer personagem). Personagens sem `ia` usam a IA automática de `js/battle/ai.js`.

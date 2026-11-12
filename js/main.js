@@ -212,7 +212,7 @@ FF.start = async function (escolhida) {
   const foeDefs = await Promise.all(def.inimigos.map(id => FF.Assets.loadCharacter(id)));
   const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', 'retratos', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
-  await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)));
+  await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)).concat(FF.Assets.loadImage('assets/img/hud_moderno.png').catch(() => null)));   // HUD novo (arte do usuário)
   // animações derivadas: sprites incompletos (ex.: Saibaman só tem ataques) ganham parado/dano/caído
   // montados a partir de quadros de outras animações ({"Parado": {"de": "Ataque_1", "quadros": [0, 1], "fps": 4, "loop": true}})
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => {
