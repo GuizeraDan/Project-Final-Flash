@@ -391,18 +391,21 @@ FF.Battle = class {
   //  curva (altura do arco em px), ondular (amplitude em px), girar (graus/s),
   //  atravessar (depois de acertar, segue até sair da tela), deCima (cai do alto).
   spawnProjectile(att, def, move, spec) {
-    const to = def.peito();
+    const peito = def.peito();
+    const to = { x: peito.x, y: peito.y };
     // alvoDx/alvoDy e deDx/deDy: ajuste da chegada e da saída (Estúdio); dx positivo = para a frente de quem solta
     if (spec.alvoDx || spec.alvoDy) { to.x += (spec.alvoDx || 0) * att.dir; to.y += spec.alvoDy || 0; }
+    // deAlvo: a saída (deDx/deDy) conta a partir do peito do alvo, não da mão (ex.: chuva que nasce no céu acima dele)
     const from = spec.deCima
       ? { x: to.x - att.dir * (20 + Math.random() * 110) * this.scale, y: to.y - (230 + Math.random() * 60) * this.scale }
-      : att.pontoDisparo();
+      : spec.deAlvo ? { x: peito.x, y: peito.y } : att.pontoDisparo();
     if (spec.deDx || spec.deDy) { from.x += (spec.deDx || 0) * att.dir; from.y += spec.deDy || 0; }
     const vel = spec.velocidade || 650;
     const dist = Math.hypot(to.x - from.x, to.y - from.y);
     const travel = Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
-    const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
+    // semAcerto: só visual (vai até o ponto, solta o impacto e some, sem dano nem anel)
+    const qte = qteMode && !def.ko && !spec.semAcerto ? this.addQte(qteMode, def, travel) : null;
     const fxName = spec.fx || 'kiblast_amarelo';
     const set = this.fxSet(fxName, spec.sprite) || this.fx;
     const a = new FF.Animator(set);
@@ -423,7 +426,7 @@ FF.Battle = class {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x + (spec.impactoDx || 0) * att.dir, to.y + (spec.impactoDy || 0), att.dir < 0, spec.impactoEscala || 1);
       if (spec.somImpacto) FF.Audio.play(spec.somImpacto);
       if (spec.tremerImpacto) this.shake(spec.tremerImpacto);
-      this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);
+      if (!spec.semAcerto) this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);
       res();
     };
     this.projectiles.push(p);

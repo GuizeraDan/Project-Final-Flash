@@ -196,3 +196,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Kamehameha do Kuririn: o raio agora atravessa a tela. Duas camadas `Kamehameha_Raio_Extensao` (anim nova no sprite krillin, recorte do corpo do raio dos quadros Pt5) continuam o feixe depois do fim do quadro e somem no começo do Final. Camadas aceitam `px: "sprite"` (x/y em pixels do sprite × escala da batalha, para alinhar com o lutador em 1×1 e 3×3); campo "Unidade X/Y" no Estúdio.
 
+- Onda de Energia Dispersa (supremo do Kuririn) refeita como na ilustração do usuário: rajadas Krillin_2 sobem em arcos da mão até o céu acima do alvo, explodem e viram uma chuva de 10 raios (EnergyWave_Effect1, impacto EnergyWave_Effect2) + 1 rajada grande final que lança. Motor: projétil aceita `deAlvo` (saída a partir do peito do alvo) e `semAcerto` (só visual, sem dano/anel).
+

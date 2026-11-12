@@ -302,236 +302,507 @@
     },
     "onda_dispersa": {
       "nome": "Onda de Energia Dispersa",
-      "descricao": "SUPREMO (Rage cheia): salta e faz chover dezenas de rajadas sobre o alvo.",
+      "descricao": "SUPREMO (Rage cheia): lança rajadas em arco para o céu que se espalham e chovem sobre o alvo.",
       "tipo": "energia",
       "supremo": true,
       "poder": 6.0,
       "roteiro": [
         {
-          "anim": "Ultimate_ScatteringEnergyWave_Pt1",
-          "eventos": [
-            {
-              "quadro": 0,
-              "som": "krillin_kksne_chrg"
-            },
-            {
-              "quadro": 0,
-              "voz": [
-                "vkrn214",
-                "vkrn215"
-              ]
-            }
-          ]
-        },
-        {
-          "anim": "Ultimate_ScatteringEnergyWave_Pt2",
-          "eventos": [
-            {
-              "quadro": 0,
-              "som": "krillin_kksne_hand"
-            },
-            {
-              "quadro": 3,
-              "tremer": 5
-            },
-            {
-              "quadro": 3,
-              "efeito": {
-                "fx": "genkidama_efeito",
-                "em": "disparo",
-                "escala": 0.25,
-                "duracao": 0.8
+          "linha": {
+            "duracao": 3.8,
+            "trilhas": [
+              {
+                "id": "atacante",
+                "tipo": "lutador",
+                "quem": "atacante",
+                "nome": "Quem solta",
+                "clipes": [
+                  {
+                    "id": "o1",
+                    "tipo": "anim",
+                    "t": 0,
+                    "anim": "Ultimate_ScatteringEnergyWave_Pt1",
+                    "fps": 17
+                  },
+                  {
+                    "id": "o2",
+                    "tipo": "anim",
+                    "t": 0.353,
+                    "anim": "Ultimate_ScatteringEnergyWave_Pt2",
+                    "fps": 15,
+                    "d": 0.9
+                  },
+                  {
+                    "id": "o3",
+                    "tipo": "anim",
+                    "t": 1.253,
+                    "anim": "Ultimate_ScatteringEnergyWave_Pt4",
+                    "fps": 15,
+                    "d": 2.0,
+                    "loop": false
+                  },
+                  {
+                    "id": "o4",
+                    "tipo": "anim",
+                    "t": 3.3,
+                    "anim": "Ultimate_ScatteringEnergyWave_Final",
+                    "fps": 10
+                  }
+                ]
+              },
+              {
+                "id": "alvo",
+                "tipo": "lutador",
+                "quem": "alvo",
+                "nome": "Alvo",
+                "clipes": []
+              },
+              {
+                "id": "efeitos",
+                "tipo": "efeitos",
+                "nome": "Efeitos",
+                "clipes": [
+                  {
+                    "id": "o28",
+                    "tipo": "efeito",
+                    "t": 0.6,
+                    "fx": "genkidama_efeito",
+                    "em": "disparo",
+                    "escala": 0.25,
+                    "d": 0.6
+                  },
+                  {
+                    "id": "o29",
+                    "tipo": "efeito",
+                    "t": 1.86,
+                    "fx": "kiblast_hit",
+                    "em": "alvo",
+                    "dx": -265,
+                    "dy": -300,
+                    "escala": 2.6
+                  }
+                ]
+              },
+              {
+                "id": "projeteis",
+                "tipo": "projeteis",
+                "nome": "Projéteis (subida e chuva)",
+                "clipes": [
+                  {
+                    "id": "o101",
+                    "tipo": "projetil",
+                    "t": 1.27,
+                    "fx": "Krillin_2",
+                    "escala": 0.55,
+                    "velocidade": 950,
+                    "curva": 30,
+                    "alvoDx": -267,
+                    "alvoDy": -290,
+                    "semAcerto": true,
+                    "crescer": false
+                  },
+                  {
+                    "id": "o102",
+                    "tipo": "projetil",
+                    "t": 1.32,
+                    "fx": "Krillin_2",
+                    "escala": 0.4,
+                    "velocidade": 950,
+                    "curva": 90,
+                    "alvoDx": -241,
+                    "alvoDy": -276,
+                    "semAcerto": true,
+                    "crescer": false
+                  },
+                  {
+                    "id": "o103",
+                    "tipo": "projetil",
+                    "t": 1.37,
+                    "fx": "Krillin_2",
+                    "escala": 0.4,
+                    "velocidade": 950,
+                    "curva": 150,
+                    "alvoDx": -266,
+                    "alvoDy": -297,
+                    "semAcerto": true,
+                    "crescer": false
+                  },
+                  {
+                    "id": "o104",
+                    "tipo": "projetil",
+                    "t": 1.42,
+                    "fx": "Krillin_2",
+                    "escala": 0.4,
+                    "velocidade": 950,
+                    "curva": 200,
+                    "alvoDx": -263,
+                    "alvoDy": -288,
+                    "semAcerto": true,
+                    "crescer": false
+                  },
+                  {
+                    "id": "o105",
+                    "tipo": "projetil",
+                    "t": 1.47,
+                    "fx": "Krillin_2",
+                    "escala": 0.4,
+                    "velocidade": 950,
+                    "curva": 120,
+                    "alvoDx": -283,
+                    "alvoDy": -314,
+                    "semAcerto": true,
+                    "crescer": false
+                  },
+                  {
+                    "id": "o106",
+                    "tipo": "projetil",
+                    "t": 2.0,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": 25,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -288,
+                    "deDy": -324,
+                    "alvoDx": 12,
+                    "alvoDy": 9,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    },
+                    "som": "krillin_kksne_fire"
+                  },
+                  {
+                    "id": "o107",
+                    "tipo": "projetil",
+                    "t": 2.06,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -7,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -198,
+                    "deDy": -279,
+                    "alvoDx": 43,
+                    "alvoDy": 30,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o108",
+                    "tipo": "projetil",
+                    "t": 2.12,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -24,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -234,
+                    "deDy": -302,
+                    "alvoDx": 38,
+                    "alvoDy": 29,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o109",
+                    "tipo": "projetil",
+                    "t": 2.18,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -24,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -332,
+                    "deDy": -277,
+                    "alvoDx": 22,
+                    "alvoDy": -6,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    },
+                    "som": "krillin_kksne_fire"
+                  },
+                  {
+                    "id": "o110",
+                    "tipo": "projetil",
+                    "t": 2.24,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -6,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -287,
+                    "deDy": -274,
+                    "alvoDx": -15,
+                    "alvoDy": 28,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o111",
+                    "tipo": "projetil",
+                    "t": 2.3,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -29,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -217,
+                    "deDy": -310,
+                    "alvoDx": 11,
+                    "alvoDy": 27,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o112",
+                    "tipo": "projetil",
+                    "t": 2.36,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -21,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -276,
+                    "deDy": -290,
+                    "alvoDx": -8,
+                    "alvoDy": 21,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    },
+                    "som": "krillin_kksne_fire"
+                  },
+                  {
+                    "id": "o113",
+                    "tipo": "projetil",
+                    "t": 2.42,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -26,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -314,
+                    "deDy": -301,
+                    "alvoDx": 38,
+                    "alvoDy": 7,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o114",
+                    "tipo": "projetil",
+                    "t": 2.48,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": 22,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -314,
+                    "deDy": -285,
+                    "alvoDx": -13,
+                    "alvoDy": 10,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    }
+                  },
+                  {
+                    "id": "o115",
+                    "tipo": "projetil",
+                    "t": 2.54,
+                    "fx": "EnergyWave_Effect1",
+                    "escala": 2.2,
+                    "velocidade": 800,
+                    "curva": -21,
+                    "rastro": true,
+                    "crescer": false,
+                    "deAlvo": true,
+                    "deDx": -262,
+                    "deDy": -329,
+                    "alvoDx": -37,
+                    "alvoDy": 26,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 0.45,
+                    "acerto": {
+                      "fracao": 0.08,
+                      "forca": "energia"
+                    },
+                    "som": "krillin_kksne_fire"
+                  },
+                  {
+                    "id": "o116",
+                    "tipo": "projetil",
+                    "t": 2.68,
+                    "fx": "Krillin_2",
+                    "escala": 0.8,
+                    "velocidade": 800,
+                    "curva": 8,
+                    "deAlvo": true,
+                    "deDx": -265,
+                    "deDy": -300,
+                    "crescer": false,
+                    "impacto": "EnergyWave_Effect2",
+                    "impactoEscala": 1.0,
+                    "som": "krillin_kksne_fire",
+                    "tremerImpacto": 10,
+                    "acerto": {
+                      "fracao": 0.2,
+                      "forca": "energia",
+                      "lanca": true,
+                      "empurrao": 650
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "sons",
+                "tipo": "sons",
+                "nome": "Sons e vozes",
+                "clipes": [
+                  {
+                    "id": "o21",
+                    "tipo": "som",
+                    "t": 0,
+                    "som": "krillin_kksne_chrg"
+                  },
+                  {
+                    "id": "o22",
+                    "tipo": "voz",
+                    "t": 0.02,
+                    "voz": [
+                      "vkrn214",
+                      "vkrn215"
+                    ]
+                  },
+                  {
+                    "id": "o23",
+                    "tipo": "som",
+                    "t": 0.36,
+                    "som": "krillin_kksne_hand"
+                  },
+                  {
+                    "id": "o24",
+                    "tipo": "voz",
+                    "t": 1.25,
+                    "voz": [
+                      "vkrn216",
+                      "vkrn217"
+                    ]
+                  },
+                  {
+                    "id": "o25",
+                    "tipo": "som",
+                    "t": 1.27,
+                    "som": "krillin_kksne_fire"
+                  },
+                  {
+                    "id": "o26",
+                    "tipo": "som",
+                    "t": 1.95,
+                    "som": "krillin_kksne_lottafall"
+                  },
+                  {
+                    "id": "o27",
+                    "tipo": "som",
+                    "t": 3.2,
+                    "som": "krillin_kksne_expl"
+                  }
+                ]
+              },
+              {
+                "id": "acertos",
+                "tipo": "acertos",
+                "nome": "Acertos",
+                "clipes": []
+              },
+              {
+                "id": "tela",
+                "tipo": "tela",
+                "nome": "Tela (tremor, flash, câmera)",
+                "clipes": [
+                  {
+                    "id": "o30",
+                    "tipo": "tremer",
+                    "t": 0.55,
+                    "forca": 5
+                  },
+                  {
+                    "id": "o31",
+                    "tipo": "mensagem",
+                    "t": 0.5,
+                    "texto": "Desvia dessa, se for capaz!",
+                    "d": 1.2
+                  },
+                  {
+                    "id": "o32",
+                    "tipo": "flash",
+                    "t": 1.9,
+                    "forca": 0.25
+                  },
+                  {
+                    "id": "o33",
+                    "tipo": "tremer",
+                    "t": 3.2,
+                    "forca": 14
+                  },
+                  {
+                    "id": "o34",
+                    "tipo": "flash",
+                    "t": 3.2,
+                    "forca": 0.3
+                  }
+                ]
               }
-            }
-          ]
-        },
-        {
-          "mensagem": "Desvia dessa, se for capaz!",
-          "mensagemDur": 1.2
-        },
-        {
-          "anim": "Ultimate_ScatteringEnergyWave_Pt3",
-          "eventos": [
-            {
-              "quadro": 0,
-              "voz": [
-                "vkrn216",
-                "vkrn217"
-              ]
-            },
-            {
-              "quadro": 0,
-              "som": "krillin_kksne_lottafall"
-            },
-            {
-              "quadro": 0,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 480,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 1,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 505,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 2,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 530,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 3,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 555,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 4,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 580,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 5,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 605,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 6,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 630,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            },
-            {
-              "quadro": 7,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.55,
-                "velocidade": 655,
-                "som": "krillin_kksne_fire",
-                "impacto": "kiblast_hit",
-                "impactoEscala": 1,
-                "acerto": {
-                  "fracao": 0.1,
-                  "forca": "energia"
-                },
-                "deCima": true
-              }
-            }
-          ]
-        },
-        {
-          "anim": "Ultimate_ScatteringEnergyWave_Pt4",
-          "eventos": [
-            {
-              "quadro": 1,
-              "projetil": {
-                "fx": "kiblast_amarelo",
-                "escala": 0.9,
-                "velocidade": 650,
-                "som": "krillin_kksne_fire",
-                "impacto": "Explosao15",
-                "impactoEscala": 0.6,
-                "acerto": {
-                  "fracao": 0.2,
-                  "forca": "energia",
-                  "lanca": true,
-                  "empurrao": 650
-                }
-              }
-            }
-          ]
-        },
-        {
-          "anim": "Ultimate_ScatteringEnergyWave_Final",
-          "fps": 10,
-          "eventos": [
-            {
-              "quadro": 0,
-              "som": "krillin_kksne_expl"
-            },
-            {
-              "quadro": 0,
-              "tremer": 14
-            },
-            {
-              "quadro": 0,
-              "flash": 0.3
-            }
-          ]
+            ]
+          }
         }
       ]
     },
