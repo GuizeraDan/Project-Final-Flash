@@ -34,6 +34,8 @@ FF.EstudioProps = {
       case 'anim': {
         const lista = this.BASICAS.concat(host.animsDe(quem));
         g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: lista }), () => this.escolherAnim(host.spriteDe(quem), c.anim, (a) => { c.anim = a; host.mudou('Animação'); })));
+        g.appendChild(num(c, 'de', 'Do quadro', 'Trecho: primeiro quadro (0 = início; vazio = todos)', { min: 0, passo: 1 }));
+        g.appendChild(num(c, 'ate', 'Até o quadro', 'Trecho: último quadro (inclusive; vazio = até o fim)', { min: 0, passo: 1 }));
         g.appendChild(num(c, 'fps', 'fps', 'Velocidade da animação (vazio = a da própria animação)', { min: 0 }));
         g.appendChild(num(c, 'd', 'Duração fixa (s)', 'Vazio = o tamanho natural da animação. Com duração, a animação repete até o fim.', { min: 0, passo: 0.01 }));
         g.appendChild(chk(c, 'loop', 'Repetir', 'Fica repetindo (até o próximo clipe ou o fim)'));

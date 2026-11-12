@@ -227,7 +227,8 @@ window.FF = window.FF || {};
       const s = this.spriteDe(tr.quem), f = this.formaDe(tr.quem);
       if (!s) return null;
       const nome = c.tipo === 'teleporte' ? (c.animMov || 'teleporte') : c.anim;
-      return s.anim(((f && f.anims) || {})[nome] || nome);
+      const real = ((f && f.anims) || {})[nome] || nome;
+      return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
     redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera'].includes(c.tipo); },
     dur(c, tr) {

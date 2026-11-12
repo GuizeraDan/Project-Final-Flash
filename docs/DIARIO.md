@@ -109,3 +109,15 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Submenus no padrão novo (arte do título + faixas): Novo Jogo virou escolha de capítulo (liberados até concluidos+1, ✔ nos vencidos), Opções em faixas, Treinamento com cartões e retratos, Batalha Livre com fundo da arte e botões inclinados, fim de luta com a arte e VITÓRIA/DERROTA em letras douradas, pausa no mesmo estilo.
 - Menu de golpes da batalha no padrão novo (faixas inclinadas, borda dourada, nomes em caixa alta; supremo laranja e Sparking azul mantidos).
 - Genki Dama corrigida: carga usa só Special_EveryoneLendMeYourEnergy 0-9 e segura Ultimate_SuperSpiritBomb 3-7 (braços erguidos) enquanto a bola cresce; arremesso com Ultimate_SuperSpiritBomb 7-10 lançando no quadro 9 (antes usava Special_SpiritBomb, que é um empurrão de energia). Bola desceu (dy -78). Motor: passo de animação aceita `de`/`ate` (trecho de quadros; eventos contam a partir de `de`), com campos no Editor.
+
+## 12/11/2026 00:05–08:40 — Estúdio Final Flash (sessão noturna)
+**Feito:**
+- `estudio.html` + `js/estudio/*` + `css/estudio*.css`: abas Golpes e cenas, Sprites, Importar, Personagens e Projeto; desfazer/refazer, rascunho automático, ☁ sincronização (mesma chave do Editor). Guia em `docs/ESTUDIO.md`.
+- **Motor:** passo `linha` (`js/battle/linha.js`) com trilhas e tempos absolutos (lutador/parceiro/alvo, efeitos, projéteis, camadas, sons, acertos com anéis automáticos, tela com câmera, ações). Conversor de roteiros antigos (tempos conferidos: Kamehameha 2,00 s × 1,92 s, Sequência 3,55 × 3,50). Extensões compatíveis: offsets/escala por passo no Fighter, câmera na Battle, efeitos com giro e de sprites importados, projétil com saída/chegada ajustáveis, trecho `de/ate` também na linha.
+- **Edições:** seções `personagens`, `spritesNovos`, `spritesInfo`; imagens importadas no IndexedDB (`FF.ImagensUsr`) e enviadas para `assets/img/usr/`. `loadCharacter`/`loadSprite` trabalham sobre cópias (o original do JSON fica intacto). Batalha Livre lista personagens criados.
+- Menu ⚙ Ferramentas ganhou "Estúdio"; visualizador e `sw.js` (cache v2) também.
+- Testes: `tools/testes/estudio.js` (habilidade do zero com efeito arrastado no palco, projétil, acerto, reação, som → salva → usa na Batalha Livre; golpe existente editado → muda na batalha), `tools/testes/codecs.js` e `codecs_navegador.js` (ZIP, GIF, APNG, imagem), `tools/testes/estudio_importar.js`.
+
+**Decisões:** o Estúdio salva golpes como `roteiro: [{linha}]`; golpes antigos continuam como estavam até serem salvos no Estúdio. Prévia determinística: a batalha é recriada e simulada em passos de 1/60 s até o instante do cursor (sorteios com semente, sem som); tocar segue em tempo real com som.
+
+**Pendente:** aba de batalhas/estágios; IA por forma; edição de pixels; Editor antigo não edita golpes `linha`; ver lista em `docs/ESTUDIO.md`.

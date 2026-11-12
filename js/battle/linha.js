@@ -4,7 +4,7 @@
 //
 // Tipos de trilha → clipes aceitos (todo clipe tem "t" = início em segundos; "d" = duração quando faz sentido):
 //  lutador  (quem: "atacante" | "alvo" | id de um parceiro, ex.: "piccolo")
-//     {tipo:"anim", anim, fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, alpha?, flip?,
+//     {tipo:"anim", anim, de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, alpha?, flip?,
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?, suave?}
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?}
@@ -43,6 +43,16 @@ FF.Linha = {
     let t = 0;
     for (let i = 0; i < k && i < a.frames.length; i++) t += f > 0 ? (a.frames[i][7] || 1) / f : 0;
     return t;
+  },
+
+  // trecho de uma animação (de/ate, índices inclusive), igual ao passo "anim" do roteiro
+  trecho(set, name, de, ate) {
+    const a = set && set.anim(name);
+    if (!a || (de == null && ate == null)) return name;
+    const n = a.frames.length, d = Math.max(0, Math.min(n - 1, de || 0)), t = Math.max(d, Math.min(n - 1, ate != null ? ate : n - 1));
+    const sub = name + '#' + d + '-' + t;
+    if (!set.has(sub)) set.def.anims[sub] = Object.assign({}, a, { frames: a.frames.slice(d, t + 1), repeatTo: 0 });
+    return sub;
   },
 
   // sprites que a linha usa (camadas, efeitos e projéteis de sprites importados)
@@ -171,11 +181,12 @@ FF.Linha = {
           f.offX = (c.dx || 0) * f.dir; f.offY = c.dy || 0; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip;
           if (c.alpha != null) { guardar(f); f.alpha = c.alpha; }
           const loop = c.loop != null ? !!c.loop : !!c.d;
-          f.anim.play(f.animName(c.anim), { fps: c.fps || undefined, loop, hold: (c.segurar || 0) + (segurar || 0) });
+          f.anim.play(this.trecho(f.sprite, f.animName(c.anim), c.de, c.ate), { fps: c.fps || undefined, loop, hold: (c.segurar || 0) + (segurar || 0) });
           if (c.empurrao) { f.vx = -f.dir * c.empurrao; f.voando = true; }
           if (c.voltarNormal) {
-            const fimT = c.t + (c.d != null ? c.d : this.duracaoAnim(f.sprite.anim(f.animName(c.anim)), c.fps || undefined) + (c.segurar || 0));
-            viva.ativos.push((dt, t) => { if (t >= fimT) { if (!f.ko && f.anim.name === f.animName(c.anim)) f.idle(); return false; } });
+            const nm = this.trecho(f.sprite, f.animName(c.anim), c.de, c.ate);
+            const fimT = c.t + (c.d != null ? c.d : this.duracaoAnim(f.sprite.anim(nm), c.fps || undefined) + (c.segurar || 0));
+            viva.ativos.push((dt, t) => { if (t >= fimT) { if (!f.ko && f.anim.name === nm) f.idle(); return false; } });
           }
           return;
         }
@@ -322,7 +333,7 @@ FF.Linha = {
         return t + (s.empurrao && !s.duracao ? Math.max(d, 0.6) : d);
       }
       if (s.anim) {
-        const a = set && set.anim(nomeAnim(s.anim));
+        const a = set && set.anim(this.trecho(set, nomeAnim(s.anim), s.de, s.ate));
         const loop = !!s.duracao || !!s.loop;
         const evs = (s.eventos || []).map(e => Object.assign({}, e, { _i: a ? FF.Script.resolveFrame(a, e.quadro != null ? e.quadro : 0) : 0 }));
         // espera do anel (o motor antigo segura o 1º quadro quando o 1º acerto vem cedo)
@@ -330,6 +341,8 @@ FF.Linha = {
         let hold = 0;
         if (hits.length && a && quem === 'atacante') hold = Math.max(0, this.LEAD - this.tempoQuadro(a, s.fps, Math.min(...hits.map(e => e._i))));
         const c = { tipo: 'anim', t, anim: s.anim };
+        if (s.de != null) c.de = s.de;
+        if (s.ate != null) c.ate = s.ate;
         if (s.fps) c.fps = s.fps;
         if (s.duracao) c.d = s.duracao; else if (s.loop) c.loop = true;
         if (hold) c.segurar = r3(hold);

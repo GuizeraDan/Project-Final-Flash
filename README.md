@@ -128,6 +128,8 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
 
 ## Ferramentas de desenvolvimento
 
+- **Estúdio Final Flash** (`estudio.html`, ou ⚙ Ferramentas → Estúdio): editor completo do jogo — golpes numa linha do tempo com palco ao vivo, sprites quadro a quadro, importar animações de qualquer arquivo, exportar (PNG/ZIP/GIF/WebM/JSON), personagens/buffs/IA e projeto. Tudo sincroniza entre aparelhos. Guia: `docs/ESTUDIO.md`.
+
 - **Visualizador de animações** (`visualizador.html`, ou pelo botão na tela de título):
   - todas as animações de todos os sprites, quadro a quadro;
   - mostra o ponto dos pés, a caixa do quadro e os pontos de disparo;
