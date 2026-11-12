@@ -290,12 +290,14 @@ FF.Battle = class {
       def.reagir('guarda', 0.25);
     } else {
       const fxName = spec.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
-      this.spawnFx(fxName, p.x + (spec.dx || 0), p.y + (spec.dy || 0), att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1));
+      // posição da explosão do acerto: dx/dy a partir do peito do alvo (dx positivo = para longe de quem bateu)
+      const ex = p.x + (spec.dx || 0) * att.dir, ey = p.y + (spec.dy || 0);
+      this.spawnFx(fxName, ex, ey, att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1));
       FF.Audio.play({ leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
       if (spec.lanca || def.hp <= 0) {
         // golpe final: impacto extra (corpo a corpo) ou explosão no alvo (energia)
-        if (forca === 'forte') this.spawnFx('Extreme', p.x, p.y, att.dir < 0, 0.7);
-        if (forca === 'energia') this.spawnFx('Explosao4', p.x, p.y, att.dir < 0, 0.8);
+        if (forca === 'forte') this.spawnFx('Extreme', ex, ey, att.dir < 0, 0.7);
+        if (forca === 'energia') this.spawnFx('Explosao4', ex, ey, att.dir < 0, 0.8);
       }
       if (def.hp <= 0) {
         def.ko = true;
@@ -411,7 +413,7 @@ FF.Battle = class {
       done: new Promise(r => (res = r)),
     };
     p.hit = () => {
-      if (spec.impacto) this.spawnFx(spec.impacto, to.x, to.y, att.dir < 0, spec.impactoEscala || 1);
+      if (spec.impacto) this.spawnFx(spec.impacto, to.x + (spec.impactoDx || 0) * att.dir, to.y + (spec.impactoDy || 0), att.dir < 0, spec.impactoEscala || 1);
       if (spec.somImpacto) FF.Audio.play(spec.somImpacto);
       if (spec.tremerImpacto) this.shake(spec.tremerImpacto);
       this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);

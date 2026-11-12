@@ -417,7 +417,7 @@ FF.Editor = {
         this.mini('tempo (s)', e.duracao, v => this.set(e, 'duracao', v), 0.1));
       const al = document.createElement('button');
       al.textContent = '🎯'; al.title = 'Alinhar: clique na tela onde o efeito deve aparecer';
-      al.onclick = () => { this.alinhando = { ev, e }; this.log('🎯 Clique na tela onde o efeito "' + e.fx + '" deve aparecer…'); };
+      al.onclick = () => this.alinhar({ obj: e, kx: 'dx', ky: 'dy', nome: e.fx, ponto: () => this.ancora(e), ver: () => this.verEfeito(e) });
       const ver = document.createElement('button');
       ver.textContent = '👁'; ver.title = 'Ver só este efeito agora';
       ver.onclick = () => this.verEfeito(e);
@@ -430,8 +430,20 @@ FF.Editor = {
       const lanca = document.createElement('input'); lanca.type = 'checkbox'; lanca.checked = !!a.lanca; lanca.title = 'lança o alvo';
       lanca.onchange = () => { this.set(a, 'lanca', lanca.checked || undefined); this.atualizarJSON(); };
       row.append('💥', this.mini('dano', a.fracao, v => this.set(a, 'fracao', v), 0.05),
-        this.sel(['leve', 'media', 'forte', 'energia'], a.forca || 'leve', v => this.set(a, 'forca', v)),
+        this.sel(['leve', 'media', 'forte', 'energia'], a.forca || 'leve', v => { this.set(a, 'forca', v); this.render(); }),
         this.campo('lança', lanca));
+      // explosão do acerto: qual efeito, tamanho e posição (a partir do peito do alvo)
+      const padrao = { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[a.forca || 'leve'] || 'hit1';
+      const fxA = this.inp(a.fx, v => this.set(a, 'fx', v), null, { placeholder: padrao + ' (padrão)' });
+      fxA.setAttribute('list', 'ed-efeitos');
+      fxA.addEventListener('change', () => this.render());
+      const sub = document.createElement('div'); sub.className = 'ed-sub';
+      sub.append('explosão', this.previaEfeito(fxA, a.fx || padrao, v => { a.fx = v; this.render(); this.atualizarJSON(); }),
+        this.mini('x', a.dx, v => this.set(a, 'dx', v)), this.mini('y', a.dy, v => this.set(a, 'dy', v)),
+        this.mini('tam', a.fxEscala, v => this.set(a, 'fxEscala', v), 0.05),
+        this.btAlinhar(() => this.alinhar({ obj: a, kx: 'dx', ky: 'dy', nome: 'explosão do acerto', ponto: () => this.alvo().peito(), ver: () => this.verExplosaoAcerto(a) })),
+        this.btVer(() => this.verExplosaoAcerto(a)));
+      row.appendChild(sub);
     } else if (ev.projetil) {
       const pr = ev.projetil;
       pr.acerto = pr.acerto || { fracao: 0.5, forca: 'energia' };
@@ -451,7 +463,10 @@ FF.Editor = {
         this.mini('tam', pr.escala, v => this.set(pr, 'escala', v), 0.1), this.mini('dano', pr.acerto.fracao, v => this.set(pr.acerto, 'fracao', v), 0.05));
       const l2 = document.createElement('div'); l2.className = 'ed-sub';
       l2.append('na mão:', efx('disparo', 'efeito ao soltar'), 'no alvo:', efx('impacto', 'explosão'),
-        this.mini('tam', pr.impactoEscala, v => this.set(pr, 'impactoEscala', v), 0.1));
+        this.mini('tam', pr.impactoEscala, v => this.set(pr, 'impactoEscala', v), 0.1),
+        this.mini('x', pr.impactoDx, v => this.set(pr, 'impactoDx', v)), this.mini('y', pr.impactoDy, v => this.set(pr, 'impactoDy', v)),
+        this.btAlinhar(() => this.alinhar({ obj: pr, kx: 'impactoDx', ky: 'impactoDy', nome: 'explosão do projétil', ponto: () => this.alvo().peito(), ver: () => this.verImpacto(pr) })),
+        this.btVer(() => this.verImpacto(pr)));
       const l3 = document.createElement('div'); l3.className = 'ed-sub';
       l3.append('som ao soltar', this.campoAudio(pr.som, v => this.set(pr, 'som', v)));
       const l4 = document.createElement('div'); l4.className = 'ed-sub';
@@ -580,6 +595,22 @@ FF.Editor = {
     return { x: actor.x, y: actor.groundY };
   },
 
+  // 🎯 alinhar qualquer explosão/efeito: o próximo clique na tela grava a posição relativa a "ponto"
+  alinhar(al) { this.alinhando = al; this.log('🎯 Clique na tela onde "' + al.nome + '" deve aparecer…'); },
+  btAlinhar(fn) { const b = document.createElement('button'); b.textContent = '🎯'; b.title = 'Alinhar: clique na tela onde deve aparecer'; b.onclick = (e) => { e.stopPropagation(); fn(); }; return b; },
+  btVer(fn) { const b = document.createElement('button'); b.textContent = '👁'; b.title = 'Ver agora'; b.onclick = (e) => { e.stopPropagation(); fn(); }; return b; },
+  verImpacto(pr) {
+    const actor = this.ator(), t = this.alvo(); if (!t || !pr.impacto) return this.log('Escolha a explosão do projétil primeiro.');
+    const p = t.peito();
+    this.b.spawnFx(pr.impacto, p.x + (pr.impactoDx || 0) * actor.dir, p.y + (pr.impactoDy || 0), actor.dir < 0, pr.impactoEscala || 1);
+  },
+  verExplosaoAcerto(a) {
+    const actor = this.ator(), t = this.alvo(); if (!t) return;
+    const forca = a.forca || 'leve', p = t.peito();
+    const fx = a.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
+    this.b.spawnFx(fx, p.x + (a.dx || 0) * actor.dir, p.y + (a.dy || 0), actor.dir < 0, a.fxEscala || (forca === 'forte' ? 0.5 : 1));
+  },
+
   verEfeito(e) {
     const actor = this.ator(), p = this.ancora(e);
     this.b.spawnFx(e.fx, p.x + (e.dx || 0) * actor.dir, p.y + (e.dy || 0), actor.dir < 0, e.escala, e);
@@ -597,14 +628,15 @@ FF.Editor = {
       ev.stopImmediatePropagation(); ev.preventDefault();
       const r = cv.getBoundingClientRect();
       const x = (ev.clientX - r.left) * cv.width / r.width, y = (ev.clientY - r.top) * cv.height / r.height;
-      const { e } = this.alinhando;
-      const p = this.ancora(e), actor = this.ator();
-      e.dx = Math.round((x - p.x) * actor.dir);
-      e.dy = Math.round(y - p.y);
+      const al = this.alinhando;
+      const p = al.ponto(), actor = this.ator();
+      al.obj[al.kx] = Math.round((x - p.x) * actor.dir);
+      al.obj[al.ky] = Math.round(y - p.y);
       this.alinhando = null;
-      this.log('🎯 "' + e.fx + '" alinhado em x ' + e.dx + ', y ' + e.dy + '.');
+      this.log('🎯 "' + al.nome + '" alinhado em x ' + al.obj[al.kx] + ', y ' + al.obj[al.ky] + '.');
       this.render();
-      this.verEfeito(e);
+      this.atualizarJSON();
+      if (al.ver) al.ver();
     }, true);
     // desenha a mira do efeito que está sendo alinhado
     const draw = b.draw.bind(b);
@@ -612,7 +644,7 @@ FF.Editor = {
       draw(ctx);
       if (this.cenaIdx != null && this.desenharEdicaoCena) this.desenharEdicaoCena(ctx);
       if (this.alinhando) {
-        const p = this.ancora(this.alinhando.e);
+        const p = this.alinhando.ponto();
         ctx.save(); ctx.strokeStyle = '#ffd84a'; ctx.lineWidth = 2; ctx.setLineDash([4, 4]);
         ctx.beginPath(); ctx.arc(p.x, p.y, 10, 0, 7); ctx.stroke();
         ctx.fillStyle = '#ffd84a'; ctx.font = 'bold 14px sans-serif'; ctx.fillText('referência', p.x + 12, p.y - 10);
