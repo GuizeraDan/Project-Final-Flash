@@ -52,6 +52,8 @@ Em todo o Estúdio: **Ctrl+Z / Ctrl+Y** desfazem/refazem; o trabalho em andament
     na régua marca um trecho para repetir (🔁 Trecho). ← → anda quadro a quadro; Espaço toca/pausa;
     velocidade de 0,25× a 2×; 🧅 casca de cebola, ▦ grade, ✚ pontos de referência. **▤ Compacto** deixa as trilhas
     mais baixas (cabem todas sem rolar); arrastar a borda de cima da linha do tempo muda a altura dela.
+    Clipes que acontecem ao mesmo tempo na mesma trilha ficam **um embaixo do outro** (camadas, como num editor de
+    vídeo); a trilha cresce sozinha. É só visual: o tempo de cada clipe continua o mesmo.
 11. **⚔ Na batalha** roda o golpe de verdade (dano, anéis — aperte Espaço/toque no palco).
 12. Sem clipe escolhido, o painel da direita mostra o **golpe**: nome, descrição, tipo, custo de ki,
     poder, supremo, regras (mostrar/esconder com buff ou forma, requer parceiro).

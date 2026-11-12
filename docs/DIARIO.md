@@ -183,3 +183,7 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Props: efeito preso mostra 🔗 com "Ir para o lançamento"/"Soltar"; o Lançar objeto lista as explosões presas (miniatura animada + Editar) e tem "＋ Explosão no impacto".
 - Linha do tempo: linha tracejada ciano do lançamento até cada explosão presa; explosões de projéteis/acertos aparecem como marca tracejada laranja na trilha Efeitos (clique abre o clipe dono).
 - Teste: `estudio_melhorias.js` (extração, acompanhar o lançamento, ajuste, lista, marcas).
+
+## 12/11/2026 — Linha do tempo em camadas
+- `linha_ui.js`: `calcularLayout()` distribui os clipes de cada trilha em camadas (o primeiro que não se sobrepõe fica em cima; os outros descem), como num editor de vídeo. Clipes instantâneos (som, acerto…) ocupam a largura do nome; clipes encostados ficam na mesma linha; as marcas das explosões de projéteis/acertos também entram nas camadas da trilha Efeitos. A trilha cresce (nome à esquerda acompanha); desenho, clique (`achar`), linhas dos efeitos presos e marcas usam `yDe(c, tr)`. É só visual (nada muda no golpe salvo).
+- Teste em `estudio_melhorias.js` (3 explosões da Genki Dama em 3 camadas; clique na 2ª camada acha o clipe).

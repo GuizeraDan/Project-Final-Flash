@@ -83,17 +83,65 @@ FF.EstudioLinha = class {
     this.render();
   }
 
+  // ---------- camadas: clipes que se sobrepõem vão para uma linha embaixo (como num editor de vídeo) ----------
+  // Só visual: o tempo e a trilha do clipe não mudam. Clipes instantâneos (som, acerto…) ocupam o tamanho do nome.
+  larguraTexto(txt) {
+    if (!this._medidor) { this._medidor = document.createElement('canvas').getContext('2d'); this._medidor.font = '11px sans-serif'; }
+    return this._medidor.measureText(txt).width;
+  }
+  fantasmasDe(L) {
+    const l = [];
+    for (const { c, tr } of this.todos()) {
+      if (c.tipo === 'projetil' && c.impacto) l.push({ t: c.t + this.host.dur(c, tr), fx: c.impacto, id: c.id });
+      else if (c.tipo === 'acerto' && c.fx) l.push({ t: c.t, fx: c.fx, id: c.id });
+    }
+    return l;
+  }
+  calcularLayout(L) {
+    const pxs = this.pxs, LH = this.LH, lane = new Map(), rows = [];
+    const fantasmas = this.fantasmasDe(L);
+    let y = this.RG;
+    L.trilhas.forEach((tr, i) => {
+      const itens = (tr.clipes || []).map((c, k) => {
+        const d = this.host.dur(c, tr);
+        const ext = d > 0 ? Math.max(d * pxs, 12) : 16 + Math.min(150, this.larguraTexto(this.rotulo(c)));
+        return { c, k, x: c.t * pxs, fim: c.t * pxs + (d > 0 ? d * pxs : ext) };
+      });
+      if (tr.tipo === 'efeitos') fantasmas.forEach((f, k) => itens.push({ f, k: 1e6 + k, x: f.t * pxs, fim: f.t * pxs + 65 }));
+      itens.sort((a, b) => a.x - b.x || a.k - b.k);
+      const fins = [];
+      itens.forEach(it => {
+        let n = fins.findIndex(fx => fx <= it.x + 0.5);   // encostado (um termina, outro começa) fica na mesma linha
+        if (n < 0) { n = fins.length; fins.push(0); }
+        fins[n] = it.fim;
+        if (it.c) lane.set(it.c, n); else it.f.lane = n;
+      });
+      const n = Math.max(1, fins.length);
+      rows.push({ tr, i, y, h: n * LH, n });
+      y += n * LH;
+    });
+    this.lay = { rows, lane, fantasmas, altura: y };
+    return this.lay;
+  }
+  // y do topo da linha (camada) de um clipe
+  yDe(c, tr) {
+    const r = this.lay.rows.find(x => x.tr === tr) || this.lay.rows[0];
+    return r.y + (this.lay.lane.get(c) || 0) * this.LH;
+  }
+
   // ---------- montagem dos nomes + tamanho do canvas ----------
   render() {
     const L = this.host.linha();
     if (!L) return;
     const E = FF.Estudio;
+    const lay = this.calcularLayout(L);
     this.nomes.innerHTML = '';
     const rg = E.el('div', 'es-tl-regua-n', '<small>tempo (s) · quadros</small>');
     this.nomes.appendChild(rg);
     L.trilhas.forEach((tr, i) => {
       const n = E.el('div', 'es-tl-nome' + (tr.id === this.host.trSel ? ' sel' : '') + (this.LH < 30 ? ' compacto' : ''));
-      n.style.height = this.LH + 'px';
+      n.style.height = lay.rows[i].h + 'px';
+      if (lay.rows[i].n > 1) n.title = lay.rows[i].n + ' camadas (clipes ao mesmo tempo ficam um embaixo do outro)';
       n.style.borderLeft = '4px solid ' + this.cor(tr.tipo);
       const nome = E.el('b'); nome.textContent = this.nomeTrilha(tr); nome.title = this.nomeTrilha(tr);
       n.appendChild(nome);
@@ -104,7 +152,7 @@ FF.EstudioLinha = class {
     });
     const dur = Math.max(L.duracao || 1, ...this.todos().map(x => x.c.t + this.host.dur(x.c, x.tr)));
     const w = Math.max(this.area.clientWidth, Math.ceil((dur + 1.5) * this.pxs));
-    const h = this.RG + L.trilhas.length * this.LH;
+    const h = lay.altura;
     const dpr = 1;
     if (this.cv.width !== w * dpr || this.cv.height !== h * dpr) { this.cv.width = w * dpr; this.cv.height = h * dpr; this.cv.style.width = w + 'px'; this.cv.style.height = h + 'px'; }
     this.btLoop.classList.toggle('on', !!this.host.loop);
@@ -150,11 +198,13 @@ FF.EstudioLinha = class {
     const x0 = this.area.scrollLeft, x1 = x0 + this.area.clientWidth;
     ctx.clearRect(0, 0, W, H);
     // trilhas
-    L.trilhas.forEach((tr, i) => {
-      const y = RG + i * LH;
+    if (!this.lay || this.lay.rows.length !== L.trilhas.length) this.calcularLayout(L);
+    this.lay.rows.forEach(({ tr, i, y, h, n }) => {
       ctx.fillStyle = tr.id === this.host.trSel ? '#2a1c4c' : (i % 2 ? '#1a1030' : '#1e1336');
-      ctx.fillRect(0, y, W, LH);
-      ctx.fillStyle = '#2a1c48'; ctx.fillRect(0, y + LH - 1, W, 1);
+      ctx.fillRect(0, y, W, h);
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      for (let k = 1; k < n; k++) ctx.fillRect(0, y + k * LH, W, 1);
+      ctx.fillStyle = '#2a1c48'; ctx.fillRect(0, y + h - 1, W, 1);
     });
     // além do fim
     const xf = (L.duracao || 0) * pxs;
@@ -187,8 +237,8 @@ FF.EstudioLinha = class {
     // fim da linha
     ctx.fillStyle = '#ffd84a'; ctx.fillRect(Math.round(xf), 0, 2, H);
     // clipes
-    for (const { c, tr, i } of this.todos()) {
-      const y = RG + i * LH + 3;
+    for (const { c, tr } of this.todos()) {
+      const y = this.yDe(c, tr) + 3;
       const d = this.host.dur(c, tr);
       const x = c.t * pxs;
       const w = Math.max(d * pxs, 12);
@@ -221,34 +271,29 @@ FF.EstudioLinha = class {
     }
     // explosões que fazem parte de outro clipe (projétil, acerto): marca clarinha na trilha Efeitos; clicar abre o clipe dono
     this._fantasmas = [];
-    const iEf = L.trilhas.findIndex(t => t.tipo === 'efeitos');
-    if (iEf >= 0) {
-      const yE = RG + iEf * LH + 3, hE = LH - 7;
-      for (const { c, tr } of this.todos()) {
-        let tI = null, fx = null;
-        if (c.tipo === 'projetil' && c.impacto) { tI = c.t + this.host.dur(c, tr); fx = c.impacto; }
-        else if (c.tipo === 'acerto' && c.fx) { tI = c.t; fx = c.fx; }
-        if (tI == null) continue;
-        const x = tI * pxs, w = 62;
+    const rEf = this.lay.rows.find(r => r.tr.tipo === 'efeitos');
+    if (rEf) {
+      const hE = LH - 7;
+      for (const f of this.lay.fantasmas) {
+        const x = f.t * pxs, w = 62, yE = rEf.y + (f.lane || 0) * LH + 3;
         if (x > x1 || x + w < x0) continue;
         ctx.save();
-        ctx.globalAlpha = c.id === this.host.sel ? 0.85 : 0.45;
+        ctx.globalAlpha = f.id === this.host.sel ? 0.85 : 0.45;
         ctx.setLineDash([3, 3]); ctx.strokeStyle = '#ff8a3a'; ctx.lineWidth = 1;
         this.ret(ctx, x, yE, w, hE, 4); ctx.stroke();
         ctx.setLineDash([]);
         ctx.beginPath(); ctx.rect(x, yE, w, hE); ctx.clip();
         ctx.fillStyle = '#ffc89a'; ctx.font = '10px sans-serif'; ctx.textBaseline = 'middle';
-        ctx.fillText('↳ ' + fx, x + 3, yE + hE / 2);
+        ctx.fillText('↳ ' + f.fx, x + 3, yE + hE / 2);
         ctx.restore();
-        this._fantasmas.push({ x, y: yE, w, h: hE, id: c.id });
+        this._fantasmas.push({ x, y: yE, w, h: hE, id: f.id });
       }
     }
     // efeitos presos ao impacto de um objeto lançado: linha até o clipe do lançamento
-    for (const { c, i } of this.todos()) {
+    for (const { c, tr } of this.todos()) {
       if (!c.prende) continue;
       const a = this.host.achar(c.prende); if (!a) continue;
-      const iA = L.trilhas.indexOf(a.tr);
-      const xa = a.c.t * pxs + 6, ya = RG + iA * LH + LH / 2, xe = c.t * pxs + 2, ye = RG + i * LH + LH / 2;
+      const xa = a.c.t * pxs + 6, ya = this.yDe(a.c, a.tr) + LH / 2, xe = c.t * pxs + 2, ye = this.yDe(c, tr) + LH / 2;
       ctx.save();
       ctx.strokeStyle = 'rgba(54,200,216,0.55)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xa, ye); ctx.lineTo(xe, ye); ctx.stroke();
@@ -269,11 +314,13 @@ FF.EstudioLinha = class {
   pos(e) { const r = this.cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
   achar(p) {
     const L = this.host.linha();
-    const i = Math.floor((p.y - this.RG) / this.LH);
-    const tr = L.trilhas[i];
-    if (!tr) return { tr: null };
+    if (!this.lay) this.calcularLayout(L);
+    const row = this.lay.rows.find(r => p.y >= r.y && p.y < r.y + r.h);
+    if (!row) return { tr: null };
+    const tr = row.tr, i = row.i, camada = Math.floor((p.y - row.y) / this.LH);
     let melhor = null;
     for (const c of tr.clipes) {
+      if ((this.lay.lane.get(c) || 0) !== camada) continue;
       const x = c.t * this.pxs, w = Math.max(this.host.dur(c, tr) * this.pxs, 12);
       if (p.x >= x - 2 && p.x <= x + w + 2) { if (!melhor || c.t > melhor.c.t) melhor = { c, borda: this.host.dur(c, tr) > 0 && this.host.redimensionavel(c) && p.x >= x + w - 7 }; }
     }

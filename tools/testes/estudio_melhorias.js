@@ -75,7 +75,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(/Tempo até chegar/.test(s) && /4 acerto/.test(s), 'ação "Lançar objeto" com campos e resumo dos acertos');
 
   // ---- explosões do impacto viram clipes presos ao lançamento
-  await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=esfera_destruicao');
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=goku&golpe=genkidama');
   await pronto(); await p.waitForTimeout(800);
   s = await p.evaluate(() => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
@@ -83,13 +83,13 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; }));
     return { n: ef.length, fx: ef.map(c => c.fx), t: ef.map(c => c.t), lanT: lan.t, tempo: lan.passo.lancarObjeto.tempo, imp: lan.passo.lancarObjeto.impacto.length, sujo: g.sujo };
   });
-  ok(s.n === 2 && s.fx.join() === 'Bills_Esfera_Explosao,Explosao15' && Math.abs(s.t[0] - (s.lanT + s.tempo)) < 0.002 && s.imp === 0 && !s.sujo, 'explosões do impacto aparecem na trilha Efeitos no tempo da chegada: ' + JSON.stringify(s));
+  ok(s.n === 3 && s.fx.join() === 'genkidama_chao,genkidama_explosao,Explosao15' && Math.abs(s.t[0] - (s.lanT + s.tempo)) < 0.002 && s.imp === 0 && !s.sujo, 'explosões do impacto aparecem na trilha Efeitos no tempo da chegada: ' + JSON.stringify(s));
   s = await p.evaluate(() => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
     let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; }));
     g.sel = lan.id; lan.t += 0.5; g.mudou('Mover');
     const ef = g.doc.linha.trilhas.find(t => t.tipo === 'efeitos').clipes.filter(c => c.prende);
-    const r1 = ef[0].t - lan.t;
+    const r1 = ef[0].t - lan.t - lan.passo.lancarObjeto.tempo + 1;
     g.sel = ef[1].id; ef[1].t += 0.2; g.mudou('Mover');
     const r2 = ef[1].extra;
     g.sel = lan.id; lan.passo.lancarObjeto.tempo = 1.5; g.mudou('Lançar');
@@ -97,7 +97,17 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(Math.abs(s.r1 - 1) < 0.002 && Math.abs(s.r2 - 0.2) < 0.002 && Math.abs(s.t1 - 1.7) < 0.002, 'mover o lançamento leva as explosões; arrastar uma guarda o ajuste: ' + JSON.stringify(s));
   s = await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; })); g.sel = lan.id; g.renderProps(); return g.props.textContent; });
-  ok(/Explosões no impacto/.test(s) && /Bills_Esfera_Explosao/.test(s), 'o Lançar objeto lista as explosões presas');
+  ok(/Explosões no impacto/.test(s) && /genkidama_explosao/.test(s), 'o Lançar objeto lista as explosões presas');
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes'); g.tl.render();
+    const tr = g.doc.linha.trilhas.find(t => t.tipo === 'efeitos'), ef = tr.clipes.filter(c => c.prende);
+    const row = g.tl.lay.rows.find(r => r.tr === tr);
+    // clique na 2ª camada acha a 2ª explosão
+    const c2 = ef.find(c => g.tl.lay.lane.get(c) === 1);
+    const hit = c2 && g.tl.achar({ x: c2.t * g.tl.pxs + 5, y: row.y + g.tl.LH + 8 });
+    return { camadas: ef.map(c => g.tl.lay.lane.get(c)), n: row.n, h: row.h, hit: hit && hit.c === c2, nomeH: document.querySelectorAll('.es-tl-nome')[g.doc.linha.trilhas.indexOf(tr)].offsetHeight };
+  });
+  ok(s.camadas.slice().sort().join() === '0,1,2' && s.n >= 3 && s.hit && s.nomeH === s.h, 'efeitos ao mesmo tempo ficam um embaixo do outro (camadas ' + s.camadas + ', trilha com ' + s.n + ' linhas; clique na 2ª acha o clipe)');
   await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; })); g.irPara(lan.t + lan.passo.lancarObjeto.tempo + 0.15); });
   await p.waitForTimeout(300);
   await p.screenshot({ path: OUT + '/0b_impacto.png' });
