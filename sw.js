@@ -10,7 +10,7 @@ const ESSENCIAIS = [
   'js/core/habilidades.js', 'js/ui/selecao.js', 'js/ui/pausa.js',
   'js/battle/fighter.js', 'js/battle/script.js', 'js/battle/ai.js', 'js/battle/hud.js', 'js/battle/battle.js', 'js/battle/cena.js', 'js/battle/linha.js', 'js/core/imagens_usr.js',
   'js/pwa.js', 'js/main.js',
-  'js/estudio/codecs.js', 'js/estudio/nucleo.js', 'js/estudio/palco.js', 'js/estudio/linha_ui.js', 'js/estudio/props.js', 'js/estudio/golpes.js', 'js/estudio/sprites_arq.js', 'js/estudio/sprites.js', 'js/estudio/personagens.js', 'js/estudio/projeto.js',
+  'js/estudio/codecs.js', 'js/estudio/nucleo.js', 'js/estudio/palco.js', 'js/estudio/linha_ui.js', 'js/estudio/seletor.js', 'js/estudio/props.js', 'js/estudio/golpes.js', 'js/estudio/sprites_arq.js', 'js/estudio/sprites.js', 'js/estudio/personagens.js', 'js/estudio/projeto.js',
   'assets/img/titulo_fundo.jpg', 'assets/icones/icone-192.png', 'assets/icones/icone-512.png',
 ];
 

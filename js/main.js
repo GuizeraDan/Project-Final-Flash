@@ -212,6 +212,13 @@ FF.start = async function (escolhida) {
   const foeDefs = await Promise.all(def.inimigos.map(id => FF.Assets.loadCharacter(id)));
   const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', 'retratos', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
+  // sprites de outros personagens usados em golpes (efeitos/animações emprestadas no Estúdio)
+  heroDefs.concat(foeDefs).forEach(c => Object.values(c.golpes || {}).forEach(g => {
+    (g.spritesUsados || []).forEach(id => spriteIds.add(id));
+    const j = JSON.stringify(g.roteiro || []);
+    (j.match(/"sprite":"[^"]+"/g) || []).forEach(m => spriteIds.add(m.slice(10, -1)));
+  }));
+  if (FF.Habilidades) FF.Habilidades.listar().forEach(h => (h.golpe.spritesUsados || []).forEach(id => spriteIds.add(id)));
   await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)).concat(FF.Assets.loadImage('assets/img/hud_moderno.png').catch(() => null)));   // HUD novo (arte do usuário)
   // animações derivadas: sprites incompletos (ex.: Saibaman só tem ataques) ganham parado/dano/caído
   // montados a partir de quadros de outras animações ({"Parado": {"de": "Ataque_1", "quadros": [0, 1], "fps": 4, "loop": true}})

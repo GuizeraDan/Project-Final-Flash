@@ -90,7 +90,16 @@ FF.EstudioProps = {
     switch (c.tipo) {
       case 'anim': {
         const lista = this.BASICAS.concat(host.animsDe(quem));
-        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: lista }), () => this.escolherAnim(host.spriteDe(quem), c.anim, (a) => { c.anim = a; host.mudou('Animação'); }), this.fonteAnim(host, quem, c)));
+        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: lista }), () => {
+          const prop = host.spriteDe(quem), pid = prop && (prop.def.id || Object.keys(FF.Assets.sprites).find(k => FF.Assets.sprites[k] === prop));
+          FF.Estudio.escolherSprite({ titulo: '🎬 Animação (de qualquer sprite)', atual: { anim: c.anim, sprite: c.sprite || pid }, inicio: c.sprite || pid,
+            aoEscolher: (a, id) => { c.anim = a; if (id && id !== pid) c.sprite = id; else delete c.sprite; host.mudou('Animação'); } });
+        }, this.fonteAnim(host, quem, c)));
+        if (c.sprite) {
+          const d = E.el('p', 'es-dica'); d.textContent = '🖼 Animação emprestada do sprite "' + c.sprite + '". ';
+          d.appendChild(E.botao('Voltar às do lutador', () => { delete c.sprite; host.mudou('Animação'); }));
+          g.appendChild(d);
+        }
         g.appendChild(num(c, 'de', 'Do quadro', 'Trecho: primeiro quadro (0 = início; vazio = todos)', { min: 0, passo: 1 }));
         g.appendChild(num(c, 'ate', 'Até o quadro', 'Trecho: último quadro (inclusive; vazio = até o fim)', { min: 0, passo: 1 }));
         g.appendChild(num(c, 'fps', 'fps', 'Velocidade da animação (vazio = a da própria animação)', { min: 0 }));
@@ -183,7 +192,7 @@ FF.EstudioProps = {
       case 'camada': {
         g.appendChild(E.campo('select', 'Sprite', c.sprite, async (v) => { c.sprite = v; await FF.Assets.loadSprite(v).catch(() => null); const s = FF.Assets.sprites[v]; if (s && !s.has(c.anim)) c.anim = Object.keys(s.def.anims)[0]; host.mudou('Sprite da camada'); }, { lista: FF.Assets.listaSprites() }));
         const s = FF.Assets.sprites[c.sprite];
-        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => this.escolherAnim(s, c.anim, (a) => { c.anim = a; host.mudou('Animação'); }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
+        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => FF.Estudio.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; host.mudou('Sprite da camada'); } }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));
         g.appendChild(sel(c, 'ancora', 'Âncora', [['atacante', 'quem solta (pés)'], ['alvo', 'alvo (peito)'], ['tela', 'tela']], null, 'atacante'));
         g.appendChild(num(c, 'x', 'X')); g.appendChild(num(c, 'y', 'Y'));
@@ -306,6 +315,7 @@ FF.EstudioProps = {
   // animação de um lutador pelo nome (nomes básicos como "parado" passam pelo mapa da forma)
   fonteAnim(host, quem, c) {
     return () => {
+      if (c.sprite && FF.Assets.sprites[c.sprite]) return { set: FF.Assets.sprites[c.sprite], anim: c.anim };
       const s = host.spriteDe(quem), f = host.formaDe && host.formaDe(quem);
       const nome = c.anim && (((f && f.anims) || {})[c.anim] || c.anim);
       return { set: s, anim: nome };
@@ -321,7 +331,7 @@ FF.EstudioProps = {
       c[k] = fx;
       if (k === 'fx') { if (sprite) c.sprite = sprite; else delete c.sprite; }
       host.mudou(rot);
-    }, opcional && (() => { delete c[k]; host.mudou(rot); }), host), () => ({ set: E.setDoEfeito(c[k], k === 'fx' ? c.sprite : null), anim: c[k] }));
+    }, opcional && (() => { delete c[k]; host.mudou(rot); }), host, k === 'fx' ? c.sprite : null), () => ({ set: E.setDoEfeito(c[k], k === 'fx' ? c.sprite : null), anim: c[k] }));
   },
   // efeitos que vêm no sprite de quem solta (ex.: Bills_Esfera)
   efeitosDoLutador(host) {
@@ -332,45 +342,10 @@ FF.EstudioProps = {
     return Object.keys(s.def.anims).filter(a => a.startsWith(pre));
   },
 
-  escolherEfeito(atual, cb, limpar, host) {
-    const E = FF.Estudio;
-    const sa = host && host.spriteDe && host.spriteDe('atacante');
-    const proprios = sa ? this.efeitosDoLutador(host) : [];
-    const ids = ['fx', 'fx_extra'].concat(Object.keys(FF.Edicoes.dados().spritesNovos || {}));
-    const c = E.el('div');
-    const topo = E.el('div', 'es-barra');
-    const busca = document.createElement('input'); busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: explos, hit, kame, aura)';
-    topo.appendChild(busca);
-    if (limpar) topo.appendChild(E.botao('Nenhum', () => { limpar(); m.fechar(); }));
-    const grade = E.el('div', 'es-grade');
-    c.append(topo, grade);
-    const m = E.modal('✺ Escolher efeito', c, { larga: true });
-    const itens = [];
-    (async () => {
-      for (const id of ids) {
-        const s = await FF.Assets.loadSprite(id).catch(() => null);
-        if (s) Object.keys(s.def.anims).forEach(a => itens.push({ id, a, s }));
-      }
-      if (proprios.length) proprios.slice().reverse().forEach(a => itens.unshift({ id: sa.def.id, a, s: sa }));   // efeitos do próprio lutador primeiro
-      render();
-    })();
-    const render = () => {
-      grade.innerHTML = '';
-      const f = busca.value.toLowerCase();
-      itens.filter(x => !f || x.a.toLowerCase().includes(f) || x.id.includes(f)).slice(0, 300).forEach(x => {
-        const k = E.el('div', 'es-cartao' + (x.a === atual ? ' sel' : ''));
-        const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
-        const sp = E.el('span'); sp.textContent = x.a;
-        k.title = x.id + ' · ' + x.a;
-        k.append(cv, sp);
-        E.miniatura(cv, x.s, x.a, Math.floor(x.s.anim(x.a).frames.length / 2));
-        this.animarNoMouse(k, cv, x.s, x.a);
-        k.onclick = () => { cb(x.a, x.id === 'fx' || x.id === 'fx_extra' ? null : x.id); m.fechar(); };
-        grade.appendChild(k);
-      });
-    };
-    busca.oninput = render;
-    setTimeout(() => busca.focus(), 30);
+  // efeito: seletor com TODOS os sprites (fx, fx_extra, lutadores, importados); devolve (anim, sprite|null)
+  escolherEfeito(atual, cb, limpar, host, spriteAtual) {
+    FF.Estudio.escolherSprite({ titulo: '✺ Escolher efeito', atual: { anim: atual, sprite: spriteAtual }, inicio: spriteAtual || undefined,
+      aoEscolher: (a, id) => cb(a, id === 'fx' || id === 'fx_extra' ? null : id), limpar });
   },
 
   // cartão dos seletores: anima enquanto o mouse está em cima (todos animando ao mesmo tempo pesaria)

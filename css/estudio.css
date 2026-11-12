@@ -158,3 +158,13 @@ a { color: var(--ouro); }
 .es-preso-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
 .es-preso-item span { flex: 1; font-size: 12px; }
 .es-preso-item .es-mini-anim { width: 28px; height: 28px; }
+
+/* seletor de sprites (todas as animações de todos os sprites) */
+.es-seletor { display: flex; gap: 8px; height: 72vh; padding: 8px !important; overflow: hidden !important; }
+.es-seletor-fontes { width: 220px; flex: none; overflow: auto; border-right: 1px solid var(--linha); padding-right: 6px; }
+.es-seletor-fonte span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.es-seletor-dir { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.es-seletor-dir .es-barra input { flex: 1; min-width: 120px; }
+.es-seletor-dir .es-grade { overflow: auto; flex: 1; align-content: start; grid-auto-rows: max-content; }
+.es-cartao-fonte { display: block; color: var(--apagado); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 760px) { .es-seletor { flex-direction: column; } .es-seletor-fontes { width: auto; height: 90px; border-right: 0; border-bottom: 1px solid var(--linha); } }

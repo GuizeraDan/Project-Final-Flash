@@ -198,3 +198,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Onda de Energia Dispersa (supremo do Kuririn) refeita como na ilustração do usuário: rajadas Krillin_2 sobem em arcos da mão até o céu acima do alvo, explodem e viram uma chuva de 10 raios (EnergyWave_Effect1, impacto EnergyWave_Effect2) + 1 rajada grande final que lança. Motor: projétil aceita `deAlvo` (saída a partir do peito do alvo) e `semAcerto` (só visual, sem dano/anel).
 
+- Estúdio: seletor de sprites global (`js/estudio/seletor.js`, `FF.Estudio.escolherSprite`): todas as animações de todos os sprites (efeitos, lutadores, importados) para qualquer personagem, com lista de fontes (Efeitos, Tudo, cada sprite) e busca em tudo. Usado no efeito, projétil/explosões, camada e na animação do lutador. Animação emprestada: clipe `anim` com `sprite` faz o lutador usar a animação de outro sprite (motor troca o desenho e devolve no próximo clipe/fim). Golpes salvos no Estúdio guardam `spritesUsados` e o jogo (`FF.start`) carrega esses sprites antes da luta.
+

@@ -231,6 +231,9 @@ window.FF = window.FF || {};
       this.tudo();
       this.tl.enquadrar();
       this.salvarRascunho();
+      // sprites de outros personagens usados no golpe (efeitos/animações emprestadas)
+      const extras = (doc.golpe.spritesUsados || []).filter(id => !FF.Assets.sprites[id]);
+      if (!FF.Linha.pronta(doc.linha) || extras.length) Promise.all([FF.Linha.preparar(doc.linha), ...extras.map(id => FF.Assets.loadSprite(id).catch(() => null))]).then(() => { if (this.doc === doc) this.tudo(); });
     },
 
     // ---------- consultas usadas pela linha do tempo e pelas propriedades ----------
@@ -249,6 +252,7 @@ window.FF = window.FF || {};
     personagens() { return Object.keys(this.defs).filter(id => id !== this.cfg.atacante); },
     prefixoVoz() { const d = this.defs[this.cfg.atacante]; const v = (d && d.vozes && d.vozes.dano) || []; const s = Array.isArray(v) ? v[0] : v; return s ? String(s).replace(/\d+$/, '').slice(0, 4) : ''; },
     animDoClipe(c, tr) {
+      if (c.tipo === 'anim' && c.sprite && FF.Assets.sprites[c.sprite]) { const so = FF.Assets.sprites[c.sprite]; return so.anim(FF.Linha.trecho(so, c.anim, c.de, c.ate)); }
       const s = this.spriteDe(tr.quem), f = this.formaDe(tr.quem);
       if (!s) return null;
       const nome = c.tipo === 'teleporte' ? (c.animMov || 'teleporte') : c.anim;
@@ -573,6 +577,19 @@ window.FF = window.FF || {};
       const g = E.copia(this.doc.golpe);
       const linha = E.copia(this.doc.linha);
       g.roteiro = [{ linha }];
+      // sprites de que o golpe precisa além dos do lutador (o jogo carrega antes da luta)
+      const usados = new Set(FF.Linha.spritesUsados(linha));
+      // nomes de efeitos usados em qualquer campo de efeito (fx, impacto, disparo) que não são do fx/fx_extra
+      const nomesFx = new Set();
+      const varrer = (o) => { if (!o || typeof o !== 'object') return; for (const [k, v] of Object.entries(o)) { if (typeof v === 'string' && ['fx', 'impacto', 'disparo'].includes(k)) nomesFx.add(v); else varrer(v); } };
+      varrer(linha);
+      const UTIL = ['fx', 'fx_extra', 'hud_zl3', 'retratos', 'cenarios_preview', 'stage_campo', 'hud_moderno'];
+      for (const nome of nomesFx) {
+        if (FF.Assets.sprites.fx.has(nome) || (FF.Assets.sprites.fx_extra && FF.Assets.sprites.fx_extra.has(nome))) continue;
+        const id = Object.keys(FF.Assets.sprites).find(k => !UTIL.includes(k) && FF.Assets.sprites[k] && FF.Assets.sprites[k].has && FF.Assets.sprites[k].has(nome));
+        if (id && FF.Assets.sprites[id] !== this.spriteDe('atacante')) usados.add(id);
+      }
+      if (usados.size) g.spritesUsados = [...usados]; else delete g.spritesUsados;
       return g;
     },
     salvar() {
