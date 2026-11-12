@@ -121,7 +121,6 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
 ## Ainda não implementado (próximas etapas)
 
 - Desbloquear golpes com AP (hoje o AP só melhora atributos).
-- Kamehameha do Kuririn (precisa extrair o objeto do raio do APK).
 - Sparking Combo de 3 heróis e Sparking do Goku SSJ.
 - Saibaman com animações próprias de dano/caído; conferir quadro a quadro os golpes de Nappa/Vegeta.
 - Cenas de diálogo do modo história com o cenário ao fundo.

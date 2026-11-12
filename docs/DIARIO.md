@@ -192,3 +192,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Nome do jogo: **Project Final Flash** (arte do título editada: "PROJECT" acima do logo e "SAGA SAIYAJIN" removido; título da página e manifest). Novo Jogo agora escolhe a saga primeiro (`FF.NovoJogo.SAGAS`: Saga Saiyajin + 3 vagas "🚧 Em produção"); dentro da saga, os capítulos, e "Voltar" volta para as sagas.
 
+- Kuririn ganhou **Kamehameha** (30 KI, poder 2,6; 2º no menu): roteiro em linha do tempo com as animações Special_Kamehameha_Chao_Pt1–Final do próprio sprite (o raio já vem desenhado nos quadros — a nota antiga de que precisava extrair o objeto estava errada), carga de 1,5 s, som krillin_kmhm_charge, voz vkrn134 (palpite pelo número, igual ao vgkn134 do Goku; troque no Estúdio se não for), 3 acertos de energia (o último lança).
+

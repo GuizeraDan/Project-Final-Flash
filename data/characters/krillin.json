@@ -40,6 +40,7 @@
       },
       "golpes": [
         "combo",
+        "kamehameha",
         "kienzan",
         "taiyoken",
         "senzu",
@@ -685,6 +686,154 @@
         },
         {
           "esperar": 0.4
+        }
+      ]
+    },
+    "kamehameha": {
+      "nome": "Kamehameha",
+      "descricao": "A onda de energia que aprendeu com o Mestre Kame.",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 2.6,
+      "roteiro": [
+        {
+          "linha": {
+            "duracao": 3.1,
+            "trilhas": [
+              {
+                "id": "atacante",
+                "tipo": "lutador",
+                "quem": "atacante",
+                "nome": "Quem solta",
+                "clipes": [
+                  {
+                    "id": "k1",
+                    "tipo": "anim",
+                    "t": 0,
+                    "anim": "Special_Kamehameha_Chao_Pt1",
+                    "fps": 17
+                  },
+                  {
+                    "id": "k2",
+                    "tipo": "anim",
+                    "t": 0.176,
+                    "anim": "Special_Kamehameha_Chao_Pt2",
+                    "fps": 20,
+                    "d": 1.5
+                  },
+                  {
+                    "id": "k3",
+                    "tipo": "anim",
+                    "t": 1.676,
+                    "anim": "Special_Kamehameha_Chao_Pt3",
+                    "fps": 15
+                  },
+                  {
+                    "id": "k4",
+                    "tipo": "anim",
+                    "t": 1.743,
+                    "anim": "Special_Kamehameha_Chao_Pt4",
+                    "fps": 17
+                  },
+                  {
+                    "id": "k5",
+                    "tipo": "anim",
+                    "t": 1.919,
+                    "anim": "Special_Kamehameha_Chao_Pt5",
+                    "fps": 17,
+                    "d": 0.8
+                  },
+                  {
+                    "id": "k6",
+                    "tipo": "anim",
+                    "t": 2.719,
+                    "anim": "Special_Kamehameha_Chao_Final",
+                    "fps": 17
+                  }
+                ]
+              },
+              {
+                "id": "alvo",
+                "tipo": "lutador",
+                "quem": "alvo",
+                "nome": "Alvo",
+                "clipes": []
+              },
+              {
+                "id": "efeitos",
+                "tipo": "efeitos",
+                "nome": "Efeitos",
+                "clipes": []
+              },
+              {
+                "id": "sons",
+                "tipo": "sons",
+                "nome": "Sons e vozes",
+                "clipes": [
+                  {
+                    "id": "k7",
+                    "tipo": "som",
+                    "t": 0,
+                    "som": "krillin_kmhm_charge"
+                  },
+                  {
+                    "id": "k8",
+                    "tipo": "voz",
+                    "t": 0.05,
+                    "voz": "vkrn134"
+                  },
+                  {
+                    "id": "k9",
+                    "tipo": "som",
+                    "t": 1.743,
+                    "som": "goku_kamehame_fire"
+                  }
+                ]
+              },
+              {
+                "id": "acertos",
+                "tipo": "acertos",
+                "nome": "Acertos",
+                "clipes": [
+                  {
+                    "id": "k10",
+                    "tipo": "acerto",
+                    "t": 1.95,
+                    "fracao": 0.3,
+                    "forca": "energia"
+                  },
+                  {
+                    "id": "k11",
+                    "tipo": "acerto",
+                    "t": 2.2,
+                    "fracao": 0.3,
+                    "forca": "energia"
+                  },
+                  {
+                    "id": "k12",
+                    "tipo": "acerto",
+                    "t": 2.5,
+                    "fracao": 0.4,
+                    "forca": "energia",
+                    "lanca": true
+                  }
+                ]
+              },
+              {
+                "id": "tela",
+                "tipo": "tela",
+                "nome": "Tela (tremor, flash, câmera)",
+                "clipes": [
+                  {
+                    "id": "k13",
+                    "tipo": "tremer",
+                    "t": 1.76,
+                    "forca": 6
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     }
