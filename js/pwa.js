@@ -11,8 +11,7 @@ FF.PWA = {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.pedidoInstalar = e;
-      const bt = document.querySelector('[data-acao="instalar"]');
-      if (bt) bt.hidden = false;
+      // (o botão "Instalar no celular" saiu do menu; o navegador oferece a instalação pelo próprio menu dele)
     });
     window.addEventListener('appinstalled', () => {
       const bt = document.querySelector('[data-acao="instalar"]');

@@ -506,7 +506,7 @@ window.addEventListener('load', () => {
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino' }[modo];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas' }[modo];
     const bt = vis && intro.querySelector(vis + ' button:not([disabled])');
     if (bt) bt.focus(); else if (primeiro) primeiro.focus();
   };
@@ -520,7 +520,7 @@ window.addEventListener('load', () => {
     const save = FF.Save.get();
     const cont = intro.querySelector('[data-acao="continuar"]');
     cont.disabled = !save.capitulo;
-    if (save.capitulo) cont.textContent = 'Continuar (Capítulo ' + save.capitulo + ')';
+    if (save.capitulo) (cont.querySelector('span') || cont).textContent = 'Continuar (Capítulo ' + save.capitulo + ')';
     mostrar('menu');
   };
   intro.addEventListener('click', abrir);
@@ -531,7 +531,7 @@ window.addEventListener('load', () => {
   window.addEventListener('keydown', (e) => {
     if (!intro.className || intro.classList.contains('hide')) return;
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') return;
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino' }[intro.className];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas' }[intro.className];
     if (!vis) return;
     const bts = [...intro.querySelectorAll(vis + ' button:not([disabled])')];
     if (!bts.length) return;
@@ -541,6 +541,12 @@ window.addEventListener('load', () => {
     FF.Audio.play('tap_sound', 0.4);
   });
 
+  // botões do menu: texto dentro de <span> (o botão é inclinado e o texto fica reto) e o mouse
+  // "seleciona" como o teclado (um só destaque)
+  intro.querySelectorAll('.menu-titulo > button').forEach(bt => {
+    if (!bt.querySelector('span')) { const s = document.createElement('span'); s.textContent = bt.textContent; bt.textContent = ''; bt.appendChild(s); }
+    bt.addEventListener('mouseenter', () => { if (!bt.disabled) bt.focus({ preventScroll: true }); });
+  });
   intro.querySelectorAll('button').forEach(bt => bt.addEventListener('click', (e) => {
     e.stopPropagation();
     FF.Audio.play('decide_charasel', 0.6);
@@ -553,6 +559,7 @@ window.addEventListener('load', () => {
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
+    if (ac === 'ferramentas') return mostrar('ferramentas');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {
       if (confirm('Apagar o progresso (capítulos, AP e treinamento)?')) { const v = FF.Save.get().volumes; FF.Save.apagar(); if (v) FF.Save.set({ volumes: v }); }

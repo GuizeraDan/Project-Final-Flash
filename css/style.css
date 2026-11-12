@@ -238,3 +238,49 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .hab-vazio, .hab-dica { font-size: 1.4cqw; opacity: .85; margin: 0 0 .8cqw; }
 .pausa-hab { display: flex; flex-direction: column; gap: .9cqw; min-width: 40cqw; }
 .pausa-hab[hidden] { display: none; }
+
+/* ---------- menu de título: faixas inclinadas (estático) ---------- */
+#inicio.ferramentas #ferramentas { display: flex; }
+#inicio.ferramentas #carregando { display: none; }
+#inicio.ferramentas h1 { font-size: 4.6cqw; }
+#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.ferramentas #ferramentas {
+  display: flex; flex-direction: column; align-items: center; width: 40cqw; gap: 1cqw; }
+.menu-titulo > button {
+  position: relative; width: 30cqw; padding: 0.75cqw 2cqw; border-radius: 0.3cqw;
+  transform: skewX(-20deg);
+  font: inherit; font-size: 1.75cqw; font-weight: 900; letter-spacing: 0.12cqw; text-transform: uppercase; color: #f4ecff;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95) 55%, rgba(36,18,82,0.95));
+  border: 0.22cqw solid #c9952c; box-shadow: inset 0 0 0.8cqw rgba(0,0,0,0.55), 0 0.3cqw 0.8cqw rgba(0,0,0,0.45);
+}
+.menu-titulo > button > span { display: inline-block; transform: skewX(20deg); text-shadow: 0.12cqw 0.12cqw 0 rgba(0,0,0,0.7); }
+/* escolhido (teclado ou mouse): maior, mais claro, dourado e com ▶ */
+.menu-titulo > button:focus, .menu-titulo > button:focus-visible {
+  width: 36cqw; padding-left: 4.5cqw; padding-right: 3cqw; outline: none; color: #ffe27a; border-color: #ffd84a;
+  background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98) 55%, rgba(74,34,160,0.98));
+  box-shadow: 0 0 1.4cqw rgba(255,200,60,0.55), inset 0 0 0.8cqw rgba(255,220,120,0.25);
+}
+.menu-titulo > button:focus::before {
+  content: '▶'; position: absolute; left: 2.2cqw; top: 50%; transform: translateY(-50%) skewX(20deg);
+  color: #ffd84a; font-size: 1.6cqw; text-shadow: 0 0 0.6cqw rgba(255,200,60,0.8);
+}
+.menu-titulo > button:hover { background: linear-gradient(90deg, rgba(60,30,130,0.95), rgba(100,52,190,0.95) 55%, rgba(60,30,130,0.95)); }
+.menu-titulo > button:disabled { opacity: 0.38 !important; cursor: default; }
+.menu-titulo > button:disabled:focus { width: 30cqw; }
+#titulo-menu > button:first-child, #escolha > button[data-acao="voltar"] { grid-column: auto; }
+#opcoes > button, #treino > button { align-self: center; }
+
+/* canto das ferramentas e rodapé de controles (só no menu principal) */
+.titulo-ferramentas { display: none; position: absolute; left: 0; bottom: 1.4cqw; padding: 0.55cqw 2.4cqw 0.55cqw 1.6cqw;
+  font: inherit; font-size: 1.3cqw; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1cqw; color: #ffe27a; cursor: pointer;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95)); border: 0.2cqw solid #c9952c; border-left: 0;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 1.4cqw) 100%, 0 100%); }
+.titulo-ferramentas:hover, .titulo-ferramentas:focus { color: #fff; outline: none; background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98)); }
+.titulo-rodape { display: none; position: absolute; left: 50%; bottom: 1.6cqw; transform: translateX(-50%); gap: 3cqw;
+  font-size: 1.25cqw; font-weight: 800; letter-spacing: 0.1cqw; text-transform: uppercase; color: #e9dcff; opacity: 0.85; }
+.titulo-rodape b { display: inline-block; padding: 0 0.5cqw; border: 0.15cqw solid #ffd84a; border-radius: 0.4cqw; color: #ffd84a; margin-right: 0.4cqw; }
+#inicio.menu .titulo-ferramentas { display: block; }
+#inicio.menu .titulo-rodape { display: flex; }
+@media (pointer: coarse) { .titulo-rodape { display: none !important; } .titulo-ferramentas { font-size: 1.6cqw; } }
+
+/* a dica da batalha não aparece por trás da tela de título */
+#jogo:has(#inicio:not(.hide)) #ajuda { display: none; }
