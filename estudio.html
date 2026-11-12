@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estúdio Final Flash</title>
+<meta name="theme-color" content="#140c24">
+<link rel="icon" href="assets/icones/icone-192.png">
+<link rel="stylesheet" href="css/estudio.css">
+<link rel="stylesheet" href="css/estudio_sprites.css">
+<link rel="stylesheet" href="css/estudio_importar.css">
+<link rel="stylesheet" href="css/estudio_personagens.css">
+</head>
+<body class="estudio">
+<header class="es-topo">
+  <a class="es-logo" href="index.html" title="Voltar ao jogo"><b>ESTÚDIO</b><span>FINAL FLASH</span></a>
+  <nav class="es-abas" id="es-abas"></nav>
+  <div class="es-acoes">
+    <button id="es-desfazer" title="Desfazer (Ctrl+Z)">↶</button>
+    <button id="es-refazer" title="Refazer (Ctrl+Y)">↷</button>
+    <button id="es-sync" class="es-sync" title="Sincronização com o GitHub (vale em todos os aparelhos)">☁ <span></span></button>
+    <a href="index.html" target="_blank" title="Abrir o jogo">🎮</a>
+    <a href="visualizador.html" target="_blank" title="Visualizador de animações">🎞</a>
+  </div>
+</header>
+<main id="es-corpo"></main>
+<div id="es-avisos"></div>
+
+<script src="data/bundle.js"></script>
+<script src="js/core/clock.js"></script>
+<script src="data/edicoes.js"></script>
+<script src="js/core/edicoes.js"></script>
+<script src="js/core/imagens_usr.js"></script>
+<script src="js/core/modificacoes.js"></script>
+<script src="js/core/assets.js"></script>
+<script src="js/core/sprite.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/core/input.js"></script>
+<script src="js/core/retrato.js"></script>
+<script src="js/core/habilidades.js"></script>
+<script src="js/battle/fighter.js"></script>
+<script src="js/battle/script.js"></script>
+<script src="js/battle/ai.js"></script>
+<script src="js/battle/hud.js"></script>
+<script src="js/battle/battle.js"></script>
+<script src="js/battle/cena.js"></script>
+<script src="js/battle/linha.js"></script>
+<script src="js/estudio/codecs.js"></script>
+<script src="js/estudio/nucleo.js"></script>
+<script src="js/estudio/palco.js"></script>
+<script src="js/estudio/linha_ui.js"></script>
+<script src="js/estudio/props.js"></script>
+<script src="js/estudio/golpes.js"></script>
+<script src="js/estudio/sprites.js"></script>
+<script src="js/estudio/importar.js"></script>
+<script src="js/estudio/personagens.js"></script>
+<script src="js/estudio/projeto.js"></script>
+<script>FF.Estudio.iniciar();</script>
+</body>
+</html>

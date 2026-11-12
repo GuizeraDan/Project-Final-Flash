@@ -31,7 +31,7 @@ print('bundle:', len(out), 'arquivos')
 # com a versão que abriu e mostra "Nova versão disponível" quando muda.
 import hashlib
 h = hashlib.sha1()
-for pasta in ['index.html', 'visualizador.html', 'sw.js', 'manifest.webmanifest', 'css', 'js', 'data', 'assets']:
+for pasta in ['index.html', 'visualizador.html', 'estudio.html', 'sw.js', 'manifest.webmanifest', 'css', 'js', 'data', 'assets']:
     base = os.path.join(root, pasta)
     arquivos = [base] if os.path.isfile(base) else sorted(os.path.join(d, f) for d, _, fs in os.walk(base) for f in fs)
     for a in arquivos:

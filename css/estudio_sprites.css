@@ -1,0 +1,97 @@
+/* Estúdio — aba Sprites (js/estudio/sprites.js) */
+.ess .ess-busca { margin: 0 6px 4px; }
+.ess .ess-esq .es-titulo .ess-n { color: var(--apagado); font-weight: 400; letter-spacing: 0; text-transform: none; }
+.ess-sprites { max-height: 32%; overflow: auto; padding: 0 6px 4px; flex: none; border-bottom: 1px solid var(--linha); }
+.ess-sprites .es-item { padding: 2px 6px; }
+.ess-anims .ess-anim { padding: 2px 4px; }
+.ess-anim-nome { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.ess-anims .es-item small { margin-left: 0; }
+
+.ess-barra { flex-wrap: nowrap; overflow-x: auto; }
+.ess-titulo { display: inline-flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; }
+.ess-titulo b { color: var(--ouro); overflow: hidden; text-overflow: ellipsis; }
+.ess-esp { flex: 1; }
+.ess-tag { font-size: 10px; padding: 0 5px; border-radius: 3px; background: #5a3fa8; }
+.ess-tag.alt { background: #8a5a10; }
+.ess-sujo { color: var(--laranja); font-size: 11px; }
+.ess-opcoes { padding: 2px 6px; gap: 8px; font-size: 12px; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; }
+.ess-mini.es-campo { margin: 0; gap: 4px; }
+.ess-mini .es-rot { width: auto; }
+.ess-mini select { width: auto; flex: none; }
+.ess-ck { display: inline-flex; align-items: center; gap: 3px; cursor: pointer; white-space: nowrap; }
+
+.ess-palco { min-height: 80px; }
+.ess-centro { overflow: hidden; }
+.ess-anims { position: relative; }
+.ess-palco canvas { position: absolute; left: 0; top: 0; max-width: none; max-height: none; }
+.ess-modos { flex-wrap: wrap; justify-content: flex-end; max-width: 60%; }
+.ess-modos button, .ess-zoom button { background: rgba(36, 23, 63, 0.88); }
+.ess-modos button.sel { background: #5a3fa8; }
+.ess-zoom { position: absolute; right: 6px; bottom: 6px; display: flex; gap: 4px; }
+.ess-zoom button { min-width: 30px; font-weight: 700; }
+.ess-palco .es-palco-info { right: 40%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.ess-ctr { gap: 4px; }
+.ess-ctr > button { min-width: 32px; }
+.ess-play { min-width: 44px !important; font-weight: 700; }
+.ess-tempo { margin-left: auto; font: 11px monospace; color: var(--apagado); }
+.ess-tira-barra { gap: 3px; background: var(--fundo2); flex-wrap: nowrap; overflow-x: auto; }
+
+.ess-tira { flex: none; height: 96px; display: flex; gap: 4px; padding: 6px; overflow-x: auto; overflow-y: hidden; background: #100a1e; position: relative; user-select: none; -webkit-user-select: none; }
+.ess-q { flex: none; width: 70px; height: 82px; position: relative; border: 2px solid var(--linha); border-radius: 5px; background: #0c0718; cursor: pointer; display: flex; flex-direction: column; align-items: center; padding-top: 1px; touch-action: pan-x; }
+.ess-q canvas { width: 64px; height: 64px; image-rendering: pixelated; pointer-events: none; }
+.ess-q-rot { font-size: 11px; color: var(--apagado); pointer-events: none; }
+.ess-q.sel { border-color: #a58cf0; background: #2a1c4e; }
+.ess-q.atual { border-color: var(--ouro); box-shadow: 0 0 0 1px var(--ouro); }
+.ess-q.atual .ess-q-rot { color: var(--ouro); font-weight: 700; }
+.ess-q-alvo { position: absolute; right: 2px; top: 1px; font-size: 11px; pointer-events: none; }
+.ess-q-rep { position: absolute; left: 3px; top: 0; font-size: 12px; color: var(--verde); pointer-events: none; }
+.ess-tira.arrastando .ess-q.sel { opacity: 0.5; }
+.ess-tira-marca { position: absolute; top: 4px; bottom: 4px; width: 3px; background: var(--ouro); border-radius: 2px; pointer-events: none; }
+.ess-tira > .es-vazio { align-self: center; flex: 1; }
+
+.ess-props .es-campo .es-rot { width: 104px; }
+.ess-bts { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 8px 8px !important; }
+.ess-atalhos { line-height: 1.5; }
+
+/* janelas */
+.ess-conf p { margin: 4px 0 10px; }
+.ess-conf-bts { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.ess-nova input { width: 100%; margin: 4px 0 10px; }
+.ess-ins-topo { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.ess-ins-topo input { flex: 1; min-width: 160px; }
+.ess-ins-topo .es-dica { flex-basis: 100%; margin: 0; }
+.ess-ins-grade { max-height: 62vh; overflow: auto; }
+.ess-ins { overflow: visible !important; }
+.ess-exp-opc .es-campo .es-rot { width: 110px; }
+.ess-exp-bts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; margin: 10px 0 4px; }
+.ess-exp-bts button { padding: 7px 8px; text-align: left; }
+.ess-exp-bts .es-obs { grid-column: 1 / -1; margin: 0; }
+.ess-exp-msg { min-height: 1.4em; margin: 4px 0 0; }
+
+/* telas menores / celular deitado */
+@media (max-width: 1100px) {
+  .ess .ess-esq { width: 170px; }
+  .ess .es-lado.dir { width: 230px; }
+}
+@media (max-width: 900px) {
+  .ess .ess-esq { width: 150px; }
+  .ess .es-lado.dir { width: 210px; }
+  .ess-props .es-campo .es-rot { width: 80px; }
+  .ess-barra .ess-titulo { max-width: 170px; font-size: 11px; }
+  .ess-barra { gap: 3px; }
+}
+@media (max-height: 520px) {
+  .ess-modos button { padding: 2px 5px; font-size: 11px; }
+  .ess-barra, .ess-ctr, .ess-tira-barra { padding: 2px 4px; }
+  .ess-tira { height: 74px; padding: 4px; }
+  .ess-q { width: 54px; height: 64px; }
+  .ess-q canvas { width: 48px; height: 48px; }
+  .ess-opcoes { padding: 1px 6px; }
+  .ess-sprites { max-height: 26%; }
+  .ess-palco .es-palco-info { display: none; }
+}
+@media (pointer: coarse) {
+  .ess-ctr > button, .ess-tira-barra > button { min-height: 32px; }
+  .ess-q { touch-action: pan-x; }
+}

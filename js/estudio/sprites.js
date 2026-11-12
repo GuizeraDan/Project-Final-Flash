@@ -1,0 +1,1139 @@
+// Estúdio Final Flash — aba "Sprites": edita as animações de qualquer sprite do jogo (lutadores, efeitos,
+// HUD...) quadro a quadro e exporta (sprite sheet + JSON, sequência de PNGs, GIF, WebM, JSON).
+//
+// O que se edita é uma CÓPIA da animação (st.anim). "💾 Salvar no jogo" grava em data/edicoes.js
+// (seção sprites[sprite][anim], via FF.Mods.salvar) — vale no jogo inteiro e em todos os aparelhos.
+// Quadro: [atlas, x, y, w, h, ox, oy, dur, pontos?]  (pontos[0] = ponto de disparo [dx, dy] relativo à origem)
+(function () {
+  const E = FF.Estudio;
+  const RASC = 'sprites_rascunho', ULT = 'sprites_ultimo';
+  const VELS = [0.25, 0.5, 0.75, 1, 1.5, 2];
+  const FUNDOS = [['xadrez', 'Xadrez'], ['escuro', 'Escuro'], ['claro', 'Claro'], ['cenario', 'Cenário']];
+
+  const st = {
+    id: null, set: null, nome: null, anim: null, novo: false,
+    i: 0, sel: new Set([0]), ancora: 0,
+    tocando: false, t: 0, espera: 0, vel: 1, repetir: true, espelho: false,
+    zoom: 3, panX: 0, panY: 0, fundo: 'xadrez', grade: false, cebola: false, caixa: true, pontos: true, usarEscala: false,
+    modo: 'mover', multi: false, buscaSprite: '', buscaAnim: '',
+  };
+  const ui = {};
+  const hist = new E.Historico(
+    () => ({ id: st.id, nome: st.nome, anim: st.anim }),
+    (s) => { st.anim = s.anim; corrigirSel(); pausar(); tudo(); gravarRascunho(); }, 150);
+
+  // ------------------------------------------------------------------ utilidades
+  const el = (tag, cls, html) => E.el(tag, cls, html);
+  const copia = (o) => E.copia(o);
+  const limitar = (v, a, b) => Math.max(a, Math.min(b, v));
+  const frames = () => (st.anim ? st.anim.frames : []);
+  const fpsDe = (a) => (a && a.fps > 0 ? a.fps : 10);
+  const escolhidos = () => {
+    const n = frames().length;
+    const l = [...st.sel].filter(k => k >= 0 && k < n).sort((a, b) => a - b);
+    return l.length ? l : (n ? [st.i] : []);
+  };
+  function corrigirSel() {
+    const n = frames().length;
+    st.i = n ? limitar(st.i, 0, n - 1) : 0;
+    st.sel = new Set([...st.sel].filter(k => k < n));
+    if (!st.sel.size && n) st.sel.add(st.i);
+    if (st.anim && st.anim.repeatTo >= n) st.anim.repeatTo = Math.max(0, n - 1);
+  }
+  function limpa(a) { return { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: copia(a.frames || []) }; }
+  // versão salva (a que o jogo usa agora) da animação aberta
+  function salva() {
+    if (st.novo || !st.set) return null;
+    const a = st.set.def.anims[st.nome];
+    return a ? limpa(a) : null;
+  }
+  function sujo() { if (!st.anim) return false; const s = salva(); return !s || JSON.stringify(s) !== JSON.stringify(limpa(st.anim)); }
+  function escalaSprite() { return (st.set && st.set.def.escala) || 1; }
+
+  // desenha um quadro centralizado e ajustado (miniaturas); maxW/maxH: maior quadro da animação
+  function mini(cv, set, f, maxW, maxH) {
+    const ctx = cv.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    if (!f || !set) return;
+    const s = Math.min((cv.width - 4) / (maxW || f[3]), (cv.height - 4) / (maxH || f[4]), 3);
+    ctx.drawImage(set.images[f[0]], f[1], f[2], f[3], f[4], Math.round((cv.width - f[3] * s) / 2), Math.round((cv.height - f[4] * s) / 2), f[3] * s, f[4] * s);
+  }
+  function maiores(lista) { let w = 1, h = 1; lista.forEach(q => { w = Math.max(w, q[3]); h = Math.max(h, q[4]); }); return [w, h]; }
+
+  function confirmar(titulo, texto, sim, perigo) {
+    return new Promise(res => {
+      const c = el('div', 'ess-conf');
+      const p = el('p'); p.textContent = texto;
+      const bts = el('div', 'ess-conf-bts');
+      let r = false;
+      bts.append(E.botao(sim || 'OK', () => { r = true; m.fechar(); }, null, perigo ? 'es-bt-perigo' : 'es-bt-ouro'), E.botao('Cancelar', () => m.fechar()));
+      c.append(p, bts);
+      const m = E.modal(titulo, c, { aoFechar: () => res(r) });
+    });
+  }
+
+  // ------------------------------------------------------------------ montagem
+  function montar(raiz) {
+    raiz.innerHTML = '';
+    raiz.classList.add('ess');
+    // esquerda: sprites e animações
+    const esq = el('aside', 'es-lado ess-esq');
+    esq.innerHTML = '<div class="es-titulo">🖼 Sprites</div>';
+    ui.buscaSprite = document.createElement('input');
+    ui.buscaSprite.type = 'search'; ui.buscaSprite.placeholder = 'Buscar sprite…'; ui.buscaSprite.className = 'ess-busca';
+    ui.buscaSprite.oninput = () => { st.buscaSprite = ui.buscaSprite.value; renderSprites(); };
+    ui.sprites = el('div', 'es-lista ess-sprites');
+    const tA = el('div', 'es-titulo', '🎞 Animações <span class="ess-n"></span>');
+    ui.nAnims = tA.querySelector('.ess-n');
+    tA.appendChild(E.botao('＋ Nova', () => novaAnimacao(), 'Nova animação (vazia ou com os quadros escolhidos)', 'es-mais'));
+    ui.buscaAnim = document.createElement('input');
+    ui.buscaAnim.type = 'search'; ui.buscaAnim.placeholder = 'Buscar animação…'; ui.buscaAnim.className = 'ess-busca';
+    ui.buscaAnim.oninput = () => { st.buscaAnim = ui.buscaAnim.value; renderAnims(); };
+    ui.anims = el('div', 'es-lista ess-anims es-rolar');
+    esq.append(ui.buscaSprite, ui.sprites, tA, ui.buscaAnim, ui.anims);
+
+    // centro: barra de ações, palco, controles, tira de quadros
+    const cen = el('div', 'es-centro ess-centro');
+    const barra = el('div', 'es-barra ess-barra');
+    ui.titulo = el('span', 'ess-titulo');
+    ui.btSalvar = E.botao('💾 Salvar no jogo', () => salvar(), 'Grava esta animação no jogo (Ctrl+S) — vale em todas as telas e, conectado, em todos os aparelhos', 'es-bt-ouro');
+    ui.btComo = E.botao('💾 Salvar como nova…', () => salvarComo(), 'Grava uma cópia com outro nome');
+    ui.btOrig = E.botao('↺ Original', () => original(), 'Volta ao original do jogo / descarta as mudanças não salvas');
+    ui.btExp = E.botao('📤 Exportar', () => exportar(), 'PNG sprite sheet, sequência de PNGs, GIF, WebM ou JSON');
+    barra.append(ui.titulo, el('span', 'ess-esp'), ui.btSalvar, ui.btComo, ui.btOrig, el('span', 'sep'), ui.btExp);
+
+    const opcoes = el('div', 'es-barra ess-opcoes');
+    const selFundo = E.campo('select', 'Fundo', st.fundo, (v) => { st.fundo = v; }, { lista: FUNDOS });
+    selFundo.classList.add('ess-mini');
+    const ck = (txt, chave, dica) => {
+      const l = el('label', 'ess-ck'); l.title = dica || '';
+      const i = document.createElement('input'); i.type = 'checkbox'; i.checked = st[chave];
+      i.onchange = () => { st[chave] = i.checked; };
+      l.append(i, document.createTextNode(txt));
+      ui['ck_' + chave] = i;
+      return l;
+    };
+    opcoes.append(selFundo, ck('Grade', 'grade', 'Grade de pixels'), ck('Cebola', 'cebola', 'Mostra o quadro anterior (vermelho) e o próximo (azul) por baixo'),
+      ck('Caixa', 'caixa', 'Mostra a caixa do quadro'), ck('Disparo', 'pontos', 'Mostra o ponto de disparo'),
+      ck('Escala do jogo', 'usarEscala', 'Mostra o sprite com a escala geral dele (spritesInfo)'));
+
+    ui.palcoWrap = el('div', 'es-palco-wrap ess-palco');
+    ui.cv = document.createElement('canvas');
+    ui.info = el('div', 'es-palco-info');
+    const modos = el('div', 'es-palco-modo ess-modos');
+    ui.modos = {};
+    [['mover', '✥ Origem', 'Arraste o desenho para mudar a origem (pés) dos quadros escolhidos · setas = 1 px, Shift = 10'],
+      ['caixa', '▭ Recorte', 'Ajuste a caixa do quadro no atlas (alças nos cantos e lados; arraste dentro para mover)'],
+      ['disparo', '🎯 Disparo', 'Clique no palco para gravar o ponto de disparo do quadro'],
+      ['mao', '✋ Mover vista', 'Arraste para mover a vista (também: botão do meio ou arrastar fora do desenho)']].forEach(([m, t, d]) => {
+      const b = E.botao(t, () => { st.modo = m; renderModos(); }, d);
+      ui.modos[m] = b; modos.appendChild(b);
+    });
+    const zooms = el('div', 'ess-zoom');
+    zooms.append(E.botao('−', () => zoomEm(1 / 1.25), 'Diminuir zoom'), E.botao('＋', () => zoomEm(1.25), 'Aumentar zoom'), E.botao('⤢', () => enquadrar(), 'Enquadrar a animação'));
+    ui.palcoWrap.append(ui.cv, ui.info, modos, zooms);
+
+    const ctr = el('div', 'es-barra ess-ctr');
+    ui.btIni = E.botao('⏮', () => irPara(0), 'Primeiro quadro (Home)');
+    ui.btAnt = E.botao('◀', () => passo(-1), 'Quadro anterior (vírgula)');
+    ui.btPlay = E.botao('▶', () => alternar(), 'Tocar / pausar (espaço)', 'ess-play');
+    ui.btProx = E.botao('▶|', () => passo(1), 'Próximo quadro (ponto)');
+    ui.btFim = E.botao('⏭', () => irPara(frames().length - 1), 'Último quadro (End)');
+    const vel = E.campo('select', 'Vel.', '1', (v) => { st.vel = +v; }, { lista: VELS.map(v => [String(v), String(v).replace('.', ',') + '×']) });
+    vel.classList.add('ess-mini');
+    ui.btRep = E.botao('🔁', () => { st.repetir = !st.repetir; renderCtr(); }, 'Repetir ao chegar no fim (na prévia)');
+    ui.btEsp = E.botao('⇋', () => { st.espelho = !st.espelho; renderCtr(); }, 'Espelhar (virado para a esquerda)');
+    ui.tempo = el('span', 'ess-tempo');
+    ctr.append(ui.btIni, ui.btAnt, ui.btPlay, ui.btProx, ui.btFim, el('span', 'sep'), vel, ui.btRep, ui.btEsp, ui.tempo);
+
+    const tiraBarra = el('div', 'es-barra ess-tira-barra');
+    tiraBarra.append(
+      E.botao('🗑 Apagar', () => apagar(), 'Apagar os quadros escolhidos (Delete)', 'es-bt-perigo'),
+      E.botao('⧉ Duplicar', () => duplicar(), 'Duplicar os quadros escolhidos (Ctrl+D)'),
+      E.botao('◀ Mover', () => mover(-1), 'Mover os escolhidos para a esquerda'),
+      E.botao('Mover ▶', () => mover(1), 'Mover os escolhidos para a direita'),
+      E.botao('⇄ Inverter', () => inverter(), 'Inverte a ordem dos escolhidos (ou de todos, se só um estiver escolhido)'),
+      E.botao('＋ Inserir quadros…', () => inserirDeOutra(), 'Inserir quadros de qualquer animação deste sprite depois do quadro escolhido'),
+      el('span', 'sep'));
+    ui.btMulti = E.botao('☑ Vários', () => { st.multi = !st.multi; renderCtr(); }, 'Toque para escolher vários quadros (ou use Ctrl/Shift)');
+    tiraBarra.append(ui.btMulti, E.botao('Todos', () => { st.sel = new Set(frames().map((_, k) => k)); renderTira(); renderProps(); }, 'Escolher todos os quadros (Ctrl+A)'));
+    ui.tira = el('div', 'ess-tira');
+    ui.marca = el('div', 'ess-tira-marca'); ui.marca.hidden = true;
+    cen.append(barra, opcoes, ui.palcoWrap, ctr, tiraBarra, ui.tira);
+
+    // direita: propriedades
+    const dir = el('aside', 'es-lado dir ess-dir');
+    dir.innerHTML = '<div class="es-titulo">⚙ Propriedades</div>';
+    ui.props = el('div', 'es-rolar ess-props');
+    dir.appendChild(ui.props);
+
+    raiz.append(esq, cen, dir);
+    ligarPalco();
+    ligarTira();
+    new ResizeObserver(() => ajustarCanvas()).observe(ui.palcoWrap);
+    renderModos(); renderCtr();
+    renderSprites();
+    return iniciar();
+  }
+
+  async function iniciar() {
+    const q = new URLSearchParams(location.search);
+    const rasc = E.rascunho.ler(RASC);
+    const ult = E.rascunho.ler(ULT) || {};
+    let id = q.get('sprite') || ult.id || 'gokubase';
+    if (!FF.Assets.listaSprites().includes(id)) id = FF.Assets.listaSprites()[0];
+    await abrirSprite(id, q.get('anim') || (id === ult.id ? ult.nome : null), true);
+    if (rasc && rasc.id && rasc.anim) {
+      const set = await FF.Assets.loadSprite(rasc.id).catch(() => null);
+      const orig = set && set.def.anims[rasc.nome];
+      if (set && (!orig || JSON.stringify(limpa(orig)) !== JSON.stringify(limpa(rasc.anim)))) {
+        const quando = rasc.t ? new Date(rasc.t).toLocaleString('pt-BR') : '';
+        if (await confirmar('📝 Rascunho encontrado', 'Há mudanças não salvas em "' + rasc.id + ' / ' + rasc.nome + '"' + (quando ? ' (' + quando + ')' : '') + '. Recuperar?', 'Recuperar')) {
+          await abrirSprite(rasc.id, null, true);
+          abrirAnim(rasc.nome, { forcar: true, novo: !orig, anim: rasc.anim });
+          return;
+        }
+      }
+      E.rascunho.gravar(RASC, null);
+    }
+  }
+
+  // ------------------------------------------------------------------ sprites e animações
+  function renderSprites() {
+    const f = st.buscaSprite.toLowerCase();
+    ui.sprites.innerHTML = '';
+    FF.Assets.listaSprites().filter(s => !f || s.toLowerCase().includes(f)).forEach(s => {
+      const it = el('div', 'es-item' + (s === st.id ? ' sel' : ''));
+      it.dataset.sprite = s;
+      const n = el('span'); n.textContent = s; it.appendChild(n);
+      const mods = (FF.Mods.ler()[s] && Object.keys(FF.Mods.ler()[s]).length) || 0;
+      if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
+      it.onclick = () => abrirSprite(s);
+      ui.sprites.appendChild(it);
+    });
+  }
+
+  async function abrirSprite(id, nome, semPerguntar) {
+    if (!semPerguntar && sujo() && !(await confirmar('Mudanças não salvas', 'Descartar as mudanças em "' + st.nome + '"?', 'Descartar', true))) return;
+    let set;
+    try { set = await FF.Assets.loadSprite(id); } catch (e) { E.aviso('❌ Não deu para abrir o sprite ' + id + ': ' + e.message, 'erro'); return; }
+    st.id = id; st.set = set;
+    renderSprites();
+    const nomes = Object.keys(set.def.anims);
+    abrirAnim(nome && set.def.anims[nome] ? nome : nomes[0], { forcar: true });
+  }
+
+  function renderAnims() {
+    ui.anims.innerHTML = '';
+    if (!st.set) return;
+    const f = st.buscaAnim.toLowerCase();
+    const nomes = Object.keys(st.set.def.anims);
+    ui.nAnims.textContent = '(' + nomes.length + ')';
+    const lista = st.novo ? [st.nome].concat(nomes) : nomes;
+    lista.filter(n => !f || n.toLowerCase().includes(f)).forEach(n => {
+      const novoAqui = st.novo && n === st.nome && !st.set.def.anims[n];
+      const a = novoAqui ? st.anim : st.set.def.anims[n];
+      const it = el('div', 'es-item ess-anim' + (n === st.nome ? ' sel' : ''));
+      it.dataset.anim = n;
+      const cv = document.createElement('canvas'); cv.width = 40; cv.height = 40;
+      const [mw, mh] = maiores(a.frames);
+      mini(cv, st.set, a.frames[0], mw, mh);
+      const nm = el('span', 'ess-anim-nome'); nm.textContent = n; nm.title = n;
+      it.append(cv, nm);
+      if (novoAqui) it.appendChild(el('span', 'tag alt', 'nova'));
+      else if (FF.Mods.criada(st.id, n)) it.appendChild(el('span', 'tag', '★'));
+      if (!novoAqui && FF.Mods.alterada(st.id, n)) { const t = el('span', 'tag alt', '✎'); t.title = 'Alterada por você'; it.appendChild(t); }
+      it.appendChild(el('small', null, String(a.frames.length)));
+      it.onclick = () => abrirAnim(n);
+      ui.anims.appendChild(it);
+    });
+  }
+
+  async function abrirAnim(nome, opts = {}) {
+    if (!opts.forcar && nome === st.nome && !opts.anim) return;
+    if (!opts.forcar && sujo() && !(await confirmar('Mudanças não salvas', 'Descartar as mudanças em "' + st.nome + '"?', 'Descartar', true))) return;
+    const base = opts.anim || (st.set.def.anims[nome] ? limpa(st.set.def.anims[nome]) : limpa({ frames: [] }));
+    st.nome = nome;
+    st.novo = !!opts.novo || !st.set.def.anims[nome];
+    st.i = 0; st.sel = new Set([0]); st.ancora = 0; st.t = 0;
+    pausar();
+    if (opts.anim && st.set.def.anims[nome] && !opts.novo) {
+      // rascunho recuperado: o histórico começa na versão salva para dar para desfazer
+      st.anim = limpa(st.set.def.anims[nome]); hist.zerar('Abrir'); st.anim = limpa(base); hist.marcar('Rascunho recuperado');
+    } else { st.anim = limpa(base); hist.zerar('Abrir ' + nome); }
+    if (opts.novo && opts.anim) hist.marcar('Nova animação');
+    corrigirSel();
+    E.rascunho.gravar(ULT, { id: st.id, nome });
+    gravarRascunho();
+    enquadrar();
+    tudo();
+    const s = ui.anims.querySelector('.es-item.sel');
+    if (s) { const L = ui.anims; if (s.offsetTop < L.scrollTop || s.offsetTop + s.offsetHeight > L.scrollTop + L.clientHeight) L.scrollTop = s.offsetTop - L.clientHeight / 3; }
+  }
+
+  // ------------------------------------------------------------------ renderização da interface
+  function tudo() { renderAnims(); renderTira(); renderProps(); renderCtr(); renderTitulo(); }
+  function renderTitulo() {
+    if (!ui.titulo) return;
+    const d = sujo();
+    ui.titulo.innerHTML = '';
+    const b = el('b'); b.textContent = st.id + ' / ' + (st.nome || '—');
+    ui.titulo.append(b);
+    if (st.novo) ui.titulo.append(el('span', 'ess-tag', 'nova'));
+    else if (FF.Mods.alterada(st.id, st.nome)) ui.titulo.append(el('span', 'ess-tag alt', '✎ alterada'));
+    if (d) ui.titulo.append(el('span', 'ess-sujo', '● não salvo'));
+    ui.btSalvar.disabled = !d || !frames().length;
+    ui.btOrig.disabled = !d && !FF.Mods.alterada(st.id, st.nome);
+  }
+  function renderModos() { for (const [m, b] of Object.entries(ui.modos)) b.classList.toggle('sel', m === st.modo); ui.palcoWrap.dataset.modo = st.modo; }
+  function renderCtr() {
+    ui.btPlay.textContent = st.tocando ? '⏸' : '▶';
+    ui.btRep.classList.toggle('on', st.repetir);
+    ui.btEsp.classList.toggle('on', st.espelho);
+    ui.btMulti.classList.toggle('on', st.multi);
+  }
+
+  function renderTira() {
+    const fr = frames();
+    ui.tira.innerHTML = '';
+    if (!fr.length) { ui.tira.appendChild(el('div', 'es-vazio', 'Animação sem quadros — use “＋ Inserir quadros…”.')); return; }
+    const [mw, mh] = maiores(fr);
+    fr.forEach((f, k) => {
+      const c = el('div', 'ess-q' + (st.sel.has(k) ? ' sel' : '') + (k === st.i ? ' atual' : ''));
+      c.dataset.k = k;
+      const cv = document.createElement('canvas'); cv.width = 64; cv.height = 64;
+      mini(cv, st.set, f, mw, mh);
+      const r = el('span', 'ess-q-rot');
+      r.textContent = (k + 1) + ((f[7] || 1) !== 1 ? ' ×' + f[7] : '');
+      c.append(cv, r);
+      if (f[8] && f[8][0]) c.appendChild(el('span', 'ess-q-alvo', '🎯'));
+      if (st.anim.loop && (st.anim.repeatTo || 0) === k && k > 0) { const t = el('span', 'ess-q-rep', '↩'); t.title = 'Repete a partir daqui'; c.appendChild(t); }
+      ui.tira.appendChild(c);
+    });
+    ui.tira.appendChild(ui.marca);
+  }
+  function marcarAtualNaTira() {
+    ui.tira.querySelectorAll('.ess-q').forEach(c => { const k = +c.dataset.k; c.classList.toggle('atual', k === st.i); c.classList.toggle('sel', st.sel.has(k)); });
+    const a = ui.tira.querySelector('.ess-q.atual');
+    if (a && st.tocando) { const t = ui.tira; if (a.offsetLeft < t.scrollLeft || a.offsetLeft + a.offsetWidth > t.scrollLeft + t.clientWidth) t.scrollLeft = a.offsetLeft - 20; }
+  }
+
+  function renderProps() {
+    const p = ui.props;
+    if (!p || !st.anim) return;
+    if (p.contains(document.activeElement) && document.activeElement.tagName === 'INPUT' && document.activeElement.type !== 'checkbox') return;
+    p.innerHTML = '';
+    const a = st.anim, fr = frames(), esc = escolhidos(), f = fr[st.i];
+    // animação
+    const gA = E.grupo('🎞 Animação');
+    const tot = fr.reduce((s, q) => s + (q[7] || 1), 0) / fpsDe(a);
+    gA.appendChild(el('div', 'es-dica', fr.length + ' quadro(s) · ' + tot.toFixed(2).replace('.', ',') + ' s' + (a.fps ? '' : ' (fps 0 = manual; a prévia usa 10)')));
+    gA.appendChild(E.campo('numero', 'fps', a.fps, (v, vivo) => { a.fps = Math.max(0, Math.min(120, v || 0)); mudou('Mudar fps', true, vivo); }, { passo: 1, min: 0, max: 120, dica: 'Quadros por segundo' }));
+    gA.appendChild(E.campo('check', 'Repetir (loop)', a.loop, (v) => { a.loop = v; mudou(v ? 'Ligar loop' : 'Desligar loop'); renderProps(); }, { dica: 'No jogo, a animação recomeça ao terminar' }));
+    if (a.loop) gA.appendChild(E.campo('numero', 'Repetir do quadro', (a.repeatTo || 0) + 1, (v, vivo) => { a.repeatTo = limitar(Math.round(v || 1) - 1, 0, Math.max(0, fr.length - 1)); mudou('Repetir a partir do quadro', true, vivo); }, { passo: 1, min: 1, max: fr.length, dica: 'Ao repetir, volta para este quadro (1 = começo)' }));
+    p.appendChild(gA);
+
+    // quadro(s)
+    if (f) {
+      const multi = esc.length > 1;
+      const gQ = E.grupo(multi ? '🖼 ' + esc.length + ' quadros escolhidos' : '🖼 Quadro ' + (st.i + 1) + ' de ' + fr.length);
+      gQ.appendChild(E.campo('numero', 'Duração', f[7] || 1, (v, vivo) => { esc.forEach(k => { fr[k][7] = Math.max(0.1, Math.min(99, v || 1)); }); mudou('Duração do quadro', true, vivo); }, { passo: 1, min: 0.1, dica: 'Em "batidas" de 1/fps (2 = fica o dobro do tempo)' + (multi ? ' — vale para todos os escolhidos' : '') }));
+      const ref = [f[5], f[6]];
+      gQ.appendChild(E.campo('numero', 'Origem X', f[5], (v, vivo) => { const d = Math.round(v || 0) - ref[0]; ref[0] += d; esc.forEach(k => { fr[k][5] += d; }); mudou('Mover origem', true, vivo); }, { passo: 1, dica: 'Origem (pés) dentro do quadro' + (multi ? ' — a diferença vale para todos os escolhidos' : '') }));
+      gQ.appendChild(E.campo('numero', 'Origem Y', f[6], (v, vivo) => { const d = Math.round(v || 0) - ref[1]; ref[1] += d; esc.forEach(k => { fr[k][6] += d; }); mudou('Mover origem', true, vivo); }, { passo: 1 }));
+      const sub = el('div', 'es-dica', 'Recorte no atlas' + (multi ? ' (quadro ' + (st.i + 1) + ')' : '') + ':');
+      gQ.appendChild(sub);
+      const img = st.set.images[f[0]];
+      [['X', 1], ['Y', 2], ['Largura', 3], ['Altura', 4]].forEach(([r, k]) => {
+        gQ.appendChild(E.campo('numero', r, f[k], (v, vivo) => {
+          v = Math.round(v || 0);
+          if (k >= 3) v = Math.max(1, v);
+          const lim = k === 1 || k === 3 ? img.naturalWidth || img.width : img.naturalHeight || img.height;
+          if (k <= 2) v = limitar(v, 0, lim - 1); else v = Math.min(v, lim - f[k - 2]);
+          f[k] = v; mudou('Recortar quadro', true, vivo);
+        }, { passo: 1, min: k >= 3 ? 1 : 0 }));
+      });
+      if (st.set.images.length > 1) gQ.appendChild(E.campo('select', 'Atlas', String(f[0]), (v) => { f[0] = +v; mudou('Trocar atlas'); }, { lista: st.set.images.map((_, k) => [String(k), 'Atlas ' + k + ' (' + (st.set.def.atlases[k] || '').split('/').pop() + ')']) }));
+      p.appendChild(gQ);
+
+      // disparo
+      const gD = E.grupo('🎯 Ponto de disparo', !!(f[8] && f[8][0]) || st.modo === 'disparo');
+      const pt = f[8] && f[8][0];
+      gD.appendChild(el('div', 'es-dica', pt ? 'De onde saem os raios/projéteis neste quadro (relativo à origem).' : 'Este quadro não tem ponto de disparo. Use o modo 🎯 e clique no palco.'));
+      if (pt) {
+        gD.appendChild(E.campo('numero', 'dx', pt[0], (v, vivo) => { pt[0] = Math.round(v || 0); mudou('Ponto de disparo', true, vivo); }, { passo: 1 }));
+        gD.appendChild(E.campo('numero', 'dy', pt[1], (v, vivo) => { pt[1] = Math.round(v || 0); mudou('Ponto de disparo', true, vivo); }, { passo: 1 }));
+      }
+      const bd = el('div', 'ess-bts');
+      bd.append(E.botao('🎯 Marcar no palco', () => { st.modo = 'disparo'; renderModos(); }, 'Ativa o modo disparo'),
+        E.botao('🗑 Apagar ponto', () => apagarDisparo(), 'Apaga o ponto de disparo dos quadros escolhidos'));
+      if (pt && fr.length > 1) bd.append(E.botao('Copiar p/ escolhidos', () => { esc.forEach(k => { if (k !== st.i) { fr[k][8] = fr[k][8] || []; fr[k][8][0] = pt.slice(); } }); mudou('Copiar ponto de disparo'); renderTira(); }, 'Usa este ponto em todos os quadros escolhidos'));
+      gD.appendChild(bd);
+      p.appendChild(gD);
+    }
+
+    // sprite (escala geral)
+    const def = st.set.def;
+    const orig = ('_escalaOrig' in def) ? def._escalaOrig : def.escala;
+    const info = (FF.Edicoes.dados().spritesInfo || {})[st.id];
+    const gS = E.grupo('📐 Sprite “' + st.id + '”', false);
+    gS.appendChild(el('div', 'es-dica', 'Escala geral no jogo: <b>' + String(escalaSprite()).replace('.', ',') + '×</b>' + (info ? ' (sua; original ' + String(orig || 1).replace('.', ',') + '×)' : ' (original)') + '. Vale para todas as animações deste sprite.'));
+    let novaEsc = escalaSprite();
+    gS.appendChild(E.campo('numero', 'Escala', novaEsc, (v) => { novaEsc = v; }, { passo: 0.05, min: 0.1, max: 10 }));
+    const bs = el('div', 'ess-bts');
+    bs.append(E.botao('💾 Salvar escala', () => salvarEscala(novaEsc), 'Grava a escala geral do sprite no jogo', 'es-bt-ouro'));
+    if (info) bs.append(E.botao('↺ Escala original', () => salvarEscala(null), 'Volta à escala original'));
+    gS.appendChild(bs);
+    gS.appendChild(el('div', 'es-dica', def.atlases.length + ' atlas · ' + Object.keys(def.anims).length + ' animações'));
+    p.appendChild(gS);
+
+    const gH = E.grupo('⌨ Atalhos', false);
+    gH.appendChild(el('div', 'es-dica ess-atalhos', 'Espaço tocar/pausar · vírgula/ponto quadro anterior/próximo · setas movem a origem (Shift = 10 px) · Delete apaga · Ctrl+D duplica · Ctrl+A escolhe todos · Ctrl+S salva · Ctrl+Z/Ctrl+Y desfaz/refaz · roda do mouse = zoom · arrastar quadros na tira reordena.'));
+    p.appendChild(gH);
+  }
+
+  // depois de cada mudança no documento
+  function mudou(rotulo, juntar, vivo) {
+    pausar(true);
+    hist.marcar(rotulo, juntar);
+    gravarRascunho();
+    if (vivo) { atualizarTiraLeve(); renderTitulo(); return; }
+    renderTira(); renderTitulo();
+    if (!juntar) renderProps();
+  }
+  function atualizarTiraLeve() {
+    const fr = frames(); const [mw, mh] = maiores(fr);
+    ui.tira.querySelectorAll('.ess-q').forEach(c => { const k = +c.dataset.k; const cv = c.querySelector('canvas'); if (cv && fr[k]) mini(cv, st.set, fr[k], mw, mh); });
+  }
+  function gravarRascunho() {
+    if (!st.anim) return;
+    if (sujo()) E.rascunho.gravar(RASC, { id: st.id, nome: st.nome, anim: limpa(st.anim), novo: st.novo, t: Date.now() });
+    else E.rascunho.gravar(RASC, null);
+  }
+
+  // ------------------------------------------------------------------ reprodução
+  function pausar(semRender) { if (st.tocando) { st.tocando = false; if (!semRender && ui.btPlay) renderCtr(); else if (ui.btPlay) ui.btPlay.textContent = '▶'; } }
+  function alternar() {
+    if (!frames().length) return;
+    st.tocando = !st.tocando;
+    if (st.tocando && !st.anim.loop && st.i >= frames().length - 1) st.i = 0;
+    st.t = 0; st.espera = 0;
+    renderCtr();
+    if (!st.tocando) { st.sel = new Set([st.i]); marcarAtualNaTira(); renderProps(); }
+  }
+  function irPara(k) {
+    const n = frames().length;
+    if (!n) return;
+    pausar();
+    st.i = limitar(k, 0, n - 1); st.sel = new Set([st.i]); st.ancora = st.i; st.t = 0;
+    marcarAtualNaTira(); renderProps();
+  }
+  function passo(d) { const n = frames().length; if (n) irPara((st.i + d + n) % n); }
+  function avancar(dt) {
+    const fr = frames();
+    if (!st.tocando || !fr.length) return;
+    if (st.espera > 0) { st.espera -= dt; if (st.espera <= 0) { st.i = 0; st.t = 0; trocouQuadro(); } return; }
+    st.t += dt * st.vel;
+    const fps = fpsDe(st.anim);
+    let g = 0;
+    while (st.t >= (fr[st.i][7] || 1) / fps && g++ < 200) {
+      st.t -= (fr[st.i][7] || 1) / fps;
+      if (st.i + 1 < fr.length) st.i++;
+      else if (st.anim.loop) st.i = limitar(st.anim.repeatTo || 0, 0, fr.length - 1);
+      else if (st.repetir) { st.espera = 0.5; break; }
+      else { st.tocando = false; renderCtr(); break; }
+      trocouQuadro();
+    }
+  }
+  function trocouQuadro() {
+    if (st.sel.size <= 1) st.sel = new Set([st.i]);
+    marcarAtualNaTira();
+    if (!ui.props.contains(document.activeElement)) renderProps();
+  }
+
+  // ------------------------------------------------------------------ edição dos quadros
+  function apagar() {
+    const esc = escolhidos(), fr = frames();
+    if (!esc.length) return;
+    const tira = new Set(esc);
+    st.anim.frames = fr.filter((_, k) => !tira.has(k));
+    st.i = Math.min(esc[0], st.anim.frames.length - 1);
+    st.sel = new Set(st.anim.frames.length ? [st.i] : []);
+    corrigirSel();
+    mudou(esc.length > 1 ? 'Apagar ' + esc.length + ' quadros' : 'Apagar quadro');
+  }
+  function duplicar() {
+    const esc = escolhidos(), fr = frames();
+    if (!esc.length) return;
+    const ult = esc[esc.length - 1];
+    const copias = esc.map(k => copia(fr[k]));
+    fr.splice(ult + 1, 0, ...copias);
+    st.sel = new Set(copias.map((_, j) => ult + 1 + j));
+    st.i = ult + 1;
+    mudou(esc.length > 1 ? 'Duplicar ' + esc.length + ' quadros' : 'Duplicar quadro');
+  }
+  function mover(d) {
+    const fr = frames(), esc = escolhidos();
+    if (!esc.length) return;
+    if ((d < 0 && esc[0] === 0) || (d > 0 && esc[esc.length - 1] === fr.length - 1)) return;
+    const ordem = d < 0 ? esc : esc.slice().reverse();
+    ordem.forEach(k => { const t = fr[k]; fr[k] = fr[k + d]; fr[k + d] = t; });
+    st.sel = new Set(esc.map(k => k + d));
+    st.i += d;
+    mudou('Mover quadro');
+  }
+  // move os escolhidos para antes do índice "dest" (0..n)
+  function moverPara(dest) {
+    const fr = frames(), esc = escolhidos();
+    const bloco = esc.map(k => fr[k]);
+    const antes = esc.filter(k => k < dest).length;
+    const resto = fr.filter((_, k) => !esc.includes(k));
+    const pos = limitar(dest - antes, 0, resto.length);
+    resto.splice(pos, 0, ...bloco);
+    if (JSON.stringify(resto) === JSON.stringify(fr)) return;
+    st.anim.frames = resto;
+    st.sel = new Set(bloco.map((_, j) => pos + j));
+    st.i = pos;
+    mudou(bloco.length > 1 ? 'Reordenar ' + bloco.length + ' quadros' : 'Reordenar quadro');
+  }
+  function inverter() {
+    const fr = frames(), esc = escolhidos();
+    if (fr.length < 2) return;
+    if (esc.length > 1) { const inv = esc.map(k => fr[k]).reverse(); esc.forEach((k, j) => { fr[k] = inv[j]; }); mudou('Inverter escolhidos'); }
+    else { fr.reverse(); st.i = fr.length - 1 - st.i; st.sel = new Set([st.i]); mudou('Inverter ordem'); }
+  }
+  function apagarDisparo() {
+    const fr = frames();
+    let n = 0;
+    escolhidos().forEach(k => { const f = fr[k]; if (f[8] && f[8].length) { f[8].splice(0, 1); n++; if (!f[8].length) f.length = 8; } });
+    if (n) mudou('Apagar ponto de disparo'); else E.aviso('Nenhum dos quadros escolhidos tem ponto de disparo.');
+  }
+  function inserirQuadros(lista) {
+    if (!lista.length) return;
+    const fr = frames();
+    const pos = fr.length ? st.i + 1 : 0;
+    fr.splice(pos, 0, ...lista.map(copia));
+    st.i = pos + lista.length - 1;
+    st.sel = new Set(lista.map((_, j) => pos + j));
+    mudou(lista.length > 1 ? 'Inserir ' + lista.length + ' quadros' : 'Inserir quadro');
+  }
+
+  function inserirDeOutra() {
+    const c = el('div', 'ess-ins');
+    const topo = el('div', 'ess-ins-topo');
+    const busca = document.createElement('input'); busca.type = 'search'; busca.placeholder = 'Buscar animação de ' + st.id + '…';
+    const volta = E.botao('← Animações', () => { origem = null; render(); });
+    const todos = E.botao('Inserir todos', () => { const a = fonte(origem); inserirQuadros(a.frames); info.textContent = '✅ ' + a.frames.length + ' quadro(s) inseridos.'; }, 'Insere todos os quadros desta animação', 'es-bt-ouro');
+    const info = el('span', 'es-dica');
+    topo.append(volta, busca, todos, info);
+    const grade = el('div', 'es-grade ess-ins-grade');
+    c.append(topo, grade);
+    let origem = null;
+    const fonte = (n) => (n === st.nome ? st.anim : st.set.def.anims[n]);
+    function render() {
+      grade.innerHTML = '';
+      volta.hidden = todos.hidden = !origem; busca.hidden = !!origem;
+      if (!origem) {
+        const f = busca.value.toLowerCase();
+        info.textContent = 'Escolha a animação de onde tirar os quadros.';
+        const nomes = Object.keys(st.set.def.anims);
+        if (st.novo) nomes.unshift(st.nome);
+        nomes.filter(n => !f || n.toLowerCase().includes(f)).forEach(n => {
+          const a = fonte(n);
+          if (!a || !a.frames.length) return;
+          const cd = el('div', 'es-cartao');
+          cd.dataset.anim = n;
+          const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
+          const [mw, mh] = maiores(a.frames); mini(cv, st.set, a.frames[0], mw, mh);
+          const s = el('span'); s.textContent = n + ' (' + a.frames.length + ')'; s.title = n;
+          cd.append(cv, s);
+          cd.onclick = () => { origem = n; render(); };
+          grade.appendChild(cd);
+        });
+      } else {
+        const a = fonte(origem);
+        info.textContent = origem + ': clique num quadro para inseri-lo depois do quadro ' + (frames().length ? st.i + 1 : '—') + '.';
+        const [mw, mh] = maiores(a.frames);
+        a.frames.forEach((q, k) => {
+          const cd = el('div', 'es-cartao');
+          cd.dataset.k = k;
+          const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
+          mini(cv, st.set, q, mw, mh);
+          const s = el('span'); s.textContent = 'Quadro ' + (k + 1);
+          cd.append(cv, s);
+          cd.onclick = () => { inserirQuadros([q]); cd.classList.add('sel'); info.textContent = '✅ Quadro ' + (k + 1) + ' inserido (agora depois do quadro ' + (st.i + 1) + ').'; };
+          grade.appendChild(cd);
+        });
+      }
+    }
+    busca.oninput = render;
+    E.modal('＋ Inserir quadros de outra animação', c, { larga: true });
+    render();
+  }
+
+  async function novaAnimacao() {
+    const esc = escolhidos();
+    const c = el('div', 'ess-nova');
+    const nome = document.createElement('input'); nome.placeholder = 'Nome (ex.: Especial_Novo)';
+    const temSel = esc.length && frames().length;
+    c.innerHTML = '<p>Nome da nova animação do sprite <b></b>:</p>';
+    c.querySelector('b').textContent = st.id;
+    c.appendChild(nome);
+    const bts = el('div', 'ess-conf-bts');
+    const criar = (comQuadros) => {
+      const n = nome.value.trim().replace(/\s+/g, '_');
+      if (!n) { E.aviso('Dê um nome para a animação.', 'erro'); return; }
+      if (st.set.def.anims[n]) { E.aviso('Já existe "' + n + '" neste sprite. Escolha outro nome.', 'erro'); return; }
+      const fr = comQuadros ? esc.map(k => copia(frames()[k])) : [];
+      const a = { fps: st.anim ? st.anim.fps || 12 : 12, loop: false, repeatTo: 0, pingpong: false, frames: fr };
+      m.fechar();
+      abrirAnim(n, { forcar: true, novo: true, anim: a });
+      E.aviso('Animação "' + n + '" criada — salve para ela valer no jogo.');
+    };
+    bts.append(E.botao('Vazia', () => criar(false), 'Começa sem quadros (insira de outras animações)'));
+    if (temSel) bts.append(E.botao('Com os ' + esc.length + ' quadro(s) escolhido(s)', () => criar(true), null, 'es-bt-ouro'));
+    c.appendChild(bts);
+    if (sujo() && !st.novo) c.appendChild(el('p', 'es-obs', '⚠ As mudanças não salvas em "' + st.nome + '" ficam só no rascunho se você criar outra agora.'));
+    nome.onkeydown = (e) => { if (e.key === 'Enter') criar(!!temSel); };
+    const m = E.modal('＋ Nova animação', c);
+    setTimeout(() => nome.focus(), 30);
+  }
+
+  // ------------------------------------------------------------------ salvar
+  function salvar() {
+    if (!frames().length) { E.aviso('A animação não tem quadros.', 'erro'); return; }
+    FF.Mods.salvar(st.id, st.nome, limpa(st.anim));
+    st.novo = false;
+    E.rascunho.gravar(RASC, null);
+    E.aviso('💾 "' + st.nome + '" salva no jogo.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+    E.renderSync();
+    renderSprites(); tudo();
+  }
+  async function salvarComo() {
+    if (!frames().length) { E.aviso('A animação não tem quadros.', 'erro'); return; }
+    let n = await E.perguntar('💾 Salvar como nova', 'Nome da nova animação em "' + st.id + '":', st.nome + '_2');
+    if (!n) return;
+    n = n.trim().replace(/\s+/g, '_');
+    if (st.set.def.anims[n] && !(await confirmar('Já existe', '"' + n + '" já existe neste sprite. Substituir?', 'Substituir', true))) return;
+    const a = limpa(st.anim);
+    FF.Mods.salvar(st.id, n, a);
+    E.rascunho.gravar(RASC, null);
+    st.anim = limpa(st.set.def.anims[st.nome] || a);   // a original fica como estava salva
+    E.aviso('💾 Salva como "' + n + '".' + (FF.Edicoes.conectado() ? ' Enviando…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+    E.renderSync();
+    renderSprites();
+    abrirAnim(n, { forcar: true });
+  }
+  async function original() {
+    const alt = FF.Mods.alterada(st.id, st.nome);
+    if (!alt) {
+      if (!sujo()) return;
+      if (!(await confirmar('Descartar mudanças', st.novo ? 'Descartar a animação nova "' + st.nome + '" (não salva)?' : 'Descartar as mudanças não salvas em "' + st.nome + '"?', 'Descartar', true))) return;
+      E.rascunho.gravar(RASC, null);
+      if (st.novo) { st.anim = null; st.novo = false; abrirAnim(Object.keys(st.set.def.anims)[0], { forcar: true }); }
+      else abrirAnim(st.nome, { forcar: true });
+      return;
+    }
+    const criada = FF.Mods.criada(st.id, st.nome);
+    if (!(await confirmar('↺ Original', criada ? 'Apagar a animação "' + st.nome + '" (criada por você) do jogo?' : 'Voltar "' + st.nome + '" ao original do jogo? Suas alterações salvas nela serão apagadas.', criada ? 'Apagar' : 'Voltar ao original', true))) return;
+    FF.Mods.restaurar(st.id, st.nome);
+    E.rascunho.gravar(RASC, null);
+    E.aviso(criada ? '🗑 Animação apagada.' : '↺ Voltou ao original.', 'ok');
+    E.renderSync();
+    renderSprites();
+    st.anim = null;
+    abrirAnim(st.set.def.anims[st.nome] ? st.nome : Object.keys(st.set.def.anims)[0], { forcar: true });
+  }
+  function salvarEscala(v) {
+    const def = st.set.def;
+    if (v != null && !(v > 0)) { E.aviso('Escala inválida.', 'erro'); return; }
+    if (!('_escalaOrig' in def)) def._escalaOrig = def.escala;
+    if (v == null) { def.escala = def._escalaOrig; if (def.escala === undefined) delete def.escala; delete def._escalaOrig; }
+    else def.escala = v;
+    E.salvarNoJogo(['spritesInfo', st.id], v == null ? null : { escala: v }, v == null ? '↺ Escala original de ' + st.id + '.' : '💾 Escala de ' + st.id + ': ' + String(v).replace('.', ',') + '×.');
+    renderProps();
+  }
+
+  // ------------------------------------------------------------------ palco
+  function ajustarCanvas() {
+    const r = ui.palcoWrap.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const w = Math.max(10, Math.floor(r.width)), h = Math.max(10, Math.floor(r.height));
+    ui.cv.style.width = w + 'px'; ui.cv.style.height = h + 'px';
+    ui.cv.width = Math.round(w * dpr); ui.cv.height = Math.round(h * dpr);
+    ui.W = w; ui.H = h; ui.dpr = dpr;
+  }
+  function ez() { return st.zoom * (st.usarEscala ? escalaSprite() : 1); }
+  function sinal() { return st.espelho && st.modo !== 'caixa' ? -1 : 1; }
+  function centro() { return [ui.W / 2 + st.panX, ui.H * 0.62 + st.panY]; }
+  function telaParaMundo(sx, sy) { const [cx, cy] = centro(), z = ez(); return [(sx - cx) / (z * sinal()), (sy - cy) / z]; }
+  function mundoParaTela(wx, wy) { const [cx, cy] = centro(), z = ez(); return [cx + wx * z * sinal(), cy + wy * z]; }
+  function zoomEm(fator, sx, sy) {
+    const novo = limitar(st.zoom * fator, 0.25, 24);
+    if (sx != null) { const [cx, cy] = centro(); const k = novo / st.zoom; st.panX += (sx - cx) * (1 - k); st.panY += (sy - cy) * (1 - k); }
+    st.zoom = novo;
+  }
+  function enquadrar() {
+    if (!ui.W) ajustarCanvas();
+    const fr = frames();
+    if (!fr.length) { st.zoom = 3; st.panX = st.panY = 0; return; }
+    let l = 0, r = 0, t = 0, b = 0;
+    fr.forEach(f => { l = Math.max(l, f[5]); r = Math.max(r, f[3] - f[5]); t = Math.max(t, f[6]); b = Math.max(b, f[4] - f[6]); });
+    const e = st.usarEscala ? escalaSprite() : 1;
+    const z = Math.min((ui.W - 40) / ((l + r) * e), (ui.H - 40) / ((t + b) * e));
+    st.zoom = limitar(Math.floor(z * 4) / 4 || 0.25, 0.25, 12);
+    // centraliza a caixa que cobre todos os quadros
+    st.panX = -((r - l) / 2) * st.zoom * e;
+    st.panY = (ui.H / 2 - ui.H * 0.62) - ((b - t) / 2) * st.zoom * e;
+  }
+
+  let xadrez = null;
+  function desenharFundo(ctx) {
+    const W = ui.W, H = ui.H;
+    if (st.fundo === 'xadrez') {
+      if (!xadrez) {
+        const c = document.createElement('canvas'); c.width = c.height = 16;
+        const x = c.getContext('2d'); x.fillStyle = '#2b2442'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#1e1931'; x.fillRect(0, 0, 8, 8); x.fillRect(8, 8, 8, 8);
+        xadrez = ctx.createPattern(c, 'repeat');
+      }
+      ctx.fillStyle = xadrez; ctx.fillRect(0, 0, W, H);
+    } else if (st.fundo === 'claro') { ctx.fillStyle = '#d9d4e6'; ctx.fillRect(0, 0, W, H); }
+    else if (st.fundo === 'cenario' && FF.Assets.sprites.stage_campo) {
+      const cen = FF.Assets.sprites.stage_campo, ceu = cen.anim('ceu').frames[0], chao = cen.anim('chao').frames[0];
+      const s = Math.max(W / ceu[3], H / ceu[4]);
+      ctx.drawImage(cen.images[ceu[0]], ceu[1], ceu[2], ceu[3], ceu[4], (W - ceu[3] * s) / 2, (H - ceu[4] * s) / 2, ceu[3] * s, ceu[4] * s);
+      const [cx, cy] = centro(), z = st.zoom;
+      const w = chao[3] * z, h = chao[4] * z;
+      for (let x = cx - chao[5] * z - Math.ceil((cx) / w + 1) * w; x < W; x += w) ctx.drawImage(cen.images[chao[0]], chao[1], chao[2], chao[3], chao[4], x, cy - 4 * z, w, h);
+    } else { ctx.fillStyle = '#07040e'; ctx.fillRect(0, 0, W, H); }
+  }
+
+  function desenharPalco() {
+    if (!ui.cv || !ui.W) return;
+    const ctx = ui.cv.getContext('2d');
+    ctx.setTransform(ui.dpr, 0, 0, ui.dpr, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    desenharFundo(ctx);
+    const fr = frames(), f = fr[st.i], z = ez(), s = sinal(), flip = s < 0;
+    const [cx, cy] = centro();
+    const claro = st.fundo === 'claro';
+    // grade
+    if (st.grade) {
+      const passoG = z >= 6 ? 1 : z >= 3 ? 4 : z >= 1.5 ? 8 : 16;
+      ctx.strokeStyle = claro ? 'rgba(40,20,80,0.15)' : 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      const p = passoG * z;
+      for (let x = ((cx % p) + p) % p; x < ui.W; x += p) { ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, ui.H); }
+      for (let y = ((cy % p) + p) % p; y < ui.H; y += p) { ctx.moveTo(0, Math.round(y) + 0.5); ctx.lineTo(ui.W, Math.round(y) + 0.5); }
+      ctx.stroke();
+    }
+    // linha do chão
+    ctx.strokeStyle = claro ? 'rgba(120,40,40,0.35)' : 'rgba(255,90,90,0.25)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, Math.round(cy) + 0.5); ctx.lineTo(ui.W, Math.round(cy) + 0.5); ctx.stroke();
+    if (f) {
+      // modo recorte: atlas inteiro em volta (apagado)
+      if (st.modo === 'caixa') {
+        const img = st.set.images[f[0]];
+        ctx.globalAlpha = 0.35;
+        ctx.drawImage(img, cx + (-f[1] - f[5]) * z, cy + (-f[2] - f[6]) * z, (img.naturalWidth || img.width) * z, (img.naturalHeight || img.height) * z);
+        ctx.globalAlpha = 1;
+      }
+      if (st.cebola && fr.length > 1) {
+        const ant = st.i > 0 ? fr[st.i - 1] : (st.anim.loop ? fr[fr.length - 1] : null);
+        const prox = st.i < fr.length - 1 ? fr[st.i + 1] : (st.anim.loop ? fr[st.anim.repeatTo || 0] : null);
+        if (ant) FF.drawFrame(ctx, st.set, ant, cx, cy, z, flip, { tint: 'rgba(255,70,90,0.55)', alpha: 0.4 });
+        if (prox) FF.drawFrame(ctx, st.set, prox, cx, cy, z, flip, { tint: 'rgba(80,150,255,0.55)', alpha: 0.4 });
+      }
+      FF.drawFrame(ctx, st.set, f, cx, cy, z, flip);
+      // caixa do quadro
+      const [x0, y0] = mundoParaTela(flip ? f[3] - f[5] : -f[5], -f[6]);
+      const bw = f[3] * z, bh = f[4] * z;
+      if (st.caixa || st.modo === 'caixa') {
+        ctx.strokeStyle = st.modo === 'caixa' ? '#6cc8ff' : 'rgba(108,200,255,0.6)'; ctx.lineWidth = 1;
+        ctx.strokeRect(Math.round(x0) + 0.5, Math.round(y0) + 0.5, Math.round(bw), Math.round(bh));
+      }
+      if (st.modo === 'caixa') {
+        ctx.fillStyle = '#6cc8ff';
+        alcas(f).forEach(([, hx, hy]) => ctx.fillRect(hx - 4, hy - 4, 8, 8));
+      }
+      // escolhidos (vários): contorno dos outros
+      // ponto de disparo
+      const pt = f[8] && f[8][0];
+      if (pt && (st.pontos || st.modo === 'disparo')) {
+        const [px, py] = mundoParaTela(pt[0], pt[1]);
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(px, py, 6, 0, 7); ctx.stroke();
+        ctx.fillStyle = '#ffd84a'; ctx.beginPath(); ctx.arc(px, py, 5, 0, 7); ctx.fill();
+        ctx.strokeStyle = '#ffd84a'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(px - 12, py); ctx.lineTo(px + 12, py); ctx.moveTo(px, py - 12); ctx.lineTo(px, py + 12); ctx.stroke();
+        ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#000'; ctx.fillText('disparo', px + 9, py - 7); ctx.fillStyle = '#ffd84a'; ctx.fillText('disparo', px + 8, py - 8);
+      }
+    }
+    // origem (pés)
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(cx - 9, cy); ctx.lineTo(cx + 9, cy); ctx.moveTo(cx, cy - 9); ctx.lineTo(cx, cy + 9); ctx.stroke();
+    ctx.strokeStyle = '#ff5050'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx - 8, cy); ctx.lineTo(cx + 8, cy); ctx.moveTo(cx, cy - 8); ctx.lineTo(cx, cy + 8); ctx.stroke();
+    // texto
+    if (f) {
+      const pt = f[8] && f[8][0];
+      ui.info.textContent = 'quadro ' + (st.i + 1) + '/' + fr.length + ' · dur ' + (f[7] || 1) + ' · origem ' + f[5] + ',' + f[6] + ' · recorte ' + f[1] + ',' + f[2] + ' ' + f[3] + '×' + f[4] +
+        (pt ? ' · disparo ' + pt[0] + ',' + pt[1] : '') + ' · zoom ' + String(+st.zoom.toFixed(2)).replace('.', ',') + '×' + (st.usarEscala && escalaSprite() !== 1 ? ' (escala ' + escalaSprite() + ')' : '');
+    } else ui.info.textContent = 'sem quadros';
+    if (ui.tempo) {
+      let t = 0; for (let k = 0; k < st.i; k++) t += (fr[k][7] || 1); t = t / fpsDe(st.anim) + (st.tocando ? st.t : 0);
+      const tot = fr.reduce((s2, q) => s2 + (q[7] || 1), 0) / fpsDe(st.anim);
+      ui.tempo.textContent = t.toFixed(2).replace('.', ',') + ' / ' + tot.toFixed(2).replace('.', ',') + ' s';
+    }
+  }
+  // alças do recorte em coordenadas de tela: [nome, x, y]
+  function alcas(f) {
+    const [x0, y0] = mundoParaTela(-f[5], -f[6]), z = ez();
+    const x1 = x0 + f[3] * z, y1 = y0 + f[4] * z, xm = (x0 + x1) / 2, ym = (y0 + y1) / 2;
+    return [['nw', x0, y0], ['n', xm, y0], ['ne', x1, y0], ['e', x1, ym], ['se', x1, y1], ['s', xm, y1], ['sw', x0, y1], ['w', x0, ym]];
+  }
+  function dentroDoQuadro(f, wx, wy) { return wx >= -f[5] && wx <= f[3] - f[5] && wy >= -f[6] && wy <= f[4] - f[6]; }
+
+  function ligarPalco() {
+    const cv = ui.cv;
+    const toques = new Map();
+    let arr = null;   // arrasto atual
+    const pos = (e) => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    cv.addEventListener('contextmenu', (e) => e.preventDefault());
+    cv.addEventListener('wheel', (e) => { e.preventDefault(); const [sx, sy] = pos(e); zoomEm(e.deltaY < 0 ? 1.15 : 1 / 1.15, sx, sy); }, { passive: false });
+    cv.addEventListener('pointerdown', (e) => {
+      cv.setPointerCapture(e.pointerId);
+      const [sx, sy] = pos(e);
+      toques.set(e.pointerId, [sx, sy]);
+      if (toques.size === 2) {   // pinça: zoom + mover vista
+        const [a, b] = [...toques.values()];
+        arr = { tipo: 'pinca', d0: Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, z0: st.zoom, m0: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], p0: [st.panX, st.panY], desfazerPrimeiro: arr };
+        if (arr.desfazerPrimeiro && arr.desfazerPrimeiro.tipo !== 'pan') desfazerArrasto(arr.desfazerPrimeiro);
+        return;
+      }
+      const f = frames()[st.i];
+      const [wx, wy] = telaParaMundo(sx, sy);
+      if (e.button === 1 || e.button === 2 || st.modo === 'mao' || !f) { arr = { tipo: 'pan', s0: [sx, sy], p0: [st.panX, st.panY] }; return; }
+      pausar();
+      if (st.modo === 'disparo') {
+        arr = { tipo: 'disparo', f, antes: copia(f) };
+        f[8] = f[8] || []; f[8][0] = [Math.round(wx), Math.round(wy)];
+        renderProps();
+        return;
+      }
+      if (st.modo === 'caixa') {
+        const h = alcas(f).find(([, hx, hy]) => Math.abs(hx - sx) <= 9 && Math.abs(hy - sy) <= 9);
+        if (h || dentroDoQuadro(f, wx, wy)) { arr = { tipo: 'caixa', alca: h ? h[0] : 'dentro', w0: [wx, wy], f, antes: copia(f) }; return; }
+        arr = { tipo: 'pan', s0: [sx, sy], p0: [st.panX, st.panY] }; return;
+      }
+      // mover origem: dentro do desenho (ou de qualquer escolhido)
+      if (dentroDoQuadro(f, wx, wy)) {
+        const ks = escolhidos();
+        arr = { tipo: 'origem', w0: [wx, wy], ks, antes: ks.map(k => [frames()[k][5], frames()[k][6]]) };
+        return;
+      }
+      arr = { tipo: 'pan', s0: [sx, sy], p0: [st.panX, st.panY] };
+    });
+    cv.addEventListener('pointermove', (e) => {
+      const [sx, sy] = pos(e);
+      if (toques.has(e.pointerId)) toques.set(e.pointerId, [sx, sy]);
+      atualizarCursor(sx, sy);
+      if (!arr) return;
+      if (arr.tipo === 'pinca') {
+        if (toques.size < 2) return;
+        const [a, b] = [...toques.values()];
+        const d = Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        st.zoom = limitar(arr.z0 * d / arr.d0, 0.25, 24);
+        st.panX = arr.p0[0] + (m[0] - arr.m0[0]); st.panY = arr.p0[1] + (m[1] - arr.m0[1]);
+        return;
+      }
+      if (arr.tipo === 'pan') { st.panX = arr.p0[0] + sx - arr.s0[0]; st.panY = arr.p0[1] + sy - arr.s0[1]; return; }
+      const [wx, wy] = telaParaMundo(sx, sy);
+      if (arr.tipo === 'disparo') { arr.f[8][0] = [Math.round(wx), Math.round(wy)]; arr.mexeu = true; return; }
+      const dx = Math.round(wx - arr.w0[0]), dy = Math.round(wy - arr.w0[1]);
+      if (arr.tipo === 'origem') {
+        arr.ks.forEach((k, j) => { const q = frames()[k]; q[5] = arr.antes[j][0] - dx; q[6] = arr.antes[j][1] - dy; });
+        arr.mexeu = arr.mexeu || dx || dy;
+      } else if (arr.tipo === 'caixa') {
+        const f = arr.f, a = arr.antes, img = st.set.images[f[0]];
+        const IW = img.naturalWidth || img.width, IH = img.naturalHeight || img.height;
+        const al = arr.alca;
+        let x = a[1], y = a[2], w = a[3], h = a[4];
+        if (al === 'dentro') { x = limitar(a[1] + dx, 0, IW - w); y = limitar(a[2] + dy, 0, IH - h); }
+        if (al.includes('w')) { x = limitar(a[1] + dx, 0, a[1] + a[3] - 1); w = a[3] + (a[1] - x); }
+        if (al.includes('e')) w = limitar(a[3] + dx, 1, IW - a[1]);
+        if (al.includes('n')) { y = limitar(a[2] + dy, 0, a[2] + a[4] - 1); h = a[4] + (a[2] - y); }
+        if (al.includes('s') && al !== 'dentro') h = limitar(a[4] + dy, 1, IH - a[2]);
+        f[1] = x; f[2] = y; f[3] = w; f[4] = h;
+        f[5] = a[5] - (x - a[1]); f[6] = a[6] - (y - a[2]);   // o atlas fica parado na tela
+        arr.mexeu = true;
+      }
+    });
+    const soltar = (e) => {
+      toques.delete(e.pointerId);
+      if (!arr) return;
+      const a = arr;
+      if (a.tipo === 'pinca') { if (toques.size === 0) arr = null; return; }
+      arr = null;
+      if (a.tipo === 'disparo') mudou('Ponto de disparo');
+      else if (a.tipo === 'origem' && a.mexeu) mudou('Mover origem');
+      else if (a.tipo === 'caixa' && a.mexeu) mudou('Recortar quadro');
+    };
+    cv.addEventListener('pointerup', soltar);
+    cv.addEventListener('pointercancel', soltar);
+    function desfazerArrasto(a) {
+      if (a.tipo === 'origem') a.ks.forEach((k, j) => { const q = frames()[k]; if (q) { q[5] = a.antes[j][0]; q[6] = a.antes[j][1]; } });
+      else if ((a.tipo === 'caixa' || a.tipo === 'disparo') && a.f) { a.f.length = 0; a.antes.forEach(v => a.f.push(v)); }
+    }
+    function atualizarCursor(sx, sy) {
+      const f = frames()[st.i];
+      let c = 'default';
+      if (st.modo === 'mao') c = 'grab';
+      else if (st.modo === 'disparo') c = 'crosshair';
+      else if (f) {
+        const [wx, wy] = telaParaMundo(sx, sy);
+        if (st.modo === 'caixa') {
+          const h = alcas(f).find(([, hx, hy]) => Math.abs(hx - sx) <= 9 && Math.abs(hy - sy) <= 9);
+          c = h ? ({ n: 'ns', s: 'ns', e: 'ew', w: 'ew', ne: 'nesw', sw: 'nesw', nw: 'nwse', se: 'nwse' })[h[0]] + '-resize' : dentroDoQuadro(f, wx, wy) ? 'move' : 'grab';
+        } else c = dentroDoQuadro(f, wx, wy) ? 'move' : 'grab';
+      }
+      cv.style.cursor = c;
+    }
+  }
+
+  // ------------------------------------------------------------------ tira: escolher e arrastar
+  function ligarTira() {
+    const t = ui.tira;
+    let ini = null;
+    t.addEventListener('pointerdown', (e) => {
+      const c = e.target.closest('.ess-q');
+      if (!c || e.button !== 0) return;
+      ini = { k: +c.dataset.k, x: e.clientX, y: e.clientY, id: e.pointerId, arrastando: false, ctrl: e.ctrlKey || e.metaKey, shift: e.shiftKey, toque: e.pointerType === 'touch' };
+    });
+    t.addEventListener('pointermove', (e) => {
+      if (!ini || e.pointerId !== ini.id || ini.toque) return;
+      if (!ini.arrastando && Math.abs(e.clientX - ini.x) + Math.abs(e.clientY - ini.y) > 6) {
+        ini.arrastando = true;
+        try { t.setPointerCapture(e.pointerId); } catch (x) { /* nada */ }
+        if (!st.sel.has(ini.k)) { st.sel = new Set([ini.k]); st.i = ini.k; marcarAtualNaTira(); }
+        t.classList.add('arrastando');
+      }
+      if (ini.arrastando) {
+        ini.dest = destinoTira(e.clientX);
+        const cs = t.querySelectorAll('.ess-q');
+        const ref = cs[Math.min(ini.dest, cs.length - 1)];
+        if (ref) {
+          ui.marca.hidden = false;
+          ui.marca.style.left = (ini.dest >= cs.length ? ref.offsetLeft + ref.offsetWidth + 1 : ref.offsetLeft - 3) + 'px';
+        }
+        // rola a tira perto das bordas
+        const r = t.getBoundingClientRect();
+        if (e.clientX < r.left + 30) t.scrollLeft -= 12; else if (e.clientX > r.right - 30) t.scrollLeft += 12;
+      }
+    });
+    const fim = (e) => {
+      if (!ini || e.pointerId !== ini.id) return;
+      const a = ini; ini = null;
+      ui.marca.hidden = true; t.classList.remove('arrastando');
+      if (a.arrastando) { if (e.type === 'pointerup' && a.dest != null) moverPara(a.dest); return; }
+      if (e.type !== 'pointerup') return;
+      clicarQuadro(a.k, a.ctrl || st.multi, a.shift);
+    };
+    t.addEventListener('pointerup', fim);
+    t.addEventListener('pointercancel', fim);
+  }
+  function destinoTira(clientX) {
+    const cs = [...ui.tira.querySelectorAll('.ess-q')];
+    for (let k = 0; k < cs.length; k++) { const r = cs[k].getBoundingClientRect(); if (clientX < r.left + r.width / 2) return k; }
+    return cs.length;
+  }
+  function clicarQuadro(k, alternarSel, faixa) {
+    pausar();
+    if (faixa) { const a = Math.min(st.ancora, k), b = Math.max(st.ancora, k); st.sel = new Set(); for (let j = a; j <= b; j++) st.sel.add(j); }
+    else if (alternarSel) { if (st.sel.has(k) && st.sel.size > 1) st.sel.delete(k); else st.sel.add(k); st.ancora = k; }
+    else { st.sel = new Set([k]); st.ancora = k; }
+    st.i = k; st.t = 0;
+    marcarAtualNaTira(); renderProps();
+  }
+
+  // ------------------------------------------------------------------ exportar
+  function quadroCanvas(f, esc, flip) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, Math.round(f[3] * esc)); c.height = Math.max(1, Math.round(f[4] * esc));
+    const x = c.getContext('2d'); x.imageSmoothingEnabled = false;
+    if (flip) { x.translate(c.width, 0); x.scale(-1, 1); }
+    x.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], 0, 0, c.width, c.height);
+    return c;
+  }
+  // todos os quadros num tamanho comum, com a origem no mesmo ponto
+  function caixaComum(lista, flip) {
+    let l = 0, r = 0, t = 0, b = 0;
+    lista.forEach(f => { const ox = flip ? f[3] - f[5] : f[5]; l = Math.max(l, ox); r = Math.max(r, f[3] - ox); t = Math.max(t, f[6]); b = Math.max(b, f[4] - f[6]); });
+    return { l, r, t, b, w: l + r, h: t + b };
+  }
+  function desenharComum(ctx, f, cx, esc, flip, fundo) {
+    if (fundo) { ctx.fillStyle = fundo; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height); } else ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.imageSmoothingEnabled = false;
+    FF.drawFrame(ctx, st.set, f, cx.l * esc, cx.t * esc, esc, flip);
+  }
+  function erroLeitura(e) {
+    if (e && e.name === 'SecurityError') return 'O navegador bloqueou a leitura das imagens porque a página foi aberta direto do disco (file://). Abra o Estúdio pelo site (GitHub Pages) ou por um servidor local para exportar imagens. O JSON funciona aqui.';
+    return (e && e.message) || String(e);
+  }
+  function copiarTexto(txt) {
+    const reserva = () => { const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; } ta.remove(); return ok; };
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(txt).then(() => true, () => reserva());
+    return Promise.resolve(reserva());
+  }
+  function suportaWebm() {
+    try {
+      return typeof MediaRecorder !== 'undefined' && !!HTMLCanvasElement.prototype.captureStream &&
+        ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].some(t => MediaRecorder.isTypeSupported(t));
+    } catch (e) { return false; }
+  }
+
+  // gera os arquivos (usado pelos botões e pelos testes): tipo = sheet | png | seq | gif | webm | json
+  async function gerar(tipo, o) {
+    const esc = o.escala || 1, flip = !!o.espelhar, fundo = o.fundo || null;
+    const idx = o.escolhidos ? escolhidos() : frames().map((_, k) => k);
+    const lista = idx.map(k => frames()[k]);
+    if (!lista.length) throw new Error('Nada para exportar (sem quadros).');
+    const base = (st.id + '_' + st.nome + (o.escolhidos && idx.length < frames().length ? '_q' + (idx[0] + 1) + '-' + (idx[idx.length - 1] + 1) : '')).replace(/[^\w.-]+/g, '_');
+    const fps = fpsDe(st.anim);
+    const animOut = (fr) => ({ fps: st.anim.fps || 0, loop: !!st.anim.loop, repeatTo: o.escolhidos ? 0 : (st.anim.repeatTo || 0), pingpong: false, frames: fr });
+    if (tipo === 'json') {
+      const txt = JSON.stringify(animOut(copia(lista)));
+      return { nome: base + '.json', dados: txt, mime: 'application/json', texto: txt };
+    }
+    if (tipo === 'sheet' || tipo === 'png') {
+      const imgs = lista.map(f => FF.Imagem.deCanvas(quadroCanvas(f, esc, flip)));
+      const pk = FF.Imagem.empacotar(imgs, { margem: o.margem == null ? 1 : o.margem });
+      const png = new Uint8Array(await (await FF.Codecs.canvasParaPng(FF.Imagem.paraCanvas({ largura: pk.largura, altura: pk.altura, rgba: pk.rgba }))).arrayBuffer());
+      if (tipo === 'png') return { nome: base + '.png', dados: png, mime: 'image/png' };
+      const fr = lista.map((f, j) => {
+        const w = imgs[j].largura, h = imgs[j].altura;
+        const ox = Math.round((flip ? f[3] - f[5] : f[5]) * esc), oy = Math.round(f[6] * esc);
+        const q = [0, pk.posicoes[j].x, pk.posicoes[j].y, w, h, ox, oy, f[7] || 1];
+        if (f[8] && f[8].length) q.push(f[8].map(p => [Math.round(p[0] * esc * (flip ? -1 : 1)), Math.round(p[1] * esc)]));
+        return q;
+      });
+      const json = JSON.stringify({ id: base, atlases: [base + '.png'], anims: { [st.nome]: animOut(fr) } }, null, 1);
+      const zip = FF.Codecs.zipGravar([{ nome: base + '.png', dados: png }, { nome: base + '.json', dados: json }]);
+      return { nome: base + '_sheet.zip', dados: zip, mime: 'application/zip', png, json };
+    }
+    const cx = caixaComum(lista, flip);
+    const W = Math.max(1, Math.round(cx.w * esc)), H = Math.max(1, Math.round(cx.h * esc));
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const ctx = c.getContext('2d', { willReadFrequently: true });
+    if (tipo === 'seq') {
+      const arqs = [];
+      for (let j = 0; j < lista.length; j++) {
+        desenharComum(ctx, lista[j], cx, esc, flip, fundo);
+        ctx.getImageData(0, 0, 1, 1);   // falha cedo se o canvas estiver bloqueado (file://)
+        arqs.push({ nome: base + '_' + String(j + 1).padStart(3, '0') + '.png', dados: new Uint8Array(await (await FF.Codecs.canvasParaPng(c)).arrayBuffer()) });
+      }
+      arqs.push({ nome: 'origem.txt', dados: 'Tamanho ' + W + 'x' + H + ' · origem (pés) em x=' + Math.round(cx.l * esc) + ', y=' + Math.round(cx.t * esc) + ' · ' + fps + ' fps\n' });
+      return { nome: base + '_quadros.zip', dados: FF.Codecs.zipGravar(arqs), mime: 'application/zip', n: lista.length };
+    }
+    if (tipo === 'gif') {
+      const qs = lista.map(f => {
+        desenharComum(ctx, f, cx, esc, flip, fundo);
+        return { rgba: new Uint8ClampedArray(ctx.getImageData(0, 0, W, H).data), largura: W, altura: H, atraso: (f[7] || 1) / fps };
+      });
+      const gif = FF.Codecs.gifCodificar(qs, { loop: true, transparente: !fundo });
+      return { nome: base + '.gif', dados: gif, mime: 'image/gif', n: qs.length };
+    }
+    if (tipo === 'webm') {
+      // quadros com duração > 1 se repetem (o vídeo tem fps fixo)
+      const seq = [];
+      lista.forEach(f => { for (let r = 0; r < Math.max(1, Math.round(f[7] || 1)); r++) seq.push(f); });
+      const W2 = W + (W % 2), H2 = H + (H % 2);
+      const blob = await FF.Codecs.gravarWebm((x, j) => { x.fillStyle = fundo || '#000000'; x.fillRect(0, 0, W2, H2); x.imageSmoothingEnabled = false; FF.drawFrame(x, st.set, seq[j], cx.l * esc, cx.t * esc, esc, flip); }, seq.length, fps, W2, H2);
+      if (!blob) throw new Error('Este navegador não conseguiu gravar WebM.');
+      return { nome: base + '.webm', dados: blob, mime: 'video/webm' };
+    }
+    throw new Error('Tipo de exportação desconhecido: ' + tipo);
+  }
+
+  function exportar() {
+    if (!frames().length) { E.aviso('A animação não tem quadros.', 'erro'); return; }
+    pausar();
+    const nEsc = escolhidos().length, n = frames().length;
+    const o = { escolhidos: nEsc > 1, escala: 1, fundo: null, espelhar: false, margem: 1 };
+    const c = el('div', 'ess-exp');
+    const opc = el('div', 'ess-exp-opc');
+    opc.appendChild(E.campo('select', 'Exportar', o.escolhidos ? 'sel' : 'tudo', (v) => { o.escolhidos = v === 'sel'; }, { lista: [['tudo', 'Animação inteira (' + n + ' quadros)'], ['sel', 'Quadros escolhidos (' + nEsc + ')']] }));
+    opc.appendChild(E.campo('select', 'Escala', '1', (v) => { o.escala = +v; }, { lista: [['1', '1×'], ['2', '2×'], ['3', '3×'], ['4', '4×']] }));
+    let cor = '#140c24';
+    const fundoSel = E.campo('select', 'Fundo', 'transp', (v) => { o.fundo = v === 'cor' ? cor : null; corCampo.style.display = v === 'cor' ? '' : 'none'; }, { lista: [['transp', 'Transparente'], ['cor', 'Cor sólida']] });
+    const corCampo = E.campo('cor', 'Cor do fundo', cor, (v) => { cor = v || '#000000'; if (o.fundo) o.fundo = cor; });
+    corCampo.style.display = 'none';
+    opc.append(fundoSel, corCampo);
+    opc.appendChild(E.campo('check', 'Espelhado', false, (v) => { o.espelhar = v; }));
+    opc.appendChild(E.campo('numero', 'Margem (sheet)', 1, (v) => { o.margem = Math.max(0, Math.round(v || 0)); }, { passo: 1, min: 0, max: 16, dica: 'Espaço entre os quadros na sprite sheet' }));
+    const msg = el('p', 'ess-exp-msg');
+    const bts = el('div', 'ess-exp-bts');
+    const fazer = (tipo, rotulo) => async (ev, b) => {
+      b.disabled = true; msg.textContent = '⏳ Gerando ' + rotulo + '…';
+      try {
+        const r = await gerar(tipo, o);
+        FF.Codecs.baixar(r.dados, r.nome, r.mime);
+        msg.textContent = '✅ ' + r.nome + ' baixado.';
+      } catch (e) { msg.textContent = '❌ ' + erroLeitura(e); }
+      b.disabled = false;
+    };
+    const webOk = suportaWebm();
+    const btWebm = E.botao('🎬 Vídeo WebM', fazer('webm', 'o vídeo (leva o tempo da animação)'), webOk ? 'Grava um vídeo (fundo da cor escolhida ou preto)' : 'Este navegador não grava vídeo WebM (MediaRecorder). Use o GIF.');
+    btWebm.disabled = !webOk;
+    bts.append(
+      E.botao('🧩 Sprite sheet (PNG + JSON, .zip)', fazer('sheet', 'a sprite sheet'), 'Quadros empacotados num PNG + JSON no formato do jogo, juntos num ZIP'),
+      E.botao('🖼 Só o PNG da sheet', fazer('png', 'o PNG'), 'Só a imagem da sprite sheet'),
+      E.botao('🗂 Sequência de PNGs (.zip)', fazer('seq', 'os PNGs'), 'Um PNG por quadro, todos do mesmo tamanho com a origem no mesmo lugar'),
+      E.botao('🎞 GIF animado', fazer('gif', 'o GIF'), 'Respeita o fps e a duração de cada quadro', 'es-bt-ouro'),
+      btWebm,
+      E.botao('⬇ JSON da animação', fazer('json', 'o JSON'), 'Formato do jogo ({fps, loop, repeatTo, frames})'),
+      E.botao('📋 Copiar JSON', async () => { const r = await gerar('json', o); msg.textContent = (await copiarTexto(r.texto)) ? '✅ JSON copiado para a área de transferência.' : '❌ Não deu para copiar — use “⬇ JSON da animação”.'; }, 'Copia o JSON da animação'));
+    if (!webOk) bts.appendChild(el('p', 'es-obs', 'WebM indisponível: este navegador não grava vídeo do canvas.'));
+    c.append(opc, bts, msg);
+    E.modal('📤 Exportar “' + st.nome + '”', c);
+  }
+
+  // ------------------------------------------------------------------ teclado
+  function teclado(e) {
+    if (E.digitando(e) || document.querySelector('.es-modal') || !st.anim) return false;
+    const ctrl = e.ctrlKey || e.metaKey;
+    if (ctrl && (e.key === 's' || e.key === 'S')) { if (sujo()) salvar(); return true; }
+    if (ctrl && (e.key === 'd' || e.key === 'D')) { duplicar(); return true; }
+    if (ctrl && (e.key === 'a' || e.key === 'A')) { st.sel = new Set(frames().map((_, k) => k)); marcarAtualNaTira(); renderProps(); return true; }
+    if (ctrl) return false;
+    if (e.key === ' ') { alternar(); return true; }
+    if (e.key === ',' || e.key === '<') { passo(-1); return true; }
+    if (e.key === '.' || e.key === '>') { passo(1); return true; }
+    if (e.key === 'Home') { irPara(0); return true; }
+    if (e.key === 'End') { irPara(frames().length - 1); return true; }
+    if (e.key === 'Delete' || e.key === 'Backspace') { apagar(); return true; }
+    const set = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+    if (set && frames().length) {
+      const p = e.shiftKey ? 10 : 1;
+      const dx = set[0] * p * sinal(), dy = set[1] * p;
+      pausar();
+      escolhidos().forEach(k => { frames()[k][5] -= dx; frames()[k][6] -= dy; });
+      hist.marcar('Mover origem', true); gravarRascunho(); renderTitulo(); renderProps(); atualizarTiraLeve();
+      return true;
+    }
+    return false;
+  }
+
+  E.registrarAba({
+    id: 'sprites', nome: 'Sprites', icone: '🖼', historico: hist,
+    montar,
+    mostrar() { ajustarCanvas(); if (st.set) { renderSprites(); renderAnims(); renderTitulo(); } },
+    esconder() { pausar(); },
+    quadro(dt) { avancar(dt); desenharPalco(); },
+    teclado,
+    antesDeSair() { gravarRascunho(); },
+  });
+  // para os testes e outras abas
+  E.Sprites = { st, gerar, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter };
+})();

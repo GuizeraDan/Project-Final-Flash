@@ -591,6 +591,7 @@ window.addEventListener('load', () => {
     if (ac === 'editor') { FF._modoLab = 'editor'; return mostrar('livre'); }
     if (ac === 'instalar') { FF.PWA.instalar(); return; }
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
+    if (ac === 'estudio') { location.href = 'estudio.html'; return; }
     if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
