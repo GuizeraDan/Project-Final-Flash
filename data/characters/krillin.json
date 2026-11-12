@@ -766,6 +766,61 @@
                 "clipes": []
               },
               {
+                "id": "camadas",
+                "tipo": "camadas",
+                "nome": "Camadas livres (resto do raio)",
+                "clipes": [
+                  {
+                    "id": "kx0",
+                    "tipo": "camada",
+                    "t": 1.919,
+                    "d": 0.9,
+                    "sprite": "krillin",
+                    "anim": "Kamehameha_Raio_Extensao",
+                    "ancora": "atacante",
+                    "px": "sprite",
+                    "x": 319,
+                    "y": 0,
+                    "escala": 1,
+                    "fps": 17,
+                    "chaves": [
+                      {
+                        "t": 0.8,
+                        "alpha": 1
+                      },
+                      {
+                        "t": 0.9,
+                        "alpha": 0
+                      }
+                    ]
+                  },
+                  {
+                    "id": "kx1",
+                    "tipo": "camada",
+                    "t": 1.919,
+                    "d": 0.9,
+                    "sprite": "krillin",
+                    "anim": "Kamehameha_Raio_Extensao",
+                    "ancora": "atacante",
+                    "px": "sprite",
+                    "x": 538,
+                    "y": 0,
+                    "escala": 1,
+                    "fps": 17,
+                    "chaves": [
+                      {
+                        "t": 0.8,
+                        "alpha": 1
+                      },
+                      {
+                        "t": 0.9,
+                        "alpha": 0
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "sons",
                 "tipo": "sons",
                 "nome": "Sons e vozes",

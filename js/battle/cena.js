@@ -1,7 +1,7 @@
 // Cena livre: composição de sprites no tempo (camadas com posição, tamanho, giro e transparência
 // animados por quadros-chave), sons e acertos em instantes definidos. Vira um passo de golpe:
 //   {"cena": {"duracao": 2, "camadas": [...], "sons": [...], "acertos": [...], "esconderAtacante": true}}
-// Camada: {sprite, anim, ancora: "atacante"|"alvo"|"tela", x, y, escala, alpha, rot, flip,
+// Camada: {sprite, anim, ancora: "atacante"|"alvo"|"tela", x, y, px?: "sprite", escala, alpha, rot, flip,
 //          inicio, fim, fps?, loop, chaves: [{t, x, y, escala, alpha, rot}]}  (t relativo ao início da camada)
 // Posições com âncora "atacante" ficam espelhadas quando quem solta está do lado direito.
 window.FF = window.FF || {};
@@ -48,7 +48,9 @@ FF.Cena = {
     i = c.loop === false ? Math.min(i, a.frames.length - 1) : i % a.frames.length;
     const f = a.frames[Math.max(0, i)];
     const flip = !!c.flip !== (an.dir < 0);
-    return { set, f, x: an.x + e.x * an.dir, y: an.y + e.y, escala: e.escala * b.scale * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
+    // px: 'sprite' → x/y em pixels do sprite (acompanham a escala da batalha); padrão: pixels da tela
+    const k = c.px === 'sprite' ? b.scale : 1;
+    return { set, f, x: an.x + e.x * k * an.dir, y: an.y + e.y * k, escala: e.escala * b.scale * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
   },
 
   desenharCamada(ctx, p) {

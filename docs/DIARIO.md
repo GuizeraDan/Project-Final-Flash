@@ -194,3 +194,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Kuririn ganhou **Kamehameha** (30 KI, poder 2,6; 2º no menu): roteiro em linha do tempo com as animações Special_Kamehameha_Chao_Pt1–Final do próprio sprite (o raio já vem desenhado nos quadros — a nota antiga de que precisava extrair o objeto estava errada), carga de 1,5 s, som krillin_kmhm_charge, voz vkrn134 (palpite pelo número, igual ao vgkn134 do Goku; troque no Estúdio se não for), 3 acertos de energia (o último lança).
 
+- Kamehameha do Kuririn: o raio agora atravessa a tela. Duas camadas `Kamehameha_Raio_Extensao` (anim nova no sprite krillin, recorte do corpo do raio dos quadros Pt5) continuam o feixe depois do fim do quadro e somem no começo do Final. Camadas aceitam `px: "sprite"` (x/y em pixels do sprite × escala da batalha, para alinhar com o lutador em 1×1 e 3×3); campo "Unidade X/Y" no Estúdio.
+

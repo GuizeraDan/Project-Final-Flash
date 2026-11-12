@@ -187,6 +187,7 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));
         g.appendChild(sel(c, 'ancora', 'Âncora', [['atacante', 'quem solta (pés)'], ['alvo', 'alvo (peito)'], ['tela', 'tela']], null, 'atacante'));
         g.appendChild(num(c, 'x', 'X')); g.appendChild(num(c, 'y', 'Y'));
+        g.appendChild(sel(c, 'px', 'Unidade X/Y', [['', 'pixels da tela'], ['sprite', 'pixels do sprite (segue a escala da luta)']], 'Pixels do sprite: a camada fica no mesmo lugar em lutas 1×1 e 3×3', ''));
         g.appendChild(num(c, 'escala', 'Tamanho (×)', null, { passo: 0.05 }));
         g.appendChild(num(c, 'rot', 'Giro (°)'));
         g.appendChild(num(c, 'alpha', 'Opacidade', null, { passo: 0.05, min: 0, max: 1 }));
