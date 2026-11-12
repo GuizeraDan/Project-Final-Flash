@@ -503,6 +503,7 @@ window.addEventListener('load', () => {
   if (params.get('selecao')) {
     history.replaceState(null, '', location.pathname);
     intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar();
+    FF.Audio.musicaMenu();
     return;
   }
   if (params.get('historia')) {
@@ -541,6 +542,7 @@ window.addEventListener('load', () => {
     if (e.type === 'keydown' && e.code !== 'Enter' && e.code !== 'Space') return;
     e.preventDefault();
     FF.Audio.play('menuopen', 0.7);
+    FF.Audio.musicaMenu();
     window.removeEventListener('keydown', abrir);
     intro.removeEventListener('click', abrir);
     const save = FF.Save.get();

@@ -48,12 +48,23 @@ FF.Audio = {
   },
 
   music(name) {
+    if (this.musica && this.musicaNome === name && !this.musica.paused) return this.musica;   // já tocando
     if (this.musica) { this.musica.pause(); this.musica = null; }
-    if (!name) return;
+    this.musicaNome = name || null;
+    if (!name) return null;
     const a = new Audio(this.base + name + this.ext);
     a.loop = true;
     a.volume = this.volMusica;
-    a.play().catch(() => {});
+    // o navegador só deixa tocar som depois de um toque/tecla: se bloquear, tenta de novo no 1º gesto
+    a.play().catch(() => {
+      const tentar = () => { ['pointerdown', 'keydown'].forEach(t => window.removeEventListener(t, tentar, true)); if (this.musica === a) a.play().catch(() => {}); };
+      ['pointerdown', 'keydown'].forEach(t => window.addEventListener(t, tentar, true));
+    });
     this.musica = a;
+    return a;
   },
+
+  // música dos menus (tela de título, submenus, seleção da Batalha Livre)
+  MENU: 'menu_chala',
+  musicaMenu() { return this.music(this.MENU); },
 };
