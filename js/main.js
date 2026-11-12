@@ -441,6 +441,7 @@ window.addEventListener('load', () => {
   const ir = (q) => { location.href = location.pathname + q; };
   document.getElementById('denovo').onclick = () => location.reload();
   document.getElementById('titulo').onclick = () => ir('');
+  document.getElementById('trocar').onclick = () => ir('?selecao=1');
   document.getElementById('proximo').onclick = () => ir('?historia=' + (FF.modoHistoria.cap.id + 1));
 
   const batalhaLivre = async (id) => {
@@ -458,6 +459,12 @@ window.addEventListener('load', () => {
   };
 
   // modo história direto pela URL (?historia=N)
+  // volta direto para a escolha de lutadores da Batalha Livre (botão "Trocar lutadores" no fim da luta)
+  if (params.get('selecao')) {
+    history.replaceState(null, '', location.pathname);
+    intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar();
+    return;
+  }
   if (params.get('historia')) {
     FF.jogarCapitulo(+params.get('historia')).catch(err => { console.error(err); intro.classList.remove('hide'); msg.textContent = 'Erro: ' + err.message; });
     return;
@@ -467,7 +474,7 @@ window.addEventListener('load', () => {
   if (params.get('livre')) {
     let def = null;
     try { def = JSON.parse(sessionStorage.getItem('ff_livre_def') || 'null'); } catch (e) { /* nada */ }
-    if (def) { batalhaLivre(def); return; }
+    if (def) { document.getElementById('fim').classList.add('livre'); batalhaLivre(def); return; }
   }
   // editar uma habilidade salva (?editor=1&hab=<id>): batalha 1x1 com o dono dela
   if (params.get('editor') && params.get('hab') && !params.get('batalha')) {

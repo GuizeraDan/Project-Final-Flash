@@ -40,9 +40,9 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 .menu-titulo button:disabled { opacity: 0.4; cursor: default; }
 #opcoes label { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; font-size: 1.7cqw; font-weight: 900; }
 #opcoes input { width: 16cqw; accent-color: #ffd84a; }
-#fim button { margin: 0.5cqw; }
-#fim #proximo, #fim #titulo { display: none; }
-#fim.historia #proximo, #fim.historia #titulo { display: inline-block; }
+#fim button { margin: 0.5cqw; min-width: 26cqw; }
+#fim #proximo, #fim #trocar { display: none; }
+#fim.historia #proximo, #fim.livre #trocar { display: inline-block; }
 /* diálogo do modo história */
 #dialogo { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: flex-end; padding: 2cqw; box-sizing: border-box; background: radial-gradient(ellipse at 50% 30%, rgba(70,50,140,0.55), rgba(5,3,15,0.92) 75%); cursor: pointer; z-index: 20; }
 #dialogo.open { display: flex; }
