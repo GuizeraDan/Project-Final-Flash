@@ -2,8 +2,13 @@
 // HUD...) quadro a quadro e exporta (sprite sheet + JSON, sequência de PNGs, GIF, WebM, JSON).
 //
 // O que se edita é uma CÓPIA da animação (st.anim). "💾 Salvar no jogo" grava em data/edicoes.js
-// (seção sprites[sprite][anim], via FF.Mods.salvar) — vale no jogo inteiro e em todos os aparelhos.
+// (sprite do jogo: seção sprites[sprite][anim], via FF.Mods.salvar; sprite importado: direto em
+// spritesNovos[sprite].anims, via FF.EstudioArq.salvarAnim) — vale no jogo inteiro e em todos os aparelhos.
 // Quadro: [atlas, x, y, w, h, ox, oy, dur, pontos?]  (pontos[0] = ponto de disparo [dx, dy] relativo à origem)
+//
+// Importar do computador também é aqui: "📂 Importar" (ou soltar arquivos na aba) abre o importador
+// (js/estudio/importar.js) por cima da aba; "＋ Inserir quadros… → Do computador" e "＋ Nova → Do computador"
+// trazem imagens direto para a animação aberta (imagens novas vão para um atlas extra, js/estudio/sprites_arq.js).
 (function () {
   const E = FF.Estudio;
   const RASC = 'sprites_rascunho', ULT = 'sprites_ultimo';
@@ -16,7 +21,10 @@
     tocando: false, t: 0, espera: 0, vel: 1, repetir: true, espelho: false,
     zoom: 3, panX: 0, panY: 0, fundo: 'xadrez', grade: false, cebola: false, caixa: true, pontos: true, usarEscala: false,
     modo: 'mover', multi: false, buscaSprite: '', buscaAnim: '',
+    imp: false,   // importador aberto por cima da aba
   };
+  const A = () => FF.EstudioArq;
+  const importado = (id) => A().importado(id || st.id);
   const ui = {};
   const hist = new E.Historico(
     () => ({ id: st.id, nome: st.nome, anim: st.anim }),
@@ -79,7 +87,9 @@
     raiz.classList.add('ess');
     // esquerda: sprites e animações
     const esq = el('aside', 'es-lado ess-esq');
-    esq.innerHTML = '<div class="es-titulo">🖼 Sprites</div>';
+    const tS = el('div', 'es-titulo', '🖼 Sprites');
+    tS.appendChild(E.botao('📂 Importar', () => abrirImportador({ destino: 'novo' }), 'Trazer imagens do computador (PNG, sprite sheet, GIF, vídeo, ZIP…) como sprite novo ou como animação de um sprite — também dá para soltar os arquivos aqui na aba', 'es-mais ess-bt-importar'));
+    esq.appendChild(tS);
     ui.buscaSprite = document.createElement('input');
     ui.buscaSprite.type = 'search'; ui.buscaSprite.placeholder = 'Buscar sprite…'; ui.buscaSprite.className = 'ess-busca';
     ui.buscaSprite.oninput = () => { st.buscaSprite = ui.buscaSprite.value; renderSprites(); };
@@ -155,7 +165,8 @@
       E.botao('◀ Mover', () => mover(-1), 'Mover os escolhidos para a esquerda'),
       E.botao('Mover ▶', () => mover(1), 'Mover os escolhidos para a direita'),
       E.botao('⇄ Inverter', () => inverter(), 'Inverte a ordem dos escolhidos (ou de todos, se só um estiver escolhido)'),
-      E.botao('＋ Inserir quadros…', () => inserirDeOutra(), 'Inserir quadros de qualquer animação deste sprite depois do quadro escolhido'),
+      E.botao('＋ Inserir quadros…', () => inserirDeOutra(), 'Inserir quadros de qualquer animação deste sprite (ou do computador) depois do quadro escolhido'),
+      E.botao('📂 Do computador', () => inserirDoComputador(), 'Inserir imagens do computador (PNG, sprite sheet, GIF, vídeo, ZIP) depois do quadro escolhido', 'ess-bt-pc'),
       el('span', 'sep'));
     ui.btMulti = E.botao('☑ Vários', () => { st.multi = !st.multi; renderCtr(); }, 'Toque para escolher vários quadros (ou use Ctrl/Shift)');
     tiraBarra.append(ui.btMulti, E.botao('Todos', () => { st.sel = new Set(frames().map((_, k) => k)); renderTira(); renderProps(); }, 'Escolher todos os quadros (Ctrl+A)'));
@@ -169,7 +180,14 @@
     ui.props = el('div', 'es-rolar ess-props');
     dir.appendChild(ui.props);
 
-    raiz.append(esq, cen, dir);
+    // importador (abre por cima da aba inteira)
+    ui.imp = el('div', 'ess-imp');
+    ui.imp.hidden = true;
+    ui.arrasto = el('div', 'ess-arrasto', '<b>📥 Solte para importar</b><span>imagens, sprite sheet, GIF, vídeo, ZIP…</span>');
+    ui.arrasto.hidden = true;
+
+    raiz.append(esq, cen, dir, ui.imp, ui.arrasto);
+    ligarArquivos(raiz);
     ligarPalco();
     ligarTira();
     new ResizeObserver(() => ajustarCanvas()).observe(ui.palcoWrap);
@@ -185,6 +203,7 @@
     let id = q.get('sprite') || ult.id || 'gokubase';
     if (!FF.Assets.listaSprites().includes(id)) id = FF.Assets.listaSprites()[0];
     await abrirSprite(id, q.get('anim') || (id === ult.id ? ult.nome : null), true);
+    if (q.get('aba') === 'importar' || q.get('importar')) abrirImportador({ destino: 'novo' });   // endereço antigo da aba Importar
     if (rasc && rasc.id && rasc.anim) {
       const set = await FF.Assets.loadSprite(rasc.id).catch(() => null);
       const orig = set && set.def.anims[rasc.nome];
@@ -207,9 +226,12 @@
     FF.Assets.listaSprites().filter(s => !f || s.toLowerCase().includes(f)).forEach(s => {
       const it = el('div', 'es-item' + (s === st.id ? ' sel' : ''));
       it.dataset.sprite = s;
-      const n = el('span'); n.textContent = s; it.appendChild(n);
+      const imp = importado(s);
+      if (imp) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; it.appendChild(t); }
+      const n = el('span', 'ess-spr-nome'); n.textContent = s; n.title = s; it.appendChild(n);
       const mods = (FF.Mods.ler()[s] && Object.keys(FF.Mods.ler()[s]).length) || 0;
       if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
+      if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
       it.onclick = () => abrirSprite(s);
       ui.sprites.appendChild(it);
     });
@@ -232,6 +254,12 @@
     st.id = id; st.set = set;
     renderSprites();
     const nomes = Object.keys(set.def.anims);
+    if (!nomes.length) {   // sprite sem nenhuma animação (ex.: todas apagadas)
+      st.nome = null; st.anim = null; st.novo = false; st.i = 0; st.sel = new Set();
+      pausar(); hist.zerar('Abrir ' + id); E.rascunho.gravar(ULT, { id, nome: null });
+      tudo();
+      return;
+    }
     abrirAnim(nome && set.def.anims[nome] ? nome : nomes[0], { forcar: true });
   }
 
@@ -242,6 +270,14 @@
     const nomes = Object.keys(st.set.def.anims);
     ui.nAnims.textContent = '(' + nomes.length + ')';
     const lista = st.novo ? [st.nome].concat(nomes) : nomes;
+    if (!lista.length) {
+      const v = el('div', 'es-vazio ess-sem-anim');
+      v.appendChild(el('p', null, 'Este sprite não tem animações.'));
+      v.appendChild(E.botao('📂 Trazer do computador', () => abrirImportador({ destino: 'existente', alvo: st.id, anim: 'Parado' }), 'Importar imagens como uma animação deste sprite', 'es-bt-ouro'));
+      v.appendChild(E.botao('＋ Nova vazia', () => novaAnimacao(), 'Criar uma animação e depois inserir quadros'));
+      if (importado()) v.appendChild(E.botao('🗑 Apagar sprite', () => apagarSprite(st.id), 'Apagar este sprite importado', 'es-bt-perigo'));
+      ui.anims.appendChild(v);
+    }
     lista.filter(n => !f || n.toLowerCase().includes(f)).forEach(n => {
       const novoAqui = st.novo && n === st.nome && !st.set.def.anims[n];
       const a = novoAqui ? st.anim : st.set.def.anims[n];
@@ -256,6 +292,7 @@
       else if (FF.Mods.criada(st.id, n)) it.appendChild(el('span', 'tag', '★'));
       if (!novoAqui && FF.Mods.alterada(st.id, n)) { const t = el('span', 'tag alt', '✎'); t.title = 'Alterada por você'; it.appendChild(t); }
       it.appendChild(el('small', null, String(a.frames.length)));
+      if (!novoAqui && podeRenomear(n)) it.appendChild(E.botao('Aa', (e) => { e.stopPropagation(); renomearAnim(n); }, 'Renomear esta animação', 'ess-anim-apagar ess-anim-ren'));
       const x = E.botao('🗑', (e) => { e.stopPropagation(); apagarAnim(n); }, 'Apagar esta animação do jogo', 'ess-anim-apagar');
       it.appendChild(x);
       it.onclick = () => abrirAnim(n);
@@ -306,25 +343,54 @@
     const novoSprite = (FF.Edicoes.dados().spritesNovos || {})[st.id];
     const doImportado = novoSprite && novoSprite.anims && novoSprite.anims[nome];
     const criada = FF.Mods.criada(st.id, nome);
-    if (doImportado && Object.keys(def.anims).length <= 1) return E.aviso('É a única animação deste sprite. Para apagar o sprite inteiro, use a aba Importar.', 'erro');
+    if (novoSprite && Object.keys(def.anims).length <= 1) {
+      // não deixa um sprite importado sem nenhuma animação: oferece apagar o sprite
+      if (await confirmar('Última animação', '"' + nome + '" é a única animação de "' + st.id + '". Apagar o sprite inteiro?', '🗑 Apagar sprite', true)) apagarSprite(st.id, true);
+      return;
+    }
     const usos = await usosDaAnim(nome);
     const txt = 'Apagar a animação "' + nome + '" de "' + st.id + '" no jogo (em todos os aparelhos)?' +
       (usos.length ? '\n\n⚠ Ela é usada em: ' + usos.slice(0, 6).join(' · ') + (usos.length > 6 ? '…' : '') + '. Esses golpes vão ficar sem essa animação.' : '') +
       (!criada && !doImportado ? '\n\nÉ uma animação do jogo original: ela fica em "Apagadas" e dá para trazer de volta.' : '');
     if (!(await confirmar('🗑 Apagar animação', txt, '🗑 Apagar', true))) return;
-    if (criada) FF.Mods.restaurar(st.id, nome);
-    else if (doImportado) {
-      const d = JSON.parse(JSON.stringify(novoSprite));
-      delete d.anims[nome];
-      if (FF.Mods.alterada(st.id, nome)) FF.Mods.restaurar(st.id, nome);
-      E.salvarNoJogo(['spritesNovos', st.id], d, '🗑 Animação "' + nome + '" apagada.');
-      delete def.anims[nome];
-      if (def._orig) delete def._orig[nome];
-    } else FF.Mods.apagar(st.id, nome);
+    if (doImportado) { A().apagarAnimImportada(st.id, nome); E.aviso('🗑 Animação "' + nome + '" apagada.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok'); }
+    else if (criada) FF.Mods.restaurar(st.id, nome);
+    else FF.Mods.apagar(st.id, nome);
     if (!doImportado) E.aviso('🗑 Animação "' + nome + '" apagada.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
     E.renderSync();
     if (nome === st.nome) { E.rascunho.gravar(RASC, null); st.anim = null; st.novo = false; renderSprites(); return abrirAnim(Object.keys(def.anims)[0], { forcar: true }); }
     renderSprites(); renderAnims();
+  }
+
+  // dá para renomear o que é seu (sprite importado ou animação criada por você); as originais do jogo, não
+  function podeRenomear(nome) {
+    const ns = (FF.Edicoes.dados().spritesNovos || {})[st.id];
+    return !!((ns && ns.anims && ns.anims[nome]) || FF.Mods.criada(st.id, nome));
+  }
+  async function renomearAnim(nome) {
+    if (!podeRenomear(nome)) return E.aviso('Animações originais do jogo não podem ser renomeadas (os golpes usam o nome). Use “Salvar como nova…”.', 'erro');
+    if (sujo() && !(await podeTrocar())) return;
+    let n = await E.perguntar('Aa Renomear animação', 'Novo nome para "' + nome + '" (golpes que usam o nome antigo precisam ser ajustados):', nome);
+    if (n == null) return;
+    n = n.trim().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9_]+/g, '_').replace(/^_+|_+$/g, '');
+    if (!n || n === nome) return;
+    if (st.set.def.anims[n]) return E.aviso('Já existe uma animação "' + n + '" neste sprite.', 'erro');
+    const ns = (FF.Edicoes.dados().spritesNovos || {})[st.id];
+    if (ns && ns.anims && ns.anims[nome]) {
+      const def = copia(ns), novo = {};
+      Object.keys(def.anims).forEach(k => { novo[k === nome ? n : k] = def.anims[k]; });   // mantém a ordem
+      def.anims = novo;
+      if (FF.Mods.alterada(st.id, nome)) FF.Edicoes.set(['sprites', st.id, nome], null);
+      E.salvarNoJogo(['spritesNovos', st.id], def, 'Aa "' + nome + '" agora é "' + n + '".');
+    } else {
+      FF.Mods.salvar(st.id, n, limpa(st.set.def.anims[nome]));
+      FF.Mods.restaurar(st.id, nome);
+      E.aviso('Aa "' + nome + '" agora é "' + n + '".', 'ok');
+      E.renderSync();
+    }
+    E.rascunho.gravar(RASC, null);
+    FF.Assets.descarregarSprite(st.id);
+    await abrirSprite(st.id, nome === st.nome ? n : st.nome, true);
   }
 
   function restaurarApagada(nome) {
@@ -406,9 +472,10 @@
 
   function renderProps() {
     const p = ui.props;
-    if (!p || !st.anim) return;
+    if (!p || !st.set) return;
     if (p.contains(document.activeElement) && document.activeElement.tagName === 'INPUT' && document.activeElement.type !== 'checkbox') return;
     p.innerHTML = '';
+    if (!st.anim) { p.appendChild(grupoSprite()); return; }
     const a = st.anim, fr = frames(), esc = escolhidos(), f = fr[st.i];
     // animação
     const gA = E.grupo('🎞 Animação');
@@ -458,20 +525,7 @@
       p.appendChild(gD);
     }
 
-    // sprite (escala geral)
-    const def = st.set.def;
-    const orig = ('_escalaOrig' in def) ? def._escalaOrig : def.escala;
-    const info = (FF.Edicoes.dados().spritesInfo || {})[st.id];
-    const gS = E.grupo('📐 Sprite “' + st.id + '”', false);
-    gS.appendChild(el('div', 'es-dica', 'Escala geral no jogo: <b>' + String(escalaSprite()).replace('.', ',') + '×</b>' + (info ? ' (sua; original ' + String(orig || 1).replace('.', ',') + '×)' : ' (original)') + '. Vale para todas as animações deste sprite.'));
-    let novaEsc = escalaSprite();
-    gS.appendChild(E.campo('numero', 'Escala', novaEsc, (v) => { novaEsc = v; }, { passo: 0.05, min: 0.1, max: 10 }));
-    const bs = el('div', 'ess-bts');
-    bs.append(E.botao('💾 Salvar escala', () => salvarEscala(novaEsc), 'Grava a escala geral do sprite no jogo', 'es-bt-ouro'));
-    if (info) bs.append(E.botao('↺ Escala original', () => salvarEscala(null), 'Volta à escala original'));
-    gS.appendChild(bs);
-    gS.appendChild(el('div', 'es-dica', def.atlases.length + ' atlas · ' + Object.keys(def.anims).length + ' animações'));
-    p.appendChild(gS);
+    p.appendChild(grupoSprite());
 
     const gH = E.grupo('⌨ Atalhos', false);
     gH.appendChild(el('div', 'es-dica ess-atalhos', 'Espaço tocar/pausar · vírgula/ponto quadro anterior/próximo · setas movem a origem (Shift = 10 px) · Delete apaga · Ctrl+D duplica · Ctrl+A escolhe todos · Ctrl+S salva · Ctrl+Z/Ctrl+Y desfaz/refaz · roda do mouse = zoom · arrastar quadros na tira reordena.'));
@@ -605,13 +659,15 @@
   }
 
   function inserirDeOutra() {
+    if (!st.anim) return E.aviso('Crie ou escolha uma animação primeiro (＋ Nova).', 'erro');
     const c = el('div', 'ess-ins');
     const topo = el('div', 'ess-ins-topo');
     const busca = document.createElement('input'); busca.type = 'search'; busca.placeholder = 'Buscar animação de ' + st.id + '…';
     const volta = E.botao('← Animações', () => { origem = null; render(); });
     const todos = E.botao('Inserir todos', () => { const a = fonte(origem); inserirQuadros(a.frames); info.textContent = '✅ ' + a.frames.length + ' quadro(s) inseridos.'; }, 'Insere todos os quadros desta animação', 'es-bt-ouro');
     const info = el('span', 'es-dica');
-    topo.append(volta, busca, todos, info);
+    const doPc = E.botao('📂 Do computador…', () => { m.fechar(); inserirDoComputador(); }, 'Imagens, sprite sheet, GIF, vídeo ou ZIP do seu computador entram depois do quadro escolhido', 'es-bt-ouro ess-ins-pc');
+    topo.append(doPc, volta, busca, todos, info);
     const grade = el('div', 'es-grade ess-ins-grade');
     c.append(topo, grade);
     let origem = null;
@@ -653,7 +709,7 @@
       }
     }
     busca.oninput = render;
-    E.modal('＋ Inserir quadros de outra animação', c, { larga: true });
+    const m = E.modal('＋ Inserir quadros', c, { larga: true });
     render();
   }
 
@@ -666,16 +722,25 @@
     c.querySelector('b').textContent = st.id;
     c.appendChild(nome);
     const bts = el('div', 'ess-conf-bts');
-    const criar = (comQuadros) => {
+    const criar = async (comQuadros, doPc) => {
       const n = nome.value.trim().replace(/\s+/g, '_');
       if (!n) { E.aviso('Dê um nome para a animação.', 'erro'); return; }
       if (st.set.def.anims[n]) { E.aviso('Já existe "' + n + '" neste sprite. Escolha outro nome.', 'erro'); return; }
       const fr = comQuadros ? esc.map(k => copia(frames()[k])) : [];
       const a = { fps: st.anim ? st.anim.fps || 12 : 12, loop: false, repeatTo: 0, pingpong: false, frames: fr };
       m.fechar();
+      if (doPc) {
+        const arqs = await escolherArquivos('image/*,video/*,.gif,.zip,.apng,.webp,.bmp,.svg,.avif');
+        if (!arqs.length) return;
+        await abrirAnim(n, { forcar: true, novo: true, anim: a });
+        await inserirDoComputador(arqs);
+        if (!frames().length) { st.novo = false; st.anim = null; abrirAnim(Object.keys(st.set.def.anims)[0], { forcar: true }); }
+        return;
+      }
       abrirAnim(n, { forcar: true, novo: true, anim: a });
       E.aviso('Animação "' + n + '" criada — salve para ela valer no jogo.');
     };
+    bts.append(E.botao('📂 Do computador…', () => criar(false, true), 'Escolha imagens, sprite sheet, GIF, vídeo ou ZIP: viram os quadros da animação nova', 'es-bt-ouro'));
     bts.append(E.botao('Vazia', () => criar(false), 'Começa sem quadros (insira de outras animações)'));
     if (temSel) bts.append(E.botao('Com os ' + esc.length + ' quadro(s) escolhido(s)', () => criar(true), null, 'es-bt-ouro'));
     c.appendChild(bts);
@@ -688,7 +753,7 @@
   // ------------------------------------------------------------------ salvar
   function salvar() {
     if (!frames().length) { E.aviso('A animação não tem quadros.', 'erro'); return; }
-    FF.Mods.salvar(st.id, st.nome, limpa(st.anim));
+    A().salvarAnim(st.id, st.nome, limpa(st.anim));
     st.novo = false;
     E.rascunho.gravar(RASC, null);
     E.aviso('💾 "' + st.nome + '" salva no jogo.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
@@ -702,7 +767,7 @@
     n = n.trim().replace(/\s+/g, '_');
     if (st.set.def.anims[n] && !(await confirmar('Já existe', '"' + n + '" já existe neste sprite. Substituir?', 'Substituir', true))) return;
     const a = limpa(st.anim);
-    FF.Mods.salvar(st.id, n, a);
+    A().salvarAnim(st.id, n, a);
     E.rascunho.gravar(RASC, null);
     st.anim = limpa(st.set.def.anims[st.nome] || a);   // a original fica como estava salva
     E.aviso('💾 Salva como "' + n + '".' + (FF.Edicoes.conectado() ? ' Enviando…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
@@ -736,8 +801,251 @@
     if (!('_escalaOrig' in def)) def._escalaOrig = def.escala;
     if (v == null) { def.escala = def._escalaOrig; if (def.escala === undefined) delete def.escala; delete def._escalaOrig; }
     else def.escala = v;
-    E.salvarNoJogo(['spritesInfo', st.id], v == null ? null : { escala: v }, v == null ? '↺ Escala original de ' + st.id + '.' : '💾 Escala de ' + st.id + ': ' + String(v).replace('.', ',') + '×.');
+    // só o campo "escala" (spritesInfo também guarda as imagens extras do sprite)
+    E.salvarNoJogo(['spritesInfo', st.id, 'escala'], v == null ? null : v, v == null ? '↺ Escala original de ' + st.id + '.' : '💾 Escala de ' + st.id + ': ' + String(v).replace('.', ',') + '×.');
     renderProps();
+  }
+
+  // ------------------------------------------------------------------ tamanho, imagens e o sprite inteiro
+  function grupoSprite() {
+    const def = st.set.def;
+    const orig = ('_escalaOrig' in def) ? def._escalaOrig : def.escala;
+    const info = (FF.Edicoes.dados().spritesInfo || {})[st.id] || {};
+    const imp = importado();
+    const gS = E.grupo('📐 Tamanho e sprite “' + st.id + '”', true);
+    gS.appendChild(el('div', 'es-dica', '<b>Escala no jogo</b> (não mexe nos pixels): <b>' + String(escalaSprite()).replace('.', ',') + '×</b>' + (info.escala ? ' (sua; original ' + String(orig || 1).replace('.', ',') + '×)' : ' (original)') + '. Vale para todas as animações deste sprite.'));
+    let novaEsc = escalaSprite();
+    gS.appendChild(E.campo('numero', 'Escala', novaEsc, (v) => { novaEsc = v; }, { passo: 0.05, min: 0.1, max: 10 }));
+    const bs = el('div', 'ess-bts');
+    bs.append(E.botao('💾 Salvar escala', () => salvarEscala(novaEsc), 'Grava a escala geral do sprite no jogo', 'es-bt-ouro'));
+    if (info.escala) bs.append(E.botao('↺ Escala original', () => salvarEscala(null), 'Volta à escala original'));
+    gS.appendChild(bs);
+    if (st.anim && frames().length) {
+      const n = escolhidos().length, tot = frames().length;
+      gS.appendChild(el('div', 'es-dica', '<b>Redimensionar os pixels</b> dos quadros (vizinho mais próximo; origem e disparo acompanham):'));
+      let fator = 2, alvo = n > 1 ? 'sel' : 'todos';
+      gS.appendChild(E.campo('select', 'Quais', alvo, (v) => { alvo = v; }, { lista: [['todos', 'Todos (' + tot + ')'], ['sel', 'Escolhidos (' + n + ')']] }));
+      gS.appendChild(E.campo('select', 'Tamanho', '2', (v) => { fator = +v; }, { lista: [['0.25', '25%'], ['0.5', '50%'], ['0.75', '75%'], ['1.5', '150%'], ['2', '200%'], ['3', '300%'], ['4', '400%']] }));
+      const br = el('div', 'ess-bts');
+      br.append(E.botao('📐 Redimensionar', (ev, b) => redimensionar(fator, alvo === 'todos', b), 'Cria os quadros no tamanho novo (dá para desfazer; salve para valer no jogo)'));
+      gS.appendChild(br);
+    }
+    const nAtlas = def.atlases.length, extras = imp ? nAtlas - 1 : (info.atlas || []).length;
+    gS.appendChild(el('div', 'es-dica', nAtlas + ' imagem(ns) de atlas' + (extras > 0 ? ' (' + extras + ' trazida(s) do computador)' : '') + ' · ' + Object.keys(def.anims).length + ' animações' + (imp ? ' · 📥 sprite importado' : '')));
+    const bx = el('div', 'ess-bts');
+    bx.append(E.botao('📤 Exportar sprite inteiro', () => exportarSprite(), 'Sprite sheet com todas as animações (PNG + JSON, .zip)'));
+    if (imp && nAtlas > 1) bx.append(E.botao('🧹 Juntar imagens', (ev, b) => compactar(b), 'Junta todas as imagens do sprite num atlas só (menor e mais rápido de carregar)'));
+    if (imp) bx.append(E.botao('🗑 Apagar sprite', () => apagarSprite(st.id), 'Apaga este sprite importado com todas as animações', 'es-bt-perigo'));
+    gS.appendChild(bx);
+    return gS;
+  }
+
+  async function redimensionar(fator, todos, bt) {
+    const fr = frames();
+    const ks = todos ? fr.map((_, k) => k) : escolhidos();
+    if (!ks.length || !(fator > 0) || fator === 1) return;
+    pausar();
+    // quadros iguais (mesmo recorte) viram uma imagem só
+    const chave = (f) => f.slice(0, 5).join(','), unicos = [], idx = new Map();
+    let imgs;
+    try {
+      ks.forEach(k => { const c = chave(fr[k]); if (!idx.has(c)) { idx.set(c, unicos.length); unicos.push(fr[k]); } });
+      imgs = unicos.map(f => FF.Imagem.escalar(A().pixelsDoQuadro(st.set, f), fator, false));
+    } catch (e) { E.aviso('❌ ' + erroLeitura(e), 'erro'); return; }
+    if (bt) bt.disabled = true;
+    try {
+      const r = await A().adicionarImagens(st.id, imgs);
+      st.set = r.set;
+      const novos = ks.map(k => fr[k]).map(f => {
+        const j = idx.get(chave(f)), p = r.posicoes[j], im = imgs[j];
+        const q = [r.indice, p.x, p.y, im.largura, im.altura, Math.round(f[5] * fator), Math.round(f[6] * fator), f[7] || 1];
+        if (f[8] && f[8].length) q.push(f[8].map(pt => [Math.round(pt[0] * fator), Math.round(pt[1] * fator)]));
+        return q;
+      });
+      ks.forEach((k, j) => { fr[k] = novos[j]; });
+      mudou('Redimensionar ' + Math.round(fator * 100) + '%');
+      enquadrar();
+      renderProps();
+      E.aviso('📐 ' + ks.length + ' quadro(s) em ' + Math.round(fator * 100) + '%. Salve para valer no jogo.', 'ok');
+    } catch (e) { E.aviso('❌ ' + e.message, 'erro'); }
+    if (bt) bt.disabled = false;
+  }
+
+  // sprite importado: junta todas as imagens (atlas extras) num atlas só
+  async function compactar(bt) {
+    if (!importado()) return;
+    if (sujo() && !(await podeTrocar())) return;
+    const I = FF.Imagem, imp = FF.EstudioImportar;
+    if (bt) bt.disabled = true;
+    try {
+      const imgs = st.set.images.map(im => { const c = document.createElement('canvas'); c.width = im.naturalWidth || im.width; c.height = im.naturalHeight || im.height; c.getContext('2d', { willReadFrequently: true }).drawImage(im, 0, 0); return I.deCanvas(c); });
+      const anims = imp.quadrosDoSprite({ anims: st.set.def.anims }, imgs);
+      const atual = (FF.Edicoes.dados().spritesNovos || {})[st.id], extra = {};
+      ['escala', 'tipo', 'nome'].forEach(k => { if (atual[k] !== undefined) extra[k] = atual[k]; });
+      Object.keys(FF.Mods.ler()[st.id] || {}).forEach(n => FF.Edicoes.set(['sprites', st.id, n], null));   // já entram no atlas novo
+      const r = await imp.gravarSprite(st.id, anims, extra);
+      E.aviso('🧹 Imagens juntadas: atlas de ' + r.pk.largura + '×' + r.pk.altura + ' px.', 'ok');
+      await abrirSprite(st.id, st.nome, true);
+    } catch (e) { E.aviso('❌ ' + erroLeitura(e), 'erro'); }
+    if (bt) bt.disabled = false;
+  }
+
+  async function apagarSprite(id, semPerguntar) {
+    if (!importado(id)) return E.aviso('Só dá para apagar sprites importados (os do jogo original ficam).', 'erro');
+    if (!semPerguntar && !(await confirmar('🗑 Apagar sprite', 'Apagar o sprite importado "' + id + '" com todas as animações, em todos os aparelhos? Personagens e golpes que usam ele vão ficar sem imagem.', '🗑 Apagar sprite', true))) return;
+    if (id === st.id) { E.rascunho.gravar(RASC, null); st.anim = null; st.novo = false; }
+    Object.keys(FF.Mods.ler()[id] || {}).forEach(n => FF.Edicoes.set(['sprites', id, n], null));
+    if ((FF.Edicoes.dados().spritesInfo || {})[id]) FF.Edicoes.set(['spritesInfo', id], null);
+    E.salvarNoJogo(['spritesNovos', id], null, '🗑 Sprite "' + id + '" apagado.');
+    FF.Assets.descarregarSprite(id);
+    if (id === st.id) return abrirSprite(FF.Assets.listaSprites()[0], null, true);
+    renderSprites();
+  }
+
+  function exportarSprite() {
+    pausar();
+    const c = el('div', 'ess-exp');
+    const o = { escala: 1, margem: 1 };
+    c.appendChild(el('p', 'es-dica', 'Todas as ' + Object.keys(st.set.def.anims).length + ' animações de "' + st.id + '" (versão salva no jogo) num PNG + JSON no formato do jogo.'));
+    c.appendChild(E.campo('select', 'Escala', '1', (v) => { o.escala = +v; }, { lista: [['1', '1×'], ['2', '2×'], ['3', '3×'], ['4', '4×']] }));
+    c.appendChild(E.campo('numero', 'Margem', 1, (v) => { o.margem = Math.max(0, Math.round(v || 0)); }, { passo: 1, min: 0, max: 16 }));
+    const msg = el('p', 'ess-exp-msg');
+    const b = E.botao('🧩 Baixar sprite sheet (.zip)', async (ev, bt) => {
+      bt.disabled = true; msg.textContent = '⏳ Gerando…';
+      try { const r = await gerar('spriteTodo', o); FF.Codecs.baixar(r.dados, r.nome, r.mime); msg.textContent = '✅ ' + r.nome + ' baixado (' + r.n + ' quadros).'; } catch (e) { msg.textContent = '❌ ' + erroLeitura(e); }
+      bt.disabled = false;
+    }, null, 'es-bt-ouro');
+    c.append(el('div', 'ess-bts'), msg);
+    c.querySelector('.ess-bts').appendChild(b);
+    E.modal('📤 Exportar sprite “' + st.id + '”', c);
+  }
+
+  // ------------------------------------------------------------------ arquivos do computador
+  function escolherArquivos(aceitar) {
+    return new Promise(res => {
+      const i = document.createElement('input');
+      i.type = 'file'; i.multiple = true; i.className = 'ess-input-arq';
+      if (aceitar) i.accept = aceitar;
+      i.style.display = 'none';
+      i.onchange = () => { const l = [...i.files]; i.remove(); res(l); };
+      document.body.appendChild(i);
+      ui.ultimoInput = i;
+      i.click();
+    });
+  }
+
+  // janela: arquivos → quadros prontos (fundo, corte, origem, escala) com prévia; devolve os quadros ou null
+  async function prepararArquivos(arquivos, titulo) {
+    const { fontes, erros } = await A().lerArquivos(arquivos, { fps: 12, maxQuadros: 300 });
+    erros.forEach(m => E.aviso('⚠ ' + m, 'erro'));
+    if (!fontes.length) { E.aviso('Nenhuma imagem nos arquivos escolhidos.', 'erro'); return null; }
+    const tipoSprite = (st.set.def.tipo === 'efeito' || /^fx/.test(st.id)) ? 'centro' : 'pes';
+    const o = { fundo: 'auto', tol: 24, cortar: true, origem: tipoSprite, escala: 1, separar: 'auto' };
+    return new Promise(res => {
+      const c = el('div', 'ess-arq');
+      const opc = el('div', 'ess-arq-opc');
+      const grade = el('div', 'ess-arq-grade');
+      const info = el('p', 'es-dica');
+      let quadros = [], feito = false;
+      const refazer = () => {
+        try { quadros = A().prepararQuadros(fontes, o); } catch (e) { quadros = []; info.textContent = '❌ ' + e.message; return; }
+        grade.innerHTML = '';
+        quadros.slice(0, 200).forEach((q, k) => {
+          const cd = el('div', 'ess-arq-q');
+          const cv = FF.Imagem.paraCanvas(q.img); cv.title = 'Quadro ' + (k + 1) + ' · ' + q.img.largura + '×' + q.img.altura;
+          const z = Math.min(3, 96 / q.img.largura, 96 / q.img.altura);
+          cv.style.width = Math.max(1, Math.round(q.img.largura * z)) + 'px'; cv.style.height = Math.max(1, Math.round(q.img.altura * z)) + 'px';
+          cd.append(cv, el('span', null, String(k + 1)));
+          grade.appendChild(cd);
+        });
+        info.textContent = fontes.length + ' imagem(ns) lida(s) → ' + quadros.length + ' quadro(s)' + (quadros.removeuFundo ? ' · fundo removido' : '') + (quadros.fps !== 12 ? ' · ' + quadros.fps + ' fps' : '');
+      };
+      opc.append(
+        E.campo('select', 'Fundo', 'auto', (v) => { o.fundo = v === 'auto' ? 'auto' : v === 'sim'; refazer(); }, { lista: [['auto', 'Automático'], ['sim', 'Remover a cor da borda'], ['nao', 'Manter']] }),
+        E.campo('check', 'Cortar bordas', true, (v) => { o.cortar = v; refazer(); }),
+        E.campo('select', 'Origem', tipoSprite, (v) => { o.origem = v; refazer(); }, { lista: [['pes', 'Pés (lutador)'], ['centro', 'Centro (efeito)']] }),
+        E.campo('select', 'Escala', '1', (v) => { o.escala = +v; refazer(); }, { lista: [['0.25', '25%'], ['0.5', '50%'], ['0.75', '75%'], ['1', '100%'], ['1.5', '150%'], ['2', '200%'], ['3', '300%']] }));
+      if (fontes.length === 1) opc.appendChild(E.campo('check', 'Separar sprite sheet', true, (v) => { o.separar = v ? 'auto' : false; refazer(); }, { dica: 'Uma imagem com vários desenhos separados vira um quadro por desenho' }));
+      const bts = el('div', 'ess-conf-bts');
+      const fim = (v) => { if (feito) return; feito = true; m.fechar(); res(v); };
+      bts.append(
+        E.botao('🧰 Mais opções (importador)', () => { fim(null); abrirImportador({ destino: 'existente', alvo: st.id, anim: st.nome || 'Nova', arquivos }); }, 'Abre no importador: separar a folha por grade, conta-gotas, ajuste por quadro…'),
+        E.botao('Cancelar', () => fim(null)),
+        E.botao('✔ Usar quadros', () => fim(quadros.length ? quadros : null), null, 'es-bt-ouro ess-arq-ok'));
+      c.append(opc, info, grade, bts);
+      const m = E.modal(titulo || '📂 Do computador', c, { larga: true, aoFechar: () => { if (!feito) { feito = true; res(null); } } });
+      refazer();
+    });
+  }
+
+  // insere imagens do computador na animação aberta (depois do quadro atual)
+  async function inserirDoComputador(arquivos) {
+    if (!st.anim) return E.aviso('Crie ou escolha uma animação primeiro (＋ Nova).', 'erro');
+    if (!arquivos) arquivos = await escolherArquivos('image/*,video/*,.gif,.zip,.apng,.webp,.bmp,.svg,.avif');
+    if (!arquivos || !arquivos.length) return;
+    const qs = await prepararArquivos(arquivos, '📂 Inserir quadros do computador em “' + st.nome + '”');
+    if (!qs) return;
+    try {
+      const r = await A().quadrosParaSprite(st.id, qs);
+      st.set = r.set;
+      if (!frames().length && qs.fps) st.anim.fps = qs.fps;
+      inserirQuadros(r.frames);
+      enquadrar();
+      E.aviso('📂 ' + r.frames.length + ' quadro(s) inseridos. Salve para valer no jogo.', 'ok');
+    } catch (e) { E.aviso('❌ ' + e.message, 'erro'); }
+  }
+
+  // ------------------------------------------------------------------ importador (por cima da aba)
+  function abrirImportador(opts = {}) {
+    const imp = FF.EstudioImportar;
+    if (!imp) return;
+    if (!ui.imp._montado) {
+      ui.imp._montado = true;
+      imp.montar(ui.imp);
+      imp.aoFechar = () => fecharImportador();
+      imp.aoSalvar = async (id, anim) => {
+        fecharImportador();
+        FF.Assets.descarregarSprite(id);
+        renderSprites();
+        if (!(await podeTrocar())) return;
+        await abrirSprite(id, anim, true);
+        const it = ui.sprites.querySelector('.es-item.sel');
+        if (it && it.scrollIntoView) it.scrollIntoView({ block: 'nearest' });
+      };
+    }
+    pausar();
+    st.imp = true;
+    ui.imp.hidden = false;
+    E.renderHist();
+    imp.abrir(Object.assign({ alvo: st.id }, opts));
+  }
+  function fecharImportador() {
+    st.imp = false;
+    ui.imp.hidden = true;
+    E.renderHist();
+    renderSprites();
+  }
+
+  // soltar arquivos em qualquer lugar da aba abre o importador
+  function ligarArquivos(raiz) {
+    const tem = (e) => e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
+    let cont = 0;
+    raiz.addEventListener('dragenter', (e) => { if (st.imp || !tem(e)) return; e.preventDefault(); cont++; ui.arrasto.hidden = false; });
+    raiz.addEventListener('dragover', (e) => { if (st.imp || !tem(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+    raiz.addEventListener('dragleave', () => { if (st.imp) return; cont = Math.max(0, cont - 1); if (!cont) ui.arrasto.hidden = true; });
+    raiz.addEventListener('drop', (e) => {
+      if (st.imp || !tem(e)) return;
+      e.preventDefault(); cont = 0; ui.arrasto.hidden = true;
+      abrirImportador({ destino: 'novo', arquivos: [...e.dataTransfer.files] });
+    });
+    // colar imagem (Ctrl+V) com o importador fechado também abre ele
+    document.addEventListener('paste', (e) => {
+      if (E.ativa !== aba || st.imp || E.digitando(e) || document.querySelector('.es-modal')) return;
+      const fs = [...((e.clipboardData && e.clipboardData.files) || [])];
+      if (!fs.length) return;
+      e.preventDefault();
+      abrirImportador({ destino: 'novo', arquivos: fs.map((f, i) => f.name && f.name !== 'image.png' ? f : new File([f], 'colada' + (fs.length > 1 ? '_' + (i + 1) : '') + '.png', { type: f.type })) });
+    });
   }
 
   // ------------------------------------------------------------------ palco
@@ -1046,7 +1354,7 @@
   function quadroCanvas(f, esc, flip) {
     const c = document.createElement('canvas');
     c.width = Math.max(1, Math.round(f[3] * esc)); c.height = Math.max(1, Math.round(f[4] * esc));
-    const x = c.getContext('2d'); x.imageSmoothingEnabled = false;
+    const x = c.getContext('2d', { willReadFrequently: true }); x.imageSmoothingEnabled = false;
     if (flip) { x.translate(c.width, 0); x.scale(-1, 1); }
     x.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], 0, 0, c.width, c.height);
     return c;
@@ -1080,6 +1388,7 @@
 
   // gera os arquivos (usado pelos botões e pelos testes): tipo = sheet | png | seq | gif | webm | json
   async function gerar(tipo, o) {
+    if (tipo === 'spriteTodo') return gerarSpriteTodo(o);
     const esc = o.escala || 1, flip = !!o.espelhar, fundo = o.fundo || null;
     const idx = o.escolhidos ? escolhidos() : frames().map((_, k) => k);
     const lista = idx.map(k => frames()[k]);
@@ -1141,6 +1450,33 @@
     throw new Error('Tipo de exportação desconhecido: ' + tipo);
   }
 
+  // o sprite inteiro (todas as animações salvas) numa sprite sheet só: PNG + JSON do jogo, num ZIP
+  async function gerarSpriteTodo(o) {
+    const esc = o.escala || 1;
+    const anims = st.set.def.anims, nomes = Object.keys(anims);
+    if (!nomes.length) throw new Error('O sprite não tem animações.');
+    const chave = (f) => f.slice(0, 5).join(','), idx = new Map(), imgs = [];
+    nomes.forEach(n => anims[n].frames.forEach(f => { const k = chave(f); if (!idx.has(k)) { idx.set(k, imgs.length); imgs.push(FF.Imagem.deCanvas(quadroCanvas(f, esc, false))); } }));
+    const pk = FF.Imagem.empacotar(imgs, { margem: o.margem == null ? 1 : o.margem });
+    const png = new Uint8Array(await (await FF.Codecs.canvasParaPng(FF.Imagem.paraCanvas({ largura: pk.largura, altura: pk.altura, rgba: pk.rgba }))).arrayBuffer());
+    const base = st.id.replace(/[^\w.-]+/g, '_');
+    const out = {};
+    let n = 0;
+    nomes.forEach(nm => {
+      const a = anims[nm];
+      out[nm] = { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: a.frames.map(f => {
+        const j = idx.get(chave(f)), p = pk.posicoes[j]; n++;
+        const q = [0, p.x, p.y, imgs[j].largura, imgs[j].altura, Math.round(f[5] * esc), Math.round(f[6] * esc), f[7] || 1];
+        if (f[8] && f[8].length) q.push(f[8].map(pt => [Math.round(pt[0] * esc), Math.round(pt[1] * esc)]));
+        return q;
+      }) };
+    });
+    const def = { id: base, atlases: [base + '.png'], anims: out };
+    if (st.set.def.escala) def.escala = st.set.def.escala;
+    const json = JSON.stringify(def, null, 1);
+    return { nome: base + '_sprite.zip', dados: FF.Codecs.zipGravar([{ nome: base + '.png', dados: png }, { nome: base + '.json', dados: json }]), mime: 'application/zip', png, json, n };
+  }
+
   function exportar() {
     if (!frames().length) { E.aviso('A animação não tem quadros.', 'erro'); return; }
     pausar();
@@ -1178,7 +1514,8 @@
       E.botao('🎞 GIF animado', fazer('gif', 'o GIF'), 'Respeita o fps e a duração de cada quadro', 'es-bt-ouro'),
       btWebm,
       E.botao('⬇ JSON da animação', fazer('json', 'o JSON'), 'Formato do jogo ({fps, loop, repeatTo, frames})'),
-      E.botao('📋 Copiar JSON', async () => { const r = await gerar('json', o); msg.textContent = (await copiarTexto(r.texto)) ? '✅ JSON copiado para a área de transferência.' : '❌ Não deu para copiar — use “⬇ JSON da animação”.'; }, 'Copia o JSON da animação'));
+      E.botao('📋 Copiar JSON', async () => { const r = await gerar('json', o); msg.textContent = (await copiarTexto(r.texto)) ? '✅ JSON copiado para a área de transferência.' : '❌ Não deu para copiar — use “⬇ JSON da animação”.'; }, 'Copia o JSON da animação'),
+      E.botao('🗃 Sprite inteiro (todas as animações, .zip)', fazer('spriteTodo', 'o sprite inteiro'), 'Todas as animações salvas de "' + st.id + '" numa sprite sheet só (PNG + JSON)'));
     if (!webOk) bts.appendChild(el('p', 'es-obs', 'WebM indisponível: este navegador não grava vídeo do canvas.'));
     c.append(opc, bts, msg);
     E.modal('📤 Exportar “' + st.nome + '”', c);
@@ -1210,15 +1547,25 @@
     return false;
   }
 
-  E.registrarAba({
-    id: 'sprites', nome: 'Sprites', icone: '🖼', historico: hist,
+  const aba = {
+    id: 'sprites', nome: 'Sprites', icone: '🖼',
+    // com o importador aberto, desfazer/teclado/desenho vão para ele
+    get historico() { return st.imp && FF.EstudioImportar ? FF.EstudioImportar.historico : hist; },
     montar,
-    mostrar() { ajustarCanvas(); if (st.set) { renderSprites(); renderAnims(); renderTitulo(); } },
+    mostrar() { ajustarCanvas(); if (st.set) { renderSprites(); renderAnims(); renderTitulo(); } if (st.imp) FF.EstudioImportar.mostrar(); },
     esconder() { pausar(); },
-    quadro(dt) { avancar(dt); desenharPalco(); },
-    teclado,
+    quadro(dt) { if (st.imp) FF.EstudioImportar.quadro(dt); else { avancar(dt); desenharPalco(); } },
+    teclado(e) {
+      if (st.imp) {
+        if (e.key === 'Escape' && !document.querySelector('.es-modal')) { fecharImportador(); return true; }
+        return FF.EstudioImportar.teclado(e);
+      }
+      return teclado(e);
+    },
     antesDeSair() { gravarRascunho(); },
-  });
+  };
+  E.registrarAba(aba);
   // para os testes e outras abas
-  E.Sprites = { st, gerar, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter };
+  E.Sprites = { st, gerar, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
+    abrirImportador, fecharImportador, inserirDoComputador, prepararArquivos, redimensionar, compactar, apagarSprite, novaAnimacao };
 })();

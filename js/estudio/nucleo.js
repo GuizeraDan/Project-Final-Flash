@@ -33,6 +33,7 @@ FF.Estudio = {
     const q = new URLSearchParams(location.search);
     let ini = q.get('aba');
     if (!ini) ini = this.rascunho.ler('aba') || 'golpes';
+    if (ini === 'importar') ini = 'sprites';    // a antiga aba Importar agora fica dentro de Sprites
     if (!this.abas.find(a => a.id === ini)) ini = this.abas[0] && this.abas[0].id;
     if (ini) await this.abrir(ini);
     document.getElementById('es-desfazer').onclick = () => this.desfazer();

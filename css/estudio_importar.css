@@ -1,5 +1,6 @@
-/* Estúdio — aba Importar (js/estudio/importar.js) */
-.es-aba-importar .imp-centro { position: relative; }
+/* Estúdio — importador (js/estudio/importar.js), aberto por cima da aba Sprites */
+.imp .imp-centro { position: relative; }
+.imp-voltar { margin: 6px 6px 2px; padding: 6px; font-weight: 700; background: linear-gradient(180deg, #3b2670, #24164a); }
 .imp-esq .es-rolar { padding-top: 4px; }
 .imp-escolher { width: 100%; padding: 8px; font-size: 14px; }
 .imp-linha { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0; }

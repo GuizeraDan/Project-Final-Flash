@@ -1,4 +1,4 @@
-// Teste da aba Importar do Estúdio (Playwright + Chrome)
+// Teste do importador do Estúdio, aberto dentro da aba Sprites (Playwright + Chrome)
 const fs = require('fs');
 const path = require('path');
 let chromium;
@@ -16,9 +16,12 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   p.on('pageerror', e => msgs.push('pageerror: ' + e.message));
   let gh = 0;
   await p.route('https://api.github.com/**', r => { gh++; r.abort(); });
-  await p.goto('file://' + RAIZ + '/estudio.html?aba=importar');
-  await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto, null, { timeout: 20000 });
+  await p.goto('file://' + RAIZ + '/estudio.html?aba=sprites');
+  await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto && FF.Estudio.Sprites.st.set, null, { timeout: 20000 });
   ok(await p.evaluate(() => !FF.Edicoes.conectado()), 'sem chave do GitHub');
+  ok(await p.evaluate(() => !FF.Estudio.abas.find(a => a.id === 'importar')), 'não existe mais a aba Importar');
+  await p.click('.ess-bt-importar');
+  ok(await p.evaluate(() => FF.Estudio.Sprites.st.imp && !document.querySelector('.ess-imp').hidden), '📂 Importar abre o importador dentro da aba Sprites');
   await p.screenshot({ path: OUT + '/1_vazio.png' });
 
   // ---- arquivos gerados na página
@@ -133,7 +136,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.fill('.imp-dir .es-campo-texto input >> nth=1', 'Parado');
   await p.press('.imp-dir .es-campo-texto input >> nth=1', 'Enter');
   await p.click('.imp-salvar');
-  await p.waitForSelector('.imp-pronto', { timeout: 10000 });
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.id === 'boneco_teste' && FF.Estudio.Sprites.st.nome === 'Parado' && !FF.Estudio.Sprites.st.imp, null, { timeout: 10000 });
+  ok(true, 'salvar fecha o importador e abre boneco_teste / Parado na aba Sprites');
   await p.waitForTimeout(200);
   await p.screenshot({ path: OUT + '/5_salvo.png' });
   s = await p.evaluate(async () => {
@@ -147,9 +151,9 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.blob > 0 && s.enviada === false, 'atlas no IndexedDB (pendente, ' + s.blob + ' bytes)');
   ok(s.w > 0 && s.n === 6, 'FF.Assets.loadSprite carrega (' + s.w + ' px)');
   console.log('     def:', JSON.stringify(s.def).slice(0, 300));
-  await p.click('.es-modal-topo button');
 
-  // ---- 2) GIF animado → nova animação no mesmo sprite
+  // ---- 2) GIF animado → nova animação no mesmo sprite (＋ Importar com o sprite aberto)
+  await p.evaluate(() => FF.Estudio.Sprites.abrirImportador({ destino: 'existente' }));
   await p.setInputFiles('.imp-input', { name: 'aura.gif', mimeType: 'image/gif', buffer: Buffer.from(arqs.gif, 'base64') });
   await p.waitForFunction(() => FF.EstudioImportar._st.res.length === 4, null, { timeout: 10000 });
   s = await p.evaluate(() => { const st = FF.EstudioImportar._st; return { fps: st.cfg.fps, durs: st.lista.map(q => q.dur), fundo: st.cfg.fundo, destino: st.cfg.destino, alvo: st.cfg.alvo }; });
@@ -163,24 +167,24 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.waitForTimeout(300);
   await p.screenshot({ path: OUT + '/6_gif.png' });
   await p.click('.imp-salvar');
-  await p.waitForSelector('.imp-pronto', { timeout: 10000 });
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.nome === 'Aura' && !FF.Estudio.Sprites.st.imp, null, { timeout: 10000 });
   s = await p.evaluate(async () => {
     const def = FF.Edicoes.dados().spritesNovos.boneco_teste;
     FF.Assets.descarregarSprite('boneco_teste');
     const set = await FF.Assets.loadSprite('boneco_teste');
-    // confere um pixel de um quadro antigo no atlas novo
-    const f = set.anim('Parado').frames[0];
-    const c = document.createElement('canvas'); c.width = f[3]; c.height = f[4];
-    const g = c.getContext('2d'); g.drawImage(set.images[0], f[1], f[2], f[3], f[4], 0, 0, f[3], f[4]);
-    const px = Array.from(g.getImageData(8, f[4] - 3, 1, 1).data);
-    return { anims: Object.keys(def.anims), aura: def.anims.Aura, px };
+    // confere um pixel de um quadro antigo (atlas 0) e de um novo (atlas extra)
+    const px = (f, x, y) => { const c = document.createElement('canvas'); c.width = f[3]; c.height = f[4]; const g = c.getContext('2d'); g.drawImage(set.images[f[0]], f[1], f[2], f[3], f[4], 0, 0, f[3], f[4]); return Array.from(g.getImageData(x, y, 1, 1).data); };
+    const f0 = set.anim('Parado').frames[0], a0 = set.anim('Aura').frames[0];
+    return { anims: Object.keys(def.anims), aura: def.anims.Aura, atlases: def.atlases, px: px(f0, 8, f0[4] - 3), pxA: px(a0, Math.floor(a0[3] / 2), a0[4] - 2) };
   });
   ok(s.anims.join() === 'Parado,Aura', 'sprite agora tem Parado e Aura');
   ok(s.aura.frames.length === 4 && s.aura.fps === 10 && s.aura.frames[2][7] === 2, 'Aura: 4 quadros, dur 2 no 3º');
-  ok(s.px[0] > 200 && s.px[1] < 80 && s.px[3] === 255, 'quadros antigos preservados no atlas reempacotado (' + s.px + ')');
-  await p.click('.es-modal-topo button');
+  ok(s.atlases.length === 2 && s.aura.frames[0][0] === 1, 'Aura num atlas extra (' + s.atlases + ')');
+  ok(s.px[0] > 200 && s.px[1] < 80 && s.px[3] === 255, 'quadros antigos intactos (' + s.px + ')');
+  ok(s.pxA[3] === 255 && s.pxA[1] === 200, 'quadro novo carrega do atlas extra (' + s.pxA + ')');
 
   // ---- 3) ZIP de PNGs
+  await p.evaluate(() => FF.Estudio.Sprites.abrirImportador({ destino: 'novo' }));
   await p.selectOption('.imp-dir .es-campo-select select >> nth=2', 'novo').catch(() => {});
   await p.setInputFiles('.imp-input', { name: 'quadros.zip', mimeType: 'application/zip', buffer: Buffer.from(arqs.zip, 'base64') });
   await p.waitForFunction(() => FF.EstudioImportar._st.lista.length === 3 && FF.EstudioImportar._st.vista === 'anim', null, { timeout: 10000 });
@@ -188,28 +192,27 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.join() === 'q1.png,q2.png,q10.png', 'ZIP em ordem natural (' + s + ')');
   await p.evaluate(() => { const st = FF.EstudioImportar._st; st.cfg.destino = 'novo'; st.cfg.id = 'barras_zip'; st.cfg.anim = 'Andar'; });
   await p.evaluate(() => FF.EstudioImportar.salvar());
-  await p.waitForSelector('.imp-pronto', { timeout: 10000 });
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.id === 'barras_zip', null, { timeout: 10000 });
   s = await p.evaluate(async () => { FF.Assets.descarregarSprite('barras_zip'); const set = await FF.Assets.loadSprite('barras_zip'); return set.anim('Andar').frames.length; });
   ok(s === 3, 'sprite barras_zip carregado com 3 quadros');
-  await p.click('.es-modal-topo button');
 
-  // ---- 4) lista de sprites: renomear e apagar
+  // ---- 4) lista de sprites (aba Sprites): renomear animação e apagar sprite
   await p.waitForTimeout(200);
-  const itens = await p.$$eval('.imp-sprites .imp-spr-nome', l => l.map(x => x.textContent));
-  ok(itens.includes('boneco_teste') && itens.includes('barras_zip'), 'lista de sprites importados (' + itens + ')');
-  await p.click('.imp-sprites .es-item >> text=boneco_teste');
-  await p.waitForTimeout(200);
+  const itens = await p.$$eval('.ess-sprites .es-item', l => l.map(x => x.dataset.sprite + (x.querySelector('.ess-spr-imp') ? '📥' : '')));
+  ok(itens.includes('boneco_teste📥') && itens.includes('barras_zip📥') && itens.includes('gokubase'), 'lista mostra sprites do jogo e importados (📥)');
+  await p.click('.ess-sprites .es-item[data-sprite="boneco_teste"]');
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.id === 'boneco_teste');
   await p.screenshot({ path: OUT + '/7_lista.png' });
-  await p.click('.imp-spr-anim:has-text("Aura") button[title="Renomear animação"]');
-  await p.fill('.es-perg input', 'Aura Azul');
-  await p.click('.es-perg button.es-bt-ouro');
-  s = await p.evaluate(() => Object.keys(FF.Edicoes.dados().spritesNovos.boneco_teste.anims));
-  ok(s.join() === 'Parado,Aura_Azul', 'renomear animação (' + s + ')');
-  await p.click('.imp-spr:has-text("barras_zip") .es-item');
-  await p.click('.imp-spr:has-text("barras_zip") button:has-text("Sprite")');
+  await p.click('.ess-anim[data-anim="Aura"] .ess-anim-ren');
+  await p.fill('.es-modal input', 'Aura Azul');
   await p.click('.es-modal .es-bt-ouro');
+  await p.waitForFunction(() => Object.keys(FF.Edicoes.dados().spritesNovos.boneco_teste.anims).join() === 'Parado,Aura_Azul', null, { timeout: 5000 });
+  ok(true, 'renomear animação (Parado,Aura_Azul)');
+  await p.click('.ess-sprites .es-item[data-sprite="barras_zip"] .ess-anim-apagar');
+  await p.click('.es-modal .es-bt-perigo');
   s = await p.evaluate(() => Object.keys(FF.Edicoes.dados().spritesNovos));
   ok(!s.includes('barras_zip'), 'apagar sprite (' + s + ')');
+  await p.evaluate(() => FF.Estudio.Sprites.abrirImportador({ destino: 'novo' }));
 
   // ---- 5) pacote antigo (.ffpacote.json)
   const pac = await p.evaluate(async () => {
@@ -221,10 +224,10 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.waitForSelector('.imp-pac', { timeout: 5000 });
   await p.click('.imp-pac button:has-text("Salvar tudo")');
   await p.click('.es-perg button.es-bt-ouro');
-  await p.waitForSelector('.imp-pronto', { timeout: 10000 });
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.id === 'raio_velho', null, { timeout: 10000 });
   s = await p.evaluate(() => FF.Edicoes.dados().spritesNovos.raio_velho);
   ok(s && s.anims.Raio.frames.length === 2 && s.anims.Raio.frames[0][5] === 5, 'pacote antigo virou sprite raio_velho');
-  await p.click('.es-modal-topo button');
+  await p.evaluate(() => FF.Estudio.Sprites.abrirImportador({ destino: 'novo' }));
 
   // ---- 6) JSON de sprite do jogo + PNG
   const jogo = await p.evaluate(async () => {
@@ -282,6 +285,17 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   await p.waitForFunction(() => { const st = FF.EstudioImportar._st; return st.lista.length === 1 && /colada/.test(st.fontes[st.lista[0].id].nome); }, null, { timeout: 5000 });
   ok(true, 'colar imagem (Ctrl+V) importa');
+  // com o importador fechado, colar abre ele (uma importação só)
+  await p.keyboard.press('Escape');
+  ok(await p.evaluate(() => !FF.Estudio.Sprites.st.imp), 'Esc fecha o importador');
+  await p.evaluate(async () => {
+    const c = document.createElement('canvas'); c.width = 20; c.height = 20; const g = c.getContext('2d'); g.fillStyle = '#f0f'; g.fillRect(2, 2, 16, 16);
+    const blob = await FF.Codecs.canvasParaPng(c);
+    const dt = new DataTransfer(); dt.items.add(new File([blob], 'image.png', { type: 'image/png' }));
+    document.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true }));
+  });
+  await p.waitForFunction(() => FF.Estudio.Sprites.st.imp && FF.EstudioImportar._st.lista.length === 1, null, { timeout: 5000 });
+  ok(true, 'colar com o importador fechado abre ele e importa uma vez');
 
   // ---- celular deitado
   await p.evaluate(() => { const st = FF.EstudioImportar._st; st.lista = st.lista.slice(0, 0); });

@@ -10,7 +10,9 @@
 //         personagens[id]   (Estúdio: campos que substituem os do JSON — nome, atributos, formas, buffs, ia,
 //                            vozes, formaInicial; ou {"novo": true, "def": {...}} para um personagem criado),
 //         spritesNovos[id]  (Estúdio: definição de sprite importado; atlas em assets/img/usr/<id>.png),
-//         spritesInfo[id]   (Estúdio: {"escala": N} escala geral de um sprite/efeito).
+//         spritesInfo[id]   (Estúdio: {"escala": N} escala geral de um sprite/efeito;
+//                            "atlas": [caminhos] imagens extras somadas aos atlas do sprite do jogo —
+//                            quadros trazidos do computador ou redimensionados; os quadros apontam o índice).
 // Imagens importadas: enviadas pela API (contents) para assets/img/usr/; enquanto não vão, ficam no
 // IndexedDB do aparelho (FF.ImagensUsr) e são usadas de lá.
 window.FF = window.FF || {};

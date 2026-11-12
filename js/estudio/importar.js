@@ -1,10 +1,14 @@
-// Estúdio Final Flash — aba "Importar": transforma imagens, sprite sheets, GIF/APNG/WebP animados,
-// vídeos, ZIPs e pacotes antigos em sprites do jogo (seção spritesNovos de data/edicoes.js).
+// Estúdio Final Flash — importador (abre por cima da aba Sprites: "📂 Importar" ou soltar arquivos nela):
+// transforma imagens, sprite sheets, GIF/APNG/WebP animados, vídeos, ZIPs e pacotes antigos em sprites do
+// jogo (seção spritesNovos de data/edicoes.js) ou em animações novas de qualquer sprite.
 //
 // Fluxo: arquivos → (separar quadros de uma folha) → tratamento (fundo, corte, escala, origem, tempo)
-//        → prévia animada → salvar como sprite novo ou como nova animação de um sprite importado.
+//        → prévia animada → salvar como sprite novo ou como animação de um sprite (do jogo ou importado).
 // O atlas gerado vai para o IndexedDB (FF.ImagensUsr, caminho assets/img/usr/<id>.png) e é enviado
-// ao GitHub junto com o data/edicoes.js quando o aparelho estiver conectado (☁).
+// ao GitHub junto com o data/edicoes.js quando o aparelho estiver conectado (☁). Animação num sprite que já
+// existe: as imagens entram num atlas extra (FF.EstudioArq.quadrosParaSprite).
+// Quem usa: FF.EstudioImportar.montar(el) uma vez, .abrir({destino, alvo, anim, arquivos}), .quadro(dt),
+// .teclado(e), .historico; avisa com .aoSalvar(id, anim) e .aoFechar().
 (function () {
   'use strict';
   const E = FF.Estudio;
@@ -21,7 +25,7 @@
   const PADRAO = {
     fundo: false, corFundo: null, tol: 24, contiguo: true,
     cortar: true, escala: 1, origem: 'pes', alinhar: true, fps: 12, loop: true,
-    destino: 'novo', id: '', anim: 'Parado', alvo: '',
+    destino: 'novo', id: '', anim: 'Parado', alvo: '', animFixa: false,
     vfps: 12, vmax: 120, juntar: false,
     previaFundo: 'xadrez', zoom: 0, goku: true,
   };
@@ -51,6 +55,7 @@
   function nomeAnim(t) { return (t || '').trim().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9_]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40); }
   function semExt(n) { return (n || '').split('/').pop().replace(/\.[^.]+$/, '').replace(/\.ffpacote$/, ''); }
   function spritesNovos() { return FF.Edicoes.dados().spritesNovos || {}; }
+  function todosSprites() { return FF.Assets.listaSprites(); }
   function spritesDoJogo() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).sprites || []; }
   function caminhoAtlas(id) { return 'assets/img/usr/' + id + '.png'; }
   function arred(v, n) { const k = Math.pow(10, n || 2); return Math.round(v * k) / k; }
@@ -193,8 +198,12 @@
     const nome = semExt(itens[0].arquivo || itens[0].nome);
     if (!juntar) {
       st.cfg.id = E.idSeguro(nome);
-      const alvo = st.cfg.destino === 'existente' && spritesNovos()[st.cfg.alvo];
-      st.cfg.anim = alvo && alvo.anims && alvo.anims.Parado ? (nomeAnim(nome) || 'Nova') : 'Parado';
+      if (st.cfg.destino === 'existente') {
+        if (!st.cfg.animFixa) {
+          const s = FF.Assets.sprites[st.cfg.alvo];
+          st.cfg.anim = s && s.def.anims.Parado ? (nomeAnim(nome) || 'Nova') : 'Parado';
+        }
+      } else st.cfg.anim = 'Parado';
     }
     // uma única imagem parada: talvez seja uma sprite sheet → separar quadros
     if (total === 1 && !juntar) {
@@ -243,7 +252,7 @@
     st.fontes = {}; st.lista = []; st.cache = {}; st.res = []; st.folha = null; st.corAuto = undefined;
     st.sel = 0; st.t = 0; st.contaGotas = false;
     st.cfg.corFundo = null; st.cfg.origem = 'pes'; st.cfg.escala = 1; st.cfg.cortar = true; st.cfg.loop = true;
-    if (st.cfg.destino === 'existente' && !spritesNovos()[st.cfg.alvo]) st.cfg.destino = 'novo';
+    if (st.cfg.destino === 'existente' && !todosSprites().includes(st.cfg.alvo)) st.cfg.destino = 'novo';
   }
 
   // ---------------------------------------------------------------- separar quadros (folha)
@@ -437,14 +446,7 @@
     });
     return anims;
   }
-  async function imagensDoSpriteNovo(def) {
-    const l = [];
-    for (const p of def.atlases || []) {
-      const u = FF.ImagensUsr ? await FF.ImagensUsr.url(p) : p;
-      l.push(imgDeElemento(await carregarImagem(u)));
-    }
-    return l;
-  }
+
 
   // empacota, grava a imagem no aparelho e a definição no jogo; devolve {def, set, pk}
   async function gravarSprite(id, anims, extra) {
@@ -496,25 +498,24 @@
     ui.salvar.disabled = true;
     try {
       if (st.cfg.destino === 'existente') {
+        // animação num sprite que já existe (do jogo ou importado): imagens num atlas extra
         id = st.cfg.alvo;
-        const atual = spritesNovos()[id];
-        if (!atual) throw new Error('Escolha um sprite importado para receber a animação.');
-        if (atual.anims[anim] && !(await confirmar('Substituir animação?', 'O sprite "' + id + '" já tem a animação "' + anim + '". Substituir?', 'Substituir'))) return;
-        anims = quadrosDoSprite(atual, await imagensDoSpriteNovo(atual));
-        delete anims[anim];
-        anims[anim] = nova;
-        extra = {};
-        ['escala', 'tipo', 'nome'].forEach(k => { if (atual[k] !== undefined) extra[k] = atual[k]; });
-      } else {
-        id = E.idSeguro(st.cfg.id);
-        if (!(await checarIdNovo(id))) return;
-        anims = { [anim]: nova };
+        if (!todosSprites().includes(id)) throw new Error('Escolha o sprite que vai receber a animação.');
+        const set = await FF.Assets.loadSprite(id);
+        if (set.def.anims[anim] && !(await confirmar('Substituir animação?', 'O sprite "' + id + '" já tem a animação "' + anim + '". Substituir?', 'Substituir'))) return;
+        const r = await FF.EstudioArq.quadrosParaSprite(id, nova.frames);
+        FF.EstudioArq.salvarAnim(id, anim, { fps: nova.fps, loop: nova.loop, repeatTo: 0, frames: r.frames });
+        E.aviso('📥 Animação "' + anim + '" salva em "' + id + '".' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+        E.renderSync();
+        terminou(id, anim);
+        return;
       }
-      const r = await gravarSprite(id, anims, extra);
+      id = E.idSeguro(st.cfg.id);
+      if (!(await checarIdNovo(id))) return;
+      anims = { [anim]: nova };
+      await gravarSprite(id, anims, extra);
       st.cfg.destino = 'existente'; st.cfg.alvo = id;
-      renderSprites();
-      renderDir();
-      proximoPasso(id, anim, r);
+      terminou(id, anim);
     } catch (e) {
       E.aviso('❌ ' + e.message, 'erro');
     } finally {
@@ -522,24 +523,15 @@
     }
   }
 
-  function proximoPasso(id, anim, r) {
-    const c = el('div', 'imp-pronto');
-    const cv = document.createElement('canvas'); cv.width = 120; cv.height = 120;
-    E.miniatura(cv, r.set, anim, 0);
-    const info = el('div');
-    info.appendChild(texto('p', '', '✅ Sprite "' + id + '" salvo com a animação "' + anim + '" (' + r.set.anim(anim).frames.length + ' quadros, atlas ' + r.pk.largura + '×' + r.pk.altura + ' px).'));
-    info.appendChild(texto('p', 'es-obs', FF.Edicoes.conectado() ? 'A imagem e a definição vão para o GitHub e valem em todos os aparelhos em ~1 min.' : 'Por enquanto vale só neste aparelho. Conecte o ☁ para enviar a imagem e a definição a todos.'));
-    info.appendChild(texto('p', '', 'Próximo passo:'));
-    const l = el('div', 'imp-linha');
-    let m;
-    const ir = (abaId) => { m.fechar(); E.abrir(abaId); };
-    if (E.abas.find(a => a.id === 'sprites')) l.appendChild(E.botao('🎞 Abrir na aba Sprites', () => ir('sprites'), 'Editar quadros, pontos e eventos'));
-    if (E.abas.find(a => a.id === 'personagens')) l.appendChild(E.botao('🧑 Criar personagem', () => ir('personagens'), 'Usar este sprite num personagem novo'));
-    if (E.abas.find(a => a.id === 'golpes')) l.appendChild(E.botao('💥 Usar num golpe', () => ir('golpes'), 'Como efeito/camada num golpe'));
-    l.appendChild(E.botao('➕ Outra animação neste sprite', () => { m.fechar(); limparTrabalho(); st.vista = 'vazio'; st.cfg.destino = 'existente'; st.cfg.alvo = id; st.cfg.anim = ''; renderTudo(); }));
-    info.appendChild(l);
-    c.append(cv, info);
-    m = E.modal('📥 Sprite importado', c);
+  // salvo: limpa a área de trabalho e volta para a aba Sprites com a animação aberta
+  function terminou(id, anim) {
+    limparTrabalho();
+    st.vista = 'vazio';
+    st.pacote = null;
+    st.cfg.animFixa = false;
+    aba.historico.zerar('');
+    renderTudo();
+    if (aba.aoSalvar) aba.aoSalvar(id, anim);
   }
 
   // pacote antigo / sprite do jogo inteiro → sprite novo
@@ -557,8 +549,8 @@
       const r = await gravarSprite(sid, anims, extra);
       const primeira = Object.keys(r.def.anims)[0];
       st.pacote = null;
-      renderSprites(); renderPacote();
-      proximoPasso(sid, primeira, r);
+      renderPacote();
+      terminou(sid, primeira);
     } catch (e) { E.aviso('❌ ' + e.message, 'erro'); }
   }
 
@@ -587,7 +579,9 @@
     raiz.classList.add('imp');
     // ----- esquerda
     const esq = el('div', 'es-lado imp-esq');
-    esq.appendChild(texto('div', 'es-titulo', '📥 Arquivos'));
+    const voltar = E.botao('← Voltar aos sprites', () => { if (aba.aoFechar) aba.aoFechar(); }, 'Fecha o importador (Esc). O que está sendo importado fica guardado até você voltar.', 'imp-voltar');
+    esq.appendChild(voltar);
+    esq.appendChild(texto('div', 'es-titulo', '📥 Importar do computador'));
     const rolE = el('div', 'es-rolar');
     ui.input = document.createElement('input');
     ui.input.type = 'file'; ui.input.multiple = true; ui.input.hidden = true;
@@ -603,10 +597,7 @@
     rolE.appendChild(gv);
     ui.pacote = el('div', 'imp-pacote');
     rolE.appendChild(ui.pacote);
-    const tSpr = el('div', 'es-titulo', '🧩 Sprites importados');
-    rolE.appendChild(tSpr);
-    ui.sprites = el('div', 'es-lista imp-sprites');
-    rolE.appendChild(ui.sprites);
+    rolE.appendChild(texto('p', 'es-dica', 'Depois de salvar, o sprite abre na aba Sprites: lá dá para editar os quadros, criar mais animações, mudar o tamanho, exportar e apagar.'));
     esq.appendChild(rolE);
 
     // ----- centro
@@ -673,7 +664,7 @@
       importar([...e.dataTransfer.files]);
     });
     document.addEventListener('paste', (e) => {
-      if (E.ativa !== aba || E.digitando(e)) return;
+      if (!aba.aberto || e.defaultPrevented || E.digitando(e) || document.querySelector('.es-modal')) return;
       const fs = [...((e.clipboardData && e.clipboardData.files) || [])];
       if (!fs.length && e.clipboardData) [...e.clipboardData.items].forEach(it => { if (it.kind === 'file') { const f = it.getAsFile(); if (f) fs.push(f); } });
       if (!fs.length) return;
@@ -691,7 +682,7 @@
     ui.vazio.hidden = st.vista !== 'vazio';
     ui.folha.hidden = st.vista !== 'folha';
     ui.anim.hidden = st.vista !== 'anim';
-    renderBarra(); renderFolhaBarra(); renderTira(); renderDir(); renderSprites(); renderPacote();
+    renderBarra(); renderFolhaBarra(); renderTira(); renderDir(); renderPacote();
     if (st.folha) st.folha.sujo = true;
   }
 
@@ -912,21 +903,28 @@
     }
     // ---- destino
     const gD = E.grupo('💾 Salvar');
-    const novos = Object.keys(spritesNovos());
-    gD.appendChild(E.campo('select', 'Destino', cfg.destino, v => { st.cfg.destino = v; if (v === 'existente' && !spritesNovos()[cfg.alvo]) st.cfg.alvo = novos[0] || ''; renderDir(); }, { lista: [['novo', 'Novo sprite'], ['existente', 'Animação num sprite importado']] }));
+    const todos = todosSprites();
+    gD.appendChild(E.campo('select', 'Destino', cfg.destino, v => { st.cfg.destino = v; if (v === 'existente' && !todos.includes(cfg.alvo)) st.cfg.alvo = Object.keys(spritesNovos())[0] || todos[0] || ''; if (v === 'existente') carregarAlvo(); renderDir(); }, { lista: [['novo', 'Novo sprite'], ['existente', 'Animação num sprite']] }));
+    const alvoSet = cfg.destino === 'existente' ? FF.Assets.sprites[cfg.alvo] : null;
     if (cfg.destino === 'existente') {
-      if (!novos.length) gD.appendChild(texto('p', 'es-dica imp-alerta', 'Ainda não há sprites importados: salve primeiro como "Novo sprite".'));
-      else gD.appendChild(E.campo('select', 'Sprite', cfg.alvo, v => { st.cfg.alvo = v; renderDir(); }, { lista: novos.map(k => [k, k + ' (' + Object.keys(spritesNovos()[k].anims || {}).length + ')']) }));
+      const lista = todos.map(k => [k, (spritesNovos()[k] ? '📥 ' : '') + k]);
+      gD.appendChild(E.campo('select', 'Sprite', cfg.alvo, v => { st.cfg.alvo = v; carregarAlvo(); renderDir(); }, { lista }));
     } else {
       gD.appendChild(E.campo('texto', 'Id do sprite', cfg.id, v => { st.cfg.id = E.idSeguro(v || ''); renderDir(); }, { placeholder: 'ex.: goku_gt', dica: 'Letras minúsculas, números e _' }));
     }
     const sug = NOMES_ANIM.slice();
-    if (cfg.destino === 'existente' && spritesNovos()[cfg.alvo]) Object.keys(spritesNovos()[cfg.alvo].anims || {}).forEach(a => sug.unshift(a));
-    gD.appendChild(E.campo('texto', 'Animação', cfg.anim, v => { st.cfg.anim = nomeAnim(v || ''); renderDir(); }, { placeholder: 'ex.: Parado', sugestoes: [...new Set(sug)] }));
-    if (cfg.destino === 'existente' && spritesNovos()[cfg.alvo] && (spritesNovos()[cfg.alvo].anims || {})[cfg.anim]) gD.appendChild(texto('p', 'es-dica imp-alerta', 'Já existe "' + cfg.anim + '" neste sprite: será substituída.'));
+    if (alvoSet) Object.keys(alvoSet.def.anims).forEach(a => sug.unshift(a));
+    gD.appendChild(E.campo('texto', 'Animação', cfg.anim, v => { st.cfg.anim = nomeAnim(v || ''); st.cfg.animFixa = true; renderDir(); }, { placeholder: 'ex.: Parado', sugestoes: [...new Set(sug)] }));
+    if (alvoSet && alvoSet.def.anims[cfg.anim]) gD.appendChild(texto('p', 'es-dica imp-alerta', 'Já existe "' + cfg.anim + '" neste sprite: será substituída.'));
     d.appendChild(gD);
     ui.salvar.disabled = !tem;
     d.scrollTop = rol;
+  }
+  // carrega o sprite de destino (para listar as animações dele) e redesenha o painel
+  function carregarAlvo() {
+    const id = st.cfg.alvo;
+    if (!id || FF.Assets.sprites[id]) return;
+    FF.Assets.loadSprite(id).then(() => { if (st.cfg.alvo === id) renderDir(); }).catch(() => null);
   }
   let tmCaixas = 0;
   function detectarCaixasDepois() { clearTimeout(tmCaixas); tmCaixas = setTimeout(() => { detectarCaixas(); }, 120); }
@@ -1161,86 +1159,6 @@
     cv.addEventListener('pointercancel', fim);
   }
 
-  // ---------------------------------------------------------------- lista de sprites importados
-  const abertos = new Set();
-  function renderSprites() {
-    const box = ui.sprites;
-    if (!box) return;
-    box.innerHTML = '';
-    const novos = spritesNovos();
-    const ids = Object.keys(novos).sort();
-    if (!ids.length) { box.appendChild(texto('div', 'es-vazio', 'Nenhum sprite importado ainda.')); return; }
-    ids.forEach(id => {
-      const def = novos[id];
-      const anims = Object.keys(def.anims || {});
-      const wrap = el('div', 'imp-spr');
-      const linha = el('div', 'es-item' + (st.cfg.destino === 'existente' && st.cfg.alvo === id ? ' sel' : ''));
-      const cv = document.createElement('canvas'); cv.width = 36; cv.height = 36;
-      linha.appendChild(cv);
-      linha.appendChild(texto('span', 'imp-spr-nome', id));
-      linha.appendChild(texto('small', '', anims.length + ' anim.'));
-      linha.onclick = () => { if (abertos.has(id)) abertos.delete(id); else abertos.add(id); renderSprites(); };
-      wrap.appendChild(linha);
-      FF.Assets.loadSprite(id).then(set => { E.miniatura(cv, set, anims[0], 0); }).catch(() => { cv.title = 'Imagem não encontrada neste aparelho'; });
-      if (abertos.has(id)) {
-        const det = el('div', 'imp-spr-det');
-        anims.forEach(a => {
-          const l = el('div', 'imp-spr-anim');
-          l.appendChild(texto('span', '', a + ' (' + def.anims[a].frames.length + ')'));
-          l.appendChild(E.botao('✏', () => editarDoSprite(id, a), 'Editar esta animação aqui (origem, tempo, quadros)'));
-          l.appendChild(E.botao('Aa', () => renomearAnim(id, a), 'Renomear animação'));
-          l.appendChild(E.botao('🗑', () => apagarAnim(id, a), 'Apagar animação', 'es-bt-perigo'));
-          det.appendChild(l);
-        });
-        const acoes = el('div', 'imp-linha');
-        acoes.appendChild(E.botao('➕ Animação', () => { st.cfg.destino = 'existente'; st.cfg.alvo = id; if (!st.lista.length && !st.folha) ui.input.click(); renderDir(); renderSprites(); E.aviso('Importe os quadros e salve: a animação entra em "' + id + '".'); }, 'Importar uma nova animação para este sprite'));
-        if (E.abas.find(x => x.id === 'sprites')) acoes.appendChild(E.botao('🎞', () => E.abrir('sprites'), 'Abrir na aba Sprites'));
-        acoes.appendChild(E.botao('🗑 Sprite', () => apagarSprite(id), 'Apagar o sprite inteiro', 'es-bt-perigo'));
-        det.appendChild(acoes);
-        wrap.appendChild(det);
-      }
-      box.appendChild(wrap);
-    });
-  }
-  async function editarDoSprite(id, anim) {
-    try {
-      const def = spritesNovos()[id];
-      const anims = quadrosDoSprite(def, await imagensDoSpriteNovo(def));
-      editarAnimacao(anims, anim, id);
-    } catch (e) { E.aviso('❌ ' + e.message, 'erro'); }
-  }
-  async function renomearAnim(id, a) {
-    const n = await E.perguntar('Renomear animação', 'Novo nome para "' + a + '" (golpes que usam o nome antigo precisam ser ajustados):', a);
-    if (n == null) return;
-    const nome = nomeAnim(n);
-    if (!nome || nome === a) return;
-    const def = E.copia(spritesNovos()[id]);
-    if (def.anims[nome]) return E.aviso('Já existe uma animação "' + nome + '".', 'erro');
-    const novo = {};
-    Object.keys(def.anims).forEach(k => { novo[k === a ? nome : k] = def.anims[k]; });   // mantém a ordem
-    def.anims = novo;
-    E.salvarNoJogo(['spritesNovos', id], def, '✏ Animação renomeada.');
-    FF.Assets.descarregarSprite(id);
-    renderSprites(); renderDir();
-  }
-  async function apagarAnim(id, a) {
-    const def = E.copia(spritesNovos()[id]);
-    if (Object.keys(def.anims).length <= 1) return apagarSprite(id);
-    if (!(await confirmar('Apagar animação', 'Apagar a animação "' + a + '" do sprite "' + id + '"?', 'Apagar'))) return;
-    delete def.anims[a];
-    E.salvarNoJogo(['spritesNovos', id], def, '🗑 Animação apagada.');
-    FF.Assets.descarregarSprite(id);
-    renderSprites(); renderDir();
-  }
-  async function apagarSprite(id) {
-    if (!(await confirmar('Apagar sprite', 'Apagar o sprite importado "' + id + '" com todas as animações? Personagens e golpes que usam ele vão ficar sem imagem.', 'Apagar'))) return;
-    E.salvarNoJogo(['spritesNovos', id], null, '🗑 Sprite apagado.');
-    FF.Assets.descarregarSprite(id);
-    if (st.cfg.alvo === id) { st.cfg.alvo = ''; st.cfg.destino = 'novo'; }
-    abertos.delete(id);
-    renderSprites(); renderDir();
-  }
-
   function renderPacote() {
     const box = ui.pacote;
     if (!box) return;
@@ -1264,15 +1182,27 @@
     box.appendChild(g);
   }
 
-  // ---------------------------------------------------------------- registro da aba
+  // ---------------------------------------------------------------- painel (aberto pela aba Sprites)
   aba = {
-    id: 'importar', nome: 'Importar', icone: '📥',
+    aberto: false,
+    aoSalvar: null, aoFechar: null,
     montar(raiz) {
       montar(raiz);
       // Goku para comparação de tamanho (não bloqueia a abertura)
       FF.Assets.loadSprite('gokubase').catch(() => null);
     },
-    mostrar() { renderSprites(); renderDir(); if (st.folha) st.folha.sujo = true; },
+    // opts: destino ('novo' | 'existente'), alvo (sprite), anim (nome), arquivos (File[] para importar já)
+    abrir(opts = {}) {
+      aba.aberto = true;
+      if (opts.alvo && todosSprites().includes(opts.alvo)) st.cfg.alvo = opts.alvo;
+      if (opts.destino) st.cfg.destino = opts.destino === 'existente' && st.cfg.alvo ? 'existente' : 'novo';
+      if (opts.anim) { st.cfg.anim = nomeAnim(opts.anim); st.cfg.animFixa = opts.destino === 'existente'; }
+      if (st.cfg.destino === 'existente') carregarAlvo();
+      renderTudo();
+      if (opts.arquivos && opts.arquivos.length) importar(opts.arquivos);
+    },
+    fechou() { aba.aberto = false; },
+    mostrar() { renderDir(); if (st.folha) st.folha.sujo = true; },
     quadro(dt) {
       if (st.vista === 'anim') {
         if (st.tocando) st.t += dt; else st.t += dt * 0.0001;
@@ -1293,8 +1223,8 @@
       return false;
     },
     historico: null,
-    // para testes / outras abas
-    _st: st, importar, salvar,
+    // para a aba Sprites e os testes
+    _st: st, importar, salvar, quadrosDoSprite, gravarSprite,
   };
   aba.historico = new E.Historico(
     () => ({ cfg: st.cfg, lista: st.lista, sel: st.sel }),
@@ -1308,6 +1238,5 @@
       reprocessar(true);
       renderTudo();
     });
-  E.registrarAba(aba);
   FF.EstudioImportar = aba;
 })();

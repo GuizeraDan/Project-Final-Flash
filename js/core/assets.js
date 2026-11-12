@@ -51,6 +51,8 @@ FF.Assets = {
     const def = JSON.parse(JSON.stringify(novo || await this.loadJSON('data/sprites/' + id + '.json')));
     const info = FF.Edicoes && (FF.Edicoes.dados().spritesInfo || {})[id];
     if (info && info.escala) { def._escalaOrig = def.escala; def.escala = info.escala; }
+    // imagens extras (quadros trazidos do computador para um sprite do jogo, no Estúdio)
+    if (info && Array.isArray(info.atlas) && info.atlas.length) { def._atlasBase = def.atlases.length; def.atlases = def.atlases.concat(info.atlas); }
     // imagens importadas (assets/img/usr/): usa a cópia do aparelho enquanto existir
     const caminhos = await Promise.all(def.atlases.map(p => (FF.ImagensUsr && /assets\/img\/usr\//.test(p)) ? FF.ImagensUsr.url(p).catch(() => p) : p));
     const imgs = await Promise.all(caminhos.map(p => this.loadImage(p)));

@@ -123,3 +123,20 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 **Pendente:** aba de batalhas/estágios; IA por forma; edição de pixels; Editor antigo não edita golpes `linha`; ver lista em `docs/ESTUDIO.md`.
 - Estúdio: avisos de "mudanças não salvas" agora têm 3 opções (💾 Salvar e trocar · Trocar sem salvar · Ficar), em Golpes, Sprites e nos botões de testar; todos os confirm() do navegador viraram janelas próprias (`FF.Estudio.escolha`/`confirmar`, botão "Não" em vez de "Cancelar").
 - Estúdio/Sprites: apagar animações (🗑 no topo e em cada linha). Criada pelo usuário → some (`FF.Mods.restaurar`); de sprite importado → sai de `spritesNovos[id].anims`; do jogo original → `sprites[id][anim] = {"apagada": true}` (`FF.Mods.apagar`, aplicado em `Mods.aplicar`), listada em "Apagadas" com "Trazer de volta". O aviso lista os golpes que usam a animação. Avisos do Estúdio foram para baixo da tela.
+
+## 12/11/2026 — Importar dentro da aba Sprites
+**Pedido:** importação direto no menu de Sprites (escolher imagens do computador, exportar a sheet, montar animações, apagar sprites, mudar tamanho).
+
+**Feito:**
+- A aba **Importar** saiu do topo: o importador (`js/estudio/importar.js`, agora `FF.EstudioImportar.montar/abrir`) abre por cima da aba Sprites com **📂 Importar**, ao **soltar arquivos** na aba ou **colar** (Ctrl+V). Destino: sprite novo ou **animação de qualquer sprite** (do jogo também). Ao salvar, fecha e abre o sprite/animação na aba Sprites. `?aba=importar` antigo cai na aba Sprites com o importador aberto.
+- **Imagens do computador direto na animação** (`js/estudio/sprites_arq.js`, `FF.EstudioArq`): “📂 Do computador” na tira e em “＋ Inserir quadros…”, e “＋ Nova → 📂 Do computador…”. Janela com prévia: fundo automático/remover/manter, cortar bordas, origem pés/centro, escala, separar sprite sheet. As imagens vão para um **atlas extra** (`assets/img/usr/<id>__<marca>.png`): sprite importado → `spritesNovos[id].atlases`; sprite do jogo → `spritesInfo[id].atlas` (somado em `FF.Assets.loadSprite`, campo `_atlasBase`).
+- **Tamanho:** grupo “📐 Tamanho e sprite” aberto por padrão: escala no jogo + **Redimensionar pixels** (todos/escolhidos, 25–400%, origem e disparo acompanham). Escala grava só `spritesInfo[id].escala` (antes sobrescrevia o objeto inteiro).
+- **Sprites importados:** 📥 na lista, 🗑 para apagar o sprite, **Aa** renomear animação, **🧹 Juntar imagens** (atlas extras → 1). Animações de sprite importado agora salvam direto em `spritesNovos[id].anims` (antes iam para `sprites[id]` como “alteração”).
+- **Bug corrigido:** o sprite `bills_20261112t114850z_1_001` ficou sem animações porque “Salvar como nova” (Parado2) ia para `sprites[...]` e a checagem de “última animação” só contava as do sprite importado; apagando Parado e depois Parado2 sobrou um sprite vazio. Agora não deixa apagar a última (oferece apagar o sprite) e um sprite vazio mostra “Trazer do computador / Nova vazia / Apagar sprite”. O Parado (78 quadros) dele ainda está no histórico do Git (commit 2c60b7b) se o usuário quiser de volta.
+- **Exportar sprite inteiro** (todas as animações numa sheet PNG + JSON, .zip).
+- Projeto: `spritesInfo` com atlas extras só deixa voltar a escala (as imagens ficam porque animações usam).
+- `sw.js` cache v3 (arquivo novo).
+
+**Testes:** `tools/testes/estudio_importar.js` (adaptado ao fluxo novo, 38 verificações), `tools/testes/estudio_sprites.js` (novo: folha de fundo branco → animação nova no gokubase com atlas extra; PNGs soltos no meio da animação de um sprite importado; desfazer; redimensionar 200%; juntar imagens; exportar sprite inteiro; última animação; sprite vazio; soltar arquivo), `estudio.js`, `codecs.js`, `batalha.js --plano 1,2,4,5,1`.
+
+**Pendente:** “juntar imagens” para sprites do jogo; renomear não atualiza golpes que usam o nome antigo.

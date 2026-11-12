@@ -11,8 +11,7 @@ O Estúdio é pensado para PC (tela cheia), mas funciona no celular deitado. O E
 | Aba | Para quê |
 |---|---|
 | 🎬 **Golpes e cenas** | Linha do tempo + palco ao vivo + propriedades de qualquer golpe/habilidade |
-| 🖼 **Sprites** | Editar quadros de qualquer animação (efeitos também), escala do sprite, exportar |
-| 📥 **Importar** | Trazer animações de qualquer arquivo (imagem, GIF, vídeo, ZIP, sprite sheet…) |
+| 🖼 **Sprites** | Importar do computador, editar quadros de qualquer animação (efeitos também), criar/renomear/apagar animações e sprites, tamanho, exportar |
 | 🧑 **Personagens** | Atributos, formas, ordem dos golpes, buffs/aura, IA, criar personagem novo |
 | 📦 **Projeto** | Tudo o que foi mudado, voltar ao original, exportar/importar o projeto inteiro |
 
@@ -57,22 +56,40 @@ automaticamente para a linha do tempo. Salvar substitui o golpe no jogo todo; **
 
 ## Sprites
 
-Escolha o sprite e a animação. Na tira de baixo: apagar, duplicar, mover (arrastar), inverter, inserir
-quadros de outras animações do mesmo sprite, "＋ Nova" animação. **🗑 Apagar** (no topo ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; de sprites importados saem do sprite; as do jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de volta". O aviso mostra quais golpes usam a animação. No palco: **✥ Origem** (arraste o
-desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde saem os projéteis).
-À direita: fps, loop, "repetir do quadro", duração de cada quadro, escala geral do sprite.
-**📤 Exportar**: sprite sheet PNG + JSON, sequência de PNGs (ZIP), GIF animado, WebM, JSON do jogo.
+Escolha o sprite e a animação. 📥 = sprite importado por você.
+
+**Trazer do computador** (tudo dentro desta aba):
+- **📂 Importar** (no topo da lista de sprites), **soltar arquivos** em qualquer lugar da aba ou **colar** (Ctrl+V)
+  abre o importador por cima da aba: PNG, JPG, WebP/GIF/APNG animados, BMP, SVG, AVIF, sprite sheet, várias
+  imagens (cada uma um quadro), vídeo MP4/WebM (escolha o fps), ZIP de imagens, `.ffpacote.json` antigo, JSON de
+  sprite + PNG. Sprite sheet: separar quadros automático ou por grade. Depois: remover fundo (automático ou
+  conta-gotas, tolerância), cortar bordas, escala, origem nos pés (lutador) ou no centro (efeito), fps, ajuste fino
+  por quadro. Salve como **sprite novo** ou como **animação de um sprite que já existe** (do jogo ou importado).
+  Ao salvar, o sprite abre aqui na aba. **← Voltar aos sprites** (ou Esc) fecha o importador sem perder o trabalho.
+- **📂 Do computador** (na tira de quadros, ou em “＋ Inserir quadros…”): as imagens entram na animação aberta,
+  depois do quadro escolhido. Uma janela mostra os quadros e deixa escolher fundo (automático/remover/manter),
+  cortar bordas, origem, escala e separar sprite sheet. “🧰 Mais opções” leva os mesmos arquivos ao importador.
+- **＋ Nova → 📂 Do computador…**: cria a animação já com as imagens escolhidas.
+
+As imagens novas vão para um atlas extra do sprite (em sprites do jogo, `spritesInfo[id].atlas`), então dá para
+pôr quadros novos até nos sprites originais. Em sprites importados, **🧹 Juntar imagens** junta tudo num atlas só.
+
+**Editar:** na tira de baixo: apagar, duplicar, mover (arrastar), inverter, inserir quadros de outras animações do
+mesmo sprite, "＋ Nova" animação. **Aa** renomeia (suas animações e as de sprites importados). **🗑 Apagar** (no topo
+ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; de
+sprites importados saem do sprite; as do jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de
+volta". O aviso mostra quais golpes usam a animação. Um sprite importado não fica sem animações: apagar a última
+pergunta se quer apagar o sprite. **🗑** ao lado de um sprite importado (ou em *Tamanho e sprite*) apaga o sprite.
+No palco: **✥ Origem** (arraste o desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde saem os projéteis).
+À direita: fps, loop, "repetir do quadro", duração de cada quadro e **📐 Tamanho e sprite**: escala no jogo (não
+mexe nos pixels) e **Redimensionar** os pixels dos quadros (todos ou os escolhidos, 25% a 400%; origem e disparo
+acompanham).
+
+**📤 Exportar** (animação): sprite sheet PNG + JSON, sequência de PNGs (ZIP), GIF animado, WebM, JSON do jogo — e
+**🗃 Sprite inteiro** (todas as animações numa sprite sheet só, PNG + JSON). Também em *Tamanho e sprite →
+📤 Exportar sprite inteiro*.
 Observação: abrindo pelo arquivo (`file://`) o navegador não deixa ler os pixels dos sprites do jogo
-para exportar imagens — use o site do GitHub Pages.
-
-## Importar
-
-Solte arquivos (ou cole com Ctrl+V): PNG, JPG, WebP/GIF/APNG animados, BMP, SVG, AVIF, sprite sheet,
-várias imagens (cada uma um quadro), vídeo MP4/WebM (escolha o fps), ZIP de imagens, `.ffpacote.json`
-antigo, JSON de sprite + PNG. Sprite sheet: separar quadros automático ou por grade. Depois: remover fundo
-(automático ou conta-gotas, tolerância), cortar bordas, escala, origem nos pés (lutador) ou no centro
-(efeito), fps, ajuste fino por quadro. Salve como sprite novo (ou como mais uma animação de um sprite
-importado). O sprite novo aparece na aba Sprites, como efeito/camada nos golpes e pode virar personagem.
+para exportar ou redimensionar — use o site do GitHub Pages.
 
 ## Personagens
 
@@ -84,7 +101,7 @@ cria um personagem a partir de qualquer sprite (inclusive importado): ele aparec
 
 Botão **☁** no topo (verde = sincronizado, laranja = só neste aparelho, vermelho = erro). Cole a chave
 do GitHub uma vez por aparelho (a mesma do Editor). Tudo vai para `data/edicoes.js` e as imagens
-importadas para `assets/img/usr/`. Sem chave/internet, fica guardado no aparelho e é enviado depois.
+importadas (sprites novos e atlas extras) para `assets/img/usr/`. Sem chave/internet, fica guardado no aparelho e é enviado depois.
 A aba **Projeto** exporta/importa tudo (inclusive imagens) num único JSON.
 
 ## Pendente / limitações conhecidas
@@ -94,6 +111,8 @@ A aba **Projeto** exporta/importa tudo (inclusive imagens) num único JSON.
 - No celular: arrastar quadros na tira do Sprites não reordena (use ◀ Mover ▶); o palco fica pequeno.
 - Personagens: IA por forma, `reverter` e `vitoria` só em JSON; prévia sem sons.
 - Importar: renomear uma animação não atualiza golpes que usam o nome antigo; MP4/AVIF dependem do navegador.
+- Sprites: cada vez que imagens do computador entram num sprite, nasce um atlas extra (use 🧹 Juntar imagens nos
+  importados); sprites do jogo não têm “juntar” (os atlas originais ficam como estão).
 - O Editor antigo não sabe editar golpes salvos pelo Estúdio (passo `linha`); eles funcionam no jogo,
   mas edite-os no Estúdio.
 - Batalhas/estágios (posições, escala, ajustes de vida) ainda não têm aba.
