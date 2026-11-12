@@ -134,7 +134,9 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
   - marca na linha do tempo os quadros onde cada golpe tem acerto, som ou voz;
   - aba **Sons** para ouvir todos os áudios.
   - Atalhos: Espaço toca/pausa, ←/→ mudam o quadro, ↑/↓ mudam a animação. "Copiar referência" gera um texto pronto para relatar um problema.
-- **Editor de cenas** (`index.html?editor=1&batalha=<id>`, ou "🎬 Editor de cenas" na tela de título):
+- **Editor** (`index.html?editor=1&batalha=<id>`, ou "🎬 Editor" na tela de título) — muda o jogo original:
+  - abra um golpe existente, altere e use "💾 Salvar no jogo" ("↺ Original" desfaz); golpe novo vira habilidade ⭐;
+  - com "☁ Conectar GitHub" (uma chave por aparelho), as mudanças são gravadas no repositório e valem em todos os aparelhos;
   - sandbox para montar golpes: escolha quem solta e o alvo e monte o roteiro passo a passo (animações do lutador, avançar, teleporte, espera);
   - em cada quadro dá para prender efeitos visuais, sons, vozes, acertos, projéteis, tremor e flash;
   - 🎯 alinha um efeito clicando na tela; ▶ testa na batalha real; dá para abrir um golpe existente para modificar;
