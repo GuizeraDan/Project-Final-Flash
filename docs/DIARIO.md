@@ -190,3 +190,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Música do menu: `assets/audio/menu_chala.ogg` (arquivo enviado pelo usuário, convertido de MP3 para OGG, 2,6 MB). `FF.Audio.musicaMenu()` (nome em `FF.Audio.MENU`) toca no 1º toque da tela de título e na volta direta para a seleção; continua nos submenus e na Batalha Livre e é trocada pela música da luta. `FF.Audio.music` não reinicia a mesma música e, se o navegador bloquear o som, tenta de novo no primeiro toque/tecla.
 - Música do menu também na tela "Toque ou aperte Enter": tenta tocar ao abrir a página; se o navegador bloquear som antes de um gesto, começa no primeiro toque/tecla (sem reiniciar nem tocar em dobro).
 
+- Nome do jogo: **Project Final Flash** (arte do título editada: "PROJECT" acima do logo e "SAGA SAIYAJIN" removido; título da página e manifest). Novo Jogo agora escolhe a saga primeiro (`FF.NovoJogo.SAGAS`: Saga Saiyajin + 3 vagas "🚧 Em produção"); dentro da saga, os capítulos, e "Voltar" volta para as sagas.
+

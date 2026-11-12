@@ -260,11 +260,47 @@ FF.Save = {
 
 // ---------- Novo Jogo: escolha do capítulo (os já liberados) ----------
 FF.NovoJogo = {
+  // sagas do modo história (só a Saiyajin existe por enquanto; as outras aparecem como "Em produção")
+  SAGAS: [{ id: 'saiyajin', nome: 'Saga Saiyajin', arquivo: 'data/historia.json' }, null, null, null],
+
+  // 1º passo: escolher a saga
   async abrir(mostrar, ir) {
-    const hist = await FF.Assets.loadJSON('data/historia.json');
+    this.saga = null;
+    this._mostrar = mostrar; this._ir = ir;
+    const save = FF.Save.get();
+    const box = document.getElementById('capitulos');
+    const dica = document.querySelector('#novojogo .sub-dica');
+    box.innerHTML = '';
+    dica.textContent = 'Escolha a saga';
+    for (const sg of this.SAGAS) {
+      const b = document.createElement('button');
+      b.className = 'cap-bt' + (sg ? '' : ' em-producao');
+      b.innerHTML = '<span><b></b><i></i></span>';
+      if (sg) {
+        const hist = await FF.Assets.loadJSON(sg.arquivo);
+        const n = hist.capitulos.length, feitos = Math.min(n, save.concluidos || 0);
+        b.querySelector('b').textContent = sg.nome;
+        b.querySelector('i').textContent = n + ' capítulos' + (feitos ? ' · ' + feitos + ' concluído(s)' : '');
+        if (feitos >= n) b.classList.add('feito');
+        b.onclick = (e) => { e.stopPropagation(); FF.Audio.play('decide_charasel', 0.6); this.capitulos(sg, mostrar, ir); };
+      } else {
+        b.querySelector('b').textContent = '🚧 Em produção';
+        b.querySelector('i').textContent = 'Nova saga em breve';
+        b.disabled = true;
+      }
+      b.addEventListener('mouseenter', () => { if (!b.disabled) b.focus({ preventScroll: true }); });
+      box.appendChild(b);
+    }
+    mostrar('novojogo');
+  },
+
+  // 2º passo: capítulos da saga escolhida
+  async capitulos(sg, mostrar, ir) {
+    const hist = await FF.Assets.loadJSON(sg.arquivo);
     const save = FF.Save.get();
     const liberado = Math.min(hist.capitulos.length, (save.concluidos || 0) + 1);
     const box = document.getElementById('capitulos');
+    document.querySelector('#novojogo .sub-dica').textContent = sg.nome + ' · escolha por onde começar';
     box.innerHTML = '';
     hist.capitulos.forEach(c => {
       const b = document.createElement('button');
@@ -285,6 +321,7 @@ FF.NovoJogo = {
       };
       box.appendChild(b);
     });
+    this.saga = sg;   // "Voltar" volta para a escolha da saga
     mostrar('novojogo');
   },
 };
@@ -589,6 +626,7 @@ window.addEventListener('load', () => {
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
+    if (ac === 'voltar' && intro.className === 'novojogo' && FF.NovoJogo.saga) return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {
       if (confirm('Apagar o progresso (capítulos, AP e treinamento)?')) { const v = FF.Save.get().volumes; FF.Save.apagar(); if (v) FF.Save.set({ volumes: v }); }

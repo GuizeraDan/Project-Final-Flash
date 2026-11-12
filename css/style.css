@@ -406,3 +406,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .cmd-golpes button.sparking { border-color: #3fc8ff; background: linear-gradient(90deg, #0e3060, #1a5a90 60%, #0e3060); }
 .cmd-golpes button.supremo.sel, .cmd-golpes button.sparking.sel { border-color: #ffd84a; }
 .cmd-desc { border-top-color: rgba(201,149,44,0.5); }
+
+/* Novo Jogo: sagas ainda não feitas */
+.cap-bt.em-producao { opacity: 0.55; }
+.cap-bt.em-producao b { color: #ffcf6b; }

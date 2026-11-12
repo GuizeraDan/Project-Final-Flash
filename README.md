@@ -1,6 +1,6 @@
-# Final Flash: Saga Saiyajin
+# Project Final Flash
 
-> **Modo história:** na tela de título escolha *Novo Jogo* (4 capítulos: Raditz → Saibamen → Nappa → Vegeta, com diálogos entre as lutas). *Continuar* retoma o capítulo salvo no navegador; *Batalha Livre* abre qualquer luta; *Treinamento (AP)* gasta os pontos ganhos nas vitórias; *Opções* ajusta os volumes. Atalhos: `?historia=N` e `?batalha=saiyajin_0N` na URL.
+> **Modo história:** na tela de título escolha *Novo Jogo* → *Saga Saiyajin* (as outras sagas aparecem como "Em produção"; 4 capítulos: Raditz → Saibamen → Nappa → Vegeta, com diálogos entre as lutas). *Continuar* retoma o capítulo salvo no navegador; *Batalha Livre* abre qualquer luta; *Treinamento (AP)* gasta os pontos ganhos nas vitórias; *Opções* ajusta os volumes. Atalhos: `?historia=N` e `?batalha=saiyajin_0N` na URL.
 
 Batalha por turnos em HTML/JavaScript puro que reaproveita os sprites e áudios do Z Legends 3. Não usa o editor do Construct.
 
