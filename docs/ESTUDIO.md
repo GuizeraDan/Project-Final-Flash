@@ -58,7 +58,7 @@ automaticamente para a linha do tempo. Salvar substitui o golpe no jogo todo; **
 ## Sprites
 
 Escolha o sprite e a animação. Na tira de baixo: apagar, duplicar, mover (arrastar), inverter, inserir
-quadros de outras animações do mesmo sprite, "＋ Nova" animação. No palco: **✥ Origem** (arraste o
+quadros de outras animações do mesmo sprite, "＋ Nova" animação. **🗑 Apagar** (no topo ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; de sprites importados saem do sprite; as do jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de volta". O aviso mostra quais golpes usam a animação. No palco: **✥ Origem** (arraste o
 desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde saem os projéteis).
 À direita: fps, loop, "repetir do quadro", duração de cada quadro, escala geral do sprite.
 **📤 Exportar**: sprite sheet PNG + JSON, sequência de PNGs (ZIP), GIF animado, WebM, JSON do jogo.

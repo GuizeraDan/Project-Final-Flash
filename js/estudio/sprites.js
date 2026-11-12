@@ -101,7 +101,8 @@
     ui.btComo = E.botao('💾 Salvar como nova…', () => salvarComo(), 'Grava uma cópia com outro nome');
     ui.btOrig = E.botao('↺ Original', () => original(), 'Volta ao original do jogo / descarta as mudanças não salvas');
     ui.btExp = E.botao('📤 Exportar', () => exportar(), 'PNG sprite sheet, sequência de PNGs, GIF, WebM ou JSON');
-    barra.append(ui.titulo, el('span', 'ess-esp'), ui.btSalvar, ui.btComo, ui.btOrig, el('span', 'sep'), ui.btExp);
+    ui.btApagar = E.botao('🗑 Apagar', () => apagarAnim(st.nome), 'Apaga esta animação do jogo (dá para trazer de volta em "Apagadas", no fim da lista)', 'es-bt-perigo');
+    barra.append(ui.titulo, el('span', 'ess-esp'), ui.btSalvar, ui.btComo, ui.btOrig, ui.btApagar, el('span', 'sep'), ui.btExp);
 
     const opcoes = el('div', 'es-barra ess-opcoes');
     const selFundo = E.campo('select', 'Fundo', st.fundo, (v) => { st.fundo = v; }, { lista: FUNDOS });
@@ -255,9 +256,82 @@
       else if (FF.Mods.criada(st.id, n)) it.appendChild(el('span', 'tag', '★'));
       if (!novoAqui && FF.Mods.alterada(st.id, n)) { const t = el('span', 'tag alt', '✎'); t.title = 'Alterada por você'; it.appendChild(t); }
       it.appendChild(el('small', null, String(a.frames.length)));
+      const x = E.botao('🗑', (e) => { e.stopPropagation(); apagarAnim(n); }, 'Apagar esta animação do jogo', 'ess-anim-apagar');
+      it.appendChild(x);
       it.onclick = () => abrirAnim(n);
       ui.anims.appendChild(it);
     });
+    // animações do jogo que você apagou: dá para trazer de volta
+    const ap = FF.Mods.apagadas(st.id);
+    if (ap.length) {
+      ui.anims.appendChild(el('div', 'es-sub', '🗑 Apagadas (' + ap.length + ')'));
+      ap.forEach(n => {
+        const it = el('div', 'es-item ess-anim ess-apagada');
+        const nm = el('span', 'ess-anim-nome'); nm.textContent = n; nm.title = n;
+        it.appendChild(nm);
+        it.appendChild(E.botao('↺ Trazer de volta', (e) => { e.stopPropagation(); restaurarApagada(n); }, 'Volta a animação original do jogo'));
+        ui.anims.appendChild(it);
+      });
+    }
+  }
+
+  // golpes (do jogo e seus) que usam uma animação deste sprite
+  async function usosDaAnim(nome) {
+    const usos = [];
+    for (const pid of FF.Assets.listaPersonagens()) {
+      let d; try { d = await FF.Assets.loadCharacter(pid); } catch (e) { continue; }
+      Object.values(d.formas || {}).forEach(f => {
+        if (f.sprite !== st.id) return;
+        const mapa = f.anims || {};
+        if (Object.values(mapa).includes(nome)) usos.push((d.nome || pid) + ': animação básica');
+        (f.golpes || []).forEach(gid => {
+          const g = d.golpes[gid]; if (!g) return;
+          const j = JSON.stringify(g.roteiro || []);
+          if (j.includes('"' + nome + '"')) usos.push((d.nome || pid) + ': ' + (g.nome || gid));
+        });
+      });
+    }
+    return [...new Set(usos)];
+  }
+
+  async function apagarAnim(nome) {
+    if (!nome) return;
+    const def = st.set.def;
+    // animação nova ainda não salva: só descarta
+    if (st.novo && nome === st.nome && !def.anims[nome]) {
+      if (!(await confirmar('Apagar animação', 'Descartar a animação nova "' + nome + '" (ainda não salva)?', '🗑 Apagar', true))) return;
+      E.rascunho.gravar(RASC, null); st.novo = false; st.anim = null;
+      return abrirAnim(Object.keys(def.anims)[0], { forcar: true });
+    }
+    const novoSprite = (FF.Edicoes.dados().spritesNovos || {})[st.id];
+    const doImportado = novoSprite && novoSprite.anims && novoSprite.anims[nome];
+    const criada = FF.Mods.criada(st.id, nome);
+    if (doImportado && Object.keys(def.anims).length <= 1) return E.aviso('É a única animação deste sprite. Para apagar o sprite inteiro, use a aba Importar.', 'erro');
+    const usos = await usosDaAnim(nome);
+    const txt = 'Apagar a animação "' + nome + '" de "' + st.id + '" no jogo (em todos os aparelhos)?' +
+      (usos.length ? '\n\n⚠ Ela é usada em: ' + usos.slice(0, 6).join(' · ') + (usos.length > 6 ? '…' : '') + '. Esses golpes vão ficar sem essa animação.' : '') +
+      (!criada && !doImportado ? '\n\nÉ uma animação do jogo original: ela fica em "Apagadas" e dá para trazer de volta.' : '');
+    if (!(await confirmar('🗑 Apagar animação', txt, '🗑 Apagar', true))) return;
+    if (criada) FF.Mods.restaurar(st.id, nome);
+    else if (doImportado) {
+      const d = JSON.parse(JSON.stringify(novoSprite));
+      delete d.anims[nome];
+      if (FF.Mods.alterada(st.id, nome)) FF.Mods.restaurar(st.id, nome);
+      E.salvarNoJogo(['spritesNovos', st.id], d, '🗑 Animação "' + nome + '" apagada.');
+      delete def.anims[nome];
+      if (def._orig) delete def._orig[nome];
+    } else FF.Mods.apagar(st.id, nome);
+    if (!doImportado) E.aviso('🗑 Animação "' + nome + '" apagada.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+    E.renderSync();
+    if (nome === st.nome) { E.rascunho.gravar(RASC, null); st.anim = null; st.novo = false; renderSprites(); return abrirAnim(Object.keys(def.anims)[0], { forcar: true }); }
+    renderSprites(); renderAnims();
+  }
+
+  function restaurarApagada(nome) {
+    FF.Mods.restaurar(st.id, nome);
+    E.aviso('↺ "' + nome + '" voltou.' + (FF.Edicoes.conectado() ? ' Enviando…' : ''), 'ok');
+    E.renderSync();
+    renderSprites(); renderAnims();
   }
 
   async function abrirAnim(nome, opts = {}) {
@@ -295,6 +369,7 @@
     if (d) ui.titulo.append(el('span', 'ess-sujo', '● não salvo'));
     ui.btSalvar.disabled = !d || !frames().length;
     ui.btOrig.disabled = !d && !FF.Mods.alterada(st.id, st.nome);
+    if (ui.btApagar) ui.btApagar.disabled = !st.nome;
   }
   function renderModos() { for (const [m, b] of Object.entries(ui.modos)) b.classList.toggle('sel', m === st.modo); ui.palcoWrap.dataset.modo = st.modo; }
   function renderCtr() {

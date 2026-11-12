@@ -122,3 +122,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 **Pendente:** aba de batalhas/estágios; IA por forma; edição de pixels; Editor antigo não edita golpes `linha`; ver lista em `docs/ESTUDIO.md`.
 - Estúdio: avisos de "mudanças não salvas" agora têm 3 opções (💾 Salvar e trocar · Trocar sem salvar · Ficar), em Golpes, Sprites e nos botões de testar; todos os confirm() do navegador viraram janelas próprias (`FF.Estudio.escolha`/`confirmar`, botão "Não" em vez de "Cancelar").
+- Estúdio/Sprites: apagar animações (🗑 no topo e em cada linha). Criada pelo usuário → some (`FF.Mods.restaurar`); de sprite importado → sai de `spritesNovos[id].anims`; do jogo original → `sprites[id][anim] = {"apagada": true}` (`FF.Mods.apagar`, aplicado em `Mods.aplicar`), listada em "Apagadas" com "Trazer de volta". O aviso lista os golpes que usam a animação. Avisos do Estúdio foram para baixo da tela.

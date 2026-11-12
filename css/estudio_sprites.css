@@ -95,3 +95,9 @@
   .ess-ctr > button, .ess-tira-barra > button { min-height: 32px; }
   .ess-q { touch-action: pan-x; }
 }
+.ess-conf p { white-space: pre-line; }
+.ess-anim-apagar { padding: 0 4px; font-size: 11px; opacity: 0.55; background: transparent; border-color: transparent; }
+.ess-anim:hover .ess-anim-apagar, .ess-anim.sel .ess-anim-apagar { opacity: 1; border-color: #a33; }
+.ess-apagada { opacity: 0.7; cursor: default; }
+.ess-apagada .ess-anim-nome { text-decoration: line-through; }
+.ess-apagada button { font-size: 11px; padding: 1px 6px; }

@@ -13,7 +13,8 @@ FF.Mods = {
     set.def._orig = set.def._orig || {};
     for (const [nome, a] of Object.entries(m)) {
       if (!(nome in set.def._orig)) set.def._orig[nome] = set.def.anims[nome] || null;
-      set.def.anims[nome] = JSON.parse(JSON.stringify(a));
+      if (a && a.apagada) delete set.def.anims[nome];          // apagada pelo usuário (Estúdio)
+      else set.def.anims[nome] = JSON.parse(JSON.stringify(a));
     }
   },
 
@@ -34,6 +35,14 @@ FF.Mods = {
       delete set.def._orig[nome];
     }
   },
+
+  // apaga uma animação do jogo (fica marcada {"apagada": true}; "restaurar" traz de volta)
+  apagar(id, nome) {
+    FF.Edicoes.set(['sprites', id, nome], { apagada: true });
+    const set = FF.Assets.sprites[id];
+    if (set) this.aplicar(id, set);
+  },
+  apagadas(id) { const m = this.ler()[id] || {}; return Object.keys(m).filter(n => m[n] && m[n].apagada); },
 
   alterada(id, nome) { const m = this.ler()[id]; return !!(m && m[nome]); },
   criada(id, nome) { const set = FF.Assets.sprites[id]; return !!(set && set.def._orig && nome in set.def._orig && !set.def._orig[nome]); },
