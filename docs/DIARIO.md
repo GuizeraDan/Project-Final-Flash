@@ -152,3 +152,14 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Testado: batalha temporária Bills × Raditz (`--plano 5,2,3,1,4,3,2,1 --rage 100`, luta terminou, sem erros; fotos conferidas), `tools/testes/estudio_sprites.js` (reescrito), `estudio.js`, `batalha.js --plano 1,2,4,5,1`.
 
 **Observação:** nas edições do usuário, o sprite `cenarios_preview` tem a animação original `cenarios` apagada e duas animações de teste (`bills`, `billsparadao`) com atlas extra — sobra das tentativas no importador. Perguntar se pode limpar/restaurar.
+
+## 12/11/2026 — Editor de cenas removido; melhorias no Estúdio
+**Pedido:** tirar o Editor (o Estúdio já faz tudo) e ver o que melhorar no Estúdio.
+
+**Feito:**
+- Removidos `js/ferramentas/editor.js`, `editor_cena.js`, `previa.js` (≈2.200 linhas). Menu ⚙ Ferramentas sem "Editor"; endereços antigos `index.html?editor=1…` redirecionam para `estudio.html?aba=golpes` (com `&hab=` quando havia). Batalha Livre → Habilidades: "＋ Criar no Estúdio" abre `estudio.html?aba=golpes&novo=1&personagem=<1º herói>&alvo=<1º inimigo>`; ✏ abre a habilidade no Estúdio. Visualizador: link "Editor" e "➕ Enviar para o editor" (e os ➕ dos sons) saíram; novo "🎬 Editar no Estúdio" abre a animação na aba Sprites. Textos de mensagens/comentários "Editor" → "Estúdio" (inclusive a mensagem dos commits do ☁). `sw.js` v5. README, ESTUDIO.md e CLAUDE.md atualizados (links do fim de cada pedido agora: jogo, visualizador, Estúdio).
+- **Estúdio — bug:** abrir a aba Golpes com um personagem sem "kamehameha" (ex.: Bills) deixava tudo vazio ("Golpe não encontrado"). Agora abre o primeiro golpe da forma (`abrirPrimeiro`). URL aceita `personagem`, `alvo` e `novo=1`.
+- **Estúdio — melhorias:** lista de golpes mostra "fúria" nos supremos e "grátis"/vazio em vez de "0 ki"; ações da trilha Ações com campos próprios (ki, buff, tirar buff, forma, atordoar, curar, **criar objeto** com tamanho inicial/final/tempo/posição e lista de desenhos, **lançar objeto** com tempo/tremor/flash/som e resumo dos acertos); Personagens → Formas ganhou **Pose de vitória** visual (passos com animação, duração, voz/som, ↑, ✕, ＋ Passo, ▶ Ver) — antes só em JSON; linha do tempo com **▤ Compacto** (trilhas de 20 px, lembrado no aparelho).
+- Testes: `tools/testes/estudio_melhorias.js` (novo), `estudio.js`, `estudio_sprites.js`, `batalha.js --plano 1,2,4,5,1`.
+
+**Ideias que ficaram para depois (não feitas):** aba de batalhas/estágios; IA por forma e `reverter` com campos; prévia de Personagens com som; inserir quadros de outro sprite na aba Sprites; renomear animação atualizando os golpes que usam o nome.

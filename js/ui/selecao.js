@@ -64,10 +64,9 @@ FF.Selecao = {
     el.querySelector('[data-sel="habilidades"]').onclick = () => this.abrirHabilidades();
     el.querySelector('[data-sel="habok"]').onclick = () => { el.querySelector('.sel-hab').hidden = true; this.render(); };
     el.querySelector('[data-sel="habnova"]').onclick = () => {
-      // abre o editor com os times escolhidos (ou Goku x Raditz)
-      const t = this.times.herois.length && this.times.inimigos.length ? this.times : { herois: ['goku'], inimigos: ['raditz'] };
-      try { sessionStorage.setItem('ff_livre_def', JSON.stringify(this.montarBatalha(t))); } catch (e) { /* nada */ }
-      location.href = location.pathname + '?livre=1&editor=1';
+      // abre o Estúdio criando uma habilidade nova para o 1º herói escolhido (contra o 1º inimigo)
+      const h = this.times.herois[0] || 'goku', i = this.times.inimigos[0] || (h === 'raditz' ? 'goku' : 'raditz');
+      location.href = 'estudio.html?aba=golpes&novo=1&personagem=' + encodeURIComponent(h) + '&alvo=' + encodeURIComponent(i);
     };
   },
 
@@ -115,7 +114,7 @@ FF.Selecao = {
     const nomes = {}; Object.entries(this.defs).forEach(([id, d]) => (nomes[id] = d.nome));
     FF.Habilidades.painel(el.querySelector('.hab-lista'), {
       nomes,
-      editar: (h) => { location.href = location.pathname + '?editor=1&hab=' + encodeURIComponent(h.id); },
+      editar: (h) => { location.href = 'estudio.html?aba=golpes&hab=' + encodeURIComponent(h.id); },
       apagar: true,
     });
     el.hidden = false;

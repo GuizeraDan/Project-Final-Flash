@@ -52,13 +52,28 @@ window.FF = window.FF || {};
       // abrir pela URL (?aba=golpes&personagem=goku&golpe=kamehameha | &hab=<id>) ou recuperar o rascunho
       const q = new URLSearchParams(location.search);
       const rasc = E.rascunho.ler('golpe_doc');
+      const pq = q.get('personagem');
+      if (pq && FF.Assets.listaPersonagens().includes(pq) && (pq !== this.cfg.atacante || q.get('alvo'))) {
+        const alvo = q.get('alvo') && FF.Assets.listaPersonagens().includes(q.get('alvo')) ? q.get('alvo') : (pq === this.cfg.alvo ? (pq === 'raditz' ? 'goku' : 'raditz') : this.cfg.alvo);
+        await this.aplicarCfg(Object.assign({}, this.cfg, { atacante: pq, forma: null, alvo, alvoForma: null }));
+      }
       if (q.get('hab')) await this.abrirHabilidade(q.get('hab'));
       else if (q.get('golpe')) await this.abrirGolpe(q.get('personagem') || this.cfg.atacante, q.get('golpe'));
+      else if (q.get('novo')) { await this.abrirPrimeiro(); this.novo(); }   // ＋ Criar no Estúdio (Batalha Livre → Habilidades)
+      else if (pq) await this.abrirPrimeiro();
       else if (rasc && rasc.doc) {
         await this.aplicarCfg(Object.assign({}, this.cfg, { atacante: rasc.doc.origem.personagem, forma: rasc.doc.origem.forma }));
         this.abrirDoc(rasc.doc, 'Rascunho recuperado');
         E.aviso('📝 Rascunho recuperado: "' + (rasc.doc.golpe.nome || '') + '". Ctrl+Z não desfaz isso; use ↺ Recarregar se não quiser.');
-      } else await this.abrirGolpe(this.cfg.atacante, 'kamehameha');
+      } else await this.abrirPrimeiro();
+    },
+    // primeiro golpe da forma atual do personagem (nem todo mundo tem Kamehameha)
+    async abrirPrimeiro() {
+      const def = this.defs[this.cfg.atacante];
+      const f = def.formas[this.cfg.forma] || {};
+      const gid = (f.golpes || []).find(g => def.golpes[g]) || Object.keys(def.golpes).find(g => !g.startsWith('hab_'));
+      if (gid) return this.abrirGolpe(this.cfg.atacante, gid);
+      this.novo();
     },
 
     mostrar() { FF.W = 1084; if (this.doc) this.redesenharTudo(); },
@@ -109,7 +124,7 @@ window.FF = window.FF || {};
         it.appendChild(n);
         if (FF.Edicoes.golpeAlterado(cfg.atacante, gid)) it.appendChild(E.el('span', 'tag alt', '✎'));
         if (g.supremo) it.appendChild(E.el('span', 'tag', 'supremo'));
-        const sm = E.el('small'); sm.textContent = (g.custoKi || 0) + ' ki'; it.appendChild(sm);
+        const sm = E.el('small'); sm.textContent = g.supremo ? 'fúria' : g.custoKi ? g.custoKi + ' ki' : g.tipo === 'suporte' || /carregar/i.test(gid) ? '' : 'grátis'; it.appendChild(sm);
         it.onclick = () => this.confirmarTroca(() => this.abrirGolpe(cfg.atacante, gid));
         lista.appendChild(it);
       });

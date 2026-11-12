@@ -68,3 +68,4 @@ table.ep-ia { width: 100%; border-collapse: collapse; margin: 4px 0; }
   .ep-lista-lado .es-titulo { flex-wrap: wrap; padding: 4px; }
   .ep-lista-lado .es-titulo .es-mais { margin-left: 0; width: 100%; }
 }
+.ep-vit { border: 1px solid var(--linha); border-radius: 6px; padding: 2px 6px 0; margin: 4px 8px 6px; background: rgba(0,0,0,0.15); }

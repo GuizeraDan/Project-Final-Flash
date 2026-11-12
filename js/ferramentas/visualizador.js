@@ -297,23 +297,9 @@
       b.oncontextmenu = (e) => { e.preventDefault(); copiar(n); };
       const linha = document.createElement('span');
       linha.className = 'som-linha';
-      const env = document.createElement('button');
-      env.textContent = '➕'; env.title = 'Enviar para o Editor';
-      env.onclick = () => enviar({ tipo: 'som', som: n });
-      linha.append(b, env);
+      linha.append(b);
       box.appendChild(linha);
     });
-  }
-
-  // fila compartilhada com o Editor (mesmo navegador)
-  function enviar(item) {
-    try {
-      const fila = JSON.parse(localStorage.getItem('ff_editor_fila') || '[]');
-      fila.push(item);
-      localStorage.setItem('ff_editor_fila', JSON.stringify(fila.slice(-30)));
-      $('#copiado').textContent = 'enviado para o editor!';
-      setTimeout(() => ($('#copiado').textContent = ''), 1500);
-    } catch (e) { alert('Não deu para enviar (armazenamento do navegador bloqueado).'); }
   }
 
   function copiar(txt) {
@@ -426,7 +412,7 @@
       if (!FF.Mods.salvar(st.setId, e.nome, st.anim)) return msgQ('❌ Não deu para salvar neste navegador.');
       e.mudou = false;
       renderLista();
-      msgQ('💾 Salvo! "' + e.nome + '" já está assim no jogo e no Editor. ' + (FF.Edicoes.conectado() ? 'Enviando para todos os aparelhos…' : 'Só neste aparelho por enquanto: conecte o GitHub no Editor (☁) para valer em todos.'));
+      msgQ('💾 Salvo! "' + e.nome + '" já está assim no jogo e no Estúdio. ' + (FF.Edicoes.conectado() ? 'Enviando para todos os aparelhos…' : 'Só neste aparelho por enquanto: conecte o GitHub no Estúdio (☁) para valer em todos.'));
       FF.Edicoes.ouvintes.push(() => { if (st.edit) msgQ(FF.Edicoes.resumo()); });
     } else if (a === 'salvarnova') {
       const nome = prompt('Nome da nova animação:', e.nome + '_editada');
@@ -440,7 +426,7 @@
       renderLista();
       document.querySelectorAll('#anims div').forEach(d => d.classList.toggle('sel', d.dataset.n === nome));
       st.animName = nome;
-      msgQ('💾 Criada "' + nome + '". Ela aparece nas listas de animação do Editor.' + (orig ? '' : ''));
+      msgQ('💾 Criada "' + nome + '". Ela aparece nas listas de animação do Estúdio.' + (orig ? '' : ''));
     } else if (a === 'original') {
       if (!FF.Mods.alterada(st.setId, e.nome)) {
         if (!e.mudou) return msgQ('Esta animação está como no jogo original.');
@@ -521,7 +507,7 @@
     $('#ck-fantasma').onchange = (e) => (st.fantasma = e.target.checked);
     $('#sel-fundo').onchange = (e) => (st.fundo = e.target.value);
     $('#sel-uso').onchange = (e) => { st.uso = ((st.usos[st.setId] || {})[st.animName] || [])[+e.target.value] || null; renderLinha(); renderInfo(); };
-    $('#bt-enviar').onclick = () => enviar({ tipo: 'anim', sprite: st.setId, anim: st.animName, quadro: st.i });
+    $('#bt-estudio').onclick = () => window.open('estudio.html?aba=sprites&sprite=' + encodeURIComponent(st.setId) + '&anim=' + encodeURIComponent(st.animName), '_blank');
     $('#bt-copiar').onclick = () => copiar('sprite ' + st.setId + ' · animação ' + st.animName + ' · quadro ' + st.i + ' de ' + (st.anim.frames.length - 1));
     $('#busca-som').oninput = renderSons;
     $('#bt-edq').onclick = iniciarEdicao;

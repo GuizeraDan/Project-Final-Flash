@@ -11,7 +11,7 @@ FF.EstudioLinha = class {
     this.host = host;
     this.pxs = 220;            // pixels por segundo (zoom)
     this.ima = true;           // snap
-    this.RG = 26; this.LH = 30;
+    this.RG = 26; this.LH = FF.Estudio.rascunho.ler('tl_compacto') ? 20 : 30;
     box.classList.add('es-tl');
     box.innerHTML = '';
     const redim = FF.Estudio.el('div', 'es-tl-redim');
@@ -60,6 +60,9 @@ FF.EstudioLinha = class {
     b.appendChild(this.btIma);
     this.btLoop = E.botao('🔁 Trecho', () => { if (this.host.loop) this.host.loop = null; else this.host.loop = { a: Math.max(0, this.host.t - 0.5), b: this.host.t + 0.5 }; this.render(); this.host.aoMudarLoop && this.host.aoMudarLoop(); }, 'Repetir um trecho (Shift + arrastar na régua para marcar)');
     b.appendChild(this.btLoop);
+    this.btComp = E.botao('▤ Compacto', () => { this.LH = this.LH === 30 ? 20 : 30; FF.Estudio.rascunho.gravar('tl_compacto', this.LH === 20); this.btComp.classList.toggle('on', this.LH === 20); this.render(); }, 'Trilhas mais baixas: cabem todas (Ações, Tela…) sem rolar');
+    this.btComp.classList.toggle('on', this.LH === 20);
+    b.appendChild(this.btComp);
     b.appendChild(E.el('span', 'sep'));
     this.info = E.el('span', 'es-tl-info');
     b.appendChild(this.info);
@@ -89,7 +92,8 @@ FF.EstudioLinha = class {
     const rg = E.el('div', 'es-tl-regua-n', '<small>tempo (s) · quadros</small>');
     this.nomes.appendChild(rg);
     L.trilhas.forEach((tr, i) => {
-      const n = E.el('div', 'es-tl-nome' + (tr.id === this.host.trSel ? ' sel' : ''));
+      const n = E.el('div', 'es-tl-nome' + (tr.id === this.host.trSel ? ' sel' : '') + (this.LH < 30 ? ' compacto' : ''));
+      n.style.height = this.LH + 'px';
       n.style.borderLeft = '4px solid ' + this.cor(tr.tipo);
       const nome = E.el('b'); nome.textContent = this.nomeTrilha(tr); nome.title = this.nomeTrilha(tr);
       n.appendChild(nome);

@@ -3,8 +3,8 @@
 Abra `estudio.html` (no jogo: **⚙ Ferramentas → Estúdio**; também no topo do visualizador).
 Online: https://guizeradan.github.io/Project-Final-Flash/estudio.html
 
-O Estúdio é pensado para PC (tela cheia), mas funciona no celular deitado. O Editor antigo
-(`index.html?editor=1`) continua existindo.
+O Estúdio é pensado para PC (tela cheia), mas funciona no celular deitado. Ele substituiu o antigo
+Editor de cenas (removido); endereços antigos `index.html?editor=1…` abrem o Estúdio.
 
 ## Abas
 
@@ -37,11 +37,14 @@ Em todo o Estúdio: **Ctrl+Z / Ctrl+Y** desfazem/refazem; o trabalho em andament
 7. **Reação do alvo:** trilha *Alvo* → animação (ex.: `lancado`, `dano1`, `caido`) com empurrão e
    “voltar ao normal”.
 8. **Som/voz:** trilha *Sons e vozes* (🎧 abre a lista com todos os áudios para ouvir).
-9. Tela: tremor, flash, **câmera** (zoom/foco) e mensagens. Ações: ki, buff, transformar, curar, atordoar…
+9. Tela: tremor, flash, **câmera** (zoom/foco) e mensagens. Ações: ki, buff, transformar, curar, atordoar,
+   **criar objeto** (uma esfera que cresce presa ao golpe — tamanho inicial/final, tempo, posição) e **lançar objeto**
+   (tempo até chegar, tremor, flash, som), cada uma com campos próprios; o JSON fica logo abaixo para o resto.
 10. **Linha do tempo:** arraste clipes para mover, a borda direita para esticar, a régua para mover o
     cursor (scrub). 🧲 Ímã encaixa nos quadros das animações (Alt solta). Ctrl+roda = zoom. Shift+arrastar
     na régua marca um trecho para repetir (🔁 Trecho). ← → anda quadro a quadro; Espaço toca/pausa;
-    velocidade de 0,25× a 2×; 🧅 casca de cebola, ▦ grade, ✚ pontos de referência.
+    velocidade de 0,25× a 2×; 🧅 casca de cebola, ▦ grade, ✚ pontos de referência. **▤ Compacto** deixa as trilhas
+    mais baixas (cabem todas sem rolar); arrastar a borda de cima da linha do tempo muda a altura dela.
 11. **⚔ Na batalha** roda o golpe de verdade (dano, anéis — aperte Espaço/toque no palco).
 12. Sem clipe escolhido, o painel da direita mostra o **golpe**: nome, descrição, tipo, custo de ki,
     poder, supremo, regras (mostrar/esconder com buff ou forma, requer parceiro).
@@ -75,14 +78,15 @@ redimensionar — use o site do GitHub Pages.
 
 ## Personagens
 
-Atributos, formas (sprite, multiplicadores, animações básicas, vozes, retrato, **ordem dos golpes no
+Atributos, formas (sprite, multiplicadores, animações básicas, **pose de vitória** (passos com animação, duração e
+voz/som; ▶ Ver mostra na prévia), vozes, retrato, **ordem dos golpes no
 menu**), buffs (turnos, multiplicadores, vida por turno, cor, **aura**, pose) e IA (pesos). **＋ Novo**
 cria um personagem a partir de qualquer sprite (inclusive importado): ele aparece na Batalha Livre.
 
 ## Sincronizar (valer em todos os aparelhos)
 
 Botão **☁** no topo (verde = sincronizado, laranja = só neste aparelho, vermelho = erro). Cole a chave
-do GitHub uma vez por aparelho (a mesma do Editor). Tudo vai para `data/edicoes.js` e as imagens
+do GitHub uma vez por aparelho (a mesma de antes). Tudo vai para `data/edicoes.js` e as imagens
 importadas (sprites novos e atlas extras) para `assets/img/usr/`. Sem chave/internet, fica guardado no aparelho e é enviado depois.
 A aba **Projeto** exporta/importa tudo (inclusive imagens) num único JSON.
 
@@ -91,9 +95,7 @@ A aba **Projeto** exporta/importa tudo (inclusive imagens) num único JSON.
 - Câmera, teleporte e movimento são simulados, mas a prévia de “Na batalha” não mostra a câmera de um
   golpe em outro lado da tela de forma especial (usa o mesmo motor).
 - No celular: arrastar quadros na tira do Sprites não reordena (use ◀ Mover ▶); o palco fica pequeno.
-- Personagens: IA por forma, `reverter` e `vitoria` só em JSON; prévia sem sons.
+- Personagens: IA por forma e `reverter` só em JSON; prévia sem sons.
 - Renomear uma animação não atualiza golpes que usam o nome antigo.
 - Sprites: cada redimensionar cria um atlas extra (nos importados, 🧹 Juntar imagens junta tudo).
-- O Editor antigo não sabe editar golpes salvos pelo Estúdio (passo `linha`); eles funcionam no jogo,
-  mas edite-os no Estúdio.
 - Batalhas/estágios (posições, escala, ajustes de vida) ainda não têm aba.

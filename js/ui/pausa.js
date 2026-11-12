@@ -32,10 +32,9 @@ FF.Pausa = {
     }, true);
   },
 
-  // só existe pausa numa batalha normal em andamento (não no editor nem com diálogo aberto)
+  // só existe pausa numa batalha normal em andamento (não com diálogo aberto)
   disponivel() {
     const p = new URLSearchParams(location.search);
-    if (p.get('editor')) return false;
     if (!FF.battle) return false;
     const dlg = document.getElementById('dialogo');
     if (dlg && dlg.classList.contains('open')) return false;

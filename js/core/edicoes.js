@@ -1,6 +1,6 @@
 // Edições do usuário que valem no jogo todo e em todos os aparelhos.
 // - Fonte: data/edicoes.js (window.FF_EDICOES), publicado com o site.
-// - O Editor grava nesse arquivo direto no repositório do GitHub (precisa de uma chave de acesso,
+// - O Estúdio grava nesse arquivo direto no repositório do GitHub (precisa de uma chave de acesso,
 //   configurada uma vez por aparelho em "☁ Sincronizar"). O GitHub Pages republica e os outros
 //   aparelhos recebem ao recarregar.
 // - Sem chave (ou sem internet), a edição fica "pendente" neste aparelho e já vale aqui;
@@ -101,8 +101,8 @@ FF.Edicoes = {
   de64(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); },
   ler(txt) { const i = txt.indexOf('{'), f = txt.lastIndexOf('}'); return JSON.parse(txt.slice(i, f + 1)); },
   escrever(obj) {
-    return '// Edições feitas no Editor e no Estúdio (golpes, habilidades, sprites, personagens).\n' +
-      '// Arquivo gravado pelo próprio Editor via GitHub (botão ☁). Não edite à mão sem necessidade.\n' +
+    return '// Edições feitas no Estúdio (golpes, habilidades, sprites, personagens).\n' +
+      '// Arquivo gravado pelo próprio Estúdio via GitHub (botão ☁). Não edite à mão sem necessidade.\n' +
       'window.FF_EDICOES = ' + JSON.stringify(obj) + ';\n';
   },
 
@@ -129,7 +129,7 @@ FF.Edicoes = {
         this.aplicarLista(obj, l);
         obj.rev = Math.max(Date.now(), (obj.rev || 0) + 1);
         const corpo = {
-          message: 'Editor: ' + l.length + ' alteração(ões) feitas no jogo',
+          message: 'Estúdio: ' + l.length + ' alteração(ões) feitas no jogo',
           content: this.b64(this.escrever(obj)), branch: 'main',
           committer: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
           author: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
@@ -200,7 +200,7 @@ FF.Edicoes = {
     for (const [k, g] of Object.entries(ed)) {
       if (!(k in def._golpesOrig)) def._golpesOrig[k] = def.golpes[k];
       const novo = JSON.parse(JSON.stringify(g));
-      // regras que o Editor ainda não mostra (quando o golpe aparece/precisa de algo): vêm do original
+      // regras que o Estúdio não mostra (quando o golpe aparece/precisa de algo): vêm do original
       const orig = def._golpesOrig[k] || {};
       for (const meta of ['mostrar', 'esconder', 'requer', 'supremo']) if (orig[meta] !== undefined && novo[meta] === undefined) novo[meta] = orig[meta];
       def.golpes[k] = novo;

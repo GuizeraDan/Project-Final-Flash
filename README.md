@@ -128,7 +128,7 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
 
 ## Ferramentas de desenvolvimento
 
-- **Estúdio Final Flash** (`estudio.html`, ou ⚙ Ferramentas → Estúdio): editor completo do jogo — golpes numa linha do tempo com palco ao vivo, sprites quadro a quadro, importar animações de qualquer arquivo, exportar (PNG/ZIP/GIF/WebM/JSON), personagens/buffs/IA e projeto. Tudo sincroniza entre aparelhos. Guia: `docs/ESTUDIO.md`.
+- **Estúdio Final Flash** (`estudio.html`, ou ⚙ Ferramentas → Estúdio): o editor do jogo — golpes e cenas numa linha do tempo com palco ao vivo (substitui o antigo Editor), sprites quadro a quadro, personagens/buffs/IA/pose de vitória e projeto. Tudo sincroniza entre aparelhos. Guia: `docs/ESTUDIO.md`.
 
 - **Visualizador de animações** (`visualizador.html`, ou pelo botão na tela de título):
   - todas as animações de todos os sprites, quadro a quadro;
@@ -136,13 +136,5 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
   - marca na linha do tempo os quadros onde cada golpe tem acerto, som ou voz;
   - aba **Sons** para ouvir todos os áudios.
   - Atalhos: Espaço toca/pausa, ←/→ mudam o quadro, ↑/↓ mudam a animação. "Copiar referência" gera um texto pronto para relatar um problema.
-- **Editor** (`index.html?editor=1&batalha=<id>`, ou "🎬 Editor" na tela de título) — muda o jogo original:
-  - abra um golpe existente, altere e use "💾 Salvar no jogo" ("↺ Original" desfaz); golpe novo vira habilidade ⭐;
-  - com "☁ Conectar GitHub" (uma chave por aparelho), as mudanças são gravadas no repositório e valem em todos os aparelhos;
-  - sandbox para montar golpes: escolha quem solta e o alvo e monte o roteiro passo a passo (animações do lutador, avançar, teleporte, espera);
-  - em cada quadro dá para prender efeitos visuais, sons, vozes, acertos, projéteis, tremor e flash;
-  - 🎯 alinha um efeito clicando na tela; ▶ testa na batalha real; dá para abrir um golpe existente para modificar;
-  - salva cenas no navegador; "Copiar JSON" gera o golpe pronto para entrar no jogo;
-  - no visualizador, "➕ Enviar para o editor" (animações) e o ➕ ao lado dos sons mandam itens direto para o editor.
-- **Sprites novos**: por enquanto não há importador no app. Mande as imagens ou sprite sheets na conversa com o Claude, que ele recorta, monta as animações e coloca no jogo (`data/sprites` + `assets/img`).
+- **Sprites novos**: mande as imagens ou sprite sheets na conversa com o Claude, que ele recorta, monta as animações, o personagem e os golpes (`tools/importar_sprites.py` + `tools/receitas/`).
 - **✂ Editar quadros** (visualizador): apagar, reordenar, duplicar quadros, mudar duração, posição e fps de qualquer animação, ou salvar como nova.

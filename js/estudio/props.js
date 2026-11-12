@@ -8,6 +8,49 @@ FF.EstudioProps = {
   EM: [['atacante', 'pés de quem solta'], ['peito', 'peito de quem solta'], ['disparo', 'ponto de disparo'], ['alvo', 'peito do alvo'], ['alvoPes', 'pés do alvo'], ['tela', 'tela (fixo)']],
   BASICAS: ['parado', 'dano1', 'dano2', 'guarda', 'lancado', 'caido', 'avancar', 'recuar', 'teleporte'],
 
+  // campos fáceis para as ações mais usadas (o JSON continua logo abaixo para o resto)
+  acaoAmigavel(g, c, host) {
+    const E = FF.Estudio, p = c.passo || (c.passo = {});
+    const def = host.defs && host.cfg && host.defs[host.cfg.atacante];
+    const n = (obj, k, rot, o = {}) => E.campo('numero', rot, obj[k], (v, j) => { if (v === undefined || isNaN(v)) delete obj[k]; else obj[k] = v; host.mudou(rot, j); }, Object.assign({ passo: 'any' }, o));
+    if ('ki' in p) g.appendChild(n(p, 'ki', 'Ki (+/−)', { passo: 1, dica: 'Quanto de ki ganha (negativo = perde)' }));
+    if ('aplicar' in p && def) g.appendChild(E.campo('select', 'Buff', p.aplicar, (v) => { p.aplicar = v; host.mudou('Buff'); }, { lista: Object.keys(def.buffs || {}).map(k => [k, (def.buffs[k].nome || k)]).concat(p.aplicar && !(def.buffs || {})[p.aplicar] ? [[p.aplicar, p.aplicar + ' (não existe)']] : []) }));
+    if ('removerBuff' in p && def) g.appendChild(E.campo('select', 'Tirar buff', p.removerBuff, (v) => { p.removerBuff = v; host.mudou('Tirar buff'); }, { lista: Object.keys(def.buffs || {}) }));
+    if ('transformar' in p && def) g.appendChild(E.campo('select', 'Forma', p.transformar, (v) => { p.transformar = v; host.mudou('Transformar'); }, { lista: Object.entries(def.formas).map(([k, f]) => [k, f.nome || k]) }));
+    if ('atordoar' in p) g.appendChild(n(p, 'atordoar', 'Turnos atordoado', { passo: 1, min: 1 }));
+    if (p.curar && typeof p.curar === 'object') {
+      g.appendChild(n(p.curar, 'fracao', 'Cura (fração da vida)', { passo: 0.05, min: 0 }));
+      g.appendChild(E.campo('check', 'Cura o time todo', !!p.curar.todos, (v) => { if (v) p.curar.todos = true; else delete p.curar.todos; host.mudou('Curar'); }));
+    }
+    if (p.objeto && typeof p.objeto === 'object') {
+      const o = p.objeto;
+      const fxs = [];
+      Object.values(FF.Assets.sprites).forEach(s => { if (s && s.def && /^(fx|fx_extra)$/.test(s.def.id || '')) fxs.push(...Object.keys(s.def.anims)); });
+      const sa = host.spriteDe && host.spriteDe('atacante');
+      if (sa) Object.keys(sa.def.anims).filter(a => /esfera|bola|ball|efeito|fx|_/i.test(a)).forEach(a => fxs.push(a));
+      g.appendChild(E.el('div', 'es-sub', '🟠 Objeto preso ao golpe (cresce e depois é lançado)'));
+      g.appendChild(E.campo('texto', 'Nome (id)', o.id, (v) => { o.id = v || 'objeto'; host.mudou('Objeto'); }, { dica: 'O mesmo nome vai no "Lançar objeto"' }));
+      g.appendChild(E.campo('texto', 'Desenho', o.fx, (v) => { o.fx = v; host.mudou('Objeto: desenho'); }, { sugestoes: [...new Set(fxs)], dica: 'Animação de efeito (fx, fx_extra ou do sprite do lutador)' }));
+      o.escala = Array.isArray(o.escala) ? o.escala : [o.escala || 1, o.escala || 1];
+      g.appendChild(E.campo('numero', 'Tamanho inicial', o.escala[0], (v, j) => { if (v >= 0) { o.escala[0] = v; host.mudou('Objeto: tamanho', j); } }, { passo: 0.05, min: 0 }));
+      g.appendChild(E.campo('numero', 'Tamanho final', o.escala[1], (v, j) => { if (v >= 0) { o.escala[1] = v; host.mudou('Objeto: tamanho', j); } }, { passo: 0.05, min: 0 }));
+      g.appendChild(n(o, 'tempo', 'Tempo crescendo (s)', { passo: 0.1, min: 0 }));
+      g.appendChild(n(o, 'dx', 'Posição X', { passo: 1, dica: 'Para a frente de quem solta (px)' }));
+      g.appendChild(n(o, 'dy', 'Posição Y', { passo: 1, dica: 'Negativo = para cima (px)' }));
+    }
+    if (p.lancarObjeto && typeof p.lancarObjeto === 'object') {
+      const o = p.lancarObjeto;
+      g.appendChild(E.el('div', 'es-sub', '🚀 Lançar o objeto no alvo'));
+      g.appendChild(E.campo('texto', 'Objeto (id)', o.id, (v) => { o.id = v; host.mudou('Lançar objeto'); }));
+      g.appendChild(n(o, 'tempo', 'Tempo até chegar (s)', { passo: 0.1, min: 0.05 }));
+      g.appendChild(n(o, 'tremer', 'Tremor no impacto', { passo: 1, min: 0 }));
+      g.appendChild(n(o, 'flash', 'Flash no impacto', { passo: 0.1, min: 0 }));
+      g.appendChild(E.campo('som', 'Som ao lançar', o.som, (v) => { if (v) o.som = v; else delete o.som; host.mudou('Lançar: som'); }));
+      const ac = o.acertos || [];
+      g.appendChild(E.el('p', 'es-dica', ac.length + ' acerto(s) no impacto · dano total ' + ac.reduce((s, a) => s + (a.fracao || 0), 0).toFixed(2).replace('.', ',') + ' do poder (edite no JSON abaixo).'));
+    }
+  },
+
   render(box, host) {
     const E = FF.Estudio;
     box.innerHTML = '';
@@ -152,7 +195,8 @@ FF.EstudioProps = {
       case 'acao': {
         const prontos = [['', 'modelos…'], ['{"ki": 20}', 'Ganhar ki'], ['{"aplicar": "kaioken"}', 'Ativar buff'], ['{"removerBuff": "kaioken"}', 'Tirar buff'], ['{"transformar": "ssj"}', 'Transformar'], ['{"curar": {"fracao": 0.3}}', 'Curar'], ['{"atordoar": 1}', 'Atordoar alvo'], ['{"vozTipo": "dano"}', 'Voz do tipo'], ['{"objeto": {"id": "esfera", "fx": "genkidama", "escala": [0.2, 1.5], "tempo": 1, "dy": -40}}', 'Criar objeto'], ['{"lancarObjeto": {"id": "esfera", "tempo": 0.8, "acertos": [{"fracao": 1, "forca": "energia", "lanca": true}]}}', 'Lançar objeto']];
         g.appendChild(E.campo('select', 'Modelo', '', (v) => { if (v) { c.passo = JSON.parse(v); host.mudou('Ação'); } }, { lista: prontos }));
-        g.appendChild(E.campo('json', 'Passo', c.passo, set(c, 'passo', 'Ação'), { linhas: 6 }));
+        this.acaoAmigavel(g, c, host);
+        g.appendChild(E.campo('json', 'Passo (JSON)', c.passo, set(c, 'passo', 'Ação'), { linhas: 6 }));
         g.appendChild(E.el('p', 'es-dica', 'Qualquer passo de roteiro do motor: transformar, aplicar, removerBuff, ki, curar, atordoar, objeto, lancarObjeto, autoNocaute, vozTipo…'));
         break;
       }

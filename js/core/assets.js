@@ -69,6 +69,6 @@ FF.Assets = {
     const ed = FF.Edicoes && (FF.Edicoes.dados().personagens || {})[id];
     if (!(ed && ed.novo)) def = JSON.parse(JSON.stringify(await this.loadJSON('data/characters/' + id + '.json')));
     if (FF.Edicoes) def = FF.Edicoes.aplicarPersonagem(id, def);     // atributos/formas/buffs/IA do Estúdio
-    return FF.Edicoes ? FF.Edicoes.aplicarGolpes(def) : def;         // golpes alterados no Editor/Estúdio
+    return FF.Edicoes ? FF.Edicoes.aplicarGolpes(def) : def;         // golpes alterados no Estúdio
   },
 };

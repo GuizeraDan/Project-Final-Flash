@@ -150,3 +150,5 @@ a { color: var(--ouro); }
 .es-escolha p { margin: 4px 0 12px; }
 .es-escolha-bts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 .es-escolha-bts button { padding: 6px 12px; }
+.es-tl-nome.compacto button { padding: 0 2px; font-size: 9px; line-height: 1; }
+.es-tl-nome.compacto { font-size: 10px; }

@@ -354,6 +354,36 @@
       ga.appendChild(E().botao('✨ Mapear automaticamente', () => { f.anims = this.mapearAnims(f.sprite, f); this.mudar('Mapear animações'); this.renderPainel(); }, 'Escolhe pelas animações de nome parecido (parado/idle, dano/hit, defesa/block…)'));
       this.painel.appendChild(ga);
 
+      // pose de vitória (passos em sequência; o último com duração longa fica parado no fim da luta)
+      const gvit = E().grupo('Pose de vitória', false);
+      const passos = Array.isArray(f.vitoria) ? f.vitoria : [];
+      const V = () => (Array.isArray(f.vitoria) ? f.vitoria : (f.vitoria = []));
+      passos.forEach((p, i) => {
+        const box = E().el('div', 'ep-vit');
+        box.appendChild(E().el('div', 'es-dica', '<b>Passo ' + (i + 1) + '</b>'));
+        box.appendChild(E().campo('select', 'Animação', p.anim || '', (v) => { p.anim = v; this.mudar('Vitória: animação'); this.animSel = 'vitoria'; this._prev = null; this.renderBarra(); }, { lista }));
+        box.appendChild(E().campo('numero', 'Duração (s)', p.duracao, (v, j) => { if (v > 0) p.duracao = v; else delete p.duracao; this.mudar('Vitória: duração', j); }, { passo: 0.1, min: 0, placeholder: 'uma vez', dica: 'Vazio = toca a animação uma vez. No último passo, use um tempo grande (ex.: 60) para ficar parado na pose.' }));
+        const ev = (p.eventos || []).find(e => e.quadro === 0 && (e.voz || e.som)) || null;
+        box.appendChild(E().campo('som', 'Voz/som', ev ? (ev.voz || ev.som) : '', (v) => {
+          p.eventos = (p.eventos || []).filter(e => !(e.quadro === 0 && (e.voz || e.som)));
+          if (v && (Array.isArray(v) ? v.length : String(v).trim())) p.eventos.unshift({ quadro: 0, [/^v[a-z]{3}\d|_voice|_victory/.test(Array.isArray(v) ? v[0] : v) ? 'voz' : 'som']: v });
+          if (!p.eventos.length) delete p.eventos;
+          this.mudar('Vitória: som');
+        }, { vozes: this.prefixoVoz() }));
+        const bts = E().el('div', 'ep-linha');
+        if (i > 0) bts.appendChild(E().botao('↑', () => { V().splice(i - 1, 0, V().splice(i, 1)[0]); this.mudar('Vitória: ordem'); this.renderPainel(); }, 'Subir'));
+        bts.appendChild(E().botao('✕ Tirar', () => { V().splice(i, 1); this.mudar('Vitória: tirar passo'); this.renderPainel(); }, null, 'es-bt-perigo'));
+        box.appendChild(bts);
+        gvit.appendChild(box);
+      });
+      const bv = E().el('div', 'ep-linha');
+      bv.append(
+        E().botao('＋ Passo', () => { V().push({ anim: (f.anims && f.anims.parado) || this.animsDoSprite(f.sprite, f)[0] || '', duracao: 60 }); this.mudar('Vitória: novo passo'); this.renderPainel(); }, 'Acrescenta uma animação no fim da pose'),
+        E().botao('▶ Ver', () => { this.animSel = 'vitoria'; this._prev = null; this.renderBarra(); }, 'Mostra a pose de vitória na prévia'));
+      gvit.appendChild(bv);
+      if (!passos.length) gvit.appendChild(E().el('p', 'es-dica', 'Sem pose de vitória: fica na animação parada.'));
+      this.painel.appendChild(gvit);
+
       // vozes da forma
       const gv = E().grupo('Vozes da forma', false);
       f.vozes = f.vozes || {};
@@ -388,7 +418,7 @@
       const gj = E().grupo('Avançado (JSON)', false);
       gj.appendChild(this.cp(f, 'animsDerivadas', 'json', 'Anims derivadas', { linhas: 4, dica: '{"Parado": {"de": "Ataque_1", "quadros": [0, 1], "fps": 4, "loop": true}} — para sprites sem parado/dano', depois: () => this.renderPainel() }));
       gj.appendChild(this.cp(f, 'reverter', 'json', 'Reverter', { linhas: 4, dica: 'Roteiro quando o ki acaba (formas transformadas)' }));
-      gj.appendChild(this.cp(f, 'vitoria', 'json', 'Vitória', { linhas: 5, dica: 'Roteiro da pose de vitória' }));
+      gj.appendChild(this.cp(f, "vitoria", "json", "Vitória (JSON)", { linhas: 5, dica: "O mesmo da Pose de vitória, em JSON (aceita eventos extras)", depois: () => this.renderPainel() }));
       this.painel.appendChild(gj);
     },
 

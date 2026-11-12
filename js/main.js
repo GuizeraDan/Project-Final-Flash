@@ -225,7 +225,7 @@ FF.start = async function (escolhida) {
     }
   }));
 
-  // habilidades criadas pelo usuário no editor (equipadas) entram no menu de golpes
+  // habilidades criadas pelo usuário no Estúdio (equipadas) entram no menu de golpes
   if (FF.Habilidades) {
     new Set(heroDefs.concat(foeDefs)).forEach(c => FF.Habilidades.sincronizar(c));
     await FF.Habilidades.preparar(heroDefs.concat(foeDefs)).catch(() => null);
@@ -486,14 +486,18 @@ window.addEventListener('load', () => {
     try {
       const battle = await FF.start(id);
       intro.classList.add('hide');
-      if (params.get('editor')) { FF.Editor.run(battle); if (params.get('hab')) FF.Editor.abrirHabilidade(params.get('hab')); }   // Editor
-      else { battle.run(); FF.Pausa.mostrarBotao(); FF.Voltar.armar(); }
+      battle.run(); FF.Pausa.mostrarBotao(); FF.Voltar.armar();
     } catch (err) {
       console.error(err);
       msg.textContent = 'Erro: ' + err.message;
     }
   };
 
+  // endereços do Editor antigo (removido): vão para o Estúdio
+  if (params.get('editor')) {
+    location.replace('estudio.html?aba=golpes' + (params.get('hab') ? '&hab=' + encodeURIComponent(params.get('hab')) : ''));
+    return;
+  }
   // modo história direto pela URL (?historia=N)
   // volta direto para a escolha de lutadores da Batalha Livre (botão "Trocar lutadores" no fim da luta)
   if (params.get('selecao')) {
@@ -511,20 +515,6 @@ window.addEventListener('load', () => {
     let def = null;
     try { def = JSON.parse(sessionStorage.getItem('ff_livre_def') || 'null'); } catch (e) { /* nada */ }
     if (def) { document.getElementById('fim').classList.add('livre'); batalhaLivre(def); return; }
-  }
-  // editar uma habilidade salva (?editor=1&hab=<id>): batalha 1x1 com o dono dela
-  if (params.get('editor') && params.get('hab') && !params.get('batalha')) {
-    const h = FF.Habilidades.ler()[params.get('hab')];
-    if (h) {
-      const rival = h.personagem === 'raditz' ? 'goku' : 'raditz';
-      batalhaLivre(FF.Selecao.montarBatalha({ herois: [h.personagem], inimigos: [rival] }));
-      return;
-    }
-  }
-  // Editor direto (?editor=1&batalha=id): carrega sem precisar tocar
-  if (params.get('editor')) {
-    batalhaLivre(params.get('batalha') || 'saiyajin_02');
-    return;
   }
   // batalha pela URL (?batalha=id): toque para começar, como antes (usado pelo teste automático)
   if (params.get('batalha')) {
@@ -587,14 +577,13 @@ window.addEventListener('load', () => {
     e.stopPropagation();
     FF.Audio.play('decide_charasel', 0.6);
     const ac = bt.dataset.acao;
-    if (bt.dataset.batalha) return FF._modoLab ? ir('?editor=1&batalha=' + bt.dataset.batalha) : batalhaLivre(bt.dataset.batalha);
-    if (ac === 'editor') { FF._modoLab = 'editor'; return mostrar('livre'); }
+    if (bt.dataset.batalha) return batalhaLivre(bt.dataset.batalha);
     if (ac === 'instalar') { FF.PWA.instalar(); return; }
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'estudio') { location.href = 'estudio.html'; return; }
     if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
-    if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
+    if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
     if (ac === 'ferramentas') return mostrar('ferramentas');
     if (ac === 'voltar') return mostrar('menu');
