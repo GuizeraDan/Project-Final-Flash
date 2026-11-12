@@ -59,7 +59,33 @@ FF.Fighter = class {
   idle(name) {
     this.react = null;
     if (this.ko) { this.anim.play(this.animName('caido')); return; }
-    this.anim.play(name || this.animName('parado'), { loop: true });
+    this.anim.play(name || this.paradoBuff() || this.animName('parado'), { loop: true });
+  }
+
+  // buff com pose própria (ex.: Kaioken → "Special_Kaioken_Parado"), se o sprite da forma atual tiver
+  paradoBuff() {
+    for (const b of Object.values(this.buffs)) if (b.parado && this.sprite.has(b.parado)) return b.parado;
+    return null;
+  }
+
+  // aura presa a um buff: efeito em loop que acompanha o lutador enquanto o buff durar (não trava o turno)
+  auraAtual() {
+    for (const b of Object.values(this.buffs)) if (b.aura && b.aura.fx) return b.aura;
+    return null;
+  }
+  desenharAura(ctx, frente) {
+    const au = this.auraAtual();
+    if (!au || !!au.frente !== frente || this.ko || !FF.battle) { if (!au) this._aura = null; return; }
+    if (!this._aura || this._aura.fx !== au.fx) {
+      const set = FF.battle.fxSet(au.fx);
+      if (!set) return;
+      const a = new FF.Animator(set);
+      a.play(au.fx, { loop: true, fps: au.fps });
+      this._aura = { fx: au.fx, set, a };
+    }
+    const base = au.em === 'peito' ? this.peito() : { x: this.x, y: this.y };
+    FF.drawFrame(ctx, this._aura.set, this._aura.a.frame(), base.x + (au.dx || 0) * this.dir, base.y + (au.dy || 0),
+      this.scale * (au.escala || 1) * (this._aura.set.def.escala || 1), this.dir < 0, { alpha: (au.alpha != null ? au.alpha : 1) * this.alpha });
   }
 
   voz(tipo) {
@@ -100,6 +126,7 @@ FF.Fighter = class {
 
   update(dt) {
     this.anim.update(dt);
+    if (this._aura) this._aura.a.update(dt);
     if (this.vx) {
       this.x += this.vx * dt;
       this.vx *= Math.pow(0.02, dt);
@@ -117,8 +144,10 @@ FF.Fighter = class {
     // sombra
     const sombra = fx && fx.anim('sombra');
     if (sombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
+    this.desenharAura(ctx, false);
     FF.drawFrame(ctx, this.sprite, this.anim.frame(), this.x, this.y, this.scale, this.dir < 0,
       { tint: this.tint(), alpha: this.alpha });
+    this.desenharAura(ctx, true);
   }
 
   // Ponto do corpo usado para efeitos/projéteis (mais ou menos o peito).

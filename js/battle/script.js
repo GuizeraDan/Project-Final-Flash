@@ -77,7 +77,7 @@ FF.Script = {
 
     if (s.aplicar) {
       const def = (actor.def.buffs || {})[s.aplicar];
-      if (def) actor.buffs[s.aplicar] = Object.assign({ id: s.aplicar }, def, { turnos: def.turnos });
+      if (def) { actor.buffs[s.aplicar] = Object.assign({ id: s.aplicar }, def, { turnos: def.turnos }); actor.idle(); }
       return;
     }
 

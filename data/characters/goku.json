@@ -32,7 +32,13 @@
         "defesa": 0.9
       },
       "hpPorTurno": 0.03,
-      "tint": "rgba(255,30,30,$a)"
+      "tint": "rgba(255,30,30,$a)",
+      "aura": {
+        "fx": "Efeito3_Loop",
+        "escala": 1,
+        "frente": true
+      },
+      "parado": "Special_Kaioken_Parado"
     }
   },
   "formas": {

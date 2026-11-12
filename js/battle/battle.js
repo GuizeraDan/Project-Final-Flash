@@ -167,7 +167,11 @@ FF.Battle = class {
         this.popup(f, '-' + d, '#ff8080');
       }
       bf.turnos -= 1;
-      if (bf.turnos <= 0) { delete f.buffs[id]; this.banner((bf.nome || id) + ' acabou', 1.0); await FF.Clock.wait(0.5); }
+      if (bf.turnos <= 0) {
+        delete f.buffs[id];
+        if (!f.busy && !f.react) f.idle();       // tira a pose do buff (ex.: postura do Kaioken)
+        this.banner((bf.nome || id) + ' acabou', 1.0); await FF.Clock.wait(0.5);
+      }
     }
     // formas que gastam ki por turno (ex.: Super Saiyajin)
     const form = f.form;
