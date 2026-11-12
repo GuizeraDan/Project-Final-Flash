@@ -6,7 +6,13 @@
 // - Sem chave (ou sem internet), a edição fica "pendente" neste aparelho e já vale aqui;
 //   é enviada quando conectar.
 // Seções: golpes[personagem][golpe] (substitui o golpe original; null = voltar ao original),
-//         habilidades[id], sprites[sprite][animação].
+//         habilidades[id], sprites[sprite][animação],
+//         personagens[id]   (Estúdio: campos que substituem os do JSON — nome, atributos, formas, buffs, ia,
+//                            vozes, formaInicial; ou {"novo": true, "def": {...}} para um personagem criado),
+//         spritesNovos[id]  (Estúdio: definição de sprite importado; atlas em assets/img/usr/<id>.png),
+//         spritesInfo[id]   (Estúdio: {"escala": N} escala geral de um sprite/efeito).
+// Imagens importadas: enviadas pela API (contents) para assets/img/usr/; enquanto não vão, ficam no
+// IndexedDB do aparelho (FF.ImagensUsr) e são usadas de lá.
 window.FF = window.FF || {};
 
 FF.Edicoes = {
@@ -16,6 +22,7 @@ FF.Edicoes = {
   TOKEN: 'ff_github_token',
 
   ULT: 'ff_edicoes_ultimo',
+  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo'],
   // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
   // vale a de "rev" mais nova
   base() {
@@ -25,7 +32,9 @@ FF.Edicoes = {
       if (u && (u.rev || 0) > (e.rev || 0)) e = u;
       else if (u) localStorage.removeItem(this.ULT);     // o site já tem esta (ou uma mais nova)
     } catch (x) { /* sem armazenamento */ }
-    return { golpes: e.golpes || {}, habilidades: e.habilidades || {}, sprites: e.sprites || {} };
+    const o = {};
+    this.SECOES.forEach(k => { o[k] = e[k] || {}; });
+    return o;
   },
   pendentes() { try { return JSON.parse(localStorage.getItem(this.PEND) || '[]'); } catch (e) { return []; } },
   gravarPendentes(l) { try { localStorage.setItem(this.PEND, JSON.stringify(l)); } catch (e) { /* sem armazenamento */ } },
@@ -39,7 +48,7 @@ FF.Edicoes = {
       if (m.v === null || m.v === undefined) delete o[ult]; else o[ult] = JSON.parse(JSON.stringify(m.v));
     }
     // limpa grupos vazios
-    for (const s of ['golpes', 'sprites']) for (const k of Object.keys(obj[s] || {})) if (!Object.keys(obj[s][k]).length) delete obj[s][k];
+    for (const s of ['golpes', 'sprites']) for (const k of Object.keys(obj[s] || {})) if (obj[s][k] && typeof obj[s][k] === 'object' && !Object.keys(obj[s][k]).length) delete obj[s][k];
     return obj;
   },
 
@@ -90,7 +99,7 @@ FF.Edicoes = {
   de64(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); },
   ler(txt) { const i = txt.indexOf('{'), f = txt.lastIndexOf('}'); return JSON.parse(txt.slice(i, f + 1)); },
   escrever(obj) {
-    return '// Edições feitas no Editor (golpes alterados, habilidades novas, quadros de sprites).\n' +
+    return '// Edições feitas no Editor e no Estúdio (golpes, habilidades, sprites, personagens).\n' +
       '// Arquivo gravado pelo próprio Editor via GitHub (botão ☁). Não edite à mão sem necessidade.\n' +
       'window.FF_EDICOES = ' + JSON.stringify(obj) + ';\n';
   },
@@ -98,14 +107,23 @@ FF.Edicoes = {
   // lê a versão mais nova do arquivo no GitHub, junta as pendentes e grava (um commit)
   async enviar() {
     const l = this.pendentes();
-    if (!l.length || !this.conectado() || this._enviando) return { pendentes: l.length };
+    if (!this.conectado() || this._enviando) return { pendentes: l.length };
+    if (!l.length) {   // só imagens pendentes
+      if (FF.ImagensUsr && (await FF.ImagensUsr.pendentes()).length) {
+        try { await FF.ImagensUsr.enviarPendentes(); this.estado = 'ok'; } catch (e) { this.estado = 'erro'; this.erro = e.message; }
+        this.avisar();
+      }
+      return { pendentes: 0 };
+    }
     this._enviando = true;
     this.estado = 'enviando'; this.avisar();
     try {
+      // imagens importadas primeiro (o arquivo de edições aponta para elas)
+      if (FF.ImagensUsr) await FF.ImagensUsr.enviarPendentes();
       for (let tent = 0; tent < 3; tent++) {
         const atual = await this.api('/contents/' + this.ARQ + '?ref=main').catch(e => { if (e.status === 404) return null; throw e; });
         const obj = atual ? this.ler(this.de64(atual.content)) : { versao: 1 };
-        obj.golpes = obj.golpes || {}; obj.habilidades = obj.habilidades || {}; obj.sprites = obj.sprites || {};
+        this.SECOES.forEach(k => { obj[k] = obj[k] || {}; });
         this.aplicarLista(obj, l);
         obj.rev = Math.max(Date.now(), (obj.rev || 0) + 1);
         const corpo = {
@@ -147,6 +165,28 @@ FF.Edicoes = {
   },
   ouvintes: [],
   avisar() { this.ouvintes.forEach(f => { try { f(); } catch (e) { /* nada */ } }); },
+
+  // grava um arquivo binário (base64) no repositório pela API de contents
+  async gravarArquivo(caminho, base64, mensagem) {
+    const atual = await this.api('/contents/' + caminho + '?ref=main').catch(e => { if (e.status === 404) return null; throw e; });
+    const corpo = { message: mensagem || ('Estúdio: ' + caminho), content: base64, branch: 'main',
+      committer: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
+      author: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' } };
+    if (atual && atual.sha) corpo.sha = atual.sha;
+    return this.api('/contents/' + caminho, { method: 'PUT', body: JSON.stringify(corpo), headers: { 'Content-Type': 'application/json' } });
+  },
+
+  // ---------- personagens (Estúdio) ----------
+  // aplica as mudanças do Estúdio num personagem do JSON (cópia) ou devolve o personagem novo
+  aplicarPersonagem(id, def) {
+    const ed = (this.dados().personagens || {})[id];
+    if (!ed) return def;
+    if (ed.novo) return JSON.parse(JSON.stringify(ed.def));
+    const d = Object.assign({}, def);
+    for (const [k, v] of Object.entries(ed)) if (k !== 'golpes' && k !== 'id') d[k] = JSON.parse(JSON.stringify(v));
+    return d;
+  },
+  personagensNovos() { return Object.entries(this.dados().personagens || {}).filter(([, v]) => v && v.novo).map(([k]) => k); },
 
   // ---------- golpes alterados ----------
   aplicarGolpes(def) {

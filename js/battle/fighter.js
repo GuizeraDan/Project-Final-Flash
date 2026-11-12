@@ -145,8 +145,9 @@ FF.Fighter = class {
     const sombra = fx && fx.anim('sombra');
     if (sombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
     this.desenharAura(ctx, false);
-    FF.drawFrame(ctx, this.sprite, this.anim.frame(), this.x, this.y, this.scale, this.dir < 0,
-      { tint: this.tint(), alpha: this.alpha });
+    // offX/offY/escExtra/flipExtra: posição e tamanho por passo (linha do tempo do Estúdio); padrão sem efeito
+    FF.drawFrame(ctx, this.sprite, this.anim.frame(), this.x + (this.offX || 0), this.y + (this.offY || 0), this.scale * (this.escExtra || 1),
+      (this.dir < 0) !== !!this.flipExtra, { tint: this.tint(), alpha: this.alpha });
     this.desenharAura(ctx, true);
   }
 
@@ -156,9 +157,10 @@ FF.Fighter = class {
   // Ponto de disparo do quadro atual (image point do Construct), em coordenadas de tela.
   pontoDisparo() {
     const f = this.anim.frame();
+    const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1);
     if (f && f[8] && f[8][0]) {
-      return { x: this.x + f[8][0][0] * this.scale * this.dir, y: this.y + f[8][0][1] * this.scale };
+      return { x: x + f[8][0][0] * sc * this.dir, y: y + f[8][0][1] * sc };
     }
-    return { x: this.x + 22 * this.scale * this.dir, y: this.y - 26 * this.scale };
+    return { x: x + 22 * sc * this.dir, y: y - 26 * sc };
   }
 };

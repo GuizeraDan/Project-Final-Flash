@@ -323,14 +323,16 @@ FF.Battle = class {
     return dmg;
   }
 
-  fxSet(name) {
+  // sprite: id de um sprite qualquer (ex.: importado no Estúdio) que tenha a animação "name"
+  fxSet(name, sprite) {
+    if (sprite && FF.Assets.sprites[sprite] && FF.Assets.sprites[sprite].has(name)) return FF.Assets.sprites[sprite];
     if (this.fx.has(name)) return this.fx;
     if (this.fx2 && this.fx2.has(name)) return this.fx2;
     return null;
   }
 
   spawnFx(name, x, y, flip, scale, opts) {
-    const set = this.fxSet(name);
+    const set = this.fxSet(name, opts && opts.sprite);
     if (!set) { console.log('[FF] efeito inexistente:', name); return null; }
     const a = new FF.Animator(set);
     const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
@@ -388,16 +390,19 @@ FF.Battle = class {
   //  atravessar (depois de acertar, segue até sair da tela), deCima (cai do alto).
   spawnProjectile(att, def, move, spec) {
     const to = def.peito();
+    // alvoDx/alvoDy e deDx/deDy: ajuste da chegada e da saída (Estúdio); dx positivo = para a frente de quem solta
+    if (spec.alvoDx || spec.alvoDy) { to.x += (spec.alvoDx || 0) * att.dir; to.y += spec.alvoDy || 0; }
     const from = spec.deCima
       ? { x: to.x - att.dir * (20 + Math.random() * 110) * this.scale, y: to.y - (230 + Math.random() * 60) * this.scale }
       : att.pontoDisparo();
+    if (spec.deDx || spec.deDy) { from.x += (spec.deDx || 0) * att.dir; from.y += spec.deDy || 0; }
     const vel = spec.velocidade || 650;
     const dist = Math.hypot(to.x - from.x, to.y - from.y);
     const travel = Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
     const fxName = spec.fx || 'kiblast_amarelo';
-    const set = this.fxSet(fxName) || this.fx;
+    const set = this.fxSet(fxName, spec.sprite) || this.fx;
     const a = new FF.Animator(set);
     a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
@@ -525,6 +530,14 @@ FF.Battle = class {
     this.texts = this.texts.filter(t => t.t < t.life);
     // QTEs vencidos sem acerto (ex.: alvo nocauteado antes)
     this.qtes = this.qtes.filter(q => !(q.result !== undefined && FF.Clock.t - q.doneAt > 0.4) && FF.Clock.t - q.at < 1.5);
+    // câmera (linha do tempo do Estúdio): vai suavemente até o alvo
+    if (this.camAlvo) {
+      const c = this.camAlvo, de = c.de;
+      c.t += dt;
+      const k = c.d > 0 ? Math.min(1, c.t / c.d) : 1, e = k * k * (3 - 2 * k);
+      this.cam = { zoom: de.zoom + (c.zoom - de.zoom) * e, x: de.x + (c.x - de.x) * e, y: de.y + (c.y - de.y) * e };
+      if (k >= 1) this.camAlvo = null;
+    }
     this.shakeAmt *= Math.pow(0.001, dt);
     this.flashAmt = Math.max(0, this.flashAmt - dt * 2.5);
   }
@@ -532,6 +545,12 @@ FF.Battle = class {
   draw(ctx) {
     ctx.save();
     if (this.shakeAmt > 0.3) ctx.translate((Math.random() - 0.5) * this.shakeAmt * 2, (Math.random() - 0.5) * this.shakeAmt * 2);
+    const cam = this.cam;
+    if (cam && (cam.zoom !== 1 || cam.x || cam.y)) {   // zoom/foco da câmera (padrão: sem efeito)
+      ctx.translate(FF.W / 2, FF.H / 2);
+      ctx.scale(cam.zoom, cam.zoom);
+      ctx.translate(-FF.W / 2 - cam.x, -FF.H / 2 - cam.y);
+    }
     this.drawStage(ctx);
     // quem está agindo fica na frente
     const order = this.all.slice().sort((a, b) => (a.busy ? 1 : 0) - (b.busy ? 1 : 0));
@@ -539,7 +558,13 @@ FF.Battle = class {
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
     (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t));
     this.projectiles.forEach(p => this.desenharProjetil(ctx, p));
-    this.fxList.forEach(e => FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, e.alpha != null ? { alpha: e.alpha } : undefined));
+    this.fxList.forEach(e => {
+      const o = e.alpha != null ? { alpha: e.alpha } : undefined;
+      if (!e.rot) return FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, o);
+      ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(e.rot * Math.PI / 180);
+      FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
+      ctx.restore();
+    });
     ctx.restore();
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);

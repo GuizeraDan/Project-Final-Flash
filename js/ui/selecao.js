@@ -9,7 +9,7 @@ FF.Selecao = {
 
   async abrir() {
     const el = document.getElementById('selecao');
-    const ids = (window.FF_BUNDLE && FF_BUNDLE._indice && FF_BUNDLE._indice.personagens) || ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
+    const ids = (FF.Assets.listaPersonagens && FF.Assets.listaPersonagens().slice()) || ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     // ordem: heróis da saga primeiro, depois os vilões
     const ordem = ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     ids.sort((a, b) => ((ordem.indexOf(a) + 1) || 99) - ((ordem.indexOf(b) + 1) || 99));

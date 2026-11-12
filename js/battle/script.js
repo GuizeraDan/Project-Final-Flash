@@ -36,6 +36,7 @@ FF.Script = {
     if (s.animAlvo) return this.animAlvo(b, actor, target, move, s);
     if (s.anim) return this.playAnim(b, actor, target, move, s);
     if (s.cena) return FF.Cena.tocar(b, actor, target, move, s.cena);   // cena livre (Editor)
+    if (s.linha) return FF.Linha.tocar(b, actor, target, move, s.linha); // linha do tempo (Estúdio)
 
     if (s.irAte) {
       const alvo = s.irAte === 'alvo' ? target : actor;
