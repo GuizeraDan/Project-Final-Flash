@@ -1,4 +1,4 @@
-// Prévias de sprites no editor de cenas: miniatura animada ao lado de cada campo que escolhe uma
+// Prévias de sprites no Editor: miniatura animada ao lado de cada campo que escolhe uma
 // animação/efeito, e um seletor em grade (🖼) com todas as animações para escolher vendo.
 window.FF = window.FF || {};
 
@@ -148,7 +148,7 @@ FF.Previa = {
   },
 };
 
-// ---------- integração com o editor de cenas ----------
+// ---------- integração com o Editor ----------
 Object.assign(FF.Editor, {
   conjuntosEfeitos() {
     const c = [];

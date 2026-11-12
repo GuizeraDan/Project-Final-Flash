@@ -1,13 +1,11 @@
-// Habilidades do usuário: golpes criados no editor de cenas e salvos neste navegador (localStorage).
+// Habilidades do usuário: golpes novos criados no Editor. Ficam em FF.Edicoes (data/edicoes.js,
+// sincronizado pelo GitHub entre aparelhos).
 // Cada habilidade pertence a um personagem; as "equipadas" entram no menu de golpes dele em qualquer
 // batalha (chave "hab_<id>" em def.golpes). Ligar/desligar funciona até no meio da luta (menu de pausa).
 window.FF = window.FF || {};
 
 FF.Habilidades = {
-  CHAVE: 'ff_habilidades',
-
-  ler() { try { return JSON.parse(localStorage.getItem(this.CHAVE) || '{}'); } catch (e) { return {}; } },
-  gravar(t) { try { localStorage.setItem(this.CHAVE, JSON.stringify(t)); return true; } catch (e) { return false; } },
+  ler() { return FF.Edicoes.dados().habilidades || {}; },
   listar(personagem) {
     return Object.values(this.ler()).filter(h => !personagem || h.personagem === personagem)
       .sort((a, b) => (a.personagem + a.nome).localeCompare(b.personagem + b.nome));
@@ -20,14 +18,14 @@ FF.Habilidades = {
     const g = JSON.parse(JSON.stringify(golpe));
     g.nome = nome;
     g.habId = id;
-    if (!g.descricao) g.descricao = '⭐ Habilidade criada por você no editor de cenas.';
+    if (!g.descricao) g.descricao = '⭐ Habilidade criada por você no Editor.';
     const ant = t[id];
-    t[id] = { id, nome, personagem, forma: forma || null, golpe: g, equipada: ant ? ant.equipada : true, criada: ant ? ant.criada : Date.now(), editada: Date.now() };
-    this.gravar(t);
-    return t[id];
+    const h = { id, nome, personagem, forma: forma || null, golpe: g, equipada: ant ? ant.equipada : true, criada: ant ? ant.criada : Date.now(), editada: Date.now() };
+    FF.Edicoes.set(['habilidades', id], h);
+    return h;
   },
-  apagar(id) { const t = this.ler(); delete t[id]; this.gravar(t); },
-  equipar(id, sim) { const t = this.ler(); if (t[id]) { t[id].equipada = !!sim; this.gravar(t); } },
+  apagar(id) { FF.Edicoes.set(['habilidades', id], null); },
+  equipar(id, sim) { const h = this.ler()[id]; if (h) FF.Edicoes.set(['habilidades', id], Object.assign({}, h, { equipada: !!sim })); },
 
   // coloca/tira as habilidades equipadas no personagem (idempotente)
   sincronizar(def) {
@@ -72,8 +70,8 @@ FF.Habilidades = {
       const p = document.createElement('p');
       p.className = 'hab-vazio';
       p.textContent = opts.personagens
-        ? 'Nenhuma habilidade para esses lutadores. Crie no editor de cenas e use "⭐ Salvar como habilidade".'
-        : 'Nenhuma habilidade ainda. Crie no editor de cenas e use "⭐ Salvar como habilidade".';
+        ? 'Nenhuma habilidade para esses lutadores. Crie no Editor e use "⭐ Salvar no jogo".'
+        : 'Nenhuma habilidade ainda. Crie no Editor e use "⭐ Salvar no jogo".';
       box.appendChild(p);
       return;
     }
@@ -102,7 +100,7 @@ FF.Habilidades = {
       row.append(cb, n, info);
       if (opts.editar) {
         const ed = document.createElement('button');
-        ed.type = 'button'; ed.textContent = '✏'; ed.title = 'Editar no editor de cenas';
+        ed.type = 'button'; ed.textContent = '✏'; ed.title = 'Editar no Editor';
         ed.onclick = (e) => { e.preventDefault(); opts.editar(h); };
         row.appendChild(ed);
       }

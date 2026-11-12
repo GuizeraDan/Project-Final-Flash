@@ -442,7 +442,7 @@ window.addEventListener('load', () => {
     try {
       const battle = await FF.start(id);
       intro.classList.add('hide');
-      if (params.get('editor')) { FF.Editor.run(battle); if (params.get('hab')) FF.Editor.abrirHabilidade(params.get('hab')); }   // editor de cenas
+      if (params.get('editor')) { FF.Editor.run(battle); if (params.get('hab')) FF.Editor.abrirHabilidade(params.get('hab')); }   // Editor
       else { battle.run(); FF.Pausa.mostrarBotao(); FF.Voltar.armar(); }
     } catch (err) {
       console.error(err);
@@ -471,7 +471,7 @@ window.addEventListener('load', () => {
       return;
     }
   }
-  // editor de cenas direto (?editor=1&batalha=id): carrega sem precisar tocar
+  // Editor direto (?editor=1&batalha=id): carrega sem precisar tocar
   if (params.get('editor')) {
     batalhaLivre(params.get('batalha') || 'saiyajin_02');
     return;

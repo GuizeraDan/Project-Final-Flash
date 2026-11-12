@@ -298,14 +298,14 @@
       const linha = document.createElement('span');
       linha.className = 'som-linha';
       const env = document.createElement('button');
-      env.textContent = '➕'; env.title = 'Enviar para o Editor de cenas';
+      env.textContent = '➕'; env.title = 'Enviar para o Editor';
       env.onclick = () => enviar({ tipo: 'som', som: n });
       linha.append(b, env);
       box.appendChild(linha);
     });
   }
 
-  // fila compartilhada com o Editor de cenas (mesmo navegador)
+  // fila compartilhada com o Editor (mesmo navegador)
   function enviar(item) {
     try {
       const fila = JSON.parse(localStorage.getItem('ff_editor_fila') || '[]');
@@ -426,7 +426,8 @@
       if (!FF.Mods.salvar(st.setId, e.nome, st.anim)) return msgQ('❌ Não deu para salvar neste navegador.');
       e.mudou = false;
       renderLista();
-      msgQ('💾 Salvo! "' + e.nome + '" já está assim no jogo e no editor de cenas (recarregue as outras abas).');
+      msgQ('💾 Salvo! "' + e.nome + '" já está assim no jogo e no Editor. ' + (FF.Edicoes.conectado() ? 'Enviando para todos os aparelhos…' : 'Só neste aparelho por enquanto: conecte o GitHub no Editor (☁) para valer em todos.'));
+      FF.Edicoes.ouvintes.push(() => { if (st.edit) msgQ(FF.Edicoes.resumo()); });
     } else if (a === 'salvarnova') {
       const nome = prompt('Nome da nova animação:', e.nome + '_editada');
       if (!nome) return;
@@ -439,7 +440,7 @@
       renderLista();
       document.querySelectorAll('#anims div').forEach(d => d.classList.toggle('sel', d.dataset.n === nome));
       st.animName = nome;
-      msgQ('💾 Criada "' + nome + '". Ela aparece nas listas de animação do editor de cenas.' + (orig ? '' : ''));
+      msgQ('💾 Criada "' + nome + '". Ela aparece nas listas de animação do Editor.' + (orig ? '' : ''));
     } else if (a === 'original') {
       if (!FF.Mods.alterada(st.setId, e.nome)) {
         if (!e.mudou) return msgQ('Esta animação está como no jogo original.');
@@ -455,7 +456,7 @@
       const n = FF.Mods.total();
       if (!n) return msgQ('Você ainda não salvou nenhuma alteração.');
       copiar(FF.Mods.exportar());
-      msgQ('📤 ' + n + ' animação(ões) copiada(s). Cole na conversa com o Claude para virar parte fixa do jogo.');
+      msgQ('📤 ' + n + ' animação(ões) copiada(s) (cópia de segurança). ' + FF.Edicoes.resumo());
     } else if (a === 'sair') sairEdicao();
   }
 

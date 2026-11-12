@@ -1,4 +1,4 @@
-/* Estilos das ferramentas de desenvolvimento (visualizador e editor de cenas) */
+/* Estilos das ferramentas de desenvolvimento (visualizador e Editor) */
 .vis { margin: 0; background: #14111f; color: #eee; font: 14px/1.35 "Trebuchet MS", Arial, sans-serif; height: 100vh; display: flex; flex-direction: column; }
 .vis header { padding: 8px 12px; background: #221b3a; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .vis header b { color: #ffd84a; letter-spacing: 1px; }
@@ -54,7 +54,7 @@
   #palco { overflow: visible; }
 }
 
-/* ---------- Editor de cenas ---------- */
+/* ---------- Editor ---------- */
 #editor { position: fixed; top: 6px; right: 6px; bottom: 6px; width: 440px; overflow-y: auto; z-index: 50; box-sizing: border-box;
   background: rgba(18,14,34,0.97); border: 2px solid #c9a227; border-radius: 10px; padding: 10px; color: #eee;
   font: 13px/1.35 "Trebuchet MS", Arial, sans-serif; box-shadow: 0 6px 24px rgba(0,0,0,0.6); }
@@ -208,3 +208,21 @@ body.com-editor #tela { touch-action: none; }
 #linha .q.marcado { outline: 2px solid #ff8a3d; outline-offset: -2px; background: #3a2350; }
 #linha .q.alvo { box-shadow: -4px 0 0 #6fd36f; }
 #linha .q .dur { position: absolute; top: 1px; right: 2px; font-size: 10px; font-weight: bold; color: #ffd84a; background: #000a; padding: 0 3px; border-radius: 3px; }
+/* ---------- Editor: origem do golpe e sincronização ---------- */
+#editor .ed-origem { font-size: 12px; color: #cfc6ff; margin: 2px 0; }
+#editor .ed-sync { display: flex; gap: 6px; align-items: center; margin: 6px 0; padding: 5px 7px; border-radius: 7px; background: #13301f; border: 1px solid #3f8f5a; font-size: 12px; }
+#editor .ed-sync.local { background: #3a2a10; border-color: #b8862b; }
+#editor .ed-sync.erro { background: #3a1414; border-color: #c94a4a; }
+#editor .ed-sync span { flex: 1; }
+#ed-syncbox { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: rgba(4,4,16,.75); font-family: sans-serif; color: #fff; }
+#ed-syncbox[hidden] { display: none; }
+#ed-syncbox .sb-caixa { width: min(560px, 94vw); max-height: 92vh; overflow-y: auto; padding: 12px 16px; background: #15102e; border: 2px solid #c9a227; border-radius: 12px; font-size: 14px; line-height: 1.45; }
+#ed-syncbox .pv-topo { display: flex; justify-content: space-between; align-items: center; color: #ffd84a; font-size: 16px; }
+#ed-syncbox [hidden] { display: none; }
+#ed-syncbox a { color: #8fd0ff; }
+#ed-syncbox code { background: #2a2150; padding: 0 4px; border-radius: 4px; }
+#ed-syncbox input { width: 100%; box-sizing: border-box; font: inherit; color: #fff; background: #2a2150; border: 1px solid #4a3f90; border-radius: 6px; padding: 7px; margin: 6px 0; }
+#ed-syncbox button { font: inherit; color: #fff; background: #2a2150; border: 1px solid #4a3f90; border-radius: 6px; padding: 6px 12px; cursor: pointer; margin: 2px 4px 2px 0; }
+#ed-syncbox .sb-ok { background: #6a4a00; border-color: #ffd84a; font-weight: bold; }
+#ed-syncbox .sb-obs { font-size: 12px; color: #b9b0e8; }
+#ed-syncbox [data-sb="msg"] { color: #8fe08f; min-height: 1em; }

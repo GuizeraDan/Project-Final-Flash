@@ -1,0 +1,168 @@
+// Edições do usuário que valem no jogo todo e em todos os aparelhos.
+// - Fonte: data/edicoes.js (window.FF_EDICOES), publicado com o site.
+// - O Editor grava nesse arquivo direto no repositório do GitHub (precisa de uma chave de acesso,
+//   configurada uma vez por aparelho em "☁ Sincronizar"). O GitHub Pages republica e os outros
+//   aparelhos recebem ao recarregar.
+// - Sem chave (ou sem internet), a edição fica "pendente" neste aparelho e já vale aqui;
+//   é enviada quando conectar.
+// Seções: golpes[personagem][golpe] (substitui o golpe original; null = voltar ao original),
+//         habilidades[id], sprites[sprite][animação].
+window.FF = window.FF || {};
+
+FF.Edicoes = {
+  REPO: 'GuizeraDan/Project-Final-Flash',
+  ARQ: 'data/edicoes.js',
+  PEND: 'ff_edicoes_pendentes',
+  TOKEN: 'ff_github_token',
+
+  base() { const e = window.FF_EDICOES || {}; return { golpes: e.golpes || {}, habilidades: e.habilidades || {}, sprites: e.sprites || {} }; },
+  pendentes() { try { return JSON.parse(localStorage.getItem(this.PEND) || '[]'); } catch (e) { return []; } },
+  gravarPendentes(l) { try { localStorage.setItem(this.PEND, JSON.stringify(l)); } catch (e) { /* sem armazenamento */ } },
+
+  // aplica uma lista de mudanças [{c: [seção, a, b], v}] sobre um objeto de edições
+  aplicarLista(obj, lista) {
+    for (const m of lista) {
+      let o = obj;
+      for (let k = 0; k < m.c.length - 1; k++) o = (o[m.c[k]] = o[m.c[k]] || {});
+      const ult = m.c[m.c.length - 1];
+      if (m.v === null || m.v === undefined) delete o[ult]; else o[ult] = JSON.parse(JSON.stringify(m.v));
+    }
+    // limpa grupos vazios
+    for (const s of ['golpes', 'sprites']) for (const k of Object.keys(obj[s] || {})) if (!Object.keys(obj[s][k]).length) delete obj[s][k];
+    return obj;
+  },
+
+  // estado atual = publicado + pendentes deste aparelho
+  dados() {
+    if (!this._cache) this._cache = this.aplicarLista(JSON.parse(JSON.stringify(this.base())), this.pendentes());
+    return this._cache;
+  },
+
+  // registra uma mudança (vale na hora aqui) e tenta enviar ao GitHub
+  set(caminho, valor) {
+    const chave = JSON.stringify(caminho);
+    const l = this.pendentes().filter(m => JSON.stringify(m.c) !== chave);   // mesma coisa salva de novo: fica só a última
+    l.push({ c: caminho, v: valor === undefined ? null : valor, t: Date.now() });
+    this.gravarPendentes(l);
+    this._cache = null;
+    this.avisar();
+    return this.enviar();
+  },
+
+  // ---------- GitHub ----------
+  token() { try { return localStorage.getItem(this.TOKEN) || ''; } catch (e) { return ''; } },
+  conectado() { return !!this.token(); },
+  async api(caminho, opts = {}) {
+    const r = await fetch('https://api.github.com/repos/' + this.REPO + caminho, Object.assign({}, opts, {
+      headers: Object.assign({ Authorization: 'Bearer ' + this.token(), Accept: 'application/vnd.github+json' }, opts.headers || {}),
+      cache: 'no-store',
+    }));
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { const e = new Error(j.message || ('GitHub respondeu ' + r.status)); e.status = r.status; throw e; }
+    return j;
+  },
+  async conectar(token) {
+    const ant = this.token();
+    try { localStorage.setItem(this.TOKEN, token.trim()); } catch (e) { throw new Error('Este navegador não deixa guardar a chave.'); }
+    try {
+      const r = await this.api('');
+      if (!r.permissions || !r.permissions.push) throw new Error('A chave não tem permissão de escrita (Contents: Read and write) neste repositório.');
+    } catch (e) {
+      try { if (ant) localStorage.setItem(this.TOKEN, ant); else localStorage.removeItem(this.TOKEN); } catch (x) { /* nada */ }
+      throw e.status === 401 ? new Error('Chave inválida ou expirada.') : e.status === 404 ? new Error('A chave não tem acesso ao repositório ' + this.REPO + '.') : e;
+    }
+    await this.enviar();
+  },
+  desconectar() { try { localStorage.removeItem(this.TOKEN); } catch (e) { /* nada */ } this.avisar(); },
+
+  b64(txt) { return btoa(unescape(encodeURIComponent(txt))); },
+  de64(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); },
+  ler(txt) { const i = txt.indexOf('{'), f = txt.lastIndexOf('}'); return JSON.parse(txt.slice(i, f + 1)); },
+  escrever(obj) {
+    return '// Edições feitas no Editor (golpes alterados, habilidades novas, quadros de sprites).\n' +
+      '// Arquivo gravado pelo próprio Editor via GitHub (botão ☁). Não edite à mão sem necessidade.\n' +
+      'window.FF_EDICOES = ' + JSON.stringify(obj) + ';\n';
+  },
+
+  // lê a versão mais nova do arquivo no GitHub, junta as pendentes e grava (um commit)
+  async enviar() {
+    const l = this.pendentes();
+    if (!l.length || !this.conectado() || this._enviando) return { pendentes: l.length };
+    this._enviando = true;
+    this.estado = 'enviando'; this.avisar();
+    try {
+      for (let tent = 0; tent < 3; tent++) {
+        const atual = await this.api('/contents/' + this.ARQ + '?ref=main').catch(e => { if (e.status === 404) return null; throw e; });
+        const obj = atual ? this.ler(this.de64(atual.content)) : { versao: 1 };
+        obj.golpes = obj.golpes || {}; obj.habilidades = obj.habilidades || {}; obj.sprites = obj.sprites || {};
+        this.aplicarLista(obj, l);
+        const corpo = {
+          message: 'Editor: ' + l.length + ' alteração(ões) feitas no jogo',
+          content: this.b64(this.escrever(obj)), branch: 'main',
+          committer: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
+          author: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
+        };
+        if (atual) corpo.sha = atual.sha;
+        try {
+          await this.api('/contents/' + this.ARQ, { method: 'PUT', body: JSON.stringify(corpo), headers: { 'Content-Type': 'application/json' } });
+        } catch (e) { if (e.status === 409 && tent < 2) continue; throw e; }   // outro aparelho gravou junto: tenta de novo
+        // sucesso: o publicado passa a ser o novo; tira só as pendentes enviadas
+        window.FF_EDICOES = obj;
+        const resto = this.pendentes().slice(l.length);
+        this.gravarPendentes(resto);
+        this._cache = null;
+        this.estado = 'ok'; this.erro = null; this.ultimoEnvio = Date.now();
+        return { enviado: l.length, pendentes: resto.length };
+      }
+    } catch (e) {
+      this.estado = 'erro'; this.erro = e.message;
+      return { erro: e.message, pendentes: l.length };
+    } finally {
+      this._enviando = false;
+      this.avisar();
+    }
+  },
+
+  // texto curto para a interface
+  resumo() {
+    const n = this.pendentes().length;
+    if (!this.conectado()) return n ? '📱 ' + n + ' alteração(ões) só neste aparelho · conecte o GitHub para valer em todos' : '📱 Salvando só neste aparelho · conecte o GitHub para valer em todos';
+    if (this.estado === 'enviando') return '☁ Enviando para o GitHub…';
+    if (this.estado === 'erro') return '⚠ Não enviou (' + this.erro + ')' + (n ? ' · ' + n + ' pendente(s), tento de novo ao salvar' : '');
+    if (n) return '☁ ' + n + ' alteração(ões) esperando envio';
+    return this.ultimoEnvio ? '☁ Enviado! Em ~1 min vale em todos os aparelhos (recarregar)' : '☁ Conectado ao GitHub · salva para todos os aparelhos';
+  },
+  ouvintes: [],
+  avisar() { this.ouvintes.forEach(f => { try { f(); } catch (e) { /* nada */ } }); },
+
+  // ---------- golpes alterados ----------
+  aplicarGolpes(def) {
+    if (!def || !def.golpes || !def.id) return def;
+    const ed = this.dados().golpes[def.id] || {};
+    def._golpesOrig = def._golpesOrig || {};
+    // volta ao original o que deixou de estar alterado
+    for (const k of Object.keys(def._golpesOrig)) if (!ed[k]) { def.golpes[k] = def._golpesOrig[k]; delete def._golpesOrig[k]; }
+    for (const [k, g] of Object.entries(ed)) {
+      if (!(k in def._golpesOrig)) def._golpesOrig[k] = def.golpes[k];
+      def.golpes[k] = JSON.parse(JSON.stringify(g));
+    }
+    return def;
+  },
+  golpeAlterado(personagem, id) { return !!(this.dados().golpes[personagem] || {})[id]; },
+
+  // traz para cá o que ficou salvo só no navegador nas versões anteriores (uma vez)
+  migrar() {
+    try {
+      if (localStorage.getItem('ff_edicoes_migrado')) return;
+      const habs = JSON.parse(localStorage.getItem('ff_habilidades') || '{}');
+      const mods = JSON.parse(localStorage.getItem('ff_sprite_mods') || '{}');
+      const l = this.pendentes();
+      Object.entries(habs).forEach(([id, h]) => l.push({ c: ['habilidades', id], v: h, t: Date.now() }));
+      Object.entries(mods).forEach(([s, m]) => Object.entries(m).forEach(([a, v]) => l.push({ c: ['sprites', s, a], v, t: Date.now() })));
+      this.gravarPendentes(l);
+      localStorage.setItem('ff_edicoes_migrado', '1');
+      this._cache = null;
+    } catch (e) { /* sem armazenamento */ }
+  },
+};
+FF.Edicoes.migrar();

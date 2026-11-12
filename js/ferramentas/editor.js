@@ -1,4 +1,4 @@
-// Editor de cenas (sandbox): monta um golpe passo a passo — animações do lutador, efeitos,
+// Editor (sandbox): monta um golpe passo a passo — animações do lutador, efeitos,
 // sons, vozes, acertos e projéteis presos a quadros — e testa na batalha de verdade.
 // Abre com index.html?editor=1&batalha=<id>. Exporta o JSON do golpe (formato do "roteiro").
 window.FF = window.FF || {};
@@ -14,7 +14,7 @@ FF.Editor = {
 
   run(b) {
     this.b = b;
-    b.turnLabel = 'Editor de cenas';
+    b.turnLabel = 'Editor';
     document.body.classList.add('com-editor');
     b.checkEnd = () => false;
     b.all.forEach(f => f.idle());
@@ -22,7 +22,8 @@ FF.Editor = {
     this.montar();
     this.ganchos();
     this.render();
-    b.banner('Editor de cenas', 1.4);
+    this.renderOrigem();
+    b.banner('Editor', 1.4);
   },
 
   cenaVazia() {
@@ -48,7 +49,7 @@ FF.Editor = {
     const el = document.createElement('div');
     el.id = 'editor';
     el.innerHTML = `<div class="ed-main">
-      <div class="ed-topo"><b>🎬 Editor de cenas</b><span><button data-ed="sair" title="Voltar à tela de título">🏠 Sair</button> <button data-ed="min" title="Minimizar">—</button></span></div>
+      <div class="ed-topo"><b>🎬 Editor</b><span><button data-ed="sair" title="Voltar à tela de título">🏠 Sair</button> <button data-ed="min" title="Minimizar">—</button></span></div>
       <div class="ed-linha">
         <label>Quem solta <select data-ed="atacante"></select></label>
         <label>Alvo <select data-ed="alvo"></select></label>
@@ -78,14 +79,17 @@ FF.Editor = {
         <button data-ed="addPasso">Adicionar</button>
       </div>
       <div class="ed-fila"></div>
-      <h4>Cena</h4>
+      <h4>Golpe</h4>
       <div class="ed-linha">
         <select data-ed="importar"><option value="">Abrir golpe existente…</option></select>
-        <select data-ed="salvas"><option value="">Cenas salvas…</option></select>
+        <select data-ed="salvas"><option value="">Rascunhos…</option></select>
       </div>
+      <div class="ed-origem"></div>
       <div class="ed-linha">
-        <button data-ed="salvarHab" class="ed-hab">⭐ Salvar como habilidade</button>
+        <button data-ed="salvarJogo" class="ed-hab">💾 Salvar no jogo</button>
+        <button data-ed="original" hidden title="Desfaz suas alterações neste golpe e volta ao golpe original do jogo">↺ Original</button>
       </div>
+      <div class="ed-sync"><span data-ed="syncTxt"></span><button data-ed="sync">☁ Conectar GitHub</button></div>
       <div class="ed-linha">
         <button data-ed="salvar">💾 Salvar rascunho</button>
         <button data-ed="exportar">📋 Copiar JSON</button>
@@ -118,9 +122,13 @@ FF.Editor = {
     $('vel').onchange = (e) => { FF.Clock.scale = +e.target.value; };
     $('addPasso').onclick = () => this.addPasso($('novoPasso').value);
     $('salvar').onclick = () => this.salvar();
-    $('salvarHab').onclick = () => this.salvarHabilidade();
+    $('salvarJogo').onclick = () => this.salvarNoJogo();
+    $('original').onclick = () => this.voltarOriginal();
+    $('sync').onclick = () => this.abrirSync();
+    FF.Edicoes.ouvintes.push(() => this.renderSync());
+    this.renderSync();
     $('exportar').onclick = () => this.exportar();
-    $('nova').onclick = () => { if (confirm('Começar uma cena nova? A atual não salva será perdida.')) { this.cena = this.cenaVazia(); this.render(); } };
+    $('nova').onclick = () => { if (confirm('Começar um golpe novo? O atual não salvo será perdido.')) { this.cena = this.cenaVazia(); this.origem = null; this.render(); this.renderOrigem(); } };
     $('importar').onchange = (e) => { const v = e.target.value; if (v.startsWith('hab:')) this.abrirHabilidade(v.slice(4)); else if (v) this.importar(v); e.target.value = ''; };
     $('salvas').onchange = (e) => { if (e.target.value) this.carregar(e.target.value); e.target.value = ''; };
     $('json').onchange = (e) => { try { this.cena.golpe = JSON.parse(e.target.value); this.render(); this.log('JSON aplicado.'); } catch (err) { this.log('❌ JSON inválido: ' + err.message); } };
@@ -140,7 +148,7 @@ FF.Editor = {
     const s = this.$('importar');
     s.length = 1;
     const f = this.ator();
-    Object.entries(f.def.golpes || {}).forEach(([id, m]) => { if (id.startsWith('hab_')) return; const o = document.createElement('option'); o.value = id; o.textContent = m.nome || id; s.appendChild(o); });
+    Object.entries(f.def.golpes || {}).forEach(([id, m]) => { if (id.startsWith('hab_')) return; const o = document.createElement('option'); o.value = id; o.textContent = (FF.Edicoes.golpeAlterado(f.id, id) ? '✏ ' : '') + (m.nome || id) + ' (' + id + ')'; s.appendChild(o); });
     const habs = FF.Habilidades ? FF.Habilidades.listar(f.id) : [];
     if (habs.length) {
       const og = document.createElement('optgroup'); og.label = '⭐ Suas habilidades';
@@ -620,10 +628,102 @@ FF.Editor = {
     const nome = prompt('Nome da cena:', this.cena.golpe.nome || 'cena');
     if (!nome) return;
     const s = this.lerSalvas();
-    s[nome] = { atacante: this.ator().id, golpe: this.cena.golpe };
+    s[nome] = { atacante: this.ator().id, golpe: this.cena.golpe, origem: this.origem || null };
     try { localStorage.setItem(this.CHAVE, JSON.stringify(s)); this.log('💾 Cena "' + nome + '" salva neste navegador.'); } catch (e) { this.log('❌ Não deu para salvar neste navegador.'); }
     this.preencherSalvas();
   },
+  // 💾 Salvar no jogo: golpe aberto do jogo → substitui o original; golpe novo → vira habilidade (⭐)
+  salvarNoJogo() {
+    const o = this.origem, ator = this.ator();
+    if (!o || this.cena.golpe.habId) return this.salvarHabilidade();
+    if (o.personagem !== ator.id) {
+      if (!confirm('Este golpe é do ' + o.nomePersonagem + ', mas quem solta agora é ' + ator.def.nome + '.\nSalvar como golpe novo (habilidade) de ' + ator.def.nome + '?')) return;
+      return this.salvarHabilidade();
+    }
+    if (!confirm('Substituir "' + o.nome + '" do ' + ator.def.nome + ' no jogo?\nVale nas batalhas, na história e na Batalha Livre. Dá para voltar ao original depois (↺ Original).')) return;
+    const g = JSON.parse(JSON.stringify(this.cena.golpe));
+    FF.Edicoes.set(['golpes', o.personagem, o.id], g);
+    this.b.all.filter(f => f.id === o.personagem).forEach(f => FF.Edicoes.aplicarGolpes(f.def));
+    this.preencherImportar();
+    this.renderOrigem();
+    this.log('💾 "' + (g.nome || o.nome) + '" do ' + ator.def.nome + ' salvo no jogo. ' + (FF.Edicoes.conectado() ? 'Enviando para todos os aparelhos…' : 'Por enquanto só neste aparelho: conecte o GitHub (☁) para valer em todos.'));
+  },
+  voltarOriginal() {
+    const o = this.origem;
+    if (!o || !FF.Edicoes.golpeAlterado(o.personagem, o.id)) return;
+    if (!confirm('Voltar "' + o.nome + '" ao golpe original do jogo? Suas alterações nele serão apagadas.')) return;
+    FF.Edicoes.set(['golpes', o.personagem, o.id], null);
+    this.b.all.filter(f => f.id === o.personagem).forEach(f => FF.Edicoes.aplicarGolpes(f.def));
+    this.importar(o.id);
+    this.log('↺ "' + o.nome + '" voltou ao original.');
+  },
+  renderOrigem() {
+    const box = this.el.querySelector('.ed-origem'), o = this.origem, g = this.cena.golpe;
+    const alt = o && FF.Edicoes.golpeAlterado(o.personagem, o.id);
+    box.textContent = g.habId ? '⭐ Editando sua habilidade "' + (g.nome || '') + '"' :
+      o ? '✏ Editando "' + o.nome + '" do ' + o.nomePersonagem + (alt ? ' · já alterado por você' : ' · original do jogo') :
+      '🆕 Golpe novo · ao salvar vira uma habilidade ⭐ do lutador';
+    this.$('original').hidden = !alt;
+  },
+
+  // ---------- ☁ sincronização com o GitHub (vale em todos os aparelhos) ----------
+  renderSync() {
+    if (!this.el) return;
+    this.$('syncTxt').textContent = FF.Edicoes.resumo();
+    this.$('sync').textContent = FF.Edicoes.conectado() ? '☁ Conta' : '☁ Conectar GitHub';
+    this.el.querySelector('.ed-sync').classList.toggle('local', !FF.Edicoes.conectado());
+    this.el.querySelector('.ed-sync').classList.toggle('erro', FF.Edicoes.estado === 'erro');
+  },
+  abrirSync() {
+    let d = document.getElementById('ed-syncbox');
+    if (!d) {
+      d = document.createElement('div');
+      d.id = 'ed-syncbox';
+      d.innerHTML = `<div class="sb-caixa">
+        <div class="pv-topo"><b>☁ Salvar para todos os aparelhos</b><button data-sb="fechar">✕</button></div>
+        <div data-sb="off">
+          <p>O Editor grava suas mudanças direto no repositório do jogo no GitHub. O site se atualiza sozinho e o celular, o PC e o app instalado recebem.</p>
+          <p>Para isso, cada aparelho precisa de uma <b>chave de acesso</b> do GitHub (só uma vez):</p>
+          <ol>
+            <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (logado na sua conta).</li>
+            <li>Nome: <i>Final Flash Editor</i>. Validade: a que preferir.</li>
+            <li><b>Repository access</b> → <i>Only select repositories</i> → <b>Project-Final-Flash</b>.</li>
+            <li><b>Permissions</b> → <b>Contents</b> → <i>Read and write</i>.</li>
+            <li>Gere a chave, copie (começa com <code>github_pat_</code>) e cole abaixo.</li>
+          </ol>
+          <input data-sb="token" type="password" placeholder="github_pat_…" autocomplete="off">
+          <button data-sb="conectar" class="sb-ok">Conectar</button>
+          <p class="sb-obs">A chave fica guardada só neste navegador e só tem acesso a este repositório. Não mande para ninguém.</p>
+        </div>
+        <div data-sb="on">
+          <p>✅ Este aparelho está conectado. Tudo que você salvar no Editor, nas habilidades e no ✂ Editar quadros vai para todos os aparelhos.</p>
+          <button data-sb="enviar">Enviar pendentes agora</button>
+          <button data-sb="sair">Desconectar este aparelho</button>
+        </div>
+        <p data-sb="msg"></p>
+      </div>`;
+      document.body.appendChild(d);
+      ['pointerdown', 'keydown'].forEach(t => d.addEventListener(t, e => e.stopPropagation()));
+      const q = (k) => d.querySelector('[data-sb="' + k + '"]');
+      q('fechar').onclick = () => (d.hidden = true);
+      q('conectar').onclick = async () => {
+        q('msg').textContent = 'Verificando…';
+        try { await FF.Edicoes.conectar(q('token').value); q('token').value = ''; q('msg').textContent = '✅ Conectado! ' + FF.Edicoes.resumo(); this.mostrarSync(); }
+        catch (e) { q('msg').textContent = '❌ ' + e.message; }
+      };
+      q('enviar').onclick = async () => { q('msg').textContent = 'Enviando…'; const r = await FF.Edicoes.enviar(); q('msg').textContent = r.erro ? '❌ ' + r.erro : FF.Edicoes.resumo(); };
+      q('sair').onclick = () => { if (confirm('Desconectar este aparelho? As próximas mudanças ficarão só nele.')) { FF.Edicoes.desconectar(); this.mostrarSync(); } };
+    }
+    d.hidden = false;
+    d.querySelector('[data-sb="msg"]').textContent = '';
+    this.mostrarSync();
+  },
+  mostrarSync() {
+    const d = document.getElementById('ed-syncbox'); if (!d) return;
+    d.querySelector('[data-sb="off"]').hidden = FF.Edicoes.conectado();
+    d.querySelector('[data-sb="on"]').hidden = !FF.Edicoes.conectado();
+  },
+
   // vira golpe de verdade: aparece no menu do personagem nas batalhas (liga/desliga na seleção ou na pausa)
   salvarHabilidade() {
     const g = this.cena.golpe, ator = this.ator();
@@ -644,7 +744,9 @@ FF.Editor = {
     FF.Habilidades.atualizarBatalha(this.b);
     this.render();
     this.preencherImportar();
-    this.log('⭐ Habilidade "' + nome + '" salva para ' + ator.def.nome + (h.equipada ? ' e já equipada' : '') + '. Teste em Batalha Livre (botão ⭐ Habilidades) ou no ⏸ durante a luta.');
+    this.origem = null;
+    this.renderOrigem();
+    this.log('⭐ Habilidade "' + nome + '" salva para ' + ator.def.nome + (h.equipada ? ' e já equipada' : '') + '. ' + (FF.Edicoes.conectado() ? 'Enviando para todos os aparelhos…' : 'Por enquanto só neste aparelho: conecte o GitHub (☁).'));
   },
   abrirHabilidade(id) {
     const h = FF.Habilidades.ler()[id];
@@ -657,7 +759,9 @@ FF.Editor = {
     this.passoSel = 0;
     this.render();
     this.preencherImportar();
-    this.log('✏ Editando a habilidade "' + h.nome + '". Use ⭐ Salvar como habilidade para atualizar.');
+    this.origem = null;
+    this.renderOrigem();
+    this.log('✏ Editando a habilidade "' + h.nome + '". Use 💾 Salvar no jogo para atualizar.');
   },
   carregar(nome) {
     const c = this.lerSalvas()[nome];
@@ -666,15 +770,19 @@ FF.Editor = {
     if (i >= 0) this.cena.atacante = i;
     else this.log('⚠ ' + c.atacante + ' não está nesta batalha; abrindo no lutador atual.');
     this.cena.golpe = JSON.parse(JSON.stringify(c.golpe));
+    this.origem = c.origem || null;
     this.passoSel = 0;
     this.render();
+    this.renderOrigem();
   },
   importar(id) {
-    const mv = this.ator().def.golpes[id];
+    const ator = this.ator(), mv = ator.def.golpes[id];
     this.cena.golpe = JSON.parse(JSON.stringify(mv));
+    this.origem = { personagem: ator.id, nomePersonagem: ator.def.nome, id, nome: mv.nome || id };
     this.passoSel = 0;
     this.render();
-    this.log('Aberto: ' + (mv.nome || id) + '. As mudanças só valem aqui até você exportar.');
+    this.renderOrigem();
+    this.log('Aberto: ' + (mv.nome || id) + '. Mude o que quiser e use 💾 Salvar no jogo para substituir o golpe original.');
   },
   atualizarJSON() {
     const t = this.$('json');

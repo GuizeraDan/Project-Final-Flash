@@ -1,4 +1,4 @@
-// Editor de cenas — modo "Cena livre": palco onde se coloca qualquer sprite (personagens, efeitos e os
+// Editor — modo "Cena livre": palco onde se coloca qualquer sprite (personagens, efeitos e os
 // do jogo), arrastando, mudando tamanho/giro/transparência e animando com quadros-chave no tempo.
 // Também sons, acertos, tremores e flashes em instantes. Extende FF.Editor (js/ferramentas/editor.js).
 window.FF = window.FF || {};

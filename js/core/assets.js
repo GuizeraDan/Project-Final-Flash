@@ -43,6 +43,7 @@ FF.Assets = {
   },
 
   async loadCharacter(id) {
-    return this.loadJSON('data/characters/' + id + '.json');
+    const def = await this.loadJSON('data/characters/' + id + '.json');
+    return FF.Edicoes ? FF.Edicoes.aplicarGolpes(def) : def;     // golpes alterados no Editor
   },
 };

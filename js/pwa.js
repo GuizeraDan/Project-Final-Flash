@@ -40,8 +40,15 @@ FF.PWA = {
       const r = this.versao ? await fetch('versao.json?t=' + Date.now(), { cache: 'no-store' }) : await fetch('versao.json');
       if (!r.ok) return;
       const v = (await r.json()).versao;
-      if (!this.versao) { this.versao = v; return; }
-      if (v !== this.versao) this.avisar();
+      if (!this.versao) this.versao = v;
+      else if (v !== this.versao) this.avisar();
+      // edições gravadas pelo Editor (outro aparelho) também contam como versão nova
+      const ed = await fetch('data/edicoes.js?t=' + Date.now(), { cache: 'no-store' });
+      if (ed.ok) {
+        const txt = await ed.text();
+        if (this.edicoes == null) this.edicoes = txt;
+        else if (txt !== this.edicoes) { this.edicoes = txt; this.avisar(); }
+      }
     } catch (e) { /* sem internet */ }
   },
 
