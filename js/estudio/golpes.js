@@ -222,6 +222,7 @@ window.FF = window.FF || {};
       // garante ids e trilhas
       doc.linha.trilhas = doc.linha.trilhas || [];
       doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).forEach(c => { if (!c.id) c.id = novoId(); }));
+      this.extrairImpactos(doc.linha);
       this.doc = doc;
       this.sel = null; this.trSel = null; this.t = 0; this.loop = null;
       this.sujo = false;
@@ -295,6 +296,7 @@ window.FF = window.FF || {};
     },
     // rotulo: texto para o desfazer; juntar: agrupa mudanças seguidas; arrastando: ainda no meio de um arraste
     mudou(rot, juntar, arrastando) {
+      this.sincronizarPresos();
       this.autoDuracao();
       this.sujo = true;
       if (!arrastando) { this.historico.marcar(rot, juntar); this.salvarRascunho(); }
@@ -303,6 +305,55 @@ window.FF = window.FF || {};
       if (RERENDER.has(rot) || (!juntar && !arrastando && this._deCanvas)) this.renderProps();
       this.renderRodape();
     },
+    // ---------- explosões do impacto de um objeto lançado (Genki Dama, Esfera da Destruição…) ----------
+    // Viram clipes de efeito de verdade na trilha Efeitos, "presos" ao clipe que lança o objeto: o tempo deles
+    // acompanha o lançamento (início + tempo até chegar + ajuste). No jogo é um efeito comum (prende/extra são ignorados).
+    trilhaEfeitos(L) {
+      L = L || this.doc.linha;
+      let tr = L.trilhas.find(t => t.tipo === 'efeitos');
+      if (!tr) { tr = { id: 'efeitos', tipo: 'efeitos', nome: 'Efeitos', clipes: [] }; L.trilhas.splice(2, 0, tr); }
+      return tr;
+    },
+    clipeEfeitoDoImpacto(acao, ef) {
+      const lo = acao.passo.lancarObjeto;
+      const c = { id: novoId(), tipo: 'efeito', t: Math.round((acao.t + (lo.tempo || 1)) * 1000) / 1000, fx: ef.fx, em: ef.chao ? 'alvoPes' : 'alvo', prende: acao.id, extra: 0 };
+      ['dx', 'dy', 'escala', 'fps', 'alpha', 'sprite'].forEach(k => { if (ef[k] != null) c[k] = ef[k]; });
+      if (ef.duracao) c.d = ef.duracao;
+      return c;
+    },
+    extrairImpactos(L) {
+      const tr = this.trilhaEfeitos(L);
+      L.trilhas.forEach(t => t.clipes.forEach(c => {
+        const lo = c.tipo === 'acao' && c.passo && c.passo.lancarObjeto;
+        if (!lo || !Array.isArray(lo.impacto) || !lo.impacto.length) return;
+        lo.impacto.forEach(ef => { if (ef && ef.fx) tr.clipes.push(this.clipeEfeitoDoImpacto(c, ef)); });
+        lo.impacto = [];
+      }));
+    },
+    baseDoPreso(c) {
+      const a = this.achar(c.prende);
+      const lo = a && a.c.tipo === 'acao' && a.c.passo && a.c.passo.lancarObjeto;
+      return lo ? a.c.t + (lo.tempo || 1) : null;
+    },
+    sincronizarPresos() {
+      if (!this.doc) return;
+      this.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => {
+        if (!c.prende) return;
+        const base = this.baseDoPreso(c);
+        if (base == null) { delete c.prende; delete c.extra; return; }          // o lançamento foi apagado: fica solto
+        if (c.id === this.sel) c.extra = Math.round((c.t - base) * 1000) / 1000; // arrastou o próprio efeito: guarda o ajuste
+        else c.t = Math.max(0, Math.round((base + (c.extra || 0)) * 1000) / 1000);
+      }));
+    },
+    explosaoNoImpacto(acao) {
+      const tr = this.trilhaEfeitos();
+      const c = this.clipeEfeitoDoImpacto(acao, { fx: 'Explosao15', escala: 0.8 });
+      tr.clipes.push(c);
+      this.sel = c.id;
+      this.mudou('Explosão no impacto');
+      this.renderProps();
+    },
+
     salvarRascunho() {
       clearTimeout(this._rt);
       this._rt = setTimeout(() => E.rascunho.gravar('golpe_doc', this.doc ? { doc: this.doc, t: Date.now() } : null), 300);

@@ -42,6 +42,11 @@ Em todo o Estúdio: **Ctrl+Z / Ctrl+Y** desfazem/refazem; o trabalho em andament
 9. Tela: tremor, flash, **câmera** (zoom/foco) e mensagens. Ações: ki, buff, transformar, curar, atordoar,
    **criar objeto** (uma esfera que cresce presa ao golpe — tamanho inicial/final, tempo, posição) e **lançar objeto**
    (tempo até chegar, tremor, flash, som), cada uma com campos próprios; o JSON fica logo abaixo para o resto.
+   As **explosões do impacto** do objeto lançado ficam na trilha **Efeitos** como clipes normais (efeito, tamanho,
+   posição, giro, duração — arraste no palco), **presos** ao lançamento (🔗 e linha tracejada): mudando o início ou
+   o tempo até chegar, elas acompanham; arrastar a explosão muda só o ajuste. "＋ Explosão no impacto" cria outra;
+   "Soltar" deixa o tempo fixo. As explosões de projéteis e acertos aparecem como marca tracejada na trilha Efeitos
+   (clique para abrir o projétil/acerto dono — elas dependem da distância e se editam no próprio clipe).
 10. **Linha do tempo:** arraste clipes para mover, a borda direita para esticar, a régua para mover o
     cursor (scrub). 🧲 Ímã encaixa nos quadros das animações (Alt solta). Ctrl+roda = zoom. Shift+arrastar
     na régua marca um trecho para repetir (🔁 Trecho). ← → anda quadro a quadro; Espaço toca/pausa;

@@ -74,6 +74,39 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(/Tempo até chegar/.test(s) && /4 acerto/.test(s), 'ação "Lançar objeto" com campos e resumo dos acertos');
 
+  // ---- explosões do impacto viram clipes presos ao lançamento
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=esfera_destruicao');
+  await pronto(); await p.waitForTimeout(800);
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const ef = g.doc.linha.trilhas.find(t => t.tipo === 'efeitos').clipes.filter(c => c.prende);
+    let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; }));
+    return { n: ef.length, fx: ef.map(c => c.fx), t: ef.map(c => c.t), lanT: lan.t, tempo: lan.passo.lancarObjeto.tempo, imp: lan.passo.lancarObjeto.impacto.length, sujo: g.sujo };
+  });
+  ok(s.n === 2 && s.fx.join() === 'Bills_Esfera_Explosao,Explosao15' && Math.abs(s.t[0] - (s.lanT + s.tempo)) < 0.002 && s.imp === 0 && !s.sujo, 'explosões do impacto aparecem na trilha Efeitos no tempo da chegada: ' + JSON.stringify(s));
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; }));
+    g.sel = lan.id; lan.t += 0.5; g.mudou('Mover');
+    const ef = g.doc.linha.trilhas.find(t => t.tipo === 'efeitos').clipes.filter(c => c.prende);
+    const r1 = ef[0].t - lan.t;
+    g.sel = ef[1].id; ef[1].t += 0.2; g.mudou('Mover');
+    const r2 = ef[1].extra;
+    g.sel = lan.id; lan.passo.lancarObjeto.tempo = 1.5; g.mudou('Lançar');
+    return { r1, r2, t1: ef[1].t - lan.t };
+  });
+  ok(Math.abs(s.r1 - 1) < 0.002 && Math.abs(s.r2 - 0.2) < 0.002 && Math.abs(s.t1 - 1.7) < 0.002, 'mover o lançamento leva as explosões; arrastar uma guarda o ajuste: ' + JSON.stringify(s));
+  s = await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; })); g.sel = lan.id; g.renderProps(); return g.props.textContent; });
+  ok(/Explosões no impacto/.test(s) && /Bills_Esfera_Explosao/.test(s), 'o Lançar objeto lista as explosões presas');
+  await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); let lan = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.passo && c.passo.lancarObjeto) lan = c; })); g.irPara(lan.t + lan.passo.lancarObjeto.tempo + 0.15); });
+  await p.waitForTimeout(300);
+  await p.screenshot({ path: OUT + '/0b_impacto.png' });
+  // ghost da explosão do projétil (Rajada de Ki)
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
+  await pronto(); await p.waitForTimeout(800);
+  s = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').tl._fantasmas.length);
+  ok(s >= 2, 'marcas das explosões dos projéteis na trilha Efeitos (' + s + ')');
+
   // ---- miniaturas animadas nos campos de efeito (projétil da Rajada de Ki do Bills)
   await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
   await pronto(); await p.waitForTimeout(800);

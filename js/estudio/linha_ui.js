@@ -219,6 +219,43 @@ FF.EstudioLinha = class {
       if (d > 0 && this.host.redimensionavel(c)) { ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.fillRect(x + w - 3, y + 4, 2, LH - 15); }
       ctx.globalAlpha = 1;
     }
+    // explosões que fazem parte de outro clipe (projétil, acerto): marca clarinha na trilha Efeitos; clicar abre o clipe dono
+    this._fantasmas = [];
+    const iEf = L.trilhas.findIndex(t => t.tipo === 'efeitos');
+    if (iEf >= 0) {
+      const yE = RG + iEf * LH + 3, hE = LH - 7;
+      for (const { c, tr } of this.todos()) {
+        let tI = null, fx = null;
+        if (c.tipo === 'projetil' && c.impacto) { tI = c.t + this.host.dur(c, tr); fx = c.impacto; }
+        else if (c.tipo === 'acerto' && c.fx) { tI = c.t; fx = c.fx; }
+        if (tI == null) continue;
+        const x = tI * pxs, w = 62;
+        if (x > x1 || x + w < x0) continue;
+        ctx.save();
+        ctx.globalAlpha = c.id === this.host.sel ? 0.85 : 0.45;
+        ctx.setLineDash([3, 3]); ctx.strokeStyle = '#ff8a3a'; ctx.lineWidth = 1;
+        this.ret(ctx, x, yE, w, hE, 4); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.beginPath(); ctx.rect(x, yE, w, hE); ctx.clip();
+        ctx.fillStyle = '#ffc89a'; ctx.font = '10px sans-serif'; ctx.textBaseline = 'middle';
+        ctx.fillText('↳ ' + fx, x + 3, yE + hE / 2);
+        ctx.restore();
+        this._fantasmas.push({ x, y: yE, w, h: hE, id: c.id });
+      }
+    }
+    // efeitos presos ao impacto de um objeto lançado: linha até o clipe do lançamento
+    for (const { c, i } of this.todos()) {
+      if (!c.prende) continue;
+      const a = this.host.achar(c.prende); if (!a) continue;
+      const iA = L.trilhas.indexOf(a.tr);
+      const xa = a.c.t * pxs + 6, ya = RG + iA * LH + LH / 2, xe = c.t * pxs + 2, ye = RG + i * LH + LH / 2;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(54,200,216,0.55)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xa, ye); ctx.lineTo(xe, ye); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = '#36c8d8'; ctx.font = '10px sans-serif'; ctx.textBaseline = 'middle';
+      ctx.fillText('🔗', xe - 13, ye);
+    }
     // cursor
     const xc = Math.round(this.host.t * pxs) + 0.5;
     ctx.fillStyle = '#ff4a6a'; ctx.fillRect(xc - 0.5, 0, 2, H);
@@ -271,6 +308,8 @@ FF.EstudioLinha = class {
         if (arr.modo === 'cursor') this.host.irPara(this.encaixar(t, null, e.altKey), true);
         return;
       }
+      const fan = (this._fantasmas || []).find(f => p.x >= f.x && p.x <= f.x + f.w && p.y >= f.y && p.y <= f.y + f.h);
+      if (fan && !this.achar(p).c) { this.host.selecionar(fan.id); arr = null; return; }
       const h = this.achar(p);
       if (h.c) {
         this.host.selecionar(h.c.id, h.tr.id, true);

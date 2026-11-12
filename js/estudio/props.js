@@ -48,6 +48,20 @@ FF.EstudioProps = {
       g.appendChild(E.campo('som', 'Som ao lançar', o.som, (v) => { if (v) o.som = v; else delete o.som; host.mudou('Lançar: som'); }));
       const ac = o.acertos || [];
       g.appendChild(E.el('p', 'es-dica', ac.length + ' acerto(s) no impacto · dano total ' + ac.reduce((s, a) => s + (a.fracao || 0), 0).toFixed(2).replace('.', ',') + ' do poder (edite no JSON abaixo).'));
+      // explosões do impacto: clipes na trilha Efeitos presos a este lançamento
+      const presos = [];
+      (host.doc && host.doc.linha.trilhas || []).forEach(tr => tr.clipes.forEach(x => { if (x.prende === c.id) presos.push(x); }));
+      g.appendChild(E.el('div', 'es-sub', '💥 Explosões no impacto (trilha Efeitos)'));
+      presos.forEach(x => {
+        const r = E.el('div', 'es-preso-item');
+        const cv = document.createElement('canvas'); cv.width = 28; cv.height = 28; cv.className = 'es-mini-anim';
+        E.miniAnim(cv, () => ({ set: E.setDoEfeito(x.fx, x.sprite), anim: x.fx }));
+        const n = E.el('span'); n.textContent = x.fx + (x.escala ? ' ×' + x.escala : '') + (x.extra ? ' (' + (x.extra > 0 ? '+' : '') + x.extra + ' s)' : '');
+        r.append(cv, n, E.botao('Editar', () => host.selecionar(x.id), 'Abre este efeito (posição, tamanho, tempo…)'));
+        g.appendChild(r);
+      });
+      if (!presos.length && !(o.impacto && o.impacto.length)) g.appendChild(E.el('p', 'es-dica', 'Nenhuma explosão no impacto.'));
+      if (host.explosaoNoImpacto) g.appendChild(E.botao('＋ Explosão no impacto', () => host.explosaoNoImpacto(c), 'Cria um efeito na trilha Efeitos no momento em que o objeto chega (preso a este lançamento)', 'es-bt-ouro'));
     }
   },
 
@@ -110,6 +124,14 @@ FF.EstudioProps = {
       }
       case 'visivel': g.appendChild(num(c, 'alpha', 'Opacidade', '0 = some, 1 = aparece', { passo: 0.1, min: 0, max: 1 })); break;
       case 'efeito': {
+        if (c.prende) {
+          const base = host.baseDoPreso ? host.baseDoPreso(c) : null;
+          const av = E.el('div', 'es-preso');
+          av.appendChild(E.el('span', null, '🔗 Preso ao impacto do objeto lançado' + (base != null ? ' (chega em ' + base.toFixed(2).replace('.', ',') + ' s' + (c.extra ? ', ajuste ' + (c.extra > 0 ? '+' : '') + c.extra.toFixed(2).replace('.', ',') + ' s' : '') + ')' : '') + '. Mudando o lançamento, ele acompanha; arrastar este clipe muda só o ajuste.'));
+          av.appendChild(E.botao('Ir para o lançamento', () => host.selecionar(c.prende), 'Seleciona o clipe que lança o objeto'));
+          av.appendChild(E.botao('Soltar', () => { delete c.prende; delete c.extra; host.mudou('Soltar do impacto'); host.renderProps(); }, 'Deixa este efeito com tempo fixo'));
+          g.appendChild(av);
+        }
         g.appendChild(this.campoEfeito(c, 'fx', 'Efeito', host));
         g.appendChild(sel(c, 'em', 'Preso em', this.EM, null, 'atacante'));
         g.appendChild(E.el('p', 'es-dica', 'Arraste no palco para posicionar; alça amarela = tamanho, alça azul = giro.'));

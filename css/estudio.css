@@ -153,3 +153,8 @@ a { color: var(--ouro); }
 .es-tl-nome.compacto button { padding: 0 2px; font-size: 9px; line-height: 1; }
 .es-tl-nome.compacto { font-size: 10px; }
 .es-mini-anim { width: 34px; height: 34px; flex: none; image-rendering: pixelated; background: repeating-conic-gradient(#2b2442 0 25%, #1e1931 0 50%) 0 0 / 8px 8px; border: 1px solid var(--linha); border-radius: 4px; cursor: pointer; }
+.es-preso { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0 6px; padding: 5px 6px; border: 1px dashed #36c8d8; border-radius: 5px; font-size: 11px; color: #bfefff; }
+.es-preso > span { flex-basis: 100%; }
+.es-preso-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+.es-preso-item span { flex: 1; font-size: 12px; }
+.es-preso-item .es-mini-anim { width: 28px; height: 28px; }
