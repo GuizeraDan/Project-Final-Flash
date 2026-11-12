@@ -83,6 +83,26 @@ const ok = (c, m) => { if (!c) { console.log('FALHOU:', m); process.exitCode = 1
   ok(await p.evaluate(() => FF.Edicoes.dados().golpes.goku.kamehameha.poder === 9), 'golpe existente salvo em data/edicoes (pendente)');
   await foto(p, '2_estudio_kame');
 
+  // ---- 2b. trocar de golpe com mudanças não salvas: Salvar / Trocar sem salvar / Ficar ----
+  await p.evaluate(() => { const G = FF.Estudio.Golpes; G.doc.golpe.poder = 7; G.mudou('Poder'); });
+  const item = (txt) => p.locator('.es-aba-golpes .es-item', { hasText: txt }).first();
+  await item('Carregar Ki').click();
+  await p.waitForSelector('.es-escolha');
+  const bts = await p.$$eval('.es-escolha-bts button', l => l.map(b => b.textContent));
+  ok(bts.length === 3, 'aviso de troca tem 3 opções: ' + bts.join(' | '));
+  await p.click('.es-escolha-bts button:has-text("Ficar")');
+  ok(await p.evaluate(() => FF.Estudio.Golpes.doc.origem.id === 'kamehameha' && FF.Estudio.Golpes.doc.golpe.poder === 7), '"Ficar neste golpe" continua no mesmo golpe com a mudança');
+  await item('Carregar Ki').click();
+  await p.click('.es-escolha-bts button:has-text("Trocar sem salvar")');
+  await p.waitForTimeout(300);
+  ok(await p.evaluate(() => FF.Estudio.Golpes.doc.origem.id === 'carregar_ki' && FF.Edicoes.dados().golpes.goku.kamehameha.poder === 9), '"Trocar sem salvar" troca e não grava');
+  await p.evaluate(() => FF.Estudio.Golpes.abrirGolpe('goku', 'kamehameha'));
+  await p.evaluate(() => { const G = FF.Estudio.Golpes; G.doc.golpe.poder = 9; G.mudou('Poder'); });
+  await item('Carregar Ki').click();
+  await p.click('.es-escolha-bts button:has-text("Salvar e trocar")');
+  await p.waitForTimeout(300);
+  ok(await p.evaluate(() => FF.Estudio.Golpes.doc.origem.id === 'carregar_ki' && FF.Edicoes.dados().golpes.goku.kamehameha.poder === 9 && !FF.Estudio.Golpes.sujo), '"Salvar e trocar" grava e troca');
+
   // ---- 3. Batalha Livre com a habilidade ----
   const g = await ctx.newPage(); vigiar(g);
   await g.goto(raiz + '/index.html');

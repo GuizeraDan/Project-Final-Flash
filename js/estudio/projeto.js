@@ -49,8 +49,8 @@ window.FF = window.FF || {};
         const sm = E.el('small'); sm.textContent = (JSON.stringify(v).length / 1024).toFixed(1) + ' KB'; r.appendChild(sm);
         if (cam[0] === 'golpes') r.appendChild(E.botao('✏', () => { location.href = 'estudio.html?aba=golpes&personagem=' + cam[1] + '&golpe=' + cam[2]; }, 'Abrir na aba Golpes'));
         if (cam[0] === 'habilidades') r.appendChild(E.botao('✏', () => { location.href = 'estudio.html?aba=golpes&hab=' + cam[1]; }, 'Abrir na aba Golpes'));
-        r.appendChild(E.botao(cam[0] === 'habilidades' || cam[0] === 'spritesNovos' || (cam[0] === 'personagens' && v && v.novo) ? '🗑' : '↺', () => {
-          if (!confirm('Desfazer/apagar "' + cam.slice(1).join(' › ') + '" em todos os aparelhos?')) return;
+        r.appendChild(E.botao(cam[0] === 'habilidades' || cam[0] === 'spritesNovos' || (cam[0] === 'personagens' && v && v.novo) ? '🗑' : '↺', async () => {
+          if (!(await E.confirmar('Desfazer/apagar', 'Desfazer/apagar "' + cam.slice(1).join(' › ') + '" em todos os aparelhos?', 'Sim, desfazer', true))) return;
           E.salvarNoJogo(cam, null, '↺ Removido.');
           if (cam[0] === 'sprites' && FF.Mods) FF.Mods.restaurar(cam[1], cam[2]);
           this.render();

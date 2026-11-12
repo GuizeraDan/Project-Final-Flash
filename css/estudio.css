@@ -146,3 +146,7 @@ a { color: var(--ouro); }
 .es-tl .es-dica { margin: 0 0 0 6px; }
 .es-bt-play { min-width: 40px; }
 .es-golpes-cfg .es-campo .es-rot { width: 72px; }
+
+.es-escolha p { margin: 4px 0 12px; }
+.es-escolha-bts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.es-escolha-bts button { padding: 6px 12px; }

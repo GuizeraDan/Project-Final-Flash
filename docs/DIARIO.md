@@ -121,3 +121,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 **Decisões:** o Estúdio salva golpes como `roteiro: [{linha}]`; golpes antigos continuam como estavam até serem salvos no Estúdio. Prévia determinística: a batalha é recriada e simulada em passos de 1/60 s até o instante do cursor (sorteios com semente, sem som); tocar segue em tempo real com som.
 
 **Pendente:** aba de batalhas/estágios; IA por forma; edição de pixels; Editor antigo não edita golpes `linha`; ver lista em `docs/ESTUDIO.md`.
+- Estúdio: avisos de "mudanças não salvas" agora têm 3 opções (💾 Salvar e trocar · Trocar sem salvar · Ficar), em Golpes, Sprites e nos botões de testar; todos os confirm() do navegador viraram janelas próprias (`FF.Estudio.escolha`/`confirmar`, botão "Não" em vez de "Cancelar").

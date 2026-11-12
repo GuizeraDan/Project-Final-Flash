@@ -443,10 +443,10 @@
       this.renderTudo();
       E().aviso('Forma "' + id + '" criada. Para o lutador chegar nela, um golpe precisa ter {"transformar": "' + id + '"} (aba Golpes).');
     },
-    apagarForma() {
+    async apagarForma() {
       const ks = Object.keys(this.doc.formas);
       if (ks.length < 2) return E().aviso('O personagem precisa de pelo menos uma forma.', 'erro');
-      if (!confirm('Apagar a forma "' + this.formaSel + '"?')) return;
+      if (!(await E().confirmar('Apagar forma', 'Apagar a forma "' + this.formaSel + '"?', '🗑 Apagar', true))) return;
       delete this.doc.formas[this.formaSel];
       if (!this.doc.formas[this.doc.formaInicial]) this.doc.formaInicial = Object.keys(this.doc.formas)[0];
       this.formaSel = this.doc.formaInicial;
@@ -566,8 +566,8 @@
       this.mudar('Novo buff');
       this.renderTudo();
     },
-    apagarBuff() {
-      if (!this.buffSel || !confirm('Apagar o buff "' + this.buffSel + '"?')) return;
+    async apagarBuff() {
+      if (!this.buffSel || !(await E().confirmar('Apagar buff', 'Apagar o buff "' + this.buffSel + '"?', '🗑 Apagar', true))) return;
       delete this.doc.buffs[this.buffSel];
       if (this.buffPrev === this.buffSel) this.buffPrev = '';
       this.buffSel = null;
@@ -671,13 +671,13 @@
       return this.recarregar(id);
     },
     async original() {
-      if (!confirm('Voltar "' + (this.doc.nome || this.pid) + '" ao original do jogo? (o que foi salvo e o rascunho se perdem; dá para desfazer antes de salvar de novo)')) return;
+      if (!(await E().confirmar('Voltar ao original', 'Voltar "' + (this.doc.nome || this.pid) + '" ao original do jogo? (o que foi salvo e o rascunho se perdem)', '↺ Voltar ao original', true))) return;
       E().salvarNoJogo(['personagens', this.pid], null, '↺ ' + (this.doc.nome || this.pid) + ' voltou ao original.');
       await this.recarregar(this.pid, true);
     },
     async apagarNovo() {
       const id = this.pid;
-      if (!confirm('Apagar o personagem "' + (this.doc.nome || id) + '"? Ele sai da Batalha Livre.')) return;
+      if (!(await E().confirmar('Apagar personagem', 'Apagar o personagem "' + (this.doc.nome || id) + '"? Ele sai da Batalha Livre.', '🗑 Apagar', true))) return;
       E().salvarNoJogo(['personagens', id], null, '🗑 ' + (this.doc.nome || id) + ' apagado.');
       E().rascunho.gravar('pers_' + id, null);
       delete this.docs[id]; delete this.hist[id]; delete this.defs[id]; delete this.salvo[id];
@@ -722,9 +722,12 @@
         herois: herois.slice(), inimigos: inimigos.slice(), ajustes: {},
       };
     },
-    testar() {
+    async testar() {
       if (this.sujo(this.pid)) {
-        if (confirm('Há mudanças não salvas. A Batalha Livre usa a versão salva no jogo. Salvar agora?')) this.salvar();
+        const r = await E().escolha('Testar na Batalha Livre', 'A Batalha Livre usa a versão salva no jogo. Salvar as mudanças antes de testar?', [
+          { txt: '💾 Salvar e testar', valor: 'salvar', cls: 'es-bt-ouro' }, { txt: 'Testar sem salvar', valor: 'nao' }, { txt: 'Cancelar', valor: null }]);
+        if (!r) return;
+        if (r === 'salvar') this.salvar();
       }
       const def = this.montarBatalha([this.pid], [this.oponente || 'raditz']);
       try { sessionStorage.setItem('ff_livre_def', JSON.stringify(def)); } catch (e) { /* sem sessionStorage */ }

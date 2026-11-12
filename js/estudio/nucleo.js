@@ -164,7 +164,7 @@ FF.Estudio = {
       catch (e) { q('msg').textContent = '❌ ' + e.message; }
     };
     q('enviar').onclick = async () => { q('msg').textContent = 'Enviando…'; const r = await FF.Edicoes.enviar(); q('msg').textContent = r.erro ? '❌ ' + r.erro : '✅ ' + FF.Edicoes.resumo(); mostrar(); };
-    q('sair').onclick = () => { if (confirm('Desconectar este aparelho? As próximas mudanças ficarão só nele.')) { FF.Edicoes.desconectar(); mostrar(); } };
+    q('sair').onclick = async () => { if (await this.confirmar('Desconectar', 'Desconectar este aparelho? As próximas mudanças ficarão só nele.', 'Desconectar', true)) { FF.Edicoes.desconectar(); mostrar(); } };
     mostrar();
     return m;
   },
@@ -203,6 +203,26 @@ FF.Estudio = {
     m.addEventListener('pointerdown', (e) => { if (e.target === m) fechar(); });
     document.body.appendChild(m);
     return { el: m, fechar };
+  },
+  // pergunta com botões próprios (no lugar do confirm do navegador, que só tem OK/Cancelar).
+  // opcoes: [{ txt, valor, cls }]. Fechar (✕/Esc/fora) devolve null.
+  escolha(titulo, texto, opcoes) {
+    return new Promise(res => {
+      const c = this.el('div', 'es-escolha');
+      const p = this.el('p'); p.textContent = texto;
+      const bts = this.el('div', 'es-escolha-bts');
+      let feito = false;
+      const m = this.modal(titulo, c, { aoFechar: () => { if (!feito) res(null); } });
+      opcoes.forEach((o, i) => {
+        const b = this.botao(o.txt, () => { feito = true; m.fechar(); res(o.valor); }, null, o.cls || '');
+        bts.appendChild(b);
+        if (i === 0) setTimeout(() => b.focus(), 30);
+      });
+      c.append(p, bts);
+    });
+  },
+  confirmar(titulo, texto, sim, perigo) {
+    return this.escolha(titulo, texto, [{ txt: sim || 'Sim', valor: true, cls: perigo ? 'es-bt-perigo' : 'es-bt-ouro' }, { txt: 'Não', valor: false }]).then(v => !!v);
   },
   perguntar(titulo, texto, valor) {
     return new Promise(res => {

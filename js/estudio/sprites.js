@@ -67,7 +67,7 @@
       const p = el('p'); p.textContent = texto;
       const bts = el('div', 'ess-conf-bts');
       let r = false;
-      bts.append(E.botao(sim || 'OK', () => { r = true; m.fechar(); }, null, perigo ? 'es-bt-perigo' : 'es-bt-ouro'), E.botao('Cancelar', () => m.fechar()));
+      bts.append(E.botao(sim || 'OK', () => { r = true; m.fechar(); }, null, perigo ? 'es-bt-perigo' : 'es-bt-ouro'), E.botao('Não', () => m.fechar()));
       c.append(p, bts);
       const m = E.modal(titulo, c, { aoFechar: () => res(r) });
     });
@@ -214,8 +214,18 @@
     });
   }
 
+  // ao trocar com mudanças não salvas: salvar, descartar ou ficar
+  async function podeTrocar() {
+    if (!sujo()) return true;
+    const r = await E.escolha('Mudanças não salvas', 'A animação "' + st.nome + '" tem mudanças que ainda não foram salvas no jogo. O que fazer?', [
+      { txt: '💾 Salvar e trocar', valor: 'salvar', cls: 'es-bt-ouro' }, { txt: 'Trocar sem salvar', valor: 'descartar', cls: 'es-bt-perigo' }, { txt: 'Ficar aqui', valor: null }]);
+    if (!r) return false;
+    if (r === 'salvar') salvar();
+    return true;
+  }
+
   async function abrirSprite(id, nome, semPerguntar) {
-    if (!semPerguntar && sujo() && !(await confirmar('Mudanças não salvas', 'Descartar as mudanças em "' + st.nome + '"?', 'Descartar', true))) return;
+    if (!semPerguntar && !(await podeTrocar())) return;
     let set;
     try { set = await FF.Assets.loadSprite(id); } catch (e) { E.aviso('❌ Não deu para abrir o sprite ' + id + ': ' + e.message, 'erro'); return; }
     st.id = id; st.set = set;
@@ -252,7 +262,7 @@
 
   async function abrirAnim(nome, opts = {}) {
     if (!opts.forcar && nome === st.nome && !opts.anim) return;
-    if (!opts.forcar && sujo() && !(await confirmar('Mudanças não salvas', 'Descartar as mudanças em "' + st.nome + '"?', 'Descartar', true))) return;
+    if (!opts.forcar && !(await podeTrocar())) return;
     const base = opts.anim || (st.set.def.anims[nome] ? limpa(st.set.def.anims[nome]) : limpa({ frames: [] }));
     st.nome = nome;
     st.novo = !!opts.novo || !st.set.def.anims[nome];

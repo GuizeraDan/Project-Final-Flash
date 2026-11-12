@@ -136,8 +136,17 @@ window.FF = window.FF || {};
       L.appendChild(pb);
     },
 
-    confirmarTroca(fn) {
-      if (this.sujo && !confirm('Há mudanças não salvas neste golpe. Trocar mesmo assim? (o rascunho deste aparelho será substituído)')) return;
+    async confirmarTroca(fn) {
+      if (this.sujo) {
+        const r = await E.escolha('Mudanças não salvas', 'O golpe "' + (this.doc.golpe.nome || '') + '" tem mudanças que ainda não foram salvas no jogo. O que fazer?', [
+          { txt: '💾 Salvar e trocar', valor: 'salvar', cls: 'es-bt-ouro' },
+          { txt: 'Trocar sem salvar', valor: 'descartar', cls: 'es-bt-perigo' },
+          { txt: 'Ficar neste golpe', valor: null },
+        ]);
+        if (!r) return;
+        if (r === 'salvar') this.salvar();
+        this.sujo = false;
+      }
       fn();
     },
 
@@ -362,9 +371,10 @@ window.FF = window.FF || {};
         this.mudou('Nova trilha'); this.renderProps();
       })));
     },
-    removerTrilha(id) {
+    async removerTrilha(id) {
       const tr = this.doc.linha.trilhas.find(t => t.id === id);
-      if (!tr || (tr.clipes.length && !confirm('Apagar a trilha "' + (tr.nome || tr.tipo) + '" e seus ' + tr.clipes.length + ' clipe(s)?'))) return;
+      if (!tr) return;
+      if (tr.clipes.length && !(await E.confirmar('Apagar trilha', 'Apagar a trilha "' + (tr.nome || tr.tipo) + '" e seus ' + tr.clipes.length + ' clipe(s)?', '🗑 Apagar', true))) return;
       this.doc.linha.trilhas = this.doc.linha.trilhas.filter(t => t !== tr);
       this.trSel = null; this.sel = null;
       this.mudou('Apagar trilha'); this.renderProps();
@@ -518,9 +528,9 @@ window.FF = window.FF || {};
       this.montarLado();
       this.renderRodape();
     },
-    original() {
+    async original() {
       const o = this.doc.origem;
-      if (!confirm('Voltar "' + this.doc.golpe.nome + '" ao original do jogo? Sua versão será apagada (em todos os aparelhos).')) return;
+      if (!(await E.confirmar('Voltar ao original', 'Voltar "' + this.doc.golpe.nome + '" ao original do jogo? Sua versão será apagada (em todos os aparelhos).', '↺ Voltar ao original', true))) return;
       E.salvarNoJogo(['golpes', o.personagem, o.id], null, '↺ Golpe voltou ao original.');
       this.carregarDefs().then(() => this.abrirGolpe(o.personagem, o.id));
     },
@@ -532,16 +542,21 @@ window.FF = window.FF || {};
       this.sujo = true; this.renderRodape();
       E.aviso('⧉ Cópia criada: ajuste e salve (vira uma ⭐ habilidade nova).');
     },
-    apagarHab() {
-      if (!confirm('Apagar a habilidade "' + this.doc.golpe.nome + '"? (em todos os aparelhos)')) return;
+    async apagarHab() {
+      if (!(await E.confirmar('Apagar habilidade', 'Apagar a habilidade "' + this.doc.golpe.nome + '"? (em todos os aparelhos)', '🗑 Apagar', true))) return;
       FF.Habilidades.apagar(this.doc.origem.id);
       E.aviso('🗑 Habilidade apagada.');
       E.rascunho.gravar('golpe_doc', null);
       this.sujo = false;
       this.abrirGolpe(this.cfg.atacante, Object.keys(this.defs[this.cfg.atacante].golpes)[0]);
     },
-    testarNoJogo() {
-      if (this.sujo && confirm('Salvar antes de testar? (o jogo usa a versão salva)')) this.salvar();
+    async testarNoJogo() {
+      if (this.sujo) {
+        const r = await E.escolha('Testar no jogo', 'O jogo usa a versão salva. Salvar as mudanças antes de testar?', [
+          { txt: '💾 Salvar e testar', valor: 'salvar', cls: 'es-bt-ouro' }, { txt: 'Testar sem salvar', valor: 'nao' }, { txt: 'Cancelar', valor: null }]);
+        if (!r) return;
+        if (r === 'salvar') this.salvar();
+      }
       const h = [this.cfg.atacante, ...(this.cfg.parceiros || [])], i = [this.cfg.alvo];
       const herois = this.cfg.lado === 'inimigo' ? i : h, inimigos = this.cfg.lado === 'inimigo' ? h : i;
       const posH = { 1: [170], 2: [250, 150], 3: [250, 150, 350] }[herois.length], posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] }[inimigos.length];
