@@ -52,7 +52,7 @@ FF.UI = {
       const desc = document.createElement('div');
       desc.className = 'cmd-desc';
       box.appendChild(desc);
-      const ids = hero.form.golpes;
+      const ids = hero.form.golpes.filter(id => hero.def.golpes[id] && this.visivel(hero, hero.def.golpes[id]));
       const btns = [];
       ids.forEach((id, i) => {
         const m = hero.def.golpes[id];
@@ -158,6 +158,13 @@ FF.UI = {
       window.addEventListener('keydown', key, true);
       box.classList.add('open');
     });
+  },
+  // golpes que só aparecem em certa situação: "mostrar": {"buff": "kaioken"} / "esconder": {"buff": "kaioken"}
+  visivel(hero, m) {
+    const tem = (c) => (!c.buff || hero.buffs[c.buff]) && (!c.forma || hero.formId === c.forma);
+    if (m.mostrar && !tem(m.mostrar)) return false;
+    if (m.esconder && tem(m.esconder)) return false;
+    return true;
   },
   meets(hero, req) {
     if (req.forma && hero.formId !== req.forma) return false;

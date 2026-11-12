@@ -413,7 +413,8 @@ FF.Editor = {
       row.append('✨', this.previaEfeito(fx, e.fx, v => { e.fx = v; this.render(); this.atualizarJSON(); }),
         this.sel(p.animAlvo ? [['origem', 'no inimigo (pés)'], ['disparo', 'no inimigo (mão)'], ['alvo', 'em quem soltou']] : [['alvo', 'no alvo'], ['disparo', 'na mão'], ['origem', 'nos pés']], e.em || 'origem', v => this.set(e, 'em', v)),
         this.mini('x', e.dx, v => this.set(e, 'dx', v)), this.mini('y', e.dy, v => this.set(e, 'dy', v)),
-        this.mini('tam', e.escala, v => this.set(e, 'escala', v), 0.05));
+        this.mini('tam', e.escala, v => this.set(e, 'escala', v), 0.05),
+        this.mini('tempo (s)', e.duracao, v => this.set(e, 'duracao', v), 0.1));
       const al = document.createElement('button');
       al.textContent = '🎯'; al.title = 'Alinhar: clique na tela onde o efeito deve aparecer';
       al.onclick = () => { this.alinhando = { ev, e }; this.log('🎯 Clique na tela onde o efeito "' + e.fx + '" deve aparecer…'); };

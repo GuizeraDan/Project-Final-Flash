@@ -52,6 +52,7 @@
       },
       "golpes": [
         "combo",
+        "combo_kaioken",
         "kamehameha",
         "kaioken",
         "carregar_ki",
@@ -253,6 +254,127 @@
               "quadro": 7,
               "acerto": {
                 "fracao": 0.38,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
+      ],
+      "esconder": {
+        "buff": "kaioken"
+      }
+    },
+    "combo_kaioken": {
+      "nome": "Combo Kaioken",
+      "descricao": "Só com o Kaioken ativo: avança em velocidade e fecha com um golpe pesado. Aperte no tempo para crítico.",
+      "tipo": "corpo",
+      "poder": 2.2,
+      "mostrar": {
+        "buff": "kaioken"
+      },
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 26,
+          "tempo": 0.16,
+          "animMov": "Special_Kaioken_EntradaLeve_Pt2",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Special_Kaioken_EntradaLeve_Final",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn100",
+                "vgkn101",
+                "vgkn102"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "som": "goku_kaioken_ab_0"
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.16,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_Kaioken_EntradaMedio_Final",
+          "eventos": [
+            {
+              "quadro": "pico",
+              "som": "goku_kaioken_ab_1"
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_Kaioken_EntradaBaixoMedio",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn105",
+                "vgkn106",
+                "vgkn107"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.16,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Special_Kaioken_EntradaPesada_Final",
+          "eventos": [
+            {
+              "quadro": 0,
+              "voz": [
+                "vgkn103",
+                "vgkn104"
+              ]
+            },
+            {
+              "quadro": "pico",
+              "som": "goku_kaioken_ab_2"
+            },
+            {
+              "quadro": "pico",
+              "tremer": 8
+            },
+            {
+              "quadro": "pico",
+              "efeito": {
+                "fx": "hit_forte",
+                "em": "alvo",
+                "escala": 1.2
+              }
+            },
+            {
+              "quadro": "pico",
+              "acerto": {
+                "fracao": 0.36,
                 "forca": "forte",
                 "lanca": true
               }

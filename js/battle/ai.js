@@ -8,6 +8,7 @@ FF.AI = {
     return (actor.form.golpes || []).map(id => {
       const m = actor.def.golpes[id];
       if (!m || m.supremo) return null;
+      if (FF.UI && FF.UI.visivel && !FF.UI.visivel(actor, m)) return null;
       const txt = JSON.stringify(m.roteiro || []);
       if (m.requer && FF.UI && FF.UI.meets && !FF.UI.meets(actor, m.requer)) return null;
       if (/"transformar"/.test(txt)) return { golpe: id, peso: actor.formId === (actor.def.formaInicial || 'base') ? 1 : 0 };
@@ -22,6 +23,7 @@ FF.AI = {
     const ok = regras.filter(r => {
       const m = actor.def.golpes[r.golpe];
       if (!m) return false;
+      if (FF.UI && FF.UI.visivel && !FF.UI.visivel(actor, m)) return false;
       if ((m.custoKi || 0) > actor.ki) return false;
       if (m.requer && FF.UI && FF.UI.meets && !FF.UI.meets(actor, m.requer)) return false;
       if (r.hpAbaixo && actor.hp / actor.hpMax > r.hpAbaixo) return false;
