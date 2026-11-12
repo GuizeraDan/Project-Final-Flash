@@ -341,6 +341,57 @@ FF.Estudio = {
     return [...new Set(l)];
   },
 
+  // sprite que tem uma animação de efeito (mesma ordem do motor: sprite pedido, fx, fx_extra, qualquer sprite carregado)
+  setDoEfeito(nome, sprite) {
+    const S = FF.Assets.sprites;
+    if (!nome) return null;
+    if (sprite && S[sprite] && S[sprite].has(nome)) return S[sprite];
+    for (const id of ['fx', 'fx_extra']) if (S[id] && S[id].has(nome)) return S[id];
+    for (const s of Object.values(S)) if (s && s.has && s.has(nome)) return s;
+    return null;
+  },
+
+  // miniatura ANIMADA ao lado de um campo: fonte() → {set, anim} (ou null = "?" vermelho). Um só laço para todas;
+  // as que saem da tela são esquecidas sozinhas.
+  _minis: [],
+  miniAnim(cv, fonte) {
+    cv.width = cv.width || 34; cv.height = cv.height || 34;
+    this._minis.push({ cv, fonte, chave: '' });
+    if (!this._miniLaco) {
+      this._miniLaco = true;
+      const laco = (agora) => {
+        this._minis = this._minis.filter(m => m.cv.isConnected || !m.vista);
+        this._minis.forEach(m => { if (m.cv.isConnected) { m.vista = true; this._desenharMini(m, agora / 1000); } });
+        requestAnimationFrame(laco);
+      };
+      requestAnimationFrame(laco);
+    }
+    return cv;
+  },
+  _desenharMini(m, t) {
+    const cv = m.cv, ctx = cv.getContext('2d');
+    let f = null;
+    try { f = m.fonte(); } catch (e) { f = null; }
+    if (f === null) { m.chave = ''; return; }   // pausada (ex.: cartão sem o mouse em cima)
+    const a = f && f.set && f.anim && f.set.anim(f.anim);
+    if (!a || !a.frames.length) {
+      if (m.chave === '?') return;
+      m.chave = '?';
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      if (f && f.anim) { ctx.fillStyle = '#ff5a5a'; ctx.font = 'bold 16px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('?', cv.width / 2, cv.height / 2); cv.title = '"' + f.anim + '" não existe'; }
+      return;
+    }
+    // quadro atual pelo fps e pela duração de cada quadro (pausa curta no fim das que não repetem)
+    const fps = a.fps > 0 ? a.fps : 10, total = a.frames.reduce((s, q) => s + (q[7] || 1), 0);
+    let b = (t * fps) % (total + (a.loop ? 0 : fps * 0.4)), k = 0;
+    while (k < a.frames.length - 1 && b >= (a.frames[k][7] || 1)) { b -= (a.frames[k][7] || 1); k++; }
+    const chave = f.anim + '#' + k;
+    if (m.chave === chave) return;
+    m.chave = chave;
+    cv.title = f.anim + ' (' + a.frames.length + ' quadros)';
+    this.miniatura(cv, f.set, f.anim, k, { max: 3 });
+  },
+
   // desenha um quadro centralizado num canvas (miniaturas)
   miniatura(cv, set, anim, quadro, opts = {}) {
     const ctx = cv.getContext('2d');

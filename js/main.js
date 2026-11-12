@@ -579,13 +579,11 @@ window.addEventListener('load', () => {
     const ac = bt.dataset.acao;
     if (bt.dataset.batalha) return batalhaLivre(bt.dataset.batalha);
     if (ac === 'instalar') { FF.PWA.instalar(); return; }
-    if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
     if (ac === 'estudio') { location.href = 'estudio.html'; return; }
     if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
-    if (ac === 'ferramentas') return mostrar('ferramentas');
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {
       if (confirm('Apagar o progresso (capítulos, AP e treinamento)?')) { const v = FF.Save.get().volumes; FF.Save.apagar(); if (v) FF.Save.set({ volumes: v }); }

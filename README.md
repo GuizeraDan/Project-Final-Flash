@@ -128,13 +128,6 @@ Jogue com o celular deitado (em pé aparece um aviso para girar). Em telas de to
 
 ## Ferramentas de desenvolvimento
 
-- **Estúdio Final Flash** (`estudio.html`, ou ⚙ Ferramentas → Estúdio): o editor do jogo — golpes e cenas numa linha do tempo com palco ao vivo (substitui o antigo Editor), sprites quadro a quadro, personagens/buffs/IA/pose de vitória e projeto. Tudo sincroniza entre aparelhos. Guia: `docs/ESTUDIO.md`.
+- **Estúdio Final Flash** (`estudio.html`, ou ⚙ Estúdio na tela de título): o editor do jogo — golpes e cenas numa linha do tempo com palco ao vivo (substitui o antigo Editor e o visualizador), sprites quadro a quadro, personagens/buffs/IA/pose de vitória e projeto. Tudo sincroniza entre aparelhos. Guia: `docs/ESTUDIO.md`.
 
-- **Visualizador de animações** (`visualizador.html`, ou pelo botão na tela de título):
-  - todas as animações de todos os sprites, quadro a quadro;
-  - mostra o ponto dos pés, a caixa do quadro e os pontos de disparo;
-  - marca na linha do tempo os quadros onde cada golpe tem acerto, som ou voz;
-  - aba **Sons** para ouvir todos os áudios.
-  - Atalhos: Espaço toca/pausa, ←/→ mudam o quadro, ↑/↓ mudam a animação. "Copiar referência" gera um texto pronto para relatar um problema.
 - **Sprites novos**: mande as imagens ou sprite sheets na conversa com o Claude, que ele recorta, monta as animações, o personagem e os golpes (`tools/importar_sprites.py` + `tools/receitas/`).
-- **✂ Editar quadros** (visualizador): apagar, reordenar, duplicar quadros, mudar duração, posição e fps de qualquer animação, ou salvar como nova.

@@ -1,4 +1,4 @@
-// Alterações do usuário em animações de sprites do jogo, feitas no visualizador (✂ Editar quadros).
+// Alterações do usuário em animações de sprites do jogo, feitas na aba Sprites do Estúdio.
 // Ficam em FF.Edicoes (data/edicoes.js, sincronizado pelo GitHub entre aparelhos) e são aplicadas
 // ao carregar o sprite, então valem no jogo todo.
 window.FF = window.FF || {};

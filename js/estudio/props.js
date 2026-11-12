@@ -76,7 +76,7 @@ FF.EstudioProps = {
     switch (c.tipo) {
       case 'anim': {
         const lista = this.BASICAS.concat(host.animsDe(quem));
-        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: lista }), () => this.escolherAnim(host.spriteDe(quem), c.anim, (a) => { c.anim = a; host.mudou('Animação'); })));
+        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: lista }), () => this.escolherAnim(host.spriteDe(quem), c.anim, (a) => { c.anim = a; host.mudou('Animação'); }), this.fonteAnim(host, quem, c)));
         g.appendChild(num(c, 'de', 'Do quadro', 'Trecho: primeiro quadro (0 = início; vazio = todos)', { min: 0, passo: 1 }));
         g.appendChild(num(c, 'ate', 'Até o quadro', 'Trecho: último quadro (inclusive; vazio = até o fim)', { min: 0, passo: 1 }));
         g.appendChild(num(c, 'fps', 'fps', 'Velocidade da animação (vazio = a da própria animação)', { min: 0 }));
@@ -161,7 +161,7 @@ FF.EstudioProps = {
       case 'camada': {
         g.appendChild(E.campo('select', 'Sprite', c.sprite, async (v) => { c.sprite = v; await FF.Assets.loadSprite(v).catch(() => null); const s = FF.Assets.sprites[v]; if (s && !s.has(c.anim)) c.anim = Object.keys(s.def.anims)[0]; host.mudou('Sprite da camada'); }, { lista: FF.Assets.listaSprites() }));
         const s = FF.Assets.sprites[c.sprite];
-        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => this.escolherAnim(s, c.anim, (a) => { c.anim = a; host.mudou('Animação'); })));
+        g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => this.escolherAnim(s, c.anim, (a) => { c.anim = a; host.mudou('Animação'); }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));
         g.appendChild(sel(c, 'ancora', 'Âncora', [['atacante', 'quem solta (pés)'], ['alvo', 'alvo (peito)'], ['tela', 'tela']], null, 'atacante'));
         g.appendChild(num(c, 'x', 'X')); g.appendChild(num(c, 'y', 'Y'));
@@ -270,21 +270,49 @@ FF.EstudioProps = {
     return box;
   },
 
-  comEscolha(row, fn) { row.appendChild(FF.Estudio.botao('🖼', (e) => { e.preventDefault(); fn(); }, 'Escolher vendo as miniaturas')); return row; },
+  comEscolha(row, fn, fonte) {
+    if (fonte) {
+      const cv = document.createElement('canvas'); cv.width = 34; cv.height = 34; cv.className = 'es-mini-anim';
+      cv.onclick = (e) => { e.preventDefault(); fn(); };
+      FF.Estudio.miniAnim(cv, fonte);
+      row.appendChild(cv);
+    }
+    row.appendChild(FF.Estudio.botao('🖼', (e) => { e.preventDefault(); fn(); }, 'Escolher vendo as miniaturas'));
+    return row;
+  },
+  // animação de um lutador pelo nome (nomes básicos como "parado" passam pelo mapa da forma)
+  fonteAnim(host, quem, c) {
+    return () => {
+      const s = host.spriteDe(quem), f = host.formaDe && host.formaDe(quem);
+      const nome = c.anim && (((f && f.anims) || {})[c.anim] || c.anim);
+      return { set: s, anim: nome };
+    };
+  },
 
   // efeito: lista dos efeitos do jogo + sprites importados (grava "sprite" junto quando é importado)
   campoEfeito(c, k, rot, host, opcional) {
     const E = FF.Estudio;
-    const row = E.campo('anim', rot, c[k], (v) => { if (v === undefined) delete c[k]; else c[k] = v; if (k === 'fx' && v && E.efeitos().includes(v)) delete c.sprite; host.mudou(rot); }, { sugestoes: E.efeitos() });
+    const extras = this.efeitosDoLutador(host);
+    const row = E.campo('anim', rot, c[k], (v) => { if (v === undefined) delete c[k]; else c[k] = v; if (k === 'fx' && v && E.efeitos().includes(v)) delete c.sprite; host.mudou(rot); }, { sugestoes: E.efeitos().concat(extras) });
     return this.comEscolha(row, () => this.escolherEfeito(c[k], (fx, sprite) => {
       c[k] = fx;
       if (k === 'fx') { if (sprite) c.sprite = sprite; else delete c.sprite; }
       host.mudou(rot);
-    }, opcional && (() => { delete c[k]; host.mudou(rot); })));
+    }, opcional && (() => { delete c[k]; host.mudou(rot); }), host), () => ({ set: E.setDoEfeito(c[k], k === 'fx' ? c.sprite : null), anim: c[k] }));
+  },
+  // efeitos que vêm no sprite de quem solta (ex.: Bills_Esfera)
+  efeitosDoLutador(host) {
+    const s = host && host.spriteDe && host.spriteDe('atacante');
+    const id = s && s.def.id;
+    if (!s || !id) return [];
+    const pre = id.charAt(0).toUpperCase() + id.slice(1) + '_';
+    return Object.keys(s.def.anims).filter(a => a.startsWith(pre));
   },
 
-  escolherEfeito(atual, cb, limpar) {
+  escolherEfeito(atual, cb, limpar, host) {
     const E = FF.Estudio;
+    const sa = host && host.spriteDe && host.spriteDe('atacante');
+    const proprios = sa ? this.efeitosDoLutador(host) : [];
     const ids = ['fx', 'fx_extra'].concat(Object.keys(FF.Edicoes.dados().spritesNovos || {}));
     const c = E.el('div');
     const topo = E.el('div', 'es-barra');
@@ -300,6 +328,7 @@ FF.EstudioProps = {
         const s = await FF.Assets.loadSprite(id).catch(() => null);
         if (s) Object.keys(s.def.anims).forEach(a => itens.push({ id, a, s }));
       }
+      if (proprios.length) proprios.slice().reverse().forEach(a => itens.unshift({ id: sa.def.id, a, s: sa }));   // efeitos do próprio lutador primeiro
       render();
     })();
     const render = () => {
@@ -312,12 +341,20 @@ FF.EstudioProps = {
         k.title = x.id + ' · ' + x.a;
         k.append(cv, sp);
         E.miniatura(cv, x.s, x.a, Math.floor(x.s.anim(x.a).frames.length / 2));
+        this.animarNoMouse(k, cv, x.s, x.a);
         k.onclick = () => { cb(x.a, x.id === 'fx' || x.id === 'fx_extra' ? null : x.id); m.fechar(); };
         grade.appendChild(k);
       });
     };
     busca.oninput = render;
     setTimeout(() => busca.focus(), 30);
+  },
+
+  // cartão dos seletores: anima enquanto o mouse está em cima (todos animando ao mesmo tempo pesaria)
+  animarNoMouse(k, cv, set, anim) {
+    let ligado = false, registrado = false;
+    k.addEventListener('mouseenter', () => { ligado = true; if (!registrado) { registrado = true; FF.Estudio.miniAnim(cv, () => (ligado ? { set, anim } : null)); } });
+    k.addEventListener('mouseleave', () => { ligado = false; FF.Estudio.miniatura(cv, set, anim, Math.floor(set.anim(anim).frames.length / 2)); });
   },
 
   escolherAnim(set, atual, cb) {
@@ -337,6 +374,7 @@ FF.EstudioProps = {
         const sp = E.el('span'); sp.textContent = a + ' (' + set.anim(a).frames.length + ')';
         k.title = a; k.append(cv, sp);
         E.miniatura(cv, set, a, Math.floor(set.anim(a).frames.length / 2));
+        this.animarNoMouse(k, cv, set, a);
         k.onclick = () => { cb(a); m.fechar(); };
         grade.appendChild(k);
       });

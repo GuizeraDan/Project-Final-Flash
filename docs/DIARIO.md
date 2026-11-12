@@ -163,3 +163,8 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Testes: `tools/testes/estudio_melhorias.js` (novo), `estudio.js`, `estudio_sprites.js`, `batalha.js --plano 1,2,4,5,1`.
 
 **Ideias que ficaram para depois (não feitas):** aba de batalhas/estágios; IA por forma e `reverter` com campos; prévia de Personagens com som; inserir quadros de outro sprite na aba Sprites; renomear animação atualizando os golpes que usam o nome.
+
+## 12/11/2026 — Miniaturas animadas nos efeitos; visualizador removido
+- Estúdio: todo campo de animação/efeito (projétil, efeito na mão, explosão, efeito visual, explosão do acerto, animação do lutador e da camada) ganhou **miniatura animada** ao lado (`FF.Estudio.miniAnim` + `setDoEfeito` em `nucleo.js`: um laço só, respeita fps e duração de cada quadro, "?" vermelho se o nome não existe). Clicar na miniatura abre o seletor. Nos seletores, o cartão anima com o mouse em cima. O seletor de efeitos mostra primeiro os efeitos do próprio lutador (ex.: `Bills_*`), que antes nem apareciam.
+- **Visualizador removido** (a aba Sprites e o 🎧 do Estúdio cobrem tudo): `js/ferramentas/visualizador.js` e `css/ferramentas.css` apagados; `visualizador.html` virou um redirecionamento para `estudio.html?aba=sprites` (mantém `sprite`/`anim`). Tela de título: o botão do canto agora é **⚙ Estúdio** e abre direto (o submenu Ferramentas ficaria com um item só). `sw.js` v6. Links do fim de cada pedido: jogo e Estúdio.
+- Testes: `estudio_melhorias.js` (redirecionamento, menu, miniaturas, seletor), `estudio.js`, `estudio_sprites.js`, `batalha.js --plano 1,2,4,5,1`.

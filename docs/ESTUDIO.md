@@ -1,10 +1,10 @@
 # Estúdio Final Flash — guia de uso
 
-Abra `estudio.html` (no jogo: **⚙ Ferramentas → Estúdio**; também no topo do visualizador).
+Abra `estudio.html` (no jogo: **⚙ Estúdio**, no canto da tela de título).
 Online: https://guizeradan.github.io/Project-Final-Flash/estudio.html
 
 O Estúdio é pensado para PC (tela cheia), mas funciona no celular deitado. Ele substituiu o antigo
-Editor de cenas (removido); endereços antigos `index.html?editor=1…` abrem o Estúdio.
+Editor de cenas e o visualizador (removidos); os endereços antigos abrem o Estúdio.
 
 ## Abas
 
@@ -27,7 +27,9 @@ Em todo o Estúdio: **Ctrl+Z / Ctrl+Y** desfazem/refazem; o trabalho em andament
    animação (🖼 mostra as miniaturas), fps, trecho de quadros (*do quadro / até o quadro*), duração,
    “segurar 1º quadro”, posição X/Y, tamanho, opacidade. Arrastar o lutador no palco muda a posição
    deste clipe. Para andar até o alvo/voltar: **＋** da trilha → *Mover* ou *Teleporte*.
-4. **Efeito posicionado:** **＋** na trilha *Efeitos* (ou duplo clique na trilha, no tempo desejado).
+4. Todo campo de animação ou efeito tem uma **miniatura animada** ao lado (clique nela ou no 🖼 para escolher
+   vendo todos; no seletor, passe o mouse para animar; os efeitos do próprio lutador vêm primeiro).
+   **Efeito posicionado:** **＋** na trilha *Efeitos* (ou duplo clique na trilha, no tempo desejado).
    Escolha o efeito (🖼), onde ele fica preso (pés, peito, ponto de disparo, alvo, tela) e **arraste no
    palco**: alça branca = posição, amarela = tamanho, azul = giro (a roda do mouse também muda o tamanho).
 5. **Projétil:** trilha *Projéteis*: escolha o desenho, velocidade, arco, rastro… No palco, a alça verde é

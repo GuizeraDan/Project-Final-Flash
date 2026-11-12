@@ -2,119 +2,16 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Final Flash — Visualizador de animações</title>
-<link rel="stylesheet" href="css/ferramentas.css">
+<title>Final Flash — Estúdio</title>
+<!-- O visualizador foi substituído pelo Estúdio (aba Sprites). Endereço mantido só para redirecionar. -->
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search), d = 'estudio.html?aba=sprites';
+    if (q.get('sprite')) d += '&sprite=' + encodeURIComponent(q.get('sprite'));
+    if (q.get('anim')) d += '&anim=' + encodeURIComponent(q.get('anim'));
+    location.replace(d);
+  })();
+</script>
 </head>
-<body class="vis">
-<header>
-  <b>FINAL FLASH</b> · Visualizador de animações
-  <nav>
-    <button class="aba sel" data-aba="anims">Animações</button>
-    <button class="aba" data-aba="sons">Sons</button>
-    <a class="bt-editor" href="estudio.html" target="_blank">🎬 Estúdio</a>
-    <a href="index.html">← Voltar ao jogo</a>
-  </nav>
-</header>
-
-<main id="aba-anims">
-  <aside id="lista">
-    <label>Sprite <select id="sel-sprite"></select></label>
-    <input id="busca" type="search" placeholder="Filtrar animações (ex.: Kamehameha, Dano)">
-    <div id="anims"></div>
-  </aside>
-
-  <section id="palco">
-    <div id="tela-wrap"><canvas id="tela" width="900" height="560"></canvas></div>
-
-    <div id="controles">
-      <button id="bt-ant" title="Quadro anterior (←)">◀︎</button>
-      <button id="bt-play" title="Tocar/pausar (Espaço)">▶︎</button>
-      <button id="bt-prox" title="Próximo quadro (→)">▶︎|</button>
-      <span id="quadro-txt">—</span>
-      <label>Velocidade <select id="sel-vel">
-        <option value="0.25">0,25×</option><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option>
-      </select></label>
-      <label>Zoom <input id="zoom" type="range" min="1" max="10" step="0.5" value="4"></label>
-      <label><input type="checkbox" id="ck-loop" checked> repetir</label>
-      <label><input type="checkbox" id="ck-espelho"> espelhar</label>
-      <label><input type="checkbox" id="ck-caixa" checked> caixa</label>
-      <label><input type="checkbox" id="ck-pontos" checked> pontos</label>
-      <label><input type="checkbox" id="ck-fantasma"> quadro anterior</label>
-      <label>Fundo <select id="sel-fundo">
-        <option value="xadrez">xadrez</option><option value="escuro">escuro</option><option value="cenario">cenário</option>
-      </select></label>
-    </div>
-
-    <div id="edq" hidden>
-      <div class="edq-linha">
-        <b>✂ Editando quadros</b>
-        <span class="edq-dica">Toque num quadro para escolher (Ctrl/Shift = vários) · arraste para mudar a ordem</span>
-      </div>
-      <div class="edq-linha">
-        <button data-q="apagar" title="Apagar os quadros escolhidos (Delete)">✕ Apagar</button>
-        <button data-q="duplicar" title="Duplicar os escolhidos">⧉ Duplicar</button>
-        <button data-q="esq" title="Mover para a esquerda">◀ Mover</button>
-        <button data-q="dir" title="Mover para a direita">Mover ▶</button>
-        <span class="edq-sep"></span>
-        duração <button data-q="dmenos" title="Quadro mais curto">−</button><span id="edq-dur">1×</span><button data-q="dmais" title="Quadro mais longo (segura mais tempo)">+</button>
-        <span class="edq-sep"></span>
-        posição <button data-q="ox-" title="Mover o desenho para a esquerda">←</button><button data-q="ox+" title="Para a direita">→</button><button data-q="oy-" title="Para cima">↑</button><button data-q="oy+" title="Para baixo">↓</button>
-        <span class="edq-sep"></span>
-        <button data-q="desfazer" title="Desfazer (Ctrl+Z)">↶ Desfazer</button>
-      </div>
-      <div class="edq-linha">
-        fps <input type="number" id="edq-fps" min="1" max="60" style="width:56px">
-        <label><input type="checkbox" id="edq-loop"> repete</label>
-        <label>a partir do quadro <input type="number" id="edq-rep" min="0" style="width:52px"></label>
-        <span class="edq-sep"></span>
-        <label>➕ quadros de <select id="edq-outra"><option value="">outra animação…</option></select></label>
-      </div>
-      <div id="edq-outros" hidden></div>
-      <div class="edq-linha">
-        <button data-q="salvar" class="bt-destaque">💾 Salvar nesta animação</button>
-        <button data-q="salvarnova">💾 Salvar como nova…</button>
-        <button data-q="original" title="Desfaz todas as suas alterações nesta animação">↺ Voltar ao original</button>
-        <button data-q="exportar" title="Copia todas as suas alterações para mandar ao Claude gravar no jogo">📤 Exportar alterações</button>
-        <button data-q="sair">Sair da edição</button>
-        <span id="edq-msg"></span>
-      </div>
-    </div>
-    <div id="linha"></div>
-
-    <div id="info">
-      <div id="info-quadro"></div>
-      <div id="usos-box">
-        <label>Usado nos golpes <select id="sel-uso"></select></label>
-        <div id="eventos"></div>
-      </div>
-      <button id="bt-edq" class="bt-destaque" title="Apagar, reordenar, duplicar quadros e mudar duração/posição desta animação">✂ Editar quadros</button>
-      <button id="bt-estudio" title="Abre esta animação na aba Sprites do Estúdio">🎬 Editar no Estúdio</button>
-      <button id="bt-copiar">📋 Copiar referência</button>
-      <span id="copiado"></span>
-    </div>
-  </section>
-</main>
-
-<main id="aba-sons" hidden>
-  <div class="sons-topo">
-    <input id="busca-som" type="search" placeholder="Filtrar sons (ex.: vgkn, piccolo, hit, kame)">
-    <span id="sons-total"></span>
-  </div>
-  <p class="legenda">Vozes: <b>vgkn</b> Goku · <b>vgks</b> Goku SSJ · <b>vpcn</b> Piccolo · <b>vkrn</b> Kuririn · <b>vnpn</b> Nappa · <b>vvgn</b> Vegeta · <b>vtnn</b> Tenshinhan · <b>raditz_</b> Raditz. Números: 0xx dano/lançado · 1xx golpes · 2xx especiais · 4xx intro/vitória.</p>
-  <div id="sons"></div>
-</main>
-
-
-<script src="data/bundle.js"></script>
-<script src="data/edicoes.js"></script>
-<script src="js/core/edicoes.js"></script>
-<script src="js/core/imagens_usr.js"></script>
-<script src="js/core/modificacoes.js"></script>
-<script src="js/core/assets.js"></script>
-<script src="js/core/sprite.js"></script>
-<script src="js/core/audio.js"></script>
-<script src="js/core/retrato.js"></script>
-<script src="js/ferramentas/visualizador.js"></script>
-</body>
+<body><p>O visualizador agora é a aba <a href="estudio.html?aba=sprites">Sprites do Estúdio</a>.</p></body>
 </html>

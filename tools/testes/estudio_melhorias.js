@@ -23,18 +23,20 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   // ---- jogo: sem Editor
   await p.goto(R + 'index.html');
   s = await p.evaluate(() => ({ ed: !!document.querySelector('[data-acao="editor"]'), est: !!document.querySelector('[data-acao="estudio"]'), FFed: !!window.FF.Editor, hab: document.querySelector('[data-sel="habnova"]').textContent }));
-  ok(!s.ed && s.est && !s.FFed, 'menu Ferramentas sem Editor (com Estúdio) e sem o código do Editor');
+  ok(!s.ed && s.est && !s.FFed, 'jogo sem Editor (com Estúdio) e sem o código do Editor');
   ok(/Estúdio/.test(s.hab), 'botão das habilidades: ' + s.hab);
   await p.goto(R + 'index.html?editor=1&hab=xyz');
   await p.waitForURL(/estudio\.html\?aba=golpes&hab=xyz/, { timeout: 10000 });
   ok(true, 'endereço antigo ?editor=1&hab=… vai para o Estúdio');
-  await p.goto(R + 'visualizador.html');
-  await p.waitForTimeout(800);
-  s = await p.evaluate(() => ({ est: !!document.querySelector('#bt-estudio'), env: !!document.querySelector('#bt-enviar'), links: [...document.querySelectorAll('a')].map(a => a.textContent).join('|') }));
-  ok(s.est && !s.env && !/^Editor$|\|Editor\|/.test(s.links), 'visualizador: "Editar no Estúdio" no lugar de "Enviar para o editor" (' + s.links + ')');
+  await p.goto(R + 'visualizador.html?sprite=bills&anim=Apontar');
+  await p.waitForURL(/estudio\.html\?aba=sprites&sprite=bills&anim=Apontar/, { timeout: 10000 });
+  ok(true, 'visualizador.html redireciona para a aba Sprites (mantendo sprite/animação)');
+  await p.goto(R + 'index.html');
+  s = await p.evaluate(() => ({ vis: !!document.querySelector('[data-acao="visualizador"]'), sub: !!document.querySelector('#ferramentas'), bt: document.querySelector('.titulo-ferramentas').textContent, est: document.querySelector('.titulo-ferramentas').dataset.acao }));
+  ok(!s.vis && !s.sub && s.est === 'estudio', 'menu: sem Visualizador; o botão do canto abre o Estúdio (' + s.bt + ')');
 
   // ---- Estúdio: personagem sem Kamehameha abre o primeiro golpe
-  await p.goto(R + 'visualizador.html');
+  await p.goto(R + 'index.html');
   await p.evaluate(() => { localStorage.clear(); localStorage.setItem('ff_estudio_golpe_cfg', JSON.stringify({ atacante: 'bills', forma: 'base', alvo: 'raditz', lado: 'heroi', parceiros: [] })); localStorage.setItem('ff_estudio_aba', '"golpes"'); });
   await p.goto(R + 'estudio.html?aba=golpes');
   await pronto(); await p.waitForTimeout(800);
@@ -71,6 +73,31 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     return g.props.textContent;
   });
   ok(/Tempo até chegar/.test(s) && /4 acerto/.test(s), 'ação "Lançar objeto" com campos e resumo dos acertos');
+
+  // ---- miniaturas animadas nos campos de efeito (projétil da Rajada de Ki do Bills)
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
+  await pronto(); await p.waitForTimeout(800);
+  await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    let id = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => { if (c.tipo === 'projetil' && !id) id = c.id; }));
+    g.sel = id; g.renderProps();
+  });
+  await p.waitForTimeout(500);
+  s = await p.evaluate(() => [...document.querySelectorAll('.es-aba-golpes .es-mini-anim')].map(cv => {
+    const d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++;
+    return { campo: cv.closest('.es-campo').querySelector('.es-rot').textContent, px: n, t: cv.title };
+  }));
+  const proj = s.find(x => /Projétil/.test(x.campo)), exp = s.find(x => /Explosão/.test(x.campo));
+  ok(proj && proj.px > 20 && exp && exp.px > 20, 'miniaturas animadas no projétil e na explosão: ' + JSON.stringify(s.map(x => x.campo + ' ' + x.px)));
+  const q1 = await p.evaluate(() => document.querySelector('.es-aba-golpes .es-mini-anim').title);
+  await p.screenshot({ path: OUT + '/0_miniaturas.png' });
+  // efeitos do próprio Bills aparecem primeiro no seletor
+  await p.evaluate(() => [...document.querySelectorAll('.es-aba-golpes .es-campo')].find(c => /Projétil/.test(c.textContent)).querySelector('button').click());
+  await p.waitForTimeout(400);
+  s = await p.evaluate(() => [...document.querySelectorAll('.es-modal .es-cartao span')].slice(0, 3).map(x => x.textContent));
+  ok(/^Bills_/.test(s[0] || ''), 'seletor de efeito mostra os do Bills primeiro (' + s + ')');
+  await p.keyboard.press('Escape');
+  void q1;
 
   // ---- Personagens: pose de vitória
   await p.goto(R + 'estudio.html?aba=personagens');

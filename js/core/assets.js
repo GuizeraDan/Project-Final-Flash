@@ -57,7 +57,7 @@ FF.Assets = {
     const caminhos = await Promise.all(def.atlases.map(p => (FF.ImagensUsr && /assets\/img\/usr\//.test(p)) ? FF.ImagensUsr.url(p).catch(() => p) : p));
     const imgs = await Promise.all(caminhos.map(p => this.loadImage(p)));
     const set = new FF.SpriteSet(def, imgs);
-    if (FF.Mods) FF.Mods.aplicar(id, set);          // quadros editados pelo usuário (✂ no visualizador / Estúdio)
+    if (FF.Mods) FF.Mods.aplicar(id, set);          // quadros editados pelo usuário (aba Sprites do Estúdio)
     this.sprites[id] = set;
     return set;
   },

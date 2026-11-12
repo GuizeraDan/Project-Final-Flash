@@ -152,3 +152,4 @@ a { color: var(--ouro); }
 .es-escolha-bts button { padding: 6px 12px; }
 .es-tl-nome.compacto button { padding: 0 2px; font-size: 9px; line-height: 1; }
 .es-tl-nome.compacto { font-size: 10px; }
+.es-mini-anim { width: 34px; height: 34px; flex: none; image-rendering: pixelated; background: repeating-conic-gradient(#2b2442 0 25%, #1e1931 0 50%) 0 0 / 8px 8px; border: 1px solid var(--linha); border-radius: 4px; cursor: pointer; }

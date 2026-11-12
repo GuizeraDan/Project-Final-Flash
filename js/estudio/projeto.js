@@ -38,7 +38,7 @@ window.FF = window.FF || {};
       const imgs = FF.ImagensUsr ? await FF.ImagensUsr.pendentes() : [];
       rol.appendChild(E.el('p', 'es-dica', '<b>' + FF.Edicoes.resumo() + '</b>' + (pend ? ' · ' + pend + ' mudança(s) só neste aparelho' : '') + (imgs.length ? ' · ' + imgs.length + ' imagem(ns) esperando envio' : '')));
       const itens = this.itens();
-      if (!itens.length) rol.appendChild(E.el('p', 'es-vazio', 'Nenhuma mudança ainda. Tudo o que você salvar no Estúdio, no Editor ou no visualizador aparece aqui.'));
+      if (!itens.length) rol.appendChild(E.el('p', 'es-vazio', 'Nenhuma mudança ainda. Tudo o que você salvar no Estúdio aparece aqui.'));
       let grupo = null, box = null;
       itens.forEach(([cam, v]) => {
         if (cam[0] !== grupo) { grupo = cam[0]; box = E.grupo(NOMES[grupo] || grupo); rol.appendChild(box); }
