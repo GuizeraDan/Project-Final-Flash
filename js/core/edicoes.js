@@ -144,7 +144,11 @@ FF.Edicoes = {
     for (const k of Object.keys(def._golpesOrig)) if (!ed[k]) { def.golpes[k] = def._golpesOrig[k]; delete def._golpesOrig[k]; }
     for (const [k, g] of Object.entries(ed)) {
       if (!(k in def._golpesOrig)) def._golpesOrig[k] = def.golpes[k];
-      def.golpes[k] = JSON.parse(JSON.stringify(g));
+      const novo = JSON.parse(JSON.stringify(g));
+      // regras que o Editor ainda não mostra (quando o golpe aparece/precisa de algo): vêm do original
+      const orig = def._golpesOrig[k] || {};
+      for (const meta of ['mostrar', 'esconder', 'requer', 'supremo']) if (orig[meta] !== undefined && novo[meta] === undefined) novo[meta] = orig[meta];
+      def.golpes[k] = novo;
     }
     return def;
   },
