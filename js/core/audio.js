@@ -48,7 +48,10 @@ FF.Audio = {
   },
 
   music(name) {
-    if (this.musica && this.musicaNome === name && !this.musica.paused) return this.musica;   // já tocando
+    if (this.musica && this.musicaNome === name) {   // já é esta: não reinicia (se o navegador bloqueou, tenta tocar)
+      if (this.musica.paused) this.musica.play().catch(() => {});
+      return this.musica;
+    }
     if (this.musica) { this.musica.pause(); this.musica = null; }
     this.musicaNome = name || null;
     if (!name) return null;
@@ -57,8 +60,9 @@ FF.Audio = {
     a.volume = this.volMusica;
     // o navegador só deixa tocar som depois de um toque/tecla: se bloquear, tenta de novo no 1º gesto
     a.play().catch(() => {
-      const tentar = () => { ['pointerdown', 'keydown'].forEach(t => window.removeEventListener(t, tentar, true)); if (this.musica === a) a.play().catch(() => {}); };
-      ['pointerdown', 'keydown'].forEach(t => window.addEventListener(t, tentar, true));
+      const evs = ['pointerdown', 'keydown', 'touchend', 'click'];
+      const tentar = () => { evs.forEach(t => window.removeEventListener(t, tentar, true)); if (this.musica === a && a.paused) a.play().catch(() => {}); };
+      evs.forEach(t => window.addEventListener(t, tentar, true));
     });
     this.musica = a;
     return a;

@@ -554,6 +554,9 @@ window.addEventListener('load', () => {
   intro.addEventListener('click', abrir);
   window.addEventListener('keydown', abrir);
   FF._mostrarTitulo = mostrar;
+  // música já na tela "Toque ou aperte Enter" (se o navegador bloquear o som antes de um toque,
+  // ela começa no primeiro toque/tecla)
+  FF.Audio.musicaMenu();
 
   // setas para navegar entre os botões do menu visível
   window.addEventListener('keydown', (e) => {
