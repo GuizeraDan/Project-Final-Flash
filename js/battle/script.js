@@ -139,9 +139,16 @@ FF.Script = {
   },
 
   async playAnim(b, actor, target, move, s) {
-    const name = actor.animName(s.anim);
-    const anim = actor.sprite.anim(name);
+    let name = actor.animName(s.anim);
+    let anim = actor.sprite.anim(name);
     if (!anim) { console.warn('[FF] animação inexistente em', actor.formId, name); return; }
+    // só um trecho da animação: "de"/"ate" (índices dos quadros, inclusive). Os eventos contam a partir de "de".
+    if (s.de != null || s.ate != null) {
+      const n = anim.frames.length, de = Math.max(0, Math.min(n - 1, s.de || 0)), ate = Math.max(de, Math.min(n - 1, s.ate != null ? s.ate : n - 1));
+      const sub = name + '#' + de + '-' + ate;
+      if (!actor.sprite.has(sub)) actor.sprite.def.anims[sub] = Object.assign({}, anim, { frames: anim.frames.slice(de, ate + 1), repeatTo: 0 });
+      name = sub; anim = actor.sprite.anim(sub);
+    }
 
     const evs = (s.eventos || []).map(e => Object.assign({}, e, { _i: this.resolveFrame(anim, e.quadro != null ? e.quadro : 0) }));
     const fired = new Set();

@@ -906,13 +906,14 @@
               "quadro": 5,
               "som": "gnkdm_charge"
             }
-          ]
+          ],
+          "ate": 9
         },
         {
           "objeto": {
             "id": "gd",
             "fx": "genkidama",
-            "dy": -105,
+            "dy": -78,
             "escala": [
               0.03,
               0.32
@@ -928,26 +929,33 @@
           "tremer": 7
         },
         {
-          "esperar": 2.5
+          "anim": "Ultimate_SuperSpiritBomb",
+          "de": 3,
+          "ate": 7,
+          "fps": 6,
+          "loop": true,
+          "duracao": 2.5
         },
         {
-          "anim": "Special_SpiritBomb",
-          "fps": 10,
+          "anim": "Ultimate_SuperSpiritBomb",
+          "de": 7,
+          "ate": 10,
+          "fps": 9,
           "eventos": [
             {
               "quadro": 0,
               "voz": "vgkn209"
             },
             {
-              "quadro": 4,
+              "quadro": 2,
               "som": "goku_gnkdm_fire"
             },
             {
-              "quadro": 4,
+              "quadro": 2,
               "tremer": 10
             },
             {
-              "quadro": 4,
+              "quadro": 2,
               "lancarObjeto": {
                 "id": "gd",
                 "tempo": 1.1,

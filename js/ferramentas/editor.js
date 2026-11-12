@@ -262,6 +262,12 @@ FF.Editor = {
       l2.appendChild(this.campo('fps', this.inp(p.fps, v => { this.set(p, 'fps', v); info.textContent = tempoAnim(); }, 'number', { min: 1, step: 1, placeholder: 'padrão (' + ((a && a.fps) || 10) + ')' })));
       l2.appendChild(this.campo('repetir por (s)', this.inp(p.duracao, v => this.set(p, 'duracao', v), 'number', { min: 0, step: 0.1, placeholder: 'não' })));
       corpo.appendChild(l2);
+      // só um trecho da animação (os eventos contam a partir do "do quadro")
+      const lt = document.createElement('div'); lt.className = 'ed-linha';
+      const ult = a ? a.frames.length - 1 : 0;
+      lt.appendChild(this.campo('do quadro', this.inp(p.de, v => { this.set(p, 'de', v); }, 'number', { min: 0, max: ult, step: 1, placeholder: '0' })));
+      lt.appendChild(this.campo('até o quadro', this.inp(p.ate, v => { this.set(p, 'ate', v); }, 'number', { min: 0, max: ult, step: 1, placeholder: String(ult) })));
+      corpo.appendChild(lt);
       // eventos
       p.eventos = p.eventos || [];
       const evs = document.createElement('div');
