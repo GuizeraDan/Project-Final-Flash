@@ -1,14 +1,13 @@
-// Estúdio Final Flash — imagens do computador dentro dos sprites (usado pela aba Sprites e pelo importador).
+// Estúdio Final Flash — imagens e gravação de sprites para a aba Sprites.
 //
-// - adicionarImagens(id, imgs): empacota imagens novas num atlas extra (assets/img/usr/<id>__<marca>.png,
+// - adicionarImagens(id, imgs): empacota imagens novas (ex.: quadros redimensionados) num atlas extra (assets/img/usr/<id>__<marca>.png,
 //   guardado no aparelho e enviado ao GitHub junto com as edições) e liga ao sprite:
 //     · sprite importado  → spritesNovos[id].atlases
 //     · sprite do jogo    → spritesInfo[id].atlas (somado aos atlas do JSON por FF.Assets.loadSprite)
 //   Devolve { indice, posicoes, set } — os quadros novos usam [indice, x, y, w, h, …].
 // - salvarAnim(id, nome, anim): sprite importado grava direto em spritesNovos[id].anims;
 //   sprite do jogo grava em sprites[id][nome] (FF.Mods).
-// - lerArquivos(arquivos, opts) / prepararQuadros(fontes, opts): arquivos do computador → quadros prontos
-//   ({img, ox, oy, dur}) com fundo removido, bordas cortadas, origem nos pés/centro e escala.
+// - quadrosDoSprite / gravarSprite: "🧹 Juntar imagens" de um sprite importado num atlas só.
 (function () {
   'use strict';
   const E = FF.Estudio, I = FF.Imagem, C = FF.Codecs;
@@ -77,90 +76,52 @@
     return I.deCanvas(c);
   }
 
-  // ---------------------------------------------------------------- arquivos do computador
-  // → { fontes: [{img, nome, atraso, tipo}], erros: [texto] }  (ignora .txt, Thumbs.db etc.)
-  async function lerArquivos(arquivos, opts = {}) {
-    const lista = [...arquivos].filter(Boolean).sort((a, b) => C.ordemNatural(a.name || '', b.name || ''));
-    const fontes = [], erros = [];
-    for (let k = 0; k < lista.length; k++) {
-      const f = lista[k];
-      if (opts.aoProgresso) opts.aoProgresso(k / lista.length, f.name);
-      try {
-        const r = await C.decodificarArquivo(f, { fps: opts.fps || 12, maxQuadros: opts.maxQuadros || 300 });
-        if (r.tipo === 'json') { erros.push((f.name || 'arquivo') + ': JSON só pelo importador (📂 Importar).'); continue; }
-        r.itens.forEach(it => it.quadros.forEach(q => fontes.push({ img: I.deCanvas(q.canvas), nome: it.nome || f.name, atraso: q.atraso || 0, tipo: r.tipo })));
-      } catch (e) { erros.push((f.name || 'arquivo') + ': ' + e.message); }
-    }
-    return { fontes, erros };
-  }
-
-  function temTransparencia(img) {
-    const d = img.rgba, passo = Math.max(1, Math.floor(d.length / 4 / 40000)) * 4;
-    for (let i = 3; i < d.length; i += passo) if (d[i] < 250) return true;
-    return false;
-  }
-
-  // opts: fundo ('auto' | true | false), tol, cortar (true), origem ('pes' | 'centro'), escala (1), separar ('auto' | false), fps
-  function prepararQuadros(fontes, opts = {}) {
-    if (!fontes.length) return [];
-    const o = Object.assign({ fundo: 'auto', tol: 24, cortar: true, origem: 'pes', escala: 1, separar: 'auto', fps: 12 }, opts);
-    let remover = o.fundo === 'auto' ? !temTransparencia(fontes[0].img) : !!o.fundo;
-    const cor = remover ? I.corDeFundo(fontes[0].img) : null;
-    if (cor && cor[3] === 0) remover = false;
-    let base = fontes.map(fo => ({ img: remover ? I.removerFundo(fo.img, cor.slice(0, 3), o.tol, { contiguo: true }) : fo.img, atraso: fo.atraso }));
-    let alinhar = true;
-    // uma imagem só com vários desenhos separados: é uma sprite sheet → um quadro por desenho
-    if (base.length === 1 && o.separar !== false) {
-      const cx = I.componentes(base[0].img, { juntarDistancia: 2, minArea: 16 });
-      if (cx.length >= 2 && cx.length <= 400) { base = cx.map(b => ({ img: I.recortar(base[0].img, b), atraso: 0 })); alinhar = false; }
-    }
-    // atraso mais comum (GIF/APNG) vira o fps; a duração de cada quadro é relativa a ele
-    let fps = o.fps;
-    const atrasos = base.map(b => b.atraso).filter(a => a > 0);
-    if (atrasos.length) {
-      const cont = new Map(); atrasos.forEach(a => { const k = Math.round(a * 1000); cont.set(k, (cont.get(k) || 0) + 1); });
-      const comum = [...cont.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0][0] / 1000;
-      if (comum > 0) fps = Math.max(1, Math.min(60, Math.round(1 / comum)));
-    }
-    const proc = base.map(b => {
-      const W = b.img.largura, H = b.img.altura;
-      const a = I.aparar(b.img);
-      const vazio = a.largura === 1 && a.altura === 1 && b.img.rgba[3] === 0;
-      const conteudo = vazio ? { x: 0, y: 0, w: W, h: H } : { x: a.x, y: a.y, w: a.largura, h: a.altura };
-      const corta = o.cortar && !vazio;
-      return { img: corta ? a.img : b.img, tx: corta ? a.x : 0, ty: corta ? a.y : 0, conteudo, W, H, atraso: b.atraso };
+  // ---------------------------------------------------------------- juntar imagens (sprite importado)
+  // quadros de um sprite (def + imagens já lidas) → {nome: {fps, loop, repeatTo, frames: [{img, ox, oy, dur, pontos}]}}
+  function quadrosDoSprite(def, imgs) {
+    const cache = new Map(), anims = {};
+    Object.entries(def.anims || {}).forEach(([nome, a]) => {
+      anims[nome] = {
+        fps: a.fps, loop: a.loop, repeatTo: a.repeatTo || 0,
+        frames: (a.frames || []).map(f => {
+          const k = f.slice(0, 5).join(',');
+          if (!cache.has(k)) {
+            const src = imgs[f[0]];
+            cache.set(k, src ? I.recortar(src, { x: f[1], y: f[2], w: Math.max(1, f[3]), h: Math.max(1, Math.abs(f[4])) }) : I.criar(1, 1));
+          }
+          return { img: cache.get(k), ox: f[5], oy: f[6], dur: f[7] || 1, pontos: f[8] };
+        }),
+      };
     });
-    // quadros do mesmo tamanho (GIF, vídeo, sequência): mesma origem, para não "tremer"
-    let comum = null;
-    if (alinhar && proc.length > 1 && proc.every(p => p.W === proc[0].W && p.H === proc[0].H)) {
-      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-      proc.forEach(p => { const b = p.conteudo; x0 = Math.min(x0, b.x); y0 = Math.min(y0, b.y); x1 = Math.max(x1, b.x + b.w); y1 = Math.max(y1, b.y + b.h); });
-      comum = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
-    }
-    const s = o.escala > 0 ? o.escala : 1;
-    const quadros = proc.map(p => {
-      const b = comum || p.conteudo;
-      const px = b.x + b.w / 2, py = o.origem === 'centro' ? b.y + b.h / 2 : b.y + b.h;
-      const img = s === 1 ? p.img : I.escalar(p.img, s, false);
-      const dur = p.atraso > 0 ? Math.max(0.1, Math.round(p.atraso * fps * 100) / 100) : 1;
-      return { img, ox: Math.round((px - p.tx) * s), oy: Math.round((py - p.ty) * s), dur };
-    });
-    quadros.fps = fps;
-    quadros.removeuFundo = remover;
-    return quadros;
+    return anims;
   }
 
-  // quadros prontos → entram no sprite (atlas extra) → quadros no formato do jogo
-  async function quadrosParaSprite(id, quadros) {
-    const r = await adicionarImagens(id, quadros.map(q => q.img));
-    const fr = quadros.map((q, k) => {
-      const p = r.posicoes[k];
-      const f = [r.indice, p.x, p.y, q.img.largura, q.img.altura, Math.round(q.ox), Math.round(q.oy), q.dur || 1];
-      if (q.pontos) f.push(q.pontos);
-      return f;
+  // empacota todas as animações num atlas só (assets/img/usr/<id>.png) e grava o sprite importado
+  async function gravarSprite(id, anims, extra) {
+    const imgs = [], idx = new Map();
+    Object.values(anims).forEach(a => a.frames.forEach(f => { if (!idx.has(f.img)) { idx.set(f.img, imgs.length); imgs.push(f.img); } }));
+    if (!imgs.length) throw new Error('Nenhum quadro para salvar.');
+    const pk = I.empacotar(imgs, { margem: 1, larguraMax: 2048 });
+    if (pk.largura > MAX_ATLAS || pk.altura > MAX_ATLAS) throw new Error('O atlas ficaria com ' + pk.largura + '×' + pk.altura + ' px (máximo ' + MAX_ATLAS + ').');
+    const caminho = 'assets/img/usr/' + id + '.png';
+    const def = Object.assign({ id, atlases: [caminho] }, extra || {}, { anims: {} });
+    Object.entries(anims).forEach(([nome, a]) => {
+      def.anims[nome] = {
+        fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false,
+        frames: a.frames.map(f => {
+          const p = pk.posicoes[idx.get(f.img)];
+          const q = [0, p.x, p.y, f.img.largura, f.img.altura, Math.round(f.ox), Math.round(f.oy), Math.round((f.dur || 1) * 1000) / 1000];
+          if (f.pontos) q.push(f.pontos);
+          return q;
+        }),
+      };
     });
-    return { frames: fr, set: r.set };
+    await FF.ImagensUsr.gravar(caminho, await C.canvasParaPng(I.paraCanvas(pk)), false);
+    E.salvarNoJogo(['spritesNovos', id], def, '💾 Sprite "' + id + '" gravado.');
+    FF.Assets.descarregarSprite(id);
+    const set = await FF.Assets.loadSprite(id);
+    return { def, set, pk };
   }
 
-  FF.EstudioArq = { importado, adicionarImagens, salvarAnim, apagarAnimImportada, pixelsDoQuadro, lerArquivos, prepararQuadros, quadrosParaSprite, limpaAnim, MAX_ATLAS };
+  FF.EstudioArq = { importado, adicionarImagens, salvarAnim, apagarAnimImportada, pixelsDoQuadro, quadrosDoSprite, gravarSprite, limpaAnim, MAX_ATLAS };
 })();

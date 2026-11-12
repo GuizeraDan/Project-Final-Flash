@@ -1,0 +1,413 @@
+{
+  "id": "bills",
+  "nome": "Bills",
+  "formaInicial": "base",
+  "atributos": {
+    "hp": 1900,
+    "ataque": 125,
+    "defesa": 70,
+    "kiMax": 100,
+    "kiInicial": 30,
+    "kiPorTurno": 12,
+    "velocidade": 10
+  },
+  "vozes": {},
+  "formas": {
+    "base": {
+      "nome": "Bills",
+      "sprite": "bills",
+      "anims": {
+        "parado": "Parado",
+        "dano1": "Dano_1",
+        "dano2": "Dano_2",
+        "guarda": "Guarda",
+        "lancado": "Lancado",
+        "caido": "Caido",
+        "avancar": "Voando",
+        "recuar": "Pulo",
+        "teleporte": "Teletransporte"
+      },
+      "golpes": [
+        "golpes_divinos",
+        "rajada_ki",
+        "esferas_divinas",
+        "carregar_ki",
+        "esfera_destruicao"
+      ],
+      "vitoria": [
+        {
+          "anim": "Bracos_Abertos",
+          "duracao": 0.8
+        },
+        {
+          "anim": "Pose_Maos_Atras",
+          "duracao": 60
+        }
+      ],
+      "retrato": {
+        "quadro": 47,
+        "banner": 45
+      }
+    }
+  },
+  "golpes": {
+    "golpes_divinos": {
+      "nome": "Golpes Divinos",
+      "descricao": "Sequência de golpes e cauda do Deus da Destruição.",
+      "poder": 1.7,
+      "roteiro": [
+        {
+          "irAte": "alvo",
+          "dist": 24,
+          "tempo": 0.22,
+          "animMov": "Voando",
+          "som": "jetdash"
+        },
+        {
+          "anim": "Ataque_Soco",
+          "eventos": [
+            {
+              "quadro": 1,
+              "som": "throw_swing_l"
+            },
+            {
+              "quadro": 1,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Ataque_Chute",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "throw_swing_l"
+            },
+            {
+              "quadro": 1,
+              "acerto": {
+                "fracao": 0.2,
+                "forca": "leve"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Ataque_Cauda",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "throw_swing_l"
+            },
+            {
+              "quadro": 1,
+              "acerto": {
+                "fracao": 0.25,
+                "forca": "media"
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Ataque_Forte",
+          "eventos": [
+            {
+              "quadro": 1,
+              "som": "vgs_superdashkick_a"
+            },
+            {
+              "quadro": 1,
+              "acerto": {
+                "fracao": 0.35,
+                "forca": "forte",
+                "lanca": true
+              }
+            }
+          ]
+        },
+        {
+          "voltar": true,
+          "som": "teletransporte"
+        }
+      ]
+    },
+    "rajada_ki": {
+      "nome": "Rajada de Ki",
+      "descricao": "Duas rajadas de energia com a palma da mão.",
+      "tipo": "energia",
+      "custoKi": 20,
+      "poder": 2.2,
+      "roteiro": [
+        {
+          "anim": "Rajada_Ki",
+          "eventos": [
+            {
+              "quadro": 1,
+              "projetil": {
+                "fx": "Bills_KiBlast",
+                "sprite": "bills",
+                "impacto": "kiblast_hit",
+                "velocidade": 640,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.5,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Rajada_Ki",
+          "eventos": [
+            {
+              "quadro": 1,
+              "projetil": {
+                "fx": "Bills_KiBlast",
+                "sprite": "bills",
+                "impacto": "kiblast_hit",
+                "velocidade": 640,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.5,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "esferas_divinas": {
+      "nome": "Esferas Divinas",
+      "descricao": "Ergue o dedo e dispara faíscas de energia roxa.",
+      "tipo": "energia",
+      "custoKi": 30,
+      "poder": 2.8,
+      "roteiro": [
+        {
+          "anim": "Dedo_Erguido",
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "kidan_chrg"
+            }
+          ]
+        },
+        {
+          "anim": "Dedo_Apontar",
+          "duracao": 0.22,
+          "eventos": [
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "Bills_Faisca",
+                "sprite": "bills",
+                "impacto": "hit1",
+                "velocidade": 560,
+                "girar": 540,
+                "curva": 30,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.3,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Dedo_Apontar",
+          "duracao": 0.22,
+          "eventos": [
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "Bills_Faisca",
+                "sprite": "bills",
+                "impacto": "hit1",
+                "velocidade": 560,
+                "girar": 540,
+                "curva": 0,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.3,
+                  "forca": "energia"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "anim": "Dedo_Apontar",
+          "duracao": 0.5,
+          "eventos": [
+            {
+              "quadro": 0,
+              "projetil": {
+                "fx": "Bills_Faisca",
+                "sprite": "bills",
+                "impacto": "hit1",
+                "velocidade": 560,
+                "girar": 540,
+                "curva": -30,
+                "som": "kidan_fire",
+                "acerto": {
+                  "fracao": 0.4,
+                  "forca": "energia",
+                  "lanca": true
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "carregar_ki": {
+      "nome": "Carregar Ki",
+      "descricao": "Recupera 40 de ki.",
+      "tipo": "suporte",
+      "roteiro": [
+        {
+          "anim": "Bracos_Abertos",
+          "duracao": 0.3,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_start"
+            }
+          ]
+        },
+        {
+          "anim": "Carregando_Ki",
+          "duracao": 1.1,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "carregamentodeki_loop"
+            },
+            {
+              "quadro": 0,
+              "tremer": 3
+            }
+          ]
+        },
+        {
+          "ki": 40
+        }
+      ]
+    },
+    "esfera_destruicao": {
+      "nome": "Esfera da Destruição",
+      "descricao": "SUPREMO: ergue uma esfera gigante de energia e arremessa no alvo.",
+      "tipo": "energia",
+      "supremo": true,
+      "poder": 6.5,
+      "roteiro": [
+        {
+          "anim": "Dedo_Erguido",
+          "fps": 6,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "ataque_carregamento"
+            },
+            {
+              "quadro": 3,
+              "tremer": 4
+            }
+          ]
+        },
+        {
+          "objeto": {
+            "id": "esfera_bills",
+            "fx": "Bills_Esfera",
+            "dy": -92,
+            "dx": 16,
+            "escala": [
+              0.05,
+              0.75
+            ],
+            "tempo": 2.2
+          },
+          "som": "gnkdm_charge",
+          "mensagem": "Bills: Vamos ver se aguenta isto.",
+          "mensagemDur": 2.2
+        },
+        {
+          "tremer": 6
+        },
+        {
+          "anim": "Dedo_Erguido",
+          "de": 3,
+          "ate": 3,
+          "duracao": 2.2
+        },
+        {
+          "anim": "Apontar",
+          "duracao": 1.4,
+          "eventos": [
+            {
+              "quadro": 0,
+              "som": "goku_gnkdm_fire"
+            },
+            {
+              "quadro": 0,
+              "tremer": 10
+            },
+            {
+              "quadro": 0,
+              "lancarObjeto": {
+                "id": "esfera_bills",
+                "tempo": 1.0,
+                "som": "jetdash",
+                "flash": 1.0,
+                "tremer": 18,
+                "intervalo": 0.2,
+                "somImpacto": [
+                  "goku_s_gnkdm_expl",
+                  "explosaodeenergia"
+                ],
+                "impacto": [
+                  {
+                    "fx": "Bills_Esfera_Explosao",
+                    "escala": 1.4,
+                    "duracao": 1.0
+                  },
+                  {
+                    "fx": "Explosao15",
+                    "escala": 0.8,
+                    "dy": 30
+                  }
+                ],
+                "acertos": [
+                  {
+                    "fracao": 0.2,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.2,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.25,
+                    "forca": "energia"
+                  },
+                  {
+                    "fracao": 0.35,
+                    "forca": "energia",
+                    "lanca": true,
+                    "empurrao": 700
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -140,3 +140,15 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 **Testes:** `tools/testes/estudio_importar.js` (adaptado ao fluxo novo, 38 verificações), `tools/testes/estudio_sprites.js` (novo: folha de fundo branco → animação nova no gokubase com atlas extra; PNGs soltos no meio da animação de um sprite importado; desfazer; redimensionar 200%; juntar imagens; exportar sprite inteiro; última animação; sprite vazio; soltar arquivo), `estudio.js`, `codecs.js`, `batalha.js --plano 1,2,4,5,1`.
 
 **Pendente:** “juntar imagens” para sprites do jogo; renomear não atualiza golpes que usam o nome antigo.
+
+## 12/11/2026 — Bills no jogo; Estúdio sem importar/exportar
+**Pedido:** o importador no Estúdio “não tá dando certo”: o usuário passa a mandar os sprites na conversa e o Claude monta personagem e golpes; a aba Sprites fica só para editar; tirar as funções de exportação.
+
+**Feito:**
+- Estúdio: removidos importador (`js/estudio/importar.js`, `css/estudio_importar.css`, teste `estudio_importar.js`) e exportações da aba Sprites (sheet/GIF/WebM/PNG/JSON, sprite inteiro), “📂 Do computador”, soltar/colar arquivos. Ficou: editar quadros, nova/renomear/apagar animação, redimensionar, escala, juntar imagens e apagar sprite (importados antigos). `sw.js` v4.
+- **Ferramenta nova** `tools/importar_sprites.py` + receita `tools/receitas/<id>.json`: imagens soltas (pasta ou ZIP) → atlas + `data/sprites/<id>.json` (fundo da borda transparente, recorte, origem nos pés alinhada pelo centro da cabeça, `origem: centro` para efeitos, ponto de disparo automático).
+- **Bills** (zip do usuário, sprites de MV95): sprite `bills` com 44 animações (77 imagens, atlas 1017×213) e personagem `bills` (HP 1900, atq 125, def 70, IA automática): Golpes Divinos (soco, chute, cauda, golpe forte), Rajada de Ki (2 rajadas amarelas), Esferas Divinas (3 faíscas roxas girando em arco), Carregar Ki (aura do próprio sprite), supremo **Esfera da Destruição** (ergue o dedo, esfera cresce acima da cabeça, aponta e arremessa; explosão do pacote + Explosao15). Retrato/banner gerados (`gerar_retrato.py` ganhou `--topo`, `--banner-dy`, `--centrar-cabeca`). Sem sons próprios (os `bills_*.ogg` do ZL3 não estão no repositório; usei sons genéricos).
+- Motor: `Battle.fxSet` também procura o efeito nos sprites carregados (efeitos que vêm no sprite do lutador).
+- Testado: batalha temporária Bills × Raditz (`--plano 5,2,3,1,4,3,2,1 --rage 100`, luta terminou, sem erros; fotos conferidas), `tools/testes/estudio_sprites.js` (reescrito), `estudio.js`, `batalha.js --plano 1,2,4,5,1`.
+
+**Observação:** nas edições do usuário, o sprite `cenarios_preview` tem a animação original `cenarios` apagada e duas animações de teste (`bills`, `billsparadao`) com atlas extra — sobra das tentativas no importador. Perguntar se pode limpar/restaurar.

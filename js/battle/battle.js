@@ -328,6 +328,8 @@ FF.Battle = class {
     if (sprite && FF.Assets.sprites[sprite] && FF.Assets.sprites[sprite].has(name)) return FF.Assets.sprites[sprite];
     if (this.fx.has(name)) return this.fx;
     if (this.fx2 && this.fx2.has(name)) return this.fx2;
+    // efeitos que vêm no sprite do próprio lutador (ex.: Bills_Esfera no sprite "bills")
+    for (const s of Object.values(FF.Assets.sprites)) if (s && s.has && s.has(name)) return s;
     return null;
   }
 

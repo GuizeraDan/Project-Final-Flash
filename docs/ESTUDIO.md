@@ -11,7 +11,7 @@ O Estúdio é pensado para PC (tela cheia), mas funciona no celular deitado. O E
 | Aba | Para quê |
 |---|---|
 | 🎬 **Golpes e cenas** | Linha do tempo + palco ao vivo + propriedades de qualquer golpe/habilidade |
-| 🖼 **Sprites** | Importar do computador, editar quadros de qualquer animação (efeitos também), criar/renomear/apagar animações e sprites, tamanho, exportar |
+| 🖼 **Sprites** | Editar quadros de qualquer animação (efeitos também), criar/renomear/apagar animações, tamanho |
 | 🧑 **Personagens** | Atributos, formas, ordem dos golpes, buffs/aura, IA, criar personagem novo |
 | 📦 **Projeto** | Tudo o que foi mudado, voltar ao original, exportar/importar o projeto inteiro |
 
@@ -56,40 +56,22 @@ automaticamente para a linha do tempo. Salvar substitui o golpe no jogo todo; **
 
 ## Sprites
 
-Escolha o sprite e a animação. 📥 = sprite importado por você.
+**Sprites novos:** mande as imagens (PNG soltos, sprite sheet, ZIP…) na conversa com o Claude. Ele separa as
+animações, tira o fundo, alinha, cria o sprite, o personagem e os golpes (receita em `tools/receitas/<id>.json`,
+montada por `tools/importar_sprites.py`). Esta aba é para **ajustar** o que já está no jogo — não tem importar nem exportar.
 
-**Trazer do computador** (tudo dentro desta aba):
-- **📂 Importar** (no topo da lista de sprites), **soltar arquivos** em qualquer lugar da aba ou **colar** (Ctrl+V)
-  abre o importador por cima da aba: PNG, JPG, WebP/GIF/APNG animados, BMP, SVG, AVIF, sprite sheet, várias
-  imagens (cada uma um quadro), vídeo MP4/WebM (escolha o fps), ZIP de imagens, `.ffpacote.json` antigo, JSON de
-  sprite + PNG. Sprite sheet: separar quadros automático ou por grade. Depois: remover fundo (automático ou
-  conta-gotas, tolerância), cortar bordas, escala, origem nos pés (lutador) ou no centro (efeito), fps, ajuste fino
-  por quadro. Salve como **sprite novo** ou como **animação de um sprite que já existe** (do jogo ou importado).
-  Ao salvar, o sprite abre aqui na aba. **← Voltar aos sprites** (ou Esc) fecha o importador sem perder o trabalho.
-- **📂 Do computador** (na tira de quadros, ou em “＋ Inserir quadros…”): as imagens entram na animação aberta,
-  depois do quadro escolhido. Uma janela mostra os quadros e deixa escolher fundo (automático/remover/manter),
-  cortar bordas, origem, escala e separar sprite sheet. “🧰 Mais opções” leva os mesmos arquivos ao importador.
-- **＋ Nova → 📂 Do computador…**: cria a animação já com as imagens escolhidas.
-
-As imagens novas vão para um atlas extra do sprite (em sprites do jogo, `spritesInfo[id].atlas`), então dá para
-pôr quadros novos até nos sprites originais. Em sprites importados, **🧹 Juntar imagens** junta tudo num atlas só.
+Escolha o sprite e a animação. 📥 = sprite importado pelo Estúdio antigo.
 
 **Editar:** na tira de baixo: apagar, duplicar, mover (arrastar), inverter, inserir quadros de outras animações do
 mesmo sprite, "＋ Nova" animação. **Aa** renomeia (suas animações e as de sprites importados). **🗑 Apagar** (no topo
-ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; de
-sprites importados saem do sprite; as do jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de
-volta". O aviso mostra quais golpes usam a animação. Um sprite importado não fica sem animações: apagar a última
-pergunta se quer apagar o sprite. **🗑** ao lado de um sprite importado (ou em *Tamanho e sprite*) apaga o sprite.
-No palco: **✥ Origem** (arraste o desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde saem os projéteis).
-À direita: fps, loop, "repetir do quadro", duração de cada quadro e **📐 Tamanho e sprite**: escala no jogo (não
-mexe nos pixels) e **Redimensionar** os pixels dos quadros (todos ou os escolhidos, 25% a 400%; origem e disparo
-acompanham).
-
-**📤 Exportar** (animação): sprite sheet PNG + JSON, sequência de PNGs (ZIP), GIF animado, WebM, JSON do jogo — e
-**🗃 Sprite inteiro** (todas as animações numa sprite sheet só, PNG + JSON). Também em *Tamanho e sprite →
-📤 Exportar sprite inteiro*.
-Observação: abrindo pelo arquivo (`file://`) o navegador não deixa ler os pixels dos sprites do jogo
-para exportar ou redimensionar — use o site do GitHub Pages.
+ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; as do
+jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de volta". O aviso mostra quais golpes usam a
+animação. No palco: **✥ Origem** (arraste o desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde
+saem os projéteis). À direita: fps, loop, "repetir do quadro", duração de cada quadro e **📐 Tamanho e sprite**:
+escala no jogo (não mexe nos pixels) e **Redimensionar** os pixels dos quadros (todos ou os escolhidos, 25% a 400%;
+origem e disparo acompanham — as imagens novas vão para um atlas extra, `spritesInfo[id].atlas`).
+Observação: abrindo pelo arquivo (`file://`) o navegador não deixa ler os pixels dos sprites do jogo para
+redimensionar — use o site do GitHub Pages.
 
 ## Personagens
 
@@ -110,9 +92,8 @@ A aba **Projeto** exporta/importa tudo (inclusive imagens) num único JSON.
   golpe em outro lado da tela de forma especial (usa o mesmo motor).
 - No celular: arrastar quadros na tira do Sprites não reordena (use ◀ Mover ▶); o palco fica pequeno.
 - Personagens: IA por forma, `reverter` e `vitoria` só em JSON; prévia sem sons.
-- Importar: renomear uma animação não atualiza golpes que usam o nome antigo; MP4/AVIF dependem do navegador.
-- Sprites: cada vez que imagens do computador entram num sprite, nasce um atlas extra (use 🧹 Juntar imagens nos
-  importados); sprites do jogo não têm “juntar” (os atlas originais ficam como estão).
+- Renomear uma animação não atualiza golpes que usam o nome antigo.
+- Sprites: cada redimensionar cria um atlas extra (nos importados, 🧹 Juntar imagens junta tudo).
 - O Editor antigo não sabe editar golpes salvos pelo Estúdio (passo `linha`); eles funcionam no jogo,
   mas edite-os no Estúdio.
 - Batalhas/estágios (posições, escala, ajustes de vida) ainda não têm aba.

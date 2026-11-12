@@ -5,7 +5,7 @@ sprite de batalha de um personagem que não tem arte própria (ex.: Saibaman), e
 os dois ao sprite "retratos" (novo atlas assets/img/retratos_extra.png).
 
 Uso: python3 -I tools/gerar_retrato.py --sprite saibaman --anim Ataque_1 --quadro 0 \
-        --personagem saibaman [--cor 3a6a1a] [--molde 41]
+        --personagem saibaman [--cor 3a6a1a] [--molde 41] [--topo 0] [--banner-dy 0]
   --molde: índice de um banner existente cujo formato (recorte inclinado) é copiado.
 Depois rode tools/build_bundle.py.
 """
@@ -49,6 +49,9 @@ def main():
     ap.add_argument('--personagem', required=True)
     ap.add_argument('--cor', default='3a6a1a', help='cor de fundo do retrato (hex)')
     ap.add_argument('--molde', type=int, default=41)
+    ap.add_argument('--topo', type=int, default=0, help='pula N px do topo do sprite (orelhas/cabelo altos, ex.: Bills)')
+    ap.add_argument('--banner-dy', type=int, default=0, help='desce o corpo no banner N px (negativo = sobe)')
+    ap.add_argument('--centrar-cabeca', action='store_true', help='centraliza pela cabeça (sprites com cauda/braço para o lado)')
     a = ap.parse_args()
 
     spr = carregar_quadro(a.sprite, a.anim, a.quadro)
@@ -59,7 +62,15 @@ def main():
     # ---- retrato 40x56: cabeça e ombros, ampliados 2x ----
     esc = 2
     corte_h = 56 // esc + 2
-    cab = spr.crop((0, 0, spr.width, min(spr.height, corte_h)))
+    hx = spr.width / 2
+    if a.centrar_cabeca:
+        al = spr.split()[3].load()
+        xs = [x for y in range(a.topo, min(spr.height, a.topo + 14)) for x in range(spr.width) if al[x, y] > 40]
+        if xs:
+            hx = sum(xs) / len(xs)
+    x0 = max(0, int(hx - 11)) if a.centrar_cabeca else 0
+    x1 = min(spr.width, int(hx + 11)) if a.centrar_cabeca else spr.width
+    cab = spr.crop((x0, a.topo, x1, min(spr.height, a.topo + corte_h)))
     cab = cab.resize((cab.width * esc, cab.height * esc), Image.NEAREST)
     cab = contorno(cab)
     ret = gradiente(40, 56, tuple(min(255, c + 60) for c in cor), tuple(c // 3 for c in cor))
@@ -89,7 +100,7 @@ def main():
     corpo = spr.resize((spr.width * 4, spr.height * 4), Image.NEAREST)
     corpo = contorno(corpo)
     # rosto perto do meio (o recorte da seleção mostra a faixa central do banner)
-    fundo.alpha_composite(corpo, ((W - corpo.width) // 2 + 6, int(H * 0.42) - 40))
+    fundo.alpha_composite(corpo, (int((W - corpo.width) // 2 + 6 - (hx - spr.width / 2) * 4), int(H * 0.42) - 40 - a.topo * 4 + a.banner_dy))
     banner = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     banner.paste(fundo, (0, 0), mascara)
 
