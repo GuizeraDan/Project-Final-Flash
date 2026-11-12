@@ -284,3 +284,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 /* a dica da batalha não aparece por trás da tela de título */
 #jogo:has(#inicio:not(.hide)) #ajuda { display: none; }
+
+/* ---------- tela de título com a arte do usuário (título 3D, Goku e Vegeta já estão na imagem) ---------- */
+#inicio { background: #0e081e url(../assets/img/titulo_fundo.jpg) center top / cover no-repeat; }
+#inicio h1, #inicio h3, #inicio .titulo-banner { display: none !important; }
+#inicio { justify-content: flex-start !important; padding-top: 18.5cqw !important; }
+#inicio:not(.menu):not(.livre):not(.opcoes):not(.treino):not(.ferramentas) #carregando { margin-top: 8cqw; }
+#inicio #carregando { color: #ffe9a8; font-weight: 800; text-shadow: 0 0.2cqw 0.4cqw #000; }

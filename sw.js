@@ -10,7 +10,7 @@ const ESSENCIAIS = [
   'js/core/habilidades.js', 'js/ui/selecao.js', 'js/ui/pausa.js',
   'js/battle/fighter.js', 'js/battle/script.js', 'js/battle/ai.js', 'js/battle/hud.js', 'js/battle/battle.js', 'js/battle/cena.js',
   'js/ferramentas/editor.js', 'js/ferramentas/editor_cena.js', 'js/ferramentas/previa.js', 'js/ferramentas/visualizador.js', 'js/pwa.js', 'js/main.js',
-  'assets/icones/icone-192.png', 'assets/icones/icone-512.png',
+  'assets/img/titulo_fundo.jpg', 'assets/icones/icone-192.png', 'assets/icones/icone-512.png',
 ];
 
 self.addEventListener('install', (e) => {
