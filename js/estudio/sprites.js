@@ -133,6 +133,7 @@
     [['mover', '✥ Origem', 'Arraste o desenho para mudar a origem (pés) dos quadros escolhidos · setas = 1 px, Shift = 10'],
       ['caixa', '▭ Recorte', 'Ajuste a caixa do quadro no atlas (alças nos cantos e lados; arraste dentro para mover)'],
       ['disparo', '🎯 Disparo', 'Clique no palco para gravar o ponto de disparo do quadro'],
+      ['cortar', '✂ Cortar', 'Desenhe um retângulo no palco para aproveitar só um pedaço dos quadros (ex.: só o raio de um golpe) e crie uma animação nova com ele'],
       ['mao', '✋ Mover vista', 'Arraste para mover a vista (também: botão do meio ou arrastar fora do desenho)']].forEach(([m, t, d]) => {
       const b = E.botao(t, () => { st.modo = m; renderModos(); }, d);
       ui.modos[m] = b; modos.appendChild(b);
@@ -423,7 +424,7 @@
     ui.btOrig.disabled = !d && !FF.Mods.alterada(st.id, st.nome);
     if (ui.btApagar) ui.btApagar.disabled = !st.nome;
   }
-  function renderModos() { for (const [m, b] of Object.entries(ui.modos)) b.classList.toggle('sel', m === st.modo); ui.palcoWrap.dataset.modo = st.modo; }
+  function renderModos() { for (const [m, b] of Object.entries(ui.modos)) b.classList.toggle('sel', m === st.modo); ui.palcoWrap.dataset.modo = st.modo; renderProps(); }
   function renderCtr() {
     ui.btPlay.textContent = st.tocando ? '⏸' : '▶';
     ui.btRep.classList.toggle('on', st.repetir);
@@ -463,6 +464,7 @@
     p.innerHTML = '';
     if (!st.anim) { p.appendChild(grupoSprite()); return; }
     const a = st.anim, fr = frames(), esc = escolhidos(), f = fr[st.i];
+    if (st.modo === 'cortar') p.appendChild(grupoCorte());
     // animação
     const gA = E.grupo('🎞 Animação');
     const tot = fr.reduce((s, q) => s + (q[7] || 1), 0) / fpsDe(a);
@@ -992,6 +994,7 @@
         ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#000'; ctx.fillText('disparo', px + 9, py - 7); ctx.fillStyle = '#ffd84a'; ctx.fillText('disparo', px + 8, py - 8);
       }
     }
+    if (st.modo === 'cortar') desenharCorte(ctx, flip, z);
     // origem (pés)
     ctx.strokeStyle = '#000'; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(cx - 9, cy); ctx.lineTo(cx + 9, cy); ctx.moveTo(cx, cy - 9); ctx.lineTo(cx, cy + 9); ctx.stroke();
@@ -1009,6 +1012,82 @@
       ui.tempo.textContent = t.toFixed(2).replace('.', ',') + ' / ' + tot.toFixed(2).replace('.', ',') + ' s';
     }
   }
+  // modo ✂ Cortar: os quadros escolhidos sobrepostos (para ver o pedaço em todos) e o retângulo do corte
+  function desenharCorte(ctx, flip, z) {
+    const [cx, cy] = centro();
+    const fr = frames();
+    escolhidos().forEach(k => { if (k !== st.i && fr[k]) FF.drawFrame(ctx, st.set, fr[k], cx, cy, z, flip, { alpha: 0.25 }); });
+    const c = st.corte;
+    if (!c) {
+      ctx.font = 'bold 13px sans-serif'; ctx.fillStyle = '#ffd84a';
+      ctx.fillText('✂ Arraste no palco para marcar o pedaço que você quer aproveitar', 12, ui.H - 14);
+      return;
+    }
+    const [ax, ay] = mundoParaTela(c.x0, c.y0), [bx, by] = mundoParaTela(c.x1, c.y1);
+    const x = Math.min(ax, bx), y = Math.min(ay, by), w = Math.abs(bx - ax), h = Math.abs(by - ay);
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    ctx.fillRect(0, 0, ui.W, y); ctx.fillRect(0, y + h, ui.W, ui.H - y - h); ctx.fillRect(0, y, x, h); ctx.fillRect(x + w, y, ui.W - x - w, h);
+    ctx.setLineDash([6, 4]); ctx.strokeStyle = '#ffd84a'; ctx.lineWidth = 2;
+    ctx.strokeRect(Math.round(x) + 0.5, Math.round(y) + 0.5, Math.round(w), Math.round(h));
+    ctx.setLineDash([]);
+    ctx.font = 'bold 12px sans-serif'; ctx.fillStyle = '#ffd84a';
+    ctx.fillText((c.x1 - c.x0) + '×' + (c.y1 - c.y0) + ' px', x + 4, y - 6);
+  }
+
+  // recorta um quadro pelo retângulo (coordenadas relativas à origem). origem: 'manter' | 'centro' | 'esquerda'
+  function cortarQuadro(f, c, origem) {
+    const ix0 = Math.max(-f[5], c.x0), ix1 = Math.min(f[3] - f[5], c.x1);
+    const iy0 = Math.max(-f[6], c.y0), iy1 = Math.min(f[4] - f[6], c.y1);
+    if (ix1 - ix0 < 1 || iy1 - iy0 < 1) return null;    // o pedaço não aparece neste quadro
+    const ow = origem === 'centro' ? [(c.x0 + c.x1) / 2, (c.y0 + c.y1) / 2] : origem === 'esquerda' ? [c.x0, (c.y0 + c.y1) / 2] : [0, 0];
+    const n = [f[0], f[1] + (ix0 + f[5]), f[2] + (iy0 + f[6]), ix1 - ix0, iy1 - iy0, Math.round(ow[0] - ix0), Math.round(ow[1] - iy0), f[7] || 1];
+    if (f[8] && f[8].length) n.push(f[8].map(p => [Math.round(p[0] - ow[0]), Math.round(p[1] - ow[1])]));
+    return n;
+  }
+
+  async function aplicarCorte(comoNova, origem) {
+    const c = st.corte;
+    if (!c) return E.aviso('Marque o pedaço no palco primeiro (arraste um retângulo).', 'erro');
+    const ks = escolhidos(), fr = frames();
+    const novos = [];
+    ks.forEach(k => { const q = cortarQuadro(fr[k], c, origem); if (q) novos.push({ k, q }); });
+    if (!novos.length) return E.aviso('O retângulo não pega nenhum desenho dos quadros escolhidos.', 'erro');
+    if (comoNova) {
+      let n = await E.perguntar('✂ Nova animação com o recorte', 'Nome da animação nova em "' + st.id + '" (' + novos.length + ' quadro(s)):', (st.nome || 'Recorte') + '_Recorte');
+      if (!n) return;
+      n = n.trim().replace(/\s+/g, '_');
+      if (st.set.def.anims[n]) return E.aviso('Já existe "' + n + '" neste sprite. Escolha outro nome.', 'erro');
+      const a = { fps: st.anim.fps || 12, loop: !!st.anim.loop, repeatTo: 0, pingpong: false, frames: novos.map(x => x.q) };
+      st.corte = null; st.modo = 'mover'; renderModos();
+      await abrirAnim(n, { forcar: true, novo: true, anim: a });
+      E.aviso('✂ "' + n + '" criada com ' + novos.length + ' quadro(s). Confira e use 💾 Salvar no jogo. Ela aparece no seletor de sprites para qualquer golpe.', 'ok');
+    } else {
+      novos.forEach(x => { fr[x.k] = x.q; });
+      st.corte = null;
+      mudou('Cortar quadros');
+      E.aviso('✂ ' + novos.length + ' quadro(s) cortado(s). Ctrl+Z desfaz.', 'ok');
+    }
+  }
+
+  function grupoCorte() {
+    const g = E.grupo('✂ Cortar um pedaço', true);
+    const esc = escolhidos();
+    g.appendChild(el('div', 'es-dica', 'Arraste um retângulo no palco em volta do pedaço que quer aproveitar (ex.: só o raio). Ele vale para os ' + esc.length + ' quadro(s) escolhidos na tira (use "Todos" para pegar a animação inteira); os outros escolhidos aparecem apagados por baixo para você conferir.'));
+    const c = st.corte;
+    if (c) {
+      const campo = (k, rot) => E.campo('numero', rot, c[k], (v) => { if (v != null) { c[k] = Math.round(v); if (c.x1 < c.x0) [c.x0, c.x1] = [c.x1, c.x0]; if (c.y1 < c.y0) [c.y0, c.y1] = [c.y1, c.y0]; } }, { passo: 1, dica: 'Pixels a partir da origem (pés) do sprite' });
+      g.append(campo('x0', 'Esquerda'), campo('x1', 'Direita'), campo('y0', 'Topo'), campo('y1', 'Base'));
+      const og = E.campo('select', 'Nova origem', st.corteOrigem || 'centro', (v) => { st.corteOrigem = v; }, { lista: [['centro', 'centro do recorte (efeito, projétil)'], ['esquerda', 'meio da borda esquerda (raio que sai da mão)'], ['manter', 'manter a do sprite (mesmo lugar)']] });
+      g.appendChild(og);
+      const bts = el('div', 'ess-conf-bts');
+      bts.append(E.botao('✂ Criar animação nova', () => aplicarCorte(true, st.corteOrigem || 'centro'), 'Cria uma animação só com o pedaço (a original fica intacta)', 'es-bt-ouro'),
+        E.botao('Cortar aqui mesmo', () => aplicarCorte(false, st.corteOrigem || 'manter'), 'Corta os quadros desta animação (Ctrl+Z desfaz; só vale no jogo ao salvar)'),
+        E.botao('Limpar', () => { st.corte = null; renderProps(); }));
+      g.appendChild(bts);
+    }
+    return g;
+  }
+
   // alças do recorte em coordenadas de tela: [nome, x, y]
   function alcas(f) {
     const [x0, y0] = mundoParaTela(-f[5], -f[6]), z = ez();
@@ -1044,6 +1123,11 @@
         renderProps();
         return;
       }
+      if (st.modo === 'cortar') {
+        st.corte = { x0: Math.round(wx), y0: Math.round(wy), x1: Math.round(wx), y1: Math.round(wy) };
+        arr = { tipo: 'corte', w0: [Math.round(wx), Math.round(wy)] };
+        return;
+      }
       if (st.modo === 'caixa') {
         const h = alcas(f).find(([, hx, hy]) => Math.abs(hx - sx) <= 9 && Math.abs(hy - sy) <= 9);
         if (h || dentroDoQuadro(f, wx, wy)) { arr = { tipo: 'caixa', alca: h ? h[0] : 'dentro', w0: [wx, wy], f, antes: copia(f) }; return; }
@@ -1073,6 +1157,7 @@
       if (arr.tipo === 'pan') { st.panX = arr.p0[0] + sx - arr.s0[0]; st.panY = arr.p0[1] + sy - arr.s0[1]; return; }
       const [wx, wy] = telaParaMundo(sx, sy);
       if (arr.tipo === 'disparo') { arr.f[8][0] = [Math.round(wx), Math.round(wy)]; arr.mexeu = true; return; }
+      if (arr.tipo === 'corte') { st.corte = { x0: Math.min(arr.w0[0], Math.round(wx)), y0: Math.min(arr.w0[1], Math.round(wy)), x1: Math.max(arr.w0[0], Math.round(wx)), y1: Math.max(arr.w0[1], Math.round(wy)) }; return; }
       const dx = Math.round(wx - arr.w0[0]), dy = Math.round(wy - arr.w0[1]);
       if (arr.tipo === 'origem') {
         arr.ks.forEach((k, j) => { const q = frames()[k]; q[5] = arr.antes[j][0] - dx; q[6] = arr.antes[j][1] - dy; });
@@ -1098,6 +1183,7 @@
       const a = arr;
       if (a.tipo === 'pinca') { if (toques.size === 0) arr = null; return; }
       arr = null;
+      if (a.tipo === 'corte') { if (st.corte && (st.corte.x1 - st.corte.x0 < 2 || st.corte.y1 - st.corte.y0 < 2)) st.corte = null; renderProps(); return; }
       if (a.tipo === 'disparo') mudou('Ponto de disparo');
       else if (a.tipo === 'origem' && a.mexeu) mudou('Mover origem');
       else if (a.tipo === 'caixa' && a.mexeu) mudou('Recortar quadro');
@@ -1112,7 +1198,7 @@
       const f = frames()[st.i];
       let c = 'default';
       if (st.modo === 'mao') c = 'grab';
-      else if (st.modo === 'disparo') c = 'crosshair';
+      else if (st.modo === 'disparo' || st.modo === 'cortar') c = 'crosshair';
       else if (f) {
         const [wx, wy] = telaParaMundo(sx, sy);
         if (st.modo === 'caixa') {
@@ -1222,6 +1308,6 @@
   };
   E.registrarAba(aba);
   // para os testes e outras abas
-  E.Sprites = { st, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
+  E.Sprites = { st, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
     redimensionar, compactar, apagarSprite, novaAnimacao, renomearAnim };
 })();

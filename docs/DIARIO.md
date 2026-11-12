@@ -200,3 +200,5 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Estúdio: seletor de sprites global (`js/estudio/seletor.js`, `FF.Estudio.escolherSprite`): todas as animações de todos os sprites (efeitos, lutadores, importados) para qualquer personagem, com lista de fontes (Efeitos, Tudo, cada sprite) e busca em tudo. Usado no efeito, projétil/explosões, camada e na animação do lutador. Animação emprestada: clipe `anim` com `sprite` faz o lutador usar a animação de outro sprite (motor troca o desenho e devolve no próximo clipe/fim). Golpes salvos no Estúdio guardam `spritesUsados` e o jogo (`FF.start`) carrega esses sprites antes da luta.
 
+- Estúdio/Sprites: modo **✂ Cortar** — arrastar um retângulo no palco (vale para os quadros escolhidos, que aparecem sobrepostos) e "Criar animação nova" só com aquele pedaço (ex.: o raio do Break Cannon sem o Nappa), com nova origem no centro, na borda esquerda (raio saindo da mão) ou mantida; ou "Cortar aqui mesmo". Só muda as caixas dos quadros no atlas (não mexe nos pixels). Teste: `tools/testes/estudio_corte.js`.
+

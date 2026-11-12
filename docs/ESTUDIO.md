@@ -78,7 +78,7 @@ Escolha o sprite e a animação. 📥 = sprite importado pelo Estúdio antigo.
 mesmo sprite, "＋ Nova" animação. **Aa** renomeia (suas animações e as de sprites importados). **🗑 Apagar** (no topo
 ou a lixeira de cada animação da lista) apaga a animação do jogo em todos os aparelhos: criadas por você somem; as do
 jogo original vão para "🗑 Apagadas", no fim da lista, com "↺ Trazer de volta". O aviso mostra quais golpes usam a
-animação. No palco: **✥ Origem** (arraste o desenho), **▭ Recorte** (caixa no atlas), **🎯 Disparo** (ponto de onde
+animação. No palco: **✥ Origem** (arraste o desenho), **▭ Recorte** (caixa no atlas), **✂ Cortar** (marque um retângulo e crie uma animação nova só com aquele pedaço — por exemplo, o raio de um golpe sem o personagem; escolha a nova origem: centro, borda esquerda ou a mesma), **🎯 Disparo** (ponto de onde
 saem os projéteis). À direita: fps, loop, "repetir do quadro", duração de cada quadro e **📐 Tamanho e sprite**:
 escala no jogo (não mexe nos pixels) e **Redimensionar** os pixels dos quadros (todos ou os escolhidos, 25% a 400%;
 origem e disparo acompanham — as imagens novas vão para um atlas extra, `spritesInfo[id].atlas`).
