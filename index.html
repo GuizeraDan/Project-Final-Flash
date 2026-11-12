@@ -37,13 +37,21 @@
       <button data-acao="opcoes">Opções</button>
     </div>
     <div id="ferramentas" class="menu-titulo">
+      <div class="sub-titulo"><span>Ferramentas</span></div>
       <button data-acao="visualizador">Visualizador</button>
       <button data-acao="editor">Editor</button>
       <button data-acao="voltar">Voltar</button>
     </div>
     <button class="titulo-ferramentas" data-acao="ferramentas">⚙ Ferramentas</button>
     <div class="titulo-rodape"><span>↑↓ Selecionar</span><span><b>Enter</b> Confirmar</span></div>
+    <div id="novojogo" class="menu-titulo">
+      <div class="sub-titulo"><span>Novo Jogo</span></div>
+      <div class="sub-dica">Escolha por onde começar a Saga Saiyajin</div>
+      <div id="capitulos"></div>
+      <button data-acao="voltar">Voltar</button>
+    </div>
     <div id="escolha" class="menu-titulo">
+      <div class="sub-titulo"><span>Escolha a luta</span></div>
       <button data-batalha="saiyajin_01">Goku vs Raditz</button>
       <button data-batalha="saiyajin_02">Trio vs Raditz</button>
       <button data-batalha="saiyajin_03">Trio vs Saibamen</button>
@@ -52,11 +60,13 @@
       <button data-acao="voltar">Voltar</button>
     </div>
     <div id="treino" class="menu-titulo">
+      <div class="sub-titulo"><span>Treinamento</span></div>
       <div class="ap-total">AP: <b id="ap-valor">0</b></div>
       <div id="treino-lista"></div>
       <button data-acao="voltar">Voltar</button>
     </div>
     <div id="opcoes" class="menu-titulo">
+      <div class="sub-titulo"><span>Opções</span></div>
       <label>Música <input type="range" id="vol-musica" min="0" max="100"></label>
       <label>Efeitos <input type="range" id="vol-sfx" min="0" max="100"></label>
       <label>Vozes <input type="range" id="vol-voz" min="0" max="100"></label>

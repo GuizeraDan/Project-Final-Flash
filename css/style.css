@@ -291,3 +291,96 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #inicio { justify-content: flex-start !important; padding-top: 18.5cqw !important; }
 #inicio:not(.menu):not(.livre):not(.opcoes):not(.treino):not(.ferramentas) #carregando { margin-top: 8cqw; }
 #inicio #carregando { color: #ffe9a8; font-weight: 800; text-shadow: 0 0.2cqw 0.4cqw #000; }
+
+/* =========================================================================
+   Submenus no padrão do menu novo (arte do título, faixas inclinadas)
+   ========================================================================= */
+#inicio.novojogo #novojogo { display: flex; }
+#inicio.novojogo #carregando { display: none; }
+#inicio.novojogo #novojogo, #inicio.opcoes #opcoes, #inicio.treino #treino {
+  display: flex; flex-direction: column; align-items: center; gap: 1cqw; }
+#inicio.opcoes #opcoes { width: 40cqw; }
+/* faixa com o nome da seção */
+.sub-titulo { transform: skewX(-20deg); padding: 0.35cqw 3cqw; margin-bottom: 0.4cqw;
+  background: linear-gradient(90deg, rgba(201,149,44,0), #c9952c 20%, #ffd84a 50%, #c9952c 80%, rgba(201,149,44,0)); }
+.sub-titulo span { display: inline-block; transform: skewX(20deg); font-size: 1.7cqw; font-weight: 900; letter-spacing: 0.4cqw;
+  text-transform: uppercase; color: #1a0e2e; }
+.sub-dica { font-size: 1.25cqw; color: #e9dcff; opacity: 0.85; margin-top: -0.4cqw; }
+/* capítulos do Novo Jogo */
+#capitulos { display: flex; flex-direction: column; gap: 0.8cqw; align-items: center; }
+.cap-bt { position: relative; width: 40cqw; transform: skewX(-20deg); padding: 0.6cqw 2cqw; cursor: pointer; font: inherit; color: #f4ecff; text-align: left;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95) 55%, rgba(36,18,82,0.95));
+  border: 0.22cqw solid #c9952c; border-radius: 0.3cqw; box-shadow: inset 0 0 0.8cqw rgba(0,0,0,0.55); }
+.cap-bt > span { display: flex; flex-direction: column; transform: skewX(20deg); padding-left: 2cqw; }
+.cap-bt b { font-size: 1.55cqw; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1cqw; }
+.cap-bt i { font-style: normal; font-size: 1.2cqw; color: #cfc2ff; }
+.cap-bt.feito b::after { content: '  ✔'; color: #7dffb0; }
+.cap-bt:focus, .cap-bt:hover:not(:disabled) { outline: none; border-color: #ffd84a; color: #ffe27a;
+  background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98) 55%, rgba(74,34,160,0.98)); box-shadow: 0 0 1.4cqw rgba(255,200,60,0.5); }
+.cap-bt:focus::before { content: '▶'; position: absolute; left: 1.2cqw; top: 50%; transform: translateY(-50%) skewX(20deg); color: #ffd84a; font-size: 1.4cqw; }
+.cap-bt:disabled { opacity: 0.45; cursor: default; }
+/* opções: cada linha é uma faixa */
+#opcoes label { width: 34cqw; transform: skewX(-20deg); padding: 0.55cqw 2cqw; box-sizing: border-box;
+  background: linear-gradient(90deg, rgba(36,18,82,0.9), rgba(60,30,120,0.9)); border: 0.18cqw solid #8a6a2a; border-radius: 0.3cqw;
+  font-size: 1.5cqw; text-transform: uppercase; letter-spacing: 0.1cqw; }
+#opcoes label > * { transform: skewX(20deg); }
+#opcoes label { text-shadow: 0.1cqw 0.1cqw 0 #000; }
+#opcoes input[type=range] { width: 15cqw; accent-color: #ffd84a; }
+/* treinamento */
+.ap-total { padding: 0.2cqw 2cqw; border-radius: 99px; background: rgba(20,10,40,0.85); border: 0.18cqw solid #c9952c; font-size: 1.7cqw; }
+#treino-lista { gap: 1.2cqw; }
+.treino-heroi { background: linear-gradient(180deg, rgba(40,20,90,0.94), rgba(16,8,36,0.94)); border: 0.2cqw solid #c9952c; border-radius: 0.6cqw;
+  box-shadow: 0 0.4cqw 1cqw rgba(0,0,0,0.5); }
+.treino-cab { display: flex; align-items: center; gap: 0.8cqw; margin: -0.8cqw -0.8cqw 0.2cqw; padding: 0.5cqw 0.8cqw;
+  background: linear-gradient(90deg, #c9952c, #ffd84a 60%, #c9952c); border-radius: 0.4cqw 0.4cqw 0 0; }
+.treino-cab canvas { width: 3.2cqw; height: 4.4cqw; image-rendering: pixelated; border: 0.15cqw solid #1a0e2e; border-radius: 0.3cqw; background: #0c0f22; }
+.treino-cab h4 { margin: 0; color: #1a0e2e; text-transform: uppercase; letter-spacing: 0.15cqw; font-size: 1.6cqw !important; }
+#treino .treino-attr button { transform: skewX(-15deg); border-radius: 0.3cqw; border: 0.18cqw solid #c9952c; background: #2b1d5c; color: #ffe27a; font-weight: 900; }
+#treino .treino-attr button:not(:disabled):hover, #treino .treino-attr button:not(:disabled):focus { background: #5b2fc0; outline: none; }
+/* escolha de luta (Editor pela tela de título) */
+#inicio.livre #escolha > .sub-titulo { margin-bottom: 0.2cqw; }
+
+/* ---------- Batalha Livre (seleção) ---------- */
+#selecao { background: linear-gradient(rgba(10,6,24,0.86), rgba(10,6,24,0.9)), #0e081e url(../assets/img/titulo_fundo.jpg) center top / cover no-repeat; }
+.sel-topo { border-bottom: 0; justify-content: center; }
+.sel-topo h2 { transform: skewX(-20deg); padding: 0.2cqw 3cqw; color: #1a0e2e; text-shadow: none; text-transform: uppercase; letter-spacing: 0.4cqw; font-size: 2cqw;
+  background: linear-gradient(90deg, rgba(201,149,44,0), #c9952c 15%, #ffd84a 50%, #c9952c 85%, rgba(201,149,44,0)); }
+.sel-topo span { display: none; }
+.sel-time { border-radius: 0.5cqw; background: linear-gradient(180deg, rgba(40,20,90,0.9), rgba(16,8,36,0.9)); border: 0.2cqw solid #5b4bb0; }
+.sel-time h3 { text-transform: uppercase; letter-spacing: 0.2cqw; }
+.sel-abas button { transform: skewX(-20deg); border-radius: 0.3cqw; text-transform: uppercase; letter-spacing: 0.1cqw; background: rgba(36,18,82,0.95); border: 0.2cqw solid #8a6a2a; }
+.sel-card { border-radius: 0.4cqw; background: linear-gradient(180deg, rgba(50,26,110,0.92), rgba(20,10,44,0.92)); border: 0.18cqw solid #6b56c9; }
+.sel-card:hover, .sel-card:focus { border-color: #ffd84a; box-shadow: 0 0 1cqw rgba(255,200,60,0.45); }
+.sel-card span { text-transform: uppercase; letter-spacing: 0.05cqw; }
+.sel-info { background: rgba(14,8,30,0.85); border: 0.15cqw solid #4a3f90; border-radius: 0.4cqw; padding: 0.3cqw 1cqw; }
+.sel-rodape button { transform: skewX(-20deg); border-radius: 0.3cqw; text-transform: uppercase; letter-spacing: 0.1cqw;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95)); border: 0.2cqw solid #c9952c; }
+.sel-rodape button:hover:not(:disabled), .sel-rodape button:focus { color: #ffe27a; border-color: #ffd84a; outline: none;
+  background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98)); box-shadow: 0 0 1cqw rgba(255,200,60,0.45); }
+.sel-rodape button.lutar { background: linear-gradient(90deg, #c0400a, #ff9a2a 50%, #c0400a); border-color: #ffd84a; color: #fff; }
+.sel-hab-caixa { border-radius: 0.6cqw; border-color: #c9952c; }
+
+/* ---------- fim da luta ---------- */
+#fim { background: linear-gradient(rgba(10,6,24,0.35), rgba(10,6,24,0.55)), #0e081e url(../assets/img/titulo_fundo.jpg) center top / cover no-repeat;
+  justify-content: flex-start; padding-top: 17cqw; box-sizing: border-box; }
+#fim h2 { font-size: 5.6cqw; font-style: italic; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2cqw; margin: 0 0 0.6cqw;
+  color: #ffd84a; background: linear-gradient(180deg, #fff6c0, #ffd84a 45%, #e08a12); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.18cqw #5a2400; filter: drop-shadow(0 0.35cqw 0 #3a1400) drop-shadow(0 0 1.2cqw rgba(255,180,40,0.5)); }
+#fim.derrota h2 { background: linear-gradient(180deg, #f0e6ff, #9a8ad0 50%, #4a3a80); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke-color: #1a1030;
+  filter: drop-shadow(0 0.35cqw 0 #0a0618); }
+#fim p { color: #9fe2ff; font-weight: 800; font-size: 1.6cqw; text-shadow: 0 0.15cqw 0.3cqw #000; }
+#fim button { position: relative; width: 30cqw; transform: skewX(-20deg); border-radius: 0.3cqw; padding: 0.7cqw 2cqw; margin: 0.45cqw;
+  font-size: 1.7cqw; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12cqw; color: #f4ecff;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95) 55%, rgba(36,18,82,0.95)); border: 0.22cqw solid #c9952c; }
+#fim button > span { display: inline-block; transform: skewX(20deg); }
+#fim button:hover, #fim button:focus { width: 34cqw; outline: none; color: #ffe27a; border-color: #ffd84a;
+  background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98) 55%, rgba(74,34,160,0.98)); box-shadow: 0 0 1.4cqw rgba(255,200,60,0.55); }
+#fim button:focus::before, #fim button:hover::before { content: '▶'; position: absolute; left: 2cqw; top: 50%; transform: translateY(-50%) skewX(20deg); color: #ffd84a; font-size: 1.5cqw; }
+
+/* ---------- pausa ---------- */
+.pausa-caixa { border-radius: 0.6cqw; border-color: #c9952c; background: linear-gradient(180deg, rgba(40,20,90,0.97), rgba(14,8,30,0.97)); }
+.pausa-caixa h2 { font-style: italic; text-transform: uppercase; letter-spacing: 0.3cqw; }
+.pausa-botoes > button, .pausa-hab > button, .pausa-opcoes > button { transform: skewX(-20deg); border-radius: 0.3cqw; text-transform: uppercase; letter-spacing: 0.1cqw;
+  background: linear-gradient(90deg, rgba(36,18,82,0.95), rgba(70,36,140,0.95)) !important; border: 0.2cqw solid #c9952c !important; }
+.pausa-botoes > button:hover, .pausa-botoes > button:focus, .pausa-hab > button:focus, .pausa-opcoes > button:focus { color: #ffe27a;
+  background: linear-gradient(90deg, rgba(74,34,160,0.98), rgba(120,62,226,0.98)) !important; border-color: #ffd84a !important; box-shadow: 0 0 1cqw rgba(255,200,60,0.45); }

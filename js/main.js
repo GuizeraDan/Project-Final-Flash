@@ -178,7 +178,9 @@ FF.UI = {
   showEnd(win) {
     const el = document.getElementById('fim');
     el.querySelector('h2').textContent = win ? 'Vitória!' : 'Derrota...';
+    el.classList.toggle('derrota', !win);
     el.classList.add('open');
+    const b = el.querySelector('button:not([style*="none"])'); if (b) setTimeout(() => b.focus({ preventScroll: true }), 50);
   },
 };
 
@@ -256,6 +258,37 @@ FF.Save = {
   apagar() { try { localStorage.removeItem(this.KEY); } catch (e) { /* nada */ } },
 };
 
+// ---------- Novo Jogo: escolha do capítulo (os já liberados) ----------
+FF.NovoJogo = {
+  async abrir(mostrar, ir) {
+    const hist = await FF.Assets.loadJSON('data/historia.json');
+    const save = FF.Save.get();
+    const liberado = Math.min(hist.capitulos.length, (save.concluidos || 0) + 1);
+    const box = document.getElementById('capitulos');
+    box.innerHTML = '';
+    hist.capitulos.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'cap-bt';
+      const ok = c.id <= liberado;
+      const [num, nome] = String(c.titulo || ('Capítulo ' + c.id)).split(/\s+—\s+/);
+      b.innerHTML = '<span><b>' + (ok ? '' : '🔒 ') + num + '</b><i></i></span>';
+      b.querySelector('i').textContent = ok ? (nome || '') : 'Vença o capítulo anterior para liberar';
+      b.disabled = !ok;
+      if ((save.concluidos || 0) >= c.id) b.classList.add('feito');
+      b.addEventListener('mouseenter', () => { if (!b.disabled) b.focus({ preventScroll: true }); });
+      b.onclick = (e) => {
+        e.stopPropagation();
+        FF.Audio.play('decide_charasel', 0.6);
+        if (c.id === 1 && save.capitulo > 1 && !confirm('Começar do capítulo 1? Seu progresso de capítulos continua salvo (Continuar volta para o capítulo ' + save.capitulo + ').')) return;
+        FF.Save.set({ capitulo: c.id });
+        ir('?historia=' + c.id);
+      };
+      box.appendChild(b);
+    });
+    mostrar('novojogo');
+  },
+};
+
 // ---------- AP e treinamento: vitórias dão AP, que compra níveis de atributo por herói ----------
 FF.Treino = {
   herois: { goku: 'Goku', piccolo: 'Piccolo', krillin: 'Kuririn' },
@@ -302,7 +335,9 @@ FF.Treino = {
     for (const [id, nome] of Object.entries(this.herois)) {
       const box = document.createElement('div');
       box.className = 'treino-heroi';
-      box.innerHTML = '<h4>' + nome + '</h4>';
+      box.innerHTML = '<div class="treino-cab"><canvas width="40" height="56"></canvas><h4>' + nome + '</h4></div>';
+      const cv = box.querySelector('canvas');
+      FF.Assets.loadCharacter(id).then(d => FF.Retrato && FF.Retrato.noCanvas(cv, d, d.formaInicial, 'retrato')).catch(() => {});
       for (const [k, d] of Object.entries(this.attrs)) {
         const n = this.nivel(id, k), c = this.custo(n);
         const row = document.createElement('div');
@@ -416,7 +451,7 @@ FF.UI.showEnd = async function (win) {
   }
   el.classList.add('historia');
   document.getElementById('proximo').style.display = win && prox ? 'inline-block' : 'none';
-  document.getElementById('denovo').textContent = win ? 'Lutar de novo' : 'Tentar de novo';
+  (document.querySelector('#denovo span') || document.getElementById('denovo')).textContent = win ? 'Lutar de novo' : 'Tentar de novo';
   _showEnd(win);
   if (win && !prox) el.querySelector('h2').textContent = 'Fim da Saga Saiyajin!';
 };
@@ -442,6 +477,7 @@ window.addEventListener('load', () => {
   document.getElementById('denovo').onclick = () => location.reload();
   document.getElementById('titulo').onclick = () => ir('');
   document.getElementById('trocar').onclick = () => ir('?selecao=1');
+  document.querySelectorAll('#fim button').forEach(bt => { if (!bt.querySelector('span')) { const sp = document.createElement('span'); sp.textContent = bt.textContent; bt.textContent = ''; bt.appendChild(sp); } });
   document.getElementById('proximo').onclick = () => ir('?historia=' + (FF.modoHistoria.cap.id + 1));
 
   const batalhaLivre = async (id) => {
@@ -506,8 +542,8 @@ window.addEventListener('load', () => {
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas' }[modo];
-    const bt = vis && intro.querySelector(vis + ' button:not([disabled])');
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[modo];
+    const bt = vis && (modo === 'opcoes' ? intro.querySelector('#opcoes [data-acao="voltar"]') : intro.querySelector(vis + ' button:not([disabled])'));
     if (bt) bt.focus(); else if (primeiro) primeiro.focus();
   };
   const abrir = (e) => {
@@ -531,7 +567,7 @@ window.addEventListener('load', () => {
   window.addEventListener('keydown', (e) => {
     if (!intro.className || intro.classList.contains('hide')) return;
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') return;
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas' }[intro.className];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
     if (!vis) return;
     const bts = [...intro.querySelectorAll(vis + ' button:not([disabled])')];
     if (!bts.length) return;
@@ -555,7 +591,7 @@ window.addEventListener('load', () => {
     if (ac === 'editor') { FF._modoLab = 'editor'; return mostrar('livre'); }
     if (ac === 'instalar') { FF.PWA.instalar(); return; }
     if (ac === 'visualizador') { location.href = 'visualizador.html'; return; }
-    if (ac === 'novo') { FF.Save.set({ capitulo: 1 }); return ir('?historia=1'); }
+    if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { FF._modoLab = false; intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
