@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosback",{"id":"pw_chaosback","atlases":["assets/img/acervo/pw_chaosback_0.png"],"acervo":{"nome":"ChaosBack","fonte":"Power Warrior","tipo":"cenarios","origem":"91ddb0432f509f741b74594054664f88"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,37,10,18,1],[0,22,0,21,37,10,18,1],[0,44,0,21,37,10,18,1]]}}});

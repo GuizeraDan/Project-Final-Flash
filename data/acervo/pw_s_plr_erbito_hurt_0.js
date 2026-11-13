@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_s_plr_erbito_hurt_0",{"id":"pw_s_plr_erbito_hurt_0","atlases":["assets/img/acervo/pw_s_plr_erbito_hurt_0_0.png"],"acervo":{"nome":"s_plr_erbito_hurt_0","fonte":"Power Warrior","tipo":"efeitos","origem":"0fed25bd595597d428902055f4c72b4f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,40,18,20,1]]}},"tipo":"efeito"});

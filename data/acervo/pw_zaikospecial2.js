@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zaikospecial2",{"id":"pw_zaikospecial2","atlases":["assets/img/acervo/pw_zaikospecial2_0.png"],"acervo":{"nome":"ZaikoSpecial2","fonte":"Power Warrior","tipo":"efeitos","origem":"37b2eaee06a8d0e438e19c4a343c6e5f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,56,16,28,1],[0,33,0,35,49,18,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zeno",{"id":"pw_zeno","atlases":["assets/img/acervo/pw_zeno_0.png"],"acervo":{"nome":"Zeno","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets1.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,35,10,35,1]]}},"tipo":"efeito"});

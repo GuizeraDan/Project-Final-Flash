@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ability",{"id":"pw_ability","atlases":["assets/img/acervo/pw_ability_0.png"],"acervo":{"nome":"Ability","fonte":"Power Warrior","tipo":"efeitos","origem":"70262b7b325d1444ea0a94f5e062f268"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,175,140,88,70,1]]}},"tipo":"efeito"});

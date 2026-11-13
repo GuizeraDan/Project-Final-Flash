@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cooler2charge",{"id":"pw_cooler2charge","atlases":["assets/img/acervo/pw_cooler2charge_0.png"],"acervo":{"nome":"Cooler2Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"63fec826cb1460645b74feafce80dc9f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,54,17,27,1],[0,44,0,43,54,23,27,1]]}},"tipo":"efeito"});

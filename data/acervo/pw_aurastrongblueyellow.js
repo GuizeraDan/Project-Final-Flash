@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_aurastrongblueyellow",{"id":"pw_aurastrongblueyellow","atlases":["assets/img/acervo/pw_aurastrongblueyellow_0.png"],"acervo":{"nome":"AuraStrongBlueYellow","fonte":"Power Warrior","tipo":"efeitos","origem":"7abd1527505686243a353fb4e3319c4b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,74,78,37,39,1]]}},"tipo":"efeito"});

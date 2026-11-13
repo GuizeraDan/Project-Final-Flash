@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolygodmove",{"id":"pw_brolygodmove","atlases":["assets/img/acervo/pw_brolygodmove_0.png"],"acervo":{"nome":"BrolyGodMove","fonte":"Power Warrior","tipo":"efeitos","origem":"6f4911c96d78a1f4eade387c6b26a196"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,69,29,34,1],[0,59,0,64,58,32,29,1]]}},"tipo":"efeito"});

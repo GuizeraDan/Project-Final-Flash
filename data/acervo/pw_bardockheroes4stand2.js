@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockheroes4stand2",{"id":"pw_bardockheroes4stand2","atlases":["assets/img/acervo/pw_bardockheroes4stand2_0.png"],"acervo":{"nome":"BardockHeroes4Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"7e06c970a25a49440b9821384f2af684"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,55,21,27,1]]}},"tipo":"efeito"});

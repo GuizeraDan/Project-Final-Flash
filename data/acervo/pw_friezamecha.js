@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_friezamecha",{"id":"pw_friezamecha","atlases":["assets/img/acervo/pw_friezamecha_0.png"],"acervo":{"nome":"FriezaMecha","fonte":"Power Warrior","tipo":"efeitos","origem":"ad8f3af7791b6dd45989aadd9f948593"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

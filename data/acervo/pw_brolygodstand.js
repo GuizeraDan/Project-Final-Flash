@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolygodstand",{"id":"pw_brolygodstand","atlases":["assets/img/acervo/pw_brolygodstand_0.png"],"acervo":{"nome":"BrolyGodStand","fonte":"Power Warrior","tipo":"efeitos","origem":"3d6edf238ba191b4a9da49c0467f5975"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,71,25,36,1],[0,51,0,50,71,25,36,1]]}},"tipo":"efeito"});

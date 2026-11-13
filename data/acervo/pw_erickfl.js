@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erickfl",{"id":"pw_erickfl","atlases":["assets/img/acervo/pw_erickfl_0.png"],"acervo":{"nome":"ErickFL","fonte":"Power Warrior","tipo":"efeitos","origem":"05c570c21a7d47542a38784aaea0f2c5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

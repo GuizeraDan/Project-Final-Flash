@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogeta5energy",{"id":"pw_gogeta5energy","atlases":["assets/img/acervo/pw_gogeta5energy_0.png"],"acervo":{"nome":"Gogeta5Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"d88ca7c47906a4e4e84a7aae4824dae8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,27,55,17,27,1],[0,0,0,35,55,18,28,1]]}},"tipo":"efeito"});

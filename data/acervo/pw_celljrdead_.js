@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_celljrdead_",{"id":"pw_celljrdead_","atlases":["assets/img/acervo/pw_celljrdead__0.png"],"acervo":{"nome":"CellJrDead","fonte":"Power Warrior","tipo":"efeitos","origem":"ae5179c8d11cd0d4c9e184618d1bb5e6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,20,20,10,1]]}},"tipo":"efeito"});

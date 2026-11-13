@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegito1charge2",{"id":"pw_vegito1charge2","atlases":["assets/img/acervo/pw_vegito1charge2_0.png"],"acervo":{"nome":"Vegito1Charge2","fonte":"Power Warrior","tipo":"efeitos","origem":"7408bb4738f5f0744bd403ac8dff7fdb"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,50,16,25,1],[0,33,0,32,50,16,25,1]]}},"tipo":"efeito"});

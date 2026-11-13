@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkssuperstand",{"id":"pw_trunkssuperstand","atlases":["assets/img/acervo/pw_trunkssuperstand_0.png"],"acervo":{"nome":"TrunksSuperStand","fonte":"Power Warrior","tipo":"efeitos","origem":"8c82ef31c74cbd44b9307ce19ce08756"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,45,15,22,1]]}},"tipo":"efeito"});

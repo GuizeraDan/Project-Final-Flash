@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanbaattack",{"id":"pw_kanbaattack","atlases":["assets/img/acervo/pw_kanbaattack_0.png"],"acervo":{"nome":"KanbaAttack","fonte":"Power Warrior","tipo":"efeitos","origem":"9b04f0b6230646244b814c688cda1f74"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,67,65,34,32,1],[0,68,0,75,50,38,25,1]]}},"tipo":"efeito"});

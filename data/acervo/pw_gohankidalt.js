@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohankidalt",{"id":"pw_gohankidalt","atlases":["assets/img/acervo/pw_gohankidalt_0.png"],"acervo":{"nome":"GohanKidAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"c99c5a29d2528444191242410505a6fe"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,55,20,28,1]]}},"tipo":"efeito"});

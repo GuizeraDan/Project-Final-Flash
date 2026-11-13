@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tournamentwinner",{"id":"pw_tournamentwinner","atlases":["assets/img/acervo/pw_tournamentwinner_0.png"],"acervo":{"nome":"TournamentWinner","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets59.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,232,65,116,65,1]]}},"tipo":"efeito"});

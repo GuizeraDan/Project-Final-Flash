@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toggle_active",{"id":"pw_toggle_active","atlases":["assets/img/acervo/pw_toggle_active_0.png"],"acervo":{"nome":"toggle active","fonte":"Power Warrior","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,13,6,13,1]]}},"tipo":"efeito"});

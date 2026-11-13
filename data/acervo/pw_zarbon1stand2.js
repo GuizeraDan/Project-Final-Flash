@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zarbon1stand2",{"id":"pw_zarbon1stand2","atlases":["assets/img/acervo/pw_zarbon1stand2_0.png"],"acervo":{"nome":"Zarbon1Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"010c1a25de90f42418a5c3c3279d4ed5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,53,19,26,1]]}},"tipo":"efeito"});

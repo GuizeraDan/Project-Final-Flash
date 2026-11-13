@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegitoswl5",{"id":"pw_vegitoswl5","atlases":["assets/img/acervo/pw_vegitoswl5_0.png"],"acervo":{"nome":"VegitoSwl5","fonte":"Power Warrior","tipo":"efeitos","origem":"a0e2f7aca721ba442a2ab21cf24bb56e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

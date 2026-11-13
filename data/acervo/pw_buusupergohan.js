@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusupergohan",{"id":"pw_buusupergohan","atlases":["assets/img/acervo/pw_buusupergohan_0.png"],"acervo":{"nome":"BuuSuperGohan","fonte":"Power Warrior","tipo":"efeitos","origem":"77501e2769741634fb3b49936f537fe3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

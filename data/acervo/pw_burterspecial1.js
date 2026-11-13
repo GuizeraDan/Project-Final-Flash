@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_burterspecial1",{"id":"pw_burterspecial1","atlases":["assets/img/acervo/pw_burterspecial1_0.png"],"acervo":{"nome":"BurterSpecial1","fonte":"Power Warrior","tipo":"efeitos","origem":"3c5f6cd045ff11b43a211a3f9fd78a43"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,33,0,22,39,11,20,1],[0,0,0,32,39,16,20,1]]}},"tipo":"efeito"});

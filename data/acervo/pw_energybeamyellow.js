@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energybeamyellow",{"id":"pw_energybeamyellow","atlases":["assets/img/acervo/pw_energybeamyellow_0.png"],"acervo":{"nome":"EnergyBeamYellow","fonte":"Power Warrior","tipo":"efeitos","origem":"91aa4075932780640be8ea18d290726d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,21,45,10,1]]}},"tipo":"efeito"});

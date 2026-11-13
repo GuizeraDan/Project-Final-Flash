@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android18charge",{"id":"pw_android18charge","atlases":["assets/img/acervo/pw_android18charge_0.png"],"acervo":{"nome":"Android18Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"3f39d246cf7c3394198eaf82a97c94ea"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,42,14,21,1]]}},"tipo":"efeito"});

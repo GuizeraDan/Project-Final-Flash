@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialcircleorange",{"id":"pw_specialcircleorange","atlases":["assets/img/acervo/pw_specialcircleorange_0.png"],"acervo":{"nome":"SpecialCircleOrange","fonte":"Power Warrior","tipo":"efeitos","origem":"aac941bfa1119804e85d39009e5a52df"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,74,36,37,1]]}},"tipo":"efeito"});

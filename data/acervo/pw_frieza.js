@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frieza",{"id":"pw_frieza","atlases":["assets/img/acervo/pw_frieza_0.png"],"acervo":{"nome":"Frieza","fonte":"Power Warrior","tipo":"efeitos","origem":"e26e3b3335564ef45be60be756e6d162"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

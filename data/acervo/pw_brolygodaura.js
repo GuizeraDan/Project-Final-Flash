@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolygodaura",{"id":"pw_brolygodaura","atlases":["assets/img/acervo/pw_brolygodaura_0.png"],"acervo":{"nome":"BrolyGodAura","fonte":"Power Warrior","tipo":"efeitos","origem":"1625f4e848236d14ea0427cd97ef7e39"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,122,0,106,96,53,48,1],[0,0,0,121,98,60,49,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android16guard",{"id":"pw_android16guard","atlases":["assets/img/acervo/pw_android16guard_0.png"],"acervo":{"nome":"Android16Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"77fd1831bc995e14598c7bd2645b422b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,66,12,33,1]]}},"tipo":"efeito"});

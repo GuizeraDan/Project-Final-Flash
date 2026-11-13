@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanassianspecial",{"id":"pw_kanassianspecial","atlases":["assets/img/acervo/pw_kanassianspecial_0.png"],"acervo":{"nome":"KanassianSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"6553cd48b0619f949b031efee973a5be"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,41,18,20,1]]}},"tipo":"efeito"});

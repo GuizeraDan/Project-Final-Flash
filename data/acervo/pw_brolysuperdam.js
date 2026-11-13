@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolysuperdam",{"id":"pw_brolysuperdam","atlases":["assets/img/acervo/pw_brolysuperdam_0.png"],"acervo":{"nome":"BrolySuperDam","fonte":"Power Warrior","tipo":"efeitos","origem":"ed9c43cc1e63bf34a8dd21dec652a63c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

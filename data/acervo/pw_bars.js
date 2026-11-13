@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bars",{"id":"pw_bars","atlases":["assets/img/acervo/pw_bars_0.png"],"acervo":{"nome":"Bars","fonte":"Power Warrior","tipo":"efeitos","origem":"77102ef29fae5b04685a4075fb3ac70d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,79,18,40,9,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kale1charge",{"id":"pw_kale1charge","atlases":["assets/img/acervo/pw_kale1charge_0.png"],"acervo":{"nome":"Kale1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"37e8d1c027db8f042b603952030ad41e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,49,14,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetagt4",{"id":"pw_gogetagt4","atlases":["assets/img/acervo/pw_gogetagt4_0.png"],"acervo":{"nome":"GogetaGT4","fonte":"Power Warrior","tipo":"efeitos","origem":"6ade9574fb6251f4ca5de6ed2ca43068"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

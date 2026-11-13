@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_raditzstand",{"id":"pw_raditzstand","atlases":["assets/img/acervo/pw_raditzstand_0.png"],"acervo":{"nome":"RaditzStand","fonte":"Power Warrior","tipo":"efeitos","origem":"4aba1a2884894354db9d9d4858c36316"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,41,0,33,53,16,26,1],[0,0,0,40,53,20,26,1]]}},"tipo":"efeito"});

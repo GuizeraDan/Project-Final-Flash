@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dyspocharge",{"id":"pw_dyspocharge","atlases":["assets/img/acervo/pw_dyspocharge_0.png"],"acervo":{"nome":"DyspoCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"ab8306aab2a3f8d41b118d37296eccb8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,54,15,27,1]]}},"tipo":"efeito"});

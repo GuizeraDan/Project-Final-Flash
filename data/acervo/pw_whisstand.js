@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whisstand",{"id":"pw_whisstand","atlases":["assets/img/acervo/pw_whisstand_0.png"],"acervo":{"nome":"WhisStand","fonte":"Power Warrior","tipo":"efeitos","origem":"241a3459cc541e14085fb03fee585b87"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,67,14,34,1],[0,28,0,26,67,13,34,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialballblue_1",{"id":"pw_specialballblue_1","atlases":["assets/img/acervo/pw_specialballblue_1_0.png"],"acervo":{"nome":"SpecialBallBlue 1","fonte":"Power Warrior","tipo":"efeitos","origem":"0a84f8ae1a5468743b8fe71a95aebe6e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,126,63,63,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegito1energy",{"id":"pw_vegito1energy","atlases":["assets/img/acervo/pw_vegito1energy_0.png"],"acervo":{"nome":"Vegito1Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"4e43a898141dc6b4eb5e7401dd66d12c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,54,18,27,1]]}},"tipo":"efeito"});

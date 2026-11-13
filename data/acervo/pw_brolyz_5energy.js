@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolyz_5energy",{"id":"pw_brolyz_5energy","atlases":["assets/img/acervo/pw_brolyz_5energy_0.png"],"acervo":{"nome":"BrolyZ.5Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"218985f35e1a7d04097544ea17941ee3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,53,22,26,1]]}},"tipo":"efeito"});

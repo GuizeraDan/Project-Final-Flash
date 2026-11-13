@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jeiceteleport",{"id":"pw_jeiceteleport","atlases":["assets/img/acervo/pw_jeiceteleport_0.png"],"acervo":{"nome":"JeiceTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"541dc022766c9b847b4c027f855a949f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,32,0,43,41,22,20,1],[0,0,0,31,44,16,22,1]]}},"tipo":"efeito"});

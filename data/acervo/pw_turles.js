@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_turles",{"id":"pw_turles","atlases":["assets/img/acervo/pw_turles_0.png"],"acervo":{"nome":"Turles","fonte":"Power Warrior","tipo":"efeitos","origem":"2d7c1fc0f8d878749a43ee629a6d5825"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

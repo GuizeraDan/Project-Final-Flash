@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchristmasselect",{"id":"pw_gohanchristmasselect","atlases":["assets/img/acervo/pw_gohanchristmasselect_0.png"],"acervo":{"nome":"GohanChristmasSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,52,14,52,1]]}}});

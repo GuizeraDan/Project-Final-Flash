@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_liquirenergy",{"id":"pw_liquirenergy","atlases":["assets/img/acervo/pw_liquirenergy_0.png"],"acervo":{"nome":"LiquirEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"535d06ae069f14e4aac52397829bd074"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,53,24,26,1]]}},"tipo":"efeito"});

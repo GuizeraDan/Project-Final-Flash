@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_majinkuustand",{"id":"pw_majinkuustand","atlases":["assets/img/acervo/pw_majinkuustand_0.png"],"acervo":{"nome":"MajinKuuStand","fonte":"Power Warrior","tipo":"efeitos","origem":"f766c7dab7e423d4fad74d1611aae8b8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,45,10,22,1]]}},"tipo":"efeito"});

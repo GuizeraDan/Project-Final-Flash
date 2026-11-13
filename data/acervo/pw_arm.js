@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_arm",{"id":"pw_arm","atlases":["assets/img/acervo/pw_arm_0.png"],"acervo":{"nome":"arm","fonte":"Power Warrior","tipo":"efeitos","origem":"f7703ae958eb36b4dba79ab4503551ba"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,122,278,61,139,1]]}},"tipo":"efeito"});

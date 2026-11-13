@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusuper",{"id":"pw_buusuper","atlases":["assets/img/acervo/pw_buusuper_0.png"],"acervo":{"nome":"BuuSuper","fonte":"Power Warrior","tipo":"efeitos","origem":"4f0331e031c22e04d9a585c1a49e450e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yamcha",{"id":"pw_yamcha","atlases":["assets/img/acervo/pw_yamcha_0.png"],"acervo":{"nome":"Yamcha","fonte":"Power Warrior","tipo":"efeitos","origem":"aab6353f3e8484e478fbbe9f5242eedc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

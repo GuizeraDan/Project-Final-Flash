@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkschildspecial3",{"id":"pw_trunkschildspecial3","atlases":["assets/img/acervo/pw_trunkschildspecial3_0.png"],"acervo":{"nome":"TrunksChildSpecial3","fonte":"Power Warrior","tipo":"efeitos","origem":"0d4890d6e38f54c4f84bc97172bb420c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,39,21,19,1]]}},"tipo":"efeito"});

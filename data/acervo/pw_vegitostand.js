@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegitostand",{"id":"pw_vegitostand","atlases":["assets/img/acervo/pw_vegitostand_0.png"],"acervo":{"nome":"VegitoStand","fonte":"Power Warrior","tipo":"efeitos","origem":"fee5ceeee29ed444caae168bf243e157"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,55,14,28,1]]}},"tipo":"efeito"});

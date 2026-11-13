@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_coolercorespecial",{"id":"pw_coolercorespecial","atlases":["assets/img/acervo/pw_coolercorespecial_0.png"],"acervo":{"nome":"CoolerCoreSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"18e6ecc1c60299446a05f275e0b0716e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,50,19,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudaimaadult4",{"id":"pw_gokudaimaadult4","atlases":["assets/img/acervo/pw_gokudaimaadult4_0.png"],"acervo":{"nome":"GokuDaimaAdult4","fonte":"Power Warrior","tipo":"efeitos","origem":"97352f27c8690b24f8319f59e2bce1fb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

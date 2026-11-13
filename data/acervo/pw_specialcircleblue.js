@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialcircleblue",{"id":"pw_specialcircleblue","atlases":["assets/img/acervo/pw_specialcircleblue_0.png"],"acervo":{"nome":"SpecialCircleBlue","fonte":"Power Warrior","tipo":"efeitos","origem":"69e153cd2b611184fb70bbc59b4c81ec"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,63,63,32,32,1]]}},"tipo":"efeito"});

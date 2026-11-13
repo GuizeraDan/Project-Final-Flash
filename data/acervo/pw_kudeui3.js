@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kudeui3",{"id":"pw_kudeui3","atlases":["assets/img/acervo/pw_kudeui3_0.png"],"acervo":{"nome":"KudeUI3","fonte":"Power Warrior","tipo":"cenarios","origem":"c147142cc938592478a15a7ac4ba20ca"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,677,716,338,358,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_panchristmasselect",{"id":"pw_panchristmasselect","atlases":["assets/img/acervo/pw_panchristmasselect_0.png"],"acervo":{"nome":"PanChristmasSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,47,14,47,1]]}}});

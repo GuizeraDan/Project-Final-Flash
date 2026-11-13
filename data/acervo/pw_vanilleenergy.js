@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vanilleenergy",{"id":"pw_vanilleenergy","atlases":["assets/img/acervo/pw_vanilleenergy_0.png"],"acervo":{"nome":"VanilleEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"4f763616285a47f419f74b8bbfdc3ae4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,46,16,23,1]]}},"tipo":"efeito"});

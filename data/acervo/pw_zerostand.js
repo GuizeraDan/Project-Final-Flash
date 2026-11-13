@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zerostand",{"id":"pw_zerostand","atlases":["assets/img/acervo/pw_zerostand_0.png"],"acervo":{"nome":"ZeroStand","fonte":"Power Warrior","tipo":"efeitos","origem":"6fb32f30fd9a24548a478f9e13bf15c7"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,51,13,26,1],[0,27,0,32,46,16,23,1]]}},"tipo":"efeito"});

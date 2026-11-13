@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuacharge",{"id":"pw_gokuacharge","atlases":["assets/img/acervo/pw_gokuacharge_0.png"],"acervo":{"nome":"GokuaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"fea734573f20ff14daa4286fd9a24250"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,48,16,24,1],[0,32,0,31,48,16,24,1]]}},"tipo":"efeito"});

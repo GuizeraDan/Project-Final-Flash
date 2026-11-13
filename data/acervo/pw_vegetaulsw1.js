@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaulsw1",{"id":"pw_vegetaulsw1","atlases":["assets/img/acervo/pw_vegetaulsw1_0.png"],"acervo":{"nome":"VegetaUlsw1","fonte":"Power Warrior","tipo":"efeitos","origem":"cbed750573c5f6b4baeee6496892c9c8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

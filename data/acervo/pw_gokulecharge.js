@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokulecharge",{"id":"pw_gokulecharge","atlases":["assets/img/acervo/pw_gokulecharge_0.png"],"acervo":{"nome":"GokuleCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"4bd8f9714f71af649808961fe513919c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,49,14,24,1]]}},"tipo":"efeito"});

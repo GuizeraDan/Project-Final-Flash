@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_granolacharge",{"id":"pw_granolacharge","atlases":["assets/img/acervo/pw_granolacharge_0.png"],"acervo":{"nome":"GranolaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"af70cea6fe8449642818263cce8ecc74"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,48,15,24,1]]}},"tipo":"efeito"});

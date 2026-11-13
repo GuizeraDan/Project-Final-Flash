@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_celljrcharge",{"id":"pw_celljrcharge","atlases":["assets/img/acervo/pw_celljrcharge_0.png"],"acervo":{"nome":"CellJrCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"7fcd8d15145877343b3f5ca38f9a46dd"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,35,0,27,39,15,20,1],[0,0,0,34,39,17,20,1]]}},"tipo":"efeito"});

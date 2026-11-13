@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkssuper3standing",{"id":"pw_trunkssuper3standing","atlases":["assets/img/acervo/pw_trunkssuper3standing_0.png"],"acervo":{"nome":"TrunksSuper3Standing","fonte":"Power Warrior","tipo":"efeitos","origem":"95b2ca9105bd19044bd0d936b9edae31"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,51,14,26,1]]}},"tipo":"efeito"});

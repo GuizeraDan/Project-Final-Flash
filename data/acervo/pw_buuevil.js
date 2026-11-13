@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buuevil",{"id":"pw_buuevil","atlases":["assets/img/acervo/pw_buuevil_0.png"],"acervo":{"nome":"BuuEvil","fonte":"Power Warrior","tipo":"efeitos","origem":"1281f3d9c236c024497bbf89da820a03"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

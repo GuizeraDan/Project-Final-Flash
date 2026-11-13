@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_satanattack3",{"id":"pw_satanattack3","atlases":["assets/img/acervo/pw_satanattack3_0.png"],"acervo":{"nome":"SatanAttack3","fonte":"Power Warrior","tipo":"efeitos","origem":"cdc71c8dc43a31f4ea9c6543a2c5d82d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,77,44,37,22,1],[0,78,0,62,44,34,22,1]]}},"tipo":"efeito"});

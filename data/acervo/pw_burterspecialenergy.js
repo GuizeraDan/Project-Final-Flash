@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_burterspecialenergy",{"id":"pw_burterspecialenergy","atlases":["assets/img/acervo/pw_burterspecialenergy_0.png"],"acervo":{"nome":"BurterspecialEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"4f7d3252b005b6741a5dabec27472608"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,50,25,25,1]]}},"tipo":"efeito"});

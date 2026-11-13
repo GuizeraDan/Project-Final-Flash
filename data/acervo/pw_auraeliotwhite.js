@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_auraeliotwhite",{"id":"pw_auraeliotwhite","atlases":["assets/img/acervo/pw_auraeliotwhite_0.png"],"acervo":{"nome":"AuraEliotWhite","fonte":"Power Warrior","tipo":"efeitos","origem":"39c926e8b2e97e64fbf5d9871dd65bdb"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,91,83,46,42,1],[0,92,0,91,83,46,42,1]]}},"tipo":"efeito"});

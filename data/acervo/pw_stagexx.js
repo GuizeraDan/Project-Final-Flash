@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stagexx",{"id":"pw_stagexx","atlases":["assets/img/acervo/pw_stagexx_0.png"],"acervo":{"nome":"StageXX","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets7.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,256,256,256,1]]}}});

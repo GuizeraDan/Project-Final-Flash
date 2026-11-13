@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jesusspecial4",{"id":"pw_jesusspecial4","atlases":["assets/img/acervo/pw_jesusspecial4_0.png"],"acervo":{"nome":"JesusSpecial4","fonte":"Power Warrior","tipo":"efeitos","origem":"c48a6fd9d4eb24545bf2a80853b794fd"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,46,21,23,1]]}},"tipo":"efeito"});

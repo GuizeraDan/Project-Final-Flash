@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4special12",{"id":"pw_moro4special12","atlases":["assets/img/acervo/pw_moro4special12_0.png"],"acervo":{"nome":"Moro4Special12","fonte":"Power Warrior","tipo":"efeitos","origem":"c12548ddd13af664aab4bd7675a218ec"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,85,0,83,82,21,63,1],[0,0,0,84,83,21,64,1]]}},"tipo":"efeito"});

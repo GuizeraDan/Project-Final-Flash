@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ef_20_0000_",{"id":"pw_ef_20_0000_","atlases":["assets/img/acervo/pw_ef_20_0000__0.png"],"acervo":{"nome":"ef_20_0000","fonte":"Power Warrior","tipo":"cenarios","origem":"846fc588e168885469a4c96807885bb3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,568,568,284,284,1]]}}});

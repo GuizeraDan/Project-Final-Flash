@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialblastyellow",{"id":"pw_specialblastyellow","atlases":["assets/img/acervo/pw_specialblastyellow_0.png"],"acervo":{"nome":"SpecialBlastYellow","fonte":"Power Warrior","tipo":"efeitos","origem":"fb9170f5c00133e4487fc46966e4b8eb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,213,73,106,36,1]]}},"tipo":"efeito"});

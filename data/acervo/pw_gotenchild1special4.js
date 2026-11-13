@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenchild1special4",{"id":"pw_gotenchild1special4","atlases":["assets/img/acervo/pw_gotenchild1special4_0.png"],"acervo":{"nome":"GotenChild1Special4","fonte":"Power Warrior","tipo":"efeitos","origem":"50db43c9144bee241a39c85e1b0a779c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,125,40,59,1]]}},"tipo":"efeito"});

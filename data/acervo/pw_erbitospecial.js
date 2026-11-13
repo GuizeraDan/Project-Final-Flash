@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erbitospecial",{"id":"pw_erbitospecial","atlases":["assets/img/acervo/pw_erbitospecial_0.png"],"acervo":{"nome":"ErbitoSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"4df0863cab3bb09408ae0d9fc8c8345c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,44,0,38,39,19,20,1],[0,0,0,43,41,22,20,1]]}},"tipo":"efeito"});

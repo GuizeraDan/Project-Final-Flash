@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbigbang2",{"id":"pw_specialbigbang2","atlases":["assets/img/acervo/pw_specialbigbang2_0.png"],"acervo":{"nome":"SpecialBigBang2","fonte":"Power Warrior","tipo":"efeitos","origem":"fc6383ba4fd89b2408f95862624e7d6e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,122,126,49,63,1]]}},"tipo":"efeito"});

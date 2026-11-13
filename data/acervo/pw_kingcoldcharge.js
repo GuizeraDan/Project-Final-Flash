@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingcoldcharge",{"id":"pw_kingcoldcharge","atlases":["assets/img/acervo/pw_kingcoldcharge_0.png"],"acervo":{"nome":"KingColdCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"7a8b3f24309599847ba8f4c8d366bdba"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,63,73,41,38,1],[0,64,0,57,73,36,38,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_soldiercharge",{"id":"pw_soldiercharge","atlases":["assets/img/acervo/pw_soldiercharge_0.png"],"acervo":{"nome":"SoldierCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"c61e5019208e26049a5f29aec0214648"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,41,13,20,1]]}},"tipo":"efeito"});

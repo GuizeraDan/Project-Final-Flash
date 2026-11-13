@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android13stand",{"id":"pw_android13stand","atlases":["assets/img/acervo/pw_android13stand_0.png"],"acervo":{"nome":"Android13Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"2dbc493856d61924783c820ac7da0ed8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,32,0,23,46,12,23,1],[0,0,0,31,49,16,24,1]]}},"tipo":"efeito"});

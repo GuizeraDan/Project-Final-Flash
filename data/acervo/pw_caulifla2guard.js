@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_caulifla2guard",{"id":"pw_caulifla2guard","atlases":["assets/img/acervo/pw_caulifla2guard_0.png"],"acervo":{"nome":"Caulifla2Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"0c2d9802dcbebb04a82bae3e760944a2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,50,15,25,1]]}},"tipo":"efeito"});

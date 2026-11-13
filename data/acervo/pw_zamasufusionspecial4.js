@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zamasufusionspecial4",{"id":"pw_zamasufusionspecial4","atlases":["assets/img/acervo/pw_zamasufusionspecial4_0.png"],"acervo":{"nome":"ZamasuFusionSpecial4","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,312,74,156,74,1]]}},"tipo":"efeito"});

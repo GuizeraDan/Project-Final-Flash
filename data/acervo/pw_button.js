@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_button",{"id":"pw_button","atlases":["assets/img/acervo/pw_button_0.png"],"acervo":{"nome":"button","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets59.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,50,125,50,1]]}}});

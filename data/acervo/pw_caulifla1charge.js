@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_caulifla1charge",{"id":"pw_caulifla1charge","atlases":["assets/img/acervo/pw_caulifla1charge_0.png"],"acervo":{"nome":"Caulifla1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"0bb2b9b15e8dc6d49ab5a07718eb80a6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,44,14,19,1]]}},"tipo":"efeito"});

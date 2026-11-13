@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oren1charge",{"id":"pw_oren1charge","atlases":["assets/img/acervo/pw_oren1charge_0.png"],"acervo":{"nome":"Oren1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"3c6f51d28cc089d4c90433ee151b5e07"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,48,17,24,1],[0,35,0,34,48,17,24,1]]}},"tipo":"efeito"});

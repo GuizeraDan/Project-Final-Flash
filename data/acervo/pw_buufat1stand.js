@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buufat1stand",{"id":"pw_buufat1stand","atlases":["assets/img/acervo/pw_buufat1stand_0.png"],"acervo":{"nome":"BuuFat1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"5dd323511c54cb640ad50aa1d672e85d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,32,52,16,26,1],[0,0,0,33,52,16,26,1]]}},"tipo":"efeito"});

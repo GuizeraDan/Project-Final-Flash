@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokublack1",{"id":"pw_gokublack1","atlases":["assets/img/acervo/pw_gokublack1_0.png"],"acervo":{"nome":"GokuBlack1","fonte":"Power Warrior","tipo":"efeitos","origem":"4cb740edae81a1542a5f49d9334bd301"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

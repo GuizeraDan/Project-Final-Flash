@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_saibamanbiocharge",{"id":"pw_saibamanbiocharge","atlases":["assets/img/acervo/pw_saibamanbiocharge_0.png"],"acervo":{"nome":"SaibamanBioCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"64858922084619e419b99f6b8d45574d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,34,15,17,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokule",{"id":"pw_gokule","atlases":["assets/img/acervo/pw_gokule_0.png"],"acervo":{"nome":"Gokule","fonte":"Power Warrior","tipo":"efeitos","origem":"ffa9cee913b917e43a647ae5b6a11f24"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

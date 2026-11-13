@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4select",{"id":"pw_moro4select","atlases":["assets/img/acervo/pw_moro4select_0.png"],"acervo":{"nome":"Moro4Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,55,14,28,1]]}}});

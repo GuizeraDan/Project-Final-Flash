@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_garlicksoldier2",{"id":"pw_garlicksoldier2","atlases":["assets/img/acervo/pw_garlicksoldier2_0.png"],"acervo":{"nome":"GarlickSoldier2","fonte":"Power Warrior","tipo":"efeitos","origem":"04e51f9dfa17ae24b9b3967a4552beb9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

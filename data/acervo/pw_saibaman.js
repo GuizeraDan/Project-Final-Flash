@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_saibaman",{"id":"pw_saibaman","atlases":["assets/img/acervo/pw_saibaman_0.png"],"acervo":{"nome":"Saibaman","fonte":"Power Warrior","tipo":"efeitos","origem":"180305db61afc42489355a96dbaca79d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

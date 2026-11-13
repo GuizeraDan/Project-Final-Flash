@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbeam",{"id":"pw_specialbeam","atlases":["assets/img/acervo/pw_specialbeam_0.png"],"acervo":{"nome":"SpecialBeam","fonte":"Power Warrior","tipo":"efeitos","origem":"2ae3962e07675114e98cf32a71334f86"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,91,67,46,34,1]]}},"tipo":"efeito"});

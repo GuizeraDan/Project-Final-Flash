@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokublackguard",{"id":"pw_gokublackguard","atlases":["assets/img/acervo/pw_gokublackguard_0.png"],"acervo":{"nome":"GokuBlackGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"b0e2b112bcca49e4f8651b8f71304d35"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,49,16,24,1]]}},"tipo":"efeito"});

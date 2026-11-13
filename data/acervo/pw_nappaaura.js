@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nappaaura",{"id":"pw_nappaaura","atlases":["assets/img/acervo/pw_nappaaura_0.png"],"acervo":{"nome":"NappaAura","fonte":"Power Warrior","tipo":"efeitos","origem":"263b958b0f16b204aa59cedebfe58f4c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,78,76,39,38,1],[0,79,0,83,74,42,37,1]]}},"tipo":"efeito"});

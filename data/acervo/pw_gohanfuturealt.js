@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanfuturealt",{"id":"pw_gohanfuturealt","atlases":["assets/img/acervo/pw_gohanfuturealt_0.png"],"acervo":{"nome":"GohanFutureAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"861008bd88d8e7440888a4d26e7d9a9a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

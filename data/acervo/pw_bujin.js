@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bujin",{"id":"pw_bujin","atlases":["assets/img/acervo/pw_bujin_0.png"],"acervo":{"nome":"Bujin","fonte":"Power Warrior","tipo":"efeitos","origem":"53c3bfe9e02c0804c8a7432bf449f993"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,48,20,24,1]]}},"tipo":"efeito"});

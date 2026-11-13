@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimo",{"id":"pw_mimo","atlases":["assets/img/acervo/pw_mimo_0.png"],"acervo":{"nome":"Mimo","fonte":"Power Warrior","tipo":"efeitos","origem":"29153fc4dc795f2449fce426fa3ee271"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

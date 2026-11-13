@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokulespecial3",{"id":"pw_gokulespecial3","atlases":["assets/img/acervo/pw_gokulespecial3_0.png"],"acervo":{"nome":"GokuleSpecial3","fonte":"Power Warrior","tipo":"efeitos","origem":"d7f7535ac746a984cae54680d878c27c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,51,16,25,1],[0,26,0,29,44,14,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ribriannehearth",{"id":"pw_ribriannehearth","atlases":["assets/img/acervo/pw_ribriannehearth_0.png"],"acervo":{"nome":"RibrianneHearth","fonte":"Power Warrior","tipo":"cenarios","origem":"77d1dd6ed461a3947bf34097ead2f981"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,564,526,282,263,1]]}}});

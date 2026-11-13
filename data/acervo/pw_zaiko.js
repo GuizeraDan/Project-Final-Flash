@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zaiko",{"id":"pw_zaiko","atlases":["assets/img/acervo/pw_zaiko_0.png"],"acervo":{"nome":"Zaiko","fonte":"Power Warrior","tipo":"efeitos","origem":"7d1084f2217706441b63c65c992f3b36"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

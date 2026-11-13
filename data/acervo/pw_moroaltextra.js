@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moroaltextra",{"id":"pw_moroaltextra","atlases":["assets/img/acervo/pw_moroaltextra_0.png"],"acervo":{"nome":"MoroAltExtra","fonte":"Power Warrior","tipo":"interface","origem":"db3056dfe2442b74792db1840aae9077"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,65,22,32,1]]}}});

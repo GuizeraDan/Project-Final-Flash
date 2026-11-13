@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zarbon",{"id":"pw_zarbon","atlases":["assets/img/acervo/pw_zarbon_0.png"],"acervo":{"nome":"Zarbon","fonte":"Power Warrior","tipo":"efeitos","origem":"b4f5504ab2815f24a82e998c50b52bfa"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

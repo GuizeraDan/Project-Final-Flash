@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohankidtransform3",{"id":"pw_gohankidtransform3","atlases":["assets/img/acervo/pw_gohankidtransform3_0.png"],"acervo":{"nome":"GohanKidTransform3","fonte":"Power Warrior","tipo":"efeitos","origem":"bc56cffda9a132b45ad9d003e9e7c186"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,107,122,54,61,1]]}},"tipo":"efeito"});

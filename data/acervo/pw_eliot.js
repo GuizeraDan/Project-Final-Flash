@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_eliot",{"id":"pw_eliot","atlases":["assets/img/acervo/pw_eliot_0.png"],"acervo":{"nome":"Eliot","fonte":"Power Warrior","tipo":"efeitos","origem":"0a301d57636d13a45bfe800f4b56d423"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,52,22,26,1]]}},"tipo":"efeito"});

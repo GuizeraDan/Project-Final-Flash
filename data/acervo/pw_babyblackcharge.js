@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_babyblackcharge",{"id":"pw_babyblackcharge","atlases":["assets/img/acervo/pw_babyblackcharge_0.png"],"acervo":{"nome":"BabyBlackCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"7cf612a420004f24db9b773145d8adc9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,56,15,28,1]]}},"tipo":"efeito"});

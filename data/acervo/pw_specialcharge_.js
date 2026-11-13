@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialcharge_",{"id":"pw_specialcharge_","atlases":["assets/img/acervo/pw_specialcharge__0.png"],"acervo":{"nome":"SpecialCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"b9a391a8b2f8e6c479e094b3893189f3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,24,12,12,1]]}},"tipo":"efeito"});

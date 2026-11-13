@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ballflame_2500_10",{"id":"pw_ballflame_2500_10","atlases":["assets/img/acervo/pw_ballflame_2500_10_0.png"],"acervo":{"nome":"BallFlame_2500-10","fonte":"Power Warrior","tipo":"efeitos","origem":"93f439d5e9629774ab8e74f65ac1d959"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,243,244,122,122,1]]}},"tipo":"efeito"});

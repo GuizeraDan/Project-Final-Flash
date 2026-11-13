@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialovalred",{"id":"pw_specialovalred","atlases":["assets/img/acervo/pw_specialovalred_0.png"],"acervo":{"nome":"SpecialOvalRed","fonte":"Power Warrior","tipo":"efeitos","origem":"2f967688f5c7462469067d19b5e01ab8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,14,6,7,3,1]]}},"tipo":"efeito"});

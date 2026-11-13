@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_recoomeattackup",{"id":"pw_recoomeattackup","atlases":["assets/img/acervo/pw_recoomeattackup_0.png"],"acervo":{"nome":"RecoomeAttackUp","fonte":"Power Warrior","tipo":"efeitos","origem":"de77f8313bb6fa54cb1cbd013814b5b4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,44,14,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_pui",{"id":"pw_pui","atlases":["assets/img/acervo/pw_pui_0.png"],"acervo":{"nome":"Pui","fonte":"Power Warrior","tipo":"efeitos","origem":"cacd0df371f4f924581c3b90178eb010"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

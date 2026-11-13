@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jesusstand",{"id":"pw_jesusstand","atlases":["assets/img/acervo/pw_jesusstand_0.png"],"acervo":{"nome":"JesusStand","fonte":"Power Warrior","tipo":"efeitos","origem":"004b1410a7365744e97a7e9c3fb8e11a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,51,12,26,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_alkoncharge",{"id":"pw_alkoncharge","atlases":["assets/img/acervo/pw_alkoncharge_0.png"],"acervo":{"nome":"AlkonCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"87796fdab8d5d0042862a6eac5772437"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,32,0,30,43,15,22,1],[0,0,0,31,43,16,22,1]]}},"tipo":"efeito"});

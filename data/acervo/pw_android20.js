@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android20",{"id":"pw_android20","atlases":["assets/img/acervo/pw_android20_0.png"],"acervo":{"nome":"Android20","fonte":"Power Warrior","tipo":"efeitos","origem":"c5a3ad770e95bbb4b93b7c5def9a4626"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

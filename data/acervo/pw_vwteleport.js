@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vwteleport",{"id":"pw_vwteleport","atlases":["assets/img/acervo/pw_vwteleport_0.png"],"acervo":{"nome":"VWTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"d269130f25e1db54eb530c3a8298c11a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

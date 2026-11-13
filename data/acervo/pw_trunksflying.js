@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksflying",{"id":"pw_trunksflying","atlases":["assets/img/acervo/pw_trunksflying_0.png"],"acervo":{"nome":"TrunksFlying","fonte":"Power Warrior","tipo":"efeitos","origem":"028ebfe97399e674ca250c48641fcd2d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,43,12,22,1]]}},"tipo":"efeito"});

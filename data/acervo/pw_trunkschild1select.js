@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkschild1select",{"id":"pw_trunkschild1select","atlases":["assets/img/acervo/pw_trunkschild1select_0.png"],"acervo":{"nome":"TrunksChild1Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,48,12,48,1]]}}});

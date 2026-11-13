@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_krillinenergy3",{"id":"pw_krillinenergy3","atlases":["assets/img/acervo/pw_krillinenergy3_0.png"],"acervo":{"nome":"KrillinEnergy3","fonte":"Power Warrior","tipo":"efeitos","origem":"ee04e915b6c81fd4f80304933c7c82e4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,57,66,21,46,1]]}},"tipo":"efeito"});

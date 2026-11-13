@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuzombiealtenergy",{"id":"pw_gokuzombiealtenergy","atlases":["assets/img/acervo/pw_gokuzombiealtenergy_0.png"],"acervo":{"nome":"GokuZombieAltEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"654b063b12850fa43ae86be7bb1bfc7e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,52,16,26,1]]}},"tipo":"efeito"});

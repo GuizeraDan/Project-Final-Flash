@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_flame",{"id":"pw_flame","atlases":["assets/img/acervo/pw_flame_0.png"],"acervo":{"nome":"Flame","fonte":"Power Warrior","tipo":"efeitos","origem":"b260cbc8d9bc048bd8834c7a1b5aed36"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}},"tipo":"efeito"});

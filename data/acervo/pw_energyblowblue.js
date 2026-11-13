@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyblowblue",{"id":"pw_energyblowblue","atlases":["assets/img/acervo/pw_energyblowblue_0.png"],"acervo":{"nome":"EnergyBlowBlue","fonte":"Power Warrior","tipo":"efeitos","origem":"b6173daf78dd02649bd3a64021403ef7"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,60,54,30,1],[0,91,0,110,30,55,15,1]]}},"tipo":"efeito"});

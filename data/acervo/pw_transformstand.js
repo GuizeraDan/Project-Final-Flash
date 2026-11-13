@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_transformstand",{"id":"pw_transformstand","atlases":["assets/img/acervo/pw_transformstand_0.png"],"acervo":{"nome":"TransformStand","fonte":"Power Warrior","tipo":"efeitos","origem":"9437880d2f9eed1469cf902081e4dada"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,54,25,27,1]]}},"tipo":"efeito"});

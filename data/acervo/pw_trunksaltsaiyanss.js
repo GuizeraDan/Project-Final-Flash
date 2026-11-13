@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksaltsaiyanss",{"id":"pw_trunksaltsaiyanss","atlases":["assets/img/acervo/pw_trunksaltsaiyanss_0.png"],"acervo":{"nome":"TrunksAltSaiyanSS","fonte":"Power Warrior","tipo":"efeitos","origem":"20e70194e974117478738566592e9cb2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

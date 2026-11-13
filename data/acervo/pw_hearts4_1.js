@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hearts4_1",{"id":"pw_hearts4_1","atlases":["assets/img/acervo/pw_hearts4_1_0.png"],"acervo":{"nome":"Hearts4.1","fonte":"Power Warrior","tipo":"efeitos","origem":"b0388277fe2e38045a6ab897fa962bee"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,106,44,53,1]]}},"tipo":"efeito"});

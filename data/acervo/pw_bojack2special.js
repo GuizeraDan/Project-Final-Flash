@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bojack2special",{"id":"pw_bojack2special","atlases":["assets/img/acervo/pw_bojack2special_0.png"],"acervo":{"nome":"Bojack2Special","fonte":"Power Warrior","tipo":"efeitos","origem":"4c8edee9759969d428fe536099442fef"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,32,38,16,19,1],[0,0,0,35,40,18,20,1]]}},"tipo":"efeito"});

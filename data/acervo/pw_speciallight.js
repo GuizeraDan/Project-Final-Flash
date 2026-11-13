@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_speciallight",{"id":"pw_speciallight","atlases":["assets/img/acervo/pw_speciallight_0.png"],"acervo":{"nome":"SpecialLight","fonte":"Power Warrior","tipo":"efeitos","origem":"b8d8182bc9abad240bc9f06958b3bdff"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,53,26,26,1]]}},"tipo":"efeito"});

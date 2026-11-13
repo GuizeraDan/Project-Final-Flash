@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_videl",{"id":"pw_videl","atlases":["assets/img/acervo/pw_videl_0.png"],"acervo":{"nome":"Videl","fonte":"Power Warrior","tipo":"efeitos","origem":"89112a4653b59154ab3c5790ca9740be"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

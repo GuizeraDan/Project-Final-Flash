@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialsnowflake",{"id":"pw_specialsnowflake","atlases":["assets/img/acervo/pw_specialsnowflake_0.png"],"acervo":{"nome":"SpecialSnowflake","fonte":"Power Warrior","tipo":"efeitos","origem":"7a7ed0d2f916d9348bac28515aeeb1ab"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,78,78,39,39,1]]}},"tipo":"efeito"});

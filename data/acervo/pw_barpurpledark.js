@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_barpurpledark",{"id":"pw_barpurpledark","atlases":["assets/img/acervo/pw_barpurpledark_0.png"],"acervo":{"nome":"BarPurpleDark","fonte":"Power Warrior","tipo":"efeitos","origem":"7983fe65fe5a76741af260459817de9b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,74,36,37,1]]}},"tipo":"efeito"});

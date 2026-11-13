@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vanillespecial2",{"id":"pw_vanillespecial2","atlases":["assets/img/acervo/pw_vanillespecial2_0.png"],"acervo":{"nome":"VanilleSpecial2","fonte":"Power Warrior","tipo":"efeitos","origem":"5db617d3aacc14d4d8bb958d4d60fc7f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,48,13,25,1]]}},"tipo":"efeito"});

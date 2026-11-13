@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ribriannemove",{"id":"pw_ribriannemove","atlases":["assets/img/acervo/pw_ribriannemove_0.png"],"acervo":{"nome":"RibrianneMove","fonte":"Power Warrior","tipo":"efeitos","origem":"eebfc3c61ab538c47a62a88a4ef15415"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,31,42,16,21,1],[0,0,0,35,42,18,21,1]]}},"tipo":"efeito"});

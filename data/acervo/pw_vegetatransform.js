@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetatransform",{"id":"pw_vegetatransform","atlases":["assets/img/acervo/pw_vegetatransform_0.png"],"acervo":{"nome":"VegetaTransform","fonte":"Power Warrior","tipo":"efeitos","origem":"46c3895a274a9554184bcb4b9a166df1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,44,15,22,1]]}},"tipo":"efeito"});

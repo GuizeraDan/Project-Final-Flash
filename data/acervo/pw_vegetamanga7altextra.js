@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetamanga7altextra",{"id":"pw_vegetamanga7altextra","atlases":["assets/img/acervo/pw_vegetamanga7altextra_0.png"],"acervo":{"nome":"VegetaManga7AltExtra","fonte":"Power Warrior","tipo":"interface","origem":"ac0203679e7e34d43863a776762f67f1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,48,14,24,1]]}}});

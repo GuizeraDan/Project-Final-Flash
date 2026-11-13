@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamoguard",{"id":"pw_bergamoguard","atlases":["assets/img/acervo/pw_bergamoguard_0.png"],"acervo":{"nome":"BergamoGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"b10c220998dd6464e83aeff2ff2c7d4e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,33,44,16,22,1],[0,0,0,35,44,18,22,1]]}},"tipo":"efeito"});

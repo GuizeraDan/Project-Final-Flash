@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanadultmangaguard",{"id":"pw_gohanadultmangaguard","atlases":["assets/img/acervo/pw_gohanadultmangaguard_0.png"],"acervo":{"nome":"GohanAdultMangaGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"f56056685aad3e748959880263b8a965"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,47,14,24,1]]}}});

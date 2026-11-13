@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tomastand",{"id":"pw_tomastand","atlases":["assets/img/acervo/pw_tomastand_0.png"],"acervo":{"nome":"TomaStand","fonte":"Power Warrior","tipo":"efeitos","origem":"8b8c6363f9c19d0468ad5a03e657223a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,56,16,28,1],[0,32,0,31,56,16,28,1]]}},"tipo":"efeito"});

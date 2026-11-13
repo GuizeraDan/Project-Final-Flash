@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarlo",{"id":"pw_tarlo","atlases":["assets/img/acervo/pw_tarlo_0.png"],"acervo":{"nome":"Tarlo","fonte":"Power Warrior","tipo":"efeitos","origem":"7bde6b7593a5f00489649920a1d6c36d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,58,21,29,1]]}},"tipo":"efeito"});

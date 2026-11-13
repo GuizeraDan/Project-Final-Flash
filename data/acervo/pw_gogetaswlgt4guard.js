@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetaswlgt4guard",{"id":"pw_gogetaswlgt4guard","atlases":["assets/img/acervo/pw_gogetaswlgt4guard_0.png"],"acervo":{"nome":"GogetaSwlGT4Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"6c4d7d403a91e5349809a0406efca1a5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,57,16,28,1]]}},"tipo":"efeito"});

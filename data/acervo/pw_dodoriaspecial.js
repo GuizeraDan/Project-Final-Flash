@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dodoriaspecial",{"id":"pw_dodoriaspecial","atlases":["assets/img/acervo/pw_dodoriaspecial_0.png"],"acervo":{"nome":"DodoriaSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"704cfdd11f5cc8c4cb77559404ac2988"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,38,12,19,1]]}},"tipo":"efeito"});

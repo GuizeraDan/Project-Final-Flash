@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusuperstand",{"id":"pw_buusuperstand","atlases":["assets/img/acervo/pw_buusuperstand_0.png"],"acervo":{"nome":"BuuSuperStand","fonte":"Power Warrior","tipo":"efeitos","origem":"324da380b506a0c40b258f534773dcaa"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,23,54,12,27,1]]}},"tipo":"efeito"});

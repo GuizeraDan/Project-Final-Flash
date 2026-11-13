@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gasspecial5",{"id":"pw_gasspecial5","atlases":["assets/img/acervo/pw_gasspecial5_0.png"],"acervo":{"nome":"GasSpecial5","fonte":"Power Warrior","tipo":"efeitos","origem":"3615e494c21da1b43a3b968f30703e41"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,48,15,25,1],[0,30,0,34,46,15,23,1]]}},"tipo":"efeito"});

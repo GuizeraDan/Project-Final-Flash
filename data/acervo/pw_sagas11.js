@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_sagas11",{"id":"pw_sagas11","atlases":["assets/img/acervo/pw_sagas11_0.png"],"acervo":{"nome":"Sagas11","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets3.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,114,108,57,108,1]]}},"tipo":"efeito"});

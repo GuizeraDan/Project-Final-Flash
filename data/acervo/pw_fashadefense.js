@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fashadefense",{"id":"pw_fashadefense","atlases":["assets/img/acervo/pw_fashadefense_0.png"],"acervo":{"nome":"FashaDefense","fonte":"Power Warrior","tipo":"efeitos","origem":"653a8d14cc307a34cadc305acf24092a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,42,10,21,1],[0,22,0,21,38,10,19,1]]}},"tipo":"efeito"});

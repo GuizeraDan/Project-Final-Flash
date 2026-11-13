@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockdamagedselect",{"id":"pw_bardockdamagedselect","atlases":["assets/img/acervo/pw_bardockdamagedselect_0.png"],"acervo":{"nome":"BardockDamagedSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,52,20,52,1]]}}});

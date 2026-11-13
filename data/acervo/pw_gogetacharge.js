@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetacharge",{"id":"pw_gogetacharge","atlases":["assets/img/acervo/pw_gogetacharge_0.png"],"acervo":{"nome":"GogetaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"13af5063562066447a8ede69ece6730b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,32,0,29,50,14,25,1],[0,0,0,31,52,16,26,1]]}},"tipo":"efeito"});

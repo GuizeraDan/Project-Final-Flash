@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellnew2charge",{"id":"pw_cellnew2charge","atlases":["assets/img/acervo/pw_cellnew2charge_0.png"],"acervo":{"nome":"CellNew2Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"0e522cbcf44429a4da47dcb3b05c16fb"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,66,29,36,1],[0,45,0,39,66,24,36,1]]}},"tipo":"efeito"});

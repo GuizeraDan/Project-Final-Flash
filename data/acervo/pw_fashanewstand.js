@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fashanewstand",{"id":"pw_fashanewstand","atlases":["assets/img/acervo/pw_fashanewstand_0.png"],"acervo":{"nome":"FashaNewStand","fonte":"Power Warrior","tipo":"efeitos","origem":"55007b82141e4cf4e8341c8fa577fce5"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,28,0,23,47,12,24,1],[0,0,0,27,47,14,24,1]]}},"tipo":"efeito"});

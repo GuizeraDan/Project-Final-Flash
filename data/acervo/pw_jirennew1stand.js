@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jirennew1stand",{"id":"pw_jirennew1stand","atlases":["assets/img/acervo/pw_jirennew1stand_0.png"],"acervo":{"nome":"JirenNew1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"a8484c28162fb894cb94348c28d9c170"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,62,20,31,1]]}},"tipo":"efeito"});

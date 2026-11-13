@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamioren",{"id":"pw_kamioren","atlases":["assets/img/acervo/pw_kamioren_0.png"],"acervo":{"nome":"Kamioren","fonte":"Power Warrior","tipo":"efeitos","origem":"0c8b2b9c0b9699e448f0e3357316d4a3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,55,20,28,1]]}},"tipo":"efeito"});

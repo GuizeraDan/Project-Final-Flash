@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_web_hi_res_512",{"id":"pw_web_hi_res_512","atlases":["assets/img/acervo/pw_web_hi_res_512_0.png"],"acervo":{"nome":"web_hi_res_512","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets3.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,440,440,220,440,1]]}}});

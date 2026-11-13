@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cabba",{"id":"pw_cabba","atlases":["assets/img/acervo/pw_cabba_0.png"],"acervo":{"nome":"Cabba","fonte":"Power Warrior","tipo":"efeitos","origem":"040043d0a39e50b46a09e35f1e0fabdb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

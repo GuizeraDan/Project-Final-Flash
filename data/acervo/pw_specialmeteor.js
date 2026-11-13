@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialmeteor",{"id":"pw_specialmeteor","atlases":["assets/img/acervo/pw_specialmeteor_0.png"],"acervo":{"nome":"SpecialMeteor","fonte":"Power Warrior","tipo":"efeitos","origem":"6358acec6a8aa6b41a4daa78a61fe481"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,214,214,107,107,1]]}},"tipo":"efeito"});

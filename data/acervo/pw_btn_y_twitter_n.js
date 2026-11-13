@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_btn_y_twitter_n",{"id":"pw_btn_y_twitter_n","atlases":["assets/img/acervo/pw_btn_y_twitter_n_0.png"],"acervo":{"nome":"btn_y_twitter_n","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets1.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,72,76,36,76,1]]}}});

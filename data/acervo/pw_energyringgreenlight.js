@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyringgreenlight",{"id":"pw_energyringgreenlight","atlases":["assets/img/acervo/pw_energyringgreenlight_0.png"],"acervo":{"nome":"EnergyRingGreenLight","fonte":"Power Warrior","tipo":"efeitos","origem":"8775dca643e6e1547917f554a05af165"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,41,15,20,1]]}},"tipo":"efeito"});

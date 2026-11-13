@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jirenteleport",{"id":"pw_jirenteleport","atlases":["assets/img/acervo/pw_jirenteleport_0.png"],"acervo":{"nome":"JirenTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"83af528d3ea572b4bada17d1850d27dc"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

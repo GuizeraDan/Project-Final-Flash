@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zeroguard",{"id":"pw_zeroguard","atlases":["assets/img/acervo/pw_zeroguard_0.png"],"acervo":{"nome":"ZeroGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"17bcae7846dc37944ba2645857cefceb"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,57,14,28,1],[0,49,0,46,57,14,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_popo",{"id":"pw_popo","atlases":["assets/img/acervo/pw_popo_0.png"],"acervo":{"nome":"Popo","fonte":"Power Warrior","tipo":"efeitos","origem":"47fc9673d4dba8940945055c692b907b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

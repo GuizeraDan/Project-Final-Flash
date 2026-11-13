@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tienenergy",{"id":"pw_tienenergy","atlases":["assets/img/acervo/pw_tienenergy_0.png"],"acervo":{"nome":"TienEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"af6da23b73287b64ebac201d54965f63"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,42,16,21,1]]}},"tipo":"efeito"});

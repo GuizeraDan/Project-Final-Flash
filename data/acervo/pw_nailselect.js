@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nailselect",{"id":"pw_nailselect","atlases":["assets/img/acervo/pw_nailselect_0.png"],"acervo":{"nome":"NailSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,50,14,50,1]]}}});

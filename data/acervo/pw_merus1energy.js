@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_merus1energy",{"id":"pw_merus1energy","atlases":["assets/img/acervo/pw_merus1energy_0.png"],"acervo":{"nome":"Merus1Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"1cb2633a4e5b4df45ab8c7dd1325d717"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,43,15,22,1],[0,46,0,45,43,15,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanassianhit",{"id":"pw_kanassianhit","atlases":["assets/img/acervo/pw_kanassianhit_0.png"],"acervo":{"nome":"KanassianHit","fonte":"Power Warrior","tipo":"efeitos","origem":"4550e59011ba16a4aa19506c17b07760"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,32,14,16,1]]}},"tipo":"efeito"});

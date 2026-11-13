@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whisspecial",{"id":"pw_whisspecial","atlases":["assets/img/acervo/pw_whisspecial_0.png"],"acervo":{"nome":"WhisSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"5dd6da036d787974fa921f412e8e72a3"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,59,16,30,1],[0,32,0,67,53,15,26,1]]}},"tipo":"efeito"});

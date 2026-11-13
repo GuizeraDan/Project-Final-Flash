@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_circle",{"id":"pw_circle","atlases":["assets/img/acervo/pw_circle_0.png"],"acervo":{"nome":"Circle","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,62,62,31,62,1]]}},"tipo":"efeito"});

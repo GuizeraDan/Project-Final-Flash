@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuxenotransform",{"id":"pw_gokuxenotransform","atlases":["assets/img/acervo/pw_gokuxenotransform_0.png"],"acervo":{"nome":"GokuXenoTransform","fonte":"Power Warrior","tipo":"efeitos","origem":"0bf17bb42472c4142aeb1fe236cdbf18"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,54,30,27,1]]}},"tipo":"efeito"});

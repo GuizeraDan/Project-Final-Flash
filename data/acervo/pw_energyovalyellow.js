@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyovalyellow",{"id":"pw_energyovalyellow","atlases":["assets/img/acervo/pw_energyovalyellow_0.png"],"acervo":{"nome":"EnergyOvalYellow","fonte":"Power Warrior","tipo":"efeitos","origem":"30bf0ec874670ef4992bf807d1bb32f7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,110,70,55,35,1]]}},"tipo":"efeito"});

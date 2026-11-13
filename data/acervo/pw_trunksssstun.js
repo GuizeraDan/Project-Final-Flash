@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksssstun",{"id":"pw_trunksssstun","atlases":["assets/img/acervo/pw_trunksssstun_0.png"],"acervo":{"nome":"TrunksSSStun","fonte":"Power Warrior","tipo":"efeitos","origem":"1acf7e633fa7e9448b85cb71371f27af"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,43,16,22,1]]}},"tipo":"efeito"});

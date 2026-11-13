@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_emptybarsmall",{"id":"pw_emptybarsmall","atlases":["assets/img/acervo/pw_emptybarsmall_0.png"],"acervo":{"nome":"EmptyBarSmall","fonte":"Power Warrior","tipo":"efeitos","origem":"8822b6783cc3e4244a6f91eb8610900f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,14,10,7,5,1]]}},"tipo":"efeito"});

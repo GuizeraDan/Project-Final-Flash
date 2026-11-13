@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_transformend",{"id":"pw_transformend","atlases":["assets/img/acervo/pw_transformend_0.png"],"acervo":{"nome":"TransformEnd","fonte":"Power Warrior","tipo":"efeitos","origem":"838f20569ccf9b04496e112b9d11dfa6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,59,26,30,1]]}},"tipo":"efeito"});

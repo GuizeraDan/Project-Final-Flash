@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tapion",{"id":"pw_tapion","atlases":["assets/img/acervo/pw_tapion_0.png"],"acervo":{"nome":"Tapion","fonte":"Power Warrior","tipo":"efeitos","origem":"e56fd0ed2da9bc34da15967bc23502a9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

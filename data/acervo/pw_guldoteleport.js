@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guldoteleport",{"id":"pw_guldoteleport","atlases":["assets/img/acervo/pw_guldoteleport_0.png"],"acervo":{"nome":"GuldoTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"d98bd7b40e6b50841b58afb35c75de87"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,33,0,43,38,22,19,1],[0,0,0,32,44,16,22,1]]}},"tipo":"efeito"});

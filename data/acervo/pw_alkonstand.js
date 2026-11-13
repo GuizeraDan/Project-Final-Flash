@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_alkonstand",{"id":"pw_alkonstand","atlases":["assets/img/acervo/pw_alkonstand_0.png"],"acervo":{"nome":"AlkonStand","fonte":"Power Warrior","tipo":"efeitos","origem":"b22da25a7b50dec48ab6385bfec60b86"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,48,12,24,1],[0,25,0,32,43,16,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetagtnew4charge",{"id":"pw_vegetagtnew4charge","atlases":["assets/img/acervo/pw_vegetagtnew4charge_0.png"],"acervo":{"nome":"VegetaGTNew4Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"e67d8488babfd5143957a0874e23d86c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,52,18,26,1]]}},"tipo":"efeito"});

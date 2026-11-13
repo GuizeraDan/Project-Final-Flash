@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamiorenmove",{"id":"pw_kamiorenmove","atlases":["assets/img/acervo/pw_kamiorenmove_0.png"],"acervo":{"nome":"KamiorenMove","fonte":"Power Warrior","tipo":"efeitos","origem":"0c4d35a1a7e01314c90ff3dbb62f5944"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,51,14,26,1],[0,28,0,54,33,27,16,1]]}},"tipo":"efeito"});

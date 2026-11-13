@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toppo1stand",{"id":"pw_toppo1stand","atlases":["assets/img/acervo/pw_toppo1stand_0.png"],"acervo":{"nome":"Toppo1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"17a7d2af564aeeb4fb304064020b8185"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,62,22,31,1]]}},"tipo":"efeito"});

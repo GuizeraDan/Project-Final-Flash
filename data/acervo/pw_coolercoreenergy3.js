@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_coolercoreenergy3",{"id":"pw_coolercoreenergy3","atlases":["assets/img/acervo/pw_coolercoreenergy3_0.png"],"acervo":{"nome":"CoolerCoreEnergy3","fonte":"Power Warrior","tipo":"efeitos","origem":"7b6c23e995a685c44b085d6b87414a10"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,60,20,30,1]]}},"tipo":"efeito"});

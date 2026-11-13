@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockxeno3attack9",{"id":"pw_bardockxeno3attack9","atlases":["assets/img/acervo/pw_bardockxeno3attack9_0.png"],"acervo":{"nome":"BardockXeno3Attack9","fonte":"Power Warrior","tipo":"efeitos","origem":"853d77ac0548aec4789264652b6aa2f8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,43,17,22,1]]}},"tipo":"efeito"});

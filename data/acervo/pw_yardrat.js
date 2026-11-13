@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yardrat",{"id":"pw_yardrat","atlases":["assets/img/acervo/pw_yardrat_0.png"],"acervo":{"nome":"Yardrat","fonte":"Power Warrior","tipo":"efeitos","origem":"ce9b79afff3097a468f9924f26f1ded8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,46,15,23,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stagebottom",{"id":"pw_stagebottom","atlases":["assets/img/acervo/pw_stagebottom_0.png"],"acervo":{"nome":"StageBottom","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets25.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2000,116,1000,58,1]]}}});

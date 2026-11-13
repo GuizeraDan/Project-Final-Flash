@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frame_7_delay_0_12s",{"id":"pw_frame_7_delay_0_12s","atlases":["assets/img/acervo/pw_frame_7_delay_0_12s_0.png"],"acervo":{"nome":"frame_7_delay-0.12s","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets56.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,828,358,414,358,1]]}}});

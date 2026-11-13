@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksswlfut1energy",{"id":"pw_trunksswlfut1energy","atlases":["assets/img/acervo/pw_trunksswlfut1energy_0.png"],"acervo":{"nome":"TrunksSwlFut1Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"f7c4199e8aa22b9438afbc773a9fb22d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,54,20,27,1]]}},"tipo":"efeito"});

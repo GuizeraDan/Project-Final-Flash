@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingcoldenergy",{"id":"pw_kingcoldenergy","atlases":["assets/img/acervo/pw_kingcoldenergy_0.png"],"acervo":{"nome":"KingColdEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"adff4e46d076d9643aaa9c6507191b43"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,62,0,43,71,24,36,1],[0,0,0,61,71,24,36,1]]}},"tipo":"efeito"});

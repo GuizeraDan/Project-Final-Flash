@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shallotenergy",{"id":"pw_shallotenergy","atlases":["assets/img/acervo/pw_shallotenergy_0.png"],"acervo":{"nome":"ShallotEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"bfbd9d2187ff9ee419710f29765a737f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,48,19,25,1],[0,44,0,43,48,19,25,1]]}},"tipo":"efeito"});

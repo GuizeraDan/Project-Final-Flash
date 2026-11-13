@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dragon",{"id":"pw_dragon","atlases":["assets/img/acervo/pw_dragon_0.png"],"acervo":{"nome":"Dragon","fonte":"Power Warrior","tipo":"efeitos","origem":"99d837440de448f45b0b330fa0903fd8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,328,78,164,39,1],[0,329,0,338,69,169,34,1],[0,668,0,336,61,168,30,1]]}},"tipo":"efeito"});

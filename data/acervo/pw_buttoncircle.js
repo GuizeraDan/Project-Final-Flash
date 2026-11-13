@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buttoncircle",{"id":"pw_buttoncircle","atlases":["assets/img/acervo/pw_buttoncircle_0.png"],"acervo":{"nome":"buttonCircle","fonte":"Power Warrior","tipo":"interface","origem":"8ace49592e9228f4e9d5f004cc553603"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,100,50,50,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tomamove",{"id":"pw_tomamove","atlases":["assets/img/acervo/pw_tomamove_0.png"],"acervo":{"nome":"TomaMove","fonte":"Power Warrior","tipo":"efeitos","origem":"be4a14719aa851242a4068e14c5bce50"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,55,16,28,1],[0,33,0,39,49,20,24,1]]}},"tipo":"efeito"});

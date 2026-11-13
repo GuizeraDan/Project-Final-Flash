@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_raditzcharge_",{"id":"pw_raditzcharge_","atlases":["assets/img/acervo/pw_raditzcharge__0.png"],"acervo":{"nome":"RaditzCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"963db7d93983e65479c49b822158d04a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,53,18,26,1],[0,37,0,36,53,18,26,1]]}},"tipo":"efeito"});

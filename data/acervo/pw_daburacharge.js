@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_daburacharge",{"id":"pw_daburacharge","atlases":["assets/img/acervo/pw_daburacharge_0.png"],"acervo":{"nome":"DaburaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"d496ce91e445fe54fba5cb0df1d0504a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,38,17,19,1],[0,48,0,47,38,17,19,1]]}},"tipo":"efeito"});

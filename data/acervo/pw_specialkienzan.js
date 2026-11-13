@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialkienzan",{"id":"pw_specialkienzan","atlases":["assets/img/acervo/pw_specialkienzan_0.png"],"acervo":{"nome":"SpecialKienzan","fonte":"Power Warrior","tipo":"efeitos","origem":"e9e6fe13de641ec46b5f67b765213994"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,71,39,40,22,1],[0,72,0,76,38,38,20,1]]}},"tipo":"efeito"});

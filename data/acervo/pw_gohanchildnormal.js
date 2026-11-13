@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchildnormal",{"id":"pw_gohanchildnormal","atlases":["assets/img/acervo/pw_gohanchildnormal_0.png"],"acervo":{"nome":"GohanChildNormal","fonte":"Power Warrior","tipo":"efeitos","origem":"7b63743ce489cc24d9f32406fa502181"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android13alt1status",{"id":"pw_android13alt1status","atlases":["assets/img/acervo/pw_android13alt1status_0.png"],"acervo":{"nome":"Android13Alt1Status","fonte":"Power Warrior","tipo":"efeitos","origem":"09b2f04e760b00842ac0fb181d3afaf6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,44,24,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toppostanding",{"id":"pw_toppostanding","atlases":["assets/img/acervo/pw_toppostanding_0.png"],"acervo":{"nome":"ToppoStanding","fonte":"Power Warrior","tipo":"efeitos","origem":"7930dcfb34048aa48b86ceb879ed8daf"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,53,24,26,1],[0,48,0,56,48,24,25,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_appule",{"id":"pw_appule","atlases":["assets/img/acervo/pw_appule_0.png"],"acervo":{"nome":"Appule","fonte":"Power Warrior","tipo":"efeitos","origem":"ff6f6fe9b91990f4495d890327a1fedc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

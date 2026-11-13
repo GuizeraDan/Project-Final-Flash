@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogeta1",{"id":"pw_gogeta1","atlases":["assets/img/acervo/pw_gogeta1_0.png"],"acervo":{"nome":"Gogeta1","fonte":"Power Warrior","tipo":"efeitos","origem":"59cf5c3713389c24789d70d51407c17d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

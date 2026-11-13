@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyhand",{"id":"pw_energyhand","atlases":["assets/img/acervo/pw_energyhand_0.png"],"acervo":{"nome":"EnergyHand","fonte":"Power Warrior","tipo":"efeitos","origem":"05ffd845b33462a4a929d1fc573ab086"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,115,57,58,28,1],[0,116,0,115,57,58,28,1]]}},"tipo":"efeito"});

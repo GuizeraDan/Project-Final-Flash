@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ballbluedark",{"id":"pw_ballbluedark","atlases":["assets/img/acervo/pw_ballbluedark_0.png"],"acervo":{"nome":"BallBlueDark","fonte":"Power Warrior","tipo":"efeitos","origem":"5eea8e6fd2034954cb2d8d39be39a7e5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,77,77,38,38,1]]}},"tipo":"efeito"});

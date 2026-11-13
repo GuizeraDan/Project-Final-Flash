@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zarbon1energy",{"id":"pw_zarbon1energy","atlases":["assets/img/acervo/pw_zarbon1energy_0.png"],"acervo":{"nome":"Zarbon1Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"30dd32e712987864ba6799f136d35723"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,39,22,20,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yardratspecialalt",{"id":"pw_yardratspecialalt","atlases":["assets/img/acervo/pw_yardratspecialalt_0.png"],"acervo":{"nome":"YardratSpecialAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"35fa8e977799e674e9c6f6ba73ff26ea"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,37,19,18,1]]}},"tipo":"efeito"});

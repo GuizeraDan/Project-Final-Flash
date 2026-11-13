@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tapionblast1",{"id":"pw_tapionblast1","atlases":["assets/img/acervo/pw_tapionblast1_0.png"],"acervo":{"nome":"TapionBlast1","fonte":"Power Warrior","tipo":"efeitos","origem":"037a239f0d62be84e8a001a378f09969"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,54,34,27,1]]}},"tipo":"efeito"});

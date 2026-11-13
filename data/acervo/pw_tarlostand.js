@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarlostand",{"id":"pw_tarlostand","atlases":["assets/img/acervo/pw_tarlostand_0.png"],"acervo":{"nome":"TarloStand","fonte":"Power Warrior","tipo":"efeitos","origem":"e97c091a974f2e34b936ec722a5e2c1e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,55,13,28,1]]}},"tipo":"efeito"});

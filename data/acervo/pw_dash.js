@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dash",{"id":"pw_dash","atlases":["assets/img/acervo/pw_dash_0.png"],"acervo":{"nome":"Dash","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets11.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,256,1]]}}});

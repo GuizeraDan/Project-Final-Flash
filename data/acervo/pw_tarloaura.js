@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarloaura",{"id":"pw_tarloaura","atlases":["assets/img/acervo/pw_tarloaura_0.png"],"acervo":{"nome":"TarloAura","fonte":"Power Warrior","tipo":"efeitos","origem":"38ab44dfd37f553498cb5028abf96458"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,99,0,91,96,46,48,1],[0,0,0,98,96,49,48,1]]}},"tipo":"efeito"});

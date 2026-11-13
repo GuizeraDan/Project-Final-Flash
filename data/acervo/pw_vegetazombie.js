@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetazombie",{"id":"pw_vegetazombie","atlases":["assets/img/acervo/pw_vegetazombie_0.png"],"acervo":{"nome":"VegetaZombie","fonte":"Power Warrior","tipo":"efeitos","origem":"83b5841cd7a113446b1705f86cd3e6be"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

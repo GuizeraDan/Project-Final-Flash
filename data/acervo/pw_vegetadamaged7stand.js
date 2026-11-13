@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetadamaged7stand",{"id":"pw_vegetadamaged7stand","atlases":["assets/img/acervo/pw_vegetadamaged7stand_0.png"],"acervo":{"nome":"VegetaDamaged7Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,153,52,76,52,1]]}},"tipo":"efeito"});

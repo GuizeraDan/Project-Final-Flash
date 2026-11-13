@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energybeamred",{"id":"pw_energybeamred","atlases":["assets/img/acervo/pw_energybeamred_0.png"],"acervo":{"nome":"EnergyBeamRed","fonte":"Power Warrior","tipo":"efeitos","origem":"245210f40107c1345a82e02c0fb1eb30"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,21,45,10,1]]}},"tipo":"efeito"});

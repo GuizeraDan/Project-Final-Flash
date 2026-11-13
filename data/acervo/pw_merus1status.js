@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_merus1status",{"id":"pw_merus1status","atlases":["assets/img/acervo/pw_merus1status_0.png"],"acervo":{"nome":"Merus1Status","fonte":"Power Warrior","tipo":"efeitos","origem":"1ab8a4c923571f947aee6e23128dbe19"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,38,22,19,1],[0,46,0,28,30,14,15,1]]}},"tipo":"efeito"});

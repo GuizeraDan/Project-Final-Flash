@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erbitonew5energy",{"id":"pw_erbitonew5energy","atlases":["assets/img/acervo/pw_erbitonew5energy_0.png"],"acervo":{"nome":"ErbitoNew5Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"581d00e602ded7942a14ec6fc9e60b38"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,52,17,26,1]]}},"tipo":"efeito"});

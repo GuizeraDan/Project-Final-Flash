@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolo1aura",{"id":"pw_piccolo1aura","atlases":["assets/img/acervo/pw_piccolo1aura_0.png"],"acervo":{"nome":"Piccolo1Aura","fonte":"Power Warrior","tipo":"efeitos","origem":"ac9e6c301535b0b4685864c2ea7dd77a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,70,79,35,40,1],[0,71,0,70,79,35,40,1]]}},"tipo":"efeito"});

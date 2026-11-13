@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyballfire",{"id":"pw_energyballfire","atlases":["assets/img/acervo/pw_energyballfire_0.png"],"acervo":{"nome":"EnergyBallFire","fonte":"Power Warrior","tipo":"efeitos","origem":"51ebd2efcdfae8f4789faf2f325e006d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,20,12,10,1],[0,26,0,25,20,12,10,1]]}},"tipo":"efeito"});

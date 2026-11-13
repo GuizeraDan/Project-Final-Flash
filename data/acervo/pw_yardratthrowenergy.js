@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yardratthrowenergy",{"id":"pw_yardratthrowenergy","atlases":["assets/img/acervo/pw_yardratthrowenergy_0.png"],"acervo":{"nome":"YardratThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"4a9de041c9b55a0449c01bfe1322c2f1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,37,14,18,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cell3stand",{"id":"pw_cell3stand","atlases":["assets/img/acervo/pw_cell3stand_0.png"],"acervo":{"nome":"Cell3Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"53cd489dbd087344b8c9c5ff16563d84"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,58,19,29,1]]}},"tipo":"efeito"});

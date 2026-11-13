@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_roshi1",{"id":"pw_roshi1","atlases":["assets/img/acervo/pw_roshi1_0.png"],"acervo":{"nome":"Roshi1","fonte":"Power Warrior","tipo":"efeitos","origem":"24f7b841d1bce7745ad32a87e2214413"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,57,20,28,1]]}},"tipo":"efeito"});

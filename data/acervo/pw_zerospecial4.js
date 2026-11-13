@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zerospecial4",{"id":"pw_zerospecial4","atlases":["assets/img/acervo/pw_zerospecial4_0.png"],"acervo":{"nome":"ZeroSpecial4","fonte":"Power Warrior","tipo":"efeitos","origem":"3bd8e76ca7713cd418ac1603d77ca285"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,37,0,36,50,17,26,1],[0,0,0,36,51,17,27,1]]}},"tipo":"efeito"});

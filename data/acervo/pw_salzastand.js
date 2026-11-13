@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_salzastand",{"id":"pw_salzastand","atlases":["assets/img/acervo/pw_salzastand_0.png"],"acervo":{"nome":"SalzaStand","fonte":"Power Warrior","tipo":"efeitos","origem":"33f8d9043f6ec4b49b3853202b4342d7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,52,12,26,1]]}},"tipo":"efeito"});

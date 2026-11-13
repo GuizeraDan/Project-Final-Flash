@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamiorenguard",{"id":"pw_kamiorenguard","atlases":["assets/img/acervo/pw_kamiorenguard_0.png"],"acervo":{"nome":"KamiorenGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"76d43495caa8ab3489897f6a883f0ed0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,49,14,24,1]]}},"tipo":"efeito"});

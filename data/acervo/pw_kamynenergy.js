@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamynenergy",{"id":"pw_kamynenergy","atlases":["assets/img/acervo/pw_kamynenergy_0.png"],"acervo":{"nome":"KamynEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"24b78773d2244614a9918541f2c07d09"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,43,17,22,1],[0,35,0,37,42,18,21,1]]}},"tipo":"efeito"});

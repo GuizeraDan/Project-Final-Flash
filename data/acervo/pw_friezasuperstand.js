@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_friezasuperstand",{"id":"pw_friezasuperstand","atlases":["assets/img/acervo/pw_friezasuperstand_0.png"],"acervo":{"nome":"FriezaSuperStand","fonte":"Power Warrior","tipo":"efeitos","origem":"55a529a0d1e905a438c71a460b635bb5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,44,16,22,1]]}},"tipo":"efeito"});

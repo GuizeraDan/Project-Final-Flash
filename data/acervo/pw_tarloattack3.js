@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarloattack3",{"id":"pw_tarloattack3","atlases":["assets/img/acervo/pw_tarloattack3_0.png"],"acervo":{"nome":"TarloAttack3","fonte":"Power Warrior","tipo":"efeitos","origem":"afe3ab855de64004e88585a6ba92b54d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,44,22,22,1]]}},"tipo":"efeito"});

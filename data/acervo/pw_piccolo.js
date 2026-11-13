@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolo",{"id":"pw_piccolo","atlases":["assets/img/acervo/pw_piccolo_0.png"],"acervo":{"nome":"Piccolo","fonte":"Power Warrior","tipo":"efeitos","origem":"4ecf0a5d6e3a88140a9e5a870d361eb5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

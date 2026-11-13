@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kale1",{"id":"pw_kale1","atlases":["assets/img/acervo/pw_kale1_0.png"],"acervo":{"nome":"Kale1","fonte":"Power Warrior","tipo":"efeitos","origem":"7b1fc961441bbd949acf0b650aafde68"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,48,14,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarlospecial4",{"id":"pw_tarlospecial4","atlases":["assets/img/acervo/pw_tarlospecial4_0.png"],"acervo":{"nome":"TarloSpecial4","fonte":"Power Warrior","tipo":"efeitos","origem":"5dd0550cec81c7d48b0f11e125fa8f3f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,48,17,24,1],[0,35,0,34,48,17,24,1]]}},"tipo":"efeito"});

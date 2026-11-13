@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolysuper2",{"id":"pw_brolysuper2","atlases":["assets/img/acervo/pw_brolysuper2_0.png"],"acervo":{"nome":"BrolySuper2","fonte":"Power Warrior","tipo":"efeitos","origem":"50367ff7d3f22b44aa6d5ba62413ae63"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

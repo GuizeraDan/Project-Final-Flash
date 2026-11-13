@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nova1special2",{"id":"pw_nova1special2","atlases":["assets/img/acervo/pw_nova1special2_0.png"],"acervo":{"nome":"Nova1Special2","fonte":"Power Warrior","tipo":"efeitos","origem":"b9980691fbba5d5428612d2d532fd0d5"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,50,23,25,1],[0,47,0,46,50,23,25,1]]}},"tipo":"efeito"});

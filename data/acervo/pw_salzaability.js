@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_salzaability",{"id":"pw_salzaability","atlases":["assets/img/acervo/pw_salzaability_0.png"],"acervo":{"nome":"SalzaAbility","fonte":"Power Warrior","tipo":"efeitos","origem":"70c5bdacdc86c6140a64c34c381a19c8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,43,26,22,1],[0,52,0,42,43,24,22,1]]}},"tipo":"efeito"});

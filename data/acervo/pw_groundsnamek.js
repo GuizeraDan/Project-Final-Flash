@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_groundsnamek",{"id":"pw_groundsnamek","atlases":["assets/img/acervo/pw_groundsnamek_0.png"],"acervo":{"nome":"groundsNamek","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets49.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,160,32,80,16,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuswl1stand",{"id":"pw_gokuswl1stand","atlases":["assets/img/acervo/pw_gokuswl1stand_0.png"],"acervo":{"nome":"GokuSwl1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"724ab59c1d0b4dc47899e2cdbd3faaf6"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,57,12,28,1],[0,26,0,32,50,16,25,1]]}},"tipo":"efeito"});

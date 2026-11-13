@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetagtnew4guard",{"id":"pw_vegetagtnew4guard","atlases":["assets/img/acervo/pw_vegetagtnew4guard_0.png"],"acervo":{"nome":"VegetaGTNew4Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"3ce29cfc1ceed12458bdca89c89595c8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,46,18,23,1]]}},"tipo":"efeito"});

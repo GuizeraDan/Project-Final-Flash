@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tiencellthrowenergy",{"id":"pw_tiencellthrowenergy","atlases":["assets/img/acervo/pw_tiencellthrowenergy_0.png"],"acervo":{"nome":"TienCellThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"2b830bc8ba89dcf49b02d0a1fe1b4eb8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,39,18,20,1]]}},"tipo":"efeito"});

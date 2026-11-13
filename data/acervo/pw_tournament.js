@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tournament",{"id":"pw_tournament","atlases":["assets/img/acervo/pw_tournament_0.png"],"acervo":{"nome":"Tournament","fonte":"Power Warrior","tipo":"efeitos","origem":"621a1f8069ec00c4ab81af3582af712c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,189,256,94,128,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockxenoguard",{"id":"pw_bardockxenoguard","atlases":["assets/img/acervo/pw_bardockxenoguard_0.png"],"acervo":{"nome":"BardockXenoGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"7adc8791ba62d1741847673f03b5c4bf"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,46,15,23,1]]}},"tipo":"efeito"});

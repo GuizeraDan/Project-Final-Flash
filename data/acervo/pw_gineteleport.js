@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gineteleport",{"id":"pw_gineteleport","atlases":["assets/img/acervo/pw_gineteleport_0.png"],"acervo":{"nome":"GineTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"4a7b12879719f754a97123820ae8122b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

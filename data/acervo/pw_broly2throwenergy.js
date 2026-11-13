@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_broly2throwenergy",{"id":"pw_broly2throwenergy","atlases":["assets/img/acervo/pw_broly2throwenergy_0.png"],"acervo":{"nome":"Broly2ThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"7ca00c09a96d44b4e87b5f8600b60327"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,71,18,36,1]]}},"tipo":"efeito"});

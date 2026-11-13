@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_auragodrose",{"id":"pw_auragodrose","atlases":["assets/img/acervo/pw_auragodrose_0.png"],"acervo":{"nome":"AuraGodRose","fonte":"Power Warrior","tipo":"efeitos","origem":"97f7fae56d59b954eb931892ff15c781"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,76,78,38,39,1]]}},"tipo":"efeito"});

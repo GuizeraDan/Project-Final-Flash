@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_recoomemove",{"id":"pw_recoomemove","atlases":["assets/img/acervo/pw_recoomemove_0.png"],"acervo":{"nome":"RecoomeMove","fonte":"Power Warrior","tipo":"efeitos","origem":"d79025cb07eb17a46b2943850c985fd9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,60,23,30,1],[0,47,0,60,47,30,24,1]]}},"tipo":"efeito"});

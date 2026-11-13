@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whischarge",{"id":"pw_whischarge","atlases":["assets/img/acervo/pw_whischarge_0.png"],"acervo":{"nome":"WhisCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"520fa888f83e569438d82dff9fff731f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,61,17,30,1],[0,38,0,37,58,17,27,1]]}},"tipo":"efeito"});

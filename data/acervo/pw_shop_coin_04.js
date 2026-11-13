@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shop_coin_04",{"id":"pw_shop_coin_04","atlases":["assets/img/acervo/pw_shop_coin_04_0.png"],"acervo":{"nome":"shop_coin_04","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets1.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,113,86,56,86,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kami",{"id":"pw_kami","atlases":["assets/img/acervo/pw_kami_0.png"],"acervo":{"nome":"Kami","fonte":"Power Warrior","tipo":"efeitos","origem":"b02bd1237717e9e4185e28d7461a7fb1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

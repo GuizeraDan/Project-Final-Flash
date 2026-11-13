@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toppoteleport",{"id":"pw_toppoteleport","atlases":["assets/img/acervo/pw_toppoteleport_0.png"],"acervo":{"nome":"ToppoTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"e2dae00e9406d9d48982dde29b1cbc4c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,49,25,24,12,1],[0,50,0,51,19,26,10,1]]}},"tipo":"efeito"});

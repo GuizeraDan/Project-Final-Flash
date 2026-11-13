@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_magettastand",{"id":"pw_magettastand","atlases":["assets/img/acervo/pw_magettastand_0.png"],"acervo":{"nome":"MagettaStand","fonte":"Power Warrior","tipo":"efeitos","origem":"7f1f8b6990701c040a06b78312bd01e8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,105,102,52,51,1]]}},"tipo":"efeito"});

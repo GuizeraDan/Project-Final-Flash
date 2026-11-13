@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guldoenergy",{"id":"pw_guldoenergy","atlases":["assets/img/acervo/pw_guldoenergy_0.png"],"acervo":{"nome":"GuldoEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"4a35176de72fb9d4197925c8addf16ae"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,36,16,18,1],[0,34,0,33,36,16,18,1]]}},"tipo":"efeito"});

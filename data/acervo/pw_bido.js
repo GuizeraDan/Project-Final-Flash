@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bido",{"id":"pw_bido","atlases":["assets/img/acervo/pw_bido_0.png"],"acervo":{"nome":"Bido","fonte":"Power Warrior","tipo":"efeitos","origem":"abf1312f503b20b44bcb61bbf082c2bf"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

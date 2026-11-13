@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4stand",{"id":"pw_moro4stand","atlases":["assets/img/acervo/pw_moro4stand_0.png"],"acervo":{"nome":"Moro4Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"50e81402f6cdbc947ac7053097fdcc5d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,59,14,30,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kudeenergy",{"id":"pw_kudeenergy","atlases":["assets/img/acervo/pw_kudeenergy_0.png"],"acervo":{"nome":"KudeEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"1419c2b7b2aca624d9c39f21a1c9ca7b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,43,0,31,48,16,24,1],[0,0,0,42,50,21,25,1]]}},"tipo":"efeito"});

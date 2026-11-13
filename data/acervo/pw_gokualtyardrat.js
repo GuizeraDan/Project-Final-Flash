@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokualtyardrat",{"id":"pw_gokualtyardrat","atlases":["assets/img/acervo/pw_gokualtyardrat_0.png"],"acervo":{"nome":"GokuAltYardrat","fonte":"Power Warrior","tipo":"efeitos","origem":"dcf3d1a8f87e3cb45856ca4b814425ec"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

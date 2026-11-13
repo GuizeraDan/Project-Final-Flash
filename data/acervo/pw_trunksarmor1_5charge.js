@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksarmor1_5charge",{"id":"pw_trunksarmor1_5charge","atlases":["assets/img/acervo/pw_trunksarmor1_5charge_0.png"],"acervo":{"nome":"TrunksArmor1.5Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"44ed218465cec9742b520ec6f6ad0702"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,54,16,27,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_throwenergy2",{"id":"pw_throwenergy2","atlases":["assets/img/acervo/pw_throwenergy2_0.png"],"acervo":{"nome":"ThrowEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"428f8db024165e34b86d19cc3d8ea4b1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,48,20,24,1]]}},"tipo":"efeito"});

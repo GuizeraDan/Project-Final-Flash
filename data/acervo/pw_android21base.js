@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android21base",{"id":"pw_android21base","atlases":["assets/img/acervo/pw_android21base_0.png"],"acervo":{"nome":"Android21Base","fonte":"Power Warrior","tipo":"efeitos","origem":"0f0aea67bfa16f54cb622f20a02e1ac6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,71,96,36,48,1]]}},"tipo":"efeito"});

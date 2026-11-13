@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_satan",{"id":"pw_satan","atlases":["assets/img/acervo/pw_satan_0.png"],"acervo":{"nome":"Satan","fonte":"Power Warrior","tipo":"efeitos","origem":"b55558f3e92a1784ca51ab56621b4f86"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

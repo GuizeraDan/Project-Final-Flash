@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vw",{"id":"pw_vw","atlases":["assets/img/acervo/pw_vw_0.png"],"acervo":{"nome":"VW","fonte":"Power Warrior","tipo":"efeitos","origem":"c5e649a5f2af9954f9e40104cf03b475"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

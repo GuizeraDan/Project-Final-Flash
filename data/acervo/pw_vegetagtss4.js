@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetagtss4",{"id":"pw_vegetagtss4","atlases":["assets/img/acervo/pw_vegetagtss4_0.png"],"acervo":{"nome":"VegetaGTSS4","fonte":"Power Warrior","tipo":"efeitos","origem":"857a36e8b1ec76243a2ca0322ea5a3b8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

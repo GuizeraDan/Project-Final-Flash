@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetazombieselect",{"id":"pw_vegetazombieselect","atlases":["assets/img/acervo/pw_vegetazombieselect_0.png"],"acervo":{"nome":"VegetaZombieSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,49,22,49,1]]}}});

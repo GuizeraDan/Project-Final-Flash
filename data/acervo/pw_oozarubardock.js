@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oozarubardock",{"id":"pw_oozarubardock","atlases":["assets/img/acervo/pw_oozarubardock_0.png"],"acervo":{"nome":"OozaruBardock","fonte":"Power Warrior","tipo":"efeitos","origem":"17ef7e57ff238a74cacdb7ba8b8feba2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

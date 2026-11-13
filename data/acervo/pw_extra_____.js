@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_extra_____",{"id":"pw_extra_____","atlases":["assets/img/acervo/pw_extra______0.png"],"acervo":{"nome":"Extra","fonte":"Power Warrior","tipo":"efeitos","origem":"a730d9191d3ff3f4789e7d0a00adef42"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,53,16,26,1]]}},"tipo":"efeito"});

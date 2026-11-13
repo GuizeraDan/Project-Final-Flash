@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_eliotcharge",{"id":"pw_eliotcharge","atlases":["assets/img/acervo/pw_eliotcharge_0.png"],"acervo":{"nome":"EliotCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"d68b2dcbb990a69428eb539b4f839f59"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,54,16,27,1],[0,33,0,38,53,22,26,1]]}},"tipo":"efeito"});

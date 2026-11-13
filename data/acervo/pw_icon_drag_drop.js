@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_icon_drag_drop",{"id":"pw_icon_drag_drop","atlases":["assets/img/acervo/pw_icon_drag_drop_0.png"],"acervo":{"nome":"icon_drag_drop","fonte":"Power Warrior","tipo":"interface","origem":"525b2d05de9b7e7459d4d58af0434e5b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,31,10,31,1]]}}});

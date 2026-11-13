@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbeamfirered",{"id":"pw_specialbeamfirered","atlases":["assets/img/acervo/pw_specialbeamfirered_0.png"],"acervo":{"nome":"SpecialBeamFireRed","fonte":"Power Warrior","tipo":"efeitos","origem":"410fa8caaaa112145b81005ac03d5dbc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,19,20,10,1]]}},"tipo":"efeito"});

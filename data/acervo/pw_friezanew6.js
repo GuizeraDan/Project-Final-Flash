@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_friezanew6",{"id":"pw_friezanew6","atlases":["assets/img/acervo/pw_friezanew6_0.png"],"acervo":{"nome":"FriezaNew6","fonte":"Power Warrior","tipo":"efeitos","origem":"d341ff94a0f674b4fbcc0ce2681dd81f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

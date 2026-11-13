@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolohero1select2",{"id":"pw_piccolohero1select2","atlases":["assets/img/acervo/pw_piccolohero1select2_0.png"],"acervo":{"nome":"PiccoloHero1Select2","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,45,18,45,1]]}}});

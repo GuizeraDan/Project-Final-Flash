@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_beamenergyattack",{"id":"pw_beamenergyattack","atlases":["assets/img/acervo/pw_beamenergyattack_0.png"],"acervo":{"nome":"BeamEnergyAttack","fonte":"Power Warrior","tipo":"efeitos","origem":"7df9a1d87fcfa36479e3d0565eee1479"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,74,15,37,8,1]]}},"tipo":"efeito"});

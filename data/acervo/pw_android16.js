@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android16",{"id":"pw_android16","atlases":["assets/img/acervo/pw_android16_0.png"],"acervo":{"nome":"Android16","fonte":"Power Warrior","tipo":"efeitos","origem":"376b7870fb534294c8e8cb03a38aff60"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,56,20,28,1]]}},"tipo":"efeito"});

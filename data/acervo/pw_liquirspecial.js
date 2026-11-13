@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_liquirspecial",{"id":"pw_liquirspecial","atlases":["assets/img/acervo/pw_liquirspecial_0.png"],"acervo":{"nome":"LiquirSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"d28f6b7fc19687d43a5fcce63f0151b8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,51,23,26,1]]}},"tipo":"efeito"});

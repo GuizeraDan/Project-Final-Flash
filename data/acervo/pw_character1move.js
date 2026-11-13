@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_character1move",{"id":"pw_character1move","atlases":["assets/img/acervo/pw_character1move_0.png"],"acervo":{"nome":"Character1Move","fonte":"Power Warrior","tipo":"efeitos","origem":"403595badf6f7c0489c830f83f8329be"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,53,17,26,1],[0,35,0,46,40,23,20,1]]}},"tipo":"efeito"});

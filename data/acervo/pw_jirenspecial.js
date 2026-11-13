@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jirenspecial",{"id":"pw_jirenspecial","atlases":["assets/img/acervo/pw_jirenspecial_0.png"],"acervo":{"nome":"JirenSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"1a33e856773d1384aa1ead066d71ff5e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,45,10,22,1]]}},"tipo":"efeito"});

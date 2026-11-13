@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_magetta",{"id":"pw_magetta","atlases":["assets/img/acervo/pw_magetta_0.png"],"acervo":{"nome":"Magetta","fonte":"Power Warrior","tipo":"efeitos","origem":"0fed7bea5e048534eb7bf6499521eab0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,62,78,31,39,1]]}},"tipo":"efeito"});

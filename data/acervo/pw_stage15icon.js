@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stage15icon",{"id":"pw_stage15icon","atlases":["assets/img/acervo/pw_stage15icon_0.png"],"acervo":{"nome":"Stage15Icon","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets14.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,512,1]]}}});

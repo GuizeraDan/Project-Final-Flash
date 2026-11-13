@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_caulifla",{"id":"pw_caulifla","atlases":["assets/img/acervo/pw_caulifla_0.png"],"acervo":{"nome":"Caulifla","fonte":"Power Warrior","tipo":"efeitos","origem":"4c555bc334e027f4c989c9ef22da4515"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

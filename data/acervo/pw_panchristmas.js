@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_panchristmas",{"id":"pw_panchristmas","atlases":["assets/img/acervo/pw_panchristmas_0.png"],"acervo":{"nome":"PanChristmas","fonte":"Power Warrior","tipo":"efeitos","origem":"4f9c7ceb0b450a54982efb07940ffe08"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

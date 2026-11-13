@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetastanding",{"id":"pw_gogetastanding","atlases":["assets/img/acervo/pw_gogetastanding_0.png"],"acervo":{"nome":"GogetaStanding","fonte":"Power Warrior","tipo":"efeitos","origem":"e6399fb62e99b6c48b844ff0019d05fb"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,57,12,28,1],[0,25,0,25,56,12,28,1]]}},"tipo":"efeito"});

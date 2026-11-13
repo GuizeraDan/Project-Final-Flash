@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shenron2charge2",{"id":"pw_shenron2charge2","atlases":["assets/img/acervo/pw_shenron2charge2_0.png"],"acervo":{"nome":"Shenron2Charge2","fonte":"Power Warrior","tipo":"efeitos","origem":"679dcb681a25ab447ae5f83cb1a20056"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,57,77,28,38,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fingogeta4special2",{"id":"pw_fingogeta4special2","atlases":["assets/img/acervo/pw_fingogeta4special2_0.png"],"acervo":{"nome":"FinGogeta4Special2","fonte":"Power Warrior","tipo":"efeitos","origem":"bb606b7b169a1ec40941e691c0c103be"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,55,29,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaxenoenergy",{"id":"pw_vegetaxenoenergy","atlases":["assets/img/acervo/pw_vegetaxenoenergy_0.png"],"acervo":{"nome":"VegetaXenoenergy","fonte":"Power Warrior","tipo":"efeitos","origem":"4b829309abae86e4e9fd34241d5e54e0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,44,22,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksfutguard",{"id":"pw_trunksfutguard","atlases":["assets/img/acervo/pw_trunksfutguard_0.png"],"acervo":{"nome":"TrunksFutGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"9754574fb49fb1a4caa6fcc58d2b1c2e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,43,16,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tien",{"id":"pw_tien","atlases":["assets/img/acervo/pw_tien_0.png"],"acervo":{"nome":"Tien","fonte":"Power Warrior","tipo":"efeitos","origem":"e473460485fd2bd4ca7a533826769867"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

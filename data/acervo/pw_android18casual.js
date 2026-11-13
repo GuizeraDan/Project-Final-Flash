@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android18casual",{"id":"pw_android18casual","atlases":["assets/img/acervo/pw_android18casual_0.png"],"acervo":{"nome":"Android18Casual","fonte":"Power Warrior","tipo":"efeitos","origem":"8819abd231c2d324399d802a23dd1c87"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

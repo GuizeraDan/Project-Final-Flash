@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dodoriacharge",{"id":"pw_dodoriacharge","atlases":["assets/img/acervo/pw_dodoriacharge_0.png"],"acervo":{"nome":"DodoriaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"2d50ba9ac4ef4de488d85a890d78b5dd"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,41,16,20,1]]}},"tipo":"efeito"});

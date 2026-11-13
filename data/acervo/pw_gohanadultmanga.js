@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanadultmanga",{"id":"pw_gohanadultmanga","atlases":["assets/img/acervo/pw_gohanadultmanga_0.png"],"acervo":{"nome":"GohanAdultManga","fonte":"Power Warrior","tipo":"efeitos","origem":"9a436f4a83e2c274ca57c87317bc0e5b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

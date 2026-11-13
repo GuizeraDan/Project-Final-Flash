@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaxeno1guard",{"id":"pw_vegetaxeno1guard","atlases":["assets/img/acervo/pw_vegetaxeno1guard_0.png"],"acervo":{"nome":"VegetaXeno1guard","fonte":"Power Warrior","tipo":"efeitos","origem":"8d6f9deb6c4ec8d4e885817b023c0cba"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,48,14,24,1]]}},"tipo":"efeito"});

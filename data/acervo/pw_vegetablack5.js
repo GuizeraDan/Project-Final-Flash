@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetablack5",{"id":"pw_vegetablack5","atlases":["assets/img/acervo/pw_vegetablack5_0.png"],"acervo":{"nome":"VegetaBlack5","fonte":"Power Warrior","tipo":"efeitos","origem":"f41fa7a2da859054f903468c92be5724"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

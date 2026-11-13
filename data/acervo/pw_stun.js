@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stun",{"id":"pw_stun","atlases":["assets/img/acervo/pw_stun_0.png"],"acervo":{"nome":"Stun","fonte":"Power Warrior","tipo":"efeitos","origem":"6ba7b7a318056514ea36531d00d21e65"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,43,18,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanbaold1",{"id":"pw_kanbaold1","atlases":["assets/img/acervo/pw_kanbaold1_0.png"],"acervo":{"nome":"KanbaOld1","fonte":"Power Warrior","tipo":"efeitos","origem":"4cc7faa45a69602468ab4b0ce442f5f8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

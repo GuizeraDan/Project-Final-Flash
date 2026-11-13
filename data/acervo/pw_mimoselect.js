@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimoselect",{"id":"pw_mimoselect","atlases":["assets/img/acervo/pw_mimoselect_0.png"],"acervo":{"nome":"MimoSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,51,16,51,1]]}}});

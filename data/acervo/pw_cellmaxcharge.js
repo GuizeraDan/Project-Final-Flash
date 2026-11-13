@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellmaxcharge",{"id":"pw_cellmaxcharge","atlases":["assets/img/acervo/pw_cellmaxcharge_0.png"],"acervo":{"nome":"CellMaxCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"74d24cd83b4191641b1fb4850b1bd10e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,68,27,38,1],[0,48,0,47,68,27,38,1]]}},"tipo":"efeito"});

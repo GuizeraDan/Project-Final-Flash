@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4attack4",{"id":"pw_moro4attack4","atlases":["assets/img/acervo/pw_moro4attack4_0.png"],"acervo":{"nome":"Moro4Attack4","fonte":"Power Warrior","tipo":"efeitos","origem":"50ec13e39663334409c271fecac9777f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,51,20,26,1]]}},"tipo":"efeito"});

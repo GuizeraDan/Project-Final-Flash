@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_alexstand",{"id":"pw_alexstand","atlases":["assets/img/acervo/pw_alexstand_0.png"],"acervo":{"nome":"AlexStand","fonte":"Power Warrior","tipo":"efeitos","origem":"f93cbbdc7581f35489b74a537d3a7021"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,31,0,21,48,10,24,1],[0,0,0,30,48,15,24,1]]}},"tipo":"efeito"});

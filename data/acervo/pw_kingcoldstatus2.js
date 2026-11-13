@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingcoldstatus2",{"id":"pw_kingcoldstatus2","atlases":["assets/img/acervo/pw_kingcoldstatus2_0.png"],"acervo":{"nome":"KingColdStatus2","fonte":"Power Warrior","tipo":"efeitos","origem":"2bce3c25b7545cb4887b69970cd79749"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,71,49,36,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_morocharge",{"id":"pw_morocharge","atlases":["assets/img/acervo/pw_morocharge_0.png"],"acervo":{"nome":"MoroCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"e37939101e8b43a478dd2a618b164221"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,46,0,43,67,19,34,1],[0,0,0,45,67,21,34,1]]}},"tipo":"efeito"});

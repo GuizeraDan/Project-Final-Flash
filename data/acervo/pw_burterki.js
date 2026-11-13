@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_burterki",{"id":"pw_burterki","atlases":["assets/img/acervo/pw_burterki_0.png"],"acervo":{"nome":"BurterKi","fonte":"Power Warrior","tipo":"efeitos","origem":"38285dd8b180e6a4892010dc13622fc7"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,78,48,39,1],[0,97,0,96,78,48,39,1],[0,194,0,96,78,48,39,1]]}},"tipo":"efeito"});

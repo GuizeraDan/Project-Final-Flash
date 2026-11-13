@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanfuture1special4",{"id":"pw_gohanfuture1special4","atlases":["assets/img/acervo/pw_gohanfuture1special4_0.png"],"acervo":{"nome":"GohanFuture1Special4","fonte":"Power Warrior","tipo":"efeitos","origem":"39c7fb78820c8a8429d31188192a37f4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,54,12,27,1]]}},"tipo":"efeito"});

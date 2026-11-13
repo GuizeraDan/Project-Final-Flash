@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android17superstand2",{"id":"pw_android17superstand2","atlases":["assets/img/acervo/pw_android17superstand2_0.png"],"acervo":{"nome":"Android17SuperStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"38726ed0bc789f845bffc8f8f3d64fb1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,44,10,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stage12bottomwater2",{"id":"pw_stage12bottomwater2","atlases":["assets/img/acervo/pw_stage12bottomwater2_0.png"],"acervo":{"nome":"Stage12BottomWater2","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets28.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,249,49,124,24,1]]}}});

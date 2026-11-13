@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuchristmasenergy2",{"id":"pw_gokuchristmasenergy2","atlases":["assets/img/acervo/pw_gokuchristmasenergy2_0.png"],"acervo":{"nome":"GokuChristmasEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"5b3ccc141b2f46c429f5be8ce17cef00"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,16,34,8,1]]}},"tipo":"efeito"});

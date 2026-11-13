@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android19throwenergy",{"id":"pw_android19throwenergy","atlases":["assets/img/acervo/pw_android19throwenergy_0.png"],"acervo":{"nome":"Android19ThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"3a3a48ed0bef68948980e8dfe510286f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,39,16,20,1]]}},"tipo":"efeito"});

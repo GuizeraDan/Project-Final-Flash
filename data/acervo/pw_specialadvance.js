@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialadvance",{"id":"pw_specialadvance","atlases":["assets/img/acervo/pw_specialadvance_0.png"],"acervo":{"nome":"SpecialAdvance","fonte":"Power Warrior","tipo":"efeitos","origem":"6bf5844f6d7bd1e4ba08e5cbe9f6bd1a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,39,19,20,1]]}},"tipo":"efeito"});

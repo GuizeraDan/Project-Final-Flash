@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged3",{"id":"pw_gokudamaged3","atlases":["assets/img/acervo/pw_gokudamaged3_0.png"],"acervo":{"nome":"GokuDamaged3","fonte":"Power Warrior","tipo":"efeitos","origem":"e9d8f501872ad9245b616a221acf835f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

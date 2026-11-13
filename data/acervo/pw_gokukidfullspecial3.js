@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokukidfullspecial3",{"id":"pw_gokukidfullspecial3","atlases":["assets/img/acervo/pw_gokukidfullspecial3_0.png"],"acervo":{"nome":"GokuKidFullSpecial3","fonte":"Power Warrior","tipo":"efeitos","origem":"9e69afbddbf84bc4bac2ddda23645942"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,39,14,20,1]]}},"tipo":"efeito"});

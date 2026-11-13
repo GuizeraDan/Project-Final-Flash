@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_soft",{"id":"pw_soft","atlases":["assets/img/acervo/pw_soft_0.png"],"acervo":{"nome":"Soft","fonte":"Power Warrior","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,126,63,126,1]]}},"tipo":"efeito"});

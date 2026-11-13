@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ballgreen",{"id":"pw_ballgreen","atlases":["assets/img/acervo/pw_ballgreen_0.png"],"acervo":{"nome":"BallGreen","fonte":"Power Warrior","tipo":"efeitos","origem":"38a08ebf12ac8804eb3dbd9b12aae84e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,74,36,37,1]]}},"tipo":"efeito"});

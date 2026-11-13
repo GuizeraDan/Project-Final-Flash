@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_super_sparks_13",{"id":"pw_super_sparks_13","atlases":["assets/img/acervo/pw_super_sparks_13_0.png"],"acervo":{"nome":"Super Sparks_13","fonte":"Power Warrior","tipo":"efeitos","origem":"eedb438793c82e147b4a80441fa7f0d9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,288,112,144,56,1]]}},"tipo":"efeito"});

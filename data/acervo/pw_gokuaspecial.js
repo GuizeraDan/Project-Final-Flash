@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuaspecial",{"id":"pw_gokuaspecial","atlases":["assets/img/acervo/pw_gokuaspecial_0.png"],"acervo":{"nome":"GokuaSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"1454e517708362b49a0ff42c1e4d1e7f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,53,22,26,1],[0,44,0,34,53,17,26,1]]}},"tipo":"efeito"});

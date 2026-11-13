@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaswlnoarmor7",{"id":"pw_vegetaswlnoarmor7","atlases":["assets/img/acervo/pw_vegetaswlnoarmor7_0.png"],"acervo":{"nome":"VegetaSwlNoArmor7","fonte":"Power Warrior","tipo":"efeitos","origem":"85af5c25fe5c83944844b72e2a7444e9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

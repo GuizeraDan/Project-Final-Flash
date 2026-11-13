@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chilled",{"id":"pw_chilled","atlases":["assets/img/acervo/pw_chilled_0.png"],"acervo":{"nome":"Chilled","fonte":"Power Warrior","tipo":"efeitos","origem":"703d31c640c389c428d0fef32beeed3c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,56,20,28,1]]}},"tipo":"efeito"});

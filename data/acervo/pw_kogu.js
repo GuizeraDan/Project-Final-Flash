@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kogu",{"id":"pw_kogu","atlases":["assets/img/acervo/pw_kogu_0.png"],"acervo":{"nome":"Kogu","fonte":"Power Warrior","tipo":"efeitos","origem":"f2c59a8d174914646a698eddfd09a032"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

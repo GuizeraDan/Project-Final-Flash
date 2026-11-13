@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokugt1attack2",{"id":"pw_gokugt1attack2","atlases":["assets/img/acervo/pw_gokugt1attack2_0.png"],"acervo":{"nome":"GokuGT1Attack2","fonte":"Power Warrior","tipo":"efeitos","origem":"b42224e3793e0fa4dbc73c70a2087f6f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,43,20,22,1]]}},"tipo":"efeito"});

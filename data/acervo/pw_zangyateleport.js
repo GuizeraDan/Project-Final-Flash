@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zangyateleport",{"id":"pw_zangyateleport","atlases":["assets/img/acervo/pw_zangyateleport_0.png"],"acervo":{"nome":"ZangyaTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"6db2e9a0f3cc4a047bb4ffcbfa56b5f8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,27,0,48,34,24,17,1],[0,0,0,26,49,13,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shallotextra",{"id":"pw_shallotextra","atlases":["assets/img/acervo/pw_shallotextra_0.png"],"acervo":{"nome":"ShallotExtra","fonte":"Power Warrior","tipo":"interface","origem":"a5a519be3f5180d439d00329fbea2123"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,53,18,26,1],[0,38,0,37,53,18,26,1]]}}});

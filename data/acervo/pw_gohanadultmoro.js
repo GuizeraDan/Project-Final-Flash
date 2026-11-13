@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanadultmoro",{"id":"pw_gohanadultmoro","atlases":["assets/img/acervo/pw_gohanadultmoro_0.png"],"acervo":{"nome":"GohanAdultMoro","fonte":"Power Warrior","tipo":"efeitos","origem":"5409fa30a4e7a534c90bfe1c8159a1cc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

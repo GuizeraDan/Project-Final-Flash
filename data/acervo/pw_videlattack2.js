@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_videlattack2",{"id":"pw_videlattack2","atlases":["assets/img/acervo/pw_videlattack2_0.png"],"acervo":{"nome":"VidelAttack2","fonte":"Power Warrior","tipo":"efeitos","origem":"082322ee147a67e40ae809d84f8557dc"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,38,14,19,1],[0,30,0,28,37,14,18,1]]}},"tipo":"efeito"});

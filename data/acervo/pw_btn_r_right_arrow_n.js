@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_btn_r_right_arrow_n",{"id":"pw_btn_r_right_arrow_n","atlases":["assets/img/acervo/pw_btn_r_right_arrow_n_0.png"],"acervo":{"nome":"btn_r_right_arrow_n","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets11.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,72,76,36,38,1]]}}});

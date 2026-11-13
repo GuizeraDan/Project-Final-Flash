@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanbroly1charge2",{"id":"pw_gohanbroly1charge2","atlases":["assets/img/acervo/pw_gohanbroly1charge2_0.png"],"acervo":{"nome":"GohanBroly1Charge2","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets11.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,53,18,25,1]]}},"tipo":"efeito"});

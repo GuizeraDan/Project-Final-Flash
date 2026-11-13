@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_get_star_03",{"id":"pw_get_star_03","atlases":["assets/img/acervo/pw_get_star_03_0.png"],"acervo":{"nome":"get_star_03","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets63.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}},"tipo":"efeito"});

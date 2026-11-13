@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shockwave",{"id":"pw_shockwave","atlases":["assets/img/acervo/pw_shockwave_0.png"],"acervo":{"nome":"ShockWave","fonte":"Power Warrior","tipo":"efeitos","origem":"e12f8e30c9a7e49a589559cf53454a29"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,256,256,128,256,1]]}},"tipo":"efeito"});

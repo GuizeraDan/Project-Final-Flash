@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toppomovement",{"id":"pw_toppomovement","atlases":["assets/img/acervo/pw_toppomovement_0.png"],"acervo":{"nome":"ToppoMovement","fonte":"Power Warrior","tipo":"efeitos","origem":"85a0eb674bf5b26438e11bc79fcd1a76"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,49,25,24,1],[0,51,0,76,48,38,24,1]]}},"tipo":"efeito"});

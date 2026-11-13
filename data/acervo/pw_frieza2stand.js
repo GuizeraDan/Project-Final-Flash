@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frieza2stand",{"id":"pw_frieza2stand","atlases":["assets/img/acervo/pw_frieza2stand_0.png"],"acervo":{"nome":"Frieza2Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"0a79b07ca5045254b975175eb11a2cad"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,65,28,32,1]]}},"tipo":"efeito"});

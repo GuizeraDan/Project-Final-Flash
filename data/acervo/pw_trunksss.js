@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksss",{"id":"pw_trunksss","atlases":["assets/img/acervo/pw_trunksss_0.png"],"acervo":{"nome":"TrunksSS","fonte":"Power Warrior","tipo":"efeitos","origem":"b34354cf35d30574a9da789c9294a45a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

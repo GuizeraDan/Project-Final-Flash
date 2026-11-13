@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamistand",{"id":"pw_kamistand","atlases":["assets/img/acervo/pw_kamistand_0.png"],"acervo":{"nome":"KamiStand","fonte":"Power Warrior","tipo":"efeitos","origem":"54f1f41ae43de504d8fbade25b2c0772"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,45,16,22,1]]}},"tipo":"efeito"});

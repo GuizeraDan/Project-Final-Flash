@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ballblue",{"id":"pw_ballblue","atlases":["assets/img/acervo/pw_ballblue_0.png"],"acervo":{"nome":"BallBlue","fonte":"Power Warrior","tipo":"efeitos","origem":"5ebd23cc240c5f1479575b7e5325fef8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,101,95,50,48,1],[0,102,0,73,74,36,37,1]]}},"tipo":"efeito"});

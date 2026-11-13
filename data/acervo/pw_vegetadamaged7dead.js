@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetadamaged7dead",{"id":"pw_vegetadamaged7dead","atlases":["assets/img/acervo/pw_vegetadamaged7dead_0.png"],"acervo":{"nome":"VegetaDamaged7Dead","fonte":"Power Warrior","tipo":"efeitos","origem":"ab171f48ec226f848918b4b2d593da7a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,61,20,30,10,1]]}},"tipo":"efeito"});

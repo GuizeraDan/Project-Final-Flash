@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchildnew2guard",{"id":"pw_gohanchildnew2guard","atlases":["assets/img/acervo/pw_gohanchildnew2guard_0.png"],"acervo":{"nome":"GohanChildNew2Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"b16a582b76f60374680f398ce90d56b0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,49,14,24,1]]}},"tipo":"efeito"});

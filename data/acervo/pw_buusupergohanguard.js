@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusupergohanguard",{"id":"pw_buusupergohanguard","atlases":["assets/img/acervo/pw_buusupergohanguard_0.png"],"acervo":{"nome":"BuuSuperGohanGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"7e995ab24b98b734786d6a05b8d89e56"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,53,14,26,1]]}},"tipo":"efeito"});

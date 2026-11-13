@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buukid",{"id":"pw_buukid","atlases":["assets/img/acervo/pw_buukid_0.png"],"acervo":{"nome":"BuuKid","fonte":"Power Warrior","tipo":"efeitos","origem":"d7c439f9f9bcae845bf5618eb51edafa"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

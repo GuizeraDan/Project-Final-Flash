@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_recoomeenergy",{"id":"pw_recoomeenergy","atlases":["assets/img/acervo/pw_recoomeenergy_0.png"],"acervo":{"nome":"RecoomeEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"cf69cedc31cadd64d96a494d614564d1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,62,24,31,1],[0,49,0,51,61,22,30,1]]}},"tipo":"efeito"});

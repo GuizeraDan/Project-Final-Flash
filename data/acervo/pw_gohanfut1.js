@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanfut1",{"id":"pw_gohanfut1","atlases":["assets/img/acervo/pw_gohanfut1_0.png"],"acervo":{"nome":"GohanFut1","fonte":"Power Warrior","tipo":"efeitos","origem":"10b48e184932a234cb90825dc2b09c8a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

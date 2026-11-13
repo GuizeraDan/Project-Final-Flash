@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jeice",{"id":"pw_jeice","atlases":["assets/img/acervo/pw_jeice_0.png"],"acervo":{"nome":"Jeice","fonte":"Power Warrior","tipo":"efeitos","origem":"03ce19aa0e343714a897b1e535e35afe"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

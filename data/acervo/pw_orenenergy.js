@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_orenenergy",{"id":"pw_orenenergy","atlases":["assets/img/acervo/pw_orenenergy_0.png"],"acervo":{"nome":"OrenEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"29bdd8170e01e984d94de27b43078961"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,41,0,42,45,28,21,1],[0,0,0,40,47,20,24,1]]}},"tipo":"efeito"});

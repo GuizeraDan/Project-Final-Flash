@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_paikuhan",{"id":"pw_paikuhan","atlases":["assets/img/acervo/pw_paikuhan_0.png"],"acervo":{"nome":"Paikuhan","fonte":"Power Warrior","tipo":"efeitos","origem":"fffc4f1d0a0bd4b4cbd410eb7eb8ea5c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

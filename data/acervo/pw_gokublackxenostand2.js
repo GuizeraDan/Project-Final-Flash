@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokublackxenostand2",{"id":"pw_gokublackxenostand2","atlases":["assets/img/acervo/pw_gokublackxenostand2_0.png"],"acervo":{"nome":"GokuBlackXenoStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"443525cb6aebd1c4ea4301a9efd4f7f5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,53,17,26,1]]}},"tipo":"efeito"});

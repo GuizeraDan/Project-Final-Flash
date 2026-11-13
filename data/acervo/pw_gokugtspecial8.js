@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokugtspecial8",{"id":"pw_gokugtspecial8","atlases":["assets/img/acervo/pw_gokugtspecial8_0.png"],"acervo":{"nome":"GokuGTSpecial8","fonte":"Power Warrior","tipo":"efeitos","origem":"256c7179dd64ccd4b9b0e5128541b750"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,55,26,29,13,1]]}},"tipo":"efeito"});

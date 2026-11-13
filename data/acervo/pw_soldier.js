@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_soldier",{"id":"pw_soldier","atlases":["assets/img/acervo/pw_soldier_0.png"],"acervo":{"nome":"Soldier","fonte":"Power Warrior","tipo":"efeitos","origem":"9f40b87514eee2e4da02ea9c78660b77"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,46,18,23,1]]}},"tipo":"efeito"});

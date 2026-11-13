@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_menu_mission",{"id":"pw_menu_mission","atlases":["assets/img/acervo/pw_menu_mission_0.png"],"acervo":{"nome":"menu_mission","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets1.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}}});

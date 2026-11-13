@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android17special5",{"id":"pw_android17special5","atlases":["assets/img/acervo/pw_android17special5_0.png"],"acervo":{"nome":"Android17Special5","fonte":"Power Warrior","tipo":"efeitos","origem":"a1d1e44f2ef326c4da5d62def7bdc035"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,45,10,23,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkstransform",{"id":"pw_trunkstransform","atlases":["assets/img/acervo/pw_trunkstransform_0.png"],"acervo":{"nome":"TrunksTransform","fonte":"Power Warrior","tipo":"efeitos","origem":"3deca24a184e5684a99de065ce1eb8a1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,48,12,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_garlicktransform",{"id":"pw_garlicktransform","atlases":["assets/img/acervo/pw_garlicktransform_0.png"],"acervo":{"nome":"GarlickTransform","fonte":"Power Warrior","tipo":"efeitos","origem":"78c3fe176a699ff479f8430664b7a037"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,49,18,24,1]]}},"tipo":"efeito"});

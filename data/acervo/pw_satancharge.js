@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_satancharge",{"id":"pw_satancharge","atlases":["assets/img/acervo/pw_satancharge_0.png"],"acervo":{"nome":"SatanCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"227b7542e7ffd56498bc856aa326ac1e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,45,16,22,1],[0,32,0,31,45,16,22,1]]}},"tipo":"efeito"});

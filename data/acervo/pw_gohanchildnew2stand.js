@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchildnew2stand",{"id":"pw_gohanchildnew2stand","atlases":["assets/img/acervo/pw_gohanchildnew2stand_0.png"],"acervo":{"nome":"GohanChildNew2Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"1e3209e72eace80439dc40f57962db34"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,47,14,24,1]]}},"tipo":"efeito"});

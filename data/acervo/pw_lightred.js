@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_lightred",{"id":"pw_lightred","atlases":["assets/img/acervo/pw_lightred_0.png"],"acervo":{"nome":"LightRed","fonte":"Power Warrior","tipo":"efeitos","origem":"b2f6bef53933ff748be870e9313c98b7"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,78,48,39,1],[0,97,0,96,78,48,39,1],[0,194,0,96,78,48,39,1]]}},"tipo":"efeito"});

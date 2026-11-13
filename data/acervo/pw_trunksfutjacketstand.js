@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksfutjacketstand",{"id":"pw_trunksfutjacketstand","atlases":["assets/img/acervo/pw_trunksfutjacketstand_0.png"],"acervo":{"nome":"TrunksFutJacketStand","fonte":"Power Warrior","tipo":"efeitos","origem":"2cb061b2239b3a246b647abeeb011509"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,23,47,12,24,1]]}},"tipo":"efeito"});

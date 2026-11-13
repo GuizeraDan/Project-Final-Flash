@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokugt4kiblast",{"id":"pw_gokugt4kiblast","atlases":["assets/img/acervo/pw_gokugt4kiblast_0.png"],"acervo":{"nome":"GokuGT4KiBlast","fonte":"Power Warrior","tipo":"efeitos","origem":"39aaea7011c71914ebcfc03f593ccf62"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,45,0,40,55,21,27,1],[0,0,0,44,55,21,27,1]]}},"tipo":"efeito"});

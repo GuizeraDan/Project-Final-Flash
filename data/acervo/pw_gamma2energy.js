@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma2energy",{"id":"pw_gamma2energy","atlases":["assets/img/acervo/pw_gamma2energy_0.png"],"acervo":{"nome":"Gamma2Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"a4721e97c4eb334488caff1f5fac0870"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,46,26,23,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_auragod",{"id":"pw_auragod","atlases":["assets/img/acervo/pw_auragod_0.png"],"acervo":{"nome":"AuraGod","fonte":"Power Warrior","tipo":"efeitos","origem":"893f094f178fbde48b8291f19633e22c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,69,28,34,1],[0,57,0,56,69,28,34,1]]}},"tipo":"efeito"});

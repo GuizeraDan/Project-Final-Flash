@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosforward",{"id":"pw_chaosforward","atlases":["assets/img/acervo/pw_chaosforward_0.png"],"acervo":{"nome":"ChaosForward","fonte":"Power Warrior","tipo":"cenarios","origem":"6aab131bdff87a3449280ace2ec18a07"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,37,11,18,1],[0,42,0,19,37,10,18,1],[0,21,0,20,37,11,18,1]]}}});

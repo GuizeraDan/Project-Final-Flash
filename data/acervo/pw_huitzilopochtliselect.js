@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_huitzilopochtliselect",{"id":"pw_huitzilopochtliselect","atlases":["assets/img/acervo/pw_huitzilopochtliselect_0.png"],"acervo":{"nome":"HUITZILOPOCHTLISelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,84,29,84,1]]}}});

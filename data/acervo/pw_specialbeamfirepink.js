@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbeamfirepink",{"id":"pw_specialbeamfirepink","atlases":["assets/img/acervo/pw_specialbeamfirepink_0.png"],"acervo":{"nome":"SpecialBeamFirePink","fonte":"Power Warrior","tipo":"efeitos","origem":"beef4ac3aef5b214fa9b0c491cb91648"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,19,20,10,1]]}},"tipo":"efeito"});

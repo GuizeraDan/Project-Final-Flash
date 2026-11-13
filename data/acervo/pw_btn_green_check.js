@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_btn_green_check",{"id":"pw_btn_green_check","atlases":["assets/img/acervo/pw_btn_green_check_0.png"],"acervo":{"nome":"btn_green_check","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}}});

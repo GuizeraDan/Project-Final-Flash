@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanassianthrowenergy",{"id":"pw_kanassianthrowenergy","atlases":["assets/img/acervo/pw_kanassianthrowenergy_0.png"],"acervo":{"nome":"KanassianThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"08162eead62af944f8d678391718eeab"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,41,18,20,1]]}},"tipo":"efeito"});

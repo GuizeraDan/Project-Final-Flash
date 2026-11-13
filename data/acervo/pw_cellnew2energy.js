@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellnew2energy",{"id":"pw_cellnew2energy","atlases":["assets/img/acervo/pw_cellnew2energy_0.png"],"acervo":{"nome":"CellNew2Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"f8f538d213f44a546b776fe06e55c40b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,66,24,33,1]]}},"tipo":"efeito"});

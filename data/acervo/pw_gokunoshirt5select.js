@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokunoshirt5select",{"id":"pw_gokunoshirt5select","atlases":["assets/img/acervo/pw_gokunoshirt5select_0.png"],"acervo":{"nome":"GokuNoShirt5Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,59,16,30,1]]}}});

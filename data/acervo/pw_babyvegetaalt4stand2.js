@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_babyvegetaalt4stand2",{"id":"pw_babyvegetaalt4stand2","atlases":["assets/img/acervo/pw_babyvegetaalt4stand2_0.png"],"acervo":{"nome":"BabyVegetaAlt4Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"e28dc27c4edfb2e40a41009e09036aae"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,54,18,27,1]]}},"tipo":"efeito"});

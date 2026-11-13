@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanadult3charge",{"id":"pw_gohanadult3charge","atlases":["assets/img/acervo/pw_gohanadult3charge_0.png"],"acervo":{"nome":"GohanAdult3Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"ed820a1572aaa9a45958036754aa3b8e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,51,14,26,1]]}},"tipo":"efeito"});

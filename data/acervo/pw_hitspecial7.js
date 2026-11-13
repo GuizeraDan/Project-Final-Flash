@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hitspecial7",{"id":"pw_hitspecial7","atlases":["assets/img/acervo/pw_hitspecial7_0.png"],"acervo":{"nome":"HitSpecial7","fonte":"Power Warrior","tipo":"efeitos","origem":"920aae5ba067e364f90af2ba426cd0a4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,44,16,22,1]]}},"tipo":"efeito"});

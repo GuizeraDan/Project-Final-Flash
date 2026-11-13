@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingvegeta",{"id":"pw_kingvegeta","atlases":["assets/img/acervo/pw_kingvegeta_0.png"],"acervo":{"nome":"KingVegeta","fonte":"Power Warrior","tipo":"efeitos","origem":"a1ace38f9e85eb946afc2ad8cb2c3e3a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,55,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosteleport",{"id":"pw_chaosteleport","atlases":["assets/img/acervo/pw_chaosteleport_0.png"],"acervo":{"nome":"ChaosTeleport","fonte":"Power Warrior","tipo":"cenarios","origem":"a130184f26e77dc408c9684822758386"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,29,26,14,1],[0,53,0,51,22,26,11,1]]}}});

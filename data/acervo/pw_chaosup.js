@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosup",{"id":"pw_chaosup","atlases":["assets/img/acervo/pw_chaosup_0.png"],"acervo":{"nome":"ChaosUp","fonte":"Power Warrior","tipo":"cenarios","origem":"34021f7b40a45dd4da116ac3ca739598"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,37,10,18,1],[0,21,0,20,37,10,18,1],[0,42,0,20,37,10,18,1]]}}});

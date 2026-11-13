@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whitecircle",{"id":"pw_whitecircle","atlases":["assets/img/acervo/pw_whitecircle_0.png"],"acervo":{"nome":"whiteCircle","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets59.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,511,511,256,511,1]]}}});

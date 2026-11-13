@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohankidaltextra",{"id":"pw_gohankidaltextra","atlases":["assets/img/acervo/pw_gohankidaltextra_0.png"],"acervo":{"nome":"GohanKidAltExtra","fonte":"Power Warrior","tipo":"interface","origem":"38f1edba02521fd42986fec85100837e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,28,22,14,1]]}}});

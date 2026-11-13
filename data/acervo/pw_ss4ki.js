@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ss4ki",{"id":"pw_ss4ki","atlases":["assets/img/acervo/pw_ss4ki_0.png"],"acervo":{"nome":"SS4Ki","fonte":"Power Warrior","tipo":"efeitos","origem":"18a422413d389e84cb24a70142cd0802"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,78,48,39,1],[0,97,0,96,78,48,39,1],[0,194,0,96,78,48,39,1]]}},"tipo":"efeito"});

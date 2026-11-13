@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetadamaged6stun",{"id":"pw_vegetadamaged6stun","atlases":["assets/img/acervo/pw_vegetadamaged6stun_0.png"],"acervo":{"nome":"VegetaDamaged6Stun","fonte":"Power Warrior","tipo":"efeitos","origem":"944cf9a2920c6334bbac665bfe32e66f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,51,14,26,1]]}},"tipo":"efeito"});

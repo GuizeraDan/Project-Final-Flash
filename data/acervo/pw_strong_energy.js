@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_strong_energy",{"id":"pw_strong_energy","atlases":["assets/img/acervo/pw_strong_energy_0.png"],"acervo":{"nome":"Strong Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"558d3063536ac9f4b9a5a4c903a5c626"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,43,18,22,1]]}},"tipo":"efeito"});

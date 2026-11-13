@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bills",{"id":"pw_bills","atlases":["assets/img/acervo/pw_bills_0.png"],"acervo":{"nome":"Bills","fonte":"Power Warrior","tipo":"efeitos","origem":"be5daae98ffd5474f99b6f36fde5b571"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,55,20,28,1]]}},"tipo":"efeito"});

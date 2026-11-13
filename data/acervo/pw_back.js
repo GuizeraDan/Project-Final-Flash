@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_back",{"id":"pw_back","atlases":["assets/img/acervo/pw_back_0.png"],"acervo":{"nome":"Back","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets2.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,100,50,100,1]]}},"tipo":"efeito"});

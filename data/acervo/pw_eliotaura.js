@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_eliotaura",{"id":"pw_eliotaura","atlases":["assets/img/acervo/pw_eliotaura_0.png"],"acervo":{"nome":"EliotAura","fonte":"Power Warrior","tipo":"efeitos","origem":"140ca05bd74a8f2409976b97235f2669"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,83,44,42,1],[0,90,0,91,81,46,40,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vwspecial11",{"id":"pw_vwspecial11","atlases":["assets/img/acervo/pw_vwspecial11_0.png"],"acervo":{"nome":"VWSpecial11","fonte":"Power Warrior","tipo":"efeitos","origem":"6a6531573544d1f4f9df82306158530d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,46,19,20,1]]}},"tipo":"efeito"});

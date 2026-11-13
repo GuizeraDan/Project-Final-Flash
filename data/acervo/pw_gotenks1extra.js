@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenks1extra",{"id":"pw_gotenks1extra","atlases":["assets/img/acervo/pw_gotenks1extra_0.png"],"acervo":{"nome":"Gotenks1Extra","fonte":"Power Warrior","tipo":"efeitos","origem":"03381dd013c1c7f449da4b7e06795954"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,45,13,22,1],[0,27,0,26,45,13,22,1]]}},"tipo":"efeito"});

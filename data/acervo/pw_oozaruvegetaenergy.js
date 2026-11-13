@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oozaruvegetaenergy",{"id":"pw_oozaruvegetaenergy","atlases":["assets/img/acervo/pw_oozaruvegetaenergy_0.png"],"acervo":{"nome":"OozaruVegetaEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"ca1fd8471b4a1224781e48d0ff3938d0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,173,176,104,88,1]]}},"tipo":"efeito"});

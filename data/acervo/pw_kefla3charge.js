@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kefla3charge",{"id":"pw_kefla3charge","atlases":["assets/img/acervo/pw_kefla3charge_0.png"],"acervo":{"nome":"Kefla3Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"8e0ec5804a25fc940bdc3a6f654690d4"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,56,15,29,1],[0,30,0,31,53,16,26,1]]}},"tipo":"efeito"});

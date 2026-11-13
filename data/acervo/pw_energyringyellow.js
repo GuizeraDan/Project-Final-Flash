@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyringyellow",{"id":"pw_energyringyellow","atlases":["assets/img/acervo/pw_energyringyellow_0.png"],"acervo":{"nome":"EnergyRingYellow","fonte":"Power Warrior","tipo":"efeitos","origem":"38c1ffe1470c8ba45a7a5445686f7827"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,40,15,20,1]]}},"tipo":"efeito"});

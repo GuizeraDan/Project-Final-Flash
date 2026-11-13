@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shallotstatus",{"id":"pw_shallotstatus","atlases":["assets/img/acervo/pw_shallotstatus_0.png"],"acervo":{"nome":"ShallotStatus","fonte":"Power Warrior","tipo":"efeitos","origem":"a5aebd141f3e196459cad9d444ec6c2e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,39,18,20,1],[0,36,0,54,23,27,12,1]]}},"tipo":"efeito"});

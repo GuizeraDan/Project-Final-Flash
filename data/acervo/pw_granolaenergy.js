@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_granolaenergy",{"id":"pw_granolaenergy","atlases":["assets/img/acervo/pw_granolaenergy_0.png"],"acervo":{"nome":"GranolaEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"8d9c2c67c0d58a3428923a19fa36b769"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,39,0,24,53,12,26,1],[0,0,0,38,53,12,26,1]]}},"tipo":"efeito"});

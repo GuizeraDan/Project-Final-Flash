@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolysuperalt",{"id":"pw_brolysuperalt","atlases":["assets/img/acervo/pw_brolysuperalt_0.png"],"acervo":{"nome":"BrolySuperAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"306caf71dd689ab4c8a2bffd9f4b2eb0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

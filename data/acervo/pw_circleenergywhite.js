@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_circleenergywhite",{"id":"pw_circleenergywhite","atlases":["assets/img/acervo/pw_circleenergywhite_0.png"],"acervo":{"nome":"CircleEnergyWhite","fonte":"Power Warrior","tipo":"efeitos","origem":"3bef353f260285647892586bc9639ef9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,63,63,32,32,1]]}},"tipo":"efeito"});

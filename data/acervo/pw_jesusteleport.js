@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jesusteleport",{"id":"pw_jesusteleport","atlases":["assets/img/acervo/pw_jesusteleport_0.png"],"acervo":{"nome":"JesusTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"4e24be2a613000143aba4b4caea81542"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

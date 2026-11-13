@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetagt4energy2",{"id":"pw_vegetagt4energy2","atlases":["assets/img/acervo/pw_vegetagt4energy2_0.png"],"acervo":{"nome":"VegetaGT4Energy2","fonte":"Power Warrior","tipo":"efeitos","origem":"4dbaeead48660cf4baf68c801d40b150"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,49,26,24,1]]}},"tipo":"efeito"});

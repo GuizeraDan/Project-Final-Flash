@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetaswl1select",{"id":"pw_gogetaswl1select","atlases":["assets/img/acervo/pw_gogetaswl1select_0.png"],"acervo":{"nome":"GogetaSwl1Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,58,14,29,1]]}}});

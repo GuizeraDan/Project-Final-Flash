@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_lazer_09",{"id":"pw_lazer_09","atlases":["assets/img/acervo/pw_lazer_09_0.png"],"acervo":{"nome":"lazer_09","fonte":"Power Warrior","tipo":"cenarios","origem":"b2a7091a4b31ab44bb59fd62c4d51389"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,326,1056,163,528,1]]}}});

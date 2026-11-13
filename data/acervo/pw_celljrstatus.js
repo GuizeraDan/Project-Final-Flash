@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_celljrstatus",{"id":"pw_celljrstatus","atlases":["assets/img/acervo/pw_celljrstatus_0.png"],"acervo":{"nome":"CellJrStatus","fonte":"Power Warrior","tipo":"efeitos","origem":"a0a72f315342bb145836e9f36c5fcbcc"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,29,0,43,34,22,17,1],[0,0,0,28,36,14,18,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_freebattle",{"id":"pw_freebattle","atlases":["assets/img/acervo/pw_freebattle_0.png"],"acervo":{"nome":"FreeBattle","fonte":"Power Warrior","tipo":"efeitos","origem":"399cd479b4dbbf04f95efd9f57cb50e5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,467,355,234,355,1]]}},"tipo":"efeito"});

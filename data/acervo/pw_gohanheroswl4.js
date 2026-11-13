@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanheroswl4",{"id":"pw_gohanheroswl4","atlases":["assets/img/acervo/pw_gohanheroswl4_0.png"],"acervo":{"nome":"GohanHeroSwl4","fonte":"Power Warrior","tipo":"efeitos","origem":"37404cad344c7d64593c07347e035997"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

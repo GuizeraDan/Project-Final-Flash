@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockxeno3energy",{"id":"pw_bardockxeno3energy","atlases":["assets/img/acervo/pw_bardockxeno3energy_0.png"],"acervo":{"nome":"BardockXeno3Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"fdef1f32a3160d440b66a26501230bbc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,48,23,24,1]]}},"tipo":"efeito"});

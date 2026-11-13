@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_grid",{"id":"pw_grid","atlases":["assets/img/acervo/pw_grid_0.png"],"acervo":{"nome":"grid","fonte":"Power Warrior","tipo":"efeitos","origem":"974942f222441804da1bc32f5bcc9143"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,16,1]]}},"tipo":"efeito"});

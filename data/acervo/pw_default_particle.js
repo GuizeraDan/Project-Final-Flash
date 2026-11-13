@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_default_particle",{"id":"pw_default_particle","atlases":["assets/img/acervo/pw_default_particle_0.png"],"acervo":{"nome":"Default-Particle","fonte":"Power Warrior","tipo":"efeitos","origem":"0000000000000000f000000000000000"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,61,61,30,61,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dyspoenergy2",{"id":"pw_dyspoenergy2","atlases":["assets/img/acervo/pw_dyspoenergy2_0.png"],"acervo":{"nome":"DyspoEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"c49e443fc3734d54e97caa68c82affd6"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,40,0,31,54,16,27,1],[0,0,0,39,54,16,27,1]]}},"tipo":"efeito"});

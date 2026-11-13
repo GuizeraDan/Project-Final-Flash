@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokusuperguard",{"id":"pw_gokusuperguard","atlases":["assets/img/acervo/pw_gokusuperguard_0.png"],"acervo":{"nome":"GokuSuperGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets11.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,49,16,24,1]]}},"tipo":"efeito"});

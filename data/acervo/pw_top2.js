@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_top2",{"id":"pw_top2","atlases":["assets/img/acervo/pw_top2_0.png"],"acervo":{"nome":"Top2","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets30.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,256,55,128,55,1]]}},"tipo":"efeito"});

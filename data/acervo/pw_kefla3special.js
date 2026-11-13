@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kefla3special",{"id":"pw_kefla3special","atlases":["assets/img/acervo/pw_kefla3special_0.png"],"acervo":{"nome":"Kefla3Special","fonte":"Power Warrior","tipo":"efeitos","origem":"55affa0b29a32424a9e79adef872609e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,50,15,25,1],[0,31,0,35,49,18,24,1]]}},"tipo":"efeito"});

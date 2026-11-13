@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellgolden5",{"id":"pw_cellgolden5","atlases":["assets/img/acervo/pw_cellgolden5_0.png"],"acervo":{"nome":"CellGolden5","fonte":"Power Warrior","tipo":"efeitos","origem":"6bbb0414c237f89408eedd16f428437f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

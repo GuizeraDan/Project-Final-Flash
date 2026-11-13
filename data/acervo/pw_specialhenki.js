@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialhenki",{"id":"pw_specialhenki","atlases":["assets/img/acervo/pw_specialhenki_0.png"],"acervo":{"nome":"SpecialHenki","fonte":"Power Warrior","tipo":"efeitos","origem":"33886258f16e8944cac9916926557ee9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,283,0,220,190,131,93,1],[0,0,0,282,236,162,113,1]]}},"tipo":"efeito"});

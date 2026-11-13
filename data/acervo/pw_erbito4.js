@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erbito4",{"id":"pw_erbito4","atlases":["assets/img/acervo/pw_erbito4_0.png"],"acervo":{"nome":"Erbito4","fonte":"Power Warrior","tipo":"efeitos","origem":"fbc94ed415326fc4aafa02f181e6985d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cabba1charge",{"id":"pw_cabba1charge","atlases":["assets/img/acervo/pw_cabba1charge_0.png"],"acervo":{"nome":"Cabba1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"c00b8f5a45ea78443a98b16867c2e62f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,45,12,22,1],[0,26,0,25,45,12,22,1]]}},"tipo":"efeito"});

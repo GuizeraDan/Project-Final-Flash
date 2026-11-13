@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetaswl5attack12",{"id":"pw_gogetaswl5attack12","atlases":["assets/img/acervo/pw_gogetaswl5attack12_0.png"],"acervo":{"nome":"GogetaSwl5Attack12","fonte":"Power Warrior","tipo":"efeitos","origem":"059c567a60acf99469e8a8630392a158"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,51,13,25,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tapionenergy",{"id":"pw_tapionenergy","atlases":["assets/img/acervo/pw_tapionenergy_0.png"],"acervo":{"nome":"TapionEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"e72000d3e3790e9498b99e7d936d87ba"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,38,0,34,49,17,24,1],[0,0,0,37,49,17,24,1]]}},"tipo":"efeito"});

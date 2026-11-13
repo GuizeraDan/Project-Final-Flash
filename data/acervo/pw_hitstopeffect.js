@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hitstopeffect",{"id":"pw_hitstopeffect","atlases":["assets/img/acervo/pw_hitstopeffect_0.png"],"acervo":{"nome":"HitStopEffect","fonte":"Power Warrior","tipo":"efeitos","origem":"8281b802a01972041abcce6a212c3c50"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,99,97,50,48,1]]}},"tipo":"efeito"});

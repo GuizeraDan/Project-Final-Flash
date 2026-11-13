@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android17stand2",{"id":"pw_android17stand2","atlases":["assets/img/acervo/pw_android17stand2_0.png"],"acervo":{"nome":"Android17Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"d3478a3162a49054b94a67a688921953"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,44,10,22,1]]}},"tipo":"efeito"});

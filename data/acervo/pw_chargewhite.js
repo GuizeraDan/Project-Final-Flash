@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chargewhite",{"id":"pw_chargewhite","atlases":["assets/img/acervo/pw_chargewhite_0.png"],"acervo":{"nome":"ChargeWhite","fonte":"Power Warrior","tipo":"efeitos","origem":"6b7342363ef66214395a8e219cc4b28a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,48,21,24,1]]}},"tipo":"efeito"});

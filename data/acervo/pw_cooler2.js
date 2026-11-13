@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cooler2",{"id":"pw_cooler2","atlases":["assets/img/acervo/pw_cooler2_0.png"],"acervo":{"nome":"Cooler2","fonte":"Power Warrior","tipo":"efeitos","origem":"2c2c9d17ce04f72419156406252c5c07"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

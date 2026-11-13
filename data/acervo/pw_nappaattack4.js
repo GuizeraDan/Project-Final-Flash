@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nappaattack4",{"id":"pw_nappaattack4","atlases":["assets/img/acervo/pw_nappaattack4_0.png"],"acervo":{"nome":"NappaAttack4","fonte":"Power Warrior","tipo":"efeitos","origem":"48f49d49d64ad3e449034623ebe0231b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,44,0,59,49,30,24,1],[0,0,0,43,58,22,29,1]]}},"tipo":"efeito"});

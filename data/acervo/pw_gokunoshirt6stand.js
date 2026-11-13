@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokunoshirt6stand",{"id":"pw_gokunoshirt6stand","atlases":["assets/img/acervo/pw_gokunoshirt6stand_0.png"],"acervo":{"nome":"GokuNoShirt6Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"d42ecac1bcb3f6947b36a58e7f6416b7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,54,16,27,1]]}},"tipo":"efeito"});

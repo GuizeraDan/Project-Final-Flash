@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_btn_home",{"id":"pw_btn_home","atlases":["assets/img/acervo/pw_btn_home_0.png"],"acervo":{"nome":"btn_home","fonte":"Power Warrior","tipo":"interface","origem":"ff08cf8efbfc04f7fb8fc1577874a02e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,120,125,60,62,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaulswmajin2_5",{"id":"pw_vegetaulswmajin2_5","atlases":["assets/img/acervo/pw_vegetaulswmajin2_5_0.png"],"acervo":{"nome":"VegetaUlswMajin2.5","fonte":"Power Warrior","tipo":"efeitos","origem":"3b2ebb370e8cf35488088d4e21c4b20a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

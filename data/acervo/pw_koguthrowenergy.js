@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_koguthrowenergy",{"id":"pw_koguthrowenergy","atlases":["assets/img/acervo/pw_koguthrowenergy_0.png"],"acervo":{"nome":"KoguThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"f403b8ebf5c1de74db7d2ad3f3c23a02"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,39,16,20,1]]}},"tipo":"efeito"});

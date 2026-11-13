@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gasenergy4",{"id":"pw_gasenergy4","atlases":["assets/img/acervo/pw_gasenergy4_0.png"],"acervo":{"nome":"GasEnergy4","fonte":"Power Warrior","tipo":"efeitos","origem":"d816f4a2734fbfc4299083172040a475"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,46,15,23,1],[0,34,0,30,41,15,20,1]]}},"tipo":"efeito"});

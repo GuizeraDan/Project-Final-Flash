@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkssuper1",{"id":"pw_trunkssuper1","atlases":["assets/img/acervo/pw_trunkssuper1_0.png"],"acervo":{"nome":"TrunksSuper1","fonte":"Power Warrior","tipo":"efeitos","origem":"455b285dcf006834da9eecf8e07c60f1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,49,16,24,1]]}},"tipo":"efeito"});

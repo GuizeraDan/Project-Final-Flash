@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energyblastred",{"id":"pw_energyblastred","atlases":["assets/img/acervo/pw_energyblastred_0.png"],"acervo":{"nome":"EnergyBlastRed","fonte":"Power Warrior","tipo":"efeitos","origem":"bd7890fe6df394b4f8ba3620e9e8893d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,21,22,10,1],[0,44,0,43,21,22,10,1]]}},"tipo":"efeito"});

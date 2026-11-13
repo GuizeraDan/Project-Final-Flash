@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudaimakidselect",{"id":"pw_gokudaimakidselect","atlases":["assets/img/acervo/pw_gokudaimakidselect_0.png"],"acervo":{"nome":"GokuDaimaKidSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,47,15,24,1]]}}});

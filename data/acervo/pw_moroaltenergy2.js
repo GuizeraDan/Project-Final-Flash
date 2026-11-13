@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moroaltenergy2",{"id":"pw_moroaltenergy2","atlases":["assets/img/acervo/pw_moroaltenergy2_0.png"],"acervo":{"nome":"MoroAltEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"74b5fea81edc9a741b3ce8479e749a18"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,68,0,50,64,29,31,1],[0,0,0,67,64,29,32,1]]}},"tipo":"efeito"});

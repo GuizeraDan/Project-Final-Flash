@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_death_ball_export5",{"id":"pw_death_ball_export5","atlases":["assets/img/acervo/pw_death_ball_export5_0.png"],"acervo":{"nome":"death_ball-export5","fonte":"Power Warrior","tipo":"efeitos","origem":"66c1ad93ff96f4a48bb8a3de886ededb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,230,230,115,115,1]]}},"tipo":"efeito"});

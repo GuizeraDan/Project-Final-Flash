@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetagt4special9",{"id":"pw_vegetagt4special9","atlases":["assets/img/acervo/pw_vegetagt4special9_0.png"],"acervo":{"nome":"VegetaGT4Special9","fonte":"Power Warrior","tipo":"efeitos","origem":"93e5f85bccf138346baceb23415149ca"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,47,28,23,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nail",{"id":"pw_nail","atlases":["assets/img/acervo/pw_nail_0.png"],"acervo":{"nome":"Nail","fonte":"Power Warrior","tipo":"efeitos","origem":"79095a9677a19d3448774aa2e22df000"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,58,21,29,1]]}},"tipo":"efeito"});

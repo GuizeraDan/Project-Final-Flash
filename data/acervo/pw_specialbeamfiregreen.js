@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbeamfiregreen",{"id":"pw_specialbeamfiregreen","atlases":["assets/img/acervo/pw_specialbeamfiregreen_0.png"],"acervo":{"nome":"SpecialBeamFireGreen","fonte":"Power Warrior","tipo":"efeitos","origem":"2da153f8a6076774b9e7bccb7f1a5dfb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,36,28,18,1]]}},"tipo":"efeito"});

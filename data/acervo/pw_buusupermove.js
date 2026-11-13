@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusupermove",{"id":"pw_buusupermove","atlases":["assets/img/acervo/pw_buusupermove_0.png"],"acervo":{"nome":"BuuSuperMove","fonte":"Power Warrior","tipo":"efeitos","origem":"d84b92d65ff0d1d4e835e3dd8949996b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

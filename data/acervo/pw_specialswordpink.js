@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialswordpink",{"id":"pw_specialswordpink","atlases":["assets/img/acervo/pw_specialswordpink_0.png"],"acervo":{"nome":"SpecialSwordPink","fonte":"Power Warrior","tipo":"efeitos","origem":"9dd1dec8bd45a194cad8e50b27afdd60"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,113,159,56,80,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_friezablackselect",{"id":"pw_friezablackselect","atlases":["assets/img/acervo/pw_friezablackselect_0.png"],"acervo":{"nome":"FriezaBlackSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,47,15,47,1]]}}});

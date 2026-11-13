@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oren1stand",{"id":"pw_oren1stand","atlases":["assets/img/acervo/pw_oren1stand_0.png"],"acervo":{"nome":"Oren1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"a19f4fe20a1fc844cb3917defd513852"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,52,12,26,1]]}},"tipo":"efeito"});

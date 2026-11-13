@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma2special4",{"id":"pw_gamma2special4","atlases":["assets/img/acervo/pw_gamma2special4_0.png"],"acervo":{"nome":"Gamma2Special4","fonte":"Power Warrior","tipo":"efeitos","origem":"845deffbf0bf8e742b45527da1800daf"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,44,19,22,1]]}},"tipo":"efeito"});

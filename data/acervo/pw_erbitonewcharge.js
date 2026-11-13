@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erbitonewcharge",{"id":"pw_erbitonewcharge","atlases":["assets/img/acervo/pw_erbitonewcharge_0.png"],"acervo":{"nome":"ErbitoNewCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"83fd296b023e0ec458b65a2e194acee1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,42,15,21,1]]}},"tipo":"efeito"});

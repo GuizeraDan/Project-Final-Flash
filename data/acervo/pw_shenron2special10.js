@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shenron2special10",{"id":"pw_shenron2special10","atlases":["assets/img/acervo/pw_shenron2special10_0.png"],"acervo":{"nome":"Shenron2Special10","fonte":"Power Warrior","tipo":"efeitos","origem":"7849caf0f7cafc74cbc5650bd35b0790"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,61,77,25,38,1]]}},"tipo":"efeito"});

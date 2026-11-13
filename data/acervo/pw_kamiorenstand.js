@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamiorenstand",{"id":"pw_kamiorenstand","atlases":["assets/img/acervo/pw_kamiorenstand_0.png"],"acervo":{"nome":"KamiorenStand","fonte":"Power Warrior","tipo":"efeitos","origem":"7a246709afcd2f84c93fa13fe5173a97"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,52,14,26,1]]}},"tipo":"efeito"});

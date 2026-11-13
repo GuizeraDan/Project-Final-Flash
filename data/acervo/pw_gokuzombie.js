@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuzombie",{"id":"pw_gokuzombie","atlases":["assets/img/acervo/pw_gokuzombie_0.png"],"acervo":{"nome":"GokuZombie","fonte":"Power Warrior","tipo":"efeitos","origem":"c6f9e7a9acf61b94faa00a81b0210e49"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

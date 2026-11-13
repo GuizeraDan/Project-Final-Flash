@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialsnowman",{"id":"pw_specialsnowman","atlases":["assets/img/acervo/pw_specialsnowman_0.png"],"acervo":{"nome":"SpecialSnowman","fonte":"Power Warrior","tipo":"efeitos","origem":"648bf7003c7cf8646a5fc8a7d2bf8518"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,84,26,42,1]]}},"tipo":"efeito"});

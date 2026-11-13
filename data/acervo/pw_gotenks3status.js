@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenks3status",{"id":"pw_gotenks3status","atlases":["assets/img/acervo/pw_gotenks3status_0.png"],"acervo":{"nome":"Gotenks3Status","fonte":"Power Warrior","tipo":"efeitos","origem":"b7fd8b0b8246daa46b7b941714988ffd"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,42,20,21,1],[0,40,0,63,30,32,15,1]]}},"tipo":"efeito"});

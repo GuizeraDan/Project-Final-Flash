@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksarmor1",{"id":"pw_trunksarmor1","atlases":["assets/img/acervo/pw_trunksarmor1_0.png"],"acervo":{"nome":"TrunksArmor1","fonte":"Power Warrior","tipo":"efeitos","origem":"2f69da35ab2c78048a2491d3db8a380e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cauliflaguard",{"id":"pw_cauliflaguard","atlases":["assets/img/acervo/pw_cauliflaguard_0.png"],"acervo":{"nome":"CauliflaGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"f0de123cd4585e740a5d1f8cee89a88f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,47,14,24,1]]}}});

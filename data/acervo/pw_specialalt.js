@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialalt",{"id":"pw_specialalt","atlases":["assets/img/acervo/pw_specialalt_0.png"],"acervo":{"nome":"SpecialAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"ee7594f696314264da7e76c0dd1ee4bb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,34,13,17,1]]}},"tipo":"efeito"});

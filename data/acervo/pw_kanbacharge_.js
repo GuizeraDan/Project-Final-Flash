@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanbacharge_",{"id":"pw_kanbacharge_","atlases":["assets/img/acervo/pw_kanbacharge__0.png"],"acervo":{"nome":"KanbaCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"bd3c6a3e9112c1c4e8b77d9bc54fff99"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,53,66,26,33,1],[0,54,0,53,66,26,33,1]]}},"tipo":"efeito"});

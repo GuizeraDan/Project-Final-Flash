@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_babyblackstand",{"id":"pw_babyblackstand","atlases":["assets/img/acervo/pw_babyblackstand_0.png"],"acervo":{"nome":"BabyBlackStand","fonte":"Power Warrior","tipo":"efeitos","origem":"9536961cc5365544cb086b2c8c0342dd"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,55,14,28,1]]}},"tipo":"efeito"});

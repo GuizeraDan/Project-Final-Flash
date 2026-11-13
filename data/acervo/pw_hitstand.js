@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hitstand",{"id":"pw_hitstand","atlases":["assets/img/acervo/pw_hitstand_0.png"],"acervo":{"nome":"HitStand","fonte":"Power Warrior","tipo":"efeitos","origem":"d20c5492db69991488e62b05d9ce1539"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,49,12,24,1],[0,25,0,35,45,18,22,1]]}},"tipo":"efeito"});

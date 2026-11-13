@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_attackdown",{"id":"pw_attackdown","atlases":["assets/img/acervo/pw_attackdown_0.png"],"acervo":{"nome":"AttackDown","fonte":"Power Warrior","tipo":"efeitos","origem":"a8e527b98f683514c9a06517c6b3494a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,58,0,49,48,24,24,1],[0,0,0,57,55,28,28,1]]}},"tipo":"efeito"});

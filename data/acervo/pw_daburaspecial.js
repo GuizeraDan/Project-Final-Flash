@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_daburaspecial",{"id":"pw_daburaspecial","atlases":["assets/img/acervo/pw_daburaspecial_0.png"],"acervo":{"nome":"DaburaSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"2d73e7d66a8c0ac45afbecf7cfb917bc"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,45,20,22,1],[0,42,0,38,40,19,20,1]]}},"tipo":"efeito"});

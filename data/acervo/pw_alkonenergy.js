@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_alkonenergy",{"id":"pw_alkonenergy","atlases":["assets/img/acervo/pw_alkonenergy_0.png"],"acervo":{"nome":"AlkonEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"1b6382ccdc917fc42bdf4cef2f045ef0"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,44,21,22,1],[0,43,0,40,44,20,22,1]]}},"tipo":"efeito"});

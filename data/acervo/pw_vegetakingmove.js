@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetakingmove",{"id":"pw_vegetakingmove","atlases":["assets/img/acervo/pw_vegetakingmove_0.png"],"acervo":{"nome":"VegetaKingMove","fonte":"Power Warrior","tipo":"efeitos","origem":"50489cb69861fd54193ce9c504e1fd20"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,53,18,26,1],[0,36,0,47,44,24,22,1]]}},"tipo":"efeito"});

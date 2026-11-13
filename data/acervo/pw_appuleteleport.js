@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_appuleteleport",{"id":"pw_appuleteleport","atlases":["assets/img/acervo/pw_appuleteleport_0.png"],"acervo":{"nome":"AppuleTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"99dc583e4319d5f4f9b3676163bcbf03"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,42,41,21,20,1],[0,0,0,33,48,16,24,1]]}},"tipo":"efeito"});

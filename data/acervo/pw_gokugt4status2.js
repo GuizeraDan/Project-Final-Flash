@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokugt4status2",{"id":"pw_gokugt4status2","atlases":["assets/img/acervo/pw_gokugt4status2_0.png"],"acervo":{"nome":"GokuGT4Status2","fonte":"Power Warrior","tipo":"efeitos","origem":"e22a0879fc671734e95d40e8a0e73a9c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,50,31,24,1]]}},"tipo":"efeito"});

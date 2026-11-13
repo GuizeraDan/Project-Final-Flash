@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_paikuhanselect",{"id":"pw_paikuhanselect","atlases":["assets/img/acervo/pw_paikuhanselect_0.png"],"acervo":{"nome":"PaikuhanSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,57,61,28,61,1]]}}});

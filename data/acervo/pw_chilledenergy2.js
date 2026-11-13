@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chilledenergy2",{"id":"pw_chilledenergy2","atlases":["assets/img/acervo/pw_chilledenergy2_0.png"],"acervo":{"nome":"ChilledEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"6d4add018aff62d4889d19861f36de55"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,45,15,22,1]]}},"tipo":"efeito"});

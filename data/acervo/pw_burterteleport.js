@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_burterteleport",{"id":"pw_burterteleport","atlases":["assets/img/acervo/pw_burterteleport_0.png"],"acervo":{"nome":"BurterTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"8ba94596256914246b3b1a0cbf546b1d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,47,45,24,22,1],[0,0,0,35,48,18,24,1]]}},"tipo":"efeito"});

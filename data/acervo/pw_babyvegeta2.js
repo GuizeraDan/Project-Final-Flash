@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_babyvegeta2",{"id":"pw_babyvegeta2","atlases":["assets/img/acervo/pw_babyvegeta2_0.png"],"acervo":{"nome":"BabyVegeta2","fonte":"Power Warrior","tipo":"efeitos","origem":"3f62658ba274c8b469f87bd9babfecac"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jesusguard",{"id":"pw_jesusguard","atlases":["assets/img/acervo/pw_jesusguard_0.png"],"acervo":{"nome":"JesusGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"8d4bb8ec058e7c44483db366f88c8710"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,48,14,24,1],[0,29,0,28,48,14,24,1]]}},"tipo":"efeito"});

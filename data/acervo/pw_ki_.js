@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ki_",{"id":"pw_ki_","atlases":["assets/img/acervo/pw_ki__0.png"],"acervo":{"nome":"ki","fonte":"Power Warrior","tipo":"efeitos","origem":"31069ea2123cc4346a7503ee4b275cb1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,78,48,39,1],[0,97,0,96,78,48,39,1],[0,194,0,96,78,48,39,1]]}},"tipo":"efeito"});

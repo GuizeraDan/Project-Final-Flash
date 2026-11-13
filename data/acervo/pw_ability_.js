@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ability_",{"id":"pw_ability_","atlases":["assets/img/acervo/pw_ability__0.png"],"acervo":{"nome":"Ability","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets0.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,448,448,224,448,1]]}}});

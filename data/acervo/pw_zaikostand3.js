@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zaikostand3",{"id":"pw_zaikostand3","atlases":["assets/img/acervo/pw_zaikostand3_0.png"],"acervo":{"nome":"ZaikoStand3","fonte":"Power Warrior","tipo":"efeitos","origem":"21acc4a111d96da4d90a41c514f50423"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,58,16,29,1],[0,32,0,37,57,18,28,1]]}},"tipo":"efeito"});

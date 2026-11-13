@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android17gt1energy2",{"id":"pw_android17gt1energy2","atlases":["assets/img/acervo/pw_android17gt1energy2_0.png"],"acervo":{"nome":"Android17GT1Energy2","fonte":"Power Warrior","tipo":"efeitos","origem":"4097b7866c7250c4a8a87e4d9d912fa9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,48,24,24,1]]}},"tipo":"efeito"});

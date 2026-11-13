@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_granolaguard",{"id":"pw_granolaguard","atlases":["assets/img/acervo/pw_granolaguard_0.png"],"acervo":{"nome":"GranolaGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"712a0923c10128649aac32c0d5d36a69"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,48,14,24,1]]}}});

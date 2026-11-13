@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamicharge",{"id":"pw_kamicharge","atlases":["assets/img/acervo/pw_kamicharge_0.png"],"acervo":{"nome":"KamiCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"9fb9963e9c21fd4478400f6a9db306c9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,44,0,39,44,20,22,1],[0,0,0,43,44,24,22,1]]}},"tipo":"efeito"});

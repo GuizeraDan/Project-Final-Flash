@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_selectcharacterbutton",{"id":"pw_selectcharacterbutton","atlases":["assets/img/acervo/pw_selectcharacterbutton_0.png"],"acervo":{"nome":"selectCharacterButton","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,44,22,44,1]]}}});

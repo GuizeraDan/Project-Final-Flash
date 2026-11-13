@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guldocharge",{"id":"pw_guldocharge","atlases":["assets/img/acervo/pw_guldocharge_0.png"],"acervo":{"nome":"GuldoCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"baa2cffa77aee0e499c7977fec9807ce"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,38,17,19,1]]}},"tipo":"efeito"});

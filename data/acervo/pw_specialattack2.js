@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialattack2",{"id":"pw_specialattack2","atlases":["assets/img/acervo/pw_specialattack2_0.png"],"acervo":{"nome":"SpecialAttack2","fonte":"Power Warrior","tipo":"efeitos","origem":"81e7b8682ace4ae478aac3a0ca510898"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,116,101,58,56,1]]}},"tipo":"efeito"});

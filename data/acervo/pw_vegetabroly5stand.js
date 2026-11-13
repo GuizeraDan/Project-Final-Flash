@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetabroly5stand",{"id":"pw_vegetabroly5stand","atlases":["assets/img/acervo/pw_vegetabroly5stand_0.png"],"acervo":{"nome":"VegetaBroly5Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"e56a1464dbfb15a49a805e5c08ddba8d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,53,12,26,1]]}},"tipo":"efeito"});

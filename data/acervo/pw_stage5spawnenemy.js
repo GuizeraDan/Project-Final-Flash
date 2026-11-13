@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stage5spawnenemy",{"id":"pw_stage5spawnenemy","atlases":["assets/img/acervo/pw_stage5spawnenemy_0.png"],"acervo":{"nome":"Stage5SpawnEnemy","fonte":"Power Warrior","tipo":"cenarios","origem":"7e7601f8031fb704b8045a4d3c71f59e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,256,256,128,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_garlick2stand",{"id":"pw_garlick2stand","atlases":["assets/img/acervo/pw_garlick2stand_0.png"],"acervo":{"nome":"Garlick2Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"419c9b096060667429f57ec1482a1e50"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,30,0,36,49,18,24,1],[0,0,0,29,52,14,26,1]]}},"tipo":"efeito"});

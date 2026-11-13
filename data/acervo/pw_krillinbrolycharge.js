@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_krillinbrolycharge",{"id":"pw_krillinbrolycharge","atlases":["assets/img/acervo/pw_krillinbrolycharge_0.png"],"acervo":{"nome":"KrillinBrolyCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"a86c999d5d06cc64a957d7b7b397f96d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,54,28,27,1]]}},"tipo":"efeito"});

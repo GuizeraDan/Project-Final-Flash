@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buukidstand2",{"id":"pw_buukidstand2","atlases":["assets/img/acervo/pw_buukidstand2_0.png"],"acervo":{"nome":"BuuKidStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"abfbc977ae39db24cbc8f14575920e82"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,23,38,12,18,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zangya",{"id":"pw_zangya","atlases":["assets/img/acervo/pw_zangya_0.png"],"acervo":{"nome":"Zangya","fonte":"Power Warrior","tipo":"efeitos","origem":"895c156e696f5174ea8571e9b842be96"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

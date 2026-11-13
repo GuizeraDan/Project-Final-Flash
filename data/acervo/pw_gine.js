@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gine",{"id":"pw_gine","atlases":["assets/img/acervo/pw_gine_0.png"],"acervo":{"nome":"Gine","fonte":"Power Warrior","tipo":"efeitos","origem":"0bb20dd6c6ef53f45b3e0d0706852551"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,76,29,38,1]]}},"tipo":"efeito"});

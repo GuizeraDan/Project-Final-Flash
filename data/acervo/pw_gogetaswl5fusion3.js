@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetaswl5fusion3",{"id":"pw_gogetaswl5fusion3","atlases":["assets/img/acervo/pw_gogetaswl5fusion3_0.png"],"acervo":{"nome":"GogetaSwl5Fusion3","fonte":"Power Warrior","tipo":"efeitos","origem":"0165ac54c50a0184ca88829a01e0f240"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,44,46,15,1]]}},"tipo":"efeito"});

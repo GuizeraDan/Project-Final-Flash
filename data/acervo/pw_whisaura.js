@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whisaura",{"id":"pw_whisaura","atlases":["assets/img/acervo/pw_whisaura_0.png"],"acervo":{"nome":"WhisAura","fonte":"Power Warrior","tipo":"efeitos","origem":"d2bb4f556bac8ba4a92f66e868a21b8b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,94,107,49,54,1],[0,95,0,92,107,43,54,1]]}},"tipo":"efeito"});

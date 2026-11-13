@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_btn_red_reset",{"id":"pw_btn_red_reset","atlases":["assets/img/acervo/pw_btn_red_reset_0.png"],"acervo":{"nome":"btn_red_reset","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}}});

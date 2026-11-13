@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bulmadoc",{"id":"pw_bulmadoc","atlases":["assets/img/acervo/pw_bulmadoc_0.png"],"acervo":{"nome":"BulmaDoc","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets10.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,194,14,194,1]]}},"tipo":"efeito"});

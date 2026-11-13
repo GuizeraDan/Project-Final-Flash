@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zamasu",{"id":"pw_zamasu","atlases":["assets/img/acervo/pw_zamasu_0.png"],"acervo":{"nome":"Zamasu","fonte":"Power Warrior","tipo":"efeitos","origem":"f5da4363e06d93041a30b116ae01e925"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

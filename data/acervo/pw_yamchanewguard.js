@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yamchanewguard",{"id":"pw_yamchanewguard","atlases":["assets/img/acervo/pw_yamchanewguard_0.png"],"acervo":{"nome":"YamchaNewGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"bd7adacab1b7431459a69f4f247c497a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,30,0,34,40,17,18,1],[0,0,0,29,45,14,22,1]]}},"tipo":"efeito"});

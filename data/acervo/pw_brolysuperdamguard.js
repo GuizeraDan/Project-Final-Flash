@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolysuperdamguard",{"id":"pw_brolysuperdamguard","atlases":["assets/img/acervo/pw_brolysuperdamguard_0.png"],"acervo":{"nome":"BrolySuperDamGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"d0859d20e15f25a498e5d45fc7299b61"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,54,14,27,1]]}},"tipo":"efeito"});

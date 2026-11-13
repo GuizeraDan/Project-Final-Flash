@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ellipse",{"id":"pw_ellipse","atlases":["assets/img/acervo/pw_ellipse_0.png"],"acervo":{"nome":"ellipse","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,138,256,138,1]]}},"tipo":"efeito"});

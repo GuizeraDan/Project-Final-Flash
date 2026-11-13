@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_krillin",{"id":"pw_krillin","atlases":["assets/img/acervo/pw_krillin_0.png"],"acervo":{"nome":"Krillin","fonte":"Power Warrior","tipo":"efeitos","origem":"4dc226356a2b5b74b89f9adbd5ae2280"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

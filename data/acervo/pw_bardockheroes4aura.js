@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockheroes4aura",{"id":"pw_bardockheroes4aura","atlases":["assets/img/acervo/pw_bardockheroes4aura_0.png"],"acervo":{"nome":"BardockHeroes4Aura","fonte":"Power Warrior","tipo":"efeitos","origem":"8b7fd587611f5a748906ca09deca6b5a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,106,92,53,46,1]]}},"tipo":"efeito"});

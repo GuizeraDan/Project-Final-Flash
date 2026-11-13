@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yellowbutton",{"id":"pw_yellowbutton","atlases":["assets/img/acervo/pw_yellowbutton_0.png"],"acervo":{"nome":"YellowButton","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets1.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,351,155,176,155,1]]}}});

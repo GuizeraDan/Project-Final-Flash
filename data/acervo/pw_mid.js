@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mid",{"id":"pw_mid","atlases":["assets/img/acervo/pw_mid_0.png"],"acervo":{"nome":"Mid","fonte":"Power Warrior","tipo":"efeitos","origem":"d1418bb4a5c9b1347acdeebd3cc8fdd0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,45,17,22,1]]}},"tipo":"efeito"});

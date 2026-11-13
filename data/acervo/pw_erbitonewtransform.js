@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erbitonewtransform",{"id":"pw_erbitonewtransform","atlases":["assets/img/acervo/pw_erbitonewtransform_0.png"],"acervo":{"nome":"ErbitoNewTransform","fonte":"Power Warrior","tipo":"efeitos","origem":"4be6bf1fce9ad4b469ca48235fb0eabb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,45,16,24,1]]}},"tipo":"efeito"});

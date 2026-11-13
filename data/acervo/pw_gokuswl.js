@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuswl",{"id":"pw_gokuswl","atlases":["assets/img/acervo/pw_gokuswl_0.png"],"acervo":{"nome":"GokuSwl","fonte":"Power Warrior","tipo":"efeitos","origem":"08c02599301116b4c9ae56006e4ab6e8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,56,20,28,1]]}},"tipo":"efeito"});

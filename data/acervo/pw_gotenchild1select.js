@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenchild1select",{"id":"pw_gotenchild1select","atlases":["assets/img/acervo/pw_gotenchild1select_0.png"],"acervo":{"nome":"GotenChild1Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,45,19,22,1]]}}});

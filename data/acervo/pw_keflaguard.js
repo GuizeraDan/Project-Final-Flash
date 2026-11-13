@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_keflaguard",{"id":"pw_keflaguard","atlases":["assets/img/acervo/pw_keflaguard_0.png"],"acervo":{"nome":"KeflaGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"eace08e7d6ae85e4ab2af42a90c403d8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,51,17,26,1]]}}});

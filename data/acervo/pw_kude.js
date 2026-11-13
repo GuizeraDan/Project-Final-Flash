@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kude",{"id":"pw_kude","atlases":["assets/img/acervo/pw_kude_0.png"],"acervo":{"nome":"Kude","fonte":"Power Warrior","tipo":"efeitos","origem":"22830056eddc68a4baca62f97355366a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

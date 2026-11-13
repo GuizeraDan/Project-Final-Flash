@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged4special",{"id":"pw_gokudamaged4special","atlases":["assets/img/acervo/pw_gokudamaged4special_0.png"],"acervo":{"nome":"GokuDamaged4Special","fonte":"Power Warrior","tipo":"efeitos","origem":"ed89b4a9073828d47bc799c9a438f7d9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,53,15,26,1]]}},"tipo":"efeito"});

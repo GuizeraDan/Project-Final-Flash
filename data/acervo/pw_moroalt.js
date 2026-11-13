@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moroalt",{"id":"pw_moroalt","atlases":["assets/img/acervo/pw_moroalt_0.png"],"acervo":{"nome":"MoroAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"cb133e165818ee44db90e5dcbd1d9ec0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,56,20,28,1]]}},"tipo":"efeito"});

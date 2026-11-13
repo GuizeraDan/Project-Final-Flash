@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialballspark",{"id":"pw_specialballspark","atlases":["assets/img/acervo/pw_specialballspark_0.png"],"acervo":{"nome":"SpecialBallSpark","fonte":"Power Warrior","tipo":"efeitos","origem":"d61ea65d8501fa444950d2c196549bd3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,59,26,30,1]]}},"tipo":"efeito"});

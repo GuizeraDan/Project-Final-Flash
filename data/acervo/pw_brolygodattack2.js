@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolygodattack2",{"id":"pw_brolygodattack2","atlases":["assets/img/acervo/pw_brolygodattack2_0.png"],"acervo":{"nome":"BrolyGodAttack2","fonte":"Power Warrior","tipo":"efeitos","origem":"58e3a2bae1cb08440bf905cf7890fbe3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,59,62,34,35,1]]}},"tipo":"efeito"});

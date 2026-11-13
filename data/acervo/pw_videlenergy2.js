@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_videlenergy2",{"id":"pw_videlenergy2","atlases":["assets/img/acervo/pw_videlenergy2_0.png"],"acervo":{"nome":"VidelEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"dc20e58bcb703a440ab522724bbd39f6"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,27,0,19,45,10,22,1],[0,0,0,26,45,13,22,1]]}},"tipo":"efeito"});

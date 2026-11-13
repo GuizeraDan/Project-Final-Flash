@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yellow",{"id":"pw_yellow","atlases":["assets/img/acervo/pw_yellow_0.png"],"acervo":{"nome":"yellow","fonte":"Power Warrior","tipo":"efeitos","origem":"df03302736f6e7b49b731efcee9b5cd6"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,53,22,26,11,1],[0,54,0,53,22,26,11,1]]}},"tipo":"efeito"});

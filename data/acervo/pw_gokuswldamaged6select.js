@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuswldamaged6select",{"id":"pw_gokuswldamaged6select","atlases":["assets/img/acervo/pw_gokuswldamaged6select_0.png"],"acervo":{"nome":"GokuSwlDamaged6Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,56,14,28,1]]}}});

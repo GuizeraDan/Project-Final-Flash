@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buuevilstand",{"id":"pw_buuevilstand","atlases":["assets/img/acervo/pw_buuevilstand_0.png"],"acervo":{"nome":"BuuEvilStand","fonte":"Power Warrior","tipo":"efeitos","origem":"1e08df0f3b04d35478486d1b291c5200"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,32,54,16,27,1],[0,0,0,33,54,16,27,1]]}},"tipo":"efeito"});

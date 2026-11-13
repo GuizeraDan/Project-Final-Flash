@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fashanewmove",{"id":"pw_fashanewmove","atlases":["assets/img/acervo/pw_fashanewmove_0.png"],"acervo":{"nome":"FashaNewMove","fonte":"Power Warrior","tipo":"efeitos","origem":"5291de305923b764b9e1b0b7c9a4682c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,26,0,43,33,22,16,1],[0,0,0,25,46,12,23,1]]}},"tipo":"efeito"});

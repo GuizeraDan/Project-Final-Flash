@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanhero1charge2",{"id":"pw_gohanhero1charge2","atlases":["assets/img/acervo/pw_gohanhero1charge2_0.png"],"acervo":{"nome":"GohanHero1Charge2","fonte":"Power Warrior","tipo":"efeitos","origem":"37b6b548bb5017e4d9727b091f0c15de"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,52,14,26,1]]}},"tipo":"efeito"});

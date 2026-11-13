@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zamasuability",{"id":"pw_zamasuability","atlases":["assets/img/acervo/pw_zamasuability_0.png"],"acervo":{"nome":"ZamasuAbility","fonte":"Power Warrior","tipo":"efeitos","origem":"c650e6bdc9df26e43bac251e30f82ac1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,39,0,30,42,15,21,1],[0,0,0,38,43,19,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gogetaswlmove",{"id":"pw_gogetaswlmove","atlases":["assets/img/acervo/pw_gogetaswlmove_0.png"],"acervo":{"nome":"GogetaSwlMove","fonte":"Power Warrior","tipo":"efeitos","origem":"593c929670909154692b539eee0119f9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,50,18,25,1],[0,36,0,42,42,21,21,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolochristmas",{"id":"pw_piccolochristmas","atlases":["assets/img/acervo/pw_piccolochristmas_0.png"],"acervo":{"nome":"PiccoloChristmas","fonte":"Power Warrior","tipo":"efeitos","origem":"6f7ff84428b994f44bcae0a3d8b56999"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

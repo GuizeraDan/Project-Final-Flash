@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokunoshirt6hit",{"id":"pw_gokunoshirt6hit","atlases":["assets/img/acervo/pw_gokunoshirt6hit_0.png"],"acervo":{"nome":"GokuNoShirt6Hit","fonte":"Power Warrior","tipo":"efeitos","origem":"3192eae781972574c8a7bec967304be9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,47,16,24,1]]}},"tipo":"efeito"});

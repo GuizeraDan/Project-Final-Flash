@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanba1teleport",{"id":"pw_kanba1teleport","atlases":["assets/img/acervo/pw_kanba1teleport_0.png"],"acervo":{"nome":"Kanba1Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"f2ab51d6b4f9b8b44a3b8a8ddac671b3"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

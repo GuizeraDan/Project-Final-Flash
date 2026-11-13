@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_paragusextra",{"id":"pw_paragusextra","atlases":["assets/img/acervo/pw_paragusextra_0.png"],"acervo":{"nome":"ParagusExtra","fonte":"Power Warrior","tipo":"efeitos","origem":"23662fc883c172a4994b178f474f2dc0"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,48,0,46,41,23,20,1],[0,0,0,47,41,24,20,1]]}},"tipo":"efeito"});

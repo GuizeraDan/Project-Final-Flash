@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ginyuki",{"id":"pw_ginyuki","atlases":["assets/img/acervo/pw_ginyuki_0.png"],"acervo":{"nome":"GinyuKi","fonte":"Power Warrior","tipo":"efeitos","origem":"f16ec041fdf2c71429de14a0fe36ed6c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,78,48,39,1],[0,97,0,96,78,48,39,1],[0,194,0,96,78,48,39,1]]}},"tipo":"efeito"});

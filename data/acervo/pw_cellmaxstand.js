@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellmaxstand",{"id":"pw_cellmaxstand","atlases":["assets/img/acervo/pw_cellmaxstand_0.png"],"acervo":{"nome":"CellMaxStand","fonte":"Power Warrior","tipo":"efeitos","origem":"580de14915c7ce34697593ba5f486333"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,68,20,34,1],[0,41,0,48,64,24,32,1]]}},"tipo":"efeito"});

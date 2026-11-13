@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guard",{"id":"pw_guard","atlases":["assets/img/acervo/pw_guard_0.png"],"acervo":{"nome":"Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"16021182ae7704644ac46c614d9e8e26"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,49,15,24,1]]}},"tipo":"efeito"});

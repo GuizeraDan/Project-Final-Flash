@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanba3energy2",{"id":"pw_kanba3energy2","atlases":["assets/img/acervo/pw_kanba3energy2_0.png"],"acervo":{"nome":"Kanba3Energy2","fonte":"Power Warrior","tipo":"efeitos","origem":"eaef10b0b4685324d902f7e1e8d53923"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,71,35,36,18,1]]}},"tipo":"efeito"});

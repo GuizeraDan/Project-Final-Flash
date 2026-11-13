@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamo",{"id":"pw_bergamo","atlases":["assets/img/acervo/pw_bergamo_0.png"],"acervo":{"nome":"Bergamo","fonte":"Power Warrior","tipo":"efeitos","origem":"3f32737822bfdea43bbd39a59b4defce"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingcoldspecialcomet",{"id":"pw_kingcoldspecialcomet","atlases":["assets/img/acervo/pw_kingcoldspecialcomet_0.png"],"acervo":{"nome":"KingColdSpecialComet","fonte":"Power Warrior","tipo":"efeitos","origem":"00505ee6bbe524f4bb4b55bc5798ddeb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,89,44,44,1]]}},"tipo":"efeito"});

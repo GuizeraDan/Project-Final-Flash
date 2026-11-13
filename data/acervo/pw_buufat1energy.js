@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buufat1energy",{"id":"pw_buufat1energy","atlases":["assets/img/acervo/pw_buufat1energy_0.png"],"acervo":{"nome":"BuuFat1Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"aba482c31d27d244288828559b1a1dd8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,54,48,27,24,1],[0,55,0,52,48,26,24,1]]}},"tipo":"efeito"});

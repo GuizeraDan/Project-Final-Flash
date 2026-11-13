@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksnormal",{"id":"pw_trunksnormal","atlases":["assets/img/acervo/pw_trunksnormal_0.png"],"acervo":{"nome":"TrunksNormal","fonte":"Power Warrior","tipo":"efeitos","origem":"95537e3005debde45abdea6127ac95cc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,55,20,28,1]]}},"tipo":"efeito"});

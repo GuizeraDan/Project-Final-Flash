@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma1charge",{"id":"pw_gamma1charge","atlases":["assets/img/acervo/pw_gamma1charge_0.png"],"acervo":{"nome":"Gamma1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"bd322f453b07e504382a10302cea8a04"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,41,18,20,1]]}},"tipo":"efeito"});

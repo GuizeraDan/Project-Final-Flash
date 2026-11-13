@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_basil",{"id":"pw_basil","atlases":["assets/img/acervo/pw_basil_0.png"],"acervo":{"nome":"Basil","fonte":"Power Warrior","tipo":"efeitos","origem":"aff3bac2dc6b7ae409a3f95d97e2e52e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

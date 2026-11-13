@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialswordblue",{"id":"pw_specialswordblue","atlases":["assets/img/acervo/pw_specialswordblue_0.png"],"acervo":{"nome":"SpecialSwordBlue","fonte":"Power Warrior","tipo":"efeitos","origem":"e367d55ef4166c2439e9eed9d5ab1c3d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,113,160,56,80,1]]}},"tipo":"efeito"});

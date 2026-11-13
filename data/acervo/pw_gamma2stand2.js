@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma2stand2",{"id":"pw_gamma2stand2","atlases":["assets/img/acervo/pw_gamma2stand2_0.png"],"acervo":{"nome":"Gamma2Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"0f48f0cb1bcdf8c4a9bcfe70fe9984af"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,46,13,23,1]]}},"tipo":"efeito"});

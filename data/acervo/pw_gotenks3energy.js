@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenks3energy",{"id":"pw_gotenks3energy","atlases":["assets/img/acervo/pw_gotenks3energy_0.png"],"acervo":{"nome":"Gotenks3Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"c098f2aebf8a4354db7dc77375ed4022"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,48,0,41,47,20,24,1],[0,0,0,47,47,24,24,1]]}},"tipo":"efeito"});

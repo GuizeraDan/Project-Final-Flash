@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenksstand",{"id":"pw_gotenksstand","atlases":["assets/img/acervo/pw_gotenksstand_0.png"],"acervo":{"nome":"GotenksStand","fonte":"Power Warrior","tipo":"efeitos","origem":"05e34078ee121ca4eabd8e30bdcdb6da"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,25,0,29,45,14,22,1],[0,0,0,24,48,12,24,1]]}},"tipo":"efeito"});

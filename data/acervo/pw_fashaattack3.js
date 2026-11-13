@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fashaattack3",{"id":"pw_fashaattack3","atlases":["assets/img/acervo/pw_fashaattack3_0.png"],"acervo":{"nome":"FashaAttack3","fonte":"Power Warrior","tipo":"efeitos","origem":"78d8c60e0f607614ca2df783b3bc4ebe"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,33,44,16,22,1],[0,0,0,35,44,18,22,1]]}},"tipo":"efeito"});

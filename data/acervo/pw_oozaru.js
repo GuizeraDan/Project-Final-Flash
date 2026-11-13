@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oozaru",{"id":"pw_oozaru","atlases":["assets/img/acervo/pw_oozaru_0.png"],"acervo":{"nome":"Oozaru","fonte":"Power Warrior","tipo":"efeitos","origem":"4d37f512de91a7f498fe35b7615e19a2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetanoshirt6select",{"id":"pw_vegetanoshirt6select","atlases":["assets/img/acervo/pw_vegetanoshirt6select_0.png"],"acervo":{"nome":"VegetaNoShirt6Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,41,17,41,1]]}}});

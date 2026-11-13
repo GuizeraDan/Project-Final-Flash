@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksmovement",{"id":"pw_trunksmovement","atlases":["assets/img/acervo/pw_trunksmovement_0.png"],"acervo":{"nome":"TrunksMovement","fonte":"Power Warrior","tipo":"efeitos","origem":"d750c0f4b014b5d428e55fcc66c2b220"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,40,0,37,36,18,18,1],[0,0,0,39,40,20,20,1]]}},"tipo":"efeito"});

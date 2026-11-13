@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohankidnamekextra2",{"id":"pw_gohankidnamekextra2","atlases":["assets/img/acervo/pw_gohankidnamekextra2_0.png"],"acervo":{"nome":"GohanKidNamekExtra2","fonte":"Power Warrior","tipo":"efeitos","origem":"01046a8503780144aaa56ad707d0b25b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,40,44,22,1]]}},"tipo":"efeito"});

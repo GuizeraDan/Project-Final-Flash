@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetascoutcharge",{"id":"pw_vegetascoutcharge","atlases":["assets/img/acervo/pw_vegetascoutcharge_0.png"],"acervo":{"nome":"VegetaScoutCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"93157e0ef96181b43a5925ab48768e19"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,49,16,24,1]]}},"tipo":"efeito"});

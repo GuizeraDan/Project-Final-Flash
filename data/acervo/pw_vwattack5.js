@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vwattack5",{"id":"pw_vwattack5","atlases":["assets/img/acervo/pw_vwattack5_0.png"],"acervo":{"nome":"VWAttack5","fonte":"Power Warrior","tipo":"efeitos","origem":"14e86a57f612e2e4eb431b5d3a51f798"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,44,20,22,1],[0,42,0,41,44,20,22,1]]}},"tipo":"efeito"});

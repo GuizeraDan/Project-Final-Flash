@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_character1ability2",{"id":"pw_character1ability2","atlases":["assets/img/acervo/pw_character1ability2_0.png"],"acervo":{"nome":"Character1Ability2","fonte":"Power Warrior","tipo":"efeitos","origem":"e91cd33a814255d4faf236a4a8ccae4b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,52,18,26,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buuevilmove",{"id":"pw_buuevilmove","atlases":["assets/img/acervo/pw_buuevilmove_0.png"],"acervo":{"nome":"BuuEvilMove","fonte":"Power Warrior","tipo":"efeitos","origem":"65881dcf769e92d4cb14a7e706c6edf3"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,48,18,24,1],[0,38,0,48,43,24,22,1]]}},"tipo":"efeito"});

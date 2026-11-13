@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yamchanewstand",{"id":"pw_yamchanewstand","atlases":["assets/img/acervo/pw_yamchanewstand_0.png"],"acervo":{"nome":"YamchaNewStand","fonte":"Power Warrior","tipo":"efeitos","origem":"b6c1cda69297dbd408f0b510e784b7c9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,49,14,24,1],[0,29,0,32,43,16,22,1]]}},"tipo":"efeito"});

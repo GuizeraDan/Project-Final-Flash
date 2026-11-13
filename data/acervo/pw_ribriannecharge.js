@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ribriannecharge",{"id":"pw_ribriannecharge","atlases":["assets/img/acervo/pw_ribriannecharge_0.png"],"acervo":{"nome":"RibrianneCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"876fd46d02073884793ca602fd1fc308"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,44,14,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android14special",{"id":"pw_android14special","atlases":["assets/img/acervo/pw_android14special_0.png"],"acervo":{"nome":"Android14Special","fonte":"Power Warrior","tipo":"efeitos","origem":"e6bbf4739850b0549aa7d292294375a0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,39,16,20,1]]}},"tipo":"efeito"});

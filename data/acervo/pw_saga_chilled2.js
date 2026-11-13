@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_saga_chilled2",{"id":"pw_saga_chilled2","atlases":["assets/img/acervo/pw_saga_chilled2_0.png"],"acervo":{"nome":"Saga Chilled2","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets3.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,106,103,53,103,1]]}},"tipo":"efeito"});

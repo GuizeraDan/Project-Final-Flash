@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tiencell",{"id":"pw_tiencell","atlases":["assets/img/acervo/pw_tiencell_0.png"],"acervo":{"nome":"TienCell","fonte":"Power Warrior","tipo":"efeitos","origem":"930c856a484229545bd9e180c58338dd"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

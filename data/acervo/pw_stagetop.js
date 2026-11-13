@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stagetop",{"id":"pw_stagetop","atlases":["assets/img/acervo/pw_stagetop_0.png"],"acervo":{"nome":"StageTop","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets25.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1105,123,552,62,1]]}}});

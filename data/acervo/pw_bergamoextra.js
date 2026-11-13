@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamoextra",{"id":"pw_bergamoextra","atlases":["assets/img/acervo/pw_bergamoextra_0.png"],"acervo":{"nome":"BergamoExtra","fonte":"Power Warrior","tipo":"efeitos","origem":"61c282eb3e7bf014f99ff8d2163715b9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,49,18,24,1]]}},"tipo":"efeito"});

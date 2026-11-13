@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frieza5throwenergy2",{"id":"pw_frieza5throwenergy2","atlases":["assets/img/acervo/pw_frieza5throwenergy2_0.png"],"acervo":{"nome":"Frieza5ThrowEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"e2804f6a3ea3ab749bdae7d068da7d7f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,39,26,20,1]]}},"tipo":"efeito"});

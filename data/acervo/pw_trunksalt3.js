@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunksalt3",{"id":"pw_trunksalt3","atlases":["assets/img/acervo/pw_trunksalt3_0.png"],"acervo":{"nome":"TrunksAlt3","fonte":"Power Warrior","tipo":"efeitos","origem":"6c6f0caea085ad94290cf7e49bf1a2a2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,57,20,28,1]]}},"tipo":"efeito"});

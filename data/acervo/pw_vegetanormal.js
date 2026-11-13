@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetanormal",{"id":"pw_vegetanormal","atlases":["assets/img/acervo/pw_vegetanormal_0.png"],"acervo":{"nome":"VegetaNormal","fonte":"Power Warrior","tipo":"efeitos","origem":"f9a315a5549bb0f45aab733ac6fe7c68"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

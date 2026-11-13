@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cell3teleport",{"id":"pw_cell3teleport","atlases":["assets/img/acervo/pw_cell3teleport_0.png"],"acervo":{"nome":"Cell3Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"7742f1424156eb34aaf9423615e32c39"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,52,12,26,1],[0,25,0,21,47,10,24,1]]}},"tipo":"efeito"});

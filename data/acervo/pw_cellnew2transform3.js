@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellnew2transform3",{"id":"pw_cellnew2transform3","atlases":["assets/img/acervo/pw_cellnew2transform3_0.png"],"acervo":{"nome":"CellNew2Transform3","fonte":"Power Warrior","tipo":"efeitos","origem":"04c4ce8a4cafde24294e43cfea8d8731"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,58,14,29,1]]}},"tipo":"efeito"});

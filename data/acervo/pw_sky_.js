@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_sky_",{"id":"pw_sky_","atlases":["assets/img/acervo/pw_sky__0.png"],"acervo":{"nome":"sky","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets49.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,258,260,129,130,1]]}}});

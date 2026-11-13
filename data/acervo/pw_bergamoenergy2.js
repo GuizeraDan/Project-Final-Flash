@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamoenergy2",{"id":"pw_bergamoenergy2","atlases":["assets/img/acervo/pw_bergamoenergy2_0.png"],"acervo":{"nome":"BergamoEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"faa8be8d08366b94b8700981097b80e2"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,47,0,39,50,20,25,1],[0,0,0,46,57,26,32,1]]}},"tipo":"efeito"});

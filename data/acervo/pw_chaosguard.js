@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosguard",{"id":"pw_chaosguard","atlases":["assets/img/acervo/pw_chaosguard_0.png"],"acervo":{"nome":"ChaosGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"6531929c3f97c3448b34b6f3896f4b40"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,90,45,44,1],[0,91,0,25,37,13,18,1]]}}});

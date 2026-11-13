@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_transformstart",{"id":"pw_transformstart","atlases":["assets/img/acervo/pw_transformstart_0.png"],"acervo":{"nome":"TransformStart","fonte":"Power Warrior","tipo":"efeitos","origem":"54c4495ed4a92054483c84628741982e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,59,26,30,1]]}},"tipo":"efeito"});

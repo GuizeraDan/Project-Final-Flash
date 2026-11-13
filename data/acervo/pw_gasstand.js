@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gasstand",{"id":"pw_gasstand","atlases":["assets/img/acervo/pw_gasstand_0.png"],"acervo":{"nome":"GasStand","fonte":"Power Warrior","tipo":"efeitos","origem":"93ba57fb968871a4886c9d8c9925de13"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,38,0,26,49,13,24,1],[0,0,0,37,49,18,24,1]]}},"tipo":"efeito"});

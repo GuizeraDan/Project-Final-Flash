@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamostand",{"id":"pw_bergamostand","atlases":["assets/img/acervo/pw_bergamostand_0.png"],"acervo":{"nome":"BergamoStand","fonte":"Power Warrior","tipo":"efeitos","origem":"0d9c68d567664214988c74468e94191e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,51,15,26,1],[0,31,0,38,46,19,23,1]]}},"tipo":"efeito"});

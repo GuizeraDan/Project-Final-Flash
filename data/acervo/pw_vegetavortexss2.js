@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetavortexss2",{"id":"pw_vegetavortexss2","atlases":["assets/img/acervo/pw_vegetavortexss2_0.png"],"acervo":{"nome":"VegetaVortexSS2","fonte":"Power Warrior","tipo":"efeitos","origem":"3c69b003eabd85d4db8d42bffd5c23a3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

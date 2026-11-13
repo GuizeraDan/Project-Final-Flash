@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_inputfieldbackground",{"id":"pw_inputfieldbackground","atlases":["assets/img/acervo/pw_inputfieldbackground_0.png"],"acervo":{"nome":"InputFieldBackground","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets63.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,28,14,28,1]]}}});

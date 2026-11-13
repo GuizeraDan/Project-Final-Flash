@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_billsteleport",{"id":"pw_billsteleport","atlases":["assets/img/acervo/pw_billsteleport_0.png"],"acervo":{"nome":"BillsTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"c149fb1b67ef91f4a9e164aee744b23b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,29,26,14,1],[0,53,0,51,22,26,11,1]]}},"tipo":"efeito"});

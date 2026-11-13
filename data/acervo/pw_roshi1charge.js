@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_roshi1charge",{"id":"pw_roshi1charge","atlases":["assets/img/acervo/pw_roshi1charge_0.png"],"acervo":{"nome":"Roshi1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"29a7c74e0505f294f9f2474afd638734"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,46,21,23,1],[0,43,0,42,46,21,23,1]]}},"tipo":"efeito"});

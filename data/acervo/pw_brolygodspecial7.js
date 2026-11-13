@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolygodspecial7",{"id":"pw_brolygodspecial7","atlases":["assets/img/acervo/pw_brolygodspecial7_0.png"],"acervo":{"nome":"BrolyGodSpecial7","fonte":"Power Warrior","tipo":"efeitos","origem":"c90b276c8b27c0f4d8855b182652f494"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,55,61,28,30,1]]}},"tipo":"efeito"});

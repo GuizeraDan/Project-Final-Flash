@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged6stun",{"id":"pw_gokudamaged6stun","atlases":["assets/img/acervo/pw_gokudamaged6stun_0.png"],"acervo":{"nome":"GokuDamaged6Stun","fonte":"Power Warrior","tipo":"efeitos","origem":"848dad3a192e65940a4fcc15c7ae9c36"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,48,13,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_merus1stand",{"id":"pw_merus1stand","atlases":["assets/img/acervo/pw_merus1stand_0.png"],"acervo":{"nome":"Merus1Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"4f64dd10c719ebd448bca40b4e9f35ef"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,41,14,20,1]]}},"tipo":"efeito"});

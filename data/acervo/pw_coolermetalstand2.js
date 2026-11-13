@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_coolermetalstand2",{"id":"pw_coolermetalstand2","atlases":["assets/img/acervo/pw_coolermetalstand2_0.png"],"acervo":{"nome":"CoolerMetalStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"8d5ddc4df3b8f354f8b4fb895c40bf50"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,47,13,23,1]]}},"tipo":"efeito"});

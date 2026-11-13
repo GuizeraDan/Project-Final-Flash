@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fasha",{"id":"pw_fasha","atlases":["assets/img/acervo/pw_fasha_0.png"],"acervo":{"nome":"Fasha","fonte":"Power Warrior","tipo":"efeitos","origem":"ef84fd961e696cc4ba309805f49c03b0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

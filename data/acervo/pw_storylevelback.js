@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_storylevelback",{"id":"pw_storylevelback","atlases":["assets/img/acervo/pw_storylevelback_0.png"],"acervo":{"nome":"storyLevelBack","fonte":"Power Warrior","tipo":"efeitos","origem":"0d35cfda6aa78b944b6d0bd53f9caab0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,16,16,16,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolohero2stand",{"id":"pw_piccolohero2stand","atlases":["assets/img/acervo/pw_piccolohero2stand_0.png"],"acervo":{"nome":"PiccoloHero2Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"2ec17a7bd53471f448b051cb458feca3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,53,14,26,1]]}},"tipo":"efeito"});

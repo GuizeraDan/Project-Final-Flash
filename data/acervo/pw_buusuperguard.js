@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusuperguard",{"id":"pw_buusuperguard","atlases":["assets/img/acervo/pw_buusuperguard_0.png"],"acervo":{"nome":"BuuSuperGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"034a6e2d649a64044a379c26150bad33"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,53,10,26,1]]}},"tipo":"efeito"});

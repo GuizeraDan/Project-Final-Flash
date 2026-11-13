@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged2white",{"id":"pw_gokudamaged2white","atlases":["assets/img/acervo/pw_gokudamaged2white_0.png"],"acervo":{"nome":"GokuDamaged2White","fonte":"Power Warrior","tipo":"efeitos","origem":"f9afd5d534f876745900f7ebfac95ae3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,48,27,23,1]]}},"tipo":"efeito"});

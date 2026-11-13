@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_salza",{"id":"pw_salza","atlases":["assets/img/acervo/pw_salza_0.png"],"acervo":{"nome":"Salza","fonte":"Power Warrior","tipo":"efeitos","origem":"388bd1250f3f00d42b79d61d781a3602"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

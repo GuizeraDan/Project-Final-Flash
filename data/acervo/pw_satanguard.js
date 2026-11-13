@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_satanguard",{"id":"pw_satanguard","atlases":["assets/img/acervo/pw_satanguard_0.png"],"acervo":{"nome":"SatanGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"362f8ba62541b9c40a255f1443b786af"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,52,14,25,1],[0,28,0,27,49,14,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_toppo1special",{"id":"pw_toppo1special","atlases":["assets/img/acervo/pw_toppo1special_0.png"],"acervo":{"nome":"Toppo1Special","fonte":"Power Warrior","tipo":"efeitos","origem":"8b09a5ece34ec0547bdb706cbde4257f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,57,52,28,26,1]]}},"tipo":"efeito"});

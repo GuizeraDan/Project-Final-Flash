@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma1",{"id":"pw_gamma1","atlases":["assets/img/acervo/pw_gamma1_0.png"],"acervo":{"nome":"Gamma1","fonte":"Power Warrior","tipo":"efeitos","origem":"2606a78274b9ff64cb05d6e45e1043d5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

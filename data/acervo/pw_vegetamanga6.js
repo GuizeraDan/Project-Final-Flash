@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetamanga6",{"id":"pw_vegetamanga6","atlases":["assets/img/acervo/pw_vegetamanga6_0.png"],"acervo":{"nome":"VegetaManga6","fonte":"Power Warrior","tipo":"efeitos","origem":"e5ad79f4d4a9eda4b9603575db190bbc"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

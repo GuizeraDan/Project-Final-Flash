@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stage13top",{"id":"pw_stage13top","atlases":["assets/img/acervo/pw_stage13top_0.png"],"acervo":{"nome":"Stage13Top","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets29.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,287,256,287,1]]}}});

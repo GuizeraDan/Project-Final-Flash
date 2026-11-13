@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_broly2standing",{"id":"pw_broly2standing","atlases":["assets/img/acervo/pw_broly2standing_0.png"],"acervo":{"nome":"Broly2Standing","fonte":"Power Warrior","tipo":"efeitos","origem":"a26da119a155308429e250b8c02ec706"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,71,17,36,1]]}},"tipo":"efeito"});

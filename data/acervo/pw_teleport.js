@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_teleport",{"id":"pw_teleport","atlases":["assets/img/acervo/pw_teleport_0.png"],"acervo":{"nome":"Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"17a7c81f02c72304fbd22fe0ca974baf"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,22,0,26,51,13,26,1],[0,6,0,15,70,8,35,1],[0,0,0,5,78,2,39,1]]}},"tipo":"efeito"});

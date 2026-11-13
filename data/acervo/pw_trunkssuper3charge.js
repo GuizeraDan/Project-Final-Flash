@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_trunkssuper3charge",{"id":"pw_trunkssuper3charge","atlases":["assets/img/acervo/pw_trunkssuper3charge_0.png"],"acervo":{"nome":"TrunksSuper3Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"cd110f75497e01242a026f481fd127af"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,53,19,30,1]]}},"tipo":"efeito"});

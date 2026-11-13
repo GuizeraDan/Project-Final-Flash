@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_aurafocus",{"id":"pw_aurafocus","atlases":["assets/img/acervo/pw_aurafocus_0.png"],"acervo":{"nome":"AuraFocus","fonte":"Power Warrior","tipo":"efeitos","origem":"3539380ed376344468b2076809963649"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,60,0,57,75,28,38,1],[0,0,0,59,78,30,39,1]]}},"tipo":"efeito"});

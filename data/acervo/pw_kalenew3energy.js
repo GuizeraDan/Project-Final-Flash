@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kalenew3energy",{"id":"pw_kalenew3energy","atlases":["assets/img/acervo/pw_kalenew3energy_0.png"],"acervo":{"nome":"KaleNew3Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"d13ff7f6b0a7e694d990f97123536388"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,72,30,35,1],[0,47,0,50,71,25,36,1]]}},"tipo":"efeito"});

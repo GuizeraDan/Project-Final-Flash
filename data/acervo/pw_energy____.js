@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energy____",{"id":"pw_energy____","atlases":["assets/img/acervo/pw_energy_____0.png"],"acervo":{"nome":"Energy","fonte":"Power Warrior","tipo":"efeitos","origem":"eafed2dcb05708a4bb839504bb025c6f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,44,0,38,21,19,10,1],[0,0,0,43,21,22,10,1]]}},"tipo":"efeito"});

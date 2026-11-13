@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetadamaged6fly",{"id":"pw_vegetadamaged6fly","atlases":["assets/img/acervo/pw_vegetadamaged6fly_0.png"],"acervo":{"nome":"VegetaDamaged6Fly","fonte":"Power Warrior","tipo":"efeitos","origem":"3127af376b7bf5e44abf0fa310bcbe3d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,52,12,26,1]]}},"tipo":"efeito"});

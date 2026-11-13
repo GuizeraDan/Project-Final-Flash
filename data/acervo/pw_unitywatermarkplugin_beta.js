@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_unitywatermarkplugin_beta",{"id":"pw_unitywatermarkplugin_beta","atlases":["assets/img/acervo/pw_unitywatermarkplugin_beta_0.png"],"acervo":{"nome":"UnityWatermarkPlugin-beta","fonte":"Power Warrior","tipo":"cenarios","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,63,16,32,16,1]]}}});

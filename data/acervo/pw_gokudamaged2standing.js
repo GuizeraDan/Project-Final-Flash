@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged2standing",{"id":"pw_gokudamaged2standing","atlases":["assets/img/acervo/pw_gokudamaged2standing_0.png"],"acervo":{"nome":"GokuDamaged2Standing","fonte":"Power Warrior","tipo":"efeitos","origem":"51ef5533eae3bc341b3bc795e6e957b9"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,55,14,28,1]]}},"tipo":"efeito"});

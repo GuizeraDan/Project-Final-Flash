@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ginyucharge",{"id":"pw_ginyucharge","atlases":["assets/img/acervo/pw_ginyucharge_0.png"],"acervo":{"nome":"GinyuCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"a98f6609ac1737b4ea6651221ad5b354"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,43,14,22,1]]}},"tipo":"efeito"});

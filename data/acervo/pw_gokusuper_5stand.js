@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokusuper_5stand",{"id":"pw_gokusuper_5stand","atlases":["assets/img/acervo/pw_gokusuper_5stand_0.png"],"acervo":{"nome":"GokuSuper.5Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"217504f7e4ab4774bbb0d697df328e05"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,55,14,28,1]]}},"tipo":"efeito"});

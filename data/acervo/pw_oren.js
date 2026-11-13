@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oren",{"id":"pw_oren","atlases":["assets/img/acervo/pw_oren_0.png"],"acervo":{"nome":"Oren","fonte":"Power Warrior","tipo":"efeitos","origem":"023106a9775235a4986bfc4ad0abd92b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

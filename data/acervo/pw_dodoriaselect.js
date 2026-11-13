@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dodoriaselect",{"id":"pw_dodoriaselect","atlases":["assets/img/acervo/pw_dodoriaselect_0.png"],"acervo":{"nome":"DodoriaSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,51,24,51,1]]}}});

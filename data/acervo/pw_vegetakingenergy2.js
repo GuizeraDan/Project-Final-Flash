@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetakingenergy2",{"id":"pw_vegetakingenergy2","atlases":["assets/img/acervo/pw_vegetakingenergy2_0.png"],"acervo":{"nome":"VegetaKingEnergy2","fonte":"Power Warrior","tipo":"efeitos","origem":"1a83a794605e89144a1b47a90a9ba09a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,49,24,24,1]]}},"tipo":"efeito"});

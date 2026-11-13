@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaulsw3select",{"id":"pw_vegetaulsw3select","atlases":["assets/img/acervo/pw_vegetaulsw3select_0.png"],"acervo":{"nome":"VegetaUlsw3Select","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets8.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,56,17,28,1]]}}});

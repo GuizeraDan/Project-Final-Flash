@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_shallotstand",{"id":"pw_shallotstand","atlases":["assets/img/acervo/pw_shallotstand_0.png"],"acervo":{"nome":"ShallotStand","fonte":"Power Warrior","tipo":"efeitos","origem":"18364ab6a8b311b4ab0a84ff1c2b37c3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,47,17,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kanassiancharge",{"id":"pw_kanassiancharge","atlases":["assets/img/acervo/pw_kanassiancharge_0.png"],"acervo":{"nome":"KanassianCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"b7055391c759a7b4c86b43e2ba08d9df"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,41,16,20,1]]}},"tipo":"efeito"});

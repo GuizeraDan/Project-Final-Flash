@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuchristmas",{"id":"pw_gokuchristmas","atlases":["assets/img/acervo/pw_gokuchristmas_0.png"],"acervo":{"nome":"GokuChristmas","fonte":"Power Warrior","tipo":"cenarios","origem":"34f1536f49ac2764fb3e9828e52fad6f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,440,618,220,309,1]]}}});

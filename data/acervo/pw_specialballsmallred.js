@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialballsmallred",{"id":"pw_specialballsmallred","atlases":["assets/img/acervo/pw_specialballsmallred_0.png"],"acervo":{"nome":"SpecialBallSmallRed","fonte":"Power Warrior","tipo":"efeitos","origem":"bd699d6de9850944dbcc87d84f03ffe7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,26,12,13,1]]}},"tipo":"efeito"});

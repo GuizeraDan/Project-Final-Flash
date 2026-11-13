@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaulswmajinguard",{"id":"pw_vegetaulswmajinguard","atlases":["assets/img/acervo/pw_vegetaulswmajinguard_0.png"],"acervo":{"nome":"VegetaUlswMajinGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"fb63609f687320742b1f8092fb078b3c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,47,14,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ginyuspecial",{"id":"pw_ginyuspecial","atlases":["assets/img/acervo/pw_ginyuspecial_0.png"],"acervo":{"nome":"GinyuSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"29988131488b8014080a29195463642b"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,22,38,11,19,1],[0,0,0,33,44,16,22,1]]}},"tipo":"efeito"});

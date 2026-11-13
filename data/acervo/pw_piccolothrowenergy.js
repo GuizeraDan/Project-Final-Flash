@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolothrowenergy",{"id":"pw_piccolothrowenergy","atlases":["assets/img/acervo/pw_piccolothrowenergy_0.png"],"acervo":{"nome":"PiccoloThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"3deb53e1e40489246adc1dd350f589ff"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,40,23,20,1]]}},"tipo":"efeito"});

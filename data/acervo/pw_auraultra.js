@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_auraultra",{"id":"pw_auraultra","atlases":["assets/img/acervo/pw_auraultra_0.png"],"acervo":{"nome":"AuraUltra","fonte":"Power Warrior","tipo":"efeitos","origem":"c52b523d17559ad4aaf85c1c5a674316"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,80,34,40,1],[0,69,0,68,80,34,40,1]]}},"tipo":"efeito"});

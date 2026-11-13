@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimocharge2",{"id":"pw_mimocharge2","atlases":["assets/img/acervo/pw_mimocharge2_0.png"],"acervo":{"nome":"MimoCharge2","fonte":"Power Warrior","tipo":"efeitos","origem":"790f41cd88481ea418c1169e8ffa0575"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,46,15,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchristmas",{"id":"pw_gohanchristmas","atlases":["assets/img/acervo/pw_gohanchristmas_0.png"],"acervo":{"nome":"GohanChristmas","fonte":"Power Warrior","tipo":"efeitos","origem":"266238c9da32f5b44b34008090c585d4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_stage25",{"id":"pw_stage25","atlases":["assets/img/acervo/pw_stage25_0.png"],"acervo":{"nome":"Stage25","fonte":"Power Warrior","tipo":"cenarios","origem":"be28a4dcd5ef7d8479a40f5a077beb96"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,256,256,128,1]]}}});

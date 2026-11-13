@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_basilstand2",{"id":"pw_basilstand2","atlases":["assets/img/acervo/pw_basilstand2_0.png"],"acervo":{"nome":"BasilStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"179fcb3519720244e8d3fbd857602340"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,43,12,22,1]]}},"tipo":"efeito"});

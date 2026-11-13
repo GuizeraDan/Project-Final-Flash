@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dyspo",{"id":"pw_dyspo","atlases":["assets/img/acervo/pw_dyspo_0.png"],"acervo":{"nome":"Dyspo","fonte":"Power Warrior","tipo":"efeitos","origem":"bfc8a681880ae014ea460b5e6076962f"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

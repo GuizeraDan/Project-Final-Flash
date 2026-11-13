@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nappastand",{"id":"pw_nappastand","atlases":["assets/img/acervo/pw_nappastand_0.png"],"acervo":{"nome":"NappaStand","fonte":"Power Warrior","tipo":"efeitos","origem":"e0dd6bc7afd9e474397f60ca0bc55998"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,59,20,30,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_topnew",{"id":"pw_topnew","atlases":["assets/img/acervo/pw_topnew_0.png"],"acervo":{"nome":"topNew","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets34.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,671,194,336,97,1]]}}});

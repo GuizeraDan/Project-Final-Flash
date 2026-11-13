@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_satangrenade",{"id":"pw_satangrenade","atlases":["assets/img/acervo/pw_satangrenade_0.png"],"acervo":{"nome":"SatanGrenade","fonte":"Power Warrior","tipo":"efeitos","origem":"0cddf2d1bfc15e2439fb1d3a7aaf4a62"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,7,7,4,4,1]]}},"tipo":"efeito"});

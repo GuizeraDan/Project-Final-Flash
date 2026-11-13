@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oozaruvegetaguard",{"id":"pw_oozaruvegetaguard","atlases":["assets/img/acervo/pw_oozaruvegetaguard_0.png"],"acervo":{"nome":"OozaruVegetaGuard","fonte":"Power Warrior","tipo":"cenarios","origem":"20e0600e35d7f8c458502c3fa81c1cba"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,151,144,76,72,1]]}}});

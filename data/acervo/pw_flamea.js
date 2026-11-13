@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_flamea",{"id":"pw_flamea","atlases":["assets/img/acervo/pw_flamea_0.png"],"acervo":{"nome":"FlameA","fonte":"Power Warrior","tipo":"efeitos","origem":"8e3ff3e27ca4bc54dda56e89e0550dfa"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,128,1]]}},"tipo":"efeito"});

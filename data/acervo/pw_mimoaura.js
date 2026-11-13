@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimoaura",{"id":"pw_mimoaura","atlases":["assets/img/acervo/pw_mimoaura_0.png"],"acervo":{"nome":"MimoAura","fonte":"Power Warrior","tipo":"efeitos","origem":"f1ef047aa81f3a94c98b1be8802c44ef"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,77,0,75,84,38,42,1],[0,153,0,74,84,37,42,1],[0,0,0,76,86,38,43,1]]}},"tipo":"efeito"});

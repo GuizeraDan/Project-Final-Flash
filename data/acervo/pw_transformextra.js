@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_transformextra",{"id":"pw_transformextra","atlases":["assets/img/acervo/pw_transformextra_0.png"],"acervo":{"nome":"TransformExtra","fonte":"Power Warrior","tipo":"efeitos","origem":"f2b0457dbd2cc674ba0630b8c03ef779"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,56,16,29,1]]}},"tipo":"efeito"});

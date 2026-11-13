@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuxeno5charge_1",{"id":"pw_gokuxeno5charge_1","atlases":["assets/img/acervo/pw_gokuxeno5charge_1_0.png"],"acervo":{"nome":"GokuXeno5Charge 1","fonte":"Power Warrior","tipo":"efeitos","origem":"6e4beabc5f1d9324fadf64b441d0b7e2"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,54,30,27,1]]}},"tipo":"efeito"});

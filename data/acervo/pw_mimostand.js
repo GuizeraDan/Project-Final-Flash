@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimostand",{"id":"pw_mimostand","atlases":["assets/img/acervo/pw_mimostand_0.png"],"acervo":{"nome":"MimoStand","fonte":"Power Warrior","tipo":"efeitos","origem":"af6ecd67cb795ff4180cb38b3c3528ab"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,47,12,24,1]]}},"tipo":"efeito"});

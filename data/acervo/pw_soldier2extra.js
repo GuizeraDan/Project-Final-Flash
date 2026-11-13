@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_soldier2extra",{"id":"pw_soldier2extra","atlases":["assets/img/acervo/pw_soldier2extra_0.png"],"acervo":{"nome":"Soldier2Extra","fonte":"Power Warrior","tipo":"efeitos","origem":"64d602174e7ad164e8b784175ecb959a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,37,16,18,1]]}},"tipo":"efeito"});

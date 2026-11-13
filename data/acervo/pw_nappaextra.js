@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_nappaextra",{"id":"pw_nappaextra","atlases":["assets/img/acervo/pw_nappaextra_0.png"],"acervo":{"nome":"NappaExtra","fonte":"Power Warrior","tipo":"efeitos","origem":"8edb3289c14793944baa7607d04c423a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,46,19,23,1]]}},"tipo":"efeito"});

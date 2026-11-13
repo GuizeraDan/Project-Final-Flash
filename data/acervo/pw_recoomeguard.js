@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_recoomeguard",{"id":"pw_recoomeguard","atlases":["assets/img/acervo/pw_recoomeguard_0.png"],"acervo":{"nome":"RecoomeGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"800d9362cd2522744bd99294d2e62913"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,42,14,21,1]]}},"tipo":"efeito"});

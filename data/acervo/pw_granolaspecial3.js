@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_granolaspecial3",{"id":"pw_granolaspecial3","atlases":["assets/img/acervo/pw_granolaspecial3_0.png"],"acervo":{"nome":"GranolaSpecial3","fonte":"Power Warrior","tipo":"efeitos","origem":"1ca0f1fd57edabb40b56ee40e6e83e34"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,52,18,26,1]]}},"tipo":"efeito"});

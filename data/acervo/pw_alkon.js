@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_alkon",{"id":"pw_alkon","atlases":["assets/img/acervo/pw_alkon_0.png"],"acervo":{"nome":"Alkon","fonte":"Power Warrior","tipo":"efeitos","origem":"21c895a66c675bc48abacf28f0a00f6a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

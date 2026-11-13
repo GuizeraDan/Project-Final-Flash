@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudamaged6extra",{"id":"pw_gokudamaged6extra","atlases":["assets/img/acervo/pw_gokudamaged6extra_0.png"],"acervo":{"nome":"GokuDamaged6Extra","fonte":"Power Warrior","tipo":"efeitos","origem":"e77ba48128dcac44dbe5e55cd8301005"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,58,15,29,1]]}},"tipo":"efeito"});

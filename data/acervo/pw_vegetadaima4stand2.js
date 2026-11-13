@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetadaima4stand2",{"id":"pw_vegetadaima4stand2","atlases":["assets/img/acervo/pw_vegetadaima4stand2_0.png"],"acervo":{"nome":"VegetaDaima4Stand2","fonte":"Power Warrior","tipo":"efeitos","origem":"b712231121fa47444a018b8bcc927517"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,51,23,27,1]]}},"tipo":"efeito"});

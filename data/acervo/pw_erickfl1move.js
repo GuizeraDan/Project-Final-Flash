@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_erickfl1move",{"id":"pw_erickfl1move","atlases":["assets/img/acervo/pw_erickfl1move_0.png"],"acervo":{"nome":"ErickFL1Move","fonte":"Power Warrior","tipo":"efeitos","origem":"c7a7f00c7893e764886f7e9c33263732"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,38,0,44,40,22,20,1],[0,0,0,37,47,18,24,1]]}},"tipo":"efeito"});

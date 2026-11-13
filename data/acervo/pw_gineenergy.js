@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gineenergy",{"id":"pw_gineenergy","atlases":["assets/img/acervo/pw_gineenergy_0.png"],"acervo":{"nome":"GineEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"7dca57daf7d80cb4992b9a97ac9261aa"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,46,25,22,1],[0,36,0,37,45,18,22,1]]}},"tipo":"efeito"});

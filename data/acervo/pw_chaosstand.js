@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosstand",{"id":"pw_chaosstand","atlases":["assets/img/acervo/pw_chaosstand_0.png"],"acervo":{"nome":"ChaosStand","fonte":"Power Warrior","tipo":"cenarios","origem":"bf906212c7afd304bbb88156d809f20a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,24,0,20,37,10,18,1],[0,0,0,23,37,12,18,1]]}}});

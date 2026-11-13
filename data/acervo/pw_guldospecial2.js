@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guldospecial2",{"id":"pw_guldospecial2","atlases":["assets/img/acervo/pw_guldospecial2_0.png"],"acervo":{"nome":"GuldoSpecial2","fonte":"Power Warrior","tipo":"efeitos","origem":"214402c40e6b56941b9c195321f44434"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,34,14,17,1],[0,30,0,29,34,14,17,1]]}},"tipo":"efeito"});

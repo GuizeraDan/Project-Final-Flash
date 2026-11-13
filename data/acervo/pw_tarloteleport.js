@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tarloteleport",{"id":"pw_tarloteleport","atlases":["assets/img/acervo/pw_tarloteleport_0.png"],"acervo":{"nome":"TarloTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"436dd8bb138698b4d94bf91a49539896"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,69,23,34,12,1],[0,70,0,60,16,30,8,1]]}},"tipo":"efeito"});

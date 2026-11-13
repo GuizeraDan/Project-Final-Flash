@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bergamothrowenergy3",{"id":"pw_bergamothrowenergy3","atlases":["assets/img/acervo/pw_bergamothrowenergy3_0.png"],"acervo":{"nome":"BergamoThrowEnergy3","fonte":"Power Warrior","tipo":"efeitos","origem":"d5b16ca27fce18e4b86237a64d2d0410"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,45,20,22,1]]}},"tipo":"efeito"});

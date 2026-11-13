@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_paikuhanspecialbeam",{"id":"pw_paikuhanspecialbeam","atlases":["assets/img/acervo/pw_paikuhanspecialbeam_0.png"],"acervo":{"nome":"PaikuhanSpecialBeam","fonte":"Power Warrior","tipo":"efeitos","origem":"93984cb60708c41438b074d48483daa3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,88,8,44,4,1]]}},"tipo":"efeito"});

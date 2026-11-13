@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_tapionteleport",{"id":"pw_tapionteleport","atlases":["assets/img/acervo/pw_tapionteleport_0.png"],"acervo":{"nome":"TapionTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"3f6389c0ebfbedd478d26cc3d757984c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

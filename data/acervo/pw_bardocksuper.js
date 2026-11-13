@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardocksuper",{"id":"pw_bardocksuper","atlases":["assets/img/acervo/pw_bardocksuper_0.png"],"acervo":{"nome":"BardockSuper","fonte":"Power Warrior","tipo":"efeitos","origem":"ec4e6420c3d5d944ea32f85ea6a3606a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,55,18,28,1]]}},"tipo":"efeito"});

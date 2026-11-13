@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cell",{"id":"pw_cell","atlases":["assets/img/acervo/pw_cell_0.png"],"acervo":{"nome":"Cell","fonte":"Power Warrior","tipo":"efeitos","origem":"8a1504c88f0a80042948121cea664668"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

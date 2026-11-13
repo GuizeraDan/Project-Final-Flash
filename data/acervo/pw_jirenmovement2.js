@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_jirenmovement2",{"id":"pw_jirenmovement2","atlases":["assets/img/acervo/pw_jirenmovement2_0.png"],"acervo":{"nome":"JirenMovement2","fonte":"Power Warrior","tipo":"efeitos","origem":"feba85edce5d583458e930f20a6e0452"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,36,17,18,1]]}},"tipo":"efeito"});

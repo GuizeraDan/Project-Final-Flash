@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaos",{"id":"pw_chaos","atlases":["assets/img/acervo/pw_chaos_0.png"],"acervo":{"nome":"Chaos","fonte":"Power Warrior","tipo":"cenarios","origem":"3acf64d8902e11b4e8bdb2d8a23a61c4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}}});

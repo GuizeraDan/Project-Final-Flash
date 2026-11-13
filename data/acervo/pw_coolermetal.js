@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_coolermetal",{"id":"pw_coolermetal","atlases":["assets/img/acervo/pw_coolermetal_0.png"],"acervo":{"nome":"CoolerMetal","fonte":"Power Warrior","tipo":"efeitos","origem":"f1f7a671b90fc504e86cec99b0dccb47"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

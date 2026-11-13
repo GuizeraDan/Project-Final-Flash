@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanchildaltss2",{"id":"pw_gohanchildaltss2","atlases":["assets/img/acervo/pw_gohanchildaltss2_0.png"],"acervo":{"nome":"GohanChildAltSS2","fonte":"Power Warrior","tipo":"efeitos","origem":"efb42608f009903418259019b0e18163"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

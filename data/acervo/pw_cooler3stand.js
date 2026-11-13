@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cooler3stand",{"id":"pw_cooler3stand","atlases":["assets/img/acervo/pw_cooler3stand_0.png"],"acervo":{"nome":"Cooler3Stand","fonte":"Power Warrior","tipo":"efeitos","origem":"cce79d5c6c57d5d40a1e48296227dfeb"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,53,16,26,1]]}},"tipo":"efeito"});

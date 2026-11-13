@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buukidspecial2",{"id":"pw_buukidspecial2","atlases":["assets/img/acervo/pw_buukidspecial2_0.png"],"acervo":{"nome":"BuuKidSpecial2","fonte":"Power Warrior","tipo":"efeitos","origem":"267912a9836e9cb44a646d271dceb8e9"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,33,0,26,38,13,19,1],[0,0,0,32,40,16,20,1]]}},"tipo":"efeito"});

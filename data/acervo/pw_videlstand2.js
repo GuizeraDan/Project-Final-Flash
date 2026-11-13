@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_videlstand2",{"id":"pw_videlstand2","atlases":["assets/img/acervo/pw_videlstand2_0.png"],"acervo":{"nome":"VidelStand2","fonte":"Power Warrior","tipo":"efeitos","origem":"7f534e5f38e0fb04d9d2e6b410f08b28"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,19,45,10,22,1],[0,20,0,19,45,10,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_huitzilopochtli",{"id":"pw_huitzilopochtli","atlases":["assets/img/acervo/pw_huitzilopochtli_0.png"],"acervo":{"nome":"HUITZILOPOCHTLI","fonte":"Power Warrior","tipo":"efeitos","origem":"b84b59e39e4812e408777c4f0163aba6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

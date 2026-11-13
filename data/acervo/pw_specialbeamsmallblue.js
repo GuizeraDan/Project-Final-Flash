@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialbeamsmallblue",{"id":"pw_specialbeamsmallblue","atlases":["assets/img/acervo/pw_specialbeamsmallblue_0.png"],"acervo":{"nome":"SpecialBeamSmallBlue","fonte":"Power Warrior","tipo":"efeitos","origem":"4405b2c9d26eb02419f2c11a8e919544"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,21,45,10,1]]}},"tipo":"efeito"});

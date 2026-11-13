@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_puithrowenergy",{"id":"pw_puithrowenergy","atlases":["assets/img/acervo/pw_puithrowenergy_0.png"],"acervo":{"nome":"PuiThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"348fde8de7569b341bc87752b085591e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,36,0,34,37,17,18,1],[0,0,0,35,37,18,18,1]]}},"tipo":"efeito"});

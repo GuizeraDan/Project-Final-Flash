@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_explosion_2512_3",{"id":"pw_explosion_2512_3","atlases":["assets/img/acervo/pw_explosion_2512_3_0.png"],"acervo":{"nome":"Explosion_2512-3","fonte":"Power Warrior","tipo":"efeitos","origem":"8699abdf2c7e6c14b9751062d4f07158"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,82,63,41,32,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hatchiyackmove",{"id":"pw_hatchiyackmove","atlases":["assets/img/acervo/pw_hatchiyackmove_0.png"],"acervo":{"nome":"HatchiyackMove","fonte":"Power Warrior","tipo":"efeitos","origem":"32110e7098663d1448f095e1d7918d38"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,50,0,50,52,25,26,1],[0,0,0,49,55,24,28,1]]}},"tipo":"efeito"});

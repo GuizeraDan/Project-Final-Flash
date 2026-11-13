@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_turlesnewmove",{"id":"pw_turlesnewmove","atlases":["assets/img/acervo/pw_turlesnewmove_0.png"],"acervo":{"nome":"TurlesNewMove","fonte":"Power Warrior","tipo":"efeitos","origem":"394691e4044581c4f99237651d71a91e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,49,16,24,1],[0,33,0,44,45,22,22,1]]}},"tipo":"efeito"});

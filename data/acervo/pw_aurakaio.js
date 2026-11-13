@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_aurakaio",{"id":"pw_aurakaio","atlases":["assets/img/acervo/pw_aurakaio_0.png"],"acervo":{"nome":"AuraKaio","fonte":"Power Warrior","tipo":"efeitos","origem":"ec089af09d41a1f42811092d0d0e9cf4"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,122,0,106,96,53,48,1],[0,0,0,121,98,60,49,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ginestanding",{"id":"pw_ginestanding","atlases":["assets/img/acervo/pw_ginestanding_0.png"],"acervo":{"nome":"GineStanding","fonte":"Power Warrior","tipo":"efeitos","origem":"df8d13f849d5a7a4b8e0fc1ba334cd69"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,48,13,24,1],[0,27,0,26,46,13,23,1]]}},"tipo":"efeito"});

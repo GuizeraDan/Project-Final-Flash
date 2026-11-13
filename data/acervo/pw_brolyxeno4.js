@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolyxeno4",{"id":"pw_brolyxeno4","atlases":["assets/img/acervo/pw_brolyxeno4_0.png"],"acervo":{"nome":"BrolyXeno4","fonte":"Power Warrior","tipo":"efeitos","origem":"ab19c2d9963ee5f4499dee5ad5912b97"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,56,20,28,1]]}},"tipo":"efeito"});

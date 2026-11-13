@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetayardratswl",{"id":"pw_vegetayardratswl","atlases":["assets/img/acervo/pw_vegetayardratswl_0.png"],"acervo":{"nome":"VegetaYardratSwl","fonte":"Power Warrior","tipo":"efeitos","origem":"0e6534f161d13354eae637dd081b9caf"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

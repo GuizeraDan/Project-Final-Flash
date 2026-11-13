@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_chaosstatus",{"id":"pw_chaosstatus","atlases":["assets/img/acervo/pw_chaosstatus_0.png"],"acervo":{"nome":"ChaosStatus","fonte":"Power Warrior","tipo":"cenarios","origem":"6a5f4fde5f16bb2499bc160ce9f198f1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,29,0,26,31,13,16,1],[0,0,0,28,34,14,17,1],[0,56,0,33,18,16,9,1]]}}});

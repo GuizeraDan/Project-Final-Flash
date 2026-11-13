@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokusuper1",{"id":"pw_gokusuper1","atlases":["assets/img/acervo/pw_gokusuper1_0.png"],"acervo":{"nome":"GokuSuper1","fonte":"Power Warrior","tipo":"efeitos","origem":"4e2e33637543a6940bc9753e3bd7490d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

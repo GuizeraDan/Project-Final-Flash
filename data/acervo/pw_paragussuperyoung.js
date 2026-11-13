@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_paragussuperyoung",{"id":"pw_paragussuperyoung","atlases":["assets/img/acervo/pw_paragussuperyoung_0.png"],"acervo":{"nome":"ParagusSuperYoung","fonte":"Power Warrior","tipo":"efeitos","origem":"ae360e4e72fb05041b8bf325a21854f6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

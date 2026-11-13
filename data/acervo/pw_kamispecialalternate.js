@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kamispecialalternate",{"id":"pw_kamispecialalternate","atlases":["assets/img/acervo/pw_kamispecialalternate_0.png"],"acervo":{"nome":"KamiSpecialAlternate","fonte":"Power Warrior","tipo":"efeitos","origem":"a5da1345ba9a8f246b8358e0f895796a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,38,15,19,1]]}},"tipo":"efeito"});

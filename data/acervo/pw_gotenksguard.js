@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenksguard",{"id":"pw_gotenksguard","atlases":["assets/img/acervo/pw_gotenksguard_0.png"],"acervo":{"nome":"GotenksGuard","fonte":"Power Warrior","tipo":"efeitos","origem":"4ce037e1e95edef4db39769e1ddc7cac"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,47,13,24,1]]}},"tipo":"efeito"});

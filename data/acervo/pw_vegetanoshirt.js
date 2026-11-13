@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetanoshirt",{"id":"pw_vegetanoshirt","atlases":["assets/img/acervo/pw_vegetanoshirt_0.png"],"acervo":{"nome":"VegetaNoShirt","fonte":"Power Warrior","tipo":"efeitos","origem":"2ede585b7f310f341bf0b3fe6ee6bc88"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

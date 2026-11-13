@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_yamu",{"id":"pw_yamu","atlases":["assets/img/acervo/pw_yamu_0.png"],"acervo":{"nome":"Yamu","fonte":"Power Warrior","tipo":"efeitos","origem":"3236eff93ca247e4da910aa38b56a512"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

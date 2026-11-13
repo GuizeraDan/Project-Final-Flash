@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialcirclefire",{"id":"pw_specialcirclefire","atlases":["assets/img/acervo/pw_specialcirclefire_0.png"],"acervo":{"nome":"SpecialCircleFire","fonte":"Power Warrior","tipo":"efeitos","origem":"e4ebe7e08b95f6d42a13518a4a157e6c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,79,80,40,40,1]]}},"tipo":"efeito"});

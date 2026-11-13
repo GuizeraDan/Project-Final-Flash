@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_auramui",{"id":"pw_auramui","atlases":["assets/img/acervo/pw_auramui_0.png"],"acervo":{"nome":"AuraMUI","fonte":"Power Warrior","tipo":"efeitos","origem":"8155230abfdb44049bd6ef29efa03e39"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,191,0,71,110,36,55,1],[0,0,0,97,110,48,55,1],[0,98,0,92,110,40,55,1]]}},"tipo":"efeito"});

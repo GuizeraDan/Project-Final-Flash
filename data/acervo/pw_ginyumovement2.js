@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ginyumovement2",{"id":"pw_ginyumovement2","atlases":["assets/img/acervo/pw_ginyumovement2_0.png"],"acervo":{"nome":"GinyuMovement2","fonte":"Power Warrior","tipo":"efeitos","origem":"be7ea79792f730b428e3c1d7dea6b5c3"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,38,40,19,20,1],[0,39,0,29,39,14,20,1]]}},"tipo":"efeito"});

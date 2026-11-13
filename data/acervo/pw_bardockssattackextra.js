@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockssattackextra",{"id":"pw_bardockssattackextra","atlases":["assets/img/acervo/pw_bardockssattackextra_0.png"],"acervo":{"nome":"BardockSSAttackExtra","fonte":"Power Warrior","tipo":"efeitos","origem":"83e7ec388d74cf34bae870becfc6bf4a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,43,24,22,1]]}},"tipo":"efeito"});

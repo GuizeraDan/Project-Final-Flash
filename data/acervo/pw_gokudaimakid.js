@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokudaimakid",{"id":"pw_gokudaimakid","atlases":["assets/img/acervo/pw_gokudaimakid_0.png"],"acervo":{"nome":"GokuDaimaKid","fonte":"Power Warrior","tipo":"efeitos","origem":"203a316ad5944e145856841c4e2c3355"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

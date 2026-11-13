@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zamasuteleport",{"id":"pw_zamasuteleport","atlases":["assets/img/acervo/pw_zamasuteleport_0.png"],"acervo":{"nome":"ZamasuTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"e77a804ba0175724a8039565f0a8cf9f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,29,26,14,1],[0,53,0,51,22,26,11,1]]}},"tipo":"efeito"});

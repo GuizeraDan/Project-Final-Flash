@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_recoomeselect",{"id":"pw_recoomeselect","atlases":["assets/img/acervo/pw_recoomeselect_0.png"],"acervo":{"nome":"RecoomeSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,50,26,50,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cauliflamove",{"id":"pw_cauliflamove","atlases":["assets/img/acervo/pw_cauliflamove_0.png"],"acervo":{"nome":"CauliflaMove","fonte":"Power Warrior","tipo":"efeitos","origem":"a13d1760161f52f42ae9d7a6736a0de1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,47,18,24,1],[0,36,0,42,37,21,18,1]]}},"tipo":"efeito"});

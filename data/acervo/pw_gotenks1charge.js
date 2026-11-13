@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gotenks1charge",{"id":"pw_gotenks1charge","atlases":["assets/img/acervo/pw_gotenks1charge_0.png"],"acervo":{"nome":"Gotenks1Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"1be6e745a5d4d2446899b43e1c225a0d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,47,13,24,1],[0,27,0,29,45,14,22,1]]}},"tipo":"efeito"});

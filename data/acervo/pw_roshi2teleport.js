@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_roshi2teleport",{"id":"pw_roshi2teleport","atlases":["assets/img/acervo/pw_roshi2teleport_0.png"],"acervo":{"nome":"Roshi2Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"688a13d5f396cf947821ec6deac1fc71"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,27,0,47,34,24,17,1],[0,0,0,26,49,13,24,1]]}},"tipo":"efeito"});

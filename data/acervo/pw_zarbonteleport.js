@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zarbonteleport",{"id":"pw_zarbonteleport","atlases":["assets/img/acervo/pw_zarbonteleport_0.png"],"acervo":{"nome":"ZarbonTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"dcaf85a2d6e3fb543be94fb1ad0467a1"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,59,29,30,14,1],[0,60,0,60,22,30,11,1]]}},"tipo":"efeito"});

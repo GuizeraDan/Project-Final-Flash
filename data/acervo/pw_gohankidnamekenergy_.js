@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohankidnamekenergy_",{"id":"pw_gohankidnamekenergy_","atlases":["assets/img/acervo/pw_gohankidnamekenergy__0.png"],"acervo":{"nome":"GohanKidNamekEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"a152c0b15c4f23d459332f6583b57ed3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,36,16,18,1]]}},"tipo":"efeito"});

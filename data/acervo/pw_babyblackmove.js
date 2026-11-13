@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_babyblackmove",{"id":"pw_babyblackmove","atlases":["assets/img/acervo/pw_babyblackmove_0.png"],"acervo":{"nome":"BabyBlackMove","fonte":"Power Warrior","tipo":"efeitos","origem":"9023ce625e22cc847b31847dae38a93d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,46,15,23,1],[0,31,0,35,45,18,22,1]]}},"tipo":"efeito"});

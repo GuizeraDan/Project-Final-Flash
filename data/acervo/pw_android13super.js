@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android13super",{"id":"pw_android13super","atlases":["assets/img/acervo/pw_android13super_0.png"],"acervo":{"nome":"Android13Super","fonte":"Power Warrior","tipo":"efeitos","origem":"31d5a11f3d26a9f469616b356b2441e1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

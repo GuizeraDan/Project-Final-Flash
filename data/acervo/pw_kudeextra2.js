@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kudeextra2",{"id":"pw_kudeextra2","atlases":["assets/img/acervo/pw_kudeextra2_0.png"],"acervo":{"nome":"KudeExtra2","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,48,14,48,1]]}},"tipo":"efeito"});

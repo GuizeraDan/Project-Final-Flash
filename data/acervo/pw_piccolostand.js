@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_piccolostand",{"id":"pw_piccolostand","atlases":["assets/img/acervo/pw_piccolostand_0.png"],"acervo":{"nome":"PiccoloStand","fonte":"Power Warrior","tipo":"efeitos","origem":"4278148d01c12754b85301d30cec147d"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,51,18,26,1],[0,37,0,40,45,20,22,1]]}},"tipo":"efeito"});

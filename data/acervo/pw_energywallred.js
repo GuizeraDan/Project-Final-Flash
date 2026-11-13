@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energywallred",{"id":"pw_energywallred","atlases":["assets/img/acervo/pw_energywallred_0.png"],"acervo":{"nome":"EnergyWallRed","fonte":"Power Warrior","tipo":"efeitos","origem":"0704f5a3f86e4ec4a9530d95cd52001a"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,59,15,30,1],[0,31,0,30,59,15,30,1]]}},"tipo":"efeito"});

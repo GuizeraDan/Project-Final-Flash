@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_zamasumovement",{"id":"pw_zamasumovement","atlases":["assets/img/acervo/pw_zamasumovement_0.png"],"acervo":{"nome":"ZamasuMovement","fonte":"Power Warrior","tipo":"efeitos","origem":"b23995bd5d6d8f744b0255ec81d37fe8"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,37,0,43,39,22,20,1],[0,0,0,36,46,18,23,1]]}},"tipo":"efeito"});

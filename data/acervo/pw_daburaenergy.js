@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_daburaenergy",{"id":"pw_daburaenergy","atlases":["assets/img/acervo/pw_daburaenergy_0.png"],"acervo":{"nome":"DaburaEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"d7a14e5256410ed4d99d3d6d3a6da662"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,40,24,20,1]]}},"tipo":"efeito"});

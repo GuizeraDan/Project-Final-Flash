@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_oren1teleport",{"id":"pw_oren1teleport","atlases":["assets/img/acervo/pw_oren1teleport_0.png"],"acervo":{"nome":"Oren1Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"8630c15be8f09f64089fe1b13467a93f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

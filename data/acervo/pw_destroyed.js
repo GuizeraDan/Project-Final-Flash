@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_destroyed",{"id":"pw_destroyed","atlases":["assets/img/acervo/pw_destroyed_0.png"],"acervo":{"nome":"destroyed","fonte":"Power Warrior","tipo":"efeitos","origem":"sharedassets42.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,162,34,81,17,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialmars",{"id":"pw_specialmars","atlases":["assets/img/acervo/pw_specialmars_0.png"],"acervo":{"nome":"SpecialMars","fonte":"Power Warrior","tipo":"efeitos","origem":"5d0d825aab50ec84aa55c2271d9247ed"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,214,214,107,107,1]]}},"tipo":"efeito"});

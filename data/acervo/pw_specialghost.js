@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialghost",{"id":"pw_specialghost","atlases":["assets/img/acervo/pw_specialghost_0.png"],"acervo":{"nome":"SpecialGhost","fonte":"Power Warrior","tipo":"efeitos","origem":"0fb82e955c6dead43a33d206e19e127d"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,28,25,14,1]]}},"tipo":"efeito"});

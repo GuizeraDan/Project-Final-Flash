@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_fagogetagt4fusion4",{"id":"pw_fagogetagt4fusion4","atlases":["assets/img/acervo/pw_fagogetagt4fusion4_0.png"],"acervo":{"nome":"FaGogetaGT4Fusion4","fonte":"Power Warrior","tipo":"efeitos","origem":"2ee4fb21e5418b44ab5d1504527b3440"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,92,48,45,20,1]]}},"tipo":"efeito"});

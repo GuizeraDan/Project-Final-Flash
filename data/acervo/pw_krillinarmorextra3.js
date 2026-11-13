@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_krillinarmorextra3",{"id":"pw_krillinarmorextra3","atlases":["assets/img/acervo/pw_krillinarmorextra3_0.png"],"acervo":{"nome":"KrillinArmorExtra3","fonte":"Power Warrior","tipo":"efeitos","origem":"6bf7ef7c7a141da47a1016e605562d27"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,55,37,41,20,1]]}},"tipo":"efeito"});

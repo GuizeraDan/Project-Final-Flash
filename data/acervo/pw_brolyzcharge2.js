@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_brolyzcharge2",{"id":"pw_brolyzcharge2","atlases":["assets/img/acervo/pw_brolyzcharge2_0.png"],"acervo":{"nome":"BrolyZCharge2","fonte":"Power Warrior","tipo":"efeitos","origem":"2941601501bc37d46853beff0ee5200c"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,33,56,16,28,1],[0,0,0,33,58,16,30,1]]}},"tipo":"efeito"});

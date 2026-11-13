@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanadult3status",{"id":"pw_gohanadult3status","atlases":["assets/img/acervo/pw_gohanadult3status_0.png"],"acervo":{"nome":"GohanAdult3Status","fonte":"Power Warrior","tipo":"efeitos","origem":"63caee540ee1d624daec324dfed58f04"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,47,14,24,1]]}},"tipo":"efeito"});

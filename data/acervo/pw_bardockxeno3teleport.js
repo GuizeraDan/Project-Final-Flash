@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_bardockxeno3teleport",{"id":"pw_bardockxeno3teleport","atlases":["assets/img/acervo/pw_bardockxeno3teleport_0.png"],"acervo":{"nome":"BardockXeno3Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"69a5e32b18b1eaa4baf9ee1ddfef3c89"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1]]}},"tipo":"efeito"});

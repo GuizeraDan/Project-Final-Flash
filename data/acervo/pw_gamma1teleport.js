@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gamma1teleport",{"id":"pw_gamma1teleport","atlases":["assets/img/acervo/pw_gamma1teleport_0.png"],"acervo":{"nome":"Gamma1Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"45c4d3133421e09439a194634e6ac12e"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});

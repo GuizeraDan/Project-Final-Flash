@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frost4special",{"id":"pw_frost4special","atlases":["assets/img/acervo/pw_frost4special_0.png"],"acervo":{"nome":"Frost4Special","fonte":"Power Warrior","tipo":"efeitos","origem":"1bfe2dba75d4cb74a917932d85bdbb2e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,45,16,23,1]]}},"tipo":"efeito"});

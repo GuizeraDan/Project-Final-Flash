@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gasmove",{"id":"pw_gasmove","atlases":["assets/img/acervo/pw_gasmove_0.png"],"acervo":{"nome":"GasMove","fonte":"Power Warrior","tipo":"efeitos","origem":"c27ef1301a68c8648812bcac04da06ad"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,41,16,20,1],[0,32,0,46,29,23,14,1]]}},"tipo":"efeito"});

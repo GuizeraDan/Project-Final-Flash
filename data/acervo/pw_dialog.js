@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_dialog",{"id":"pw_dialog","atlases":["assets/img/acervo/pw_dialog_0.png"],"acervo":{"nome":"Dialog","fonte":"Power Warrior","tipo":"cenarios","origem":"b0490bb36f63a654794d04593104c9a8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,694,473,347,473,1]]}}});

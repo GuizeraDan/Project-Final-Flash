@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ribriannehearthold",{"id":"pw_ribriannehearthold","atlases":["assets/img/acervo/pw_ribriannehearthold_0.png"],"acervo":{"nome":"RibrianneHearthOld","fonte":"Power Warrior","tipo":"efeitos","origem":"64c00d7219e58034d9d95b286bdfc2d6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,15,15,8,8,1]]}},"tipo":"efeito"});

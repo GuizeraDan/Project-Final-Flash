@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_esctoexit_back",{"id":"pw_esctoexit_back","atlases":["assets/img/acervo/pw_esctoexit_back_0.png"],"acervo":{"nome":"EscToExit_back","fonte":"Power Warrior","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,74,71,37,71,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_energydonutalt",{"id":"pw_energydonutalt","atlases":["assets/img/acervo/pw_energydonutalt_0.png"],"acervo":{"nome":"EnergyDonutAlt","fonte":"Power Warrior","tipo":"efeitos","origem":"30d7a8aa5a3343b47b561d2452f37612"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,20,26,10,1]]}},"tipo":"efeito"});

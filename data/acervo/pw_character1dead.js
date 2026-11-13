@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_character1dead",{"id":"pw_character1dead","atlases":["assets/img/acervo/pw_character1dead_0.png"],"acervo":{"nome":"Character1Dead","fonte":"Power Warrior","tipo":"efeitos","origem":"0c049095b9d10d843a2cfbc6c348c952"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,31,29,16,1]]}},"tipo":"efeito"});

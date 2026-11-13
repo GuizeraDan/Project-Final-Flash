@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokunormal",{"id":"pw_gokunormal","atlases":["assets/img/acervo/pw_gokunormal_0.png"],"acervo":{"nome":"GokuNormal","fonte":"Power Warrior","tipo":"efeitos","origem":"179172cdfa3bc3640a76ffaf07e65cb0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

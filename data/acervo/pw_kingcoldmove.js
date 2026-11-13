@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_kingcoldmove",{"id":"pw_kingcoldmove","atlases":["assets/img/acervo/pw_kingcoldmove_0.png"],"acervo":{"nome":"KingColdMove","fonte":"Power Warrior","tipo":"efeitos","origem":"fcb6a9c033d3dfb4ea5971308e085979"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,60,25,30,1],[0,51,0,62,52,31,26,1]]}},"tipo":"efeito"});

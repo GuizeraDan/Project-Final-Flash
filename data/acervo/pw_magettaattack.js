@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_magettaattack",{"id":"pw_magettaattack","atlases":["assets/img/acervo/pw_magettaattack_0.png"],"acervo":{"nome":"MagettaAttack","fonte":"Power Warrior","tipo":"efeitos","origem":"2b2603a499a4ce94a8ce77a64f12b4ec"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,122,98,42,49,1],[0,123,0,122,98,42,49,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android15",{"id":"pw_android15","atlases":["assets/img/acervo/pw_android15_0.png"],"acervo":{"nome":"Android15","fonte":"Power Warrior","tipo":"efeitos","origem":"2e0fc90151b669f4c90b4fbfc38328e0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,46,26,23,1]]}},"tipo":"efeito"});

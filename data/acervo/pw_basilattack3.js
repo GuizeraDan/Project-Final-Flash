@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_basilattack3",{"id":"pw_basilattack3","atlases":["assets/img/acervo/pw_basilattack3_0.png"],"acervo":{"nome":"BasilAttack3","fonte":"Power Warrior","tipo":"efeitos","origem":"1b7fc40bebfabaf40bedbdf48dff423f"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,69,0,58,45,14,22,1],[0,0,0,68,47,16,23,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuvortexss",{"id":"pw_gokuvortexss","atlases":["assets/img/acervo/pw_gokuvortexss_0.png"],"acervo":{"nome":"GokuVortexSS","fonte":"Power Warrior","tipo":"efeitos","origem":"1fef4e02a6e36bf4a94cb12363948f9e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

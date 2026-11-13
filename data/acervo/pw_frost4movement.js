@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_frost4movement",{"id":"pw_frost4movement","atlases":["assets/img/acervo/pw_frost4movement_0.png"],"acervo":{"nome":"Frost4Movement","fonte":"Power Warrior","tipo":"efeitos","origem":"79ef1e674e7a80443b3aea55292f3558"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,43,13,22,1],[0,27,0,54,23,27,12,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ball",{"id":"pw_ball","atlases":["assets/img/acervo/pw_ball_0.png"],"acervo":{"nome":"ball","fonte":"Power Warrior","tipo":"efeitos","origem":"d75c9991cc67dd64dbf61fa91c73fc71"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,104,84,52,42,1],[0,105,0,104,84,52,42,1],[0,210,0,104,84,52,42,1]]}},"tipo":"efeito"});

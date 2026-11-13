@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_groundkai",{"id":"pw_groundkai","atlases":["assets/img/acervo/pw_groundkai_0.png"],"acervo":{"nome":"groundKai","fonte":"Power Warrior","tipo":"cenarios","origem":"sharedassets50.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,32,48,16,1]]}}});

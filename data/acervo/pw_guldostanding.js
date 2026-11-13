@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_guldostanding",{"id":"pw_guldostanding","atlases":["assets/img/acervo/pw_guldostanding_0.png"],"acervo":{"nome":"GuldoStanding","fonte":"Power Warrior","tipo":"efeitos","origem":"782350de4d2b5714882595eec87aaa33"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,35,14,18,1]]}},"tipo":"efeito"});

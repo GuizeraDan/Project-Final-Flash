@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetassgb",{"id":"pw_vegetassgb","atlases":["assets/img/acervo/pw_vegetassgb_0.png"],"acervo":{"nome":"VegetaSSGB","fonte":"Power Warrior","tipo":"efeitos","origem":"8d18becae25452445bc7516a8a2fa5e0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

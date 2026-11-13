@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_air_11_fill_0006",{"id":"pw_air_11_fill_0006","atlases":["assets/img/acervo/pw_air_11_fill_0006_0.png"],"acervo":{"nome":"Air_11_fill_0006","fonte":"Power Warrior","tipo":"efeitos","origem":"749d4f71a9e1cc84ba2df8bfa5a585d7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,309,256,154,1]]}},"tipo":"efeito"});

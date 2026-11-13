@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_turlesnewcharge",{"id":"pw_turlesnewcharge","atlases":["assets/img/acervo/pw_turlesnewcharge_0.png"],"acervo":{"nome":"TurlesNewCharge","fonte":"Power Warrior","tipo":"efeitos","origem":"fb41fae94352e8d40a19b7fb2e4d6e4b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,48,18,24,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android18",{"id":"pw_android18","atlases":["assets/img/acervo/pw_android18_0.png"],"acervo":{"nome":"Android18","fonte":"Power Warrior","tipo":"efeitos","origem":"9378ca4d934d18a40afd3e3483cda1a1"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

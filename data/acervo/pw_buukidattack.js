@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buukidattack",{"id":"pw_buukidattack","atlases":["assets/img/acervo/pw_buukidattack_0.png"],"acervo":{"nome":"BuuKidAttack","fonte":"Power Warrior","tipo":"efeitos","origem":"ae32672daf2da6742aabd9316fac7ae2"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,41,17,20,1],[0,35,0,33,41,16,20,1]]}},"tipo":"efeito"});

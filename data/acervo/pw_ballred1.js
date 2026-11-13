@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_ballred1",{"id":"pw_ballred1","atlases":["assets/img/acervo/pw_ballred1_0.png"],"acervo":{"nome":"BallRed1","fonte":"Power Warrior","tipo":"efeitos","origem":"af2ee1aa9d705924196d55acce3fcf52"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,74,36,37,1]]}},"tipo":"efeito"});

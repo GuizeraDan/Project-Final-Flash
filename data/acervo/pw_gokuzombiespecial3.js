@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gokuzombiespecial3",{"id":"pw_gokuzombiespecial3","atlases":["assets/img/acervo/pw_gokuzombiespecial3_0.png"],"acervo":{"nome":"GokuZombieSpecial3","fonte":"Power Warrior","tipo":"efeitos","origem":"529c72cab7aae6f4e9ba8472fee0c02e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,49,16,24,1]]}},"tipo":"efeito"});

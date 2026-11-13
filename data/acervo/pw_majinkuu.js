@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_majinkuu",{"id":"pw_majinkuu","atlases":["assets/img/acervo/pw_majinkuu_0.png"],"acervo":{"nome":"MajinKuu","fonte":"Power Warrior","tipo":"efeitos","origem":"bcb65203af4d40646ba088402dbb539b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

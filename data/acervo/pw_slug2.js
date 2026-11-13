@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_slug2",{"id":"pw_slug2","atlases":["assets/img/acervo/pw_slug2_0.png"],"acervo":{"nome":"Slug2","fonte":"Power Warrior","tipo":"efeitos","origem":"b7e3ef49540048b4f93af0bb6dcba832"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

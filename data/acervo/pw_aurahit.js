@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_aurahit",{"id":"pw_aurahit","atlases":["assets/img/acervo/pw_aurahit_0.png"],"acervo":{"nome":"AuraHit","fonte":"Power Warrior","tipo":"efeitos","origem":"7a5b8e5234a1fc044bb8395a53dd3db6"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,71,81,36,40,1],[0,72,0,71,81,36,40,1],[0,144,0,71,81,36,40,1]]}},"tipo":"efeito"});

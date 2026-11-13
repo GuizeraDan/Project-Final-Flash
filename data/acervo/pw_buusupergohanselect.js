@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_buusupergohanselect",{"id":"pw_buusupergohanselect","atlases":["assets/img/acervo/pw_buusupergohanselect_0.png"],"acervo":{"nome":"BuuSuperGohanSelect","fonte":"Power Warrior","tipo":"interface","origem":"sharedassets13.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,52,16,52,1]]}}});

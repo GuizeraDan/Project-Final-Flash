@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialraypurple",{"id":"pw_specialraypurple","atlases":["assets/img/acervo/pw_specialraypurple_0.png"],"acervo":{"nome":"SpecialRayPurple","fonte":"Power Warrior","tipo":"cenarios","origem":"01ff736285e62fa45b75c8708325d41e"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,987,85,494,42,1]]}}});

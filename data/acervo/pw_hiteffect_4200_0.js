@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_hiteffect_4200_0",{"id":"pw_hiteffect_4200_0","atlases":["assets/img/acervo/pw_hiteffect_4200_0_0.png"],"acervo":{"nome":"HitEffect_4200-0","fonte":"Power Warrior","tipo":"efeitos","origem":"afcb45349ad5f794598c1e314f422eb4"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,53,11,26,1]]}},"tipo":"efeito"});

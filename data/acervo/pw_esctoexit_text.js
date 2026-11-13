@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_esctoexit_text",{"id":"pw_esctoexit_text","atlases":["assets/img/acervo/pw_esctoexit_text_0.png"],"acervo":{"nome":"EscToExit_Text","fonte":"Power Warrior","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,265,20,132,20,1]]}}});

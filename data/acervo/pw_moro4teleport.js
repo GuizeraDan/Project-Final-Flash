@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4teleport",{"id":"pw_moro4teleport","atlases":["assets/img/acervo/pw_moro4teleport_0.png"],"acervo":{"nome":"Moro4Teleport","fonte":"Power Warrior","tipo":"efeitos","origem":"242a5a7062b6b514f8b33777b4672cbd"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,21,0,29,52,14,26,1],[0,0,0,20,60,10,30,1]]}},"tipo":"efeito"});

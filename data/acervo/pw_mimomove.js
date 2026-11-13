@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_mimomove",{"id":"pw_mimomove","atlases":["assets/img/acervo/pw_mimomove_0.png"],"acervo":{"nome":"MimoMove","fonte":"Power Warrior","tipo":"efeitos","origem":"f3a027496a9a6e74ca338718e561f665"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,45,15,22,1],[0,31,0,43,30,22,15,1]]}},"tipo":"efeito"});

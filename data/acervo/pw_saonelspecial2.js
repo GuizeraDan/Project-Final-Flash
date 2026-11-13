@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_saonelspecial2",{"id":"pw_saonelspecial2","atlases":["assets/img/acervo/pw_saonelspecial2_0.png"],"acervo":{"nome":"SaonelSpecial2","fonte":"Power Warrior","tipo":"efeitos","origem":"a82231d3a48f95348a14fc5f1696c96a"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,59,20,30,1]]}},"tipo":"efeito"});

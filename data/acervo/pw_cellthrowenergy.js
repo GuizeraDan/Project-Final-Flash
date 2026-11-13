@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_cellthrowenergy",{"id":"pw_cellthrowenergy","atlases":["assets/img/acervo/pw_cellthrowenergy_0.png"],"acervo":{"nome":"CellThrowEnergy","fonte":"Power Warrior","tipo":"efeitos","origem":"c72ec230f628322419c64edad233c8b3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,45,24,22,1]]}},"tipo":"efeito"});

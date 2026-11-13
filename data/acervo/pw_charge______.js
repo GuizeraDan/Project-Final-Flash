@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_charge______",{"id":"pw_charge______","atlases":["assets/img/acervo/pw_charge_______0.png"],"acervo":{"nome":"Charge","fonte":"Power Warrior","tipo":"efeitos","origem":"66552c8b98ca18f41a6371c2b12d3bf0"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,43,17,22,1],[0,35,0,33,42,16,21,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_gohanfuturestand",{"id":"pw_gohanfuturestand","atlases":["assets/img/acervo/pw_gohanfuturestand_0.png"],"acervo":{"nome":"GohanFutureStand","fonte":"Power Warrior","tipo":"efeitos","origem":"b31e8df471ff2f145b66bf538c0a53ce"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,53,12,26,1]]}},"tipo":"efeito"});

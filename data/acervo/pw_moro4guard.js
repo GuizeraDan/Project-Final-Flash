@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_moro4guard",{"id":"pw_moro4guard","atlases":["assets/img/acervo/pw_moro4guard_0.png"],"acervo":{"nome":"Moro4Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"d6dabc7bc07e9d24495f94f2f1139a69"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,70,70,35,35,1],[0,71,0,70,70,35,35,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_android17gt1guard",{"id":"pw_android17gt1guard","atlases":["assets/img/acervo/pw_android17gt1guard_0.png"],"acervo":{"nome":"Android17GT1Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"1ac1330b32d92164f8e04552fa1284f6"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,46,12,23,1]]}},"tipo":"efeito"});

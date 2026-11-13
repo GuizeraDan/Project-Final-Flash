@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_raditz1special",{"id":"pw_raditz1special","atlases":["assets/img/acervo/pw_raditz1special_0.png"],"acervo":{"nome":"Raditz1Special","fonte":"Power Warrior","tipo":"efeitos","origem":"e7c4487d9fd765b4d891b99c30181f1c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,50,20,25,1]]}},"tipo":"efeito"});

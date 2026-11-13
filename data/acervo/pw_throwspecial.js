@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_throwspecial",{"id":"pw_throwspecial","atlases":["assets/img/acervo/pw_throwspecial_0.png"],"acervo":{"nome":"ThrowSpecial","fonte":"Power Warrior","tipo":"efeitos","origem":"774ac6eb6721c7a488888d1032fa00d8"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,42,17,21,1]]}},"tipo":"efeito"});

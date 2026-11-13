@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetavortexnormal",{"id":"pw_vegetavortexnormal","atlases":["assets/img/acervo/pw_vegetavortexnormal_0.png"],"acervo":{"nome":"VegetaVortexNormal","fonte":"Power Warrior","tipo":"efeitos","origem":"e57f4de75c3cc8f40b59d72cccb878cd"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

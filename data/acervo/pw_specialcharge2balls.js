@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_specialcharge2balls",{"id":"pw_specialcharge2balls","atlases":["assets/img/acervo/pw_specialcharge2balls_0.png"],"acervo":{"nome":"SpecialCharge2Balls","fonte":"Power Warrior","tipo":"efeitos","origem":"34e8dbd0863ee924789793d131295a8c"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,27,21,14,1]]}},"tipo":"efeito"});

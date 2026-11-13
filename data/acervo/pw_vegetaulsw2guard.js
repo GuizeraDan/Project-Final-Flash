@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegetaulsw2guard",{"id":"pw_vegetaulsw2guard","atlases":["assets/img/acervo/pw_vegetaulsw2guard_0.png"],"acervo":{"nome":"VegetaUlsw2Guard","fonte":"Power Warrior","tipo":"efeitos","origem":"1ab06d4222dd1af4a8c421bfaedd062b"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,48,14,24,1]]}},"tipo":"efeito"});

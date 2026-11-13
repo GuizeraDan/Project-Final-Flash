@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_whitesquare2",{"id":"pw_whitesquare2","atlases":["assets/img/acervo/pw_whitesquare2_0.png"],"acervo":{"nome":"whiteSquare2","fonte":"Power Warrior","tipo":"efeitos","origem":"22f243a8c47046548b8fb8257de066e5"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,100,50,50,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vwmove",{"id":"pw_vwmove","atlases":["assets/img/acervo/pw_vwmove_0.png"],"acervo":{"nome":"VWMove","fonte":"Power Warrior","tipo":"efeitos","origem":"4856699c41fd8d94592fed5c8eb26e44"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,50,16,25,1],[0,34,0,43,37,22,18,1]]}},"tipo":"efeito"});

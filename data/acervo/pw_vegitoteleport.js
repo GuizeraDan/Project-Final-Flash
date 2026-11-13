@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("pw_vegitoteleport",{"id":"pw_vegitoteleport","atlases":["assets/img/acervo/pw_vegitoteleport_0.png"],"acervo":{"nome":"VegitoTeleport","fonte":"Power Warrior","tipo":"efeitos","origem":"d5e843a6d3c2e0b47bc2d86e9eba6981"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,29,26,14,1],[0,52,0,51,22,26,11,1]]}},"tipo":"efeito"});
