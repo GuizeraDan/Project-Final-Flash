@@ -40,7 +40,8 @@ FF.UI = {
     FF.Retrato.noCanvas(cv, f.def, f.formId, 'retrato', { espelhar: !f.isHero });
   },
 
-  chooseMove(hero, battle) {
+  chooseMove(hero, battle, opts = {}) {
+    if (FF.MenuGolpes && FF.MenuGolpes.estilo() !== 'lista') return FF.MenuGolpes.escolher(hero, battle, opts);
     return new Promise(resolve => {
       const box = document.getElementById('menu');
       box.innerHTML = '';
@@ -88,6 +89,8 @@ FF.UI = {
           e.preventDefault();
           focus((sel + mv + btns.length) % btns.length);
           FF.Audio.play('tap_sound', 0.5);
+        } else if (e.code === 'Escape' && opts.voltar) {
+          e.preventDefault(); done('__voltar');
         } else if (e.code === 'Enter') {
           e.preventDefault();
           if (btns[sel] && btns[sel]._can) done(ids[sel]);
@@ -96,6 +99,11 @@ FF.UI = {
           if (btns[i] && btns[i]._can) done(ids[i]);
         }
       };
+      if (opts.voltar) {   // modo Planejamento: voltar ao herói anterior
+        const bv = document.createElement('button'); bv.className = 'cmd-voltar'; bv.textContent = '↩ Voltar (herói anterior)';
+        bv.onclick = () => done('__voltar');
+        box.appendChild(bv);
+      }
       const done = (id) => {
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open');
@@ -190,9 +198,25 @@ FF.ajustarTela = function () {
   const canvas = document.getElementById('tela');
   const asp = Math.max(1084 / 580, Math.min(1300 / 580, window.innerWidth / Math.max(1, window.innerHeight)));
   FF.W = Math.round(580 * asp);
-  canvas.width = FF.W;
+  // resolução interna maior que a lógica (FF.W × 580): o jogo continua desenhando em 1084×580, mas a tela
+  // tem N× mais pixels, então o HUD, os textos e a arte em alta não ficam borrados ao ampliar
+  const dpr = window.devicePixelRatio || 1;
+  let R = Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / 580));
+  R = Math.max(1, Math.min(3, R));
+  while (R > 1 && FF.W * R * 580 * R > 9e6) R--;   // limite de pixels (aparelhos fracos)
+  FF.RES = R;
+  canvas.width = FF.W * R;
+  canvas.height = 580 * R;
   document.getElementById('jogo').style.setProperty('--asp', (FF.W / 580).toFixed(4));
 };
+// girar o celular / mudar o tamanho da janela: recalcula a resolução (o tamanho lógico só muda ao abrir a luta)
+window.addEventListener('resize', () => {
+  const c = document.getElementById('tela'); if (!c || !FF.W) return;
+  const dpr = window.devicePixelRatio || 1;
+  let R = Math.max(1, Math.min(3, Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / 580))));
+  while (R > 1 && FF.W * R * 580 * R > 9e6) R--;
+  if (R !== FF.RES) { FF.RES = R; c.width = FF.W * R; c.height = 580 * R; }
+});
 
 FF.start = async function (escolhida) {
   const canvas = document.getElementById('tela');
@@ -250,6 +274,7 @@ FF.start = async function (escolhida) {
     last = now;
     const dt = FF.Clock.tick(real);
     battle.update(dt);
+    ctx.setTransform(FF.RES || 1, 0, 0, FF.RES || 1, 0, 0);   // desenha em coordenadas lógicas (1084×580)
     ctx.imageSmoothingEnabled = false;
     battle.draw(ctx);
     requestAnimationFrame(frame);
@@ -644,9 +669,13 @@ window.addEventListener('load', () => {
       document.getElementById('vol-musica').value = Math.round(v.musica * 100);
       document.getElementById('vol-sfx').value = Math.round(v.sfx * 100);
       document.getElementById('vol-voz').value = Math.round(v.voz * 100);
+      document.getElementById('opt-turno').value = FF.Save.get().modoTurno || 'classico';
+      document.getElementById('opt-menu').value = FF.Save.get().estiloMenu || 'lista';
       return mostrar('opcoes');
     }
   }));
+  document.getElementById('opt-turno').addEventListener('change', (e) => { FF.Save.set({ modoTurno: e.target.value }); FF.Audio.play('tap_sound'); });
+  document.getElementById('opt-menu').addEventListener('change', (e) => { FF.Save.set({ estiloMenu: e.target.value }); FF.Audio.play('tap_sound'); });
   ['vol-musica', 'vol-sfx', 'vol-voz'].forEach(id => document.getElementById(id).addEventListener('input', () => {
     FF.Save.set({ volumes: {
       musica: document.getElementById('vol-musica').value / 100,

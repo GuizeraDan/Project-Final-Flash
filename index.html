@@ -62,6 +62,8 @@
       <label>Música <input type="range" id="vol-musica" min="0" max="100"></label>
       <label>Efeitos <input type="range" id="vol-sfx" min="0" max="100"></label>
       <label>Vozes <input type="range" id="vol-voz" min="0" max="100"></label>
+      <label>Modo de turno <select id="opt-turno"><option value="classico">Clássico (cada um na sua vez)</option><option value="planejamento">Planejamento (escolhe tudo, depois age)</option></select></label>
+      <label>Menu de golpes <select id="opt-menu"><option value="lista">Lista (atual)</option><option value="radial">Leque radial</option><option value="trilho">Trilho lateral</option><option value="dock">Dock compacto</option></select></label>
       <button data-acao="apagar">Apagar progresso</button>
       <button data-acao="voltar">Voltar</button>
     </div>
@@ -168,6 +170,7 @@
 <script src="js/battle/linha.js"></script>
 <script src="js/battle/ko.js"></script>
 <script src="js/ui/selecao.js"></script>
+<script src="js/ui/menu_golpes.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/ui/pausa.js"></script>
 <script src="js/main.js"></script>

@@ -410,3 +410,62 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* Novo Jogo: sagas ainda não feitas */
 .cap-bt.em-producao { opacity: 0.55; }
 .cap-bt.em-producao b { color: #ffcf6b; }
+#opcoes select { width: 17cqw; font-size: 1.2cqw; font-weight: 700; background: #1a1240; color: #fff; border: 0.12cqw solid #ffd84a; border-radius: 0.3cqw; padding: 0.2cqw; }
+#opcoes label { width: 44cqw; }
+.cmd-voltar { margin-top: 0.4cqw; font-size: 1.1cqw; background: #2a1c4c; color: #e8e0ff; border: 0.12cqw solid #6a5ab0; border-radius: 0.4cqw; padding: 0.3cqw 0.8cqw; cursor: pointer; }
+
+/* ===== menu de golpes novo (js/ui/menu_golpes.js): Opções → Menu de golpes ===== */
+#menu.mg { left: 1.6cqw; top: 11.5cqw; bottom: auto; transform: none; width: auto; padding: 0; gap: 0.6cqw; background: none; border: 0; box-shadow: none; border-radius: 0; }
+#menu.mg.open { display: grid; }
+.mg-topo { grid-area: topo; display: flex; gap: 0.8cqw; align-items: baseline; font-style: italic; text-shadow: 0.12cqw 0.12cqw 0 #000, 0 0 0.4cqw #000; }
+.mg-topo b { color: #ffd84a; font-size: 1.5cqw; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1cqw; }
+.mg-topo span { color: #9fe2ff; font-size: 1.05cqw; font-weight: 800; }
+.mg-cats { grid-area: cats; display: flex; flex-direction: column; gap: 0.9cqw; align-items: center; }
+.mg-cat { position: relative; width: 7cqw; height: 7cqw; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1cqw; cursor: pointer;
+  font: inherit; color: #fff; border: 0.3cqw solid #8fe8ff; background: radial-gradient(circle at 50% 35%, #2bb7e8, #0b4a78 65%, #062640); box-shadow: 0 0 0 0.25cqw #062640, 0 0.4cqw 0.8cqw rgba(0,0,0,0.6); }
+.mg-cat-formas { border-color: #ffe27a; background: radial-gradient(circle at 50% 35%, #ffcf3a, #a56a06 65%, #4a2e02); }
+.mg-cat-buffs { border-color: #ff8a8a; background: radial-gradient(circle at 50% 35%, #ff4a4a, #8a0e0e 65%, #3a0404); }
+.mg-cat-ic { font-size: 2.6cqw; line-height: 1; filter: drop-shadow(0 0.15cqw 0 rgba(0,0,0,0.5)); }
+.mg-cat-nome { font-size: 0.95cqw; font-weight: 900; font-style: italic; text-transform: uppercase; text-shadow: 0.1cqw 0.1cqw 0 #000; }
+.mg-cat.sel { transform: scale(1.08); box-shadow: 0 0 0 0.25cqw #062640, 0 0 1.4cqw #6ff0ff, 0 0 0.4cqw #fff; }
+.mg-cat.sel::after { content: ''; position: absolute; inset: -0.9cqw; border: 0.22cqw solid #6ff0ff; border-radius: 0.6cqw;
+  border-radius: 0.8cqw; -webkit-mask: linear-gradient(#000 0 0) top left / 30% 30% no-repeat, linear-gradient(#000 0 0) top right / 30% 30% no-repeat, linear-gradient(#000 0 0) bottom left / 30% 30% no-repeat, linear-gradient(#000 0 0) bottom right / 30% 30% no-repeat;
+  mask: linear-gradient(#000 0 0) top left / 30% 30% no-repeat, linear-gradient(#000 0 0) top right / 30% 30% no-repeat, linear-gradient(#000 0 0) bottom left / 30% 30% no-repeat, linear-gradient(#000 0 0) bottom right / 30% 30% no-repeat; }
+.mg-cat.vazio { opacity: 0.35; filter: grayscale(0.7); cursor: default; }
+.mg-golpes { grid-area: lista; display: flex; flex-direction: column; gap: 0.6cqw; }
+.mg-golpe { display: flex; align-items: center; gap: 0.8cqw; min-width: 17cqw; padding: 0.35cqw 1.4cqw 0.35cqw 0.35cqw; cursor: pointer; font: inherit; color: #fff; text-align: left;
+  border: 0.18cqw solid #2c8fb8; border-radius: 3cqw 0.6cqw 0.6cqw 3cqw; background: linear-gradient(90deg, #0d2f52, #0a1c36 70%, rgba(10,28,54,0.9)); box-shadow: 0 0.3cqw 0.6cqw rgba(0,0,0,0.5);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 1.2cqw) 100%, 0 100%); }
+.mg-ic { width: 3.6cqw; height: 3.6cqw; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9cqw;
+  background: radial-gradient(circle at 50% 35%, #1e6aa0, #081a30); border: 0.2cqw solid #6fd8ff; }
+.mg-nome { flex: 1; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 1.2cqw; letter-spacing: 0.05cqw; text-shadow: 0.1cqw 0.1cqw 0 #000; }
+.mg-ki { flex: none; font-size: 1cqw; font-weight: 900; color: #06223a; background: #8fe8ff; border-radius: 99px; padding: 0.05cqw 0.6cqw; }
+.mg-golpe.sel { border-color: #ffe25a; background: linear-gradient(90deg, #1a5a8a, #123a66 70%, rgba(18,58,102,0.95)); box-shadow: 0 0 1cqw rgba(111,240,255,0.7); }
+.mg-golpe.sel .mg-ic { border-color: #ffe25a; }
+.mg-golpe.bloq { opacity: 0.45; }
+.mg-golpe.supremo { border-color: #ff8a2a; background: linear-gradient(90deg, #6a2206, #3a1004); }
+.mg-golpe.supremo .mg-nome { color: #ffe25a; }
+.mg-golpe.sparking { border-color: #3fc8ff; }
+.mg-desc { grid-area: desc; max-width: 42cqw; font-size: 1.05cqw; color: #eee; background: rgba(8,14,34,0.85); border: 0.12cqw solid rgba(111,216,255,0.5); border-radius: 0.4cqw; padding: 0.4cqw 0.7cqw; }
+.mg-desc b { color: #ffd84a; } .mg-desc em { color: #ff9a8a; font-style: normal; }
+.mg-voltar { grid-area: voltar; justify-self: start; }
+
+/* 01 — leque radial: golpes num arco saindo da categoria */
+#menu.mg-radial { grid-template-areas: "topo topo" "cats lista" "desc desc" "voltar voltar"; grid-template-columns: 8cqw 30cqw; position: absolute; }
+#menu.mg-radial .mg-golpes { position: relative; display: block; min-height: 24cqw; }
+#menu.mg-radial .mg-golpe { position: absolute; white-space: nowrap; min-width: 0; }
+.mg-fios { position: absolute; left: 0; top: 0; width: 1px; height: 1px; pointer-events: none; overflow: visible; }
+.mg-fios path { fill: none; stroke: #6ff0ff; stroke-width: 2; opacity: 0.8; filter: drop-shadow(0 0 2px #6ff0ff); }
+
+/* 02 — trilho lateral: painel ao lado das categorias */
+#menu.mg-trilho { grid-template-areas: "topo topo" "cats lista" "desc desc" "voltar voltar"; grid-template-columns: 8cqw auto; align-items: start; }
+#menu.mg-trilho .mg-golpes { padding: 0.7cqw; gap: 0.45cqw; background: rgba(8,22,44,0.88); border: 0.2cqw solid #2c8fb8; border-radius: 0.6cqw; box-shadow: 0 0 1cqw rgba(0,0,0,0.6);
+  clip-path: polygon(0 0, calc(100% - 1.4cqw) 0, 100% 1.4cqw, 100% 100%, 1.4cqw 100%, 0 calc(100% - 1.4cqw)); }
+
+/* 03 — dock compacto: categorias em linha embaixo, golpes em cartões em cima */
+#menu.mg-dock { top: auto; bottom: 3.5cqw; grid-template-areas: "topo" "lista" "cats" "desc" "voltar"; justify-items: start; }
+#menu.mg-dock .mg-cats { flex-direction: row; }
+#menu.mg-dock .mg-golpes { flex-direction: row; padding: 0.6cqw; background: rgba(8,22,44,0.88); border: 0.2cqw solid #2c8fb8; border-radius: 0.8cqw; box-shadow: 0 0 1cqw rgba(0,180,255,0.35); }
+#menu.mg-dock .mg-golpe { position: relative; flex-direction: column; gap: 0.3cqw; min-width: 9.5cqw; width: 9.5cqw; padding: 0.5cqw 0.4cqw; border-radius: 0.6cqw; clip-path: none; text-align: center; }
+#menu.mg-dock .mg-nome { font-size: 1cqw; }
+#menu.mg-dock .mg-ki { position: absolute; top: 0.3cqw; right: 0.3cqw; }

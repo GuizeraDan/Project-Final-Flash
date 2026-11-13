@@ -69,11 +69,97 @@ FF.Battle = class {
       // ordem de turno pela velocidade (empate: heróis primeiro)
       const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
       this.ordem = ordem;   // mostrada no HUD
+      // Opções → Modo de turno "Planejamento": escolhe as ações de todos primeiro, depois tudo acontece
+      if (FF.Save && FF.Save.get().modoTurno === 'planejamento') { await this.rodadaPlanejada(ordem); continue; }
       for (const f of ordem) {
         if (this.over || f.ko) continue;
         await this.turn(f, f.isHero);
       }
     }
+  }
+
+  // ---------- modo Planejamento (como em Attack of the Saiyans) ----------
+  // 1) o jogador escolhe golpe e alvo de cada herói vivo (Esc / ↩ volta ao anterior); os inimigos decidem escondido
+  // 2) as ações acontecem na ordem de velocidade; quem cai antes perde a vez; alvo caído → outro de pé;
+  //    sem ki na hora → carrega ki
+  async rodadaPlanejada(ordem) {
+    const plano = new Map();
+    const herois = ordem.filter(f => f.isHero && !f.ko && !(f.atordoado > 0));
+    this.planejando = true;
+    for (let i = 0; i < herois.length;) {
+      const h = herois[i];
+      const foes = this.enemies.filter(f => !f.ko);
+      if (!foes.length) break;
+      this.turnLabel = 'Planejando ' + (i + 1) + '/' + herois.length + ': ' + h.nome;
+      this.atual = h;
+      const moveId = await this.ui.chooseMove(h, this, { voltar: i > 0, plano: true });
+      if (moveId === '__voltar') { i--; plano.delete(herois[i]); continue; }
+      const mv = h.def.golpes[moveId];
+      let alvo = foes[0];
+      if (foes.length > 1 && FF.Battle.ofensivo(mv)) alvo = await this.ui.chooseTarget(foes, this);
+      plano.set(h, { moveId, alvo });
+      h.planoIcone = FF.UI && FF.UI.icone ? FF.UI.icone(mv) : '✔';
+      i++;
+    }
+    this.planejando = false;
+    // inimigos decidem agora (sem mostrar)
+    for (const e of ordem.filter(f => !f.isHero && !f.ko)) {
+      const alvo = this.alvoInimigo(e);
+      if (!alvo) continue;
+      const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
+      plano.set(e, { moveId: sup || FF.AI.choose(e, alvo, this), alvo });
+    }
+    this.turnLabel = '';
+    this.banner('AÇÃO!', 0.8);
+    await FF.Clock.wait(0.6);
+    for (const f of ordem) {
+      if (this.over || f.ko) continue;
+      await this.turnoPlanejado(f, plano.get(f));
+      f.planoIcone = null;
+      if (this.checkEnd()) return;
+    }
+    this.all.forEach(f => (f.planoIcone = null));
+  }
+
+  alvoInimigo(actor) {
+    const foes = (actor.isHero ? this.enemies : this.heroes).filter(f => !f.ko);
+    if (foes.length < 2) return foes[0] || null;
+    const pesos = foes.map(f => 1 + 2 * (1 - f.hp / f.hpMax));
+    let x = Math.random() * pesos.reduce((a, b) => a + b, 0);
+    return foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
+  }
+
+  async turnoPlanejado(actor, p) {
+    if (actor.atordoado > 0) {
+      actor.atordoado--;
+      this.popup(actor, 'ATORDOADO!', '#fff27a');
+      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
+      await FF.Clock.wait(1.2);
+      await this.endTurn(actor);
+      return;
+    }
+    if (!p) { await this.endTurn(actor); return; }
+    const foes = (actor.isHero ? this.enemies : this.heroes).filter(f => !f.ko);
+    if (!foes.length) return;
+    let { moveId, alvo } = p;
+    let mv = actor.def.golpes[moveId];
+    // o que foi escolhido pode não valer mais (gastou ki, a forma mudou, parceiro caiu...)
+    const ok = (m) => m && (actor.form.golpes || []).includes(moveId) && (m.custoKi || 0) <= actor.ki && !(m.supremo && !actor.rageCheia) &&
+      !(m.requer && FF.UI && FF.UI.meets && !FF.UI.meets(actor, m.requer));
+    if (!ok(mv)) {
+      const carregar = (actor.form.golpes || []).find(id => /carregar/i.test(id) && actor.def.golpes[id]);
+      if (carregar) { this.popup(actor, 'SEM KI!', '#7fd0ff'); moveId = carregar; mv = actor.def.golpes[carregar]; }
+      else { moveId = actor.isHero ? (actor.form.golpes || []).find(id => ok(actor.def.golpes[id])) : FF.AI.choose(actor, foes[0], this); mv = actor.def.golpes[moveId]; }
+      if (!mv) { await this.endTurn(actor); return; }
+    }
+    if (!alvo || alvo.ko) alvo = actor.isHero ? foes[0] : this.alvoInimigo(actor);
+    this.turnLabel = 'Vez de ' + actor.nome;
+    this.atual = actor;
+    await FF.Clock.wait(actor.isHero ? 0.15 : 0.35);
+    await this.execute(actor, alvo, mv);
+    this.atual = null;
+    if (this.checkEnd()) return;
+    await this.endTurn(actor);
   }
 
   async intro() {
@@ -608,6 +694,8 @@ FF.Battle = class {
     const prio = (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
     const order = this.all.slice().sort((a, b) => prio(a) - prio(b));
     order.forEach(f => f.draw(ctx, this.fx));
+    // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
+    this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
     camada(false);
     ctx.restore();

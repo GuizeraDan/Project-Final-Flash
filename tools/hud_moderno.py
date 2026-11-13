@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CROP = (30, 80, 2155, 625)
-ESC = 0.5   # resolução guardada (metade da arte; o jogo mostra ~400 px de largura)
+ESC = 0.8   # resolução guardada (80% da arte: nítida mesmo com a tela em 3× — FF.RES)
 
 
 # contorno de dentro da moldura (na arte original); fora dele, o fundo escuro some e o brilho fica translúcido
