@@ -246,10 +246,19 @@ FF.Linha = {
         // teleporte: some no meio da animação e aparece no destino
         const nome = f.animName(c.animMov || 'teleporte');
         const a = f.sprite.anim(nome);
+        // o teleporte desfaz giro/tamanho que vieram de um movimento anterior: some e reaparece "em pé"
+        // (Tamanho/Giro na chegada do próprio teleporte valem ao reaparecer)
+        f.rotExtra = 0; f.escExtra = 1; f.offX = 0; f.offY = 0;
         const chegar = () => { f.x = dest; f.y = destY; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; };
         if (!a) { chegar(); return; }
         const meio = Math.floor(a.frames.length / 2);
+        // ao terminar, volta à pose parada (se nada mais trocou a animação nesse meio tempo)
         f.anim.play(nome, { onFrame: (i) => { if (i === meio) chegar(); } });
+        const animTp = f.anim;
+        viva.ativos.push(() => {
+          if (f.anim !== animTp || f.anim.name !== nome) return false;   // outra animação já entrou
+          if (f.anim.done) { if (!f.ko) f.idle(); return false; }
+        });
         return;
       }
       case 'efeito': {
