@@ -119,6 +119,22 @@ FF.Estudio = {
     Object.keys(v).forEach(k => { if (v[k] == null || v[k] === '' || v[k] === false) delete v[k]; });
     FF.Edicoes.setDepois(['spritesInfo', id], Object.keys(v).length ? v : null);
   },
+  renomearAnim(id, anim, nome) {
+    const m = Object.assign({}, FF.Assets.infoSprite(id).nomesAnims || {});
+    nome = (nome || '').trim();
+    if (nome && nome !== anim) m[anim] = nome; else delete m[anim];
+    this.mudarInfoSprite(id, { nomesAnims: Object.keys(m).length ? m : null });
+  },
+  // troca um texto por uma caixa de edição (Enter/clicar fora salva, Esc cancela)
+  editarNoLugar(el, valor, salvar) {
+    const inp = document.createElement('input'); inp.value = valor; inp.className = 'es-som-renomear';
+    const pai = el.parentNode; el.replaceWith(inp); inp.focus(); inp.select();
+    ['click', 'pointerdown', 'dblclick'].forEach(t => inp.addEventListener(t, (e) => e.stopPropagation()));
+    let feito = false;
+    const fim = (ok) => { if (feito) return; feito = true; if (ok) { salvar(inp.value); el.textContent = inp.value.trim() || el.textContent; } if (inp.parentNode === pai) inp.replaceWith(el); };
+    inp.onkeydown = (e) => { e.stopPropagation(); if (e.key === 'Enter') fim(true); if (e.key === 'Escape') fim(false); };
+    inp.onblur = () => fim(true);
+  },
   salvarNoJogo(caminho, valor, msg) {
     FF.Edicoes.set(caminho, valor);
     this.aviso((msg || '💾 Salvo no jogo.') + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');

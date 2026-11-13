@@ -216,3 +216,8 @@ a { color: var(--ouro); }
 .es-seletor-fonte:hover .es-seletor-acoes button, .es-seletor-acoes .es-fav-bt.on { opacity: 1; }
 .es-cartao .es-cartao-del { position: absolute; top: 3px; left: 3px; right: auto; opacity: 0; }
 .es-cartao:hover .es-cartao-del { opacity: 1; }
+
+.es-cartao .es-cartao-ren { position: absolute; top: 3px; left: 30px; right: auto; opacity: 0; }
+.es-cartao:hover .es-cartao-ren { opacity: 1; }
+.es-cartao span.renomeado { color: #ffe9a8; }
+.es-cartao .es-som-renomear { width: 100%; font-size: 11px; }

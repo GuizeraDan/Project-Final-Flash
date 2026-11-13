@@ -46,7 +46,7 @@ window.FF = window.FF || {};
         l.forEach(v => {
           const k = E.el('div', 'es-cartao');
           const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
-          const sp = E.el('span'); sp.textContent = v.anim || '(sprite inteiro)';
+          const sp = E.el('span'); sp.textContent = v.anim ? FF.Assets.nomeAnim(v.sprite, v.anim) : '(sprite inteiro)';
           const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = FF.Assets.nomeSprite ? FF.Assets.nomeSprite(v.sprite) : v.sprite;
           k.title = v.sprite + (v.anim ? ' · ' + v.anim : '') + ' — clique para abrir na aba Sprites';
           k.append(cv, sp, sb, F.botao(v.sprite, v.anim, () => this.render()));

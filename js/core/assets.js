@@ -50,6 +50,8 @@ FF.Assets = {
   infoSprite(id) { return (FF.Edicoes && (FF.Edicoes.dados().spritesInfo || {})[id]) || {}; },
   nomeSprite(id) { const n = this.infoSprite(id).nome; if (n) return n; const a = this.acervo()[id]; return a ? a[1] : id; },
   spriteOculto(id) { return !!this.infoSprite(id).oculto; },
+  // nome de exibição de uma animação (renomeada no Estúdio; o nome de verdade continua o mesmo nos golpes)
+  nomeAnim(id, anim) { const m = this.infoSprite(id).nomesAnims; return (m && m[anim]) || anim; },
   // tipo do conteúdo (vale para todas as fontes): 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes'; 'jogo' fora do acervo
   tipoSprite(id) {
     const fav = FF.Favoritos && FF.Favoritos.de(id);   // o usuário disse o que é (⭐ no Estúdio)

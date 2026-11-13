@@ -204,7 +204,7 @@ window.FF = window.FF || {};
       doAcervo.forEach(id => { itens = itens.concat(itensAcervo(id, idx)); });
       if (favs) itens = itens.filter(x => favs.some(v => v.sprite === x.id && (!v.anim || v.anim === x.a)));
       if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
-      if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '')).toLowerCase().includes(f));
+      if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '') + ' ' + FF.Assets.nomeAnim(x.id, x.a) + ' ' + FF.Assets.nomeSprite(x.id)).toLowerCase().includes(f));
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
       info.textContent = itens.length + ' animação(ões)' + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
@@ -212,11 +212,15 @@ window.FF = window.FF || {};
         const sel = o.atual && x.a === o.atual.anim && (!o.atual.sprite || o.atual.sprite === x.id);
         const k = E.el('div', 'es-cartao' + (sel ? ' sel' : ''));
         const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
-        const sp = E.el('span'); sp.textContent = x.a;
-        const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = NM[x.id] || x.id;
-        k.title = x.id + ' · ' + x.a + ' (' + x.n + ' quadros)';
+        const sp = E.el('span'); sp.textContent = FF.Assets.nomeAnim(x.id, x.a);
+        if (sp.textContent !== x.a) sp.classList.add('renomeado');
+        const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = FF.Assets.nomeSprite(x.id) !== x.id ? FF.Assets.nomeSprite(x.id) : (NM[x.id] || x.id);
+        sb.title = 'Duplo clique para renomear o sprite';
+        sb.addEventListener('dblclick', (e) => { e.stopPropagation(); E.editarNoLugar(sb, sb.textContent, (v) => E.mudarInfoSprite(x.id, { nome: v.trim() && v.trim() !== (FF.Assets.acervo()[x.id] || [])[1] ? v.trim() : null })); });
+        k.title = x.id + ' · ' + x.a + (FF.Assets.nomeAnim(x.id, x.a) !== x.a ? ' (renomeada: ' + FF.Assets.nomeAnim(x.id, x.a) + ')' : '') + ' (' + x.n + ' quadros)';
         k.append(cv, sp, sb);
         if (FF.Favoritos) k.appendChild(FF.Favoritos.botao(x.id, x.a, () => { contarFav(); if (favs) render(); }));
+        { const ren = E.botao('✏', (e) => { e.stopPropagation(); e.preventDefault(); E.editarNoLugar(sp, FF.Assets.nomeAnim(x.id, x.a), (v) => { E.renomearAnim(x.id, x.a, v); sp.classList.toggle('renomeado', !!v.trim() && v.trim() !== x.a); }); }, 'Renomear esta animação (só o nome que aparece; o golpe continua igual)', 'es-fav-bt es-cartao-ren'); ren.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(ren); }
         if (FF.Mods) { const del = E.botao('🗑', (e) => { e.stopPropagation(); e.preventDefault(); FF.Mods.apagar(x.id, x.a); k.remove(); E.aviso('🗑 Animação "' + x.a + '" excluída (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir esta animação (vai para a Lixeira)', 'es-fav-bt es-cartao-del'); del.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(del); }
         const desenhar = (s) => {
           if (!s.has(x.a)) return;

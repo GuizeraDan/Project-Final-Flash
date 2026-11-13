@@ -313,7 +313,7 @@
       const cv = document.createElement('canvas'); cv.width = 40; cv.height = 40;
       const [mw, mh] = maiores(a.frames);
       mini(cv, st.set, a.frames[0], mw, mh);
-      const nm = el('span', 'ess-anim-nome'); nm.textContent = n; nm.title = n;
+      const nm = el('span', 'ess-anim-nome'); nm.textContent = FF.Assets.nomeAnim(st.id, n); nm.title = n + (nm.textContent !== n ? ' (nome dado por você: ' + nm.textContent + ')' : '');
       it.append(cv, nm);
       if (novoAqui) it.appendChild(el('span', 'tag alt', 'nova'));
       else if (FF.Mods.criada(st.id, n)) it.appendChild(el('span', 'tag', '★'));

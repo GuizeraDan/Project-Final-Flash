@@ -300,6 +300,21 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(s.lix.includes('hit1') && s.lix.length >= 2 && s.volta, 'sprites: animação e sprite excluídos aparecem na Lixeira e voltam ao restaurar (' + s.lix + ')');
 
+  // ---- renomear a animação no cartão do seletor de sprites
+  s = await p.evaluate(async () => {
+    const m = FF.Estudio.escolherSprite({ inicio: 'fx', aoEscolher: () => {} });
+    await new Promise(r => setTimeout(r, 400));
+    const k = [...document.querySelectorAll('.es-modal:last-of-type .es-cartao')].find(c => /^fx · hit_grande/.test(c.title));
+    k.querySelector('.es-cartao-ren').click();
+    const inp = k.querySelector('input'); inp.value = 'Faísca grande'; inp.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    const txt = k.querySelector('span').textContent;
+    m.fechar();
+    const nome = FF.Assets.nomeAnim('fx', 'hit_grande');
+    FF.Estudio.renomearAnim('fx', 'hit_grande', '');
+    return { txt, nome, volta: FF.Assets.nomeAnim('fx', 'hit_grande') };
+  });
+  ok(s.txt === 'Faísca grande' && s.nome === 'Faísca grande' && s.volta === 'hit_grande', 'renomear animação no cartão: ' + JSON.stringify(s));
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
