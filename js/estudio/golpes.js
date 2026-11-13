@@ -755,6 +755,17 @@ window.FF = window.FF || {};
       ctx.save();
       const proj = L.filter(h => h.k === 'de' || h.k === 'ate');
       if (proj.length === 2) { ctx.strokeStyle = 'rgba(255,216,74,0.8)'; ctx.setLineDash([6, 4]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(proj[0].x, proj[0].y); ctx.lineTo(proj[1].x, proj[1].y); ctx.stroke(); ctx.setLineDash([]); }
+      // guias de alinhamento ao arrastar (ciano) e trava de eixo com Shift (amarelo)
+      for (const g of (this.guiasPalco || [])) {
+        ctx.save();
+        ctx.strokeStyle = g.trava ? 'rgba(255,216,74,0.9)' : '#3cf0ff'; ctx.lineWidth = 2; ctx.setLineDash(g.trava ? [8, 4] : [5, 3]);
+        ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 4;
+        ctx.beginPath();
+        if (g.eixo === 'x') { ctx.moveTo(g.v + 0.5, 0); ctx.lineTo(g.v + 0.5, this.cv.height); } else { ctx.moveTo(0, g.v + 0.5); ctx.lineTo(this.cv.width, g.v + 0.5); }
+        ctx.stroke();
+        if (g.de) { ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.fillStyle = '#3cf0ff'; ctx.beginPath(); ctx.arc(g.de.x, g.de.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.font = 'bold 11px sans-serif'; ctx.fillText(g.de.nome, g.de.x + 6, g.de.y - 6); }
+        ctx.restore();
+      }
       for (const h of L) {
         if (h.k === 'destino' && h.f) {   // silhueta do lutador no ponto de chegada
           const f = h.f, an = f.sprite.anim(f.animName('parado')) || f.anim.cur;
@@ -769,6 +780,30 @@ window.FF = window.FF || {};
         ctx.beginPath(); ctx.arc(h.x, h.y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       }
       ctx.restore();
+    },
+
+    // pontos para alinhar no palco: as outras alças do clipe + pés, peito e mão dos lutadores
+    pontosRef(h) {
+      const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
+      const b = this.palco._b;
+      if (b) for (const f of b.all) {
+        const pe = f.peito();
+        L.push({ x: f.x, y: f.groundY, nome: 'pés' }, { x: pe.x, y: pe.y, nome: 'peito' });
+        try { const d = f.pontoDisparo(); if (d) L.push({ x: d.x, y: d.y, nome: 'mão' }); } catch (e) { /* sem ponto */ }
+      }
+      return L;
+    },
+    alinharPalco(h, x, y, refs) {
+      const lim = 6;
+      let sx = null, sy = null, bx = lim, by = lim, dxp = null, dyp = null;
+      // as outras alças do clipe (ex.: saída × chegada do projétil) têm prioridade sobre os lutadores
+      const pen = (r) => (r.nome === 'alça' ? 0 : 3);
+      for (const r of refs || []) {
+        const ax = Math.abs(r.x - x) + pen(r), ay = Math.abs(r.y - y) + pen(r);
+        if (ax < bx + (dxp ? pen(dxp) : 0) && Math.abs(r.x - x) < lim) { bx = ax - pen(r); sx = r.x; dxp = r; }
+        if (ay < by + (dyp ? pen(dyp) : 0) && Math.abs(r.y - y) < lim) { by = ay - pen(r); sy = r.y; dyp = r; }
+      }
+      return { sx, sy, dx: dxp, dy: dyp };
     },
 
     // ---------- palco: clicar e arrastar ----------
@@ -789,14 +824,25 @@ window.FF = window.FF || {};
         if (!h) return;
         const c = this.clipe();
         cv.setPointerCapture(e.pointerId);
-        arr = { h, c: E.copia(c), p0: p };
+        arr = { h, c: E.copia(c), p0: p, refs: this.pontosRef(h) };
         this.pausar();
       });
       cv.addEventListener('pointermove', (e) => {
         if (!arr) return;
         const p = this.palco.pontoTela(e);
         const c = this.clipe(); if (!c) return;
-        const o = arr.c, h = arr.h, dx = p.x - arr.p0.x, dy = p.y - arr.p0.y;
+        const o = arr.c, h = arr.h;
+        let dx = p.x - arr.p0.x, dy = p.y - arr.p0.y;
+        // Shift: trava num eixo (só para os lados ou só para cima/baixo)
+        if (e.shiftKey && !['escala', 'giro'].includes(h.k)) { if (Math.abs(dx) >= Math.abs(dy)) dy = 0; else dx = 0; }
+        // guias: encaixa na mesma linha (X ou Y) de outras alças e dos lutadores — Alt solta
+        this.guiasPalco = [];
+        if (!e.altKey && !['escala', 'giro'].includes(h.k)) {
+          const g = this.alinharPalco(h, h.x + dx, h.y + dy, arr.refs);
+          if (g.sx != null && !(e.shiftKey && dx === 0)) { dx += g.sx - (h.x + dx); this.guiasPalco.push({ eixo: 'x', v: g.sx, de: g.dx }); }
+          if (g.sy != null && !(e.shiftKey && dy === 0)) { dy += g.sy - (h.y + dy); this.guiasPalco.push({ eixo: 'y', v: g.sy, de: g.dy }); }
+          if (e.shiftKey) this.guiasPalco.push({ eixo: dy === 0 ? 'y' : 'x', v: dy === 0 ? h.y : h.x, trava: true });
+        }
         const r = this.palco.ref[c.id] || {}, dir = r.dir || 1;
         const R = (v) => Math.round(v);
         switch (h.k) {
@@ -830,7 +876,7 @@ window.FF = window.FF || {};
         }
         this.mudou('Posicionar no palco', true, true);
       });
-      const fim = () => { if (arr) { this._deCanvas = true; this.mudou('Posicionar no palco', false); this.renderProps(); } arr = null; };
+      const fim = () => { this.guiasPalco = null; if (arr) { this._deCanvas = true; this.mudou('Posicionar no palco', false); this.renderProps(); } arr = null; };
       cv.addEventListener('pointerup', fim);
       cv.addEventListener('pointercancel', fim);
       cv.addEventListener('wheel', (e) => {

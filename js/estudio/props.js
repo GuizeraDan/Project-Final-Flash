@@ -171,7 +171,7 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'ondular', 'Ondular (px)'));
         g.appendChild(num(c, 'girar', 'Girar (°/s)'));
         const pos = E.grupo('Saída e chegada', true);
-        pos.appendChild(E.el('p', 'es-dica', 'No palco: arraste a alça verde (saída) e a vermelha (chegada). Para mexer só no desenho, clique e arraste o próprio projétil enquanto ele voa (alça roxa).'));
+        pos.appendChild(E.el('p', 'es-dica', 'No palco: arraste a alça verde (saída) e a vermelha (chegada); elas encaixam na mesma linha uma da outra e da mão/peito/pés dos lutadores (guia ciano). Shift = só para os lados ou só para cima/baixo; Alt = sem encaixe. Para mexer só no desenho, clique e arraste o próprio projétil enquanto ele voa (alça roxa).'));
         pos.appendChild(chk(c, 'centro', 'Centralizar o desenho no caminho'));
         pos.appendChild(num(c, 'spriteDx', 'Desenho X', 'Desloca só a imagem (o caminho e o acerto continuam iguais)'));
         pos.appendChild(num(c, 'spriteDy', 'Desenho Y'));

@@ -163,6 +163,27 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(pj.sel === s.id && Math.abs(Math.abs(pj.dx) - 40) <= 2 && Math.abs(pj.dy + 30) <= 2 && pj.deDx === s.deDx, 'clicar e arrastar o projétil voando move só o desenho (' + JSON.stringify(pj) + ')');
   await p.screenshot({ path: OUT + '/0d_projetil.png' });
 
+  // ---- palco: alinhar a saída na mesma altura da chegada (guia) e Shift trava o eixo
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    let c = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(k => { if (k.tipo === 'projetil' && !c) c = k; }));
+    g.sel = c.id; g.irPara(c.t + 0.05); g.redesenhar();
+    const hs = g.alcas(), de = hs.find(h => h.k === 'de'), ate = hs.find(h => h.k === 'ate');
+    const r = g.cv.getBoundingClientRect(), k = r.width / g.cv.width;
+    return { id: c.id, x: r.left + de.x * k, y: r.top + de.y * k, alvoY: r.top + (ate.y + 4) * k, k, ateY: ate.y };
+  });
+  await p.mouse.move(s.x, s.y); await p.mouse.down(); await p.mouse.move(s.x + 5, s.y + 5, { steps: 2 }); await p.mouse.move(s.x + 30 * s.k, s.alvoY, { steps: 6 });
+  const al = await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); return { guias: (g.guiasPalco || []).map(x => x.eixo), deY: g.alcas().find(h => h.k === 'de').y }; });
+  await p.screenshot({ path: OUT + '/0e_alinhar.png' });
+  await p.mouse.up();
+  ok(al.guias.includes('y') && Math.abs(al.deY - s.ateY) < 0.6, 'arrastar a saída perto da altura da chegada encaixa na mesma linha (guia ' + al.guias + ', y ' + Math.round(al.deY) + ' = ' + Math.round(s.ateY) + ')');
+  await p.keyboard.down('Shift');
+  const s2 = await p.evaluate(() => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); const h = g.alcas().find(x => x.k === 'de'); const r = g.cv.getBoundingClientRect(), k = r.width / g.cv.width; return { x: r.left + h.x * k, y: r.top + h.y * k, hy: h.y, k }; });
+  await p.mouse.move(s2.x, s2.y); await p.mouse.down(); await p.mouse.move(s2.x + 60 * s2.k, s2.y + 9 * s2.k, { steps: 6 }); await p.mouse.up();
+  await p.keyboard.up('Shift');
+  const tr = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').alcas().find(x => x.k === 'de').y);
+  ok(Math.abs(tr - s2.hy) < 0.6, 'Shift trava o eixo: arrastar na diagonal só move para o lado (y ' + Math.round(s2.hy) + ' → ' + Math.round(tr) + ')');
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
