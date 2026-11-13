@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_slider_thumb_active",{"id":"dw_slider_thumb_active","atlases":["assets/img/acervo/dw_slider_thumb_active_0.png"],"acervo":{"nome":"slider thumb active","fonte":"Drag Warriors","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,12,4,12,1]]}},"tipo":"efeito"});

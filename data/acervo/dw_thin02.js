@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_thin02",{"id":"dw_thin02","atlases":["assets/img/acervo/dw_thin02_0.png"],"acervo":{"nome":"Thin02","fonte":"Drag Warriors","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,512,1]]}}});

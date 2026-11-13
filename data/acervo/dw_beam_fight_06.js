@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_beam_fight_06",{"id":"dw_beam_fight_06","atlases":["assets/img/acervo/dw_beam_fight_06_0.png"],"acervo":{"nome":"beam_fight_06","fonte":"Drag Warriors","tipo":"efeitos","origem":"0550cfc98ac297047aae2f2403cf1876"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,104,253,52,126,1]]}},"tipo":"efeito"});

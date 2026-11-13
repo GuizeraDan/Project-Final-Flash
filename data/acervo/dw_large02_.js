@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_large02_",{"id":"dw_large02_","atlases":["assets/img/acervo/dw_large02__0.png"],"acervo":{"nome":"Large02","fonte":"Drag Warriors","tipo":"cenarios","origem":"globalgamemanagers.assets.split0"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,512,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_bb_atk",{"id":"dw_bb_atk","atlases":["assets/img/acervo/dw_bb_atk_0.png"],"acervo":{"nome":"BB_ATK","fonte":"Drag Warriors","tipo":"efeitos","origem":"6eb269cedbd460d4dab44b5b61520f83"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,112,102,56,51,1]]}},"tipo":"efeito"});

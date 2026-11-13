@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_unitywatermark_small",{"id":"dw_unitywatermark_small","atlases":["assets/img/acervo/dw_unitywatermark_small_0.png"],"acervo":{"nome":"UnityWatermark-small","fonte":"Drag Warriors","tipo":"cenarios","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,58,64,58,1]]}}});

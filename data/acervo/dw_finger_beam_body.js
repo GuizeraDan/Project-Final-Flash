@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_finger_beam_body",{"id":"dw_finger_beam_body","atlases":["assets/img/acervo/dw_finger_beam_body_0.png"],"acervo":{"nome":"finger_beam_body","fonte":"Drag Warriors","tipo":"efeitos","origem":"c0b0c2cff023995489c0b754803690d7"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,29,0,14,1]]}},"tipo":"efeito"});

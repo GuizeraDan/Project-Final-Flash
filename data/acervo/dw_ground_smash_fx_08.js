@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_ground_smash_fx_08",{"id":"dw_ground_smash_fx_08","atlases":["assets/img/acervo/dw_ground_smash_fx_08_0.png"],"acervo":{"nome":"ground_smash_fx_08","fonte":"Drag Warriors","tipo":"cenarios","origem":"e54b7ab7dee08664fb254fba31c3c9ca"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,105,25,52,12,1]]}}});

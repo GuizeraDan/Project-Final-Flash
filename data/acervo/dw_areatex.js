@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_areatex",{"id":"dw_areatex","atlases":["assets/img/acervo/dw_areatex_0.png"],"acervo":{"nome":"AreaTex","fonte":"Drag Warriors","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,160,560,80,560,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_warningsign",{"id":"dw_warningsign","atlases":["assets/img/acervo/dw_warningsign_0.png"],"acervo":{"nome":"WarningSign","fonte":"Drag Warriors","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,63,55,32,55,1]]}},"tipo":"efeito"});

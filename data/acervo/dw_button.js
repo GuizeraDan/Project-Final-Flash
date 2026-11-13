@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_button",{"id":"dw_button","atlases":["assets/img/acervo/dw_button_0.png"],"acervo":{"nome":"button","fonte":"Drag Warriors","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,12,12,6,12,1]]}}});

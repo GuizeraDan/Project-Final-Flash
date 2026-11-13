@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_window",{"id":"dw_window","atlases":["assets/img/acervo/dw_window_0.png"],"acervo":{"nome":"window","fonte":"Drag Warriors","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,17,27,8,27,1]]}}});

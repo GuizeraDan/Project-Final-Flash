@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_toggle_on_hover",{"id":"dw_toggle_on_hover","atlases":["assets/img/acervo/dw_toggle_on_hover_0.png"],"acervo":{"nome":"toggle on hover","fonte":"Drag Warriors","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,13,6,13,1]]}},"tipo":"efeito"});

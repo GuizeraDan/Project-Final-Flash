@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_ads_icon",{"id":"dw_ads_icon","atlases":["assets/img/acervo/dw_ads_icon_0.png"],"acervo":{"nome":"ads_icon","fonte":"Drag Warriors","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,52,32,26,1]]}}});

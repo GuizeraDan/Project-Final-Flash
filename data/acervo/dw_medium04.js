@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_medium04",{"id":"dw_medium04","atlases":["assets/img/acervo/dw_medium04_0.png"],"acervo":{"nome":"Medium04","fonte":"Drag Warriors","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,512,1]]}}});

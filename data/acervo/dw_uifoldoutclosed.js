@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_uifoldoutclosed",{"id":"dw_uifoldoutclosed","atlases":["assets/img/acervo/dw_uifoldoutclosed_0.png"],"acervo":{"nome":"UIFoldoutClosed","fonte":"Drag Warriors","tipo":"efeitos","origem":"7a0568d5e3330b84687e307992be3030"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,11,11,6,6,1]]}},"tipo":"efeito"});

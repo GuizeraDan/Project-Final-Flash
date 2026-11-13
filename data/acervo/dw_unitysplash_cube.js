@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_unitysplash_cube",{"id":"dw_unitysplash_cube","atlases":["assets/img/acervo/dw_unitysplash_cube_0.png"],"acervo":{"nome":"UnitySplash-cube","fonte":"Drag Warriors","tipo":"cenarios","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2048,1024,1024,512,1]]}}});

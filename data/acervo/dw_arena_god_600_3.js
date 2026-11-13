@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_arena_god_600_3",{"id":"dw_arena_god_600_3","atlases":["assets/img/acervo/dw_arena_god_600_3_0.png"],"acervo":{"nome":"arena_god_600-3","fonte":"Drag Warriors","tipo":"cenarios","origem":"88d47851f900330479fa5343677276bf"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1024,512,512,256,1]]}}});

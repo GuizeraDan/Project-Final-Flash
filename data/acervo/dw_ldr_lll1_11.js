@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_ldr_lll1_11",{"id":"dw_ldr_lll1_11","atlases":["assets/img/acervo/dw_ldr_lll1_11_0.png"],"acervo":{"nome":"LDR_LLL1_11","fonte":"Drag Warriors","tipo":"efeitos","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,16,1]]}},"tipo":"efeito"});

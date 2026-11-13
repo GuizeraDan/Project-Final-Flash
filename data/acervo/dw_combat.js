@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dw_combat",{"id":"dw_combat","atlases":["assets/img/acervo/dw_combat_0.png"],"acervo":{"nome":"combat","fonte":"Drag Warriors","tipo":"efeitos","origem":"582fc439bf0d56549859a11dc2c77bc3"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,190,56,95,56,1]]}},"tipo":"efeito"});
