@@ -730,7 +730,12 @@ window.FF = window.FF || {};
       }
       if (c.tipo === 'projetil') {   // o projétil voando agora: alça roxa no meio do desenho
         const pj = b.projectiles.find(x => x.clipe === c.id && !x.dead), cx = pj && b.caixaProjetil(pj);
-        if (cx) L.push({ k: 'sprite', x: cx.cx, y: cx.cy, cor: '#b06cff', caixa: cx });
+        if (cx) {   // como nos efeitos: mover (branca), tamanho (amarela) e giro (azul)
+          const raio = Math.max(18, Math.max(cx.w, cx.h) / 2);
+          L.push({ k: 'sprite', x: cx.cx, y: cx.cy, cor: '#fff', caixa: cx, raio },
+            { k: 'escala', x: cx.cx + raio * 0.75, y: cx.cy + raio * 0.75, cor: '#ffd84a', cx: cx.cx, cy: cx.cy },
+            { k: 'giro', x: cx.cx, y: cx.cy - raio - 16, cor: '#6cc8ff', cx: cx.cx, cy: cx.cy });
+        }
       }
       if (c.tipo === 'acerto' && r.p) L.push({ k: 'acerto', x: r.p.x + (c.dx || 0) * dir, y: r.p.y + (c.dy || 0), cor: '#ff5a5a' });
       // teleporte/movimento para um ponto da tela: alça no destino (com silhueta do lutador)
@@ -773,8 +778,9 @@ window.FF = window.FF || {};
           ctx.strokeStyle = 'rgba(95,224,138,0.8)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.moveTo(h.px - 22, f.groundY); ctx.lineTo(h.px + 22, f.groundY); ctx.moveTo(h.px, f.groundY); ctx.lineTo(h.px, h.py); ctx.stroke(); ctx.setLineDash([]);
         }
-        if (h.caixa) { ctx.strokeStyle = '#b06cff'; ctx.lineWidth = 2; ctx.strokeRect(h.caixa.x, h.caixa.y, h.caixa.w, h.caixa.h); }
+        if (h.caixa && h.k !== 'sprite') { ctx.strokeStyle = '#b06cff'; ctx.lineWidth = 2; ctx.strokeRect(h.caixa.x, h.caixa.y, h.caixa.w, h.caixa.h); }
         if (h.k === 'escala' || h.k === 'giro') { ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(h.cx, h.cy); ctx.lineTo(h.x, h.y); ctx.stroke(); }
+        if (h.k === 'sprite') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         ctx.fillStyle = h.cor; ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.arc(h.x, h.y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
@@ -881,7 +887,7 @@ window.FF = window.FF || {};
       cv.addEventListener('pointercancel', fim);
       cv.addEventListener('wheel', (e) => {
         const c = this.clipe();
-        if (!c || !['efeito', 'camada', 'anim'].includes(c.tipo)) return;
+        if (!c || !['efeito', 'camada', 'anim', 'projetil'].includes(c.tipo)) return;
         e.preventDefault();
         c.escala = Math.max(0.05, Math.round((c.escala || 1) * (e.deltaY < 0 ? 1.08 : 1 / 1.08) * 100) / 100);
         this._deCanvas = true;

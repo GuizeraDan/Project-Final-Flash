@@ -420,6 +420,7 @@ FF.Battle = class {
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
       girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
       centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
+      rot: spec.rot ? spec.rot * att.dir * Math.PI / 180 : 0, filtro: FF.Battle.filtroCor(spec.cor, spec.corForca),
       done: new Promise(r => (res = r)),
     };
     p.hit = () => {
@@ -460,6 +461,12 @@ FF.Battle = class {
   }
 
   // deslocamento do desenho em relação ao caminho: "centro" (meio do quadro no caminho) + ajuste livre (Estúdio)
+  // cor (círculo cromático do Estúdio): pinta o sprite com o matiz "cor" (0–359°) mantendo o claro/escuro
+  static filtroCor(cor, forca) {
+    if (cor == null || cor === '') return null;
+    const f = forca != null ? forca : 1;
+    return 'grayscale(1) sepia(1) saturate(' + (1 + 4 * f).toFixed(2) + ') hue-rotate(' + Math.round(cor - 38) + 'deg)';
+  }
   desvioProjetil(p, f, sc) {
     let x = p.ajX || 0, y = p.ajY || 0;
     if (p.centro && f) { x += (p.flip ? -1 : 1) * (f[5] - f[3] / 2) * sc; y += (f[6] - f[4] / 2) * sc; }
@@ -476,10 +483,17 @@ FF.Battle = class {
 
   desenharProjetil(ctx, p) {
     const draw = (f, x, y, sc, ang, alpha) => {
-      const d = this.desvioProjetil(p, f, sc);
-      if (!ang) return FF.drawFrame(ctx, p.set || this.fx, f, x + d.x, y + d.y, sc, p.flip, alpha != null ? { alpha } : undefined);
-      ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
-      FF.drawFrame(ctx, p.set || this.fx, f, d.x, d.y, sc, p.flip, alpha != null ? { alpha } : undefined);
+      if (!f) return;
+      const d = this.desvioProjetil(p, f, sc), o = alpha != null ? { alpha } : undefined;
+      ctx.save();
+      if (p.filtro) ctx.filter = p.filtro;            // cor escolhida no Estúdio (círculo cromático)
+      ctx.translate(x, y);
+      if (ang) ctx.rotate(ang);
+      if (p.rot) {   // giro fixo do desenho (Estúdio), em volta do meio do quadro
+        const cxo = (p.flip ? -1 : 1) * (f[3] / 2 - f[5]) * sc, cyo = (f[4] / 2 - f[6]) * sc;
+        ctx.translate(d.x + cxo, d.y + cyo); ctx.rotate(p.rot);
+        FF.drawFrame(ctx, p.set || this.fx, f, -cxo, -cyo, sc, p.flip, o);
+      } else FF.drawFrame(ctx, p.set || this.fx, f, d.x, d.y, sc, p.flip, o);
       ctx.restore();
     };
     if (!p.rastro) return draw(p.a.frame(), p.x, p.y, p.scale || this.scale, 0);

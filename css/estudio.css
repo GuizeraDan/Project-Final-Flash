@@ -173,3 +173,9 @@ a { color: var(--ouro); }
 .es-seletor-cat:hover { background: var(--painel); }
 .es-seletor-cat-corpo { padding-left: 6px; }
 .es-seletor-subcat { font-weight: normal; color: var(--texto, #ddd); }
+
+.es-roda-cor { display: block; width: 100%; max-width: 260px; margin: 4px auto; cursor: crosshair; touch-action: none; }
+.es-roda-info { font-size: 12px; text-align: center; margin: 2px 0 6px; color: var(--texto, #ddd); }
+.es-cores-nomes { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 6px; }
+.es-cores-nomes button { display: flex; align-items: center; gap: 6px; justify-content: flex-start; }
+.es-cor-amostra { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid #000; flex: none; }

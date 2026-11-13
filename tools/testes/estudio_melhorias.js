@@ -163,6 +163,21 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(pj.sel === s.id && Math.abs(Math.abs(pj.dx) - 40) <= 2 && Math.abs(pj.dy + 30) <= 2 && pj.deDx === s.deDx, 'clicar e arrastar o projétil voando move só o desenho (' + JSON.stringify(pj) + ')');
   await p.screenshot({ path: OUT + '/0d_projetil.png' });
 
+  // ---- projétil: alças de tamanho/giro como os efeitos + cor pelo círculo cromático
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    let c = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(k => { if (k.tipo === 'projetil' && !c) c = k; }));
+    g.sel = c.id; g.irPara(c.t + 0.12); g.renderProps();
+    const ks = g.alcas().map(h => h.k);
+    const bt = [...g.props.querySelectorAll('.es-cores-nomes button')].find(b => /Verde/.test(b.textContent)); bt.click();
+    g.irPara(c.t + 0.12);
+    const pj = g.palco._b.projectiles.find(x => x.clipe === c.id && !x.dead);
+    return { ks, cor: c.cor, filtro: pj && pj.filtro, info: g.props.querySelector('.es-roda-info').textContent, nomes: g.props.querySelectorAll('.es-cores-nomes button').length };
+  });
+  await p.screenshot({ path: OUT + '/0f_cor.png' });
+  ok(s.ks.includes('sprite') && s.ks.includes('escala') && s.ks.includes('giro'), 'projétil voando tem alças de mover, tamanho e giro (' + s.ks + ')');
+  ok(s.cor === 110 && /hue-rotate\(72deg\)/.test(s.filtro || '') && /Verde/.test(s.info) && s.nomes === 8, 'cor pelo nome: ' + s.info + ' · filtro ' + s.filtro);
+
   // ---- palco: alinhar a saída na mesma altura da chegada (guia) e Shift trava o eixo
   s = await p.evaluate(() => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');

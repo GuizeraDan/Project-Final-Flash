@@ -163,6 +163,9 @@ FF.EstudioProps = {
         g.appendChild(this.campoEfeito(c, 'fx', 'Projétil', host));
         g.appendChild(num(c, 'velocidade', 'Velocidade', 'px/s (padrão 650)'));
         g.appendChild(num(c, 'escala', 'Tamanho (×)', null, { passo: 0.05 }));
+        g.appendChild(num(c, 'rot', 'Giro do desenho (°)', 'Gira só a imagem (no palco: alça azul)'));
+        g.appendChild(E.el('p', 'es-dica', 'No palco, com o projétil voando: alça branca = mover o desenho, amarela = tamanho, azul = giro (igual aos efeitos). Roda do mouse = tamanho.'));
+        box.appendChild(this.rodaCores(c, host));
         g.appendChild(E.campo('check', 'Rastro', c.rastro !== false, (v) => { if (v) delete c.rastro; else c.rastro = false; host.mudou('Rastro'); }));
         g.appendChild(E.campo('check', 'Cresce ao sair', c.crescer !== false, (v) => { if (v) delete c.crescer; else c.crescer = false; host.mudou('Crescer'); }));
         g.appendChild(chk(c, 'atravessar', 'Atravessa o alvo'));
@@ -322,6 +325,75 @@ FF.EstudioProps = {
     dicas.appendChild(E.el('div', 'es-dica', '<p>Espaço: tocar/pausar · ← →: quadro a quadro (Shift = 10) · Home/End · Del: apagar clipe · Ctrl+D: duplicar · Ctrl+C/V: copiar/colar · Ctrl+Z/Y: desfazer/refazer · Ctrl+S: salvar.</p><p>Escolha um clipe para ver e mudar tudo dele. Clique no palco para escolher o que está lá.</p>'));
     box.appendChild(dicas);
     return box;
+  },
+
+  // ---------- cor: círculo cromático com o NOME de cada cor (pedido do usuário, que é daltônico) ----------
+  CORES: [[0, 'Vermelho'], [15, 'Vermelho-alaranjado'], [28, 'Laranja'], [42, 'Amarelo-ouro'], [54, 'Amarelo'], [70, 'Verde-limão'], [95, 'Verde'],
+    [140, 'Verde-esmeralda'], [165, 'Verde-água'], [180, 'Ciano'], [198, 'Azul-claro'], [218, 'Azul'], [240, 'Anil'], [262, 'Roxo'],
+    [282, 'Violeta'], [300, 'Magenta'], [320, 'Rosa'], [342, 'Vermelho-rosado']],
+  PRINCIPAIS: [[0, 'Vermelho'], [28, 'Laranja'], [54, 'Amarelo'], [110, 'Verde'], [180, 'Ciano'], [218, 'Azul'], [265, 'Roxo'], [320, 'Rosa']],
+  nomeCor(h) { h = ((h % 360) + 360) % 360; let n = this.CORES[0][1]; for (const [a, nome] of this.CORES) if (h >= a) n = nome; return n; },
+  rodaCores(c, host) {
+    const E = FF.Estudio;
+    const g = E.grupo('🎨 Cor do projétil', true);
+    const cv = document.createElement('canvas'); cv.width = 260; cv.height = 260; cv.className = 'es-roda-cor';
+    const info = E.el('div', 'es-roda-info');
+    const R0 = 62, R1 = 92, C = 130;
+    const desenhar = () => {
+      const x = cv.getContext('2d');
+      x.clearRect(0, 0, 260, 260);
+      for (let a = 0; a < 360; a += 1) {   // anel (vermelho no topo, sentido horário)
+        const r0 = (a - 90 - 0.6) * Math.PI / 180, r1 = (a - 90 + 0.6) * Math.PI / 180;
+        x.beginPath(); x.arc(C, C, R1, r0, r1); x.arc(C, C, R0, r1, r0, true); x.closePath();
+        x.fillStyle = 'hsl(' + a + ',90%,55%)'; x.fill();
+      }
+      // nomes das cores principais em volta, com um tracinho
+      x.font = 'bold 11px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+      for (const [a, nome] of this.PRINCIPAIS) {
+        const r = (a - 90) * Math.PI / 180;
+        x.strokeStyle = '#fff'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(C + Math.cos(r) * (R1 + 1), C + Math.sin(r) * (R1 + 1)); x.lineTo(C + Math.cos(r) * (R1 + 7), C + Math.sin(r) * (R1 + 7)); x.stroke();
+        x.fillStyle = '#e8e0ff'; x.fillText(nome, C + Math.cos(r) * (R1 + 22), C + Math.sin(r) * (R1 + 16));
+      }
+      if (c.cor != null) {
+        const r = (c.cor - 90) * Math.PI / 180, mx = C + Math.cos(r) * (R0 + R1) / 2, my = C + Math.sin(r) * (R0 + R1) / 2;
+        x.lineWidth = 3; x.strokeStyle = '#000'; x.beginPath(); x.arc(mx, my, 11, 0, Math.PI * 2); x.stroke();
+        x.lineWidth = 2; x.strokeStyle = '#fff'; x.beginPath(); x.arc(mx, my, 8, 0, Math.PI * 2); x.stroke();
+        x.fillStyle = 'hsl(' + c.cor + ',90%,55%)'; x.beginPath(); x.arc(C, C, R0 - 14, 0, Math.PI * 2); x.fill();
+        x.fillStyle = '#000'; x.font = 'bold 12px sans-serif'; x.fillText(this.nomeCor(c.cor), C, C - 6); x.font = '11px monospace'; x.fillText(Math.round(c.cor) + '°', C, C + 10);
+      } else { x.fillStyle = '#e8e0ff'; x.font = '12px sans-serif'; x.fillText('cor original', C, C); }
+      info.textContent = c.cor != null ? 'Cor escolhida: ' + this.nomeCor(c.cor) + ' (' + Math.round(c.cor) + '°)' : 'Sem cor: o projétil fica com as cores do sprite.';
+    };
+    const aplicar = (h, juntar) => { c.cor = Math.round(((h % 360) + 360) % 360); desenhar(); host.mudou('Cor do projétil', juntar); };
+    const peloMouse = (e, juntar) => {
+      const r = cv.getBoundingClientRect(), k = cv.width / r.width;
+      const x = (e.clientX - r.left) * k - C, y = (e.clientY - r.top) * k - C;
+      if (Math.hypot(x, y) < R0 - 18 || Math.hypot(x, y) > R1 + 30) return false;
+      aplicar(Math.atan2(y, x) * 180 / Math.PI + 90, juntar); return true;
+    };
+    let arrastando = false;
+    cv.addEventListener('pointerdown', (e) => { if (peloMouse(e, false)) { arrastando = true; cv.setPointerCapture(e.pointerId); } });
+    cv.addEventListener('pointermove', (e) => {
+      if (arrastando) return peloMouse(e, true);
+      const r = cv.getBoundingClientRect(), k = cv.width / r.width, x = (e.clientX - r.left) * k - C, y = (e.clientY - r.top) * k - C, d = Math.hypot(x, y);
+      cv.title = d >= R0 - 18 && d <= R1 + 30 ? this.nomeCor(Math.atan2(y, x) * 180 / Math.PI + 90) : '';
+    });
+    const soltar = () => { arrastando = false; };
+    cv.addEventListener('pointerup', soltar); cv.addEventListener('pointercancel', soltar);
+    g.appendChild(cv);
+    g.appendChild(info);
+    // botões com o nome escrito (não depende de enxergar a cor)
+    const bts = E.el('div', 'es-cores-nomes');
+    this.PRINCIPAIS.forEach(([h, nome]) => {
+      const b = E.botao(nome, () => aplicar(h), 'Pintar de ' + nome.toLowerCase());
+      const am = document.createElement('span'); am.className = 'es-cor-amostra'; am.style.background = 'hsl(' + h + ',90%,55%)';
+      b.prepend(am); bts.appendChild(b);
+    });
+    g.appendChild(bts);
+    g.appendChild(E.campo('numero', 'Ajuste fino (°)', c.cor, (v, j) => { if (v === undefined || isNaN(v)) delete c.cor; else c.cor = ((Math.round(v) % 360) + 360) % 360; desenhar(); host.mudou('Cor do projétil', j); }, { passo: 1, min: 0, max: 359, dica: '0 vermelho · 54 amarelo · 110 verde · 180 ciano · 218 azul · 265 roxo · 320 rosa' }));
+    g.appendChild(E.campo('numero', 'Intensidade', c.corForca, (v, j) => { if (v === undefined || isNaN(v)) delete c.corForca; else c.corForca = Math.max(0, v); host.mudou('Intensidade da cor', j); }, { passo: 0.1, min: 0, max: 3, dica: 'Vazio = 1 (normal). 0 = bem clarinho; 2 = forte' }));
+    g.appendChild(E.botao('↺ Cor original', () => { delete c.cor; delete c.corForca; desenhar(); host.mudou('Cor do projétil'); }, 'Tira a cor e volta às cores do sprite'));
+    desenhar();
+    return g;
   },
 
   comEscolha(row, fn, fonte) {

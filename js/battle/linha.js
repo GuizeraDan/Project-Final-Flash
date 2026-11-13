@@ -13,7 +13,8 @@
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
 //            seguir? (anda junto com o lutador em que está preso)}
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?,
-//            centro? (meio do desenho no caminho, em vez da origem do sprite), spriteDx?, spriteDy? (desenho deslocado do caminho)}
+//            centro? (meio do desenho no caminho, em vez da origem do sprite), spriteDx?, spriteDy? (desenho deslocado do caminho),
+//            rot? (giro fixo do desenho, °), cor? (matiz 0–359: pinta o projétil), corForca? (0–2, padrão 1)}
 //  camadas  {tipo:"camada", d, sprite, anim, ancora, x, y, escala, alpha, rot, flip, fps, loop, chaves:[{t,x,y,escala,alpha,rot}]}
 //  sons     {tipo:"som", som} | {tipo:"voz", voz}   (texto ou lista para sortear)
 //           {tipo:"voz", vozTipo: "dano"|"lancado"|..., quem: "atacante"|"alvo"}  (a voz do próprio personagem)
