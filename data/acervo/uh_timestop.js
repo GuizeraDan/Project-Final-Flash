@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_timestop",{"id":"uh_timestop","atlases":["assets/img/acervo/uh_timestop_0.png"],"acervo":{"nome":"TimeStop","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"TimeStop"},"anims":{"VegetaT15":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,132,64,66,1]]}},"tipo":"efeito"});

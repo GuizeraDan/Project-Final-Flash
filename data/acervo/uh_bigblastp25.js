@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp25",{"id":"uh_bigblastp25","atlases":["assets/img/acervo/uh_bigblastp25_0.png"],"acervo":{"nome":"BigBlastP25","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP25"},"anims":{"S25":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,252,0,122,92,73,46,1],[0,127,0,124,92,74,46,1],[0,0,0,126,94,77,47,1]]}},"tipo":"efeito"});

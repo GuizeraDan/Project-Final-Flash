@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_nivelm",{"id":"uh_nivelm","atlases":["assets/img/acervo/uh_nivelm_0.png"],"acervo":{"nome":"NivelM","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"NivelM"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,34,0,33,43,17,21,1],[0,68,0,33,43,17,21,1],[0,0,0,33,61,17,33,1]]}},"tipo":"efeito"});

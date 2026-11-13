@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_colis_ob",{"id":"uh_colis_ob","atlases":["assets/img/acervo/uh_colis_ob_0.png"],"acervo":{"nome":"ColisãoB","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"ColisãoB"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,250,1,[[0,-125],[235,-125]]]]}},"tipo":"efeito"});

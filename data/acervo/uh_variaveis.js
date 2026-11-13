@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_variaveis",{"id":"uh_variaveis","atlases":["assets/img/acervo/uh_variaveis_0.png"],"acervo":{"nome":"Variaveis","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Variaveis"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,13,13,1]]}},"tipo":"efeito"});

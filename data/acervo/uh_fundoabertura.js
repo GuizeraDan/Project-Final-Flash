@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundoabertura",{"id":"uh_fundoabertura","atlases":["assets/img/acervo/uh_fundoabertura_0.png"],"acervo":{"nome":"FundoAbertura","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoAbertura"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,250,256,125,1]]}}});

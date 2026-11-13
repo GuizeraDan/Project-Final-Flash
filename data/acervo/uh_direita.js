@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_direita",{"id":"uh_direita","atlases":["assets/img/acervo/uh_direita_0.png"],"acervo":{"nome":"Direita","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Direita"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,89,32,45,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_introef26",{"id":"uh_introef26","atlases":["assets/img/acervo/uh_introef26_0.png"],"acervo":{"nome":"IntroEF26","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"IntroEF26"},"anims":{"Android18p2":{"fps":12,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,94,52,47,26,1],[0,95,0,94,52,47,26,1],[0,190,0,94,52,47,26,1]]}},"tipo":"efeito"});

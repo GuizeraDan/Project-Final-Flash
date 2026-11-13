@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c9",{"id":"uh_c9","atlases":["assets/img/acervo/uh_c9_0.png"],"acervo":{"nome":"C9","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C9"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,473,251,236,126,1]]}},"tipo":"efeito"});

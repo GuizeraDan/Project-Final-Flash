@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp36",{"id":"uh_bigblastp36","atlases":["assets/img/acervo/uh_bigblastp36_0.png"],"acervo":{"nome":"BigBlastP36","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP36"},"anims":{"S36":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,58,28,29,1],[0,57,0,53,58,26,29,1],[0,111,0,34,34,17,17,1]]}},"tipo":"efeito"});

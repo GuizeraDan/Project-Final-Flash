@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_dificult",{"id":"uh_dificult","atlases":["assets/img/acervo/uh_dificult_0.png"],"acervo":{"nome":"Dificult","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Dificult"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,66,77,33,46,1],[0,67,0,66,77,33,46,1],[0,134,0,66,77,33,46,1]]}},"tipo":"efeito"});

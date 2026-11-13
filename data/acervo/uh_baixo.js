@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_baixo",{"id":"uh_baixo","atlases":["assets/img/acervo/uh_baixo_0.png"],"acervo":{"nome":"Baixo","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Baixo"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,64,45,32,1]]}},"tipo":"efeito"});

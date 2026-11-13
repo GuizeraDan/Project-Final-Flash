@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_funfotuto2",{"id":"uh_funfotuto2","atlases":["assets/img/acervo/uh_funfotuto2_0.png"],"acervo":{"nome":"FunfoTUTO2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"FunfoTUTO2"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,255,55,128,28,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_ch_oloja",{"id":"uh_ch_oloja","atlases":["assets/img/acervo/uh_ch_oloja_0.png"],"acervo":{"nome":"ChãoLoja","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"ChãoLoja"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,186,0,170,50,85,50,1],[0,0,0,185,184,92,184,1]]}}});

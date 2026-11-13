@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp31",{"id":"uh_bigblastp31","atlases":["assets/img/acervo/uh_bigblastp31_0.png"],"acervo":{"nome":"BigBlastP31","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP31"},"anims":{"S31":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,18,18,9,9,1,[[9,0]]]]}},"tipo":"efeito"});

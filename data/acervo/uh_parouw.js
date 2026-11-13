@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_parouw",{"id":"uh_parouw","atlases":["assets/img/acervo/uh_parouw_0.png"],"acervo":{"nome":"Parouw","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Parouw"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,12,12,1]]}},"tipo":"efeito"});

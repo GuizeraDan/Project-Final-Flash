@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_music",{"id":"uh_music","atlases":["assets/img/acervo/uh_music_0.png"],"acervo":{"nome":"Music","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Music"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,71,0,66,58,33,29,1],[0,0,0,70,58,33,29,1]]}},"tipo":"efeito"});

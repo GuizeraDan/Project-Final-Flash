@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_grade",{"id":"uh_grade","atlases":["assets/img/acervo/uh_grade_0.png"],"acervo":{"nome":"Grade","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Grade"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,282,0,281,102,140,49,1],[0,0,0,281,118,140,65,1]]}},"tipo":"efeito"});

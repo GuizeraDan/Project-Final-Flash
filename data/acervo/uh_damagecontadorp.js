@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_damagecontadorp",{"id":"uh_damagecontadorp","atlases":["assets/img/acervo/uh_damagecontadorp_0.png"],"acervo":{"nome":"DamageContadorP","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"DamageContadorP"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,19,11,10,1]]}},"tipo":"efeito"});

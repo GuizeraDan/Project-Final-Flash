@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c14",{"id":"uh_c14","atlases":["assets/img/acervo/uh_c14_0.png"],"acervo":{"nome":"C14","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C14"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,642,482,321,241,1]]}}});

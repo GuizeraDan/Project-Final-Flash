@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_youtube",{"id":"uh_youtube","atlases":["assets/img/acervo/uh_youtube_0.png"],"acervo":{"nome":"Youtube","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Youtube"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,23,23,12,12,1]]}},"tipo":"efeito"});

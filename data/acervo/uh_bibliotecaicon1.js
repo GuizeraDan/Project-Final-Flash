@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bibliotecaicon1",{"id":"uh_bibliotecaicon1","atlases":["assets/img/acervo/uh_bibliotecaicon1_0.png"],"acervo":{"nome":"BibliotecaIcon1","fonte":"Ultimate Heroes","tipo":"interface","origem":"BibliotecaIcon1"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,18,10,0,1]]}}});

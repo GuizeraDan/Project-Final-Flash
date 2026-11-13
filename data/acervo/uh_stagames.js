@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_stagames",{"id":"uh_stagames","atlases":["assets/img/acervo/uh_stagames_0.png"],"acervo":{"nome":"StaGames","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"StaGames"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,500,108,250,54,1]]}},"tipo":"efeito"});

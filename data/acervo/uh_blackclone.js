@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blackclone",{"id":"uh_blackclone","atlases":["assets/img/acervo/uh_blackclone_0.png"],"acervo":{"nome":"BlackClone","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlackClone"},"anims":{"VegetaT15":{"fps":16,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,69,26,62,2],[0,51,0,51,65,27,63,1],[0,103,0,89,45,54,39,1]]}},"tipo":"efeito"});

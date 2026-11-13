@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fecharstatus",{"id":"uh_fecharstatus","atlases":["assets/img/acervo/uh_fecharstatus_0.png"],"acervo":{"nome":"FecharStatus","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"FecharStatus"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,22,12,11,1]]}},"tipo":"efeito"});

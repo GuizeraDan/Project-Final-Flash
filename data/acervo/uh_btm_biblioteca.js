@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_btm_biblioteca",{"id":"uh_btm_biblioteca","atlases":["assets/img/acervo/uh_btm_biblioteca_0.png"],"acervo":{"nome":"btm_biblioteca","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"btm_biblioteca"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,37,22,18,1]]}},"tipo":"efeito"});

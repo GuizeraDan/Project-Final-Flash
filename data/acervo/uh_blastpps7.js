@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps7",{"id":"uh_blastpps7","atlases":["assets/img/acervo/uh_blastpps7_0.png"],"acervo":{"nome":"BlastPPS7","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS7"},"anims":{"S7":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,34,25,17,1],[0,51,0,46,34,23,17,1]]}},"tipo":"efeito"});

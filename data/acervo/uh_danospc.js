@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_danospc",{"id":"uh_danospc","atlases":["assets/img/acervo/uh_danospc_0.png"],"acervo":{"nome":"DanoSPC","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"DanoSPC"},"anims":{"Default":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,20,10,10,1],[0,0,0,20,20,10,10,1],[0,0,0,20,20,10,10,1]]}},"tipo":"efeito"});

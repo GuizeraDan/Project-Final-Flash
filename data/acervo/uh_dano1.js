@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_dano1",{"id":"uh_dano1","atlases":["assets/img/acervo/uh_dano1_0.png"],"acervo":{"nome":"Dano1","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Dano1"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,20,10,10,1]]}},"tipo":"efeito"});

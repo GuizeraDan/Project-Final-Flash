@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_esquerda",{"id":"uh_esquerda","atlases":["assets/img/acervo/uh_esquerda_0.png"],"acervo":{"nome":"Esquerda","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Esquerda"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,89,32,45,1,[[31,-1]]]]}},"tipo":"efeito"});

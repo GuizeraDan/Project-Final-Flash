@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp10",{"id":"uh_bigblastp10","atlases":["assets/img/acervo/uh_bigblastp10_0.png"],"acervo":{"nome":"BigBlastP10","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP10"},"anims":{"S10":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,64,64,32,1,[[64,0]]],[0,129,0,128,64,64,32,1,[[64,0]]]]}},"tipo":"efeito"});

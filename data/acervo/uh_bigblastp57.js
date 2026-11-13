@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp57",{"id":"uh_bigblastp57","atlases":["assets/img/acervo/uh_bigblastp57_0.png"],"acervo":{"nome":"BigBlastP57","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP57"},"anims":{"S20":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,24,13,13,1],[0,50,0,22,22,11,12,1],[0,25,0,24,24,13,13,1]]}},"tipo":"efeito"});

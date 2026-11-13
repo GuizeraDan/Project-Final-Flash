@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_personagem",{"id":"uh_personagem","atlases":["assets/img/acervo/uh_personagem_0.png"],"acervo":{"nome":"Personagem","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Personagem"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,60,93,30,93,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp5",{"id":"uh_bigblastp5","atlases":["assets/img/acervo/uh_bigblastp5_0.png"],"acervo":{"nome":"BigBlastP5","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP5"},"anims":{"S5":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,41,40,24,1],[0,74,0,78,40,39,22,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_cubo",{"id":"uh_cubo","atlases":["assets/img/acervo/uh_cubo_0.png"],"acervo":{"nome":"Cubo","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Cubo"},"anims":{"Animation 1":{"fps":12,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,191,0,34,32,17,16,1],[0,134,0,56,42,28,21,1],[0,0,0,66,52,33,26,1],[0,67,0,66,52,33,26,1]]}},"tipo":"efeito"});

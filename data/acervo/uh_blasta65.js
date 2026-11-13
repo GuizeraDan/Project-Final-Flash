@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta65",{"id":"uh_blasta65","atlases":["assets/img/acervo/uh_blasta65_0.png"],"acervo":{"nome":"BlastA65","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA65"},"anims":{"A55":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,70,0,33,31,17,16,1,[[16,0]]],[0,0,0,34,34,18,16,1,[[16,1]]],[0,35,0,34,33,18,16,1,[[16,0]]]]}},"tipo":"efeito"});

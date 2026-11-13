@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp45",{"id":"uh_bigblastp45","atlases":["assets/img/acervo/uh_bigblastp45_0.png"],"acervo":{"nome":"BigBlastP45","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP45"},"anims":{"S45":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,54,0,47,52,23,28,1],[0,0,0,53,54,27,31,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp50",{"id":"uh_bigblastp50","atlases":["assets/img/acervo/uh_bigblastp50_0.png"],"acervo":{"nome":"BigBlastP50","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP50"},"anims":{"S50":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,95,91,48,46,1,[[47,0]]]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c36",{"id":"uh_c36","atlases":["assets/img/acervo/uh_c36_0.png"],"acervo":{"nome":"C36","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C36"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,500,335,250,168,1]]}},"tipo":"efeito"});

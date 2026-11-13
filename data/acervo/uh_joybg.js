@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_joybg",{"id":"uh_joybg","atlases":["assets/img/acervo/uh_joybg_0.png"],"acervo":{"nome":"joybg","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"joybg"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1],[0,59,0,58,58,29,29,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp11",{"id":"uh_bigblastp11","atlases":["assets/img/acervo/uh_bigblastp11_0.png"],"acervo":{"nome":"BigBlastP11","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP11"},"anims":{"S11":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,72,44,47,25,1,[[20,-1]]],[0,73,0,72,44,46,21,1,[[21,-1]]]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c27",{"id":"uh_c27","atlases":["assets/img/acervo/uh_c27_0.png"],"acervo":{"nome":"C27","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C27"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,254,256,127,1]]}},"tipo":"efeito"});

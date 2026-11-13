@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_co2",{"id":"uh_co2","atlases":["assets/img/acervo/uh_co2_0.png"],"acervo":{"nome":"Co2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Co2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,250,1]]}},"tipo":"efeito"});

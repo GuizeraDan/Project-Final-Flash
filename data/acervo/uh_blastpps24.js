@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps24",{"id":"uh_blastpps24","atlases":["assets/img/acervo/uh_blastpps24_0.png"],"acervo":{"nome":"BlastPPS24","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS24"},"anims":{"A24":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,35,11,18,6,1],[0,36,0,27,9,14,4,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps13",{"id":"uh_blastpps13","atlases":["assets/img/acervo/uh_blastpps13_0.png"],"acervo":{"nome":"BlastPPS13","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS13"},"anims":{"S13":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,106,29,10,16,1,[[43,-2]]],[0,107,0,106,29,10,13,1,[[43,1]]]]}},"tipo":"efeito"});

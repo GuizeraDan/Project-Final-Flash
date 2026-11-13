@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundoloja2",{"id":"uh_fundoloja2","atlases":["assets/img/acervo/uh_fundoloja2_0.png"],"acervo":{"nome":"FundoLoja2","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoLoja2"},"anims":{"Default":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,150,125,75,1]]}}});

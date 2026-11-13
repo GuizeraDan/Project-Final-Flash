@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_be",{"id":"uh_be","atlases":["assets/img/acervo/uh_be_0.png"],"acervo":{"nome":"BE","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BE"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,64,45,32,1]]}},"tipo":"efeito"});

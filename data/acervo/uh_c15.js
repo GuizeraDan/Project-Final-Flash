@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c15",{"id":"uh_c15","atlases":["assets/img/acervo/uh_c15_0.png"],"acervo":{"nome":"C15","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C15"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,869,525,434,262,1]]}}});

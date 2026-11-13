@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_specialki2",{"id":"uh_specialki2","atlases":["assets/img/acervo/uh_specialki2_0.png"],"acervo":{"nome":"SpecialKi2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"SpecialKi2"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1]]}},"tipo":"efeito"});

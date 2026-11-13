@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_btm_natal",{"id":"uh_btm_natal","atlases":["assets/img/acervo/uh_btm_natal_0.png"],"acervo":{"nome":"btm_natal","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"btm_natal"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,53,80,26,40,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_pokebolas2",{"id":"uh_pokebolas2","atlases":["assets/img/acervo/uh_pokebolas2_0.png"],"acervo":{"nome":"PokeBolas2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"PokeBolas2"},"anims":{"Fronte":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,78,50,39,50,1]]}},"tipo":"efeito"});

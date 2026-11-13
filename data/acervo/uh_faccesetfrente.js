@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_faccesetfrente",{"id":"uh_faccesetfrente","atlases":["assets/img/acervo/uh_faccesetfrente_0.png"],"acervo":{"nome":"FaccesetFrente","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"FaccesetFrente"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,143,141,72,70,1]]}},"tipo":"efeito"});

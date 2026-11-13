@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudhp1",{"id":"uh_hudhp1","atlases":["assets/img/acervo/uh_hudhp1_0.png"],"acervo":{"nome":"HudHP1","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudHP1"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,228,22,0,11,1]]}}});

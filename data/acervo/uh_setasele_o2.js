@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_setasele_o2",{"id":"uh_setasele_o2","atlases":["assets/img/acervo/uh_setasele_o2_0.png"],"acervo":{"nome":"SetaSeleção2","fonte":"Ultimate Heroes","tipo":"interface","origem":"SetaSeleção2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,17,12,8,1]]}}});

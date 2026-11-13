@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_introef27",{"id":"uh_introef27","atlases":["assets/img/acervo/uh_introef27_0.png"],"acervo":{"nome":"IntroEF27","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"IntroEF27"},"anims":{"GokuInf":{"fps":15,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,152,88,76,44,1],[0,153,0,152,88,76,44,1],[0,306,0,152,88,76,44,1]]}},"tipo":"efeito"});

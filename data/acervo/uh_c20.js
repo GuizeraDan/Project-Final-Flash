@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c20",{"id":"uh_c20","atlases":["assets/img/acervo/uh_c20_0.png"],"acervo":{"nome":"C20","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C20"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1280,673,640,336,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_jogar",{"id":"uh_jogar","atlases":["assets/img/acervo/uh_jogar_0.png"],"acervo":{"nome":"Jogar","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Jogar"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,391,114,196,57,1],[0,392,0,391,114,196,57,1],[0,784,0,391,114,196,57,1]]}},"tipo":"efeito"});

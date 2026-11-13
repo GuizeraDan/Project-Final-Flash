@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_audios",{"id":"uh_audios","atlases":["assets/img/acervo/uh_audios_0.png"],"acervo":{"nome":"Audios","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Audios"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,60,54,30,27,1],[0,61,0,60,54,30,27,1]]}},"tipo":"efeito"});

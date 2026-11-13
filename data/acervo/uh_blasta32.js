@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta32",{"id":"uh_blasta32","atlases":["assets/img/acervo/uh_blasta32_0.png"],"acervo":{"nome":"BlastA32","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA32"},"anims":{"A32":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,49,19,32,10,1],[0,50,0,49,19,32,10,1]]}},"tipo":"efeito"});

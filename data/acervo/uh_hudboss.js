@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudboss",{"id":"uh_hudboss","atlases":["assets/img/acervo/uh_hudboss_0.png"],"acervo":{"nome":"HudBoss","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudBoss"},"anims":{"Frame":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,107,40,54,20,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_natal_char",{"id":"uh_natal_char","atlases":["assets/img/acervo/uh_natal_char_0.png"],"acervo":{"nome":"Natal_char","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Natal_char"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,34,22,18,1]]}},"tipo":"efeito"});

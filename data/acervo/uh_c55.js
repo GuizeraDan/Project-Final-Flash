@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c55",{"id":"uh_c55","atlases":["assets/img/acervo/uh_c55_0.png"],"acervo":{"nome":"C55","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C55"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,256,256,128,1]]}},"tipo":"efeito"});

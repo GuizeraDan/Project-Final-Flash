@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_jato2",{"id":"uh_jato2","atlases":["assets/img/acervo/uh_jato2_0.png"],"acervo":{"nome":"jato2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"jato2"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,146,61,73,30,1,[[73,8]]]]}},"tipo":"efeito"});

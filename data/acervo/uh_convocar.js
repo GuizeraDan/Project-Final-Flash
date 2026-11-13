@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_convocar",{"id":"uh_convocar","atlases":["assets/img/acervo/uh_convocar_0.png"],"acervo":{"nome":"Convocar","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Convocar"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,72,22,36,11,1]]}},"tipo":"efeito"});

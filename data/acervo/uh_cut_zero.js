@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_cut_zero",{"id":"uh_cut_zero","atlases":["assets/img/acervo/uh_cut_zero_0.png"],"acervo":{"nome":"Cut_Zero","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Cut_Zero"},"anims":{"Stigi":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,256,144,128,72,1],[0,257,0,256,144,128,72,1],[0,514,0,256,144,128,72,1]]}},"tipo":"efeito"});

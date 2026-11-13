@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta16",{"id":"uh_blasta16","atlases":["assets/img/acervo/uh_blasta16_0.png"],"acervo":{"nome":"BlastA16","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA16"},"anims":{"A16":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,34,25,17,1],[0,51,0,46,34,23,17,1]]}},"tipo":"efeito"});

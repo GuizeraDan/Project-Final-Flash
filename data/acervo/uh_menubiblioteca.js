@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_menubiblioteca",{"id":"uh_menubiblioteca","atlases":["assets/img/acervo/uh_menubiblioteca_0.png"],"acervo":{"nome":"MenuBiblioteca","fonte":"Ultimate Heroes","tipo":"interface","origem":"MenuBiblioteca"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,18,10,0,1,[[0,18],[0,19]]]]}}});

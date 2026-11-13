@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta43",{"id":"uh_blasta43","atlases":["assets/img/acervo/uh_blasta43_0.png"],"acervo":{"nome":"BlastA43","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA43"},"anims":{"A43":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,68,34,34,1],[0,69,0,64,36,32,18,1]]}},"tipo":"efeito"});

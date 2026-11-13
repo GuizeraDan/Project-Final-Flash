@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp28",{"id":"uh_bigblastp28","atlases":["assets/img/acervo/uh_bigblastp28_0.png"],"acervo":{"nome":"BigBlastP28","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP28"},"anims":{"S28":{"fps":8,"loop":true,"repeatTo":0,"pingpong":true,"frames":[[0,0,0,148,81,91,40,1,[[57,0]]],[0,149,0,154,77,95,38,1,[[59,0]]]]}},"tipo":"efeito"});

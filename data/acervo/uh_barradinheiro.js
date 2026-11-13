@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_barradinheiro",{"id":"uh_barradinheiro","atlases":["assets/img/acervo/uh_barradinheiro_0.png"],"acervo":{"nome":"BarraDinheiro","fonte":"Ultimate Heroes","tipo":"interface","origem":"BarraDinheiro"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,104,100,52,50,1]]}}});

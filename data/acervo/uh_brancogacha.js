@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_brancogacha",{"id":"uh_brancogacha","atlases":["assets/img/acervo/uh_brancogacha_0.png"],"acervo":{"nome":"BrancoGacha","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BrancoGacha"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

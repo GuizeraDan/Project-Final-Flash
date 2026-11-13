@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundogacha",{"id":"uh_fundogacha","atlases":["assets/img/acervo/uh_fundogacha_0.png"],"acervo":{"nome":"FundoGacha","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoGacha"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,854,480,427,240,1]]}}});

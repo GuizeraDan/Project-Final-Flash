@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_liberado",{"id":"uh_liberado","atlases":["assets/img/acervo/uh_liberado_0.png"],"acervo":{"nome":"Liberado","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Liberado"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,169,52,84,26,1],[0,170,0,169,52,84,26,1],[0,340,0,169,52,84,26,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundocreditos",{"id":"uh_fundocreditos","atlases":["assets/img/acervo/uh_fundocreditos_0.png"],"acervo":{"nome":"FundoCreditos","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoCreditos"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,352,208,176,104,1]]}}});

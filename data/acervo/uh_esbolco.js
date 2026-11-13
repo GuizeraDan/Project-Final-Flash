@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_esbolco",{"id":"uh_esbolco","atlases":["assets/img/acervo/uh_esbolco_0.png"],"acervo":{"nome":"Esbolco","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Esbolco"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,399,108,200,54,1]]}},"tipo":"efeito"});

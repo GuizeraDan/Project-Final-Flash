@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudlojacrystal2",{"id":"uh_hudlojacrystal2","atlases":["assets/img/acervo/uh_hudlojacrystal2_0.png"],"acervo":{"nome":"HudLojaCrystal2","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudLojaCrystal2"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,155,107,78,54,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp20",{"id":"uh_bigblastp20","atlases":["assets/img/acervo/uh_bigblastp20_0.png"],"acervo":{"nome":"BigBlastP20","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP20"},"anims":{"S20":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,78,80,39,40,1,[[39,0]]],[0,79,0,80,78,40,39,1,[[40,0]]]]}},"tipo":"efeito"});

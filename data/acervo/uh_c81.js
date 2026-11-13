@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c81",{"id":"uh_c81","atlases":["assets/img/acervo/uh_c81_0.png"],"acervo":{"nome":"C81","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C81"},"anims":{"C55":{"fps":20,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,720,407,360,204,1]]}}});

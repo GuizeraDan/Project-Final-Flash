@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_decoracao2",{"id":"uh_decoracao2","atlases":["assets/img/acervo/uh_decoracao2_0.png"],"acervo":{"nome":"Decoracao2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Decoracao2"},"anims":{"Animation 1":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,599,363,300,181,1]]}},"tipo":"efeito"});

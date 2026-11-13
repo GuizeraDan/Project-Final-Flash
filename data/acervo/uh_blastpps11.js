@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps11",{"id":"uh_blastpps11","atlases":["assets/img/acervo/uh_blastpps11_0.png"],"acervo":{"nome":"BlastPPS11","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS11"},"anims":{"S11":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,34,17,17,1],[0,35,0,32,18,16,9,1]]}},"tipo":"efeito"});

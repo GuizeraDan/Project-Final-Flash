@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundonatalblack",{"id":"uh_fundonatalblack","atlases":["assets/img/acervo/uh_fundonatalblack_0.png"],"acervo":{"nome":"FundoNatalBlack","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoNatalBlack"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}}});

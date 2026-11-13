@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_historia_hud",{"id":"uh_historia_hud","atlases":["assets/img/acervo/uh_historia_hud_0.png"],"acervo":{"nome":"Historia_Hud","fonte":"Ultimate Heroes","tipo":"interface","origem":"Historia_Hud"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,188,142,94,71,1],[0,189,0,116,96,58,48,1]]}}});

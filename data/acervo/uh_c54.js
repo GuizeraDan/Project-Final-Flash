@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c54",{"id":"uh_c54","atlases":["assets/img/acervo/uh_c54_0.png"],"acervo":{"nome":"C54","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C54"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,256,256,128,1]]}},"tipo":"efeito"});

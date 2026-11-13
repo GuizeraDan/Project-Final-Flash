@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudprincipal2",{"id":"uh_hudprincipal2","atlases":["assets/img/acervo/uh_hudprincipal2_0.png"],"acervo":{"nome":"HudPrincipal2","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudPrincipal2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,292,62,146,31,1]]}}});

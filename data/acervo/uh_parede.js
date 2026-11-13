@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_parede",{"id":"uh_parede","atlases":["assets/img/acervo/uh_parede_0.png"],"acervo":{"nome":"Parede","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Parede"},"anims":{"Animation 1":{"fps":8,"loop":true,"repeatTo":0,"pingpong":true,"frames":[[0,0,0,25,25,12,12,1],[0,26,0,25,25,12,12,1],[0,52,0,25,25,12,12,1],[0,78,0,25,25,12,12,1]]}},"tipo":"efeito"});

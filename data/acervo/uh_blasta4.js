@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta4",{"id":"uh_blasta4","atlases":["assets/img/acervo/uh_blasta4_0.png"],"acervo":{"nome":"BlastA4","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA4"},"anims":{"A4":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,11,28,6,1],[0,49,0,48,11,28,6,1]]}},"tipo":"efeito"});

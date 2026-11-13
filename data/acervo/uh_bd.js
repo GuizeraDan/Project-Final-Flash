@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bd",{"id":"uh_bd","atlases":["assets/img/acervo/uh_bd_0.png"],"acervo":{"nome":"BD","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BD"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,64,45,32,1]]}},"tipo":"efeito"});

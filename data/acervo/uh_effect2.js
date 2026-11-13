@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_effect2",{"id":"uh_effect2","atlases":["assets/img/acervo/uh_effect2_0.png"],"acervo":{"nome":"Effect2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Effect2"},"anims":{"Default":{"fps":20,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,112,0,15,30,10,15,1],[0,60,0,51,69,26,38,1],[0,0,0,59,82,34,45,1]]}},"tipo":"efeito"});

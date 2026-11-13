@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_lojacrystal",{"id":"uh_lojacrystal","atlases":["assets/img/acervo/uh_lojacrystal_0.png"],"acervo":{"nome":"LojaCrystal","fonte":"Ultimate Heroes","tipo":"interface","origem":"LojaCrystal"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,430,160,215,80,1]]}}});

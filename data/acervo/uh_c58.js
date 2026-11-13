@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c58",{"id":"uh_c58","atlases":["assets/img/acervo/uh_c58_0.png"],"acervo":{"nome":"C58","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C58"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,640,360,320,180,1]]}}});

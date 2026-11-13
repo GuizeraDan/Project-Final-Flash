@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastbbs5",{"id":"uh_blastbbs5","atlases":["assets/img/acervo/uh_blastbbs5_0.png"],"acervo":{"nome":"BlastBBS5","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastBBS5"},"anims":{"S5":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,30,30,15,1]]}},"tipo":"efeito"});

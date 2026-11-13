@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_converter",{"id":"uh_converter","atlases":["assets/img/acervo/uh_converter_0.png"],"acervo":{"nome":"Converter","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Converter"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,17,17,9,10,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c60",{"id":"uh_c60","atlases":["assets/img/acervo/uh_c60_0.png"],"acervo":{"nome":"C60","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C60"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2048,1024,1024,512,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_cameconf",{"id":"uh_cameconf","atlases":["assets/img/acervo/uh_cameconf_0.png"],"acervo":{"nome":"CameConf","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"CameConf"},"anims":{"Visivel":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,64,34,32,1],[0,69,0,68,64,34,32,1]]}},"tipo":"efeito"});

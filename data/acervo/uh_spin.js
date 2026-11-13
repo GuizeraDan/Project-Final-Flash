@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_spin",{"id":"uh_spin","atlases":["assets/img/acervo/uh_spin_0.png"],"acervo":{"nome":"Spin","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Spin"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,92,49,46,24,1]]}},"tipo":"efeito"});

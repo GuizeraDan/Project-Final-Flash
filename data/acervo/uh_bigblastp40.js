@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp40",{"id":"uh_bigblastp40","atlases":["assets/img/acervo/uh_bigblastp40_0.png"],"acervo":{"nome":"BigBlastP40","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP40"},"anims":{"S40":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,129,0,122,123,61,62,1],[0,0,0,128,130,66,66,1]]}},"tipo":"efeito"});

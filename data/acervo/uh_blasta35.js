@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta35",{"id":"uh_blasta35","atlases":["assets/img/acervo/uh_blasta35_0.png"],"acervo":{"nome":"BlastA35","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA35"},"anims":{"A35":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,124,70,62,1],[0,101,0,100,104,70,52,1]]}},"tipo":"efeito"});

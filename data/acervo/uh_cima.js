@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_cima",{"id":"uh_cima","atlases":["assets/img/acervo/uh_cima_0.png"],"acervo":{"nome":"Cima","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Cima"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,89,64,45,32,1]]}},"tipo":"efeito"});

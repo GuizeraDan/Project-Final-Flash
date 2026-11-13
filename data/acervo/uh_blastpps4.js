@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps4",{"id":"uh_blastpps4","atlases":["assets/img/acervo/uh_blastpps4_0.png"],"acervo":{"nome":"BlastPPS4","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS4"},"anims":{"S4":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,84,10,42,5,1],[0,85,0,58,10,29,5,1]]}},"tipo":"efeito"});

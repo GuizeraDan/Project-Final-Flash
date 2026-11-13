@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp14",{"id":"uh_bigblastp14","atlases":["assets/img/acervo/uh_bigblastp14_0.png"],"acervo":{"nome":"BigBlastP14","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP14"},"anims":{"S14":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,40,0,40,39,20,20,1,[[20,0]]],[0,0,0,39,40,20,20,1,[[19,0]]]]}},"tipo":"efeito"});

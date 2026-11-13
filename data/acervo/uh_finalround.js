@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_finalround",{"id":"uh_finalround","atlases":["assets/img/acervo/uh_finalround_0.png"],"acervo":{"nome":"FinalRound","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"FinalRound"},"anims":{"Final":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,30,45,15,1],[0,91,0,85,24,42,12,1]]}},"tipo":"efeito"});

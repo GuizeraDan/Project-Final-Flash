@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_quit",{"id":"uh_quit","atlases":["assets/img/acervo/uh_quit_0.png"],"acervo":{"nome":"Quit","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Quit"},"anims":{"Default":{"fps":5,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1]]}},"tipo":"efeito"});

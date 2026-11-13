@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp29",{"id":"uh_bigblastp29","atlases":["assets/img/acervo/uh_bigblastp29_0.png"],"acervo":{"nome":"BigBlastP29","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP29"},"anims":{"S29":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,84,7,42,4,1,[[42,0]]]]}},"tipo":"efeito"});

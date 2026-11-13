@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp33",{"id":"uh_bigblastp33","atlases":["assets/img/acervo/uh_bigblastp33_0.png"],"acervo":{"nome":"BigBlastP33","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP33"},"anims":{"S33":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,104,0,59,15,40,8,1],[0,0,0,52,21,36,10,1],[0,53,0,50,21,34,10,1]]}},"tipo":"efeito"});

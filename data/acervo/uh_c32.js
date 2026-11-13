@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c32",{"id":"uh_c32","atlases":["assets/img/acervo/uh_c32_0.png"],"acervo":{"nome":"C32","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C32"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,513,273,256,136,1]]}},"tipo":"efeito"});

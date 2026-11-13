@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_variaveisloja",{"id":"uh_variaveisloja","atlases":["assets/img/acervo/uh_variaveisloja_0.png"],"acervo":{"nome":"VariaveisLoja","fonte":"Ultimate Heroes","tipo":"interface","origem":"VariaveisLoja"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}}});

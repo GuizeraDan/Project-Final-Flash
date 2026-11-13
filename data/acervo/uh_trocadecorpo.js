@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_trocadecorpo",{"id":"uh_trocadecorpo","atlases":["assets/img/acervo/uh_trocadecorpo_0.png"],"acervo":{"nome":"TrocaDeCorpo","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"TrocaDeCorpo"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,131,0,122,98,61,94,1],[0,0,0,130,103,65,99,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_mdir",{"id":"uh_mdir","atlases":["assets/img/acervo/uh_mdir_0.png"],"acervo":{"nome":"Mdir","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Mdir"},"anims":{"Default":{"fps":1,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,12,13,1],[0,26,0,25,25,12,13,1]]}},"tipo":"efeito"});

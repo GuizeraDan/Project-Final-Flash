@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps20",{"id":"uh_blastpps20","atlases":["assets/img/acervo/uh_blastpps20_0.png"],"acervo":{"nome":"BlastPPS20","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS20"},"anims":{"S20":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,101,0,108,30,66,14,1],[0,0,0,100,34,60,16,1]]}},"tipo":"efeito"});

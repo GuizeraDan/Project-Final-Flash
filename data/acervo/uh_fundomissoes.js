@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundomissoes",{"id":"uh_fundomissoes","atlases":["assets/img/acervo/uh_fundomissoes_0.png"],"acervo":{"nome":"FundoMissoes","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoMissoes"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,257,149,128,74,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudfundo",{"id":"uh_hudfundo","atlases":["assets/img/acervo/uh_hudfundo_0.png"],"acervo":{"nome":"HudFundo","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"HudFundo"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,292,62,146,31,1],[0,293,0,292,62,146,31,1]]}}});

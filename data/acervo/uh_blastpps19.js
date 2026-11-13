@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps19",{"id":"uh_blastpps19","atlases":["assets/img/acervo/uh_blastpps19_0.png"],"acervo":{"nome":"BlastPPS19","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS19"},"anims":{"S19":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,93,53,60,26,1],[0,94,0,92,52,59,25,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_camera",{"id":"uh_camera","atlases":["assets/img/acervo/uh_camera_0.png"],"acervo":{"nome":"Camera","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Camera"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,16,10,8,1]]}},"tipo":"efeito"});

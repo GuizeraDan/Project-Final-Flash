@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundo_status2",{"id":"uh_fundo_status2","atlases":["assets/img/acervo/uh_fundo_status2_0.png"],"acervo":{"nome":"fundo_status2","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"fundo_status2"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,36,18,18,1]]}}});

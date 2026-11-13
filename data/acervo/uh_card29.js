@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_card29",{"id":"uh_card29","atlases":["assets/img/acervo/uh_card29_0.png"],"acervo":{"nome":"Card29","fonte":"Ultimate Heroes","tipo":"interface","origem":"Card29"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,136,50,68,1]]}}});

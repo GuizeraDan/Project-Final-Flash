@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_premio",{"id":"uh_premio","atlases":["assets/img/acervo/uh_premio_0.png"],"acervo":{"nome":"Premio","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"Premio"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,638,373,319,187,1]]}}});

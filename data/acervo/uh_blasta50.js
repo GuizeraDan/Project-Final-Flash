@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta50",{"id":"uh_blasta50","atlases":["assets/img/acervo/uh_blasta50_0.png"],"acervo":{"nome":"BlastA50","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA50"},"anims":{"A50":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,49,15,35,8,1],[0,50,0,49,15,35,8,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c70",{"id":"uh_c70","atlases":["assets/img/acervo/uh_c70_0.png"],"acervo":{"nome":"C70","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C70"},"anims":{"C55":{"fps":15,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,640,378,320,189,1],[0,641,0,640,378,320,189,1],[0,1282,0,640,378,320,189,1],[0,0,379,640,378,320,189,1]]}}});

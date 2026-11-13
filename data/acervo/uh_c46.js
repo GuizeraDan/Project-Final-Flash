@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c46",{"id":"uh_c46","atlases":["assets/img/acervo/uh_c46_0.png"],"acervo":{"nome":"C46","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C46"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,224,350,112,1],[0,701,0,700,224,350,112,1],[0,0,225,700,224,350,112,1],[0,701,225,700,224,350,112,1]]}}});

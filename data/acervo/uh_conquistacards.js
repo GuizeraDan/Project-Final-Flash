@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_conquistacards",{"id":"uh_conquistacards","atlases":["assets/img/acervo/uh_conquistacards_0.png"],"acervo":{"nome":"ConquistaCards","fonte":"Ultimate Heroes","tipo":"interface","origem":"ConquistaCards"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,20,13,10,1]]}}});

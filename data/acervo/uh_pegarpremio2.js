@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_pegarpremio2",{"id":"uh_pegarpremio2","atlases":["assets/img/acervo/uh_pegarpremio2_0.png"],"acervo":{"nome":"PegarPremio2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"PegarPremio2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,99,34,50,17,1]]}},"tipo":"efeito"});

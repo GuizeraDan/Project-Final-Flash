@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudki2",{"id":"uh_hudki2","atlases":["assets/img/acervo/uh_hudki2_0.png"],"acervo":{"nome":"HudKI2","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudKI2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,148,16,148,8,1]]}}});

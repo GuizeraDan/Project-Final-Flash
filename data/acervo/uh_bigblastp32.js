@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp32",{"id":"uh_bigblastp32","atlases":["assets/img/acervo/uh_bigblastp32_0.png"],"acervo":{"nome":"BigBlastP32","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP32"},"anims":{"S32":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,138,144,69,72,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bloqueado",{"id":"uh_bloqueado","atlases":["assets/img/acervo/uh_bloqueado_0.png"],"acervo":{"nome":"Bloqueado","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Bloqueado"},"anims":{"Molde":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,86,86,43,43,1]]}},"tipo":"efeito"});

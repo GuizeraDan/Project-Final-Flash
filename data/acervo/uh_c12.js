@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c12",{"id":"uh_c12","atlases":["assets/img/acervo/uh_c12_0.png"],"acervo":{"nome":"C12","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C12"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1111,485,540,242,1]]}}});

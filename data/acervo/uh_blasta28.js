@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta28",{"id":"uh_blasta28","atlases":["assets/img/acervo/uh_blasta28_0.png"],"acervo":{"nome":"BlastA28","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA28"},"anims":{"A28":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,51,23,39,11,1],[0,52,0,48,23,37,11,1]]}},"tipo":"efeito"});

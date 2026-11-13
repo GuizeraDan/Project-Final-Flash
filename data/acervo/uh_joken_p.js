@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_joken_p",{"id":"uh_joken_p","atlases":["assets/img/acervo/uh_joken_p_0.png"],"acervo":{"nome":"Joken_P","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Joken_P"},"anims":{"Default":{"fps":2,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1],[0,59,0,58,58,29,29,1],[0,118,0,58,58,29,29,1]]}},"tipo":"efeito"});

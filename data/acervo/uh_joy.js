@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_joy",{"id":"uh_joy","atlases":["assets/img/acervo/uh_joy_0.png"],"acervo":{"nome":"joy","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"joy"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,28,14,14,1],[0,29,0,28,28,14,14,1]]}},"tipo":"efeito"});

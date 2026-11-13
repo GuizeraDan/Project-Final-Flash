@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_btm_desejos",{"id":"uh_btm_desejos","atlases":["assets/img/acervo/uh_btm_desejos_0.png"],"acervo":{"nome":"btm_desejos","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"btm_desejos"},"anims":{"Animation 1":{"fps":6,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,144,64,72,32,1]]}},"tipo":"efeito"});

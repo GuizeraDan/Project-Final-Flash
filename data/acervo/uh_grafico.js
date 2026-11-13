@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_grafico",{"id":"uh_grafico","atlases":["assets/img/acervo/uh_grafico_0.png"],"acervo":{"nome":"Grafico","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Grafico"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,55,0,54,74,27,37,1],[0,0,0,54,104,27,52,1]]}},"tipo":"efeito"});

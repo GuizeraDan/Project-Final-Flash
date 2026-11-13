@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fundosumon",{"id":"uh_fundosumon","atlases":["assets/img/acervo/uh_fundosumon_0.png"],"acervo":{"nome":"FundoSumon","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"FundoSumon"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,764,483,382,242,1]]}}});

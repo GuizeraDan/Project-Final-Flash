@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_buraconegro",{"id":"uh_buraconegro","atlases":["assets/img/acervo/uh_buraconegro_0.png"],"acervo":{"nome":"Buraconegro","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Buraconegro"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,450,238,225,119,1]]}},"tipo":"efeito"});

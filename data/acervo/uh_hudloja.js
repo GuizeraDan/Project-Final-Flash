@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudloja",{"id":"uh_hudloja","atlases":["assets/img/acervo/uh_hudloja_0.png"],"acervo":{"nome":"HudLoja","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudLoja"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,17,240,8,120,1],[0,18,0,150,142,75,71,1],[0,169,0,144,56,72,28,1]]}}});

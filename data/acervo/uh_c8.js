@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c8",{"id":"uh_c8","atlases":["assets/img/acervo/uh_c8_0.png"],"acervo":{"nome":"C8","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C8"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,256,198,128,99,1]]}},"tipo":"efeito"});

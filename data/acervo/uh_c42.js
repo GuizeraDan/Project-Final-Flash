@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c42",{"id":"uh_c42","atlases":["assets/img/acervo/uh_c42_0.png"],"acervo":{"nome":"C42","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C42"},"anims":{"C55":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,502,330,251,165,1]]}},"tipo":"efeito"});

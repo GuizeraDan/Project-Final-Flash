@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_select",{"id":"uh_select","atlases":["assets/img/acervo/uh_select_0.png"],"acervo":{"nome":"Select","fonte":"Ultimate Heroes","tipo":"interface","origem":"Select"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,141,68,70,34,1]]}}});

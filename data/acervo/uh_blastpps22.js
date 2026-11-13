@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps22",{"id":"uh_blastpps22","atlases":["assets/img/acervo/uh_blastpps22_0.png"],"acervo":{"nome":"BlastPPS22","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS22"},"anims":{"S22":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,87,0,70,72,32,41,1],[0,0,0,86,74,44,39,1]]}},"tipo":"efeito"});

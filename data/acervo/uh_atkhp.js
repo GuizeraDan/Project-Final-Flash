@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_atkhp",{"id":"uh_atkhp","atlases":["assets/img/acervo/uh_atkhp_0.png"],"acervo":{"nome":"AtkHp","fonte":"Ultimate Heroes","tipo":"interface","origem":"AtkHp"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,35,0,32,29,16,14,1],[0,0,0,34,34,17,17,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps14",{"id":"uh_blastpps14","atlases":["assets/img/acervo/uh_blastpps14_0.png"],"acervo":{"nome":"BlastPPS14","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS14"},"anims":{"S14":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,16,16,8,1,[[16,0]]]]}},"tipo":"efeito"});

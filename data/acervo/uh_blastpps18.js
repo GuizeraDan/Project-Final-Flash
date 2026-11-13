@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps18",{"id":"uh_blastpps18","atlases":["assets/img/acervo/uh_blastpps18_0.png"],"acervo":{"nome":"BlastPPS18","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS18"},"anims":{"S18":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,90,10,48,5,1],[0,91,0,58,10,29,5,1]]}},"tipo":"efeito"});

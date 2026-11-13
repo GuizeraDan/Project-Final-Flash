@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_ponto1",{"id":"uh_ponto1","atlases":["assets/img/acervo/uh_ponto1_0.png"],"acervo":{"nome":"Ponto1","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Ponto1"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,13,13,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_confirmar2",{"id":"uh_confirmar2","atlases":["assets/img/acervo/uh_confirmar2_0.png"],"acervo":{"nome":"Confirmar2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Confirmar2"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1],[0,59,0,58,58,29,29,1]]}},"tipo":"efeito"});

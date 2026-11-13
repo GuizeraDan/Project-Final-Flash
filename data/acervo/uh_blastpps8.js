@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps8",{"id":"uh_blastpps8","atlases":["assets/img/acervo/uh_blastpps8_0.png"],"acervo":{"nome":"BlastPPS8","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS8"},"anims":{"S8":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,29,0,24,24,12,12,1],[0,0,0,28,28,14,14,1]]}},"tipo":"efeito"});

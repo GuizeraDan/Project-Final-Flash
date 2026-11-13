@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_doisjogadores",{"id":"uh_doisjogadores","atlases":["assets/img/acervo/uh_doisjogadores_0.png"],"acervo":{"nome":"DoisJogadores","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"DoisJogadores"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

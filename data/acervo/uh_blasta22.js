@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta22",{"id":"uh_blasta22","atlases":["assets/img/acervo/uh_blasta22_0.png"],"acervo":{"nome":"BlastA22","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA22"},"anims":{"A22":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,45,0,71,56,36,28,1],[0,0,0,44,71,22,36,1]]}},"tipo":"efeito"});

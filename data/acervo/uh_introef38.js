@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_introef38",{"id":"uh_introef38","atlases":["assets/img/acervo/uh_introef38_0.png"],"acervo":{"nome":"IntroEF38","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"IntroEF38"},"anims":{"BrolySsj4":{"fps":15,"loop":false,"repeatTo":0,"pingpong":true,"frames":[[0,0,0,160,90,80,45,1],[0,161,0,160,90,80,45,1],[0,322,0,160,90,80,45,1]]}},"tipo":"efeito"});

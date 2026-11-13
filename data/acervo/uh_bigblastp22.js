@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp22",{"id":"uh_bigblastp22","atlases":["assets/img/acervo/uh_bigblastp22_0.png"],"acervo":{"nome":"BigBlastP22","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP22"},"anims":{"S22":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,97,60,68,30,1,[[29,0]]],[0,98,0,100,54,70,27,1,[[30,0]]]]}},"tipo":"efeito"});

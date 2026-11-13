@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_skins_sele",{"id":"uh_skins_sele","atlases":["assets/img/acervo/uh_skins_sele_0.png"],"acervo":{"nome":"Skins_sele","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Skins_sele"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,29,24,16,1],[0,37,0,36,29,12,16,1]]}},"tipo":"efeito"});

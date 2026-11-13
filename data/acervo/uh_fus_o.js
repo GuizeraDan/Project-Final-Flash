@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_fus_o",{"id":"uh_fus_o","atlases":["assets/img/acervo/uh_fus_o_0.png"],"acervo":{"nome":"Fusão","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Fusão"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,58,29,29,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c71",{"id":"uh_c71","atlases":["assets/img/acervo/uh_c71_0.png"],"acervo":{"nome":"C71","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"C71"},"anims":{"C55":{"fps":15,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,507,291,254,146,1]]}},"tipo":"efeito"});

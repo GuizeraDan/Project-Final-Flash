@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps12",{"id":"uh_blastpps12","atlases":["assets/img/acervo/uh_blastpps12_0.png"],"acervo":{"nome":"BlastPPS12","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS12"},"anims":{"S12":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,93,53,60,26,1]]}},"tipo":"efeito"});

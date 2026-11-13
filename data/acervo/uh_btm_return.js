@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_btm_return",{"id":"uh_btm_return","atlases":["assets/img/acervo/uh_btm_return_0.png"],"acervo":{"nome":"Btm_Return","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Btm_Return"},"anims":{"Botoes":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,400,103,198,52,1]]}},"tipo":"efeito"});

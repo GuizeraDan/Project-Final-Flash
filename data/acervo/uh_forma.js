@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_forma",{"id":"uh_forma","atlases":["assets/img/acervo/uh_forma_0.png"],"acervo":{"nome":"Forma","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Forma"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,59,29,30,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps15",{"id":"uh_blastpps15","atlases":["assets/img/acervo/uh_blastpps15_0.png"],"acervo":{"nome":"BlastPPS15","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS15"},"anims":{"S15":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,34,26,17,1,[[26,0]]],[0,53,0,52,34,26,17,1,[[26,0]]]]}},"tipo":"efeito"});

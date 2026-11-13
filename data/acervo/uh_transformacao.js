@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_transformacao",{"id":"uh_transformacao","atlases":["assets/img/acervo/uh_transformacao_0.png"],"acervo":{"nome":"Transformacao","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Transformacao"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,70,26,35,1],[0,53,0,52,70,26,35,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_molde",{"id":"uh_molde","atlases":["assets/img/acervo/uh_molde_0.png"],"acervo":{"nome":"Molde","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Molde"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,34,17,17,1]]}},"tipo":"efeito"});

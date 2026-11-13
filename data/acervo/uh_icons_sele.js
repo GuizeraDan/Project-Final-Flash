@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_icons_sele",{"id":"uh_icons_sele","atlases":["assets/img/acervo/uh_icons_sele_0.png"],"acervo":{"nome":"Icons_sele","fonte":"Ultimate Heroes","tipo":"interface","origem":"Icons_sele"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,39,0,36,29,24,16,1],[0,0,0,38,41,21,24,1],[0,39,0,36,29,24,16,1],[0,0,0,38,41,21,24,1]]}}});

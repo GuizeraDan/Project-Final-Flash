@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blastpps26",{"id":"uh_blastpps26","atlases":["assets/img/acervo/uh_blastpps26_0.png"],"acervo":{"nome":"BlastPPS26","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastPPS26"},"anims":{"S26":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,114,65,79,40,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp43",{"id":"uh_bigblastp43","atlases":["assets/img/acervo/uh_bigblastp43_0.png"],"acervo":{"nome":"BigBlastP43","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP43"},"anims":{"S43":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,56,0,57,35,29,17,1],[0,0,0,55,36,27,17,1]]}},"tipo":"efeito"});

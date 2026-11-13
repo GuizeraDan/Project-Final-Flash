@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bg_torneio",{"id":"uh_bg_torneio","atlases":["assets/img/acervo/uh_bg_torneio_0.png"],"acervo":{"nome":"bg_torneio","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"bg_torneio"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,387,224,194,112,1],[0,388,0,387,67,194,34,1]]}}});

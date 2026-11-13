@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_save",{"id":"uh_save","atlases":["assets/img/acervo/uh_save_0.png"],"acervo":{"nome":"Save","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Save"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,55,53,28,26,1]]}},"tipo":"efeito"});

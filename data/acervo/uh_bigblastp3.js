@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_bigblastp3",{"id":"uh_bigblastp3","atlases":["assets/img/acervo/uh_bigblastp3_0.png"],"acervo":{"nome":"BigBlastP3","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BigBlastP3"},"anims":{"S3":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,69,65,34,1,[[31,2]]],[0,97,0,111,32,75,16,1,[[36,1]]]]}},"tipo":"efeito"});

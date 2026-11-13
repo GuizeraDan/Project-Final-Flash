@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_blasta24",{"id":"uh_blasta24","atlases":["assets/img/acervo/uh_blasta24_0.png"],"acervo":{"nome":"BlastA24","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BlastA24"},"anims":{"A24":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,79,52,40,26,1],[0,80,0,79,52,40,26,1],[0,160,0,79,52,40,26,1],[0,240,0,79,52,40,26,1]]}},"tipo":"efeito"});

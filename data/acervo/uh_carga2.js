@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_carga2",{"id":"uh_carga2","atlases":["assets/img/acervo/uh_carga2_0.png"],"acervo":{"nome":"Carga2","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Carga2"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,34,17,17,1]]}},"tipo":"efeito"});

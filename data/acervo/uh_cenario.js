@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_cenario",{"id":"uh_cenario","atlases":["assets/img/acervo/uh_cenario_0.png"],"acervo":{"nome":"Cenario","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"Cenario"},"anims":{"C48":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1080,536,540,268,1]]}}});

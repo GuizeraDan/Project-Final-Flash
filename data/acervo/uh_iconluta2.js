@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_iconluta2",{"id":"uh_iconluta2","atlases":["assets/img/acervo/uh_iconluta2_0.png"],"acervo":{"nome":"IconLuta2","fonte":"Ultimate Heroes","tipo":"interface","origem":"IconLuta2"},"anims":{"Fundo":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,145,78,56,35,1]]}}});

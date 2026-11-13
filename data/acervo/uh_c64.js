@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_c64",{"id":"uh_c64","atlases":["assets/img/acervo/uh_c64_0.png"],"acervo":{"nome":"C64","fonte":"Ultimate Heroes","tipo":"cenarios","origem":"C64"},"anims":{"C55":{"fps":30,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1477,704,738,352,1]]}}});

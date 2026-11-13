@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_billsblast",{"id":"uh_billsblast","atlases":["assets/img/acervo/uh_billsblast_0.png"],"acervo":{"nome":"BillsBlast","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"BillsBlast"},"anims":{"Animation 1":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,19,29,10,1],[0,43,0,42,19,29,10,1]]}},"tipo":"efeito"});

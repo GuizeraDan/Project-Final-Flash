@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_mesq",{"id":"uh_mesq","atlases":["assets/img/acervo/uh_mesq_0.png"],"acervo":{"nome":"Mesq","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Mesq"},"anims":{"Default":{"fps":1,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,13,13,1],[0,26,0,25,25,13,13,1]]}},"tipo":"efeito"});

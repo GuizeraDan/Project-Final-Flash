@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_moeda2",{"id":"uh_moeda2","atlases":["assets/img/acervo/uh_moeda2_0.png"],"acervo":{"nome":"Moeda2","fonte":"Ultimate Heroes","tipo":"interface","origem":"Moeda2"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,43,42,22,21,1],[0,44,0,36,36,18,18,1]]}}});

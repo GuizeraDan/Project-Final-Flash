@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_preto",{"id":"uh_preto","atlases":["assets/img/acervo/uh_preto_0.png"],"acervo":{"nome":"Preto","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Preto"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,113,99,56,50,1]]}},"tipo":"efeito"});

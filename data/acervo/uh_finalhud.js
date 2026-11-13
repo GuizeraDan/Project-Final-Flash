@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_finalhud",{"id":"uh_finalhud","atlases":["assets/img/acervo/uh_finalhud_0.png"],"acervo":{"nome":"FinalHud","fonte":"Ultimate Heroes","tipo":"interface","origem":"FinalHud"},"anims":{"Final":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,264,56,132,28,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_hudmiss_es",{"id":"uh_hudmiss_es","atlases":["assets/img/acervo/uh_hudmiss_es_0.png"],"acervo":{"nome":"HudMissões","fonte":"Ultimate Heroes","tipo":"interface","origem":"HudMissões"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,156,0,155,61,78,30,1],[0,0,0,155,96,78,48,1,[[0,25]]]]}}});

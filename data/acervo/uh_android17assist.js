@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_android17assist",{"id":"uh_android17assist","atlases":["assets/img/acervo/uh_android17assist_0.png"],"acervo":{"nome":"Android17Assist","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"Android17Assist"},"anims":{"Atack":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,46,13,0,1,[[2,13]]]]}},"tipo":"efeito"});

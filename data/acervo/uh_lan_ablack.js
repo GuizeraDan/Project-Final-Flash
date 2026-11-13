@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("uh_lan_ablack",{"id":"uh_lan_ablack","atlases":["assets/img/acervo/uh_lan_ablack_0.png"],"acervo":{"nome":"LançaBlack","fonte":"Ultimate Heroes","tipo":"efeitos","origem":"LançaBlack"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,84,15,45,8,1]]}},"tipo":"efeito"});
