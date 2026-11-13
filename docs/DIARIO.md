@@ -230,3 +230,8 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 ## 13/11/2026 — Correção: explosão escolhida no seletor saía diferente no alvo
 - Causa: nos campos "Explosão" do acerto, "Explosão" do projétil (impacto) e "Efeito na mão" (disparo), o Estúdio guardava só o nome da animação e jogava fora o sprite de onde ela veio. Na luta, o motor procurava qualquer sprite carregado com aquele nome (ex.: "Default") e pegava outro.
 - Agora: o acerto usa `sprite`, o projétil guarda `impactoSprite` e `disparoSprite`; `FF.Battle.spawnFx` recebe o sprite certo e `FF.Linha.spritesUsados` também conta esses campos (inclusive dentro de `acerto`, `acertos` e `impacto[]`), para o sprite ser carregado antes da luta. Golpes já salvos com o problema precisam ter a explosão escolhida de novo.
+
+## 13/11/2026 — Acervo por tipo + efeito que acompanha o lutador
+- Estúdio: cada jogo do acervo (Drag Warriors, Power Warrior…) agora abre em subgrupos 🥋 Personagens / ✺ Efeitos / 🏞 Cenários / 🖥 Interface e outros, no seletor de sprites (com "☰ Todos: efeitos" etc.; fonte `cat:<jogo>:<tipo>`) e na aba Sprites.
+- `tools/reclassificar_acervo.py`: corrigiu 268 tipos pelo nome (pacotes de efeito grandes que tinham virado "cenários" pelo tamanho; texturas internas do Unity como LDR_*, toggle, slider, SearchTex foram para "interface").
+- Efeito na linha do tempo ganhou "Acompanha o lutador" (`seguir: true`): o efeito anda junto com o lutador em que está preso (ex.: aura durante o "→ até o alvo").

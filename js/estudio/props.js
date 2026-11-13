@@ -143,6 +143,7 @@ FF.EstudioProps = {
         }
         g.appendChild(this.campoEfeito(c, 'fx', 'Efeito', host));
         g.appendChild(sel(c, 'em', 'Preso em', this.EM, null, 'atacante'));
+        g.appendChild(chk(c, 'seguir', 'Acompanha o lutador (anda junto quando ele se move)'));
         g.appendChild(E.el('p', 'es-dica', 'Arraste no palco para posicionar; alça amarela = tamanho, alça azul = giro.'));
         g.appendChild(num(c, 'dx', 'X (px)', 'Para a frente de quem solta (+)'));
         g.appendChild(num(c, 'dy', 'Y (px)'));

@@ -498,7 +498,10 @@ FF.Battle = class {
   // ---------- loop ----------
   update(dt) {
     this.all.forEach(f => f.update(dt));
-    this.fxList.forEach(e => e.a.update(dt));
+    this.fxList.forEach(e => {
+      e.a.update(dt);
+      if (e.segue) { const s = e.segue; e.x = s.ex + (s.f.x - s.x0); e.y = s.ey + (s.f.y - s.y0); }
+    });
     this.fxList = this.fxList.filter(e => !e.a.done && !(e.ate && FF.Clock.t > e.ate));
     for (const ob of Object.values(this.objs)) {
       ob.a.update(dt);

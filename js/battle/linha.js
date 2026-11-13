@@ -9,7 +9,8 @@
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?, suave?}
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?}
 //     {tipo:"visivel", alpha}
-//  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?}
+//  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
+//            seguir? (anda junto com o lutador em que está preso)}
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?}
 //  camadas  {tipo:"camada", d, sprite, anim, ancora, x, y, escala, alpha, rot, flip, fps, loop, chaves:[{t,x,y,escala,alpha,rot}]}
 //  sons     {tipo:"som", som} | {tipo:"voz", voz}   (texto ou lista para sortear)
@@ -231,6 +232,9 @@ FF.Linha = {
         const e = b.spawnFx(c.fx, p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir), p.y + (c.dy || 0), (dir < 0) !== !!c.flip, c.escala || 1,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite });
         if (e && c.rot) e.rot = c.rot * dir;
+        // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
+        const f = c.em === 'alvo' || c.em === 'alvoPes' ? target : c.em === 'tela' ? null : actor;
+        if (e && c.seguir && f) e.segue = { f, x0: f.x, y0: f.y, ex: e.x, ey: e.y };
         return;
       }
       case 'projetil': if (target && actor) b.spawnProjectile(actor, target, move, c); return;

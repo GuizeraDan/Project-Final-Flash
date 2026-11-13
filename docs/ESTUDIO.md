@@ -59,6 +59,7 @@ Em todo o Estúdio: **Ctrl+Z / Ctrl+Y** desfazem/refazem; o trabalho em andament
     poder, supremo, regras (mostrar/esconder com buff ou forma, requer parceiro).
 13. **💾 Salvar no jogo** (Ctrl+S): golpe novo vira uma **⭐ habilidade** já equipada (aparece no menu de
     golpes em qualquer batalha). 🎮 abre uma Batalha Livre para testar.
+   Marque **"Acompanha o lutador"** para o efeito andar junto com ele (aura ou rastro durante um "→ até o alvo").
 
 ## Editar um golpe que já existe
 
