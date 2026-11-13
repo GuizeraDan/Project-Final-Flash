@@ -246,6 +246,7 @@ window.FF = window.FF || {};
       this.extrairImpactos(doc.linha);
       this.doc = doc;
       this.sel = null; this.trSel = null; this.t = 0; this.loop = null;
+      if (this.multi) this.multi.clear();
       this.sujo = false;
       this.historico.zerar(rot || 'Abrir');
       this.montarLado();
@@ -429,6 +430,13 @@ window.FF = window.FF || {};
       }[tr.tipo] || { tipo: 'som', som: 'hit_small-a' });
     },
     remover() {
+      if (this.multi && this.multi.size > 1) {   // vários selecionados (Shift+clique): apaga todos
+        const ids = new Set(this.multi);
+        this.doc.linha.trilhas.forEach(tr => { tr.clipes = tr.clipes.filter(c => !ids.has(c.id)); });
+        this.multi.clear(); this.sel = null;
+        this.mudou('Apagar clipes'); this.renderProps();
+        return;
+      }
       const a = this.achar(this.sel); if (!a) return;
       a.tr.clipes = a.tr.clipes.filter(c => c !== a.c);
       this.sel = null;

@@ -66,7 +66,7 @@ FF.EstudioLinha = class {
     b.appendChild(E.el('span', 'sep'));
     this.info = E.el('span', 'es-tl-info');
     b.appendChild(this.info);
-    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · borda direita: esticar · Del apaga · Ctrl+D duplica'));
+    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · Shift+clique: seleciona vários (arrastam juntos) · borda direita: esticar · Del apaga · Ctrl+D duplica'));
   }
 
   zoom(f, tAncora, xTela) {
@@ -243,7 +243,7 @@ FF.EstudioLinha = class {
       const x = c.t * pxs;
       const w = Math.max(d * pxs, 12);
       if (x > x1 || x + w < x0) continue;
-      const sel = c.id === this.host.sel;
+      const sel = c.id === this.host.sel || !!(this.host.multi && this.host.multi.size > 1 && this.host.multi.has(c.id));
       const cor = this.cor(tr.tipo);
       ctx.globalAlpha = tr.oculta ? 0.3 : 1;
       ctx.fillStyle = cor + (d > 0 ? 'cc' : 'ff');
@@ -359,7 +359,7 @@ FF.EstudioLinha = class {
     const lim = 7 / this.pxs;
     const cand = [0, this.host.t, this.host.linha().duracao || 0];
     for (const { c, tr } of this.todos()) {
-      if (c === ignorar) continue;
+      if (c === ignorar || (this._ignorar && this._ignorar.has(c))) continue;
       const d = this.host.dur(c, tr);
       cand.push(c.t, c.t + d);
       (this.host.quadros(c, tr) || []).forEach(q => cand.push(c.t + q));
@@ -380,7 +380,7 @@ FF.EstudioLinha = class {
     for (const p of pts) {
       const linhas = [{ c: c0, tr: tr0, tipo: 'borda' }];
       for (const { c, tr } of this.todos()) {
-        if (c === c0) continue;
+        if (c === c0 || (this._ignorar && this._ignorar.has(c))) continue;
         const d = this.host.dur(c, tr);
         if (Math.abs(c.t - p) < eps || (d > 0 && Math.abs(c.t + d - p) < eps)) { linhas.push({ c, tr, tipo: 'borda' }); continue; }
         if ((this.host.quadros(c, tr) || []).some(q => q > 0 && q < d && Math.abs(c.t + q - p) < eps)) linhas.push({ c, tr, tipo: 'quadro' });
@@ -405,10 +405,20 @@ FF.EstudioLinha = class {
       const fan = (this._fantasmas || []).find(f => p.x >= f.x && p.x <= f.x + f.w && p.y >= f.y && p.y <= f.y + f.h);
       if (fan && !this.achar(p).c) { this.host.selecionar(fan.id); arr = null; return; }
       const h = this.achar(p);
+      const multi = this.host.multi || (this.host.multi = new Set());
       if (h.c) {
+        // Shift + clique: junta (ou tira) o clipe da seleção múltipla; arrastar um deles leva todos juntos
+        if (e.shiftKey) {
+          if (this.host.sel && !multi.size) multi.add(this.host.sel);
+          if (multi.has(h.c.id) && multi.size > 1) { multi.delete(h.c.id); this.host.selecionar([...multi].pop(), null, true); arr = null; this.render(); return; }
+          multi.add(h.c.id);
+        } else if (!multi.has(h.c.id)) multi.clear();
         this.host.selecionar(h.c.id, h.tr.id, true);
-        arr = { modo: h.borda ? 'esticar' : 'mover', c: h.c, tr: h.tr, x0: p.x, t0: h.c.t, d0: this.host.dur(h.c, h.tr), mexeu: false };
+        const grupo = multi.size > 1 ? [...multi].map(id => this.host.achar(id)).filter(Boolean).map(a => ({ c: a.c, t0: a.c.t })) : null;
+        this._ignorar = grupo ? new Set(grupo.map(g => g.c)) : null;
+        arr = { modo: h.borda && !grupo ? 'esticar' : 'mover', c: h.c, tr: h.tr, x0: p.x, t0: h.c.t, d0: this.host.dur(h.c, h.tr), mexeu: false, grupo };
       } else if (h.tr) {
+        multi.clear();
         this.host.selecionar(null, h.tr.id);
         this.host.irPara(this.encaixar(t, null, e.altKey), true);
         arr = { modo: 'cursor' };
@@ -433,18 +443,25 @@ FF.EstudioLinha = class {
         const fim = this.encaixar(arr.t0 + dt + arr.d0, arr.c, e.altKey) - arr.d0, realFim = !!this._encaixou;
         const usarFim = realFim !== realIni ? realFim : Math.abs(fim - (arr.t0 + dt)) < Math.abs(novo - (arr.t0 + dt));
         arr.c.t = Math.max(0, usarFim ? Math.round(fim * 1000) / 1000 : novo);
+        if (arr.grupo) {   // os outros selecionados andam o mesmo tanto (nenhum passa do zero)
+          let desl = arr.c.t - arr.t0;
+          desl = Math.max(desl, -Math.min(...arr.grupo.map(g => g.t0)));
+          arr.c.t = Math.round((arr.t0 + desl) * 1000) / 1000;
+          arr.grupo.forEach(g => { g.c.t = Math.max(0, Math.round((g.t0 + desl) * 1000) / 1000); });
+        }
       } else {
         const fim = this.encaixar(arr.t0 + arr.d0 + dt, arr.c, e.altKey);
         arr.c.d = Math.max(0.02, Math.round((fim - arr.c.t) * 1000) / 1000);
       }
       this.guias = this.alinhamentos(arr.c, arr.tr);
-      this.host.mudou(arr.modo === 'mover' ? 'Mover clipe' : 'Esticar clipe', true, true);
+      this.host.mudou(arr.modo === 'mover' ? (arr.grupo ? 'Mover clipes' : 'Mover clipe') : 'Esticar clipe', true, true);
     });
     const fim = () => {
       if (arr && arr.mexeu) this.host.mudou(arr.modo === 'mover' ? 'Mover clipe' : 'Esticar clipe', true);
       if (arr && arr.modo === 'cursor') this.host.irPara(this.host.t, false);
       if (arr && arr.modo === 'loop') this.host.aoMudarLoop && this.host.aoMudarLoop();
       arr = null;
+      this._ignorar = null;
       if (this.guias) { this.guias = null; this.desenhar(); }
     };
     this.cv.addEventListener('pointerup', fim);

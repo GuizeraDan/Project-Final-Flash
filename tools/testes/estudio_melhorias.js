@@ -193,6 +193,22 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.ks.includes('lutador') && s.ks.includes('escala') && s.ks.includes('giro') && Math.abs(Math.abs(lu.rot) - 90) <= 3 && Math.abs(Math.abs(lu.fr) - 90) <= 3, 'lutador com alças de mover/tamanho/giro; girar pela alça azul: ' + JSON.stringify(lu));
   await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); delete g.achar(id).c.rot; g.mudou('x'); }, s.id);
 
+  // ---- linha do tempo: Shift+clique seleciona vários clipes e eles arrastam juntos
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes'); g.tl.render();
+    const l = g.tl.todos().filter(({ c, tr }) => g.tl.host.dur(c, tr) > 0.05 && c.t > 0.05).slice(0, 3);
+    const r = g.tl.cv.getBoundingClientRect();
+    return { pts: l.map(({ c, tr }) => ({ id: c.id, t: c.t, x: r.left + c.t * g.tl.pxs + 6, y: r.top + g.tl.yDe(c, tr) + 10 })), k: g.tl.pxs };
+  });
+  await p.mouse.click(s.pts[0].x, s.pts[0].y);
+  await p.keyboard.down('Shift'); await p.mouse.click(s.pts[1].x, s.pts[1].y); await p.mouse.click(s.pts[2].x, s.pts[2].y); await p.keyboard.up('Shift');
+  await p.mouse.move(s.pts[1].x, s.pts[1].y); await p.mouse.down(); await p.mouse.move(s.pts[1].x + 10, s.pts[1].y, { steps: 2 }); await p.mouse.move(s.pts[1].x + 0.2 * s.k, s.pts[1].y, { steps: 5 }); await p.mouse.up();
+  const mv = await p.evaluate((ids) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); return { multi: g.multi.size, ts: ids.map(id => g.achar(id).c.t) }; }, s.pts.map(x => x.id));
+  const desl = mv.ts.map((t, i) => Math.round((t - s.pts[i].t) * 1000) / 1000);
+  await p.screenshot({ path: OUT + '/0i_multi.png' });
+  ok(mv.multi === 3 && desl.every(d => Math.abs(d - desl[0]) < 0.002) && Math.abs(desl[0]) > 0.1, 'Shift+clique em 3 clipes e arrastar um move os 3 juntos (deslocamentos ' + desl + ')');
+  await p.keyboard.press('Control+z');
+
   // ---- palco: alinhar a saída na mesma altura da chegada (guia) e Shift trava o eixo
   s = await p.evaluate(() => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
