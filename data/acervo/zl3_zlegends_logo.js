@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_zlegends_logo",{"id":"zl3_zlegends_logo","atlases":["assets/img/acervo/zl3_zlegends_logo_0.png"],"acervo":{"nome":"Zlegends logo","categoria":"interface","origem":"ZL3 t237"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,563,341,295,150,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_guia_raditz",{"id":"zl3_guia_raditz","atlases":["assets/img/acervo/zl3_guia_raditz_0.png"],"acervo":{"nome":"Guia de comandos · Raditz","categoria":"interface","origem":"ZL3 t236"},"anims":{"Raditz":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,499,0,498,508,249,266,1],[0,998,0,498,508,249,266,1],[0,0,0,498,535,249,264,1]]}}});

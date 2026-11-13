@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_hud_barradevida_red_inimigo",{"id":"zl3_hud_barradevida_red_inimigo","atlases":["assets/img/acervo/zl3_hud_barradevida_red_inimigo_0.png"],"acervo":{"nome":"Hud barradevida red inimigo","categoria":"interface","origem":"ZL3 t255"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,121,10,121,5,1]]}}});

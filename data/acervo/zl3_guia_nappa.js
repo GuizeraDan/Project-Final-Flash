@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_guia_nappa",{"id":"zl3_guia_nappa","atlases":["assets/img/acervo/zl3_guia_nappa_0.png"],"acervo":{"nome":"Guia de comandos · Nappa","categoria":"interface","origem":"ZL3 t236"},"anims":{"Nappa":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,498,508,249,266,1],[0,499,0,498,508,249,266,1],[0,998,0,498,508,249,254,1]]}}});

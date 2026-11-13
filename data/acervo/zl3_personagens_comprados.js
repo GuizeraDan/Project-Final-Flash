@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_personagens_comprados",{"id":"zl3_personagens_comprados","atlases":["assets/img/acervo/zl3_personagens_comprados_0.png"],"acervo":{"nome":"Personagens comprados","categoria":"interface","origem":"ZL3 t234"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,29,27,15,14,1]]}}});

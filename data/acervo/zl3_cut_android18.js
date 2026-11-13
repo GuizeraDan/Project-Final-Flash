@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_cut_android18",{"id":"zl3_cut_android18","atlases":["assets/img/acervo/zl3_cut_android18_0.png"],"acervo":{"nome":"Cutscene · Android18","categoria":"cutscenes","origem":"ZL3 t266"},"anims":{"Android18_EnergyWave":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,94,52,47,26,1],[0,95,0,94,52,47,26,1],[0,190,0,94,52,47,26,1]]}}});

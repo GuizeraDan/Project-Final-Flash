@@ -4,7 +4,9 @@ Rode sempre que editar um JSON:  python3 tools/build_bundle.py"""
 import json, os
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 out = {}
-for d, _, files in os.walk(os.path.join(root, 'data')):
+for d, dirs, files in os.walk(os.path.join(root, 'data')):
+    if 'acervo' in dirs:
+        dirs.remove('acervo')          # acervo do ZL3: carregado sob demanda (data/acervo/<id>.js), fora do bundle
     for f in sorted(files):
         if f.endswith('.json'):
             p = os.path.join(d, f)
@@ -21,6 +23,13 @@ out['_indice'] = {
     'batalhas': nomes('data/battles', '.json'),
     'audios': nomes('assets/audio', '.ogg'),
 }
+# acervo do Z Legends 3 (tools/extrair_acervo.py): só a lista; cada sprite é carregado quando usado
+_ac = os.path.join(root, 'data', 'acervo', 'indice.json')
+if os.path.isfile(_ac):
+    with open(_ac, encoding='utf-8') as fh:
+        _ac = json.load(fh)
+    out['_indice']['acervo'] = {k: [v['cat'], v['nome'], v['anims']] for k, v in _ac['sprites'].items()}
+    out['_indice']['acervoCategorias'] = _ac['categorias']
 with open(os.path.join(root, 'data', 'bundle.js'), 'w', encoding='utf-8') as fh:
     fh.write('// Gerado por tools/build_bundle.py — não edite à mão.\nwindow.FF_BUNDLE = ')
     json.dump(out, fh, ensure_ascii=False, separators=(',', ':'))

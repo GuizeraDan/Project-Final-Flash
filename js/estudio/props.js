@@ -190,7 +190,7 @@ FF.EstudioProps = {
         break;
       }
       case 'camada': {
-        g.appendChild(E.campo('select', 'Sprite', c.sprite, async (v) => { c.sprite = v; await FF.Assets.loadSprite(v).catch(() => null); const s = FF.Assets.sprites[v]; if (s && !s.has(c.anim)) c.anim = Object.keys(s.def.anims)[0]; host.mudou('Sprite da camada'); }, { lista: FF.Assets.listaSprites() }));
+        g.appendChild(E.campo('select', 'Sprite', c.sprite, async (v) => { c.sprite = v; await FF.Assets.loadSprite(v).catch(() => null); const s = FF.Assets.sprites[v]; if (s && !s.has(c.anim)) c.anim = Object.keys(s.def.anims)[0]; host.mudou('Sprite da camada'); }, { lista: FF.Assets.listaSprites().map(s => [s, FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) + ' · ' + s : s]) }));
         const s = FF.Assets.sprites[c.sprite];
         g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => FF.Estudio.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; host.mudou('Sprite da camada'); } }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));

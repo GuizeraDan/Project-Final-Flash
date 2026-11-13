@@ -168,3 +168,7 @@ a { color: var(--ouro); }
 .es-seletor-dir .es-grade { overflow: auto; flex: 1; align-content: start; grid-auto-rows: max-content; }
 .es-cartao-fonte { display: block; color: var(--apagado); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 760px) { .es-seletor { flex-direction: column; } .es-seletor-fontes { width: auto; height: 90px; border-right: 0; border-bottom: 1px solid var(--linha); } }
+/* seletor de sprites: categorias do acervo */
+.es-seletor-cat { font-size: 12px; font-weight: bold; color: var(--ouro); padding: 5px 6px; cursor: pointer; user-select: none; border-radius: 4px; }
+.es-seletor-cat:hover { background: var(--painel); }
+.es-seletor-cat-corpo { padding-left: 6px; }

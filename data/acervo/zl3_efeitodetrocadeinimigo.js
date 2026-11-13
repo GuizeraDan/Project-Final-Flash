@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_efeitodetrocadeinimigo",{"id":"zl3_efeitodetrocadeinimigo","atlases":["assets/img/acervo/zl3_efeitodetrocadeinimigo_0.png"],"acervo":{"nome":"Efeitodetrocadeinimigo","categoria":"interface","origem":"ZL3 t398,t397"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}}});

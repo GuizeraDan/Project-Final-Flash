@@ -322,14 +322,14 @@
 
       const g = E().grupo('Forma "' + fid + '"');
       g.appendChild(this.cp(f, 'nome', 'texto', 'Nome', { depois: () => this.renderBarra() }));
-      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s));
+      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.categoriaSprite(s)));
       if (f.sprite && !sprites.includes(f.sprite)) sprites.unshift(f.sprite);
       g.appendChild(E().campo('select', 'Sprite', f.sprite, async (v) => {
         f.sprite = v;
         await FF.Assets.loadSprite(v).catch(() => null);
         this.mudar('Sprite da forma');
         this.renderPainel();
-      }, { lista: sprites }));
+      }, { lista: sprites.map(s => [s, FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) + ' · ' + s : s]) }));
       g.appendChild(this.cp(f, 'kiPorTurno', 'numero', 'Ki por turno', { passo: 1, dica: 'Vazio = usa o do personagem' }));
       f.multiplicadores = f.multiplicadores || {};
       MULTS.forEach(([k, n]) => g.appendChild(this.cp(f.multiplicadores, k, 'numero', n, { passo: 0.05, min: 0, placeholder: '1', dica: 'Multiplica o atributo nesta forma. Vazio = 1' })));
@@ -827,7 +827,7 @@
     dialogoNovo(duplicarDe) {
       const c = E().el('div', 'ep-novo');
       const src = duplicarDe ? this.defs[duplicarDe] : null;
-      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s));
+      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.categoriaSprite(s)));
       const usados = new Set(this.ids.flatMap(i => Object.values((this.defs[i] || {}).formas || {}).map(f => f.sprite)));
       const livre = sprites.find(s => !usados.has(s)) || sprites[0];
       const st = { nome: src ? (this.doc.nome || src.nome) + ' 2' : '', id: '', sprite: livre, modelo: 'goku', copiar: true };
@@ -844,7 +844,7 @@
         E().miniatura(prev, s, m.parado, 0, { max: 3 });
       };
       if (!src) {
-        const iS = E().campo('select', 'Sprite', st.sprite, (v) => { st.sprite = v; atualizarPrev(); }, { lista: sprites.map(s => [s, s + (usados.has(s) ? '' : ' (sem personagem)')]) });
+        const iS = E().campo('select', 'Sprite', st.sprite, (v) => { st.sprite = v; atualizarPrev(); }, { lista: sprites.map(s => [s, (FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) + ' · ' + s : s) + (usados.has(s) ? '' : ' (sem personagem)')]) });
         iS._inp.dataset.ep = 'novosprite';
         const iM = E().campo('select', 'Modelo', st.modelo, (v) => { st.modelo = v; }, { lista: this.ids.map(i => [i, this.defs[i].nome]), dica: 'Atributos e golpes que servirem no sprite são copiados deste personagem' });
         const iC = E().campo('check', 'Copiar golpes', st.copiar, (v) => { st.copiar = v; }, { dica: 'Copia do menu da forma inicial do modelo os golpes cujas animações existem no sprite escolhido (sem as vozes)' });

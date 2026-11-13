@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_loading_bar_goku",{"id":"zl3_loading_bar_goku","atlases":["assets/img/acervo/zl3_loading_bar_goku_0.png"],"acervo":{"nome":"Loading bar goku","categoria":"interface","origem":"ZL3 t222"},"anims":{"Default":{"fps":15,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,73,0,36,33,6,20,1],[0,0,0,38,34,9,21,1],[0,39,0,33,34,4,21,1],[0,110,0,34,33,4,20,1]]}}});

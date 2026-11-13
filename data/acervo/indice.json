@@ -1,0 +1,3439 @@
+{
+"categorias": {
+"personagens": "Personagens",
+"efeitos": "Efeitos",
+"cenarios": "Cenários",
+"interface": "Interface",
+"cutscenes": "Cutscenes"
+},
+"sprites": {
+"zl3_android17": {
+"nome": "Androide 17",
+"cat": "personagens",
+"anims": 74,
+"quadros": 272,
+"atlas": 1,
+"objs": [
+"t84",
+"t20"
+]
+},
+"zl3_android17_assist": {
+"nome": "Androide 17 (assistência)",
+"cat": "personagens",
+"anims": 22,
+"quadros": 110,
+"atlas": 1,
+"objs": [
+"t51"
+]
+},
+"zl3_android18": {
+"nome": "Androide 18",
+"cat": "personagens",
+"anims": 77,
+"quadros": 215,
+"atlas": 1,
+"objs": [
+"t81",
+"t17"
+]
+},
+"zl3_android21": {
+"nome": "Androide 21",
+"cat": "personagens",
+"anims": 125,
+"quadros": 425,
+"atlas": 1,
+"objs": [
+"t97",
+"t40"
+]
+},
+"zl3_z_assist": {
+"nome": "Assistências Z",
+"cat": "personagens",
+"anims": 113,
+"quadros": 710,
+"atlas": 2,
+"objs": [
+"t45",
+"t44"
+]
+},
+"zl3_bardock": {
+"nome": "Bardock",
+"cat": "personagens",
+"anims": 107,
+"quadros": 511,
+"atlas": 2,
+"objs": [
+"t66",
+"t31"
+]
+},
+"zl3_bardockssj": {
+"nome": "Bardock SSJ",
+"cat": "personagens",
+"anims": 102,
+"quadros": 545,
+"atlas": 1,
+"objs": [
+"t64",
+"t39"
+]
+},
+"zl3_bills": {
+"nome": "Bills",
+"cat": "personagens",
+"anims": 71,
+"quadros": 262,
+"atlas": 1,
+"objs": [
+"t85",
+"t19"
+]
+},
+"zl3_brolyikari": {
+"nome": "Broly (Super)",
+"cat": "personagens",
+"anims": 88,
+"quadros": 463,
+"atlas": 1,
+"objs": [
+"t69",
+"t3"
+]
+},
+"zl3_brolyz": {
+"nome": "Broly (Z)",
+"cat": "personagens",
+"anims": 89,
+"quadros": 417,
+"atlas": 1,
+"objs": [
+"t68",
+"t41"
+]
+},
+"zl3_cell": {
+"nome": "Cell",
+"cat": "personagens",
+"anims": 103,
+"quadros": 305,
+"atlas": 1,
+"objs": [
+"t87",
+"t21"
+]
+},
+"zl3_chaos": {
+"nome": "Chaos",
+"cat": "personagens",
+"anims": 6,
+"quadros": 21,
+"atlas": 1,
+"objs": [
+"t47",
+"t46"
+]
+},
+"zl3_cooler": {
+"nome": "Cooler",
+"cat": "personagens",
+"anims": 104,
+"quadros": 455,
+"atlas": 1,
+"objs": [
+"t94",
+"t34"
+]
+},
+"zl3_ginyu_troop": {
+"nome": "Forças Especiais Ginyu",
+"cat": "personagens",
+"anims": 25,
+"quadros": 181,
+"atlas": 1,
+"objs": [
+"t53"
+]
+},
+"zl3_freeza": {
+"nome": "Freeza",
+"cat": "personagens",
+"anims": 79,
+"quadros": 258,
+"atlas": 1,
+"objs": [
+"t88",
+"t23"
+]
+},
+"zl3_ginyu": {
+"nome": "Ginyu",
+"cat": "personagens",
+"anims": 110,
+"quadros": 389,
+"atlas": 1,
+"objs": [
+"t90",
+"t27"
+]
+},
+"zl3_gogetassjblue": {
+"nome": "Gogeta SSJ Blue",
+"cat": "personagens",
+"anims": 141,
+"quadros": 628,
+"atlas": 2,
+"objs": [
+"t55",
+"t18"
+]
+},
+"zl3_gogetassj4": {
+"nome": "Gogeta SSJ4",
+"cat": "personagens",
+"anims": 108,
+"quadros": 468,
+"atlas": 2,
+"objs": [
+"t59",
+"t24"
+]
+},
+"zl3_gohanbeast": {
+"nome": "Gohan Besta",
+"cat": "personagens",
+"anims": 155,
+"quadros": 852,
+"atlas": 3,
+"objs": [
+"t67",
+"t35"
+]
+},
+"zl3_miraigohan": {
+"nome": "Gohan do Futuro",
+"cat": "personagens",
+"anims": 93,
+"quadros": 311,
+"atlas": 1,
+"objs": [
+"t82",
+"t15"
+]
+},
+"zl3_gohanultimate": {
+"nome": "Gohan Místico",
+"cat": "personagens",
+"anims": 83,
+"quadros": 307,
+"atlas": 1,
+"objs": [
+"t91",
+"t29"
+]
+},
+"zl3_gohanssj2": {
+"nome": "Gohan SSJ2",
+"cat": "personagens",
+"anims": 127,
+"quadros": 525,
+"atlas": 2,
+"objs": [
+"t62",
+"t25"
+]
+},
+"zl3_gokubase": {
+"nome": "Goku",
+"cat": "personagens",
+"anims": 146,
+"quadros": 676,
+"atlas": 2,
+"objs": [
+"t70",
+"t32"
+]
+},
+"zl3_gokublackrose": {
+"nome": "Goku Black Rosé",
+"cat": "personagens",
+"anims": 81,
+"quadros": 296,
+"atlas": 1,
+"objs": [
+"t72",
+"t7"
+]
+},
+"zl3_gokugt": {
+"nome": "Goku GT",
+"cat": "personagens",
+"anims": 98,
+"quadros": 598,
+"atlas": 2,
+"objs": [
+"t98"
+]
+},
+"zl3_gokuui": {
+"nome": "Goku Instinto Superior",
+"cat": "personagens",
+"anims": 122,
+"quadros": 572,
+"atlas": 2,
+"objs": [
+"t54",
+"t9"
+]
+},
+"zl3_gokussj": {
+"nome": "Goku SSJ",
+"cat": "personagens",
+"anims": 115,
+"quadros": 579,
+"atlas": 2,
+"objs": [
+"t71",
+"t33"
+]
+},
+"zl3_gokublue": {
+"nome": "Goku SSJ Blue",
+"cat": "personagens",
+"anims": 161,
+"quadros": 950,
+"atlas": 3,
+"objs": [
+"t89",
+"t26"
+]
+},
+"zl3_hitto": {
+"nome": "Hit",
+"cat": "personagens",
+"anims": 91,
+"quadros": 280,
+"atlas": 1,
+"objs": [
+"t61",
+"t5"
+]
+},
+"zl3_janemba": {
+"nome": "Janemba",
+"cat": "personagens",
+"anims": 91,
+"quadros": 336,
+"atlas": 1,
+"objs": [
+"t77",
+"t13"
+]
+},
+"zl3_jiren": {
+"nome": "Jiren",
+"cat": "personagens",
+"anims": 78,
+"quadros": 354,
+"atlas": 1,
+"objs": [
+"t75",
+"t11"
+]
+},
+"zl3_kefla": {
+"nome": "Kefla",
+"cat": "personagens",
+"anims": 99,
+"quadros": 335,
+"atlas": 1,
+"objs": [
+"t60",
+"t4"
+]
+},
+"zl3_kidbuu": {
+"nome": "Kid Boo",
+"cat": "personagens",
+"anims": 89,
+"quadros": 309,
+"atlas": 1,
+"objs": [
+"t86",
+"t22"
+]
+},
+"zl3_krillin": {
+"nome": "Kuririn",
+"cat": "personagens",
+"anims": 99,
+"quadros": 457,
+"atlas": 1,
+"objs": [
+"t95",
+"t36"
+]
+},
+"zl3_mai": {
+"nome": "Mai (assistência)",
+"cat": "personagens",
+"anims": 12,
+"quadros": 49,
+"atlas": 1,
+"objs": [
+"t49"
+]
+},
+"zl3_majinbuu": {
+"nome": "Majin Boo",
+"cat": "personagens",
+"anims": 86,
+"quadros": 308,
+"atlas": 1,
+"objs": [
+"t92",
+"t28"
+]
+},
+"zl3_moro73": {
+"nome": "Moro",
+"cat": "personagens",
+"anims": 90,
+"quadros": 466,
+"atlas": 1,
+"objs": [
+"t58",
+"t0"
+]
+},
+"zl3_nappa": {
+"nome": "Nappa",
+"cat": "personagens",
+"anims": 76,
+"quadros": 301,
+"atlas": 1,
+"objs": [
+"t80",
+"t14"
+]
+},
+"zl3_piccolo": {
+"nome": "Piccolo",
+"cat": "personagens",
+"anims": 85,
+"quadros": 250,
+"atlas": 1,
+"objs": [
+"t83",
+"t16"
+]
+},
+"zl3_raditz": {
+"nome": "Raditz",
+"cat": "personagens",
+"anims": 85,
+"quadros": 245,
+"atlas": 1,
+"objs": [
+"t63",
+"t2"
+]
+},
+"zl3_saibamen": {
+"nome": "Saibaman (assistência)",
+"cat": "personagens",
+"anims": 6,
+"quadros": 36,
+"atlas": 1,
+"objs": [
+"t50"
+]
+},
+"zl3_superbaby2": {
+"nome": "Super Baby 2",
+"cat": "personagens",
+"anims": 89,
+"quadros": 342,
+"atlas": 1,
+"objs": [
+"t76",
+"t12"
+]
+},
+"zl3_tienshihan": {
+"nome": "Tenshinhan",
+"cat": "personagens",
+"anims": 80,
+"quadros": 263,
+"atlas": 1,
+"objs": [
+"t65",
+"t1"
+]
+},
+"zl3_miraitrunks": {
+"nome": "Trunks do Futuro",
+"cat": "personagens",
+"anims": 101,
+"quadros": 394,
+"atlas": 1,
+"objs": [
+"t73",
+"t8"
+]
+},
+"zl3_supertrunks": {
+"nome": "Trunks Super",
+"cat": "personagens",
+"anims": 104,
+"quadros": 448,
+"atlas": 2,
+"objs": [
+"t96",
+"t38"
+]
+},
+"zl3_vegetabase": {
+"nome": "Vegeta",
+"cat": "personagens",
+"anims": 105,
+"quadros": 450,
+"atlas": 2,
+"objs": [
+"t93",
+"t30"
+]
+},
+"zl3_vegetasagasaiyan": {
+"nome": "Vegeta (Saga Saiyajin)",
+"cat": "personagens",
+"anims": 90,
+"quadros": 275,
+"atlas": 1,
+"objs": [
+"t57",
+"t6"
+]
+},
+"zl3_vegetaegosuperior": {
+"nome": "Vegeta Ego Superior",
+"cat": "personagens",
+"anims": 161,
+"quadros": 857,
+"atlas": 2,
+"objs": [
+"t79",
+"t37"
+]
+},
+"zl3_vegetassj": {
+"nome": "Vegeta SSJ",
+"cat": "personagens",
+"anims": 82,
+"quadros": 402,
+"atlas": 2,
+"objs": [
+"t78",
+"t42"
+]
+},
+"zl3_vegetassjblue": {
+"nome": "Vegeta SSJ Blue (assistência)",
+"cat": "personagens",
+"anims": 25,
+"quadros": 122,
+"atlas": 1,
+"objs": [
+"t52"
+]
+},
+"zl3_vegettossjblue": {
+"nome": "Vegetto SSJ Blue",
+"cat": "personagens",
+"anims": 95,
+"quadros": 494,
+"atlas": 3,
+"objs": [
+"t56",
+"t43"
+]
+},
+"zl3_zamasu_attack": {
+"nome": "Zamasu (assistência)",
+"cat": "personagens",
+"anims": 2,
+"quadros": 19,
+"atlas": 1,
+"objs": [
+"t48"
+]
+},
+"zl3_zamasufusion": {
+"nome": "Zamasu Fundido",
+"cat": "personagens",
+"anims": 72,
+"quadros": 244,
+"atlas": 1,
+"objs": [
+"t74",
+"t10"
+]
+},
+"zl3_android17_effects": {
+"nome": "Android17 effects",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"t377"
+]
+},
+"zl3_aura_e_efeito_durante_especiais": {
+"nome": "Auras e efeitos dos especiais",
+"cat": "efeitos",
+"anims": 23,
+"quadros": 115,
+"atlas": 1,
+"objs": [
+"t365"
+]
+},
+"zl3_bigbang_attack_jogador": {
+"nome": "Bigbang attack jogador",
+"cat": "efeitos",
+"anims": 6,
+"quadros": 18,
+"atlas": 1,
+"objs": [
+"t304"
+]
+},
+"zl3_bills_effects": {
+"nome": "Bills effects",
+"cat": "efeitos",
+"anims": 7,
+"quadros": 22,
+"atlas": 1,
+"objs": [
+"t374"
+]
+},
+"zl3_brushsphere": {
+"nome": "Brushsphere",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t273"
+]
+},
+"zl3_chaos_telekinesis_effect": {
+"nome": "Chaos telekinesis effect",
+"cat": "efeitos",
+"anims": 5,
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"t357"
+]
+},
+"zl3_chaodestruido": {
+"nome": "Chão destruído",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"t332"
+]
+},
+"zl3_efeitobranconatela": {
+"nome": "Clarão branco na tela",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t256"
+]
+},
+"zl3_deathblow_attack_effect": {
+"nome": "Deathblow attack effect",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t363"
+]
+},
+"zl3_defesa_effect": {
+"nome": "Defesa",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t344"
+]
+},
+"zl3_efeitodederrota": {
+"nome": "Efeito de derrota",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 39,
+"atlas": 1,
+"objs": [
+"t258"
+]
+},
+"zl3_efeito_de_kiblast": {
+"nome": "Efeitos das rajadas de ki",
+"cat": "efeitos",
+"anims": 32,
+"quadros": 105,
+"atlas": 1,
+"objs": [
+"t353"
+]
+},
+"zl3_efeitodeimpacto": {
+"nome": "Efeitos de impacto",
+"cat": "efeitos",
+"anims": 24,
+"quadros": 111,
+"atlas": 1,
+"objs": [
+"t336"
+]
+},
+"zl3_esferadekigigante": {
+"nome": "Esferas de ki gigantes",
+"cat": "efeitos",
+"anims": 27,
+"quadros": 127,
+"atlas": 4,
+"objs": [
+"t296",
+"t289"
+]
+},
+"zl3_explosion_specialball_effect": {
+"nome": "Explosão da esfera especial",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 14,
+"atlas": 1,
+"objs": [
+"t352"
+]
+},
+"zl3_explosaodeki_effect": {
+"nome": "Explosão de ki",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"t333"
+]
+},
+"zl3_explosao": {
+"nome": "Explosões",
+"cat": "efeitos",
+"anims": 38,
+"quadros": 277,
+"atlas": 3,
+"objs": [
+"t331"
+]
+},
+"zl3_freeza_efeitos": {
+"nome": "Freeza efeitos",
+"cat": "efeitos",
+"anims": 17,
+"quadros": 86,
+"atlas": 1,
+"objs": [
+"t379"
+]
+},
+"zl3_genkidamaefeito": {
+"nome": "Genki Dama (brilho)",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 14,
+"atlas": 1,
+"objs": [
+"t290"
+]
+},
+"zl3_godslicerdance_spikes": {
+"nome": "Godslicerdance spikes",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t317"
+]
+},
+"zl3_gogetablue_effects": {
+"nome": "Gogetablue effects",
+"cat": "efeitos",
+"anims": 24,
+"quadros": 107,
+"atlas": 1,
+"objs": [
+"t375"
+]
+},
+"zl3_gogetablue_godpunisher_kiblast": {
+"nome": "Gogetablue godpunisher kiblast",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t315",
+"t307"
+]
+},
+"zl3_gogetablue_special2_effect2": {
+"nome": "Gogetablue special2 effect2",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t294"
+]
+},
+"zl3_gogetablue_ultimateataque_effects": {
+"nome": "Gogetablue ultimateataque effects",
+"cat": "efeitos",
+"anims": 14,
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"t349"
+]
+},
+"zl3_gogetablue_ultimatekamehameha_cenario": {
+"nome": "Gogetablue ultimatekamehameha cenario",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 16,
+"atlas": 1,
+"objs": [
+"t376"
+]
+},
+"zl3_gokublackrose_clones": {
+"nome": "Gokublackrose clones",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t300"
+]
+},
+"zl3_gokublackrose_clones_attack": {
+"nome": "Gokublackrose clones attack",
+"cat": "efeitos",
+"anims": 6,
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"t299"
+]
+},
+"zl3_gokublackrose_special2_effect": {
+"nome": "Gokublackrose special2 effect",
+"cat": "efeitos",
+"anims": 5,
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"t337"
+]
+},
+"zl3_gokuui_effects": {
+"nome": "Gokuui effects",
+"cat": "efeitos",
+"anims": 17,
+"quadros": 67,
+"atlas": 1,
+"objs": [
+"t359"
+]
+},
+"zl3_gokuui_special1_effect": {
+"nome": "Gokuui special1 effect",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 9,
+"atlas": 1,
+"objs": [
+"t297",
+"t292"
+]
+},
+"zl3_gokuui_special2_effect": {
+"nome": "Gokuui special2 effect",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 20,
+"atlas": 1,
+"objs": [
+"t298",
+"t293"
+]
+},
+"zl3_hitto_ikeepimproving_effect": {
+"nome": "Hitto ikeepimproving effect",
+"cat": "efeitos",
+"anims": 7,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"t343"
+]
+},
+"zl3_hitto_special_hit_effect": {
+"nome": "Hitto special hit effect",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t339"
+]
+},
+"zl3_hitto_special_impact_effect": {
+"nome": "Hitto special impact effect",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 19,
+"atlas": 1,
+"objs": [
+"t340"
+]
+},
+"zl3_hitto_timerelease_effect": {
+"nome": "Hitto timerelease effect",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t362"
+]
+},
+"zl3_hitto_timeskip": {
+"nome": "Hitto timeskip",
+"cat": "efeitos",
+"anims": 9,
+"quadros": 28,
+"atlas": 1,
+"objs": [
+"t342"
+]
+},
+"zl3_impactoderochas": {
+"nome": "Impacto de rochas",
+"cat": "efeitos",
+"anims": 12,
+"quadros": 82,
+"atlas": 1,
+"objs": [
+"t324"
+]
+},
+"zl3_hit_extremamente_forte": {
+"nome": "Impacto extremamente forte",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 9,
+"atlas": 1,
+"objs": [
+"t347"
+]
+},
+"zl3_hit_forte": {
+"nome": "Impacto forte",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t346"
+]
+},
+"zl3_hit": {
+"nome": "Impactos de golpe",
+"cat": "efeitos",
+"anims": 49,
+"quadros": 209,
+"atlas": 1,
+"objs": [
+"t335"
+]
+},
+"zl3_janemba_objetos": {
+"nome": "Janemba objetos",
+"cat": "efeitos",
+"anims": 30,
+"quadros": 99,
+"atlas": 1,
+"objs": [
+"t370"
+]
+},
+"zl3_jiren_efeitos": {
+"nome": "Jiren efeitos",
+"cat": "efeitos",
+"anims": 12,
+"quadros": 58,
+"atlas": 1,
+"objs": [
+"t368"
+]
+},
+"zl3_kamehameha_pt1": {
+"nome": "Kamehameha (parte 1)",
+"cat": "efeitos",
+"anims": 8,
+"quadros": 38,
+"atlas": 1,
+"objs": [
+"t285",
+"t282"
+]
+},
+"zl3_kamehameha_pt2": {
+"nome": "Kamehameha (parte 2)",
+"cat": "efeitos",
+"anims": 7,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"t286",
+"t283"
+]
+},
+"zl3_kamehameha_pt3": {
+"nome": "Kamehameha (parte 3)",
+"cat": "efeitos",
+"anims": 7,
+"quadros": 20,
+"atlas": 1,
+"objs": [
+"t287",
+"t284"
+]
+},
+"zl3_kefla_giganticbreaker_effects": {
+"nome": "Kefla giganticbreaker effects",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t360"
+]
+},
+"zl3_kefla_giganticchaser_effect": {
+"nome": "Kefla giganticchaser effect",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t313"
+]
+},
+"zl3_kefla_giganticray_energy": {
+"nome": "Kefla giganticray energy",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t361"
+]
+},
+"zl3_kidbuu_e_cell_effects": {
+"nome": "Kidbuu e cell effects",
+"cat": "efeitos",
+"anims": 27,
+"quadros": 134,
+"atlas": 2,
+"objs": [
+"t378"
+]
+},
+"zl3_kiensan": {
+"nome": "Kienzan",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 18,
+"atlas": 1,
+"objs": [
+"t314"
+]
+},
+"zl3_lightinggranade": {
+"nome": "Lightinggranade",
+"cat": "efeitos",
+"anims": 6,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t310"
+]
+},
+"zl3_mafuba_background": {
+"nome": "Mafuba (fundo)",
+"cat": "efeitos",
+"anims": 5,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"t281"
+]
+},
+"zl3_makankosappo": {
+"nome": "Makankosappo",
+"cat": "efeitos",
+"anims": 10,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t364",
+"t301"
+]
+},
+"zl3_moro73_absorcion_effect": {
+"nome": "Moro73 absorcion effect",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t341"
+]
+},
+"zl3_moro73_donotinsist": {
+"nome": "Moro73 donotinsist",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t309"
+]
+},
+"zl3_moro73_eletricattack": {
+"nome": "Moro73 eletricattack",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"t308"
+]
+},
+"zl3_moro73_lavaball": {
+"nome": "Moro73 lavaball",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t311"
+]
+},
+"zl3_moro73_lavaexplosion": {
+"nome": "Moro73 lavaexplosion",
+"cat": "efeitos",
+"anims": 6,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t355"
+]
+},
+"zl3_moro73_transformingeffect": {
+"nome": "Moro73 transformingeffect",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t354"
+]
+},
+"zl3_nappa_efeitos": {
+"nome": "Nappa efeitos",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t372"
+]
+},
+"zl3_piccolo_e_android18_effect": {
+"nome": "Piccolo e android18 effect",
+"cat": "efeitos",
+"anims": 8,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"t371"
+]
+},
+"zl3_piccolo_e_android18_effect_2": {
+"nome": "Piccolo e android18 effect 2",
+"cat": "efeitos",
+"anims": 5,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t373"
+]
+},
+"zl3_picollo_special2_esferas": {
+"nome": "Picollo special2 esferas",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t302"
+]
+},
+"zl3_poeira1": {
+"nome": "Poeira 1",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"t325",
+"t318"
+]
+},
+"zl3_poeira2": {
+"nome": "Poeira 2",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"t326",
+"t319"
+]
+},
+"zl3_poeira3": {
+"nome": "Poeira 3",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t327",
+"t320"
+]
+},
+"zl3_poeira4": {
+"nome": "Poeira 4",
+"cat": "efeitos",
+"anims": 27,
+"quadros": 144,
+"atlas": 1,
+"objs": [
+"t321"
+]
+},
+"zl3_poeira5": {
+"nome": "Poeira 5",
+"cat": "efeitos",
+"anims": 16,
+"quadros": 164,
+"atlas": 1,
+"objs": [
+"t322"
+]
+},
+"zl3_poeira7": {
+"nome": "Poeira 7",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"t323"
+]
+},
+"zl3_poeira_de_colisao_com_o_solo": {
+"nome": "Poeira de colisão com o chão",
+"cat": "efeitos",
+"anims": 4,
+"quadros": 37,
+"atlas": 1,
+"objs": [
+"t330"
+]
+},
+"zl3_poeiradesaltoequeda": {
+"nome": "Poeira de salto e queda",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 16,
+"atlas": 1,
+"objs": [
+"t329"
+]
+},
+"zl3_starteffectdust": {
+"nome": "Poeira do início da luta",
+"cat": "efeitos",
+"anims": 8,
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"t328"
+]
+},
+"zl3_poeira_especial": {
+"nome": "Poeira especial",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 16,
+"atlas": 1,
+"objs": [
+"t348"
+]
+},
+"zl3_efeito_quebravento": {
+"nome": "Quebra-vento (deslocamento)",
+"cat": "efeitos",
+"anims": 28,
+"quadros": 146,
+"atlas": 1,
+"objs": [
+"t351"
+]
+},
+"zl3_thunder_effect": {
+"nome": "Raio",
+"cat": "efeitos",
+"anims": 2,
+"quadros": 14,
+"atlas": 1,
+"objs": [
+"t356"
+]
+},
+"zl3_rajadarapida": {
+"nome": "Rajada rápida",
+"cat": "efeitos",
+"anims": 6,
+"quadros": 21,
+"atlas": 1,
+"objs": [
+"t303",
+"t291"
+]
+},
+"zl3_kiblast_jogador": {
+"nome": "Rajadas de ki",
+"cat": "efeitos",
+"anims": 56,
+"quadros": 97,
+"atlas": 1,
+"objs": [
+"t305",
+"t295",
+"t288"
+]
+},
+"zl3_shin_kykouho_effect_poeira": {
+"nome": "Shin kykouho effect poeira",
+"cat": "efeitos",
+"anims": 18,
+"quadros": 76,
+"atlas": 1,
+"objs": [
+"t358"
+]
+},
+"zl3_shin_kykouho_jogador": {
+"nome": "Shin kykouho jogador",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t312"
+]
+},
+"zl3_sombra_dos_personagens": {
+"nome": "Sombra dos personagens",
+"cat": "efeitos",
+"anims": 3,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t381"
+]
+},
+"zl3_soulpunisher": {
+"nome": "Soulpunisher",
+"cat": "efeitos",
+"anims": 1,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t316",
+"t306"
+]
+},
+"zl3_sparking_ativo_effect_jogador": {
+"nome": "Sparking ativo",
+"cat": "efeitos",
+"anims": 8,
+"quadros": 32,
+"atlas": 1,
+"objs": [
+"t382",
+"t345"
+]
+},
+"zl3_superbaby2_objetos": {
+"nome": "Superbaby2 objetos",
+"cat": "efeitos",
+"anims": 12,
+"quadros": 30,
+"atlas": 1,
+"objs": [
+"t369"
+]
+},
+"zl3_trunksobjetos": {
+"nome": "Trunksobjetos",
+"cat": "efeitos",
+"anims": 30,
+"quadros": 131,
+"atlas": 1,
+"objs": [
+"t366"
+]
+},
+"zl3_vegetaego_effects": {
+"nome": "Vegetaego effects",
+"cat": "efeitos",
+"anims": 17,
+"quadros": 89,
+"atlas": 1,
+"objs": [
+"t380"
+]
+},
+"zl3_zamasueffects": {
+"nome": "Zamasueffects",
+"cat": "efeitos",
+"anims": 14,
+"quadros": 61,
+"atlas": 1,
+"objs": [
+"t367"
+]
+},
+"zl3_cenario_artic": {
+"nome": "Cenário · Artic",
+"cat": "cenarios",
+"anims": 6,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t198",
+"t197",
+"t196",
+"t195",
+"t194",
+"t193"
+]
+},
+"zl3_cenario_desert": {
+"nome": "Cenário · Desert",
+"cat": "cenarios",
+"anims": 16,
+"quadros": 46,
+"atlas": 1,
+"objs": [
+"t114",
+"t113",
+"t112",
+"t111",
+"t110",
+"t109"
+]
+},
+"zl3_cenario_enmadesk": {
+"nome": "Cenário · Enmadesk",
+"cat": "cenarios",
+"anims": 3,
+"quadros": 28,
+"atlas": 1,
+"objs": [
+"t151"
+]
+},
+"zl3_cenario_gokuhouse": {
+"nome": "Cenário · Gokuhouse",
+"cat": "cenarios",
+"anims": 9,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t127",
+"t126",
+"t125",
+"t124",
+"t122",
+"t123",
+"t121",
+"t120",
+"t119",
+"t118"
+]
+},
+"zl3_cenario_hell": {
+"nome": "Cenário · Hell",
+"cat": "cenarios",
+"anims": 2,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t210",
+"t209"
+]
+},
+"zl3_cenario_husk": {
+"nome": "Cenário · Husk",
+"cat": "cenarios",
+"anims": 2,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t212",
+"t211"
+]
+},
+"zl3_cenario_insidebuu": {
+"nome": "Cenário · Insidebuu",
+"cat": "cenarios",
+"anims": 8,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t192",
+"t191",
+"t190",
+"t189",
+"t188",
+"t186",
+"t187",
+"t185",
+"t184"
+]
+},
+"zl3_cenario_kamehouse": {
+"nome": "Cenário · Kamehouse",
+"cat": "cenarios",
+"anims": 18,
+"quadros": 35,
+"atlas": 1,
+"objs": [
+"t145",
+"t144",
+"t143",
+"t142",
+"t141",
+"t140",
+"t139",
+"t138",
+"t137",
+"t136"
+]
+},
+"zl3_cenario_moonbattlefield": {
+"nome": "Cenário · Moonbattlefield",
+"cat": "cenarios",
+"anims": 5,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t150",
+"t149",
+"t148",
+"t147",
+"t146"
+]
+},
+"zl3_cenario_namek": {
+"nome": "Cenário · Namek",
+"cat": "cenarios",
+"anims": 8,
+"quadros": 20,
+"atlas": 1,
+"objs": [
+"t103",
+"t102",
+"t101",
+"t100",
+"t99"
+]
+},
+"zl3_cenario_nekomajin": {
+"nome": "Cenário · Nekomajin",
+"cat": "cenarios",
+"anims": 6,
+"quadros": 26,
+"atlas": 1,
+"objs": [
+"t175",
+"t174",
+"t173"
+]
+},
+"zl3_cenario_satancity": {
+"nome": "Cenário · Satancity",
+"cat": "cenarios",
+"anims": 5,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t156",
+"t155",
+"t154",
+"t153",
+"t152"
+]
+},
+"zl3_cenario_seacoast": {
+"nome": "Cenário · Seacoast",
+"cat": "cenarios",
+"anims": 7,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"t208",
+"t207",
+"t206",
+"t205",
+"t204",
+"t203"
+]
+},
+"zl3_cenario_seersalcove": {
+"nome": "Cenário · Seersalcove",
+"cat": "cenarios",
+"anims": 5,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"t183",
+"t182",
+"t181",
+"t180",
+"t179"
+]
+},
+"zl3_cenario_space": {
+"nome": "Cenário · Space",
+"cat": "cenarios",
+"anims": 3,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t117",
+"t116",
+"t115"
+]
+},
+"zl3_cenario_templokami": {
+"nome": "Cenário · Templokami",
+"cat": "cenarios",
+"anims": 5,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t108",
+"t107",
+"t106",
+"t105",
+"t104"
+]
+},
+"zl3_cenario_tenkaishibudokai": {
+"nome": "Cenário · Tenkaishibudokai",
+"cat": "cenarios",
+"anims": 12,
+"quadros": 48,
+"atlas": 1,
+"objs": [
+"t165",
+"t164",
+"t163",
+"t162",
+"t161",
+"t160",
+"t159",
+"t158",
+"t157"
+]
+},
+"zl3_cenario_tenshin": {
+"nome": "Cenário · Tenshin",
+"cat": "cenarios",
+"anims": 3,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t178",
+"t177",
+"t176"
+]
+},
+"zl3_cenario_timechunber": {
+"nome": "Cenário · Timechunber",
+"cat": "cenarios",
+"anims": 8,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"t135",
+"t134",
+"t133",
+"t132",
+"t131",
+"t130",
+"t129",
+"t128"
+]
+},
+"zl3_cenario_top": {
+"nome": "Cenário · Top",
+"cat": "cenarios",
+"anims": 7,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t172",
+"t171",
+"t170",
+"t169",
+"t168",
+"t167",
+"t166"
+]
+},
+"zl3_cenario_zoonplanet": {
+"nome": "Cenário · Zoonplanet",
+"cat": "cenarios",
+"anims": 4,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t202",
+"t201",
+"t200",
+"t199"
+]
+},
+"zl3_cenarios_chao": {
+"nome": "Cenários · chãos",
+"cat": "cenarios",
+"anims": 4,
+"quadros": 43,
+"atlas": 3,
+"objs": [
+"t214"
+]
+},
+"zl3_cenarios_fundo": {
+"nome": "Cenários · fundos",
+"cat": "cenarios",
+"anims": 5,
+"quadros": 59,
+"atlas": 5,
+"objs": [
+"t213"
+]
+},
+"zl3_cenarioselected": {
+"nome": "Prévias dos cenários",
+"cat": "cenarios",
+"anims": 1,
+"quadros": 32,
+"atlas": 3,
+"objs": [
+"t257"
+]
+},
+"zl3_3vs3_barradevida_background_jogador": {
+"nome": "3vs3 barradevida background jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t216"
+]
+},
+"zl3_3vs3_barradevida_jogador": {
+"nome": "3vs3 barradevida jogador",
+"cat": "interface",
+"anims": 2,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t218",
+"t217"
+]
+},
+"zl3_3vs3_naopodetrocar": {
+"nome": "3vs3 naopodetrocar",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t219"
+]
+},
+"zl3_3vs3_trocadepersonagem_face": {
+"nome": "3vs3 trocadepersonagem face",
+"cat": "interface",
+"anims": 1,
+"quadros": 45,
+"atlas": 1,
+"objs": [
+"t215"
+]
+},
+"zl3_backgroundtransparente": {
+"nome": "Backgroundtransparente",
+"cat": "interface",
+"anims": 8,
+"quadros": 67,
+"atlas": 1,
+"objs": [
+"t242"
+]
+},
+"zl3_bocas_de_falas": {
+"nome": "Bocas de falas",
+"cat": "interface",
+"anims": 16,
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"t350"
+]
+},
+"zl3_bordas_da_tela": {
+"nome": "Bordas da tela",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t400"
+]
+},
+"zl3_brolydbs_giganticimpact_button": {
+"nome": "Brolydbs giganticimpact button",
+"cat": "interface",
+"anims": 12,
+"quadros": 22,
+"atlas": 1,
+"objs": [
+"t280"
+]
+},
+"zl3_contadordehits_brush": {
+"nome": "Contadordehits brush",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t261"
+]
+},
+"zl3_controlguide": {
+"nome": "Controlguide",
+"cat": "interface",
+"anims": 1,
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"t279"
+]
+},
+"zl3_dragonball": {
+"nome": "Dragonball",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t275"
+]
+},
+"zl3_efeitodetrocadeinimigo": {
+"nome": "Efeitodetrocadeinimigo",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t398",
+"t397"
+]
+},
+"zl3_energiexplosion_hud": {
+"nome": "Energiexplosion hud",
+"cat": "interface",
+"anims": 11,
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"t334"
+]
+},
+"zl3_gameload_background": {
+"nome": "Gameload background",
+"cat": "interface",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t221"
+]
+},
+"zl3_gameload_bar": {
+"nome": "Gameload bar",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t224"
+]
+},
+"zl3_gameload_bar_background": {
+"nome": "Gameload bar background",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t223"
+]
+},
+"zl3_guia_android17": {
+"nome": "Guia de comandos · Android17",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_android18": {
+"nome": "Guia de comandos · Android18",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_android21": {
+"nome": "Guia de comandos · Android21",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_bardock": {
+"nome": "Guia de comandos · Bardock",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_bardockssj": {
+"nome": "Guia de comandos · BardockSsj",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_bills": {
+"nome": "Guia de comandos · Bills",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_brolydbs": {
+"nome": "Guia de comandos · BrolyDbs",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_brolyz": {
+"nome": "Guia de comandos · BrolyZ",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_cell": {
+"nome": "Guia de comandos · Cell",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_comandos": {
+"nome": "Guia de comandos · Comandos",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_cooler": {
+"nome": "Guia de comandos · Cooler",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_freeza": {
+"nome": "Guia de comandos · Freeza",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_ginyu": {
+"nome": "Guia de comandos · Ginyu",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gogetablue": {
+"nome": "Guia de comandos · GogetaBlue",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gogetassj4": {
+"nome": "Guia de comandos · GogetaSsj4",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gohanbeast": {
+"nome": "Guia de comandos · GohanBeast",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gohanmistico": {
+"nome": "Guia de comandos · GohanMistico",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gohanssj2": {
+"nome": "Guia de comandos · GohanSsj2",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gokubase": {
+"nome": "Guia de comandos · GokuBase",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gokublackrose": {
+"nome": "Guia de comandos · GokuBlackRose",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gokublue": {
+"nome": "Guia de comandos · GokuBlue",
+"cat": "interface",
+"anims": 1,
+"quadros": 9,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gokussj": {
+"nome": "Guia de comandos · GokuSsj",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_gokuui": {
+"nome": "Guia de comandos · GokuUI",
+"cat": "interface",
+"anims": 1,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_hitto": {
+"nome": "Guia de comandos · Hitto",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_janemba": {
+"nome": "Guia de comandos · Janemba",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_jiren": {
+"nome": "Guia de comandos · Jiren",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_kefla": {
+"nome": "Guia de comandos · Kefla",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_kidbuu": {
+"nome": "Guia de comandos · KidBuu",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_krillin": {
+"nome": "Guia de comandos · Krillin",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_majinbuu": {
+"nome": "Guia de comandos · MajinBuu",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_miraigohan": {
+"nome": "Guia de comandos · MiraiGohan",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_miraitrunks": {
+"nome": "Guia de comandos · MiraiTrunks",
+"cat": "interface",
+"anims": 1,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_moro73": {
+"nome": "Guia de comandos · Moro73",
+"cat": "interface",
+"anims": 1,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_nappa": {
+"nome": "Guia de comandos · Nappa",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_piccolo": {
+"nome": "Guia de comandos · Piccolo",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_raditz": {
+"nome": "Guia de comandos · Raditz",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_superbaby2": {
+"nome": "Guia de comandos · SuperBaby2",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_supertrunks": {
+"nome": "Guia de comandos · SuperTrunks",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_tienshinhan": {
+"nome": "Guia de comandos · Tienshinhan",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_vegetabase": {
+"nome": "Guia de comandos · VegetaBase",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_vegetaego": {
+"nome": "Guia de comandos · VegetaEgo",
+"cat": "interface",
+"anims": 1,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_vegetasagasaiyan": {
+"nome": "Guia de comandos · VegetaSagaSaiyan",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_vegetassj": {
+"nome": "Guia de comandos · VegetaSsj",
+"cat": "interface",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_vegettoblue": {
+"nome": "Guia de comandos · VegettoBlue",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_guia_zamasu": {
+"nome": "Guia de comandos · Zamasu",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t236"
+]
+},
+"zl3_hitto_ataques_continue_button": {
+"nome": "Hitto ataques continue button",
+"cat": "interface",
+"anims": 2,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t278"
+]
+},
+"zl3_hud_barradeki_count_jogador": {
+"nome": "Hud barradeki count jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t269",
+"t250"
+]
+},
+"zl3_hud_barradeki_inimigo": {
+"nome": "Hud barradeki inimigo",
+"cat": "interface",
+"anims": 2,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t270",
+"t249"
+]
+},
+"zl3_hud_barradeki_jogador": {
+"nome": "Hud barradeki jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t248"
+]
+},
+"zl3_hud_barradevida_inimigo": {
+"nome": "Hud barradevida inimigo",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t245"
+]
+},
+"zl3_hud_barradevida_jogador": {
+"nome": "Hud barradevida jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t244"
+]
+},
+"zl3_hud_barradevida_red_inimigo": {
+"nome": "Hud barradevida red inimigo",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t255"
+]
+},
+"zl3_hud_barradevida_red_jogador": {
+"nome": "Hud barradevida red jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t254"
+]
+},
+"zl3_hud_barsbackground": {
+"nome": "Hud barsbackground",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t243"
+]
+},
+"zl3_hud_barsbackground_ki_jogador": {
+"nome": "Hud barsbackground ki jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t247"
+]
+},
+"zl3_hud_botoes": {
+"nome": "Hud botoes",
+"cat": "interface",
+"anims": 12,
+"quadros": 97,
+"atlas": 1,
+"objs": [
+"t228"
+]
+},
+"zl3_hud_config_buttons": {
+"nome": "Hud config buttons",
+"cat": "interface",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t226"
+]
+},
+"zl3_hud_control": {
+"nome": "Hud control",
+"cat": "interface",
+"anims": 2,
+"quadros": 21,
+"atlas": 1,
+"objs": [
+"t241"
+]
+},
+"zl3_hud_objetosextra": {
+"nome": "Hud objetosextra",
+"cat": "interface",
+"anims": 16,
+"quadros": 166,
+"atlas": 1,
+"objs": [
+"t230"
+]
+},
+"zl3_hud_painel": {
+"nome": "Hud painel",
+"cat": "interface",
+"anims": 2,
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"t229"
+]
+},
+"zl3_hudconfig_gamepadposition": {
+"nome": "Hudconfig gamepadposition",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t227"
+]
+},
+"zl3_ko_txt": {
+"nome": "Ko txt",
+"cat": "interface",
+"anims": 5,
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"t259"
+]
+},
+"zl3_legendas_background": {
+"nome": "Legendas background",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t271"
+]
+},
+"zl3_loading_bar_goku": {
+"nome": "Loading bar goku",
+"cat": "interface",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"t222"
+]
+},
+"zl3_minhas_configuracoes": {
+"nome": "Minhas configuracoes",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t240"
+]
+},
+"zl3_moro73_poderabsorvido_jogador": {
+"nome": "Moro73 poderabsorvido jogador",
+"cat": "interface",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t276"
+]
+},
+"zl3_narradorbattle_texts": {
+"nome": "Narradorbattle texts",
+"cat": "interface",
+"anims": 2,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"t274"
+]
+},
+"zl3_objetosdasintro": {
+"nome": "Objetosdasintro",
+"cat": "interface",
+"anims": 3,
+"quadros": 17,
+"atlas": 1,
+"objs": [
+"t338"
+]
+},
+"zl3_pause_btn": {
+"nome": "Pause btn",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t251"
+]
+},
+"zl3_personagem_banner": {
+"nome": "Personagem banner",
+"cat": "interface",
+"anims": 1,
+"quadros": 44,
+"atlas": 1,
+"objs": [
+"t238"
+]
+},
+"zl3_personagem_select": {
+"nome": "Personagem select",
+"cat": "interface",
+"anims": 9,
+"quadros": 366,
+"atlas": 1,
+"objs": [
+"t246",
+"t239"
+]
+},
+"zl3_personagemloja": {
+"nome": "Personagemloja",
+"cat": "interface",
+"anims": 45,
+"quadros": 360,
+"atlas": 1,
+"objs": [
+"t235"
+]
+},
+"zl3_personagens_comprados": {
+"nome": "Personagens comprados",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t234"
+]
+},
+"zl3_retornoaolayout": {
+"nome": "Retornoaolayout",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t390"
+]
+},
+"zl3_sparking_icon_jogador": {
+"nome": "Sparking icon jogador",
+"cat": "interface",
+"anims": 3,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t268",
+"t267"
+]
+},
+"zl3_survival_count": {
+"nome": "Survival count",
+"cat": "interface",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t263"
+]
+},
+"zl3_textosdebatalha": {
+"nome": "Textosdebatalha",
+"cat": "interface",
+"anims": 3,
+"quadros": 9,
+"atlas": 1,
+"objs": [
+"t260"
+]
+},
+"zl3_tien_kikouho_button": {
+"nome": "Tien kikouho button",
+"cat": "interface",
+"anims": 2,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"t277"
+]
+},
+"zl3_torneio_salvar_personagens": {
+"nome": "Torneio salvar personagens",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t264"
+]
+},
+"zl3_victoryandlose_txt": {
+"nome": "Victoryandlose txt",
+"cat": "interface",
+"anims": 1,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"t262"
+]
+},
+"zl3_zlegends_logo": {
+"nome": "Zlegends logo",
+"cat": "interface",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t237"
+]
+},
+"zl3_cut_android17": {
+"nome": "Cutscene · Android17",
+"cat": "cutscenes",
+"anims": 3,
+"quadros": 61,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_android18": {
+"nome": "Cutscene · Android18",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_android21": {
+"nome": "Cutscene · Android21",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 100,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_bardock": {
+"nome": "Cutscene · Bardock",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 49,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_bardockssj": {
+"nome": "Cutscene · BardockSsj",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_bills": {
+"nome": "Cutscene · Bills",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 79,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_brolydbs": {
+"nome": "Cutscene · BrolyDbs",
+"cat": "cutscenes",
+"anims": 11,
+"quadros": 166,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_brolyz": {
+"nome": "Cutscene · BrolyZ",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 104,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_cell": {
+"nome": "Cutscene · Cell",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 81,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_cooler": {
+"nome": "Cutscene · Cooler",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 104,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_destructfinish": {
+"nome": "Cutscene · DestructFinish",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 92,
+"atlas": 2,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_freeza": {
+"nome": "Cutscene · Freeza",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_ginyu": {
+"nome": "Cutscene · Ginyu",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_goegetassj4": {
+"nome": "Cutscene · GoegetaSsj4",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 40,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gogeta": {
+"nome": "Cutscene · Gogeta",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 57,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gogetablue": {
+"nome": "Cutscene · GogetaBlue",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gogetabluevsgogetassj4": {
+"nome": "Cutscene · GogetaBlueVsGogetaSsj4",
+"cat": "cutscenes",
+"anims": 14,
+"quadros": 78,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gogetassj4": {
+"nome": "Cutscene · GogetaSsj4",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 62,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gogetavsjanemba": {
+"nome": "Cutscene · GogetaVsJanemba",
+"cat": "cutscenes",
+"anims": 11,
+"quadros": 79,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gohanbeast": {
+"nome": "Cutscene · GohanBeast",
+"cat": "cutscenes",
+"anims": 12,
+"quadros": 133,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gohanmyistic": {
+"nome": "Cutscene · GohanMyistic",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 58,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gohanssj2vscell": {
+"nome": "Cutscene · GohanSsj2VsCell",
+"cat": "cutscenes",
+"anims": 14,
+"quadros": 96,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gohanultimate": {
+"nome": "Cutscene · GohanUltimate",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gohanvscell": {
+"nome": "Cutscene · GohanVsCell",
+"cat": "cutscenes",
+"anims": 11,
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_goku": {
+"nome": "Cutscene · Goku",
+"cat": "cutscenes",
+"anims": 3,
+"quadros": 26,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokubase": {
+"nome": "Cutscene · GokuBase",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 57,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokublack": {
+"nome": "Cutscene · GokuBlack",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 79,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokublue": {
+"nome": "Cutscene · GokuBlue",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 106,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokugt": {
+"nome": "Cutscene · GokuGT",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokussj": {
+"nome": "Cutscene · GokuSsj",
+"cat": "cutscenes",
+"anims": 2,
+"quadros": 27,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokussj3": {
+"nome": "Cutscene · GokuSsj3",
+"cat": "cutscenes",
+"anims": 2,
+"quadros": 50,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokussjvsfreeza": {
+"nome": "Cutscene · GokuSsjVsFreeza",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 65,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokussjvskidbuu": {
+"nome": "Cutscene · GokuSsjVsKidBuu",
+"cat": "cutscenes",
+"anims": 20,
+"quadros": 133,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokuui": {
+"nome": "Cutscene · GokuUi",
+"cat": "cutscenes",
+"anims": 9,
+"quadros": 86,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_gokuvsvegeta": {
+"nome": "Cutscene · GokuVsVegeta",
+"cat": "cutscenes",
+"anims": 7,
+"quadros": 84,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_hitto": {
+"nome": "Cutscene · Hitto",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 18,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_janemba": {
+"nome": "Cutscene · Janemba",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 118,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_jiren": {
+"nome": "Cutscene · Jiren",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 85,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_kefla": {
+"nome": "Cutscene · Kefla",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_kidbull": {
+"nome": "Cutscene · KidBull",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_kidbuu": {
+"nome": "Cutscene · KidBuu",
+"cat": "cutscenes",
+"anims": 5,
+"quadros": 65,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_krillin": {
+"nome": "Cutscene · Krillin",
+"cat": "cutscenes",
+"anims": 10,
+"quadros": 102,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_majinbuu": {
+"nome": "Cutscene · MajinBuu",
+"cat": "cutscenes",
+"anims": 12,
+"quadros": 94,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_miraitrunks": {
+"nome": "Cutscene · MiraiTrunks",
+"cat": "cutscenes",
+"anims": 2,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_moro73": {
+"nome": "Cutscene · Moro73",
+"cat": "cutscenes",
+"anims": 3,
+"quadros": 29,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_nappa": {
+"nome": "Cutscene · Nappa",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_piccolo": {
+"nome": "Cutscene · Piccolo",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 52,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_raditz": {
+"nome": "Cutscene · Raditz",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 28,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_rochasdedestruicao": {
+"nome": "Cutscene · RochasDeDestruicao",
+"cat": "cutscenes",
+"anims": 2,
+"quadros": 34,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_space": {
+"nome": "Cutscene · Space",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_superbaby2": {
+"nome": "Cutscene · SuperBaby2",
+"cat": "cutscenes",
+"anims": 11,
+"quadros": 117,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_supertrunks": {
+"nome": "Cutscene · SuperTrunks",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 45,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_teengohanssj2": {
+"nome": "Cutscene · TeenGohanSsj2",
+"cat": "cutscenes",
+"anims": 10,
+"quadros": 103,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_tienshihan": {
+"nome": "Cutscene · Tienshihan",
+"cat": "cutscenes",
+"anims": 3,
+"quadros": 16,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_tienshinhan": {
+"nome": "Cutscene · Tienshinhan",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 38,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_troca": {
+"nome": "Cutscene · Troca",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 40,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegeta": {
+"nome": "Cutscene · Vegeta",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetablue": {
+"nome": "Cutscene · VegetaBlue",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetablueevolution": {
+"nome": "Cutscene · VegetaBlueEvolution",
+"cat": "cutscenes",
+"anims": 6,
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetaego": {
+"nome": "Cutscene · VegetaEgo",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 107,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetagod": {
+"nome": "Cutscene · VegetaGod",
+"cat": "cutscenes",
+"anims": 1,
+"quadros": 23,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetasagasaiyan": {
+"nome": "Cutscene · VegetaSagaSaiyan",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegetassj": {
+"nome": "Cutscene · VegetaSsj",
+"cat": "cutscenes",
+"anims": 4,
+"quadros": 38,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegettoblue": {
+"nome": "Cutscene · VegettoBlue",
+"cat": "cutscenes",
+"anims": 8,
+"quadros": 87,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_vegettovszamasu": {
+"nome": "Cutscene · VegettoVsZamasu",
+"cat": "cutscenes",
+"anims": 10,
+"quadros": 83,
+"atlas": 1,
+"objs": [
+"t266"
+]
+},
+"zl3_cut_zamasu": {
+"nome": "Cutscene · Zamasu",
+"cat": "cutscenes",
+"anims": 2,
+"quadros": 18,
+"atlas": 1,
+"objs": [
+"t266"
+]
+}
+},
+"pulados": [
+"t383",
+"t384",
+"t385",
+"t386",
+"t392"
+]
+}

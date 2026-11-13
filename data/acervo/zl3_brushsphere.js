@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_brushsphere",{"id":"zl3_brushsphere","atlases":["assets/img/acervo/zl3_brushsphere_0.png"],"acervo":{"nome":"Brushsphere","categoria":"efeitos","origem":"ZL3 t273"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,195,195,96,91,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_3vs3_naopodetrocar",{"id":"zl3_3vs3_naopodetrocar","atlases":["assets/img/acervo/zl3_3vs3_naopodetrocar_0.png"],"acervo":{"nome":"3vs3 naopodetrocar","categoria":"interface","origem":"ZL3 t219"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,18,20,9,1]]}}});

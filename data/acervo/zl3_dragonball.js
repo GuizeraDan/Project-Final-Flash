@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("zl3_dragonball",{"id":"zl3_dragonball","atlases":["assets/img/acervo/zl3_dragonball_0.png"],"acervo":{"nome":"Dragonball","categoria":"interface","origem":"ZL3 t275"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,25,13,13,1]]}}});

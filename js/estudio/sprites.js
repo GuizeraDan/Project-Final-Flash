@@ -211,18 +211,44 @@
   function renderSprites() {
     const f = st.buscaSprite.toLowerCase();
     ui.sprites.innerHTML = '';
-    FF.Assets.listaSprites().filter(s => !f || s.toLowerCase().includes(f)).forEach(s => {
+    const item = (s, pai) => {
       const it = el('div', 'es-item' + (s === st.id ? ' sel' : ''));
       it.dataset.sprite = s;
       const imp = importado(s);
       if (imp) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; it.appendChild(t); }
-      const n = el('span', 'ess-spr-nome'); n.textContent = s; n.title = s; it.appendChild(n);
+      const ac = FF.Assets.doAcervo(s);
+      const n = el('span', 'ess-spr-nome'); n.textContent = ac ? FF.Assets.nomeSprite(s) : s; n.title = s; it.appendChild(n);
       const mods = (FF.Mods.ler()[s] && Object.keys(FF.Mods.ler()[s]).length) || 0;
       if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
+      else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
       it.onclick = () => abrirSprite(s);
-      ui.sprites.appendChild(it);
-    });
+      pai.appendChild(it);
+    };
+    const bate = (s) => !f || s.toLowerCase().includes(f) || FF.Assets.nomeSprite(s).toLowerCase().includes(f);
+    const lista = FF.Assets.listaSprites().filter(bate);
+    const jogo = lista.filter(s => !FF.Assets.doAcervo(s));
+    const acervo = lista.filter(s => FF.Assets.doAcervo(s));
+    if (!acervo.length) { jogo.forEach(s => item(s, ui.sprites)); return; }
+    // agrupado: sprites do jogo, depois o acervo do Z Legends 3 por categoria (abre/fecha)
+    const NOMES = FF.Assets.categoriasAcervo();
+    const abertas = new Set(E.rascunho.ler('sprites_cats_abertas') || []);
+    if (st.id && FF.Assets.doAcervo(st.id)) abertas.add(FF.Assets.categoriaSprite(st.id));
+    const grupo = (chave, titulo, ids) => {
+      if (!ids.length) return;
+      const aberta = !!f || chave === 'jogo' ? !abertas.has('!' + chave) : abertas.has(chave);
+      const cab = el('div', 'ess-cat', (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
+      cab.onclick = () => {
+        if (chave === 'jogo') { abertas.has('!jogo') ? abertas.delete('!jogo') : abertas.add('!jogo'); }
+        else { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); }
+        E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites();
+      };
+      ui.sprites.appendChild(cab);
+      if (aberta) ids.forEach(s => item(s, ui.sprites));
+    };
+    grupo('jogo', 'Do jogo', jogo);
+    const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
+    cats.forEach(c => grupo(c, '📦 ' + (NOMES[c] || c), acervo.filter(s => FF.Assets.categoriaSprite(s) === c)));
   }
 
   // ao trocar com mudanças não salvas: salvar, descartar ou ficar
