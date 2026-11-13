@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_videl",{"id":"swz_videl","atlases":["assets/img/acervo/swz_videl_0.png"],"acervo":{"nome":"videl","fonte":"Super Warriors Z","tipo":"efeitos","origem":"videl"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,53,0,0,1]]}},"tipo":"efeito"});

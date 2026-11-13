@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_barras_de_resultado",{"id":"swz_barras_de_resultado","atlases":["assets/img/acervo/swz_barras_de_resultado_0.png"],"acervo":{"nome":"barras_de_resultado","fonte":"Super Warriors Z","tipo":"interface","origem":"barras_de_resultado"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,234,218,0,0,1]]}}});

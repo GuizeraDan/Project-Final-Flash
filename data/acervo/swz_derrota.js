@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_derrota",{"id":"swz_derrota","atlases":["assets/img/acervo/swz_derrota_0.png"],"acervo":{"nome":"Derrota","fonte":"Super Warriors Z","tipo":"efeitos","origem":"Derrota"},"anims":{"anim0":{"fps":9.09,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,24,0,0,1],[0,127,0,126,24,0,0,1],[0,254,0,126,24,0,0,1],[0,381,0,126,24,0,0,1]]}},"tipo":"efeito"});

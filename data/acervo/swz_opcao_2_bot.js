@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_opcao_2_bot",{"id":"swz_opcao_2_bot","atlases":["assets/img/acervo/swz_opcao_2_bot_0.png"],"acervo":{"nome":"opcao_2_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"opcao_2_bot"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,24,0,0,1]]}},"tipo":"efeito"});

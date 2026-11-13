@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_nuvens_2",{"id":"swz_nuvens_2","atlases":["assets/img/acervo/swz_nuvens_2_0.png"],"acervo":{"nome":"nuvens_2","fonte":"Super Warriors Z","tipo":"efeitos","origem":"nuvens_2"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,480,65,0,0,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_esfera_png",{"id":"swz_esfera_png","atlases":["assets/img/acervo/swz_esfera_png_0.png"],"acervo":{"nome":"esfera_png","fonte":"Super Warriors Z","tipo":"efeitos","origem":"esfera_png"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,42,0,0,1]]}},"tipo":"efeito"});

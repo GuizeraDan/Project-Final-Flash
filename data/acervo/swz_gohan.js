@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_gohan",{"id":"swz_gohan","atlases":["assets/img/acervo/swz_gohan_0.png"],"acervo":{"nome":"gohan","fonte":"Super Warriors Z","tipo":"efeitos","origem":"gohan"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,52,0,0,1]]}},"tipo":"efeito"});

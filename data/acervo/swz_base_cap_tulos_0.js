@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_base_cap_tulos_0",{"id":"swz_base_cap_tulos_0","atlases":["assets/img/acervo/swz_base_cap_tulos_0_0.png"],"acervo":{"nome":"base_capítulos_0","fonte":"Super Warriors Z","tipo":"efeitos","origem":"base_capítulos_0"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,374,152,0,0,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_new_saga_logo",{"id":"swz_new_saga_logo","atlases":["assets/img/acervo/swz_new_saga_logo_0.png"],"acervo":{"nome":"new_saga_logo","fonte":"Super Warriors Z","tipo":"interface","origem":"new_saga_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,282,90,0,0,1]]}}});

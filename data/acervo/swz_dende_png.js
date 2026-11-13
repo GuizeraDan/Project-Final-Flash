@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_dende_png",{"id":"swz_dende_png","atlases":["assets/img/acervo/swz_dende_png_0.png"],"acervo":{"nome":"dende_png","fonte":"Super Warriors Z","tipo":"efeitos","origem":"dende_png"},"anims":{"dende":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,49,0,0,1]]}},"tipo":"efeito"});

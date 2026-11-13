@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_direitos_autorais",{"id":"swz_direitos_autorais","atlases":["assets/img/acervo/swz_direitos_autorais_0.png"],"acervo":{"nome":"direitos_autorais_","fonte":"Super Warriors Z","tipo":"efeitos","origem":"direitos_autorais_"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,210,28,0,0,1]]}},"tipo":"efeito"});

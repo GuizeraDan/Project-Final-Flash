@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_background_pause",{"id":"swz_background_pause","atlases":["assets/img/acervo/swz_background_pause_0.png"],"acervo":{"nome":"background_pause","fonte":"Super Warriors Z","tipo":"cenarios","origem":"background_pause"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,295,112,0,0,1]]}}});

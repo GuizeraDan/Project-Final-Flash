@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_solo_falso",{"id":"swz_solo_falso","atlases":["assets/img/acervo/swz_solo_falso_0.png"],"acervo":{"nome":"solo_falso","fonte":"Super Warriors Z","tipo":"efeitos","origem":"solo_falso"},"anims":{"1000426699_#0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,162,92,0,0,1]]}},"tipo":"efeito"});

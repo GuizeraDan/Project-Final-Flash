@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_seta_2_opacidade",{"id":"swz_seta_2_opacidade","atlases":["assets/img/acervo/swz_seta_2_opacidade_0.png"],"acervo":{"nome":"seta_2_opacidade","fonte":"Super Warriors Z","tipo":"interface","origem":"seta_2_opacidade"},"anims":{"default":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,12,28,0,0,1]]}}});

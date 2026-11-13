@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_porcentagem_base",{"id":"swz_porcentagem_base","atlases":["assets/img/acervo/swz_porcentagem_base_0.png"],"acervo":{"nome":"porcentagem_base","fonte":"Super Warriors Z","tipo":"efeitos","origem":"porcentagem_base"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,537,163,0,0,1]]}},"tipo":"efeito"});

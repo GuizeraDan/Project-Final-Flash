@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_grilo_cenario_31",{"id":"swz_grilo_cenario_31","atlases":["assets/img/acervo/swz_grilo_cenario_31_0.png"],"acervo":{"nome":"grilo_cenario_31","fonte":"Super Warriors Z","tipo":"cenarios","origem":"grilo_cenario_31"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,26,0,0,1]]}}});

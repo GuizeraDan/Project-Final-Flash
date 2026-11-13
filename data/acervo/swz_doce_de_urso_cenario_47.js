@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_doce_de_urso_cenario_47",{"id":"swz_doce_de_urso_cenario_47","atlases":["assets/img/acervo/swz_doce_de_urso_cenario_47_0.png"],"acervo":{"nome":"doce_de_urso_cenario_47","fonte":"Super Warriors Z","tipo":"cenarios","origem":"doce_de_urso_cenario_47"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,65,86,0,0,1]]}}});

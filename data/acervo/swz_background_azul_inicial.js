@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_background_azul_inicial",{"id":"swz_background_azul_inicial","atlases":["assets/img/acervo/swz_background_azul_inicial_0.png"],"acervo":{"nome":"background_azul_inicial","fonte":"Super Warriors Z","tipo":"cenarios","origem":"background_azul_inicial"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,453,114,0,0,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_legenda",{"id":"swz_legenda","atlases":["assets/img/acervo/swz_legenda_0.png"],"acervo":{"nome":"legenda","fonte":"Super Warriors Z","tipo":"efeitos","origem":"legenda"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,225,27,0,0,1]]}},"tipo":"efeito"});

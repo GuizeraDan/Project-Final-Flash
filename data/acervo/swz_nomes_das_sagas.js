@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_nomes_das_sagas",{"id":"swz_nomes_das_sagas","atlases":["assets/img/acervo/swz_nomes_das_sagas_0.png"],"acervo":{"nome":"nomes_das_sagas","fonte":"Super Warriors Z","tipo":"cenarios","origem":"nomes_das_sagas"},"anims":{"saga saiyan":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1182,85,0,0,1]]}}});

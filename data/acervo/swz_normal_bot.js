@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_normal_bot",{"id":"swz_normal_bot","atlases":["assets/img/acervo/swz_normal_bot_0.png"],"acervo":{"nome":"normal_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"normal_bot"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,196,22,0,0,1]]}},"tipo":"efeito"});

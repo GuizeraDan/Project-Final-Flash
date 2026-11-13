@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_fundo_volume",{"id":"swz_fundo_volume","atlases":["assets/img/acervo/swz_fundo_volume_0.png"],"acervo":{"nome":"fundo_volume","fonte":"Super Warriors Z","tipo":"cenarios","origem":"fundo_volume"},"anims":{"volume":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2039,320,0,0,1,[[-32,170],[2002,170]]]]}}});

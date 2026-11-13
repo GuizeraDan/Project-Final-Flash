@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_super_especial_42_1",{"id":"swz_super_especial_42_1","atlases":["assets/img/acervo/swz_super_especial_42_1_0.png"],"acervo":{"nome":"super_especial_42_1","fonte":"Super Warriors Z","tipo":"cenarios","origem":"super_especial_42_1"},"anims":{"anim0":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,972,210,0,0,1],[0,973,0,972,210,0,0,1]]}}});

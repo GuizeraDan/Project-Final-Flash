@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_divis_o_preta",{"id":"swz_divis_o_preta","atlases":["assets/img/acervo/swz_divis_o_preta_0.png"],"acervo":{"nome":"divisão_preta","fonte":"Super Warriors Z","tipo":"efeitos","origem":"divisão_preta"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,259,0,0,1]]}},"tipo":"efeito"});

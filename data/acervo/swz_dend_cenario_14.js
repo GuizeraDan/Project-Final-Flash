@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_dend_cenario_14",{"id":"swz_dend_cenario_14","atlases":["assets/img/acervo/swz_dend_cenario_14_0.png"],"acervo":{"nome":"dendê_cenario_14","fonte":"Super Warriors Z","tipo":"cenarios","origem":"dendê_cenario_14"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,68,30,0,0,1]]}}});

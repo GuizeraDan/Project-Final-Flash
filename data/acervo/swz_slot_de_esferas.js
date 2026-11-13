@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_slot_de_esferas",{"id":"swz_slot_de_esferas","atlases":["assets/img/acervo/swz_slot_de_esferas_0.png"],"acervo":{"nome":"slot_de_esferas_","fonte":"Super Warriors Z","tipo":"efeitos","origem":"slot_de_esferas_"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,270,34,0,0,1]]}},"tipo":"efeito"});

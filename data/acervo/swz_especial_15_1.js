@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_especial_15_1",{"id":"swz_especial_15_1","atlases":["assets/img/acervo/swz_especial_15_1_0.png"],"acervo":{"nome":"especial_15_1","fonte":"Super Warriors Z","tipo":"efeitos","origem":"especial_15_1"},"anims":{"ataque cintilante loop":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,11,0,0,1],[0,127,0,126,11,0,0,1]]}},"tipo":"efeito"});

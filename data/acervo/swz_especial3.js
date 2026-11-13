@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_especial3",{"id":"swz_especial3","atlases":["assets/img/acervo/swz_especial3_0.png"],"acervo":{"nome":"especial3","fonte":"Super Warriors Z","tipo":"efeitos","origem":"especial3"},"anims":{"bola de energia":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,21,0,0,1],[0,22,0,21,21,0,0,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_op_o_1_player",{"id":"swz_op_o_1_player","atlases":["assets/img/acervo/swz_op_o_1_player_0.png"],"acervo":{"nome":"opção_1_player","fonte":"Super Warriors Z","tipo":"efeitos","origem":"opção_1_player"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,24,0,0,1]]}},"tipo":"efeito"});

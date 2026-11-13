@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_tp_notifica_o_bot",{"id":"swz_tp_notifica_o_bot","atlases":["assets/img/acervo/swz_tp_notifica_o_bot_0.png"],"acervo":{"nome":"tp_notificação_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"tp_notificação_bot"},"anims":{"default":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,143,41,0,0,1]]}},"tipo":"efeito"});

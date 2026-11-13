@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_aves_cenario_7",{"id":"swz_aves_cenario_7","atlases":["assets/img/acervo/swz_aves_cenario_7_0.png"],"acervo":{"nome":"aves_cenario_7","fonte":"Super Warriors Z","tipo":"cenarios","origem":"aves_cenario_7"},"anims":{"anim0":{"fps":0.33,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,251,86,0,0,1],[0,252,0,251,86,0,0,1],[0,504,0,251,86,0,0,1]]}}});

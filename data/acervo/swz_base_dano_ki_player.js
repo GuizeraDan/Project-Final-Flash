@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_base_dano_ki_player",{"id":"swz_base_dano_ki_player","atlases":["assets/img/acervo/swz_base_dano_ki_player_0.png"],"acervo":{"nome":"base_dano_ki_player","fonte":"Super Warriors Z","tipo":"efeitos","origem":"base_dano_ki_player"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,14,0,0,1]]}},"tipo":"efeito"});

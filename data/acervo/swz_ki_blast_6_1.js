@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_ki_blast_6_1",{"id":"swz_ki_blast_6_1","atlases":["assets/img/acervo/swz_ki_blast_6_1_0.png"],"acervo":{"nome":"ki_blast_6_1","fonte":"Super Warriors Z","tipo":"efeitos","origem":"ki_blast_6_1"},"anims":{"ki blast metal loop":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,23,0,0,1],[0,37,0,36,23,0,0,1]]}},"tipo":"efeito"});

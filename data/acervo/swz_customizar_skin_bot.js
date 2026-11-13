@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_customizar_skin_bot",{"id":"swz_customizar_skin_bot","atlases":["assets/img/acervo/swz_customizar_skin_bot_0.png"],"acervo":{"nome":"customizar_skin_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"customizar_skin_bot"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,211,112,0,0,1]]}},"tipo":"efeito"});

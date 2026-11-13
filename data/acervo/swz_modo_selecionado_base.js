@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_modo_selecionado_base",{"id":"swz_modo_selecionado_base","atlases":["assets/img/acervo/swz_modo_selecionado_base_0.png"],"acervo":{"nome":"modo_selecionado_base","fonte":"Super Warriors Z","tipo":"cenarios","origem":"modo_selecionado_base"},"anims":{"1p vs com":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1447,94,0,0,1]]}}});

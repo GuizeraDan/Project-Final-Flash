@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_vs_logo",{"id":"swz_vs_logo","atlases":["assets/img/acervo/swz_vs_logo_0.png"],"acervo":{"nome":"vs_logo","fonte":"Super Warriors Z","tipo":"interface","origem":"vs_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,148,52,0,0,1]]}}});

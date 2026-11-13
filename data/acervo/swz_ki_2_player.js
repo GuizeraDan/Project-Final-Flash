@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_ki_2_player",{"id":"swz_ki_2_player","atlases":["assets/img/acervo/swz_ki_2_player_0.png"],"acervo":{"nome":"ki_2_player","fonte":"Super Warriors Z","tipo":"efeitos","origem":"ki_2_player"},"anims":{"ki 2":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,9,0,0,1]]}},"tipo":"efeito"});

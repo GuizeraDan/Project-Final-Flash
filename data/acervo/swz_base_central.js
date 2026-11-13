@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_base_central",{"id":"swz_base_central","atlases":["assets/img/acervo/swz_base_central_0.png"],"acervo":{"nome":"base_central","fonte":"Super Warriors Z","tipo":"efeitos","origem":"base_central"},"anims":{"1769170225634":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,44,18,0,0,1]]}},"tipo":"efeito"});

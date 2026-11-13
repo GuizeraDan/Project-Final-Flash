@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_fade",{"id":"swz_fade","atlases":["assets/img/acervo/swz_fade_0.png"],"acervo":{"nome":"fade","fonte":"Super Warriors Z","tipo":"efeitos","origem":"fade"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,162,92,0,0,1]]}},"tipo":"efeito"});

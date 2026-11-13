@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_fundo_1",{"id":"swz_fundo_1","atlases":["assets/img/acervo/swz_fundo_1_0.png"],"acervo":{"nome":"fundo_1","fonte":"Super Warriors Z","tipo":"cenarios","origem":"fundo_1"},"anims":{"1000479997":{"fps":3.33,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,480,259,0,0,1],[0,481,0,480,259,0,0,1]]}}});

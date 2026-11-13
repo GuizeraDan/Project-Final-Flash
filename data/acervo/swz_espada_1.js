@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_espada_1",{"id":"swz_espada_1","atlases":["assets/img/acervo/swz_espada_1_0.png"],"acervo":{"nome":"espada_1","fonte":"Super Warriors Z","tipo":"efeitos","origem":"espada_1"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,110,340,0,0,1]]}},"tipo":"efeito"});

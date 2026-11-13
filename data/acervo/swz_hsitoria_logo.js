@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_hsitoria_logo",{"id":"swz_hsitoria_logo","atlases":["assets/img/acervo/swz_hsitoria_logo_0.png"],"acervo":{"nome":"hsitoria_logo","fonte":"Super Warriors Z","tipo":"interface","origem":"hsitoria_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,414,54,0,0,1]]}}});

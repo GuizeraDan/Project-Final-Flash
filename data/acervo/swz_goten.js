@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_goten",{"id":"swz_goten","atlases":["assets/img/acervo/swz_goten_0.png"],"acervo":{"nome":"goten","fonte":"Super Warriors Z","tipo":"cenarios","origem":"goten"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,714,672,0,0,1]]}}});

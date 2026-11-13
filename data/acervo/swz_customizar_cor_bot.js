@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_customizar_cor_bot",{"id":"swz_customizar_cor_bot","atlases":["assets/img/acervo/swz_customizar_cor_bot_0.png"],"acervo":{"nome":"customizar_cor_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"customizar_cor_bot"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,225,46,0,0,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_nuvens_cenario_8",{"id":"swz_nuvens_cenario_8","atlases":["assets/img/acervo/swz_nuvens_cenario_8_0.png"],"acervo":{"nome":"nuvens_cenario_8","fonte":"Super Warriors Z","tipo":"cenarios","origem":"nuvens_cenario_8"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,601,156,0,0,1]]}}});

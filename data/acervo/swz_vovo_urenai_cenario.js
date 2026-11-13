@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_vovo_urenai_cenario",{"id":"swz_vovo_urenai_cenario","atlases":["assets/img/acervo/swz_vovo_urenai_cenario_0.png"],"acervo":{"nome":"vovo_urenai_cenario","fonte":"Super Warriors Z","tipo":"cenarios","origem":"vovo_urenai_cenario"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,92,0,0,1]]}}});

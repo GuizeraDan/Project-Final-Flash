@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_grama_cenario_2",{"id":"swz_grama_cenario_2","atlases":["assets/img/acervo/swz_grama_cenario_2_0.png"],"acervo":{"nome":"grama_cenario_2","fonte":"Super Warriors Z","tipo":"cenarios","origem":"grama_cenario_2"},"anims":{"1770723555194":{"fps":6.67,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,186,34,0,0,1],[0,187,0,186,34,0,0,1]]}}});

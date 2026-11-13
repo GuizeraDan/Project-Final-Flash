@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_pratos_concluidos",{"id":"swz_pratos_concluidos","atlases":["assets/img/acervo/swz_pratos_concluidos_0.png"],"acervo":{"nome":"pratos_concluidos","fonte":"Super Warriors Z","tipo":"cenarios","origem":"pratos_concluidos"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,213,525,0,0,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_vers_o",{"id":"swz_vers_o","atlases":["assets/img/acervo/swz_vers_o_0.png"],"acervo":{"nome":"versão","fonte":"Super Warriors Z","tipo":"efeitos","origem":"versão"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,59,13,0,0,1]]}},"tipo":"efeito"});

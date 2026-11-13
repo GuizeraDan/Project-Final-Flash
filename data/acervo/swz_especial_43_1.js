@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_especial_43_1",{"id":"swz_especial_43_1","atlases":["assets/img/acervo/swz_especial_43_1_0.png"],"acervo":{"nome":"especial_43_1","fonte":"Super Warriors Z","tipo":"efeitos","origem":"especial_43_1"},"anims":{"anim0":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,155,60,0,0,1],[0,156,0,155,60,0,0,1]]}},"tipo":"efeito"});

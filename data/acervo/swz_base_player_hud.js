@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_base_player_hud",{"id":"swz_base_player_hud","atlases":["assets/img/acervo/swz_base_player_hud_0.png"],"acervo":{"nome":"base_player_hud","fonte":"Super Warriors Z","tipo":"interface","origem":"base_player_hud"},"anims":{"1752069263435":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,215,47,0,0,1]]}}});

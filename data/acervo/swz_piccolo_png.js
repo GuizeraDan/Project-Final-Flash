@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_piccolo_png",{"id":"swz_piccolo_png","atlases":["assets/img/acervo/swz_piccolo_png_0.png"],"acervo":{"nome":"piccolo_png","fonte":"Super Warriors Z","tipo":"efeitos","origem":"piccolo_png"},"anims":{"piccolo":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,54,0,0,1]]}},"tipo":"efeito"});

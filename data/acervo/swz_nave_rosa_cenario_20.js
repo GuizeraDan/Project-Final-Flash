@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_nave_rosa_cenario_20",{"id":"swz_nave_rosa_cenario_20","atlases":["assets/img/acervo/swz_nave_rosa_cenario_20_0.png"],"acervo":{"nome":"nave_rosa_cenario_20","fonte":"Super Warriors Z","tipo":"cenarios","origem":"nave_rosa_cenario_20"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,20,0,0,1]]}}});

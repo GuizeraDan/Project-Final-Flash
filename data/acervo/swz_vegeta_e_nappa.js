@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_vegeta_e_nappa",{"id":"swz_vegeta_e_nappa","atlases":["assets/img/acervo/swz_vegeta_e_nappa_0.png"],"acervo":{"nome":"vegeta_e_nappa","fonte":"Super Warriors Z","tipo":"cenarios","origem":"vegeta_e_nappa"},"anims":{"1762886034729":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2000,2130,0,0,1]]}}});

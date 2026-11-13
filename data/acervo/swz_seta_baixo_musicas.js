@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_seta_baixo_musicas",{"id":"swz_seta_baixo_musicas","atlases":["assets/img/acervo/swz_seta_baixo_musicas_0.png"],"acervo":{"nome":"seta_baixo_musicas","fonte":"Super Warriors Z","tipo":"interface","origem":"seta_baixo_musicas"},"anims":{"default":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,12,0,0,1]]}}});

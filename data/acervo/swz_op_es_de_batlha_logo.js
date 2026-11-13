@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_op_es_de_batlha_logo",{"id":"swz_op_es_de_batlha_logo","atlases":["assets/img/acervo/swz_op_es_de_batlha_logo_0.png"],"acervo":{"nome":"opções_de_batlha_logo","fonte":"Super Warriors Z","tipo":"cenarios","origem":"opções_de_batlha_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,992,98,0,0,1]]}}});

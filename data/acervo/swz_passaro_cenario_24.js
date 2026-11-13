@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_passaro_cenario_24",{"id":"swz_passaro_cenario_24","atlases":["assets/img/acervo/swz_passaro_cenario_24_0.png"],"acervo":{"nome":"passaro_cenario_24","fonte":"Super Warriors Z","tipo":"cenarios","origem":"passaro_cenario_24"},"anims":{"anim0":{"fps":0.33,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,27,0,0,1],[0,35,0,34,27,0,0,1]]}}});

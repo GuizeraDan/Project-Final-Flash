@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_especial_12",{"id":"swz_especial_12","atlases":["assets/img/acervo/swz_especial_12_0.png"],"acervo":{"nome":"especial_12","fonte":"Super Warriors Z","tipo":"efeitos","origem":"especial_12"},"anims":{"especial 12":{"fps":20.0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,13,0,0,1],[0,22,0,21,13,0,0,1]]}},"tipo":"efeito"});

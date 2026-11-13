@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_barra_de_cima",{"id":"swz_barra_de_cima","atlases":["assets/img/acervo/swz_barra_de_cima_0.png"],"acervo":{"nome":"barra_de_cima","fonte":"Super Warriors Z","tipo":"cenarios","origem":"barra_de_cima"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,850,290,0,0,1]]}}});

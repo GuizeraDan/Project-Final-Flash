@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_pulo_direita",{"id":"swz_pulo_direita","atlases":["assets/img/acervo/swz_pulo_direita_0.png"],"acervo":{"nome":"pulo_direita","fonte":"Super Warriors Z","tipo":"efeitos","origem":"pulo_direita"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,26,0,0,1]]}},"tipo":"efeito"});

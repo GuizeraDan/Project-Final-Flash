@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_barra_azul_2",{"id":"swz_barra_azul_2","atlases":["assets/img/acervo/swz_barra_azul_2_0.png"],"acervo":{"nome":"barra_azul_2","fonte":"Super Warriors Z","tipo":"interface","origem":"barra_azul_2"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,480,70,0,0,1]]}}});

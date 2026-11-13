@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_legenda_capitulo_fight",{"id":"swz_legenda_capitulo_fight","atlases":["assets/img/acervo/swz_legenda_capitulo_fight_0.png"],"acervo":{"nome":"legenda_capitulo_fight","fonte":"Super Warriors Z","tipo":"cenarios","origem":"legenda_capitulo_fight"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1221,49,0,0,1]]}}});

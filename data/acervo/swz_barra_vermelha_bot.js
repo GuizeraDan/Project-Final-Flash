@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_barra_vermelha_bot",{"id":"swz_barra_vermelha_bot","atlases":["assets/img/acervo/swz_barra_vermelha_bot_0.png"],"acervo":{"nome":"barra_vermelha_bot","fonte":"Super Warriors Z","tipo":"interface","origem":"barra_vermelha_bot"},"anims":{"barra vermelha":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,480,34,0,0,1]]}}});

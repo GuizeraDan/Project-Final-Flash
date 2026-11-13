@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_cr_ditos",{"id":"swz_cr_ditos","atlases":["assets/img/acervo/swz_cr_ditos_0.png"],"acervo":{"nome":"créditos_","fonte":"Super Warriors Z","tipo":"efeitos","origem":"créditos_"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,480,259,0,0,1]]}},"tipo":"efeito"});

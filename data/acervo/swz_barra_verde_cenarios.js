@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_barra_verde_cenarios",{"id":"swz_barra_verde_cenarios","atlases":["assets/img/acervo/swz_barra_verde_cenarios_0.png"],"acervo":{"nome":"barra_verde_cenarios","fonte":"Super Warriors Z","tipo":"cenarios","origem":"barra_verde_cenarios"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,478,83,0,0,1]]}}});

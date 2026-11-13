@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_base_dano_bot",{"id":"swz_base_dano_bot","atlases":["assets/img/acervo/swz_base_dano_bot_0.png"],"acervo":{"nome":"base_dano_bot","fonte":"Super Warriors Z","tipo":"efeitos","origem":"base_dano_bot"},"anims":{"default":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,9,0,0,1]]}},"tipo":"efeito"});

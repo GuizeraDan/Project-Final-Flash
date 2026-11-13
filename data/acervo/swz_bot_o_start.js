@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_bot_o_start",{"id":"swz_bot_o_start","atlases":["assets/img/acervo/swz_bot_o_start_0.png"],"acervo":{"nome":"botão_start","fonte":"Super Warriors Z","tipo":"interface","origem":"botão_start"},"anims":{"1000487681":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,268,22,0,0,1]]}}});

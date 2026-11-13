@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_hud_bot",{"id":"swz_hud_bot","atlases":["assets/img/acervo/swz_hud_bot_0.png"],"acervo":{"nome":"hud_bot","fonte":"Super Warriors Z","tipo":"interface","origem":"hud_bot"},"anims":{"1752069263383":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,215,47,0,0,1,[[171,6],[-1,2],[100,55],[126,56],[134,70]]]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_musicas_logo",{"id":"swz_musicas_logo","atlases":["assets/img/acervo/swz_musicas_logo_0.png"],"acervo":{"nome":"musicas_logo","fonte":"Super Warriors Z","tipo":"interface","origem":"musicas_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,20,0,0,1]]}}});

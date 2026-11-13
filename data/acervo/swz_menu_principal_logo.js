@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_menu_principal_logo",{"id":"swz_menu_principal_logo","atlases":["assets/img/acervo/swz_menu_principal_logo_0.png"],"acervo":{"nome":"menu_principal_logo","fonte":"Super Warriors Z","tipo":"interface","origem":"menu_principal_logo"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,277,48,0,0,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_ponto_de_foco",{"id":"swz_ponto_de_foco","atlases":["assets/img/acervo/swz_ponto_de_foco_0.png"],"acervo":{"nome":"ponto_de_foco","fonte":"Super Warriors Z","tipo":"efeitos","origem":"ponto_de_foco"},"anims":{"1000488251":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,30,0,0,1,[[-120,-43]]]]}},"tipo":"efeito"});

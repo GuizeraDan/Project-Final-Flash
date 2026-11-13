@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_treinamento_logo",{"id":"swz_treinamento_logo","atlases":["assets/img/acervo/swz_treinamento_logo_0.png"],"acervo":{"nome":"treinamento_logo_","fonte":"Super Warriors Z","tipo":"interface","origem":"treinamento_logo_"},"anims":{"anim0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,414,54,0,0,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("swz_solo_baixo",{"id":"swz_solo_baixo","atlases":["assets/img/acervo/swz_solo_baixo_0.png"],"acervo":{"nome":"Solo_baixo","fonte":"Super Warriors Z","tipo":"efeitos","origem":"Solo_baixo"},"anims":{"1000488251_#0":{"fps":12.5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,46,0,0,1]]}},"tipo":"efeito"});
