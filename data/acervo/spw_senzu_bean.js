@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_senzu_bean",{"id":"spw_senzu_bean","atlases":["assets/img/acervo/spw_senzu_bean_0.png"],"acervo":{"nome":"Senzu_Bean","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Senzu_Bean"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,9,9,4,5,1]]}},"tipo":"efeito"});

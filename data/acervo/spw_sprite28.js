@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite28",{"id":"spw_sprite28","atlases":["assets/img/acervo/spw_sprite28_0.png"],"acervo":{"nome":"Sprite28","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Sprite28"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,102,36,48,1]]}},"tipo":"efeito"});

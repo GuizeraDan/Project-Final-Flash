@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite8",{"id":"spw_sprite8","atlases":["assets/img/acervo/spw_sprite8_0.png"],"acervo":{"nome":"Sprite8","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Sprite8"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,174,25,87,13,1]]}},"tipo":"efeito"});

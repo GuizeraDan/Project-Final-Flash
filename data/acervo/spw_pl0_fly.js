@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_pl0_fly",{"id":"spw_pl0_fly","atlases":["assets/img/acervo/spw_pl0_fly_0.png"],"acervo":{"nome":"pl0_Fly","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"pl0_Fly"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,23,11,16,1]]}},"tipo":"efeito"});

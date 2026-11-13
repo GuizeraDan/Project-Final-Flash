@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_textowinorlose",{"id":"spw_textowinorlose","atlases":["assets/img/acervo/spw_textowinorlose_0.png"],"acervo":{"nome":"TextoWinorLose","fonte":"Super Pixel Warriors","tipo":"interface","origem":"TextoWinorLose"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,102,0,103,53,52,26,1],[0,0,0,101,54,50,27,1]]}}});

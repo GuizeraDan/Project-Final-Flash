@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite11",{"id":"spw_sprite11","atlases":["assets/img/acervo/spw_sprite11_0.png"],"acervo":{"nome":"Sprite11","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Sprite11"},"anims":{"_Fundo":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,445,245,223,123,1]]}},"tipo":"efeito"});

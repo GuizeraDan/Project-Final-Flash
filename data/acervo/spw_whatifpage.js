@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_whatifpage",{"id":"spw_whatifpage","atlases":["assets/img/acervo/spw_whatifpage_0.png"],"acervo":{"nome":"WhatIfPage","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"WhatIfPage"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,60,59,30,30,1]]}},"tipo":"efeito"});

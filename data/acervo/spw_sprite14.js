@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite14",{"id":"spw_sprite14","atlases":["assets/img/acervo/spw_sprite14_0.png"],"acervo":{"nome":"Sprite14","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Sprite14"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,34,8,0,4,1],[0,35,0,34,8,0,4,1]]}},"tipo":"efeito"});

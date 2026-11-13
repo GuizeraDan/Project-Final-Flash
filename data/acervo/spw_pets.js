@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_pets",{"id":"spw_pets","atlases":["assets/img/acervo/spw_pets_0.png"],"acervo":{"nome":"Pets","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Pets"},"anims":{"P1":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,24,11,12,1]]}},"tipo":"efeito"});

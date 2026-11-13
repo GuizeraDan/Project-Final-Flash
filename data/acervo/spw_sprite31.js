@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite31",{"id":"spw_sprite31","atlases":["assets/img/acervo/spw_sprite31_0.png"],"acervo":{"nome":"Sprite31","fonte":"Super Pixel Warriors","tipo":"cenarios","origem":"Sprite31"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,778,548,0,0,1]]}}});

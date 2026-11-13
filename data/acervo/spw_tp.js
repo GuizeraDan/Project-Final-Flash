@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_tp",{"id":"spw_tp","atlases":["assets/img/acervo/spw_tp_0.png"],"acervo":{"nome":"Tp","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Tp"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,20,0,21,47,10,24,1],[0,0,0,19,51,10,26,1],[0,42,0,11,36,6,18,1],[0,54,0,11,36,6,18,1]]}},"tipo":"efeito"});

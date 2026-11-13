@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_creditos_sprite",{"id":"spw_creditos_sprite","atlases":["assets/img/acervo/spw_creditos_sprite_0.png"],"acervo":{"nome":"Creditos_Sprite","fonte":"Super Pixel Warriors","tipo":"cenarios","origem":"Creditos_Sprite"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,531,0,131,58,71,31,1],[0,0,0,530,535,266,271,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_chaodestruido",{"id":"spw_chaodestruido","atlases":["assets/img/acervo/spw_chaodestruido_0.png"],"acervo":{"nome":"ChaoDestruido","fonte":"Super Pixel Warriors","tipo":"cenarios","origem":"ChaoDestruido"},"anims":{"n1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,228,0,70,20,35,10,1],[0,129,0,98,25,49,12,1],[0,0,0,128,30,64,15,1]]}}});

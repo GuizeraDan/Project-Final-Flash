@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_select_music_bot_o",{"id":"spw_select_music_bot_o","atlases":["assets/img/acervo/spw_select_music_bot_o_0.png"],"acervo":{"nome":"Select_Music_Botão","fonte":"Super Pixel Warriors","tipo":"interface","origem":"Select_Music_Botão"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,11,13,6,7,1],[0,12,0,11,13,6,7,1]]}}});

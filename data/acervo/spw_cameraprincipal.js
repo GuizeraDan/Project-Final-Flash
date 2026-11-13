@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_cameraprincipal",{"id":"spw_cameraprincipal","atlases":["assets/img/acervo/spw_cameraprincipal_0.png"],"acervo":{"nome":"CameraPrincipal","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"CameraPrincipal"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,203,164,101,99,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_select_caracter_fundo2",{"id":"spw_select_caracter_fundo2","atlases":["assets/img/acervo/spw_select_caracter_fundo2_0.png"],"acervo":{"nome":"Select_Caracter_Fundo2","fonte":"Super Pixel Warriors","tipo":"cenarios","origem":"Select_Caracter_Fundo2"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,50,25,25,1]]}}});

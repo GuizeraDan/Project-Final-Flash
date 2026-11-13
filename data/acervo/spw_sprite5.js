@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("spw_sprite5",{"id":"spw_sprite5","atlases":["assets/img/acervo/spw_sprite5_0.png"],"acervo":{"nome":"Sprite5","fonte":"Super Pixel Warriors","tipo":"efeitos","origem":"Sprite5"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,27,27,14,22,1]]}},"tipo":"efeito"});
