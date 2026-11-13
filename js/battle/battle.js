@@ -419,6 +419,7 @@ FF.Battle = class {
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
       girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
+      centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
       done: new Promise(r => (res = r)),
     };
     p.hit = () => {
@@ -458,14 +459,30 @@ FF.Battle = class {
     if (p.acertou && p.atravessar && (p.x < -150 || p.x > FF.W + 150)) p.dead = true;
   }
 
+  // deslocamento do desenho em relação ao caminho: "centro" (meio do quadro no caminho) + ajuste livre (Estúdio)
+  desvioProjetil(p, f, sc) {
+    let x = p.ajX || 0, y = p.ajY || 0;
+    if (p.centro && f) { x += (p.flip ? -1 : 1) * (f[5] - f[3] / 2) * sc; y += (f[6] - f[4] / 2) * sc; }
+    return { x, y };
+  }
+  // caixa do desenho atual na tela (Estúdio: clicar e arrastar o projétil)
+  caixaProjetil(p) {
+    const f = p.a.frame(); if (!f) return null;
+    const sc = p.scale || this.scale, d = this.desvioProjetil(p, f, sc);
+    const x = p.x + d.x, y = p.y + d.y;
+    const x0 = p.flip ? x - (f[3] - f[5]) * sc : x - f[5] * sc, y0 = y - f[6] * sc;
+    return { x: x0, y: y0, w: f[3] * sc, h: f[4] * sc, cx: x0 + f[3] * sc / 2, cy: y0 + f[4] * sc / 2 };
+  }
+
   desenharProjetil(ctx, p) {
-    if (!p.rastro) return FF.drawFrame(ctx, p.set || this.fx, p.a.frame(), p.x, p.y, p.scale || this.scale, p.flip);
     const draw = (f, x, y, sc, ang, alpha) => {
-      if (!ang) return FF.drawFrame(ctx, p.set, f, x, y, sc, p.flip, alpha != null ? { alpha } : undefined);
+      const d = this.desvioProjetil(p, f, sc);
+      if (!ang) return FF.drawFrame(ctx, p.set || this.fx, f, x + d.x, y + d.y, sc, p.flip, alpha != null ? { alpha } : undefined);
       ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
-      FF.drawFrame(ctx, p.set, f, 0, 0, sc, p.flip, alpha != null ? { alpha } : undefined);
+      FF.drawFrame(ctx, p.set || this.fx, f, d.x, d.y, sc, p.flip, alpha != null ? { alpha } : undefined);
       ctx.restore();
     };
+    if (!p.rastro) return draw(p.a.frame(), p.x, p.y, p.scale || this.scale, 0);
     p.rastro.forEach((r, i) => draw(r.f, r.x, r.y, p.scale * (1 - i * 0.08), r.ang, 0.35 * (1 - i / p.rastro.length)));
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     draw(p.a.frame(), p.x, p.y, p.scale * 1.08, p.ang, 0.25);  // brilho

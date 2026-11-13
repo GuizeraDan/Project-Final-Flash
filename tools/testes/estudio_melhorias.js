@@ -147,6 +147,22 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(s.x === 600 && s.y === -120 && s.alca && /Altura \(Y\)/.test(s.props), 'teleporte para qualquer ponto da tela: lutador em x=' + s.x + ' y=' + s.y + ', alça no palco ' + s.alca);
 
+  // ---- projétil: clicar e arrastar o desenho enquanto voa (spriteDx/spriteDy) + centralizar
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
+  await pronto(); await p.waitForTimeout(800);
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    let c = null; g.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(k => { if (k.tipo === 'projetil' && !c) c = k; }));
+    g.sel = null; g.irPara(c.t + 0.12);
+    const b = g.palco._b, pj = b.projectiles.find(x => x.clipe === c.id && !x.dead), cx = b.caixaProjetil(pj);
+    const r = g.cv.getBoundingClientRect(), k = r.width / g.cv.width;
+    return { id: c.id, sx: r.left + cx.cx * k, sy: r.top + cx.cy * k, k, deDx: c.deDx || 0 };
+  });
+  await p.mouse.move(s.sx, s.sy); await p.mouse.down(); await p.mouse.move(s.sx + 10, s.sy - 10, { steps: 2 }); await p.mouse.move(s.sx + 40 * s.k, s.sy - 30 * s.k, { steps: 4 }); await p.mouse.up();
+  const pj = await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); const c = g.achar(id).c; return { sel: g.sel, dx: c.spriteDx, dy: c.spriteDy, deDx: c.deDx || 0 }; }, s.id);
+  ok(pj.sel === s.id && Math.abs(Math.abs(pj.dx) - 40) <= 2 && Math.abs(pj.dy + 30) <= 2 && pj.deDx === s.deDx, 'clicar e arrastar o projétil voando move só o desenho (' + JSON.stringify(pj) + ')');
+  await p.screenshot({ path: OUT + '/0d_projetil.png' });
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');

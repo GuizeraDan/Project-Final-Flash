@@ -728,6 +728,10 @@ window.FF = window.FF || {};
         L.push({ k: 'de', x: r.de.x + (c.deDx || 0) * dir, y: r.de.y + (c.deDy || 0), cor: '#5fe08a' });
         if (r.ate) L.push({ k: 'ate', x: r.ate.x + (c.alvoDx || 0) * dir, y: r.ate.y + (c.alvoDy || 0), cor: '#ff5a5a' });
       }
+      if (c.tipo === 'projetil') {   // o projétil voando agora: alça roxa no meio do desenho
+        const pj = b.projectiles.find(x => x.clipe === c.id && !x.dead), cx = pj && b.caixaProjetil(pj);
+        if (cx) L.push({ k: 'sprite', x: cx.cx, y: cx.cy, cor: '#b06cff', caixa: cx });
+      }
       if (c.tipo === 'acerto' && r.p) L.push({ k: 'acerto', x: r.p.x + (c.dx || 0) * dir, y: r.p.y + (c.dy || 0), cor: '#ff5a5a' });
       // teleporte/movimento para um ponto da tela: alça no destino (com silhueta do lutador)
       if ((c.tipo === 'teleporte' || c.tipo === 'mover') && c.para === 'x') {
@@ -780,7 +784,7 @@ window.FF = window.FF || {};
         if (!h) {
           // escolher pelo que está no palco: efeitos, camadas, lutadores
           const achou = this.acharNoPalco(p);
-          if (achou) { this.selecionar(achou.id, achou.tr); h = this.alcas().find(x => x.k !== 'escala' && x.k !== 'giro') || null; }
+          if (achou) { this.selecionar(achou.id, achou.tr); const hs = this.alcas(); h = hs.find(x => x.k === 'sprite' && x.caixa && p.x >= x.caixa.x && p.x <= x.caixa.x + x.caixa.w && p.y >= x.caixa.y && p.y <= x.caixa.y + x.caixa.h) || hs.find(x => x.k !== 'escala' && x.k !== 'giro' && x.k !== 'sprite') || null; }
         }
         if (!h) return;
         const c = this.clipe();
@@ -807,6 +811,7 @@ window.FF = window.FF || {};
           }
           case 'de': c.deDx = R((o.deDx || 0) + dx * dir); c.deDy = R((o.deDy || 0) + dy); break;
           case 'ate': c.alvoDx = R((o.alvoDx || 0) + dx * dir); c.alvoDy = R((o.alvoDy || 0) + dy); break;
+          case 'sprite': c.spriteDx = R((o.spriteDx || 0) + dx * dir); c.spriteDy = R((o.spriteDy || 0) + dy); if (!c.spriteDx) delete c.spriteDx; if (!c.spriteDy) delete c.spriteDy; break;
           case 'escala': { const d0 = Math.hypot(arr.p0.x - h.cx, arr.p0.y - h.cy), d1 = Math.hypot(p.x - h.cx, p.y - h.cy); c.escala = Math.max(0.05, Math.round((o.escala || 1) * d1 / Math.max(1, d0) * 100) / 100); break; }
           case 'giro': { const ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90; c.rot = R(ang * (c.em === 'tela' ? 1 : dir)); break; }
           case 'camada': {
@@ -848,6 +853,12 @@ window.FF = window.FF || {};
         const w = f[3] * e.scale, h = f[4] * e.scale;
         const x = e.flip ? e.x - (f[3] - f[5]) * e.scale : e.x - f[5] * e.scale, y = e.y - f[6] * e.scale;
         if (p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h) { const a = this.achar(e._clipe); if (a) return { id: e._clipe, tr: a.tr.id }; }
+      }
+      // projéteis voando
+      for (const pj of b.projectiles.slice().reverse()) {
+        if (pj.dead || !pj.clipe) continue;
+        const cx = b.caixaProjetil(pj);
+        if (cx && p.x >= cx.x && p.x <= cx.x + cx.w && p.y >= cx.y && p.y <= cx.y + cx.h) { const a = this.achar(pj.clipe); if (a) return { id: pj.clipe, tr: a.tr.id }; }
       }
       const v = (b.cenasVivas || []).find(x => x.linha);
       if (v) for (const cam of v.cena.camadas.slice().reverse()) {
