@@ -130,7 +130,7 @@ FF.EstudioProps = {
         if (c.para === 'x') {
           g.appendChild(E.el('p', 'es-dica', 'Arraste a bolinha verde (e a silhueta) no palco para escolher o ponto. Vale para cima também: o lutador fica no ar até o próximo movimento.'));
           g.appendChild(num(c, 'x', 'X na tela', '0 (esquerda) a 1084 (direita)'));
-          g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120)'));
+          g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120); positivo = desce um pouco (para encostar um desenho deitado ou girado no chão)'));
           g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', 'No palco: alça amarela da silhueta (1 = normal)', { passo: 0.05, min: 0.05 }));
           g.appendChild(num(c, 'rot', 'Giro na chegada (°)', 'No palco: alça azul da silhueta'));
         }
