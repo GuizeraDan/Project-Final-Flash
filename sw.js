@@ -2,10 +2,10 @@
 // - Código e dados (html, js, css, json): rede primeiro → sempre a versão mais nova quando há internet;
 //   sem internet, usa a cópia guardada.
 // - Imagens e sons: cache primeiro (rápido) e atualiza a cópia em segundo plano.
-const CACHE = 'finalflash-v7';
+const CACHE = 'finalflash-v8';
 const ESSENCIAIS = [
   './', 'index.html', 'estudio.html', 'manifest.webmanifest', 'versao.json',
-  'css/style.css', 'css/estudio.css', 'css/estudio_sprites.css', 'css/estudio_personagens.css', 'data/bundle.js',
+  'css/style.css', 'css/estudio.css', 'css/estudio_sprites.css', 'css/estudio_personagens.css', 'data/bundle.js', 'data/acervo/indice.js',
   'js/core/clock.js', 'data/edicoes.js', 'js/core/edicoes.js', 'js/core/modificacoes.js', 'js/core/assets.js', 'js/core/sprite.js', 'js/core/audio.js', 'js/core/input.js', 'js/core/retrato.js',
   'js/core/habilidades.js', 'js/ui/selecao.js', 'js/ui/pausa.js',
   'js/battle/fighter.js', 'js/battle/script.js', 'js/battle/ai.js', 'js/battle/hud.js', 'js/battle/battle.js', 'js/battle/cena.js', 'js/battle/linha.js', 'js/core/imagens_usr.js',

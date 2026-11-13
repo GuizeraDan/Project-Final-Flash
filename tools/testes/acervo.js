@@ -27,14 +27,11 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.goto('file://' + RAIZ + '/index.html');
   await p.waitForFunction(() => window.FF && FF.Assets && window.FF_BUNDLE, null, { timeout: 20000 });
   let s = await p.evaluate(() => ({
-    n: Object.keys(FF.Assets.acervo()).length,
-    lista: FF.Assets.listaSprites().filter(i => FF.Assets.doAcervo(i)).length,
-    noBundle: Object.keys(FF_BUNDLE).filter(k => /zl3_/.test(k)).length,
-    cat: FF.Assets.categoriaSprite('zl3_explosao'), nome: FF.Assets.nomeSprite('zl3_explosao'), jogo: FF.Assets.categoriaSprite('gokubase'),
+    semIndice: !window.FF_ACERVO_INDICE,
+    noBundle: Object.keys(FF_BUNDLE).filter(k => /zl3_|acervo/.test(k)).length + (FF_BUNDLE._indice.acervo ? 1 : 0),
   }));
-  ok(s.n === nIdx && s.lista === nIdx, 'índice do acervo no bundle: ' + s.n + ' sprites (indice.json tem ' + nIdx + ')');
-  ok(s.noBundle === 0, 'nenhum sprite do acervo dentro do bundle');
-  ok(s.cat === 'efeitos' && s.nome === 'Explosões' && s.jogo === 'jogo', 'categoria e nome (' + s.cat + ', ' + s.nome + ')');
+  ok(s.semIndice, 'jogo abre sem carregar o índice do acervo');
+  ok(s.noBundle === 0, 'nada do acervo dentro do bundle');
   s = await p.evaluate(async () => {
     const t0 = performance.now();
     const [a, b2] = await Promise.all([FF.Assets.loadSprite('zl3_explosao'), FF.Assets.loadSprite('zl3_explosao')]);
@@ -46,6 +43,19 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.cut === indice.sprites.zl3_cut_gokussjvsfreeza.anims, 'cutscene carregada (' + s.cut + ')');
   s = await p.evaluate(async () => { try { await FF.Assets.loadSprite('zl3_nao_existe'); return 'carregou?'; } catch (e) { return 'erro'; } });
   ok(s === 'erro', 'sprite inexistente dá erro sem travar');
+  await p.close();
+
+  // ---- 2) Estúdio: seletor de sprites com o acervo
+  p = await nova();
+  await p.goto('file://' + RAIZ + '/estudio.html?aba=golpes');
+  await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto, null, { timeout: 30000 });
+  s = await p.evaluate(() => ({
+    n: Object.keys(FF.Assets.acervo()).length,
+    lista: FF.Assets.listaSprites().filter(i => FF.Assets.doAcervo(i)).length,
+    cat: FF.Assets.categoriaSprite('zl3_explosao'), nome: FF.Assets.nomeSprite('zl3_explosao'), jogo: FF.Assets.categoriaSprite('gokubase'),
+  }));
+  ok(s.n === nIdx && s.lista === nIdx, 'índice do acervo no Estúdio: ' + s.n + ' sprites (indice.json tem ' + nIdx + ')');
+  ok(s.cat === 'efeitos' && s.nome === 'Explosões' && s.jogo === 'jogo', 'categoria e nome (' + s.cat + ', ' + s.nome + ')');
   // todos os sprites do acervo abrem (JSON válido + imagens existentes)
   s = await p.evaluate(async () => {
     const ruins = [];
@@ -58,12 +68,6 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const faltando = [];
   for (const id of Object.keys(indice.sprites)) for (let i = 0; i < indice.sprites[id].atlas; i++) if (!fs.existsSync(RAIZ + '/assets/img/acervo/' + id + '_' + i + '.png')) faltando.push(id + '_' + i);
   ok(!faltando.length, 'todas as imagens de atlas existem' + (faltando.length ? ' — ' + faltando.slice(0, 5) : ''));
-  await p.close();
-
-  // ---- 2) Estúdio: seletor de sprites com o acervo
-  p = await nova();
-  await p.goto('file://' + RAIZ + '/estudio.html?aba=golpes');
-  await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto, null, { timeout: 30000 });
   let escolhido = null;
   await p.exposeFunction('__escolheu', (a, id) => { escolhido = [a, id]; });
   await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'cat:cenarios', aoEscolher: (a, id) => window.__escolheu(a, id) }));
@@ -124,8 +128,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
 
   await b.close();
   const erros = msgs.filter(m => !/favicon/.test(m));
-  const i404 = erros.findIndex(m => /ERR_FILE_NOT_FOUND/.test(m));   // o do teste do sprite inexistente
-  if (i404 >= 0) erros.splice(i404, 1);
+  // os do teste do sprite inexistente (script do acervo + JSON)
+  for (let k = 0; k < 3; k++) { const i = erros.findIndex(m => /ERR_FILE_NOT_FOUND|Failed to fetch|zl3_nao_existe/.test(m)); if (i >= 0) erros.splice(i, 1); }
   console.log(erros.length ? 'console:\n  ' + erros.join('\n  ') : 'console: limpo');
   ok(!erros.length, 'console sem erros');
 })();

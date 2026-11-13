@@ -40,9 +40,9 @@ FF.Assets = {
   },
 
   // ---- acervo do Z Legends 3 (tools/extrair_acervo.py): data/acervo/<id>.js, fora do bundle,
-  // carregado só quando alguém usa o sprite. Índice: FF_BUNDLE._indice.acervo = {id: [categoria, nome, nº anims, tipo, fonte]}
-  acervo() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).acervo || {}; },
-  categoriasAcervo() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).acervoCategorias || {}; },
+  // carregado só quando alguém usa o sprite. Índice (só no Estúdio): data/acervo/indice.js → window.FF_ACERVO_INDICE.acervo = {id: [categoria, nome, nº anims, tipo, fonte]}
+  acervo() { return (window.FF_ACERVO_INDICE || {}).acervo || {}; },
+  categoriasAcervo() { return (window.FF_ACERVO_INDICE || {}).categorias || {}; },
   doAcervo(id) { return !!this.acervo()[id]; },
   // 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes' para o acervo; 'jogo' para os do projeto
   categoriaSprite(id) { const a = this.acervo()[id]; return a ? a[0] : 'jogo'; },
@@ -99,7 +99,11 @@ FF.Assets = {
   async _loadSprite(id) {
     const novo = FF.Edicoes && (FF.Edicoes.dados().spritesNovos || {})[id];
     // cópia: as edições do usuário são aplicadas por cima e o original do JSON fica intacto
-    const fonte = novo || ((this.doAcervo(id) && !(window.FF_BUNDLE && FF_BUNDLE['data/sprites/' + id + '.json'])) ? await this.defAcervo(id) : await this.loadJSON('data/sprites/' + id + '.json'));
+    // fora do bundle = acervo (o jogo não carrega o índice do acervo: tenta direto data/acervo/<id>.js)
+    const noBundle = !!(window.FF_BUNDLE && FF_BUNDLE['data/sprites/' + id + '.json']);
+    let fonte = novo;
+    if (!fonte && !noBundle && (this.doAcervo(id) || !window.FF_ACERVO_INDICE)) fonte = await this.defAcervo(id).catch(() => null);
+    if (!fonte) fonte = await this.loadJSON('data/sprites/' + id + '.json');
     const def = JSON.parse(JSON.stringify(fonte));
     const info = FF.Edicoes && (FF.Edicoes.dados().spritesInfo || {})[id];
     if (info && info.escala) { def._escalaOrig = def.escala; def.escala = info.escala; }

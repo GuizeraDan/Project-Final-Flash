@@ -272,63 +272,116 @@ def fazer_gdevelop(a):
 
 
 # ====================================================================== pastas de PNGs soltos
+def _sem_fundo(im):
+    """imagem sem transparência: o fundo ligado às bordas (cor dos cantos) vira transparente"""
+    if im.getextrema()[3][0] < 255:
+        return im
+    from PIL import ImageDraw
+    w, h = im.size
+    cantos = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
+    cores = [im.getpixel(c) for c in cantos]
+    fundo = max(set(cores), key=cores.count)
+    if cores.count(fundo) < 2:
+        return im
+    for c, cor in zip(cantos, cores):
+        if cor == fundo and im.getpixel(c)[3]:
+            ImageDraw.floodfill(im, c, (0, 0, 0, 0), thresh=8)
+    return im
+
+
+def _quadros_pasta(raiz, rel, folha):
+    """PNGs de uma pasta → quadros recortados com origem comum (centro-baixo da área visível de todos)"""
+    d = os.path.join(raiz, rel)
+    pngs = sorted([f for f in os.listdir(d) if f.lower().endswith('.png') and os.path.isfile(os.path.join(d, f))], key=natural)
+    itens = []
+    for f in pngs:
+        p = os.path.join(rel, f) if rel not in ('', '.') else f
+        try:
+            im = folha(p)
+        except Exception:
+            continue
+        bb = im.getbbox()
+        if bb:
+            itens.append((f, p, im.size, bb))
+    # origem comum por tamanho de tela (quadros de uma mesma animação costumam ter o mesmo tamanho)
+    uni = {}
+    for _, _, sz, bb in itens:
+        u = uni.get(sz)
+        uni[sz] = bb if not u else (min(u[0], bb[0]), min(u[1], bb[1]), max(u[2], bb[2]), max(u[3], bb[3]))
+    fr = []
+    for f, p, sz, (x0, y0, x1, y1) in itens:
+        u = uni[sz]
+        fr.append((f, dict(img=p, x=x0, y=y0, w=x1 - x0, h=y1 - y0, ox=(u[0] + u[2]) / 2 - x0, oy=u[3] - y0, dur=1)))
+    return fr
+
+
 def fazer_pastas(a):
-    """--origem: pasta com subpastas. Cada pasta que tem PNGs vira um sprite com uma animação "Todos" (todos os
-    quadros em ordem) e, se os nomes tiverem grupos (ex.: Goku_Parado_1.png), uma animação por grupo.
-    Origem: centro-baixo da área visível de cada quadro."""
+    """--origem: pasta com subpastas. Cada pasta com PNGs vira um sprite com a animação "Todos" (quadros em ordem)
+    e, se os nomes tiverem grupos (ex.: Goku_Parado_1.png), uma animação por grupo.
+    --agrupar: caminhos (relativos à origem) cujas subpastas são personagens/efeitos e as sub-subpastas, animações
+    (ex.: Assets_Separados/Personagens/Goku/Parado/01.png)."""
     raiz = a.origem
     ign = set((a.ignorar or '').split(',')) - {''}
+    agrupar = [g.strip('/') for g in (a.agrupar or '').split(',') if g.strip()]
     cache = {}
 
     def folha(p):
         if p not in cache:
             if len(cache) > 300:
                 cache.clear()
-            cache[p] = Image.open(os.path.join(raiz, p)).convert('RGBA')
+            cache[p] = _sem_fundo(Image.open(os.path.join(raiz, p)).convert('RGBA'))
         return cache[p]
 
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
+
+    def tipo_de(rel):
+        if R_CENARIO.search(rel): return 'cenarios'
+        if re.search(r'interface|retrato', rel, re.I) or R_INTERF.search(os.path.basename(rel)): return 'interface'
+        if re.search(r'efeito|textura', rel, re.I) or (R_EFEITO.search(rel) and not re.search(r'goku|vegeta|gohan|broly|cell|freeza|buu', rel, re.I)): return 'efeitos'
+        return 'personagens'
+
+    def gravar(rel, nome, anims):
+        sid = '%s_%s' % (a.chave, AC.slug(rel) or 'raiz')
+        while sid in usados: sid += '_'
+        usados.add(sid)
+        fonte.gravar(sid, nome, tipo_de(rel), anims, [rel], cat=a.chave)
+
+    feitos = set()
+    for g in agrupar:
+        base = os.path.join(raiz, g)
+        if not os.path.isdir(base): continue
+        for ch in sorted(os.listdir(base), key=natural):
+            pch = os.path.join(base, ch)
+            if not os.path.isdir(pch): continue
+            anims = []
+            soltos = _quadros_pasta(raiz, os.path.join(g, ch), folha)
+            if soltos: anims.append(('Soltos', dict(fps=10, loop=True, frames=[q for _, q in soltos])))
+            for an in sorted(os.listdir(pch), key=natural):
+                if os.path.isdir(os.path.join(pch, an)):
+                    fr = _quadros_pasta(raiz, os.path.join(g, ch, an), folha)
+                    if fr: anims.append((an, dict(fps=9, loop=True, frames=[q for _, q in fr])))
+                    feitos.add(os.path.join(g, ch, an))
+            feitos.add(os.path.join(g, ch))
+            if anims: gravar(os.path.join(g, ch), ch, anims)
+
     for d, dirs, files in sorted(os.walk(raiz)):
         rel = os.path.relpath(d, raiz)
         if any(part in ign for part in rel.split(os.sep)):
-            dirs[:] = []
-            continue
+            dirs[:] = []; continue
         dirs.sort()
-        pngs = sorted([f for f in files if f.lower().endswith('.png')], key=natural)
-        if not pngs:
-            continue
-        fr = []
-        for f in pngs:
-            p = os.path.join(rel, f) if rel != '.' else f
-            try:
-                im = folha(p)
-            except Exception:
-                continue
-            bb = im.getbbox()
-            if not bb:
-                continue
-            x0, y0, x1, y1 = bb
-            fr.append((f, dict(img=p, x=x0, y=y0, w=x1 - x0, h=y1 - y0, ox=(x1 - x0) / 2, oy=y1 - y0, dur=1)))
-        if not fr:
-            continue
+        if rel in feitos: continue
+        if not any(f.lower().endswith('.png') for f in files): continue
+        fr = _quadros_pasta(raiz, rel, folha)
+        if not fr: continue
         anims = [('Todos', dict(fps=10, loop=True, frames=[q for _, q in fr]))]
         grupos = collections.OrderedDict()
         for f, q in fr:
-            g = re.sub(r'[\s_\-]*\d+$', '', os.path.splitext(f)[0])
-            grupos.setdefault(g, []).append(q)
+            grupos.setdefault(re.sub(r'[\s_\-]*\d+$', '', os.path.splitext(f)[0]), []).append(q)
         if 1 < len(grupos) < len(fr):
             anims += [(g or 'grupo', dict(fps=10, loop=True, frames=qs)) for g, qs in grupos.items()]
-        nome = rel.replace(os.sep, ' / ') if rel != '.' else a.nome
-        sid = '%s_%s' % (a.chave, AC.slug(rel) or 'raiz')
-        while sid in usados:
-            sid += '_'
-        usados.add(sid)
-        tipo = 'cenarios' if R_CENARIO.search(rel) else 'interface' if R_INTERF.search(rel) else 'efeitos' if (R_EFEITO.search(rel) and not re.search(r'goku|vegeta|gohan|broly', rel, re.I)) else 'personagens'
-        fonte.gravar(sid, nome, tipo, anims, [rel], cat=a.chave)
+        gravar(rel, rel.replace(os.sep, ' / ') if rel != '.' else a.nome, anims)
     fonte.fechar({a.chave: a.nome})
-
-
 
 # ====================================================================== Unity (SerializedFile sem typetree, 2017–2021)
 class _R:
@@ -684,6 +737,7 @@ def main():
     ap.add_argument('--nome', required=True, help='nome do jogo (categoria no Estúdio)')
     ap.add_argument('--out', required=True)
     ap.add_argument('--ignorar', default='', help='pastas: nomes de subpastas a pular, separados por vírgula')
+    ap.add_argument('--agrupar', default='', help='pastas: caminhos cujas subpastas são personagens e as sub-subpastas, animações')
     a = ap.parse_args()
     globals()['fazer_' + a.formato](a)
     AC.recompor(a.out)
