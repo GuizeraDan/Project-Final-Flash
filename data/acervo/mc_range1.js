@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_range1",{"id":"mc_range1","atlases":["assets/img/acervo/mc_range1_0.png"],"acervo":{"nome":"Range1","fonte":"Mini Champion","tipo":"efeitos","origem":"Range1"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,250,1,[[0,-125]]]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_numeroespeciais",{"id":"mc_numeroespeciais","atlases":["assets/img/acervo/mc_numeroespeciais_0.png"],"acervo":{"nome":"NumeroEspeciais","fonte":"Mini Champion","tipo":"interface","origem":"NumeroEspeciais"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,26,28,13,28,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_sprite7",{"id":"mc_sprite7","atlases":["assets/img/acervo/mc_sprite7_0.png"],"acervo":{"nome":"Sprite7","fonte":"Mini Champion","tipo":"efeitos","origem":"Sprite7"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,157,143,73,69,1],[0,158,0,157,143,84,69,1]]}},"tipo":"efeito"});

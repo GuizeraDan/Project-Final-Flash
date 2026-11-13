@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_setaesquerda",{"id":"mc_setaesquerda","atlases":["assets/img/acervo/mc_setaesquerda_0.png"],"acervo":{"nome":"SetaEsquerda","fonte":"Mini Champion","tipo":"interface","origem":"SetaEsquerda"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}}});

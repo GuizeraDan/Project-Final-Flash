@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_roleta",{"id":"mc_botao_roleta","atlases":["assets/img/acervo/mc_botao_roleta_0.png"],"acervo":{"nome":"Botao_Roleta","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Roleta"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,15,26,8,1]]}}});

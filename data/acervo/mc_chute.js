@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_chute",{"id":"mc_chute","atlases":["assets/img/acervo/mc_chute_0.png"],"acervo":{"nome":"Chute","fonte":"Mini Champion","tipo":"efeitos","origem":"Chute"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,15,1]]}},"tipo":"efeito"});

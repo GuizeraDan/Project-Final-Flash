@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_boss",{"id":"mc_botao_boss","atlases":["assets/img/acervo/mc_botao_boss_0.png"],"acervo":{"nome":"Botao_Boss","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Boss"},"anims":{"Boss":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,41,21,20,1]]}}});

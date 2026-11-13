@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_engrenagem",{"id":"mc_engrenagem","atlases":["assets/img/acervo/mc_engrenagem_0.png"],"acervo":{"nome":"Engrenagem","fonte":"Mini Champion","tipo":"efeitos","origem":"Engrenagem"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,15,25,8,1]]}},"tipo":"efeito"});

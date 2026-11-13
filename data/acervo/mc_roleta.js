@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_roleta",{"id":"mc_roleta","atlases":["assets/img/acervo/mc_roleta_0.png"],"acervo":{"nome":"Roleta","fonte":"Mini Champion","tipo":"efeitos","origem":"Roleta"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,220,216,110,112,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_barrarage",{"id":"mc_barrarage","atlases":["assets/img/acervo/mc_barrarage_0.png"],"acervo":{"nome":"BarraRage","fonte":"Mini Champion","tipo":"interface","origem":"BarraRage"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,62,22,31,11,1]]}}});

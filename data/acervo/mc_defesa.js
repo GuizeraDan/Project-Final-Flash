@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_defesa",{"id":"mc_defesa","atlases":["assets/img/acervo/mc_defesa_0.png"],"acervo":{"nome":"Defesa","fonte":"Mini Champion","tipo":"efeitos","origem":"Defesa"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}},"tipo":"efeito"});

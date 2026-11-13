@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_purchasesitem",{"id":"mc_purchasesitem","atlases":["assets/img/acervo/mc_purchasesitem_0.png"],"acervo":{"nome":"PurchasesItem","fonte":"Mini Champion","tipo":"efeitos","origem":"PurchasesItem"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}},"tipo":"efeito"});

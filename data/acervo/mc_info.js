@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_info",{"id":"mc_info","atlases":["assets/img/acervo/mc_info_0.png"],"acervo":{"nome":"Info","fonte":"Mini Champion","tipo":"efeitos","origem":"Info"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}},"tipo":"efeito"});

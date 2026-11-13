@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_delayenemymanage",{"id":"mc_delayenemymanage","atlases":["assets/img/acervo/mc_delayenemymanage_0.png"],"acervo":{"nome":"DelayEnemyManage","fonte":"Mini Champion","tipo":"efeitos","origem":"DelayEnemyManage"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

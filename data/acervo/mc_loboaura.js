@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_loboaura",{"id":"mc_loboaura","atlases":["assets/img/acervo/mc_loboaura_0.png"],"acervo":{"nome":"LoboAura","fonte":"Mini Champion","tipo":"efeitos","origem":"LoboAura"},"anims":{"Animation":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,52,42,34,28,1],[0,53,0,52,42,34,28,1]]}},"tipo":"efeito"});

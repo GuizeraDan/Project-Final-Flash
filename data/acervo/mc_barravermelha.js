@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_barravermelha",{"id":"mc_barravermelha","atlases":["assets/img/acervo/mc_barravermelha_0.png"],"acervo":{"nome":"BarraVermelha","fonte":"Mini Champion","tipo":"interface","origem":"BarraVermelha"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,15,12,0,7,1]]}}});

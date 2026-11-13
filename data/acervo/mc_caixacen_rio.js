@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_caixacen_rio",{"id":"mc_caixacen_rio","atlases":["assets/img/acervo/mc_caixacen_rio_0.png"],"acervo":{"nome":"CaixaCenário","fonte":"Mini Champion","tipo":"cenarios","origem":"CaixaCenário"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,141,58,244,247,1]]}}});

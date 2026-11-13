@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_anuncio_loja",{"id":"mc_anuncio_loja","atlases":["assets/img/acervo/mc_anuncio_loja_0.png"],"acervo":{"nome":"Anuncio_Loja","fonte":"Mini Champion","tipo":"interface","origem":"Anuncio_Loja"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,21,10,10,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_dano11",{"id":"mc_dano11","atlases":["assets/img/acervo/mc_dano11_0.png"],"acervo":{"nome":"Dano11","fonte":"Mini Champion","tipo":"efeitos","origem":"Dano11"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

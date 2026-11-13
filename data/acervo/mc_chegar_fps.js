@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_chegar_fps",{"id":"mc_chegar_fps","atlases":["assets/img/acervo/mc_chegar_fps_0.png"],"acervo":{"nome":"Chegar_FPS","fonte":"Mini Champion","tipo":"efeitos","origem":"Chegar_FPS"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,14,6,7,1],[0,14,0,13,14,6,7,1]]}},"tipo":"efeito"});

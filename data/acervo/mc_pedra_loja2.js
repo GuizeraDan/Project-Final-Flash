@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_pedra_loja2",{"id":"mc_pedra_loja2","atlases":["assets/img/acervo/mc_pedra_loja2_0.png"],"acervo":{"nome":"Pedra_Loja2","fonte":"Mini Champion","tipo":"cenarios","origem":"Pedra_Loja2"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,37,16,18,1],[0,33,0,32,37,16,18,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_versus",{"id":"mc_versus","atlases":["assets/img/acervo/mc_versus_0.png"],"acervo":{"nome":"Versus","fonte":"Mini Champion","tipo":"cenarios","origem":"Versus"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1176,1004,588,502,1]]}}});

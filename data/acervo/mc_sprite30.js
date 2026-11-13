@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_sprite30",{"id":"mc_sprite30","atlases":["assets/img/acervo/mc_sprite30_0.png"],"acervo":{"nome":"Sprite30","fonte":"Mini Champion","tipo":"efeitos","origem":"Sprite30"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,45,12,22,6,1],[0,46,0,45,12,22,6,1],[0,92,0,45,12,22,6,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_premio2",{"id":"mc_premio2","atlases":["assets/img/acervo/mc_premio2_0.png"],"acervo":{"nome":"Premio2","fonte":"Mini Champion","tipo":"efeitos","origem":"Premio2"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,38,18,19,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_creditos",{"id":"mc_creditos","atlases":["assets/img/acervo/mc_creditos_0.png"],"acervo":{"nome":"Creditos","fonte":"Mini Champion","tipo":"efeitos","origem":"Creditos"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,15,29,8,1]]}},"tipo":"efeito"});

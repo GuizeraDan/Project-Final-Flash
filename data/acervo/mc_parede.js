@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_parede",{"id":"mc_parede","atlases":["assets/img/acervo/mc_parede_0.png"],"acervo":{"nome":"Parede","fonte":"Mini Champion","tipo":"efeitos","origem":"Parede"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

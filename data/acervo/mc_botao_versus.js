@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_versus",{"id":"mc_botao_versus","atlases":["assets/img/acervo/mc_botao_versus_0.png"],"acervo":{"nome":"Botao_Versus","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Versus"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,14,29,7,1]]}}});

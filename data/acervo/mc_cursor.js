@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_cursor",{"id":"mc_cursor","atlases":["assets/img/acervo/mc_cursor_0.png"],"acervo":{"nome":"Cursor","fonte":"Mini Champion","tipo":"interface","origem":"Cursor"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,20,31,10,9,1]]}}});

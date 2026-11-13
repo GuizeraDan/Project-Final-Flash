@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_poderpiccolo2",{"id":"mc_poderpiccolo2","atlases":["assets/img/acervo/mc_poderpiccolo2_0.png"],"acervo":{"nome":"PoderPiccolo2","fonte":"Mini Champion","tipo":"efeitos","origem":"PoderPiccolo2"},"anims":{"S1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,46,42,26,20,1]]}},"tipo":"efeito"});

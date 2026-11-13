@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_adventure",{"id":"mc_botao_adventure","atlases":["assets/img/acervo/mc_botao_adventure_0.png"],"acervo":{"nome":"Botao_Adventure","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Adventure"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,73,15,37,7,1]]}}});

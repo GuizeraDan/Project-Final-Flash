@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_poderyancha2",{"id":"mc_poderyancha2","atlases":["assets/img/acervo/mc_poderyancha2_0.png"],"acervo":{"nome":"PoderYancha2","fonte":"Mini Champion","tipo":"efeitos","origem":"PoderYancha2"},"anims":{"S1":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,32,0,29,27,14,14,1],[0,0,0,31,31,16,16,1]]}},"tipo":"efeito"});

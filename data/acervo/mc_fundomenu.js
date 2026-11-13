@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_fundomenu",{"id":"mc_fundomenu","atlases":["assets/img/acervo/mc_fundomenu_0.png"],"acervo":{"nome":"FundoMenu","fonte":"Mini Champion","tipo":"cenarios","origem":"FundoMenu"},"anims":{"Animation 1":{"fps":0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,600,306,300,153,1]]}}});

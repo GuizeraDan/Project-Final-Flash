@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_loja",{"id":"mc_botao_loja","atlases":["assets/img/acervo/mc_botao_loja_0.png"],"acervo":{"nome":"Botao_Loja","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Loja"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,14,18,7,1]]}}});

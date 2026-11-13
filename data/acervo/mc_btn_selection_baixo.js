@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_btn_selection_baixo",{"id":"mc_btn_selection_baixo","atlases":["assets/img/acervo/mc_btn_selection_baixo_0.png"],"acervo":{"nome":"Btn_Selection_Baixo","fonte":"Mini Champion","tipo":"interface","origem":"Btn_Selection_Baixo"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}}});

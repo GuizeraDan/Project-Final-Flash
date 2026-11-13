@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_cen_rio",{"id":"mc_cen_rio","atlases":["assets/img/acervo/mc_cen_rio_0.png"],"acervo":{"nome":"Cenário","fonte":"Mini Champion","tipo":"cenarios","origem":"Cenário"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,502,503,251,503,1]]}}});

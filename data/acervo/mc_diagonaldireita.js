@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_diagonaldireita",{"id":"mc_diagonaldireita","atlases":["assets/img/acervo/mc_diagonaldireita_0.png"],"acervo":{"nome":"DiagonalDireita","fonte":"Mini Champion","tipo":"efeitos","origem":"DiagonalDireita"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_fade2",{"id":"mc_fade2","atlases":["assets/img/acervo/mc_fade2_0.png"],"acervo":{"nome":"Fade2","fonte":"Mini Champion","tipo":"efeitos","origem":"Fade2"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

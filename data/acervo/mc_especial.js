@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_especial",{"id":"mc_especial","atlases":["assets/img/acervo/mc_especial_0.png"],"acervo":{"nome":"Especial","fonte":"Mini Champion","tipo":"efeitos","origem":"Especial"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}},"tipo":"efeito"});

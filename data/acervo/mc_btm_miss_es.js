@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_btm_miss_es",{"id":"mc_btm_miss_es","atlases":["assets/img/acervo/mc_btm_miss_es_0.png"],"acervo":{"nome":"btm_missões","fonte":"Mini Champion","tipo":"efeitos","origem":"btm_missões"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,47,21,24,10,1],[0,48,0,47,21,24,10,1]]}},"tipo":"efeito"});

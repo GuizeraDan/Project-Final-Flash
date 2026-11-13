@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_spawn3",{"id":"mc_spawn3","atlases":["assets/img/acervo/mc_spawn3_0.png"],"acervo":{"nome":"Spawn3","fonte":"Mini Champion","tipo":"efeitos","origem":"Spawn3"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_sprite9",{"id":"mc_sprite9","atlases":["assets/img/acervo/mc_sprite9_0.png"],"acervo":{"nome":"Sprite9","fonte":"Mini Champion","tipo":"cenarios","origem":"Sprite9"},"anims":{"Animation 1":{"fps":0,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,452,518,233,518,1],[0,453,0,452,518,233,518,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_survival",{"id":"mc_botao_survival","atlases":["assets/img/acervo/mc_botao_survival_0.png"],"acervo":{"nome":"Botao_Survival","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Survival"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,70,15,35,8,1]]}}});

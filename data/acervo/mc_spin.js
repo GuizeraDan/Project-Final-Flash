@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_spin",{"id":"mc_spin","atlases":["assets/img/acervo/mc_spin_0.png"],"acervo":{"nome":"Spin","fonte":"Mini Champion","tipo":"efeitos","origem":"Spin"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,19,24,10,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_ragesoco",{"id":"mc_ragesoco","atlases":["assets/img/acervo/mc_ragesoco_0.png"],"acervo":{"nome":"RageSoco","fonte":"Mini Champion","tipo":"efeitos","origem":"RageSoco"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,15,16,1],[0,34,0,33,32,15,16,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_blasteletric",{"id":"mc_blasteletric","atlases":["assets/img/acervo/mc_blasteletric_0.png"],"acervo":{"nome":"BlastEletric","fonte":"Mini Champion","tipo":"efeitos","origem":"BlastEletric"},"anims":{"A0":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,21,12,11,1,[[9,0]]],[0,23,0,22,21,16,11,1,[[5,0]]]]}},"tipo":"efeito"});

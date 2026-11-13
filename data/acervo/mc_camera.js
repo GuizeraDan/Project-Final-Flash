@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_camera",{"id":"mc_camera","atlases":["assets/img/acervo/mc_camera_0.png"],"acervo":{"nome":"Camera","fonte":"Mini Champion","tipo":"efeitos","origem":"Camera"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

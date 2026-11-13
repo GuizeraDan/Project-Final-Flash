@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_contador",{"id":"mc_contador","atlases":["assets/img/acervo/mc_contador_0.png"],"acervo":{"nome":"Contador","fonte":"Mini Champion","tipo":"efeitos","origem":"Contador"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,248,89,157,132,1]]}},"tipo":"efeito"});

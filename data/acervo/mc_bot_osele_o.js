@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_bot_osele_o",{"id":"mc_bot_osele_o","atlases":["assets/img/acervo/mc_bot_osele_o_0.png"],"acervo":{"nome":"BotãoSeleção","fonte":"Mini Champion","tipo":"interface","origem":"BotãoSeleção"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1],[0,251,0,250,250,125,125,1],[0,502,0,250,250,125,125,1]]}}});

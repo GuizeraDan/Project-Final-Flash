@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_itenss_pago",{"id":"mc_itenss_pago","atlases":["assets/img/acervo/mc_itenss_pago_0.png"],"acervo":{"nome":"Itenss_Pago","fonte":"Mini Champion","tipo":"efeitos","origem":"Itenss_Pago"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,125,1]]}},"tipo":"efeito"});

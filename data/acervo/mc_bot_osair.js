@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_bot_osair",{"id":"mc_bot_osair","atlases":["assets/img/acervo/mc_bot_osair_0.png"],"acervo":{"nome":"BotãoSair","fonte":"Mini Champion","tipo":"interface","origem":"BotãoSair"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_raio",{"id":"mc_raio","atlases":["assets/img/acervo/mc_raio_0.png"],"acervo":{"nome":"Raio","fonte":"Mini Champion","tipo":"efeitos","origem":"Raio"},"anims":{"Animation 1":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,65,105,32,0,1],[0,192,0,61,104,30,0,1],[0,131,0,60,105,30,0,1],[0,66,0,64,105,32,0,1]]}},"tipo":"efeito"});

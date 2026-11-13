@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_fundo_abertura",{"id":"mc_fundo_abertura","atlases":["assets/img/acervo/mc_fundo_abertura_0.png"],"acervo":{"nome":"Fundo_abertura","fonte":"Mini Champion","tipo":"cenarios","origem":"Fundo_abertura"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,640,480,320,240,1],[0,641,0,541,315,270,158,1]]}}});

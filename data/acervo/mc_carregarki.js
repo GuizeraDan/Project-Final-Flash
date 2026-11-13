@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_carregarki",{"id":"mc_carregarki","atlases":["assets/img/acervo/mc_carregarki_0.png"],"acervo":{"nome":"CarregarKI","fonte":"Mini Champion","tipo":"interface","origem":"CarregarKI"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,14,1]]}}});

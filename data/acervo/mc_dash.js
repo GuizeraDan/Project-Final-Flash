@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_dash",{"id":"mc_dash","atlases":["assets/img/acervo/mc_dash_0.png"],"acervo":{"nome":"Dash","fonte":"Mini Champion","tipo":"efeitos","origem":"Dash"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}},"tipo":"efeito"});

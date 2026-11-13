@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_soco",{"id":"mc_soco","atlases":["assets/img/acervo/mc_soco_0.png"],"acervo":{"nome":"Soco","fonte":"Mini Champion","tipo":"efeitos","origem":"Soco"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,14,1]]}},"tipo":"efeito"});

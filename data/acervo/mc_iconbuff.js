@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_iconbuff",{"id":"mc_iconbuff","atlases":["assets/img/acervo/mc_iconbuff_0.png"],"acervo":{"nome":"IconBuff","fonte":"Mini Champion","tipo":"interface","origem":"IconBuff"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,72,0,24,20,12,10,1],[0,24,0,25,21,12,10,1],[0,0,0,23,25,12,15,1],[0,50,0,21,21,11,11,1]]}}});

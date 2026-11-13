@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_discord",{"id":"mc_discord","atlases":["assets/img/acervo/mc_discord_0.png"],"acervo":{"nome":"Discord","fonte":"Mini Champion","tipo":"efeitos","origem":"Discord"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,21,10,10,1]]}},"tipo":"efeito"});

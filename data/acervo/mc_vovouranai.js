@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_vovouranai",{"id":"mc_vovouranai","atlases":["assets/img/acervo/mc_vovouranai_0.png"],"acervo":{"nome":"VovoUranai","fonte":"Mini Champion","tipo":"efeitos","origem":"VovoUranai"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,28,46,14,23,1]]}},"tipo":"efeito"});

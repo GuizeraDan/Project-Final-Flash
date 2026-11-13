@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_fechar",{"id":"mc_botao_fechar","atlases":["assets/img/acervo/mc_botao_fechar_0.png"],"acervo":{"nome":"Botao_Fechar","fonte":"Mini Champion","tipo":"cenarios","origem":"Botao_Fechar"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1000,1000,500,500,1]]}}});

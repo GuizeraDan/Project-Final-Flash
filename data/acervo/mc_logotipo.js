@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_logotipo",{"id":"mc_logotipo","atlases":["assets/img/acervo/mc_logotipo_0.png"],"acervo":{"nome":"Logotipo","fonte":"Mini Champion","tipo":"interface","origem":"Logotipo"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,142,89,70,40,1]]}}});

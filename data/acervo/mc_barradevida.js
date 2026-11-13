@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_barradevida",{"id":"mc_barradevida","atlases":["assets/img/acervo/mc_barradevida_0.png"],"acervo":{"nome":"BarraDeVida","fonte":"Mini Champion","tipo":"interface","origem":"BarraDeVida"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,15,12,0,7,1]]}}});

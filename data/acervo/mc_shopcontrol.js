@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_shopcontrol",{"id":"mc_shopcontrol","atlases":["assets/img/acervo/mc_shopcontrol_0.png"],"acervo":{"nome":"ShopControl","fonte":"Mini Champion","tipo":"interface","origem":"ShopControl"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}}});

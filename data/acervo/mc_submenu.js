@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_submenu",{"id":"mc_submenu","atlases":["assets/img/acervo/mc_submenu_0.png"],"acervo":{"nome":"SubMenu","fonte":"Mini Champion","tipo":"interface","origem":"SubMenu"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1],[0,17,0,16,16,8,8,1],[0,34,0,16,16,8,8,1],[0,51,0,16,16,8,8,1]]}}});

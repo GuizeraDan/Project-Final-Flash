@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_fantasma",{"id":"mc_fantasma","atlases":["assets/img/acervo/mc_fantasma_0.png"],"acervo":{"nome":"Fantasma","fonte":"Mini Champion","tipo":"efeitos","origem":"Fantasma"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,22,24,11,12,1]]}},"tipo":"efeito"});

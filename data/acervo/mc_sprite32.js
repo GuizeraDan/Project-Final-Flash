@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_sprite32",{"id":"mc_sprite32","atlases":["assets/img/acervo/mc_sprite32_0.png"],"acervo":{"nome":"Sprite32","fonte":"Mini Champion","tipo":"efeitos","origem":"Sprite32"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,15,19,7,1]]}},"tipo":"efeito"});

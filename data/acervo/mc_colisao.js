@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_colisao",{"id":"mc_colisao","atlases":["assets/img/acervo/mc_colisao_0.png"],"acervo":{"nome":"Colisao","fonte":"Mini Champion","tipo":"efeitos","origem":"Colisao"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1],[0,34,0,33,32,16,16,1]]}},"tipo":"efeito"});

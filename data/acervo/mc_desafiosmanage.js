@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_desafiosmanage",{"id":"mc_desafiosmanage","atlases":["assets/img/acervo/mc_desafiosmanage_0.png"],"acervo":{"nome":"DesafiosManage","fonte":"Mini Champion","tipo":"efeitos","origem":"DesafiosManage"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}},"tipo":"efeito"});

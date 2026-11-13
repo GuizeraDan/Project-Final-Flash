@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_circulosele_o",{"id":"mc_circulosele_o","atlases":["assets/img/acervo/mc_circulosele_o_0.png"],"acervo":{"nome":"CirculoSeleção","fonte":"Mini Champion","tipo":"interface","origem":"CirculoSeleção"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,146,138,73,69,1],[0,147,0,146,138,73,69,1]]}}});

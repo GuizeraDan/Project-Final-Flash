@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_retornar",{"id":"mc_botao_retornar","atlases":["assets/img/acervo/mc_botao_retornar_0.png"],"acervo":{"nome":"Botao_Retornar","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Retornar"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,32,16,16,1]]}}});

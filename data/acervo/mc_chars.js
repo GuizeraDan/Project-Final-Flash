@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_chars",{"id":"mc_chars","atlases":["assets/img/acervo/mc_chars_0.png"],"acervo":{"nome":"Chars","fonte":"Mini Champion","tipo":"efeitos","origem":"Chars"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,53,0,36,31,18,16,1],[0,90,0,46,30,23,15,1],[0,0,0,52,31,26,16,1]]}},"tipo":"efeito"});

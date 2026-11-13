@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_youtube",{"id":"mc_youtube","atlases":["assets/img/acervo/mc_youtube_0.png"],"acervo":{"nome":"Youtube","fonte":"Mini Champion","tipo":"efeitos","origem":"Youtube"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,21,21,10,10,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_fundosele_o",{"id":"mc_fundosele_o","atlases":["assets/img/acervo/mc_fundosele_o_0.png"],"acervo":{"nome":"FundoSeleção","fonte":"Mini Champion","tipo":"cenarios","origem":"FundoSeleção"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,335,232,121,169,1]]}}});

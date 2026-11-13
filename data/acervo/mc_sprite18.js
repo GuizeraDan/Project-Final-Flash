@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_sprite18",{"id":"mc_sprite18","atlases":["assets/img/acervo/mc_sprite18_0.png"],"acervo":{"nome":"Sprite18","fonte":"Mini Champion","tipo":"efeitos","origem":"Sprite18"},"anims":{"Animation 1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,28,0,23,37,12,37,4],[0,0,0,27,75,13,75,1]]}},"tipo":"efeito"});

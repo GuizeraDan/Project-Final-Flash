@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_botao_treino",{"id":"mc_botao_treino","atlases":["assets/img/acervo/mc_botao_treino_0.png"],"acervo":{"nome":"Botao_Treino","fonte":"Mini Champion","tipo":"interface","origem":"Botao_Treino"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,49,14,26,7,1]]}}});

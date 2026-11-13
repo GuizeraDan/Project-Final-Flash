@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_compras",{"id":"mc_compras","atlases":["assets/img/acervo/mc_compras_0.png"],"acervo":{"nome":"Compras","fonte":"Mini Champion","tipo":"efeitos","origem":"Compras"},"anims":{"Animation 1":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,69,51,35,42,1]]}},"tipo":"efeito"});

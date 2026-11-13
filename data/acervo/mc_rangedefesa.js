@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_rangedefesa",{"id":"mc_rangedefesa","atlases":["assets/img/acervo/mc_rangedefesa_0.png"],"acervo":{"nome":"RangeDefesa","fonte":"Mini Champion","tipo":"efeitos","origem":"RangeDefesa"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,250,250,125,250,1,[[0,-125]]]]}},"tipo":"efeito"});

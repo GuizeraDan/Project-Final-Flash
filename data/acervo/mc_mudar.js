@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_mudar",{"id":"mc_mudar","atlases":["assets/img/acervo/mc_mudar_0.png"],"acervo":{"nome":"Mudar","fonte":"Mini Champion","tipo":"efeitos","origem":"Mudar"},"anims":{"Animation 1":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,19,24,10,1]]}},"tipo":"efeito"});

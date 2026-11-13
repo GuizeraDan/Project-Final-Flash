@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_barradisputa",{"id":"mc_barradisputa","atlases":["assets/img/acervo/mc_barradisputa_0.png"],"acervo":{"nome":"BarraDisputa","fonte":"Mini Champion","tipo":"interface","origem":"BarraDisputa"},"anims":{"Default":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,133,0,3,12,0,6,1],[0,0,0,132,20,66,10,1]]}}});

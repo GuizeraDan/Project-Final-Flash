@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("mc_diagonalesquerda",{"id":"mc_diagonalesquerda","atlases":["assets/img/acervo/mc_diagonalesquerda_0.png"],"acervo":{"nome":"DiagonalEsquerda","fonte":"Mini Champion","tipo":"efeitos","origem":"DiagonalEsquerda"},"anims":{"Default":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}},"tipo":"efeito"});
