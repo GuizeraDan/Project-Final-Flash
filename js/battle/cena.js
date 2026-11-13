@@ -70,8 +70,9 @@ FF.Cena = {
     return { x, y: p.y - oy * p.escala, w: w * p.escala, h: h * p.escala };
   },
 
-  desenhar(ctx, b, actor, target, cena, t) {
-    (cena.camadas || []).forEach(c => { if (!c.oculta) this.desenharCamada(ctx, this.naTela(b, actor, target, c, t)); });
+  // atras: undefined = todas; true = só as marcadas "atrás dos lutadores"; false = só as da frente
+  desenhar(ctx, b, actor, target, cena, t, atras) {
+    (cena.camadas || []).forEach(c => { if (!c.oculta && (atras === undefined || !!c.atras === atras)) this.desenharCamada(ctx, this.naTela(b, actor, target, c, t)); });
   },
 
   // carrega os sprites usados pela cena

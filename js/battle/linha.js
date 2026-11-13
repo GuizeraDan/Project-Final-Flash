@@ -10,6 +10,7 @@
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, escala?, rot?}   (mover também aceita escala/rot: tamanho e giro na chegada)
 //     para "x" = qualquer ponto da tela: x em pixels da tela (0 a 1084), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
+//  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
 //            seguir? (anda junto com o lutador em que está preso)}
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?,
@@ -169,14 +170,14 @@ FF.Linha = {
   encerrar(b, viva, estado) {
     if (viva.ko) {   // cena de KO: tocou junto com o golpe; devolve só o derrotado
       const f = viva.target;
-      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.y = f.groundY; }
+      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.camadaExtra = 0; f.y = f.groundY; }
       for (const [g, e] of estado) g.alpha = e.alpha;
       if (b.cam && this.clipes(viva.linha).some(({ c }) => c.tipo === 'camera')) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
       return;
     }
     for (const f of b.all) this.devolverSprite(f);
     for (const [f, e] of estado) f.alpha = e.alpha;
-    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.y = f.groundY; }
+    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.camadaExtra = 0; f.y = f.groundY; }
     viva.lutadores.forEach(f => { if (f !== viva.actor) { f.busy = false; if (!f.ko) f.idle(); } });
     if (b.cam && (b.cam.zoom !== 1 || b.cam.x || b.cam.y)) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
   },
@@ -207,6 +208,7 @@ FF.Linha = {
           if (emprestado && emprestado !== f.sprite) { if (!f._spriteOrig) f._spriteOrig = { sprite: f.sprite, anim: f.anim }; f.sprite = emprestado; f.anim = new FF.Animator(emprestado); }
           else if (!emprestado) this.devolverSprite(f);
           f.offX = (c.dx || 0) * f.dir; f.offY = c.dy || 0; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip; f.rotExtra = (c.rot || 0) * f.dir;
+          f.camadaExtra = c.camada === 'frente' ? 1 : c.camada === 'atras' ? -1 : 0;   // na frente / atrás dos outros lutadores
           if (c.alpha != null) { guardar(f); f.alpha = c.alpha; }
           const loop = c.loop != null ? !!c.loop : !!c.d;
           f.anim.play(this.trecho(f.sprite, emprestado ? c.anim : f.animName(c.anim), c.de, c.ate), { fps: c.fps || undefined, loop, hold: (c.segurar || 0) + (segurar || 0) });
@@ -254,7 +256,7 @@ FF.Linha = {
         const p = this.ponto(b, actor, target, c.em);
         const dir = actor ? actor.dir : 1;
         const e = b.spawnFx(c.fx, p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir), p.y + (c.dy || 0), (dir < 0) !== !!c.flip, c.escala || 1,
-          { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite });
+          { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras });
         if (e && c.rot) e.rot = c.rot * dir;
         // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
         const f = c.em === 'alvo' || c.em === 'alvoPes' ? target : c.em === 'tela' ? null : actor;

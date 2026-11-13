@@ -316,6 +316,23 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(s.txt === 'Faísca grande' && s.nome === 'Faísca grande' && s.volta === 'hit_grande', 'renomear animação no cartão: ' + JSON.stringify(s));
 
+  // ---- camadas: efeito atrás dos lutadores (desenhado antes deles)
+  const cam = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const tr = g.doc.linha.trilhas.find(t => t.id === 'efeitos');
+    const c = { id: 'atr', tipo: 'efeito', t: 0.05, fx: 'Explosao11', em: 'alvo', escala: 3, atras: true, d: 1 };
+    tr.clipes.push(c); g.mudou('x'); g.irPara(0.3);
+    const b = g.palco._b, e = b.fxList.find(x => x._clipe === 'atr');
+    // ordem real de desenho: espiona drawFrame
+    const ordem = []; const orig = FF.drawFrame;
+    FF.drawFrame = function (ctx, set) { ordem.push(set === e.set ? 'fx' : b.all.some(f => f.sprite === set) ? 'lutador' : ''); return orig.apply(this, arguments); };
+    try { b.draw(g.cv.getContext('2d')); } finally { FF.drawFrame = orig; }
+    tr.clipes.splice(tr.clipes.indexOf(c), 1); g.mudou('x');
+    const o = ordem.filter(Boolean);
+    return { atras: e && e.atras, fxAntes: o.indexOf('fx') < o.indexOf('lutador') };
+  });
+  ok(cam.atras && cam.fxAntes, 'efeito marcado "Atrás dos lutadores" é desenhado antes deles ' + JSON.stringify(cam));
+
   // ---- arremessar o alvo: mover para um ponto da tela com arco e giro
   await p.goto(R + 'estudio.html?aba=golpes&personagem=goku&golpe=kaioken'); await pronto(); await p.waitForTimeout(800);
   s = await p.evaluate(() => {

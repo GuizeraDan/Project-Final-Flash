@@ -114,6 +114,7 @@ FF.EstudioProps = {
         p.appendChild(num(c, 'rot', 'Giro (°)', 'Gira o lutador em volta do meio do corpo (no palco: alça azul)'));
         p.appendChild(num(c, 'alpha', 'Opacidade', '0 a 1 (vazio = não muda)', { passo: 0.05, min: 0, max: 1 }));
         p.appendChild(chk(c, 'flip', 'Espelhar'));
+        p.appendChild(sel(c, 'camada', 'Camada', [['', 'normal'], ['frente', 'na frente dos outros lutadores'], ['atras', 'atrás dos outros lutadores']], 'Quem fica por cima quando os lutadores se cruzam', ''));
         box.appendChild(p);
         if (quem === 'alvo' || c.empurrao || c.voltarNormal) {
           const a = E.grupo('Reação do alvo', true);
@@ -167,6 +168,7 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'rot', 'Giro (°)'));
         g.appendChild(num(c, 'alpha', 'Opacidade', null, { passo: 0.05, min: 0, max: 1 }));
         g.appendChild(chk(c, 'flip', 'Espelhar'));
+        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores (fica por baixo deles)'));
         g.appendChild(num(c, 'fps', 'fps', 'Vazio = o do efeito'));
         g.appendChild(num(c, 'd', 'Repetir por (s)', 'Vazio = toca uma vez', { min: 0, passo: 0.05 }));
         break;
@@ -181,6 +183,7 @@ FF.EstudioProps = {
         g.appendChild(E.campo('check', 'Rastro', c.rastro !== false, (v) => { if (v) delete c.rastro; else c.rastro = false; host.mudou('Rastro'); }));
         g.appendChild(E.campo('check', 'Cresce ao sair', c.crescer !== false, (v) => { if (v) delete c.crescer; else c.crescer = false; host.mudou('Crescer'); }));
         g.appendChild(chk(c, 'atravessar', 'Atravessa o alvo'));
+        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores'));
         g.appendChild(chk(c, 'deCima', 'Cai do alto'));
         g.appendChild(num(c, 'curva', 'Arco (px)', 'Altura do arco'));
         g.appendChild(num(c, 'ondular', 'Ondular (px)'));
@@ -218,6 +221,7 @@ FF.EstudioProps = {
         g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => FF.Estudio.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; host.mudou('Sprite da camada'); } }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));
         g.appendChild(sel(c, 'ancora', 'Âncora', [['atacante', 'quem solta (pés)'], ['alvo', 'alvo (peito)'], ['tela', 'tela']], null, 'atacante'));
+        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores'));
         g.appendChild(num(c, 'x', 'X')); g.appendChild(num(c, 'y', 'Y'));
         g.appendChild(sel(c, 'px', 'Unidade X/Y', [['', 'pixels da tela'], ['sprite', 'pixels do sprite (segue a escala da luta)']], 'Pixels do sprite: a camada fica no mesmo lugar em lutas 1×1 e 3×3', ''));
         g.appendChild(num(c, 'escala', 'Tamanho (×)', null, { passo: 0.05 }));

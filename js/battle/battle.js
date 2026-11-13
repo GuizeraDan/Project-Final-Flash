@@ -338,7 +338,7 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
     a.play(name, { loop: !!dur, fps: opts && opts.fps });
-    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null };
+    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null, atras: !!(opts && opts.atras) };
     this.fxList.push(e);
     return e;
   }
@@ -419,7 +419,7 @@ FF.Battle = class {
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
       girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
-      centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
+      atras: !!spec.atras, centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
       rot: spec.rot ? spec.rot * att.dir * Math.PI / 180 : 0, filtro: FF.Battle.filtroCor(spec.cor, spec.corForca),
       done: new Promise(r => (res = r)),
     };
@@ -590,19 +590,26 @@ FF.Battle = class {
       ctx.translate(-FF.W / 2 - cam.x, -FF.H / 2 - cam.y);
     }
     this.drawStage(ctx);
-    // quem está agindo fica na frente
-    const order = this.all.slice().sort((a, b) => (a.busy ? 1 : 0) - (b.busy ? 1 : 0));
-    order.forEach(f => f.draw(ctx, this.fx));
-    Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
-    (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t));
-    this.projectiles.forEach(p => this.desenharProjetil(ctx, p));
-    this.fxList.forEach(e => {
+    // camada de cada coisa (Estúdio: "Atrás dos lutadores"): primeiro o que fica atrás, depois os lutadores, depois a frente
+    const desenharFx = (e) => {
       const o = e.alpha != null ? { alpha: e.alpha } : undefined;
       if (!e.rot) return FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, o);
       ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(e.rot * Math.PI / 180);
       FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
       ctx.restore();
-    });
+    };
+    const camada = (atras) => {
+      (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras));
+      this.projectiles.forEach(p => { if (!!p.atras === atras) this.desenharProjetil(ctx, p); });
+      this.fxList.forEach(e => { if (!!e.atras === atras) desenharFx(e); });
+    };
+    camada(true);
+    // quem está agindo fica na frente; "naFrente"/"atras" do clipe de animação (Estúdio) mandam mais
+    const prio = (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
+    const order = this.all.slice().sort((a, b) => prio(a) - prio(b));
+    order.forEach(f => f.draw(ctx, this.fx));
+    Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
+    camada(false);
     ctx.restore();
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);
