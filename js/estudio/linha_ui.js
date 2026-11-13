@@ -301,6 +301,32 @@ FF.EstudioLinha = class {
       ctx.fillStyle = '#36c8d8'; ctx.font = '10px sans-serif'; ctx.textBaseline = 'middle';
       ctx.fillText('🔗', xe - 13, ye);
     }
+    // guias de alinhamento (ao arrastar um clipe): linha ciano onde o início/fim bate com outros clipes, quadros ou o cursor
+    for (const g of (this.guias || [])) {
+      const x = Math.round(g.t * pxs) + 0.5;
+      const ys = g.linhas.map(({ c, tr }) => this.yDe(c, tr));
+      let ya = Math.min(...ys) + 1, yb = Math.max(...ys) + LH - 3;
+      if (g.cursor || g.limite) { ya = RG; yb = H; }
+      ctx.save();
+      ctx.strokeStyle = '#3cf0ff'; ctx.lineWidth = 1.5; ctx.setLineDash([5, 3]);
+      ctx.shadowColor = '#3cf0ff'; ctx.shadowBlur = 4;
+      ctx.beginPath(); ctx.moveTo(x, ya); ctx.lineTo(x, yb); ctx.stroke();
+      ctx.setLineDash([]); ctx.shadowBlur = 0;
+      // marquinhas nas bordas que batem (losango = borda de clipe, traço = quadro da animação)
+      ctx.fillStyle = '#3cf0ff';
+      g.linhas.forEach(({ c, tr, tipo }) => {
+        const ym = this.yDe(c, tr) + 3 + (LH - 7) / 2;
+        if (tipo === 'quadro') ctx.fillRect(x - 3, ym - 1, 7, 2);
+        else { ctx.beginPath(); ctx.moveTo(x, ym - 4); ctx.lineTo(x + 4, ym); ctx.lineTo(x, ym + 4); ctx.lineTo(x - 4, ym); ctx.closePath(); ctx.fill(); }
+      });
+      // etiqueta com o tempo na régua
+      const txt = this.fmt(g.t).replace(/ s \(/, 's (');
+      ctx.font = 'bold 10px monospace'; ctx.textBaseline = 'top';
+      const tw = ctx.measureText(txt).width + 8;
+      ctx.fillStyle = '#0e3d47'; ctx.fillRect(x - tw / 2, RG - 13, tw, 13);
+      ctx.fillStyle = '#3cf0ff'; ctx.fillText(txt, x - tw / 2 + 4, RG - 12);
+      ctx.restore();
+    }
     // cursor
     const xc = Math.round(this.host.t * pxs) + 0.5;
     ctx.fillStyle = '#ff4a6a'; ctx.fillRect(xc - 0.5, 0, 2, H);
@@ -340,8 +366,29 @@ FF.EstudioLinha = class {
     }
     let best = null, bd = lim;
     cand.forEach(x => { const dd = Math.abs(x - t); if (dd < bd) { bd = dd; best = x; } });
+    this._encaixou = best != null;   // true = bateu num clipe/quadro/cursor (não só na grade de 1/60 s)
     if (best != null) return Math.max(0, Math.round(best * 1000) / 1000);
     return Math.max(0, Math.round(Math.round(t * 60) / 60 * 1000) / 1000);
+  }
+
+  // onde o clipe arrastado (início e fim) bate exatamente com outras coisas da linha
+  alinhamentos(c0, tr0) {
+    const eps = 0.0015, d0 = this.host.dur(c0, tr0);
+    const pts = d0 > 0 ? [c0.t, c0.t + d0] : [c0.t];
+    const L = this.host.linha();
+    const res = [];
+    for (const p of pts) {
+      const linhas = [{ c: c0, tr: tr0, tipo: 'borda' }];
+      for (const { c, tr } of this.todos()) {
+        if (c === c0) continue;
+        const d = this.host.dur(c, tr);
+        if (Math.abs(c.t - p) < eps || (d > 0 && Math.abs(c.t + d - p) < eps)) { linhas.push({ c, tr, tipo: 'borda' }); continue; }
+        if ((this.host.quadros(c, tr) || []).some(q => q > 0 && q < d && Math.abs(c.t + q - p) < eps)) linhas.push({ c, tr, tipo: 'quadro' });
+      }
+      const cursor = Math.abs(this.host.t - p) < eps, limite = p > 0 && Math.abs((L.duracao || 0) - p) < eps;
+      if (linhas.length > 1 || cursor || limite) res.push({ t: p, linhas, cursor, limite });
+    }
+    return res;
   }
 
   ligarPonteiro() {
@@ -381,14 +428,16 @@ FF.EstudioLinha = class {
       arr.mexeu = true;
       const dt = (p.x - arr.x0) / this.pxs;
       if (arr.modo === 'mover') {
-        const novo = this.encaixar(arr.t0 + dt, arr.c, e.altKey);
-        // encaixa também pelo fim do clipe
-        const fim = this.encaixar(arr.t0 + dt + arr.d0, arr.c, e.altKey) - arr.d0;
-        arr.c.t = Math.max(0, Math.abs(fim - (arr.t0 + dt)) < Math.abs(novo - (arr.t0 + dt)) ? Math.round(fim * 1000) / 1000 : novo);
+        const novo = this.encaixar(arr.t0 + dt, arr.c, e.altKey), realIni = !!this._encaixou;
+        // encaixa também pelo fim do clipe (um encaixe de verdade ganha da grade de quadros)
+        const fim = this.encaixar(arr.t0 + dt + arr.d0, arr.c, e.altKey) - arr.d0, realFim = !!this._encaixou;
+        const usarFim = realFim !== realIni ? realFim : Math.abs(fim - (arr.t0 + dt)) < Math.abs(novo - (arr.t0 + dt));
+        arr.c.t = Math.max(0, usarFim ? Math.round(fim * 1000) / 1000 : novo);
       } else {
         const fim = this.encaixar(arr.t0 + arr.d0 + dt, arr.c, e.altKey);
         arr.c.d = Math.max(0.02, Math.round((fim - arr.c.t) * 1000) / 1000);
       }
+      this.guias = this.alinhamentos(arr.c, arr.tr);
       this.host.mudou(arr.modo === 'mover' ? 'Mover clipe' : 'Esticar clipe', true, true);
     });
     const fim = () => {
@@ -396,6 +445,7 @@ FF.EstudioLinha = class {
       if (arr && arr.modo === 'cursor') this.host.irPara(this.host.t, false);
       if (arr && arr.modo === 'loop') this.host.aoMudarLoop && this.host.aoMudarLoop();
       arr = null;
+      if (this.guias) { this.guias = null; this.desenhar(); }
     };
     this.cv.addEventListener('pointerup', fim);
     this.cv.addEventListener('pointercancel', fim);

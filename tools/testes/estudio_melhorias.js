@@ -117,6 +117,23 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   s = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').tl._fantasmas.length);
   ok(s >= 2, 'marcas das explosões dos projéteis na trilha Efeitos (' + s + ')');
 
+  // ---- guias de alinhamento ao arrastar um clipe
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes'); g.tl.render();
+    const todos = g.tl.todos().filter(({ c, tr }) => g.tl.host.dur(c, tr) > 0.05);
+    const a = todos[0], b = todos.find(x => x.tr !== a.tr);
+    a.c.t = Math.round((b.c.t + 0.4) * 1000) / 1000; g.tl.render();   // longe do alvo
+    const r = g.tl.cv.getBoundingClientRect();
+    return { x: r.left + a.c.t * g.tl.pxs + 6, y: r.top + g.tl.yDe(a.c, a.tr) + 10, alvoX: r.left + b.c.t * g.tl.pxs + 6, idA: a.c.id, tB: b.c.t, tA: a.c.t, trA: a.tr.id, trB: b.tr.id, scroll: g.tl.area.scrollLeft, cvw: r.width, rl: r.left };
+  });
+  await p.mouse.move(s.x, s.y); await p.mouse.down();
+  await p.mouse.move(s.x - 20, s.y, { steps: 3 }); await p.mouse.move(s.alvoX + 2, s.y, { steps: 8 });
+  const guias = await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); const a = g.tl.host.achar(id); return { guias: (g.tl.guias || []).map(x => ({ t: x.t, n: x.linhas.length })), t: a.c.t }; }, s.idA);
+  await p.screenshot({ path: OUT + '/0c_guias.png' });
+  await p.mouse.up();
+  const depois = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').tl.guias);
+  ok(Math.abs(guias.t - s.tB) < 0.002 && guias.guias.some(x => Math.abs(x.t - s.tB) < 0.002 && x.n >= 2) && !depois, 'arrastar um clipe até o início de outro mostra a guia de alinhamento (' + JSON.stringify(guias) + ') e some ao soltar');
+
   // ---- miniaturas animadas nos campos de efeito (projétil da Rajada de Ki do Bills)
   await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
   await pronto(); await p.waitForTimeout(800);
