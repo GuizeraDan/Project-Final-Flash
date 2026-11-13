@@ -664,10 +664,14 @@
         g.appendChild(tb);
         g.appendChild(E().botao('＋ Regra', () => { d.ia.push({ golpe: Object.keys(disp)[0], peso: 3 }); this.mudar('Nova regra'); this.renderPainel(); }));
         // chance de cada golpe (sem condições)
-        const tot = d.ia.filter(r => !r.hpAbaixo && !r.kiAbaixo).reduce((s, r) => s + (r.peso || 1), 0);
+        const sup = (r) => !!(disp[r.golpe] || {}).supremo;
+        const base = d.ia.filter(r => !r.hpAbaixo && !r.kiAbaixo && !sup(r));
+        const tot = base.reduce((s, r) => s + (r.peso || 1), 0);
+        const sups = d.ia.filter(sup);
+        if (sups.length) g.appendChild(E().el('p', 'es-dica', '⚡ ' + sups.map(r => (disp[r.golpe] || {}).nome || r.golpe).join(', ') + ': supremo — o computador só usa quando a barra de Fúria (Rage) enche; o peso não vale para ele.'));
         if (tot) {
           const p = E().el('p', 'es-dica');
-          p.textContent = 'Chance (sem condições, ki sobrando): ' + d.ia.filter(r => !r.hpAbaixo && !r.kiAbaixo).map(r => ((disp[r.golpe] || {}).nome || r.golpe) + ' ' + Math.round(100 * (r.peso || 1) / tot) + '%').join(' · ');
+          p.textContent = 'Chance (sem condições, ki sobrando): ' + base.map(r => ((disp[r.golpe] || {}).nome || r.golpe) + ' ' + Math.round(100 * (r.peso || 1) / tot) + '%').join(' · ');
           g.appendChild(p);
         }
       }

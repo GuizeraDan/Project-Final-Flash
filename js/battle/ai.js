@@ -29,6 +29,7 @@ FF.AI = {
     const ok = regras.filter(r => {
       const m = actor.def.golpes[r.golpe];
       if (!m) return false;
+      if (m.supremo) return false;   // supremo só sai com a Fúria cheia (battle.turn escolhe antes de chamar a IA)
       if (FF.UI && FF.UI.visivel && !FF.UI.visivel(actor, m)) return false;
       if ((m.custoKi || 0) > actor.ki) return false;
       if (m.requer && FF.UI && FF.UI.meets && !FF.UI.meets(actor, m.requer)) return false;
@@ -36,7 +37,7 @@ FF.AI = {
       if (r.kiAbaixo && actor.ki >= r.kiAbaixo) return false;
       return true;
     });
-    if (!ok.length) return actor.form.golpes[0];
+    if (!ok.length) return actor.form.golpes.find(id => !(actor.def.golpes[id] || {}).supremo) || actor.form.golpes[0];
     const total = ok.reduce((s, r) => s + (r.peso || 1), 0);
     let x = Math.random() * total;
     for (const r of ok) { x -= (r.peso || 1); if (x <= 0) return r.golpe; }
