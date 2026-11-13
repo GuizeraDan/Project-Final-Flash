@@ -751,7 +751,7 @@ window.FF = window.FF || {};
         const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
         if (f) {
           const dx = c.x != null ? c.x + (FF.W - 1084) / 2 : f.homeX, dy = f.groundY + (c.y || 0);
-          L.push({ k: 'destino', x: dx, y: dy - 30 * f.scale, px: dx, py: dy, cor: '#5fe08a', f });
+          L.push({ k: 'destino', x: dx, y: dy - 30 * f.scale, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover' });
         }
       }
       if (c.tipo === 'anim' && r.f) {   // lutador: mover (branca), tamanho (amarela) e giro (azul), como os efeitos
@@ -790,6 +790,12 @@ window.FF = window.FF || {};
           if (an && an.frames && an.frames[0]) FF.drawFrame(ctx, f.sprite, an.frames[0], h.px, h.py, f.scale, f.dir < 0, { alpha: 0.45 });
           ctx.strokeStyle = 'rgba(95,224,138,0.8)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.moveTo(h.px - 22, f.groundY); ctx.lineTo(h.px + 22, f.groundY); ctx.moveTo(h.px, f.groundY); ctx.lineTo(h.px, h.py); ctx.stroke(); ctx.setLineDash([]);
+          if (h.mover) {   // caminho do movimento (com o arco), a partir de onde o lutador está agora
+            const x0 = f.x, y0 = f.y - 30 * f.scale, x1 = h.px, y1 = h.py - 30 * f.scale;
+            ctx.strokeStyle = 'rgba(95,224,138,0.9)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]); ctx.beginPath();
+            for (let i = 0; i <= 24; i++) { const e = i / 24, x = x0 + (x1 - x0) * e, y = y0 + (y1 - y0) * e - h.arco * Math.sin(Math.PI * e); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+            ctx.stroke(); ctx.setLineDash([]);
+          }
         }
         if (h.caixa && h.k !== 'sprite') { ctx.strokeStyle = '#b06cff'; ctx.lineWidth = 2; ctx.strokeRect(h.caixa.x, h.caixa.y, h.caixa.w, h.caixa.h); }
         if (h.k === 'escala' || h.k === 'giro') { ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(h.cx, h.cy); ctx.lineTo(h.x, h.y); ctx.stroke(); }

@@ -133,7 +133,12 @@ FF.EstudioProps = {
           g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120)'));
         }
         g.appendChild(E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }));
-        if (c.tipo === 'mover') g.appendChild(E.campo('check', 'Suave', c.suave !== false, (v) => { if (v) delete c.suave; else c.suave = false; host.mudou('Suave'); }));
+        if (c.tipo === 'mover') {
+          g.appendChild(E.campo('check', 'Suave', c.suave !== false, (v) => { if (v) delete c.suave; else c.suave = false; host.mudou('Suave'); }));
+          g.appendChild(num(c, 'arco', 'Arco (px)', 'Curva do caminho: positivo = sobe no meio (arremesso), negativo = desce'));
+          g.appendChild(num(c, 'girar', 'Girar (voltas)', 'Quantas voltas dá no caminho (ex.: 1.5); negativo = ao contrário', { passo: 0.25 }));
+          g.appendChild(chk(c, 'manterGiro', 'Ficar girado no fim'));
+        }
         break;
       }
       case 'visivel': g.appendChild(num(c, 'alpha', 'Opacidade', '0 = some, 1 = aparece', { passo: 0.1, min: 0, max: 1 })); break;

@@ -269,10 +269,11 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const wav = (() => { const n = 8000, b = Buffer.alloc(44 + n * 2); b.write('RIFF', 0); b.writeUInt32LE(36 + n * 2, 4); b.write('WAVEfmt ', 8); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(8000, 24); b.writeUInt32LE(16000, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34); b.write('data', 36); b.writeUInt32LE(n * 2, 40); for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(8000 * Math.sin(i / 8)), 44 + i * 2); return b; })();
   await p.evaluate(() => FF.Estudio.escolherSom('', () => {}));
   await p.setInputFiles('.es-sons input[type=file]', { name: 'Meu Grito Teste.wav', mimeType: 'audio/wav', buffer: wav });
-  await p.waitForFunction(() => document.querySelector('.es-sons .es-seletor-fonte.sel') && /Meus sons/.test(document.querySelector('.es-sons .es-seletor-fonte.sel').textContent) && document.querySelectorAll('.es-sons .es-som').length === 1, null, { timeout: 15000 });
+  await p.waitForFunction(() => document.querySelector('.es-sons .es-seletor-fonte.sel') && /Meus sons/.test(document.querySelector('.es-sons .es-seletor-fonte.sel').textContent) && [...document.querySelectorAll('.es-sons .es-som-nome')].some(x => /meu_grito_teste/.test(x.dataset.id)), null, { timeout: 15000 });
   s = await p.evaluate(async () => {
-    const id = document.querySelector('.es-sons .es-som .es-som-nome').dataset.id;
-    const nome1 = document.querySelector('.es-sons .es-som .es-som-nome').textContent;
+    const el1 = [...document.querySelectorAll('.es-sons .es-som-nome')].find(x => /meu_grito_teste/.test(x.dataset.id));
+    const id = el1.dataset.id;
+    const nome1 = el1.textContent;
     FF.SonsUsr.renomear('vvgn101', 'Vegeta grito teste');
     FF.SonsUsr.apagar('acervo/uh/explosion1', true);
     document.querySelectorAll('.es-modal').forEach(m => m.remove());
@@ -314,6 +315,21 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     return { txt, nome, volta: FF.Assets.nomeAnim('fx', 'hit_grande') };
   });
   ok(s.txt === 'Faísca grande' && s.nome === 'Faísca grande' && s.volta === 'hit_grande', 'renomear animação no cartão: ' + JSON.stringify(s));
+
+  // ---- arremessar o alvo: mover para um ponto da tela com arco e giro
+  await p.goto(R + 'estudio.html?aba=golpes&personagem=goku&golpe=kaioken'); await pronto(); await p.waitForTimeout(800);
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const tr = g.doc.linha.trilhas.find(t => t.id === 'alvo');
+    const c = { id: 'arremesso', tipo: 'mover', t: 0.05, d: 0.6, para: 'x', x: 500, y: -300, arco: 150, girar: 1, animMov: 'lancado' };
+    tr.clipes.push(c); g.sel = c.id; g.mudou('teste');
+    g.irPara(0.35); const f = g.palco._b.alvo, meio = { y: Math.round(f.y - f.groundY), rot: Math.round(f.rotExtra) };
+    g.irPara(0.8); const f2 = g.palco._b.alvo, fim = { x: Math.round(f2.x - (FF.W - 1084) / 2), y: Math.round(f2.y - f2.groundY) };
+    g.redesenhar();
+    tr.clipes.splice(tr.clipes.indexOf(c), 1); g.sel = null; g.mudou('teste');
+    return { meio, fim };
+  });
+  ok(s.fim.x === 500 && s.fim.y === -300 && s.meio.y < -300 && Math.abs(s.meio.rot) > 90, 'arremessar o alvo (mover com arco e giro): ' + JSON.stringify(s));
 
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {

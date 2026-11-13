@@ -6,7 +6,7 @@
 //  lutador  (quem: "atacante" | "alvo" | id de um parceiro, ex.: "piccolo")
 //     {tipo:"anim", anim, sprite? (animação de outro sprite), de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, rot? (°), alpha?, flip?,
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
-//     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?, suave?}
+//     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, suave?, arco? (px, curva para cima), girar? (voltas)}
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?}
 //     para "x" = qualquer ponto da tela: x em pixels da tela (0 a 1084), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
@@ -229,8 +229,11 @@ FF.Linha = {
             const k = Math.min(1, (t - t0) / d);
             const e = c.suave === false ? k : 1 - Math.pow(1 - k, 2);
             f.x = x0 + (dest - x0) * e;
-            f.y = y0 + (destY - y0) * e;
-            if (k >= 1) return false;
+            // arco: sobe (ou desce, se negativo) no meio do caminho, como algo arremessado
+            f.y = y0 + (destY - y0) * e - (c.arco || 0) * Math.sin(Math.PI * e);
+            // girar: voltas durante o movimento (ex.: inimigo arremessado rodando)
+            if (c.girar) f.rotExtra = c.girar * 360 * e * f.dir;
+            if (k >= 1) { if (c.girar && !c.manterGiro) f.rotExtra = 0; return false; }
           });
           return;
         }
