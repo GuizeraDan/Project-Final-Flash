@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_show_hide",{"id":"dlz_show_hide","atlases":["assets/img/acervo/dlz_show_hide_0.png"],"acervo":{"nome":"Show Hide","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,125,64,62,1]]}},"tipo":"efeito"});

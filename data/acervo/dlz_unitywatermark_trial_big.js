@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_unitywatermark_trial_big",{"id":"dlz_unitywatermark_trial_big","atlases":["assets/img/acervo/dlz_unitywatermark_trial_big_0.png"],"acervo":{"nome":"UnityWatermark-trial-big","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,452,65,226,65,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_gas_skill",{"id":"dlz_gas_skill","atlases":["assets/img/acervo/dlz_gas_skill_0.png"],"acervo":{"nome":"Gas Skill","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,100,0,35,36,18,18,1],[0,0,0,99,38,50,19,1]]}},"tipo":"efeito"});

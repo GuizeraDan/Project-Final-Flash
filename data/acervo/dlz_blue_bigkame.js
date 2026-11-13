@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_blue_bigkame",{"id":"dlz_blue_bigkame","atlases":["assets/img/acervo/dlz_blue_bigkame_0.png"],"acervo":{"nome":"Blue BigKame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,545,0,544,139,0,70,1],[0,0,0,544,150,0,75,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_triangle",{"id":"dlz_triangle","atlases":["assets/img/acervo/dlz_triangle_0.png"],"acervo":{"nome":"Triangle","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,567,501,284,250,1]]}}});

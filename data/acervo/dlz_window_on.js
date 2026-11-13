@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_window_on",{"id":"dlz_window_on","atlases":["assets/img/acervo/dlz_window_on_0.png"],"acervo":{"nome":"window on","fonte":"Dragon Legend Z","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,17,27,8,27,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_frieza_final_form_prv",{"id":"dlz_frieza_final_form_prv","atlases":["assets/img/acervo/dlz_frieza_final_form_prv_0.png"],"acervo":{"nome":"Frieza Final Form PRV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,1011,350,506,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_middle",{"id":"dlz_middle","atlases":["assets/img/acervo/dlz_middle_0.png"],"acervo":{"nome":"Middle","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,144,240,72,120,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_gold_btn",{"id":"dlz_gold_btn","atlases":["assets/img/acervo/dlz_gold_btn_0.png"],"acervo":{"nome":"Gold Btn","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,222,106,111,53,1]]}}});

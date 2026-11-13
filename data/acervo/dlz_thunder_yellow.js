@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_thunder_yellow",{"id":"dlz_thunder_yellow","atlases":["assets/img/acervo/dlz_thunder_yellow_0.png"],"acervo":{"nome":"Thunder Yellow","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,86,0,82,84,41,42,1],[0,0,0,85,84,42,42,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_handle_plain",{"id":"dlz_handle_plain","atlases":["assets/img/acervo/dlz_handle_plain_0.png"],"acervo":{"nome":"Handle_Plain","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,257,256,128,128,1]]}},"tipo":"efeito"});

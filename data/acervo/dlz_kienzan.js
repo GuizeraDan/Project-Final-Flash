@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_kienzan",{"id":"dlz_kienzan","atlases":["assets/img/acervo/dlz_kienzan_0.png"],"acervo":{"nome":"Kienzan","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,62,0,57,23,28,12,1],[0,0,0,61,23,30,12,1]]}},"tipo":"efeito"});

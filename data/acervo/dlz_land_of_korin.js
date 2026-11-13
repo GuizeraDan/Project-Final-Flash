@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_land_of_korin",{"id":"dlz_land_of_korin","atlases":["assets/img/acervo/dlz_land_of_korin_0.png"],"acervo":{"nome":"Land Of Korin","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets18.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,256,1],[0,513,0,512,512,256,256,1]]}}});

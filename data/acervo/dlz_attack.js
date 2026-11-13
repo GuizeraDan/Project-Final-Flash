@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_attack",{"id":"dlz_attack","atlases":["assets/img/acervo/dlz_attack_0.png"],"acervo":{"nome":"Attack","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,66,66,38,66,1],[0,67,0,52,66,29,66,1]]}},"tipo":"efeito"});

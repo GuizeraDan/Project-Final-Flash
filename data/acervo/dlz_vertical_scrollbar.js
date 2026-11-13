@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_vertical_scrollbar",{"id":"dlz_vertical_scrollbar","atlases":["assets/img/acervo/dlz_vertical_scrollbar_0.png"],"acervo":{"nome":"vertical scrollbar","fonte":"Dragon Legend Z","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,15,18,8,18,1]]}}});

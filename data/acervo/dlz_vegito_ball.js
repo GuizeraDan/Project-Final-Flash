@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_vegito_ball",{"id":"dlz_vegito_ball","atlases":["assets/img/acervo/dlz_vegito_ball_0.png"],"acervo":{"nome":"Vegito Ball","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,52,0,45,50,21,27,1],[0,0,0,51,52,28,31,1]]}},"tipo":"efeito"});

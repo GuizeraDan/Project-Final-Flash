@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_flag",{"id":"dlz_flag","atlases":["assets/img/acervo/dlz_flag_0.png"],"acervo":{"nome":"Flag","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,856,1024,428,512,1]]}}});

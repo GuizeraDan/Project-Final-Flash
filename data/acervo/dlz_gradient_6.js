@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_gradient_6",{"id":"dlz_gradient_6","atlases":["assets/img/acervo/dlz_gradient_6_0.png"],"acervo":{"nome":"gradient (6)","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,128,128,64,64,1]]}},"tipo":"efeito"});

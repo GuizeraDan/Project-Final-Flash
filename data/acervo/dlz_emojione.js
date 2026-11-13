@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_emojione",{"id":"dlz_emojione","atlases":["assets/img/acervo/dlz_emojione_0.png"],"acervo":{"nome":"EmojiOne","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,504,504,252,504,1]]}}});

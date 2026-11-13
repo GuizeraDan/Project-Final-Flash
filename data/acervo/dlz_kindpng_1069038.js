@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_kindpng_1069038",{"id":"dlz_kindpng_1069038","atlases":["assets/img/acervo/dlz_kindpng_1069038_0.png"],"acervo":{"nome":"kindpng_1069038","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,251,256,126,1]]}},"tipo":"efeito"});

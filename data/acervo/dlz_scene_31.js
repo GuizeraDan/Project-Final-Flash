@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_scene_31",{"id":"dlz_scene_31","atlases":["assets/img/acervo/dlz_scene_31_0.png"],"acervo":{"nome":"Scene 31","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,240,140,120,70,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_purple_fireball",{"id":"dlz_purple_fireball","atlases":["assets/img/acervo/dlz_purple_fireball_0.png"],"acervo":{"nome":"Purple Fireball","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,33,29,29,1],[0,34,0,32,32,28,28,1]]}},"tipo":"efeito"});

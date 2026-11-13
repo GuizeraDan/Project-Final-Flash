@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_uielement8px",{"id":"dlz_uielement8px","atlases":["assets/img/acervo/dlz_uielement8px_0.png"],"acervo":{"nome":"UIElement8px","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,8,4,4,1]]}},"tipo":"efeito"});

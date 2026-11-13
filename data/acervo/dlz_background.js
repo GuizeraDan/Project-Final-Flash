@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_background",{"id":"dlz_background","atlases":["assets/img/acervo/dlz_background_0.png"],"acervo":{"nome":"Background","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,32,16,16,1]]}}});

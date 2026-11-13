@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_ldr_lll1_20",{"id":"dlz_ldr_lll1_20","atlases":["assets/img/acervo/dlz_ldr_lll1_20_0.png"],"acervo":{"nome":"LDR_LLL1_20","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,16,1]]}},"tipo":"efeito"});

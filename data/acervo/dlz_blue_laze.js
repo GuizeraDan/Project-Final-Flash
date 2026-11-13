@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_blue_laze",{"id":"dlz_blue_laze","atlases":["assets/img/acervo/dlz_blue_laze_0.png"],"acervo":{"nome":"Blue Laze","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,81,12,0,6,1]]}},"tipo":"efeito"});

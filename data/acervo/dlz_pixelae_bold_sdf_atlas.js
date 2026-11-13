@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_pixelae_bold_sdf_atlas",{"id":"dlz_pixelae_bold_sdf_atlas","atlases":["assets/img/acervo/dlz_pixelae_bold_sdf_atlas_0.png"],"acervo":{"nome":"PixelAE-Bold SDF Atlas","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,507,503,254,503,1]]}}});

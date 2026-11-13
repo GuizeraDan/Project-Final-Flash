@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_a_4_7",{"id":"dlz_a_4_7","atlases":["assets/img/acervo/dlz_a_4_7_0.png"],"acervo":{"nome":"a_4-7","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets25.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,140,48,70,48,1]]}},"tipo":"efeito"});

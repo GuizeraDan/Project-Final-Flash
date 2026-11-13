@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_scene_9",{"id":"dlz_scene_9","atlases":["assets/img/acervo/dlz_scene_9_0.png"],"acervo":{"nome":"Scene 9","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,240,140,120,70,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_inputfieldbackground",{"id":"dlz_inputfieldbackground","atlases":["assets/img/acervo/dlz_inputfieldbackground_0.png"],"acervo":{"nome":"InputFieldBackground","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,32,16,16,1]]}}});

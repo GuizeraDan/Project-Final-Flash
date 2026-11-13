@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_shockwave_trans",{"id":"dlz_shockwave_trans","atlases":["assets/img/acervo/dlz_shockwave_trans_0.png"],"acervo":{"nome":"Shockwave Trans","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,564,560,282,280,1]]}}});

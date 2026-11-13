@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_temple_night",{"id":"dlz_temple_night","atlases":["assets/img/acervo/dlz_temple_night_0.png"],"acervo":{"nome":"Temple Night","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets16.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,349,0,279,134,140,67,1],[0,0,0,348,205,174,102,1]]}},"tipo":"efeito"});

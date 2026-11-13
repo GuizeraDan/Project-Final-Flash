@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_yellow_fireball_2",{"id":"dlz_yellow_fireball_2","atlases":["assets/img/acervo/dlz_yellow_fireball_2_0.png"],"acervo":{"nome":"Yellow Fireball 2","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,37,21,37,10,1]]}},"tipo":"efeito"});

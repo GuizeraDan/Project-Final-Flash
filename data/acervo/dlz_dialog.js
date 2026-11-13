@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_dialog",{"id":"dlz_dialog","atlases":["assets/img/acervo/dlz_dialog_0.png"],"acervo":{"nome":"dialog","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,290,162,145,81,1]]}}});

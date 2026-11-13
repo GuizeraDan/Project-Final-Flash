@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_square",{"id":"dlz_square","atlases":["assets/img/acervo/dlz_square_0.png"],"acervo":{"nome":"Square","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,256,256,128,128,1]]}},"tipo":"efeito"});

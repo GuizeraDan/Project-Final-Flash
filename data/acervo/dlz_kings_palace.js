@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_kings_palace",{"id":"dlz_kings_palace","atlases":["assets/img/acervo/dlz_kings_palace_0.png"],"acervo":{"nome":"Kings Palace","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets19.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,513,0,512,408,256,204,1],[0,0,0,512,512,256,256,1]]}}});

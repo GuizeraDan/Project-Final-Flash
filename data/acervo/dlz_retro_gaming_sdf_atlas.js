@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_retro_gaming_sdf_atlas",{"id":"dlz_retro_gaming_sdf_atlas","atlases":["assets/img/acervo/dlz_retro_gaming_sdf_atlas_0.png"],"acervo":{"nome":"Retro Gaming SDF Atlas","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,506,510,253,510,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_pxart_1",{"id":"dlz_pxart_1","atlases":["assets/img/acervo/dlz_pxart_1_0.png"],"acervo":{"nome":"pxArt (1)","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,457,361,228,180,1]]}},"tipo":"efeito"});

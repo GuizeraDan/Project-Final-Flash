@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_esctoexit_back",{"id":"dlz_esctoexit_back","atlases":["assets/img/acervo/dlz_esctoexit_back_0.png"],"acervo":{"nome":"EscToExit_back","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,74,71,37,71,1]]}},"tipo":"efeito"});

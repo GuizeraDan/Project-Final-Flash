@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_default_particle",{"id":"dlz_default_particle","atlases":["assets/img/acervo/dlz_default_particle_0.png"],"acervo":{"nome":"Default-Particle","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,61,61,30,61,1]]}},"tipo":"efeito"});

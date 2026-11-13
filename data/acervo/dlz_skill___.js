@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_skill___",{"id":"dlz_skill___","atlases":["assets/img/acervo/dlz_skill____0.png"],"acervo":{"nome":"SKill","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,70,36,23,36,1],[0,71,0,59,36,15,36,1]]}},"tipo":"efeito"});

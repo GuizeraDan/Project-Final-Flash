@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_btn",{"id":"dlz_btn","atlases":["assets/img/acervo/dlz_btn_0.png"],"acervo":{"nome":"Btn","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,414,173,207,86,1]]}}});

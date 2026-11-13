@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_purple",{"id":"dlz_purple","atlases":["assets/img/acervo/dlz_purple_0.png"],"acervo":{"nome":"Purple","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2048,584,1024,292,1]]}}});

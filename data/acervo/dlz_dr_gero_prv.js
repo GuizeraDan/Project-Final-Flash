@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_dr_gero_prv",{"id":"dlz_dr_gero_prv","atlases":["assets/img/acervo/dlz_dr_gero_prv_0.png"],"acervo":{"nome":"Dr Gero PRV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,689,1024,344,512,1]]}}});

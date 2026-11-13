@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_allaxis_outline",{"id":"dlz_allaxis_outline","atlases":["assets/img/acervo/dlz_allaxis_outline_0.png"],"acervo":{"nome":"AllAxis_Outline","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,256,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_gold",{"id":"dlz_gold","atlases":["assets/img/acervo/dlz_gold_0.png"],"acervo":{"nome":"Gold","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,49,0,30,35,15,18,1],[0,80,0,29,35,14,18,1],[0,0,0,48,38,24,19,1]]}},"tipo":"efeito"});

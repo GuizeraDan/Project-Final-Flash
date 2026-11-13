@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_prv______",{"id":"dlz_prv______","atlases":["assets/img/acervo/dlz_prv_______0.png"],"acervo":{"nome":"PRV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,1151,350,576,1]]}}});

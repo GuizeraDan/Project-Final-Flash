@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_coins",{"id":"dlz_coins","atlases":["assets/img/acervo/dlz_coins_0.png"],"acervo":{"nome":"Coins","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,57,0,49,52,24,26,1],[0,0,0,56,52,28,26,1]]}}});

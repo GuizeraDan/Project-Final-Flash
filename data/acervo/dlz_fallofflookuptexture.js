@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_fallofflookuptexture",{"id":"dlz_fallofflookuptexture","atlases":["assets/img/acervo/dlz_fallofflookuptexture_0.png"],"acervo":{"nome":"FalloffLookupTexture","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2048,128,1024,128,1]]}}});

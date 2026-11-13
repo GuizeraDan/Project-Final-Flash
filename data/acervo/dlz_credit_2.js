@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_credit_2",{"id":"dlz_credit_2","atlases":["assets/img/acervo/dlz_credit_2_0.png"],"acervo":{"nome":"Credit 2","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,2048,1162,1024,581,1]]}}});

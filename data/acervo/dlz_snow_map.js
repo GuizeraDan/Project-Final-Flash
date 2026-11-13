@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_snow_map",{"id":"dlz_snow_map","atlases":["assets/img/acervo/dlz_snow_map_0.png"],"acervo":{"nome":"Snow Map","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets20.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,510,322,255,161,1]]}}});

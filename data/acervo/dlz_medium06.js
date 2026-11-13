@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_medium06",{"id":"dlz_medium06","atlases":["assets/img/acervo/dlz_medium06_0.png"],"acervo":{"nome":"Medium06","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,512,1]]}}});

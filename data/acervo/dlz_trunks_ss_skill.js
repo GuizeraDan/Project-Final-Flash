@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_trunks_ss_skill",{"id":"dlz_trunks_ss_skill","atlases":["assets/img/acervo/dlz_trunks_ss_skill_0.png"],"acervo":{"nome":"Trunks SS SKill","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,101,87,9,44,1],[0,102,0,100,81,9,40,1]]}},"tipo":"efeito"});

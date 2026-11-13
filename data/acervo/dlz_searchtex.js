@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_searchtex",{"id":"dlz_searchtex","atlases":["assets/img/acervo/dlz_searchtex_0.png"],"acervo":{"nome":"SearchTex","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,12,21,12,1]]}},"tipo":"efeito"});

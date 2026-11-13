@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_pose_",{"id":"dlz_pose_","atlases":["assets/img/acervo/dlz_pose__0.png"],"acervo":{"nome":"Pose","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,33,47,16,47,1]]}},"tipo":"efeito"});

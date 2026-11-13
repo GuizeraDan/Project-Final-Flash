@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_ultra_ego_aura_2",{"id":"dlz_ultra_ego_aura_2","atlases":["assets/img/acervo/dlz_ultra_ego_aura_2_0.png"],"acervo":{"nome":"Ultra Ego Aura 2","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,42,63,21,32,1],[0,43,0,42,63,21,32,1]]}},"tipo":"efeito"});

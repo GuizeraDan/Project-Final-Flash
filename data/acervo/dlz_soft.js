@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_soft",{"id":"dlz_soft","atlases":["assets/img/acervo/dlz_soft_0.png"],"acervo":{"nome":"Soft","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,126,126,63,126,1]]}},"tipo":"efeito"});

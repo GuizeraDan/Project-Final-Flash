@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_purple_trunks_prv",{"id":"dlz_purple_trunks_prv","atlases":["assets/img/acervo/dlz_purple_trunks_prv_0.png"],"acervo":{"nome":"Purple Trunks PRV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,1009,308,296,1]]}}});

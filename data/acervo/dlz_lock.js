@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_lock",{"id":"dlz_lock","atlases":["assets/img/acervo/dlz_lock_0.png"],"acervo":{"nome":"lock","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,512,256,256,1]]}}});

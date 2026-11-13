@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_raw_kame",{"id":"dlz_raw_kame","atlases":["assets/img/acervo/dlz_raw_kame_0.png"],"acervo":{"nome":"Raw Kame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,262,128,0,64,1],[0,263,0,262,128,0,64,1]]}},"tipo":"efeito"});

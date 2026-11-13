@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_transform_mask",{"id":"dlz_transform_mask","atlases":["assets/img/acervo/dlz_transform_mask_0.png"],"acervo":{"nome":"Transform Mask","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,2,28,1,1]]}},"tipo":"efeito"});

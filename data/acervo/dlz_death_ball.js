@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_death_ball",{"id":"dlz_death_ball","atlases":["assets/img/acervo/dlz_death_ball_0.png"],"acervo":{"nome":"Death Ball","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,94,87,45,43,1],[0,95,0,94,87,51,43,1]]}},"tipo":"efeito"});

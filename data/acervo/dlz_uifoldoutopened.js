@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_uifoldoutopened",{"id":"dlz_uifoldoutopened","atlases":["assets/img/acervo/dlz_uifoldoutopened_0.png"],"acervo":{"nome":"UIFoldoutOpened","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,11,11,6,6,1]]}},"tipo":"efeito"});

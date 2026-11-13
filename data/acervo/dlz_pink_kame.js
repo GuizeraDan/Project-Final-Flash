@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_pink_kame",{"id":"dlz_pink_kame","atlases":["assets/img/acervo/dlz_pink_kame_0.png"],"acervo":{"nome":"Pink Kame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,270,85,0,42,1],[0,271,0,269,81,0,40,1]]}},"tipo":"efeito"});

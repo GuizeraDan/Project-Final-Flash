@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_red_kame",{"id":"dlz_red_kame","atlases":["assets/img/acervo/dlz_red_kame_0.png"],"acervo":{"nome":"Red Kame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,926,0,466,135,0,68,1],[0,0,0,460,151,0,76,1],[0,461,0,464,137,0,68,1]]}},"tipo":"efeito"});

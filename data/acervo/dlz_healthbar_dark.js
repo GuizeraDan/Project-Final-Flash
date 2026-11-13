@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_healthbar_dark",{"id":"dlz_healthbar_dark","atlases":["assets/img/acervo/dlz_healthbar_dark_0.png"],"acervo":{"nome":"HealthBar DARK","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,10,32,5,1]]}},"tipo":"efeito"});

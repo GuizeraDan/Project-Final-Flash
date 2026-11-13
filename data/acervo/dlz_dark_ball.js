@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_dark_ball",{"id":"dlz_dark_ball","atlases":["assets/img/acervo/dlz_dark_ball_0.png"],"acervo":{"nome":"Dark Ball","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,94,87,45,43,1]]}},"tipo":"efeito"});

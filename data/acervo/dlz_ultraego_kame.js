@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_ultraego_kame",{"id":"dlz_ultraego_kame","atlases":["assets/img/acervo/dlz_ultraego_kame_0.png"],"acervo":{"nome":"UltraEgo Kame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,484,0,482,129,0,64,1],[0,0,0,483,129,0,64,1]]}},"tipo":"efeito"});

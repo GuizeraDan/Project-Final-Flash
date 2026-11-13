@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_red_light_kame",{"id":"dlz_red_light_kame","atlases":["assets/img/acervo/dlz_red_light_kame_0.png"],"acervo":{"nome":"Red Light Kame","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,269,0,271,87,0,44,1],[0,0,0,268,88,0,44,1]]}},"tipo":"efeito"});

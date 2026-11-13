@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_slider_thumb",{"id":"dlz_slider_thumb","atlases":["assets/img/acervo/dlz_slider_thumb_0.png"],"acervo":{"nome":"slider thumb","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,12,4,12,1]]}},"tipo":"efeito"});

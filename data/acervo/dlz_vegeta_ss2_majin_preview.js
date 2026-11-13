@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_vegeta_ss2_majin_preview",{"id":"dlz_vegeta_ss2_majin_preview","atlases":["assets/img/acervo/dlz_vegeta_ss2_majin_preview_0.png"],"acervo":{"nome":"Vegeta SS2 Majin Preview","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,906,350,453,1]]}}});

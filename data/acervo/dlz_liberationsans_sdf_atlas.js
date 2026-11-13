@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_liberationsans_sdf_atlas",{"id":"dlz_liberationsans_sdf_atlas","atlases":["assets/img/acervo/dlz_liberationsans_sdf_atlas_0.png"],"acervo":{"nome":"LiberationSans SDF Atlas","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1022,1022,511,1022,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_uicheckmark",{"id":"dlz_uicheckmark","atlases":["assets/img/acervo/dlz_uicheckmark_0.png"],"acervo":{"nome":"UICheckMark","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,11,11,6,6,1]]}},"tipo":"efeito"});

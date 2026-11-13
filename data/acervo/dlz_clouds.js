@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_clouds",{"id":"dlz_clouds","atlases":["assets/img/acervo/dlz_clouds_0.png"],"acervo":{"nome":"Clouds","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,320,240,160,120,1]]}}});

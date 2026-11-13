@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_uisprite",{"id":"dlz_uisprite","atlases":["assets/img/acervo/dlz_uisprite_0.png"],"acervo":{"nome":"UISprite","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,32,16,16,1]]}},"tipo":"efeito"});

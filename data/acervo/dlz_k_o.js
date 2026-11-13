@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_k_o",{"id":"dlz_k_o","atlases":["assets/img/acervo/dlz_k_o_0.png"],"acervo":{"nome":"K.O","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,473,228,236,114,1]]}},"tipo":"efeito"});

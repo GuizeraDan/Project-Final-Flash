@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_pu__",{"id":"dlz_pu__","atlases":["assets/img/acervo/dlz_pu___0.png"],"acervo":{"nome":"PU","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,186,0,31,47,16,47,1],[0,132,0,53,47,26,47,1],[0,66,0,65,75,32,75,1],[0,0,0,65,78,32,78,1]]}},"tipo":"efeito"});

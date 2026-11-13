@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_orange_big_fireball",{"id":"dlz_orange_big_fireball","atlases":["assets/img/acervo/dlz_orange_big_fireball_0.png"],"acervo":{"nome":"Orange Big FireBall","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,122,126,122,63,1]]}},"tipo":"efeito"});

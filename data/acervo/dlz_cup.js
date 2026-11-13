@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_cup",{"id":"dlz_cup","atlases":["assets/img/acervo/dlz_cup_0.png"],"acervo":{"nome":"cup","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,245,256,122,128,1]]}},"tipo":"efeito"});

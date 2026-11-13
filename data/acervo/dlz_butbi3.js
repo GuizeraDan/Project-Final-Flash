@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_butbi3",{"id":"dlz_butbi3","atlases":["assets/img/acervo/dlz_butbi3_0.png"],"acervo":{"nome":"Butbi3","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,144,42,0,21,1],[0,145,0,144,42,0,21,1]]}},"tipo":"efeito"});

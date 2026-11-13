@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_spritesheet_demo",{"id":"dlz_spritesheet_demo","atlases":["assets/img/acervo/dlz_spritesheet_demo_0.png"],"acervo":{"nome":"Spritesheet-DEMO","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,8,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_toggle_on_hover",{"id":"dlz_toggle_on_hover","atlases":["assets/img/acervo/dlz_toggle_on_hover_0.png"],"acervo":{"nome":"toggle on hover","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,13,6,13,1]]}},"tipo":"efeito"});

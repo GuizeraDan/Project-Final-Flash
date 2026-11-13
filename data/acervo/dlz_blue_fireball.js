@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_blue_fireball",{"id":"dlz_blue_fireball","atlases":["assets/img/acervo/dlz_blue_fireball_0.png"],"acervo":{"nome":"Blue Fireball","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,24,15,21,8,1],[0,25,0,21,15,18,8,1]]}},"tipo":"efeito"});

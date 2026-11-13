@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_health_mask",{"id":"dlz_health_mask","atlases":["assets/img/acervo/dlz_health_mask_0.png"],"acervo":{"nome":"Health Mask","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,58,4,29,2,1]]}},"tipo":"efeito"});

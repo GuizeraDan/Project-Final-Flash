@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_yellow_kamee",{"id":"dlz_yellow_kamee","atlases":["assets/img/acervo/dlz_yellow_kamee_0.png"],"acervo":{"nome":"Yellow Kamee","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,271,88,0,44,1],[0,272,0,271,88,0,44,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_black_goku_rose_prv",{"id":"dlz_black_goku_rose_prv","atlases":["assets/img/acervo/dlz_black_goku_rose_prv_0.png"],"acervo":{"nome":"Black Goku Rose PRV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,700,823,350,412,1]]}}});

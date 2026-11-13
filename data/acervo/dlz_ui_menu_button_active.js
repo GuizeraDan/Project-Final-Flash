@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_ui_menu_button_active",{"id":"dlz_ui_menu_button_active","atlases":["assets/img/acervo/dlz_ui_menu_button_active_0.png"],"acervo":{"nome":"UI-Menu-Button-Active","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,82,18,41,9,1]]}}});

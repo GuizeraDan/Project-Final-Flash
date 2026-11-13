@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_kama_second",{"id":"dlz_kama_second","atlases":["assets/img/acervo/dlz_kama_second_0.png"],"acervo":{"nome":"Kama Second","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,253,131,0,66,1]]}},"tipo":"efeito"});

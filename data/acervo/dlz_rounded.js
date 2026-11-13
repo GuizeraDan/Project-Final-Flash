@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_rounded",{"id":"dlz_rounded","atlases":["assets/img/acervo/dlz_rounded_0.png"],"acervo":{"nome":"Rounded","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,512,423,256,212,1]]}}});

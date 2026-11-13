@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_vogue_sdf_atlas",{"id":"dlz_vogue_sdf_atlas","atlases":["assets/img/acervo/dlz_vogue_sdf_atlas_0.png"],"acervo":{"nome":"Vogue SDF Atlas","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,510,509,255,509,1]]}}});

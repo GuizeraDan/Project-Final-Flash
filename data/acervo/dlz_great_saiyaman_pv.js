@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_great_saiyaman_pv",{"id":"dlz_great_saiyaman_pv","atlases":["assets/img/acervo/dlz_great_saiyaman_pv_0.png"],"acervo":{"nome":"Great Saiyaman PV","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,900,1011,450,506,1]]}}});

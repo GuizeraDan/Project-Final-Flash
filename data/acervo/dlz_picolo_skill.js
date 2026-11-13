@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_picolo_skill",{"id":"dlz_picolo_skill","atlases":["assets/img/acervo/dlz_picolo_skill_0.png"],"acervo":{"nome":"Picolo Skill","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,96,80,83,62,1],[0,97,0,90,77,77,59,1]]}},"tipo":"efeito"});

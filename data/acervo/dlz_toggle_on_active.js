@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_toggle_on_active",{"id":"dlz_toggle_on_active","atlases":["assets/img/acervo/dlz_toggle_on_active_0.png"],"acervo":{"nome":"toggle on active","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,13,6,13,1]]}},"tipo":"efeito"});

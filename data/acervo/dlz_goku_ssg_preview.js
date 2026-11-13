@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_goku_ssg_preview",{"id":"dlz_goku_ssg_preview","atlases":["assets/img/acervo/dlz_goku_ssg_preview_0.png"],"acervo":{"nome":"Goku SSG Preview","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,629,1024,314,512,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_ki_mask_1",{"id":"dlz_ki_mask_1","atlases":["assets/img/acervo/dlz_ki_mask_1_0.png"],"acervo":{"nome":"Ki Mask 1","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets2.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,2,28,1,1]]}},"tipo":"efeito"});

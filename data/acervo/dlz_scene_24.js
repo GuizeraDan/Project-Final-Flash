@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_scene_24",{"id":"dlz_scene_24","atlases":["assets/img/acervo/dlz_scene_24_0.png"],"acervo":{"nome":"Scene 24","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1444,843,722,422,1]]}}});

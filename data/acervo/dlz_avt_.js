@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_avt_",{"id":"dlz_avt_","atlases":["assets/img/acervo/dlz_avt__0.png"],"acervo":{"nome":"Avt","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,40,56,20,28,1]]}},"tipo":"efeito"});

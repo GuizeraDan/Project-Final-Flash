@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_e_4_0",{"id":"dlz_e_4_0","atlases":["assets/img/acervo/dlz_e_4_0_0.png"],"acervo":{"nome":"e_4-0","fonte":"Dragon Legend Z","tipo":"cenarios","origem":"sharedassets23.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,992,156,496,78,1]]}}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_interface",{"id":"dlz_interface","atlases":["assets/img/acervo/dlz_interface_0.png"],"acervo":{"nome":"Interface","fonte":"Dragon Legend Z","tipo":"interface","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,36,36,18,18,1]]}}});

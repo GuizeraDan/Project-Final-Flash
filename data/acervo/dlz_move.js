@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("dlz_move",{"id":"dlz_move","atlases":["assets/img/acervo/dlz_move_0.png"],"acervo":{"nome":"Move","fonte":"Dragon Legend Z","tipo":"efeitos","origem":"sharedassets1.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,39,49,20,49,1]]}},"tipo":"efeito"});
