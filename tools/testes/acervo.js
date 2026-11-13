@@ -101,6 +101,16 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(escolhido && escolhido[1] === 'zl3_freeza' && escolhido[0] === 'Special_DeathSlash', 'escolher cartão do acervo devolve sprite + animação (' + escolhido + ')');
   ok(await p.evaluate(() => !!FF.Assets.sprites.zl3_freeza), 'sprite escolhido já fica carregado para o golpe');
 
+  // jogo inteiro (Drag Warriors) separado por tipo
+  await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'cat:dw:efeitos', aoEscolher: () => {} }));
+  await p.waitForFunction(() => document.querySelectorAll('.es-seletor-subcat').length >= 3 && document.querySelectorAll('.es-modal:last-of-type .es-cartao').length > 0, null, { timeout: 20000 });
+  s = await p.evaluate(() => ({ subs: [...document.querySelectorAll('.es-seletor-subcat')].map(c => c.textContent), info: [...document.querySelectorAll('.es-seletor .es-dica')].pop().textContent,
+    ids: [...new Set([...document.querySelectorAll('.es-modal:last-of-type .es-cartao')].map(k => k.title.split(' · ')[0]))] }));
+  ok(s.subs.some(t => /Efeitos/.test(t)) && s.subs.some(t => /Personagens/.test(t)) && s.subs.some(t => /Cenários/.test(t)), 'Drag Warriors separado por tipo: ' + s.subs.join(' | '));
+  ok(s.ids.length && s.ids.every(id => /^dw_/.test(id) && indice.sprites[id].tipo === "efeitos") && !s.ids.some(id => /ldr_|toggle/.test(id)), '"Todos: efeitos" do Drag Warriors só tem efeitos (' + s.ids.length + ' sprites, ' + s.info + ')');
+  await p.screenshot({ path: OUT + '/2b_seletor_dw_efeitos.png' });
+  await p.evaluate(() => document.querySelectorAll('.es-modal').forEach(m => m.remove()));
+
   // efeitos (todos) inclui a categoria Efeitos do acervo
   await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'efeitos', aoEscolher: () => {} }));
   await p.waitForFunction(() => document.querySelectorAll('.es-modal .es-seletor').length && /animaç/.test(document.querySelectorAll('.es-seletor .es-dica')[document.querySelectorAll('.es-seletor .es-dica').length - 1].textContent), null, { timeout: 20000 });

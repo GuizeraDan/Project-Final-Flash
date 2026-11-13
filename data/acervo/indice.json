@@ -6479,6 +6479,18 @@
 "Assets_Separados/Efeitos_e_golpes/RedEffect 1"
 ]
 },
+"ast_assets_separados_efeitos_e_golpes_rocklee_fast_effect": {
+"nome": "rocklee fast effect",
+"cat": "ast",
+"tipo": "efeitos",
+"fonte": "ast",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/rocklee fast effect"
+]
+},
 "ast_assets_separados_efeitos_e_golpes_smallblast": {
 "nome": "SmallBlast",
 "cat": "ast",
@@ -6585,18 +6597,6 @@
 "atlas": 1,
 "objs": [
 "Assets_Separados/Efeitos_e_golpes/Maphongba appear"
-]
-},
-"ast_assets_separados_efeitos_e_golpes_rocklee_fast_effect": {
-"nome": "rocklee fast effect",
-"cat": "ast",
-"tipo": "cenarios",
-"fonte": "ast",
-"anims": 1,
-"quadros": 7,
-"atlas": 1,
-"objs": [
-"Assets_Separados/Efeitos_e_golpes/rocklee fast effect"
 ]
 },
 "ast_assets_separados_interface_e_outros": {
@@ -7091,18 +7091,6 @@
 "acf6f865aef451b4aa9e80dd46998e2f"
 ]
 },
-"dw_box": {
-"nome": "box",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dw_combat": {
 "nome": "combat",
 "cat": "dw",
@@ -7125,18 +7113,6 @@
 "atlas": 1,
 "objs": [
 "4aae8d9dba70f2849ac637a33f1f14c2"
-]
-},
-"dw_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "dw_finger_beam": {
@@ -7163,8 +7139,8 @@
 "c0b0c2cff023995489c0b754803690d7"
 ]
 },
-"dw_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
+"dw_ground_smash_fx_00": {
+"nome": "ground_smash_fx_00",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7172,7 +7148,115 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"unity default resources"
+"33b5ec83022d0994ca6bb0fe00addb55"
+]
+},
+"dw_ground_smash_fx_01": {
+"nome": "ground_smash_fx_01",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"ba7678798c9b1f14da035dfc06c52d70"
+]
+},
+"dw_ground_smash_fx_02": {
+"nome": "ground_smash_fx_02",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"d037e055a520cec4b80196a3b0a14e7a"
+]
+},
+"dw_ground_smash_fx_03": {
+"nome": "ground_smash_fx_03",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"fd60ef6ec3d3b1c4091c3a1deeb58e06"
+]
+},
+"dw_ground_smash_fx_04": {
+"nome": "ground_smash_fx_04",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"7cf9d17e8845b5b4d8cad2d1710b49b3"
+]
+},
+"dw_ground_smash_fx_05": {
+"nome": "ground_smash_fx_05",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"38d772dcf44e0ac44ad6a909f28f2fec"
+]
+},
+"dw_ground_smash_fx_06": {
+"nome": "ground_smash_fx_06",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"68a43297bb896844d8433976a77fa828"
+]
+},
+"dw_ground_smash_fx_07": {
+"nome": "ground_smash_fx_07",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"db2f6f15f5a00904fb80b598abce466e"
+]
+},
+"dw_ground_smash_fx_08": {
+"nome": "ground_smash_fx_08",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"e54b7ab7dee08664fb254fba31c3c9ca"
+]
+},
+"dw_ground_smash_fx_09": {
+"nome": "ground_smash_fx_09",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"18b19c22d945ba549a0ee1efda9f278d"
 ]
 },
 "dw_kenzan": {
@@ -7199,8 +7283,8 @@
 "865e32ab37b1f604190b9376808c8453"
 ]
 },
-"dw_ldr_lll1_0": {
-"nome": "LDR_LLL1_0",
+"dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
+"nome": "sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7208,11 +7292,11 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
+"00000000000000000000000000000000"
 ]
 },
-"dw_ldr_lll1_1": {
-"nome": "LDR_LLL1_1",
+"dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
+"nome": "sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7220,11 +7304,11 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
+"00000000000000000000000000000000"
 ]
 },
-"dw_ldr_lll1_10": {
-"nome": "LDR_LLL1_10",
+"dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
+"nome": "sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7232,11 +7316,11 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
+"00000000000000000000000000000000"
 ]
 },
-"dw_ldr_lll1_11": {
-"nome": "LDR_LLL1_11",
+"dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
+"nome": "sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7244,11 +7328,11 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
+"00000000000000000000000000000000"
 ]
 },
-"dw_ldr_lll1_12": {
-"nome": "LDR_LLL1_12",
+"dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
+"nome": "sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7256,455 +7340,23 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_13": {
-"nome": "LDR_LLL1_13",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_14": {
-"nome": "LDR_LLL1_14",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_14_": {
-"nome": "LDR_LLL1_14",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_15": {
-"nome": "LDR_LLL1_15",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_15_": {
-"nome": "LDR_LLL1_15",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_16": {
-"nome": "LDR_LLL1_16",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_17": {
-"nome": "LDR_LLL1_17",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_17_": {
-"nome": "LDR_LLL1_17",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_18": {
-"nome": "LDR_LLL1_18",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_19": {
-"nome": "LDR_LLL1_19",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_2": {
-"nome": "LDR_LLL1_2",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_2_": {
-"nome": "LDR_LLL1_2",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_20": {
-"nome": "LDR_LLL1_20",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_21": {
-"nome": "LDR_LLL1_21",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_22": {
-"nome": "LDR_LLL1_22",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_23": {
-"nome": "LDR_LLL1_23",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_23_": {
-"nome": "LDR_LLL1_23",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_24": {
-"nome": "LDR_LLL1_24",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_25": {
-"nome": "LDR_LLL1_25",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_25_": {
-"nome": "LDR_LLL1_25",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_26": {
-"nome": "LDR_LLL1_26",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_27": {
-"nome": "LDR_LLL1_27",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_28": {
-"nome": "LDR_LLL1_28",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_29": {
-"nome": "LDR_LLL1_29",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_3": {
-"nome": "LDR_LLL1_3",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_30": {
-"nome": "LDR_LLL1_30",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_31": {
-"nome": "LDR_LLL1_31",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_31_": {
-"nome": "LDR_LLL1_31",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_4": {
-"nome": "LDR_LLL1_4",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_4_": {
-"nome": "LDR_LLL1_4",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_5": {
-"nome": "LDR_LLL1_5",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_6": {
-"nome": "LDR_LLL1_6",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_6_": {
-"nome": "LDR_LLL1_6",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_ldr_lll1_7": {
-"nome": "LDR_LLL1_7",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_8": {
-"nome": "LDR_LLL1_8",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_9": {
-"nome": "LDR_LLL1_9",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_ldr_lll1_9_": {
-"nome": "LDR_LLL1_9",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
+"00000000000000000000000000000000"
 ]
 },
 "dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
 "nome": "sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
+"nome": "sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7727,8 +7379,8 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
-"nome": "sactx-256x128-Uncompressed-NPC_PACK-a988f2ae",
+"dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
+"nome": "sactx-256x256-ETC2-KI_BLAST_PACK-82f34169",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7736,11 +7388,23 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"sharedassets0.assets.split0"
+"00000000000000000000000000000000"
 ]
 },
-"dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
-"nome": "sactx-256x256-ETC2-KI_BLAST_PACK-82f34169",
+"dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
+"nome": "sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
+"nome": "sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7763,30 +7427,6 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
-"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets"
-]
-},
-"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_": {
-"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets.split0"
-]
-},
 "dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa": {
 "nome": "sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa",
 "cat": "dw",
@@ -7799,8 +7439,8 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
-"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+"dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
+"nome": "sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7808,11 +7448,11 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"sharedassets0.assets"
+"00000000000000000000000000000000"
 ]
 },
-"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_": {
-"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+"dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
+"nome": "sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7820,7 +7460,19 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"sharedassets0.assets.split0"
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
+"nome": "sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4": {
@@ -7835,8 +7487,8 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_searchtex": {
-"nome": "SearchTex",
+"dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
+"nome": "sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
@@ -7844,67 +7496,7 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_searchtex_": {
-"nome": "SearchTex",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_slider_thumb": {
-"nome": "slider thumb",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_soft": {
-"nome": "Soft",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
+"00000000000000000000000000000000"
 ]
 },
 "dw_thun_f": {
@@ -7917,198 +7509,6 @@
 "atlas": 1,
 "objs": [
 "d548d1e13764ab34382147eb457ab9ec"
-]
-},
-"dw_toggle": {
-"nome": "toggle",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_toggle_active": {
-"nome": "toggle active",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_toggle_hover": {
-"nome": "toggle hover",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_toggle_on": {
-"nome": "toggle on",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_uicheckmark": {
-"nome": "UICheckMark",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"b346b2a2df1d290438be3287b6419408"
-]
-},
-"dw_uielement8px": {
-"nome": "UIElement8px",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"d49e78756811bfa4aafb8b6535417991"
-]
-},
-"dw_uifoldoutclosed": {
-"nome": "UIFoldoutClosed",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"7a0568d5e3330b84687e307992be3030"
-]
-},
-"dw_uifoldoutopened": {
-"nome": "UIFoldoutOpened",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"a674720496c1ed248a5b7ea3e22a11fd"
-]
-},
-"dw_uimask": {
-"nome": "UIMask",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
-"dw_uisprite": {
-"nome": "UISprite",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
-"dw_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_warningsign": {
-"nome": "WarningSign",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dw_white1px": {
-"nome": "White1px",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"127279d577f25ac4ea17dae3782e5074"
-]
-},
-"dw_areatex": {
-"nome": "AreaTex",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
 ]
 },
 "dw_arena_god_600_0": {
@@ -8133,258 +7533,6 @@
 "atlas": 1,
 "objs": [
 "88d47851f900330479fa5343677276bf"
-]
-},
-"dw_ground_smash_fx_00": {
-"nome": "ground_smash_fx_00",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"33b5ec83022d0994ca6bb0fe00addb55"
-]
-},
-"dw_ground_smash_fx_01": {
-"nome": "ground_smash_fx_01",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"ba7678798c9b1f14da035dfc06c52d70"
-]
-},
-"dw_ground_smash_fx_02": {
-"nome": "ground_smash_fx_02",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"d037e055a520cec4b80196a3b0a14e7a"
-]
-},
-"dw_ground_smash_fx_03": {
-"nome": "ground_smash_fx_03",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"fd60ef6ec3d3b1c4091c3a1deeb58e06"
-]
-},
-"dw_ground_smash_fx_04": {
-"nome": "ground_smash_fx_04",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"7cf9d17e8845b5b4d8cad2d1710b49b3"
-]
-},
-"dw_ground_smash_fx_05": {
-"nome": "ground_smash_fx_05",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"38d772dcf44e0ac44ad6a909f28f2fec"
-]
-},
-"dw_ground_smash_fx_06": {
-"nome": "ground_smash_fx_06",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"68a43297bb896844d8433976a77fa828"
-]
-},
-"dw_ground_smash_fx_07": {
-"nome": "ground_smash_fx_07",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"db2f6f15f5a00904fb80b598abce466e"
-]
-},
-"dw_ground_smash_fx_08": {
-"nome": "ground_smash_fx_08",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"e54b7ab7dee08664fb254fba31c3c9ca"
-]
-},
-"dw_ground_smash_fx_09": {
-"nome": "ground_smash_fx_09",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"18b19c22d945ba549a0ee1efda9f278d"
-]
-},
-"dw_large01": {
-"nome": "Large01",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_large02": {
-"nome": "Large02",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_large02_": {
-"nome": "Large02",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_medium01": {
-"nome": "Medium01",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_medium01_": {
-"nome": "Medium01",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_medium02": {
-"nome": "Medium02",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_medium03": {
-"nome": "Medium03",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_medium04": {
-"nome": "Medium04",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_medium05": {
-"nome": "Medium05",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dw_medium05_": {
-"nome": "Medium05",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-]
-},
-"dw_medium06": {
-"nome": "Medium06",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
 ]
 },
 "dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8": {
@@ -8423,104 +7571,8 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
-"nome": "sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
-"nome": "sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
-"nome": "sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
-"nome": "sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
-"nome": "sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
-"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
-"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_": {
-"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-]
-},
 "dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209": {
 "nome": "sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
-"nome": "sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
@@ -8591,18 +7643,6 @@
 "00000000000000000000000000000000"
 ]
 },
-"dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
-"nome": "sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
 "dw_sactx_512x1024_etc2_end_fight_pack_b956320f": {
 "nome": "sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f",
 "cat": "dw",
@@ -8613,18 +7653,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets3.assets"
-]
-},
-"dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
-"nome": "sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
 ]
 },
 "dw_sactx_512x256_uncompressed_menu_stage_f25645df": {
@@ -8639,42 +7667,6 @@
 "sharedassets2.assets"
 ]
 },
-"dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
-"nome": "sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
 "dw_sactx_512x512_etc2_galic_pack_36ec096e": {
 "nome": "sactx-512x512-ETC2-GALIC_PACK-36ec096e",
 "cat": "dw",
@@ -8685,54 +7677,6 @@
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
-"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
-"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_": {
-"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-]
-},
-"dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
-"nome": "sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
-"nome": "sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
 ]
 },
 "dw_thin01": {
@@ -8879,6 +7823,18 @@
 "sharedassets0.assets"
 ]
 },
+"dw_areatex": {
+"nome": "AreaTex",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
 "dw_bly_ball_font": {
 "nome": "bly_ball_font",
 "cat": "dw",
@@ -8889,6 +7845,18 @@
 "atlas": 1,
 "objs": [
 "41a1770d52743a9469448e30c8fa3b0d"
+]
+},
+"dw_box": {
+"nome": "box",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "dw_button": {
@@ -8951,6 +7919,18 @@
 "unity default resources"
 ]
 },
+"dw_esctoexit_back": {
+"nome": "EscToExit_back",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "dw_esctoexit_text": {
 "nome": "EscToExit_Text",
 "cat": "dw",
@@ -8975,6 +7955,678 @@
 "unity default resources"
 ]
 },
+"dw_horizontal_scrollbar_thumb": {
+"nome": "horizontal scrollbar thumb",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_large01": {
+"nome": "Large01",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_large02": {
+"nome": "Large02",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_large02_": {
+"nome": "Large02",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_0": {
+"nome": "LDR_LLL1_0",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_1": {
+"nome": "LDR_LLL1_1",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_10": {
+"nome": "LDR_LLL1_10",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_11": {
+"nome": "LDR_LLL1_11",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_12": {
+"nome": "LDR_LLL1_12",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_13": {
+"nome": "LDR_LLL1_13",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_14": {
+"nome": "LDR_LLL1_14",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_14_": {
+"nome": "LDR_LLL1_14",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_15": {
+"nome": "LDR_LLL1_15",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_15_": {
+"nome": "LDR_LLL1_15",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_16": {
+"nome": "LDR_LLL1_16",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_17": {
+"nome": "LDR_LLL1_17",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_17_": {
+"nome": "LDR_LLL1_17",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_18": {
+"nome": "LDR_LLL1_18",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_19": {
+"nome": "LDR_LLL1_19",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_2": {
+"nome": "LDR_LLL1_2",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_2_": {
+"nome": "LDR_LLL1_2",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_20": {
+"nome": "LDR_LLL1_20",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_21": {
+"nome": "LDR_LLL1_21",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_22": {
+"nome": "LDR_LLL1_22",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_23": {
+"nome": "LDR_LLL1_23",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_23_": {
+"nome": "LDR_LLL1_23",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_24": {
+"nome": "LDR_LLL1_24",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_25": {
+"nome": "LDR_LLL1_25",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_25_": {
+"nome": "LDR_LLL1_25",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_26": {
+"nome": "LDR_LLL1_26",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_27": {
+"nome": "LDR_LLL1_27",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_28": {
+"nome": "LDR_LLL1_28",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_29": {
+"nome": "LDR_LLL1_29",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_3": {
+"nome": "LDR_LLL1_3",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_30": {
+"nome": "LDR_LLL1_30",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_31": {
+"nome": "LDR_LLL1_31",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_31_": {
+"nome": "LDR_LLL1_31",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_4": {
+"nome": "LDR_LLL1_4",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_4_": {
+"nome": "LDR_LLL1_4",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_5": {
+"nome": "LDR_LLL1_5",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_6": {
+"nome": "LDR_LLL1_6",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_6_": {
+"nome": "LDR_LLL1_6",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_ldr_lll1_7": {
+"nome": "LDR_LLL1_7",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_8": {
+"nome": "LDR_LLL1_8",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_9": {
+"nome": "LDR_LLL1_9",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_ldr_lll1_9_": {
+"nome": "LDR_LLL1_9",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_medium01": {
+"nome": "Medium01",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_medium01_": {
+"nome": "Medium01",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_medium02": {
+"nome": "Medium02",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_medium03": {
+"nome": "Medium03",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_medium04": {
+"nome": "Medium04",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_medium05": {
+"nome": "Medium05",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_medium05_": {
+"nome": "Medium05",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_medium06": {
+"nome": "Medium06",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
+"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
+"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_": {
+"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets.split0"
+]
+},
 "dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082": {
 "nome": "sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082",
 "cat": "dw",
@@ -8985,6 +8637,174 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
+]
+},
+"dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
+"nome": "sactx-256x128-Uncompressed-NPC_PACK-a988f2ae",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets.split0"
+]
+},
+"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
+"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets2.assets"
+]
+},
+"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_": {
+"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets2.assets.split0"
+]
+},
+"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
+"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
+"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_": {
+"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets.split0"
+]
+},
+"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
+"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
+"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_": {
+"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets.split0"
+]
+},
+"dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
+"nome": "sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
+"dw_searchtex": {
+"nome": "SearchTex",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dw_searchtex_": {
+"nome": "SearchTex",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets.split0"
+]
+},
+"dw_slider_thumb": {
+"nome": "slider thumb",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_slider_thumb_active": {
+"nome": "slider thumb active",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_slidert_humb_hover": {
+"nome": "slidert humb hover",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_soft": {
+"nome": "Soft",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "dw_textfield": {
@@ -9023,6 +8843,150 @@
 "unity default resources"
 ]
 },
+"dw_toggle": {
+"nome": "toggle",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_toggle_active": {
+"nome": "toggle active",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_toggle_hover": {
+"nome": "toggle hover",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_toggle_on": {
+"nome": "toggle on",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_toggle_on_active": {
+"nome": "toggle on active",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_toggle_on_hover": {
+"nome": "toggle on hover",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_uicheckmark": {
+"nome": "UICheckMark",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"b346b2a2df1d290438be3287b6419408"
+]
+},
+"dw_uielement8px": {
+"nome": "UIElement8px",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"d49e78756811bfa4aafb8b6535417991"
+]
+},
+"dw_uifoldoutclosed": {
+"nome": "UIFoldoutClosed",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"7a0568d5e3330b84687e307992be3030"
+]
+},
+"dw_uifoldoutopened": {
+"nome": "UIFoldoutOpened",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"a674720496c1ed248a5b7ea3e22a11fd"
+]
+},
+"dw_uimask": {
+"nome": "UIMask",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
+"dw_uisprite": {
+"nome": "UISprite",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
 "dw_vertical_scrollbar": {
 "nome": "vertical scrollbar",
 "cat": "dw",
@@ -9033,6 +8997,42 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"dw_vertical_scrollbar_thumb": {
+"nome": "vertical scrollbar thumb",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_warningsign": {
+"nome": "WarningSign",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dw_white1px": {
+"nome": "White1px",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"127279d577f25ac4ea17dae3782e5074"
 ]
 },
 "dw_window": {
@@ -10199,30 +10199,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_avatar": {
-"nome": "avatar",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
-"dlz_avatar_": {
-"nome": "avatar",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
 "dlz_avt": {
 "nome": "avt",
 "cat": "dlz",
@@ -10326,6 +10302,18 @@
 "fonte": "dlz",
 "anims": 1,
 "quadros": 3,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_bigkame_yellow": {
+"nome": "BigKame Yellow",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 2,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
@@ -10437,18 +10425,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
-]
-},
-"dlz_box": {
-"nome": "box",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "dlz_burter": {
@@ -12287,18 +12263,6 @@
 "sharedassets26.assets"
 ]
 },
-"dlz_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dlz_explode_blue": {
 "nome": "Explode Blue",
 "cat": "dlz",
@@ -12695,18 +12659,6 @@
 "sharedassets2.assets"
 ]
 },
-"dlz_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dlz_k_o": {
 "nome": "K.O",
 "cat": "dlz",
@@ -12777,390 +12729,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets2.assets"
-]
-},
-"dlz_ldr_lll1_0": {
-"nome": "LDR_LLL1_0",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_1": {
-"nome": "LDR_LLL1_1",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_10": {
-"nome": "LDR_LLL1_10",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_11": {
-"nome": "LDR_LLL1_11",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_12": {
-"nome": "LDR_LLL1_12",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_13": {
-"nome": "LDR_LLL1_13",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_14": {
-"nome": "LDR_LLL1_14",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_15": {
-"nome": "LDR_LLL1_15",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_16": {
-"nome": "LDR_LLL1_16",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_17": {
-"nome": "LDR_LLL1_17",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_18": {
-"nome": "LDR_LLL1_18",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_19": {
-"nome": "LDR_LLL1_19",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_2": {
-"nome": "LDR_LLL1_2",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_20": {
-"nome": "LDR_LLL1_20",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_21": {
-"nome": "LDR_LLL1_21",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_22": {
-"nome": "LDR_LLL1_22",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_23": {
-"nome": "LDR_LLL1_23",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_24": {
-"nome": "LDR_LLL1_24",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_25": {
-"nome": "LDR_LLL1_25",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_26": {
-"nome": "LDR_LLL1_26",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_27": {
-"nome": "LDR_LLL1_27",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_28": {
-"nome": "LDR_LLL1_28",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_29": {
-"nome": "LDR_LLL1_29",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_3": {
-"nome": "LDR_LLL1_3",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_30": {
-"nome": "LDR_LLL1_30",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_31": {
-"nome": "LDR_LLL1_31",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_4": {
-"nome": "LDR_LLL1_4",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_5": {
-"nome": "LDR_LLL1_5",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_6": {
-"nome": "LDR_LLL1_6",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_7": {
-"nome": "LDR_LLL1_7",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_8": {
-"nome": "LDR_LLL1_8",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_ldr_lll1_9": {
-"nome": "LDR_LLL1_9",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
 ]
 },
 "dlz_m_1_2": {
@@ -13281,6 +12849,18 @@
 "atlas": 1,
 "objs": [
 "sharedassets2.assets"
+]
+},
+"dlz_orange_kame": {
+"nome": "Orange Kame",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
 ]
 },
 "dlz_picolo_skill": {
@@ -13410,6 +12990,30 @@
 "fonte": "dlz",
 "anims": 1,
 "quadros": 2,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_punch_template": {
+"nome": "Punch Template",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_punch_template_1": {
+"nome": "Punch Template 1",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 6,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
@@ -13775,8 +13379,8 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_searchtex": {
-"nome": "SearchTex",
+"dlz_setting": {
+"nome": "Setting",
 "cat": "dlz",
 "tipo": "efeitos",
 "fonte": "dlz",
@@ -13784,11 +13388,23 @@
 "quadros": 1,
 "atlas": 1,
 "objs": [
-"globalgamemanagers.assets"
+"sharedassets1.assets"
 ]
 },
-"dlz_setting": {
-"nome": "Setting",
+"dlz_shockwave": {
+"nome": "Shockwave",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_shockwave_trans": {
+"nome": "Shockwave Trans",
 "cat": "dlz",
 "tipo": "efeitos",
 "fonte": "dlz",
@@ -13859,42 +13475,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_slider_thumb": {
-"nome": "slider thumb",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dlz_small_blue_explode": {
 "nome": "Small Blue  Explode",
 "cat": "dlz",
@@ -13943,18 +13523,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_soft": {
-"nome": "Soft",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dlz_special_2": {
 "nome": "Special 2",
 "cat": "dlz",
@@ -13974,6 +13542,18 @@
 "fonte": "dlz",
 "anims": 1,
 "quadros": 3,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_spirit_bomb_bw": {
+"nome": "Spirit Bomb BW",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
@@ -14075,6 +13655,18 @@
 "sharedassets16.assets"
 ]
 },
+"dlz_thunder": {
+"nome": "Thunder",
+"cat": "dlz",
+"tipo": "efeitos",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
 "dlz_thunder_aura": {
 "nome": "Thunder Aura",
 "cat": "dlz",
@@ -14109,78 +13701,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
-]
-},
-"dlz_toggle": {
-"nome": "toggle",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_toggle_active": {
-"nome": "toggle active",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_toggle_hover": {
-"nome": "toggle hover",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_toggle_on": {
-"nome": "toggle on",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"dlz_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "dlz_tornado": {
@@ -14231,78 +13751,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_ui": {
-"nome": "ui",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets7.assets"
-]
-},
-"dlz_uicheckmark": {
-"nome": "UICheckMark",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"dlz_uielement8px": {
-"nome": "UIElement8px",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"dlz_uifoldoutclosed": {
-"nome": "UIFoldoutClosed",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"dlz_uifoldoutopened": {
-"nome": "UIFoldoutOpened",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"dlz_uimask": {
-"nome": "UIMask",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
 "dlz_uis_ki": {
 "nome": "UIS Ki",
 "cat": "dlz",
@@ -14310,18 +13758,6 @@
 "fonte": "dlz",
 "anims": 1,
 "quadros": 3,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
-"dlz_uisprite": {
-"nome": "UISprite",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
@@ -14387,18 +13823,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "dlz_videl_kame": {
 "nome": "Videl Kame",
 "cat": "dlz",
@@ -14423,28 +13847,16 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_warningsign": {
-"nome": "WarningSign",
+"dlz_yellow_bigkame": {
+"nome": "Yellow BigKame",
 "cat": "dlz",
 "tipo": "efeitos",
 "fonte": "dlz",
 "anims": 1,
-"quadros": 1,
+"quadros": 2,
 "atlas": 1,
 "objs": [
-"unity default resources"
-]
-},
-"dlz_white1px": {
-"nome": "White1px",
-"cat": "dlz",
-"tipo": "efeitos",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
+"sharedassets1.assets"
 ]
 },
 "dlz_yellow_bigkame_2": {
@@ -14843,18 +14255,6 @@
 "sharedassets2.assets"
 ]
 },
-"dlz_areatex": {
-"nome": "AreaTex",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
 "dlz_asd": {
 "nome": "asd",
 "cat": "dlz",
@@ -14889,18 +14289,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets2.assets"
-]
-},
-"dlz_bigkame_yellow": {
-"nome": "BigKame Yellow",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
 ]
 },
 "dlz_black_goku_rose_prv": {
@@ -15395,30 +14783,6 @@
 "sharedassets18.assets"
 ]
 },
-"dlz_large01": {
-"nome": "Large01",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_large02": {
-"nome": "Large02",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
 "dlz_liberationsans_sdf_atlas": {
 "nome": "LiberationSans SDF Atlas",
 "cat": "dlz",
@@ -15491,78 +14855,6 @@
 "sharedassets4.assets"
 ]
 },
-"dlz_medium01": {
-"nome": "Medium01",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_medium02": {
-"nome": "Medium02",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_medium03": {
-"nome": "Medium03",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_medium04": {
-"nome": "Medium04",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_medium05": {
-"nome": "Medium05",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
-"dlz_medium06": {
-"nome": "Medium06",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-]
-},
 "dlz_midnight_sdf_atlas": {
 "nome": "Midnight SDF Atlas",
 "cat": "dlz",
@@ -15570,30 +14862,6 @@
 "fonte": "dlz",
 "anims": 1,
 "quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
-"dlz_moro_ui_by_emadart_by_emadart_de7taf3": {
-"nome": "moro_ui_by_emadart_by_emadart_de7taf3",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 3,
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"sharedassets6.assets"
-]
-},
-"dlz_orange_kame": {
-"nome": "Orange Kame",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 2,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
@@ -16307,30 +15575,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_punch_template": {
-"nome": "Punch Template",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
-"dlz_punch_template_1": {
-"nome": "Punch Template 1",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
 "dlz_purple": {
 "nome": "Purple",
 "cat": "dlz",
@@ -16427,30 +15671,6 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_shockwave": {
-"nome": "Shockwave",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
-"dlz_shockwave_trans": {
-"nome": "Shockwave Trans",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
-]
-},
 "dlz_snow_map": {
 "nome": "Snow Map",
 "cat": "dlz",
@@ -16461,18 +15681,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets20.assets"
-]
-},
-"dlz_spirit_bomb_bw": {
-"nome": "Spirit Bomb BW",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
 ]
 },
 "dlz_stage_anim": {
@@ -16533,18 +15741,6 @@
 "atlas": 1,
 "objs": [
 "globalgamemanagers.assets"
-]
-},
-"dlz_thunder": {
-"nome": "Thunder",
-"cat": "dlz",
-"tipo": "cenarios",
-"fonte": "dlz",
-"anims": 1,
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets"
 ]
 },
 "dlz_triangle": {
@@ -16727,16 +15923,52 @@
 "sharedassets1.assets"
 ]
 },
-"dlz_yellow_bigkame": {
-"nome": "Yellow BigKame",
+"dlz_areatex": {
+"nome": "AreaTex",
 "cat": "dlz",
-"tipo": "cenarios",
+"tipo": "interface",
 "fonte": "dlz",
 "anims": 1,
-"quadros": 2,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_avatar": {
+"nome": "avatar",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
+]
+},
+"dlz_avatar_": {
+"nome": "avatar",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
+"dlz_box": {
+"nome": "box",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "dlz_btn": {
@@ -16847,6 +16079,18 @@
 "sharedassets1.assets"
 ]
 },
+"dlz_esctoexit_back": {
+"nome": "EscToExit_back",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "dlz_esctoexit_text": {
 "nome": "EscToExit_Text",
 "cat": "dlz",
@@ -16883,6 +16127,18 @@
 "unity default resources"
 ]
 },
+"dlz_horizontal_scrollbar_thumb": {
+"nome": "horizontal scrollbar thumb",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "dlz_interface": {
 "nome": "Interface",
 "cat": "dlz",
@@ -16893,6 +16149,558 @@
 "atlas": 1,
 "objs": [
 "sharedassets1.assets"
+]
+},
+"dlz_large01": {
+"nome": "Large01",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_large02": {
+"nome": "Large02",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_0": {
+"nome": "LDR_LLL1_0",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_1": {
+"nome": "LDR_LLL1_1",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_10": {
+"nome": "LDR_LLL1_10",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_11": {
+"nome": "LDR_LLL1_11",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_12": {
+"nome": "LDR_LLL1_12",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_13": {
+"nome": "LDR_LLL1_13",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_14": {
+"nome": "LDR_LLL1_14",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_15": {
+"nome": "LDR_LLL1_15",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_16": {
+"nome": "LDR_LLL1_16",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_17": {
+"nome": "LDR_LLL1_17",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_18": {
+"nome": "LDR_LLL1_18",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_19": {
+"nome": "LDR_LLL1_19",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_2": {
+"nome": "LDR_LLL1_2",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_20": {
+"nome": "LDR_LLL1_20",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_21": {
+"nome": "LDR_LLL1_21",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_22": {
+"nome": "LDR_LLL1_22",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_23": {
+"nome": "LDR_LLL1_23",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_24": {
+"nome": "LDR_LLL1_24",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_25": {
+"nome": "LDR_LLL1_25",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_26": {
+"nome": "LDR_LLL1_26",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_27": {
+"nome": "LDR_LLL1_27",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_28": {
+"nome": "LDR_LLL1_28",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_29": {
+"nome": "LDR_LLL1_29",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_3": {
+"nome": "LDR_LLL1_3",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_30": {
+"nome": "LDR_LLL1_30",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_31": {
+"nome": "LDR_LLL1_31",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_4": {
+"nome": "LDR_LLL1_4",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_5": {
+"nome": "LDR_LLL1_5",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_6": {
+"nome": "LDR_LLL1_6",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_7": {
+"nome": "LDR_LLL1_7",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_8": {
+"nome": "LDR_LLL1_8",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_ldr_lll1_9": {
+"nome": "LDR_LLL1_9",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium01": {
+"nome": "Medium01",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium02": {
+"nome": "Medium02",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium03": {
+"nome": "Medium03",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium04": {
+"nome": "Medium04",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium05": {
+"nome": "Medium05",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_medium06": {
+"nome": "Medium06",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_moro_ui_by_emadart_by_emadart_de7taf3": {
+"nome": "moro_ui_by_emadart_by_emadart_de7taf3",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 3,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"sharedassets6.assets"
+]
+},
+"dlz_searchtex": {
+"nome": "SearchTex",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"globalgamemanagers.assets"
+]
+},
+"dlz_slider_thumb": {
+"nome": "slider thumb",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_slider_thumb_active": {
+"nome": "slider thumb active",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_slidert_humb_hover": {
+"nome": "slidert humb hover",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_soft": {
+"nome": "Soft",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "dlz_textfield": {
@@ -16931,6 +16739,78 @@
 "unity default resources"
 ]
 },
+"dlz_toggle": {
+"nome": "toggle",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_toggle_active": {
+"nome": "toggle active",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_toggle_hover": {
+"nome": "toggle hover",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_toggle_on": {
+"nome": "toggle on",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_toggle_on_active": {
+"nome": "toggle on active",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_toggle_on_hover": {
+"nome": "toggle on hover",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "dlz_transformkibar": {
 "nome": "TransformKiBar",
 "cat": "dlz",
@@ -16941,6 +16821,18 @@
 "atlas": 1,
 "objs": [
 "sharedassets2.assets"
+]
+},
+"dlz_ui": {
+"nome": "ui",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets7.assets"
 ]
 },
 "dlz_ui_menu_button_active": {
@@ -16967,6 +16859,78 @@
 "sharedassets1.assets"
 ]
 },
+"dlz_uicheckmark": {
+"nome": "UICheckMark",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"dlz_uielement8px": {
+"nome": "UIElement8px",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"dlz_uifoldoutclosed": {
+"nome": "UIFoldoutClosed",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"dlz_uifoldoutopened": {
+"nome": "UIFoldoutOpened",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"dlz_uimask": {
+"nome": "UIMask",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"dlz_uisprite": {
+"nome": "UISprite",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets"
+]
+},
 "dlz_vertical_scrollbar": {
 "nome": "vertical scrollbar",
 "cat": "dlz",
@@ -16977,6 +16941,42 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"dlz_vertical_scrollbar_thumb": {
+"nome": "vertical scrollbar thumb",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_warningsign": {
+"nome": "WarningSign",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"dlz_white1px": {
+"nome": "White1px",
+"cat": "dlz",
+"tipo": "interface",
+"fonte": "dlz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
 ]
 },
 "dlz_window": {
@@ -18551,18 +18551,6 @@
 "resources.assets"
 ]
 },
-"lw_box": {
-"nome": "box",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "lw_buildfrom": {
 "nome": "buildFrom",
 "cat": "lw",
@@ -18594,6 +18582,18 @@
 "fonte": "lw",
 "anims": 1,
 "quadros": 6,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"lw_charge_ki_ground": {
+"nome": "charge_ki_ground",
+"cat": "lw",
+"tipo": "efeitos",
+"fonte": "lw",
+"anims": 3,
+"quadros": 19,
 "atlas": 1,
 "objs": [
 "resources.assets"
@@ -18719,18 +18719,6 @@
 "resources.assets"
 ]
 },
-"lw_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "lw_even_log": {
 "nome": "even_log",
 "cat": "lw",
@@ -18791,6 +18779,18 @@
 "resources.assets"
 ]
 },
+"lw_ground_effect": {
+"nome": "ground_effect",
+"cat": "lw",
+"tipo": "efeitos",
+"fonte": "lw",
+"anims": 6,
+"quadros": 44,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
 "lw_hit_break_fx": {
 "nome": "hit_break_fx",
 "cat": "lw",
@@ -18801,18 +18801,6 @@
 "atlas": 1,
 "objs": [
 "resources.assets"
-]
-},
-"lw_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "lw_info": {
@@ -19115,54 +19103,6 @@
 "resources.assets"
 ]
 },
-"lw_slider_thumb": {
-"nome": "slider thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_soft": {
-"nome": "Soft",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "lw_software": {
 "nome": "software",
 "cat": "lw",
@@ -19199,90 +19139,6 @@
 "sharedassets0.assets"
 ]
 },
-"lw_toggle": {
-"nome": "toggle",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_toggle_active": {
-"nome": "toggle active",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_toggle_hover": {
-"nome": "toggle hover",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_toggle_on": {
-"nome": "toggle on",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_uisprite": {
-"nome": "UISprite",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
 "lw_user": {
 "nome": "user",
 "cat": "lw",
@@ -19293,30 +19149,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
-]
-},
-"lw_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"lw_warningsign": {
-"nome": "WarningSign",
-"cat": "lw",
-"tipo": "efeitos",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "lw_background": {
@@ -19338,18 +19170,6 @@
 "fonte": "lw",
 "anims": 1,
 "quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"lw_charge_ki_ground": {
-"nome": "charge_ki_ground",
-"cat": "lw",
-"tipo": "cenarios",
-"fonte": "lw",
-"anims": 3,
-"quadros": 19,
 "atlas": 1,
 "objs": [
 "resources.assets"
@@ -19463,18 +19283,6 @@
 "resources.assets"
 ]
 },
-"lw_font_ui_sdf_atlas": {
-"nome": "Font-ui SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets3.assets"
-]
-},
 "lw_future_stage_1_atlas": {
 "nome": "future_stage_1_atlas",
 "cat": "lw",
@@ -19494,18 +19302,6 @@
 "fonte": "lw",
 "anims": 1,
 "quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"lw_ground_effect": {
-"nome": "ground_effect",
-"cat": "lw",
-"tipo": "cenarios",
-"fonte": "lw",
-"anims": 6,
-"quadros": 44,
 "atlas": 1,
 "objs": [
 "resources.assets"
@@ -19585,30 +19381,6 @@
 },
 "lw_number_sdf_atlas": {
 "nome": "Number SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
-"nome": "sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74",
-"cat": "lw",
-"tipo": "cenarios",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
-"nome": "sactx-0-512x512-ETC2-ui_character_pack-635b0817",
 "cat": "lw",
 "tipo": "cenarios",
 "fonte": "lw",
@@ -19799,6 +19571,18 @@
 "sharedassets0.assets"
 ]
 },
+"lw_box": {
+"nome": "box",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "lw_button": {
 "nome": "button",
 "cat": "lw",
@@ -19895,6 +19679,18 @@
 "sharedassets0.assets"
 ]
 },
+"lw_esctoexit_back": {
+"nome": "EscToExit_back",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "lw_esctoexit_text": {
 "nome": "EscToExit_Text",
 "cat": "lw",
@@ -19905,6 +19701,18 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"lw_font_ui_sdf_atlas": {
+"nome": "Font-ui SDF Atlas",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets3.assets"
 ]
 },
 "lw_graphiccard": {
@@ -19921,6 +19729,18 @@
 },
 "lw_horizontal_scrollbar": {
 "nome": "horizontal scrollbar",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_horizontal_scrollbar_thumb": {
+"nome": "horizontal scrollbar thumb",
 "cat": "lw",
 "tipo": "interface",
 "fonte": "lw",
@@ -19955,6 +19775,30 @@
 "sharedassets0.assets"
 ]
 },
+"lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
+"nome": "sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
+"lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
+"nome": "sactx-0-512x512-ETC2-ui_character_pack-635b0817",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
 "lw_selected": {
 "nome": "selected",
 "cat": "lw",
@@ -19965,6 +19809,54 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
+]
+},
+"lw_slider_thumb": {
+"nome": "slider thumb",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_slider_thumb_active": {
+"nome": "slider thumb active",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_slidert_humb_hover": {
+"nome": "slidert humb hover",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_soft": {
+"nome": "Soft",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "lw_textfield": {
@@ -20003,6 +19895,90 @@
 "unity default resources"
 ]
 },
+"lw_toggle": {
+"nome": "toggle",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_toggle_active": {
+"nome": "toggle active",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_toggle_hover": {
+"nome": "toggle hover",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_toggle_on": {
+"nome": "toggle on",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_toggle_on_active": {
+"nome": "toggle on active",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_toggle_on_hover": {
+"nome": "toggle on hover",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"lw_uisprite": {
+"nome": "UISprite",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
 "lw_unityicon": {
 "nome": "UnityIcon",
 "cat": "lw",
@@ -20027,6 +20003,18 @@
 "unity default resources"
 ]
 },
+"lw_vertical_scrollbar_thumb": {
+"nome": "vertical scrollbar thumb",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "lw_warning_icon": {
 "nome": "warning_icon",
 "cat": "lw",
@@ -20037,6 +20025,18 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
+]
+},
+"lw_warningsign": {
+"nome": "WarningSign",
+"cat": "lw",
+"tipo": "interface",
+"fonte": "lw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "lw_window": {
@@ -24539,6 +24539,42 @@
 "Ability"
 ]
 },
+"mc_aguacasakame": {
+"nome": "AguaCasaKame",
+"cat": "mc",
+"tipo": "efeitos",
+"fonte": "mc",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"AguaCasaKame"
+]
+},
+"mc_aura": {
+"nome": "Aura",
+"cat": "mc",
+"tipo": "efeitos",
+"fonte": "mc",
+"anims": 26,
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"Aura"
+]
+},
+"mc_aura2": {
+"nome": "Aura2",
+"cat": "mc",
+"tipo": "efeitos",
+"fonte": "mc",
+"anims": 26,
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"Aura2"
+]
+},
 "mc_aurakaioken": {
 "nome": "AuraKaioken",
 "cat": "mc",
@@ -25209,6 +25245,18 @@
 "atlas": 1,
 "objs": [
 "EffectBlast"
+]
+},
+"mc_effectextra": {
+"nome": "EffectExtra_",
+"cat": "mc",
+"tipo": "efeitos",
+"fonte": "mc",
+"anims": 3,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"EffectExtra_"
 ]
 },
 "mc_engrenagem": {
@@ -26279,6 +26327,18 @@
 "Sprite8"
 ]
 },
+"mc_superbeam": {
+"nome": "SuperBeam",
+"cat": "mc",
+"tipo": "efeitos",
+"fonte": "mc",
+"anims": 3,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"SuperBeam"
+]
+},
 "mc_superexplosion": {
 "nome": "SuperExplosion",
 "cat": "mc",
@@ -26337,42 +26397,6 @@
 "atlas": 1,
 "objs": [
 "Zamas"
-]
-},
-"mc_aguacasakame": {
-"nome": "AguaCasaKame",
-"cat": "mc",
-"tipo": "cenarios",
-"fonte": "mc",
-"anims": 1,
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"AguaCasaKame"
-]
-},
-"mc_aura": {
-"nome": "Aura",
-"cat": "mc",
-"tipo": "cenarios",
-"fonte": "mc",
-"anims": 26,
-"quadros": 75,
-"atlas": 1,
-"objs": [
-"Aura"
-]
-},
-"mc_aura2": {
-"nome": "Aura2",
-"cat": "mc",
-"tipo": "cenarios",
-"fonte": "mc",
-"anims": 26,
-"quadros": 75,
-"atlas": 1,
-"objs": [
-"Aura2"
 ]
 },
 "mc_b_101": {
@@ -26625,18 +26649,6 @@
 "atlas": 5,
 "objs": [
 "Stage"
-]
-},
-"mc_superbeam": {
-"nome": "SuperBeam",
-"cat": "mc",
-"tipo": "cenarios",
-"fonte": "mc",
-"anims": 3,
-"quadros": 7,
-"atlas": 1,
-"objs": [
-"SuperBeam"
 ]
 },
 "mc_superbigbang": {
@@ -27141,18 +27153,6 @@
 "atlas": 1,
 "objs": [
 "DificultButtons"
-]
-},
-"mc_effectextra": {
-"nome": "EffectExtra_",
-"cat": "mc",
-"tipo": "interface",
-"fonte": "mc",
-"anims": 3,
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"EffectExtra_"
 ]
 },
 "mc_facesetp": {
@@ -39527,18 +39527,6 @@
 "4287010dda1f1a14da51ee54a3c5a8b0"
 ]
 },
-"pw_box": {
-"nome": "box",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "pw_broly": {
 "nome": "Broly",
 "cat": "pw",
@@ -44579,6 +44567,30 @@
 "sharedassets0.assets.split0"
 ]
 },
+"pw_chaoscharge": {
+"nome": "ChaosCharge",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"04c40ab4dec80e84e9b7a3278d158d84"
+]
+},
+"pw_chaoskiblast": {
+"nome": "ChaosKiBlast",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"8f0f2591de9f3ee48885f0631565806b"
+]
+},
 "pw_character1": {
 "nome": "Character1",
 "cat": "pw",
@@ -44793,6 +44805,18 @@
 "atlas": 1,
 "objs": [
 "34288372330338741bbccd456cbb3812"
+]
+},
+"pw_charge____": {
+"nome": "Charge",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"3d293aa38cffd3243ad8d09dcb171ec5"
 ]
 },
 "pw_charge_____": {
@@ -46259,6 +46283,18 @@
 "71f909f8df4815f45b8dbaee83c7e505"
 ]
 },
+"pw_dash": {
+"nome": "Dash",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets11.assets"
+]
+},
 "pw_dead": {
 "nome": "Dead",
 "cat": "pw",
@@ -47159,6 +47195,42 @@
 "35d1b12612df5384da82a549ddb01688"
 ]
 },
+"pw_energy_20_00008": {
+"nome": "energy_20_00008",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"b9fae2c050a4a8e41a658ca9f84a94f9"
+]
+},
+"pw_energy_20_00009": {
+"nome": "energy_20_00009",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"7ccd0303acad73c42b1191ee73267f7f"
+]
+},
+"pw_energy_20_00010": {
+"nome": "energy_20_00010",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"42464cd51065b5949be9adaa47a2dca1"
+]
+},
 "pw_energyalternate": {
 "nome": "EnergyAlternate",
 "cat": "pw",
@@ -47973,6 +48045,18 @@
 "atlas": 1,
 "objs": [
 "190b6c1a9d9c9334f97cd7a4313a9104"
+]
+},
+"pw_energygroundexplosion": {
+"nome": "EnergyGroundExplosion",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"5cd7f7554a6f63b449a1199de2b05519"
 ]
 },
 "pw_energyhand": {
@@ -49257,18 +49341,6 @@
 "atlas": 1,
 "objs": [
 "cd653addb46bd0c48bd010f659c4c82b"
-]
-},
-"pw_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "pw_explosion_2512_0": {
@@ -52233,6 +52305,126 @@
 "atlas": 1,
 "objs": [
 "9def2024650a8ce48a85dc69b366d84c"
+]
+},
+"pw_fx_2_ver_1_01": {
+"nome": "fx_2_ver_1_01",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"987cc54ecbdd3dd41b2d5535826d4514"
+]
+},
+"pw_fx_2_ver_1_02": {
+"nome": "fx_2_ver_1_02",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"49d9b4dc715d05340b3a89cc1cdd4c27"
+]
+},
+"pw_fx_2_ver_1_03": {
+"nome": "fx_2_ver_1_03",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"8608160fff9c28f4cbb75eb222507dca"
+]
+},
+"pw_fx_2_ver_1_04": {
+"nome": "fx_2_ver_1_04",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"2deb31b73abbeec4696496b5388e228d"
+]
+},
+"pw_fx_2_ver_1_05": {
+"nome": "fx_2_ver_1_05",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"a4e9a7563ef7bb14390acf925d457a4a"
+]
+},
+"pw_fx_2_ver_1_06": {
+"nome": "fx_2_ver_1_06",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"e70d1d07ecae28a4ebbdd128c3d029ff"
+]
+},
+"pw_fx_2_ver_1_07": {
+"nome": "fx_2_ver_1_07",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"8c9943397f894724dbd1b056a33ff2b8"
+]
+},
+"pw_fx_2_ver_1_08": {
+"nome": "fx_2_ver_1_08",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"5dce0313cfa94904abfc82431cdfe991"
+]
+},
+"pw_fx_2_ver_1_09": {
+"nome": "fx_2_ver_1_09",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"4132a553f7537d74482d924117e34a53"
+]
+},
+"pw_fx_2_ver_1_10": {
+"nome": "fx_2_ver_1_10",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"8cd8d29b12b06b840a5f5bc55c60be81"
 ]
 },
 "pw_gamma1": {
@@ -71207,18 +71399,6 @@
 "8281b802a01972041abcce6a212c3c50"
 ]
 },
-"pw_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "pw_huitzilopochtli": {
 "nome": "HUITZILOPOCHTLI",
 "cat": "pw",
@@ -81767,42 +81947,6 @@
 "8fe7ea9a8eb59c54cb0b421b2479d4db"
 ]
 },
-"pw_slider_thumb": {
-"nome": "slider thumb",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "pw_slug1": {
 "nome": "Slug1",
 "cat": "pw",
@@ -81897,18 +82041,6 @@
 "atlas": 1,
 "objs": [
 "b7e3ef49540048b4f93af0bb6dcba832"
-]
-},
-"pw_soft": {
-"nome": "Soft",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "pw_solarflare": {
@@ -82511,6 +82643,18 @@
 "0a84f8ae1a5468743b8fe71a95aebe6e"
 ]
 },
+"pw_specialballbroyred": {
+"nome": "SpecialBallBroyRed",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"e75ccac02e1d06c4e911e5c974bb561b"
+]
+},
 "pw_specialballdarkred": {
 "nome": "SpecialBallDarkRed",
 "cat": "pw",
@@ -82533,6 +82677,18 @@
 "atlas": 1,
 "objs": [
 "5a3a6ee3499d70b429b36f844512b668"
+]
+},
+"pw_specialballdeathpurple": {
+"nome": "SpecialBallDeathPurple",
+"cat": "pw",
+"tipo": "efeitos",
+"fonte": "pw",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"fd8c58ed864eba542bfa93ce8d819026"
 ]
 },
 "pw_specialballfire": {
@@ -86519,78 +86675,6 @@
 "26c8d568e8a51bd4fa3c85e2667f9194"
 ]
 },
-"pw_toggle": {
-"nome": "toggle",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_toggle_active": {
-"nome": "toggle active",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_toggle_hover": {
-"nome": "toggle hover",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_toggle_on": {
-"nome": "toggle on",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
-"pw_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "pw_toma": {
 "nome": "Toma",
 "cat": "pw",
@@ -89757,18 +89841,6 @@
 "atlas": 1,
 "objs": [
 "b22398b76380fce42aacf8d4f1c584f4"
-]
-},
-"pw_uisprite": {
-"nome": "UISprite",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets1.assets.split0"
 ]
 },
 "pw_vanille": {
@@ -98483,18 +98555,6 @@
 "29850693ed95dec4195b85543787f730"
 ]
 },
-"pw_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-]
-},
 "pw_videl": {
 "nome": "Videl",
 "cat": "pw",
@@ -98925,18 +98985,6 @@
 "atlas": 1,
 "objs": [
 "d269130f25e1db54eb530c3a8298c11a"
-]
-},
-"pw_warningsign": {
-"nome": "WarningSign",
-"cat": "pw",
-"tipo": "efeitos",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
 ]
 },
 "pw_whis": {
@@ -101039,18 +101087,6 @@
 "91ddb0432f509f741b74594054664f88"
 ]
 },
-"pw_chaoscharge": {
-"nome": "ChaosCharge",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"04c40ab4dec80e84e9b7a3278d158d84"
-]
-},
 "pw_chaosforward": {
 "nome": "ChaosForward",
 "cat": "pw",
@@ -101073,18 +101109,6 @@
 "atlas": 1,
 "objs": [
 "6531929c3f97c3448b34b6f3896f4b40"
-]
-},
-"pw_chaoskiblast": {
-"nome": "ChaosKiBlast",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"8f0f2591de9f3ee48885f0631565806b"
 ]
 },
 "pw_chaosspecial": {
@@ -101219,18 +101243,6 @@
 "34021f7b40a45dd4da116ac3ca739598"
 ]
 },
-"pw_charge____": {
-"nome": "Charge",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"3d293aa38cffd3243ad8d09dcb171ec5"
-]
-},
 "pw_clouds": {
 "nome": "Clouds",
 "cat": "pw",
@@ -101241,30 +101253,6 @@
 "atlas": 1,
 "objs": [
 "704786a6cf49aaa468b7993822080267"
-]
-},
-"pw_dash": {
-"nome": "Dash",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets11.assets"
-]
-},
-"pw_dashbutton": {
-"nome": "DashButton",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
 ]
 },
 "pw_dialog": {
@@ -101927,54 +101915,6 @@
 "4e45fae208461fa4ab5631c288e6bb88"
 ]
 },
-"pw_energy_20_00008": {
-"nome": "energy_20_00008",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"b9fae2c050a4a8e41a658ca9f84a94f9"
-]
-},
-"pw_energy_20_00009": {
-"nome": "energy_20_00009",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"7ccd0303acad73c42b1191ee73267f7f"
-]
-},
-"pw_energy_20_00010": {
-"nome": "energy_20_00010",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"42464cd51065b5949be9adaa47a2dca1"
-]
-},
-"pw_energygroundexplosion": {
-"nome": "EnergyGroundExplosion",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"5cd7f7554a6f63b449a1199de2b05519"
-]
-},
 "pw_frame_7_delay_0_12s": {
 "nome": "frame_7_delay-0.12s",
 "cat": "pw",
@@ -101985,126 +101925,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets56.assets.split0"
-]
-},
-"pw_fx_2_ver_1_01": {
-"nome": "fx_2_ver_1_01",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"987cc54ecbdd3dd41b2d5535826d4514"
-]
-},
-"pw_fx_2_ver_1_02": {
-"nome": "fx_2_ver_1_02",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"49d9b4dc715d05340b3a89cc1cdd4c27"
-]
-},
-"pw_fx_2_ver_1_03": {
-"nome": "fx_2_ver_1_03",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"8608160fff9c28f4cbb75eb222507dca"
-]
-},
-"pw_fx_2_ver_1_04": {
-"nome": "fx_2_ver_1_04",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"2deb31b73abbeec4696496b5388e228d"
-]
-},
-"pw_fx_2_ver_1_05": {
-"nome": "fx_2_ver_1_05",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"a4e9a7563ef7bb14390acf925d457a4a"
-]
-},
-"pw_fx_2_ver_1_06": {
-"nome": "fx_2_ver_1_06",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"e70d1d07ecae28a4ebbdd128c3d029ff"
-]
-},
-"pw_fx_2_ver_1_07": {
-"nome": "fx_2_ver_1_07",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"8c9943397f894724dbd1b056a33ff2b8"
-]
-},
-"pw_fx_2_ver_1_08": {
-"nome": "fx_2_ver_1_08",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"5dce0313cfa94904abfc82431cdfe991"
-]
-},
-"pw_fx_2_ver_1_09": {
-"nome": "fx_2_ver_1_09",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"4132a553f7537d74482d924117e34a53"
-]
-},
-"pw_fx_2_ver_1_10": {
-"nome": "fx_2_ver_1_10",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"8cd8d29b12b06b840a5f5bc55c60be81"
 ]
 },
 "pw_gohanadultmangaguard": {
@@ -102467,18 +102287,6 @@
 "20e0600e35d7f8c458502c3fa81c1cba"
 ]
 },
-"pw_powerfighterz_ui_hp": {
-"nome": "PowerFighterZ_UI_HP",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"ccb6185cdbb12934291e5a09ff56ac0e"
-]
-},
 "pw_ribriannehearth": {
 "nome": "RibrianneHearth",
 "cat": "pw",
@@ -102525,18 +102333,6 @@
 "atlas": 1,
 "objs": [
 "dd639383aa3b5c548b4e050f453373e2"
-]
-},
-"pw_specialballbroyred": {
-"nome": "SpecialBallBroyRed",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"e75ccac02e1d06c4e911e5c974bb561b"
 ]
 },
 "pw_specialraylightpinkdouble": {
@@ -102791,18 +102587,6 @@
 "ebe23eea5bd2efd4e934f0867b9f64f1"
 ]
 },
-"pw_stage15icon": {
-"nome": "Stage15Icon",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets14.assets.split0"
-]
-},
 "pw_stage16": {
 "nome": "Stage16",
 "cat": "pw",
@@ -102921,18 +102705,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets38.assets"
-]
-},
-"pw_stage21icon": {
-"nome": "Stage21Icon",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets14.assets.split0"
 ]
 },
 "pw_stage22": {
@@ -103149,18 +102921,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets19.assets"
-]
-},
-"pw_stage4icon": {
-"nome": "stage4Icon",
-"cat": "pw",
-"tipo": "cenarios",
-"fonte": "pw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets14.assets.split0"
 ]
 },
 "pw_stage5": {
@@ -103475,6 +103235,18 @@
 "sharedassets13.assets.split0"
 ]
 },
+"pw_box": {
+"nome": "box",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "pw_btn_green_check": {
 "nome": "btn_green_check",
 "cat": "pw",
@@ -103763,6 +103535,18 @@
 "sharedassets13.assets.split0"
 ]
 },
+"pw_dashbutton": {
+"nome": "DashButton",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets.split0"
+]
+},
 "pw_dodoriaselect": {
 "nome": "DodoriaSelect",
 "cat": "pw",
@@ -103785,6 +103569,18 @@
 "atlas": 1,
 "objs": [
 "0d6573be55fcff546871ff57e9fb1547"
+]
+},
+"pw_esctoexit_back": {
+"nome": "EscToExit_back",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
 ]
 },
 "pw_esctoexit_text": {
@@ -103943,6 +103739,18 @@
 "unity default resources"
 ]
 },
+"pw_horizontal_scrollbar_thumb": {
+"nome": "horizontal scrollbar thumb",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "pw_huitzilopochtliselect": {
 "nome": "HUITZILOPOCHTLISelect",
 "cat": "pw",
@@ -104087,6 +103895,18 @@
 "sharedassets13.assets.split0"
 ]
 },
+"pw_powerfighterz_ui_hp": {
+"nome": "PowerFighterZ_UI_HP",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"ccb6185cdbb12934291e5a09ff56ac0e"
+]
+},
 "pw_recoomeselect": {
 "nome": "RecoomeSelect",
 "cat": "pw",
@@ -104171,6 +103991,54 @@
 "sharedassets1.assets.split0"
 ]
 },
+"pw_slider_thumb": {
+"nome": "slider thumb",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_slider_thumb_active": {
+"nome": "slider thumb active",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_slidert_humb_hover": {
+"nome": "slidert humb hover",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_soft": {
+"nome": "Soft",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "pw_specialarrowgreen": {
 "nome": "SpecialArrowGreen",
 "cat": "pw",
@@ -104219,18 +104087,6 @@
 "c6402f981a9150642a34cc855264bf99"
 ]
 },
-"pw_specialballdeathpurple": {
-"nome": "SpecialBallDeathPurple",
-"cat": "pw",
-"tipo": "interface",
-"fonte": "pw",
-"anims": 1,
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"fd8c58ed864eba542bfa93ce8d819026"
-]
-},
 "pw_specialslashpink": {
 "nome": "SpecialSlashPink",
 "cat": "pw",
@@ -104265,6 +104121,42 @@
 "atlas": 1,
 "objs": [
 "a1d1799901b448940ac0cc82be6f79b4"
+]
+},
+"pw_stage15icon": {
+"nome": "Stage15Icon",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets14.assets.split0"
+]
+},
+"pw_stage21icon": {
+"nome": "Stage21Icon",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets14.assets.split0"
+]
+},
+"pw_stage4icon": {
+"nome": "stage4Icon",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets14.assets.split0"
 ]
 },
 "pw_textfield": {
@@ -104303,6 +104195,78 @@
 "unity default resources"
 ]
 },
+"pw_toggle": {
+"nome": "toggle",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_toggle_active": {
+"nome": "toggle active",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_toggle_hover": {
+"nome": "toggle hover",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_toggle_on": {
+"nome": "toggle on",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_toggle_on_active": {
+"nome": "toggle on active",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_toggle_on_hover": {
+"nome": "toggle on hover",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
 "pw_trunkschild1select": {
 "nome": "TrunksChild1Select",
 "cat": "pw",
@@ -104313,6 +104277,18 @@
 "atlas": 1,
 "objs": [
 "sharedassets13.assets.split0"
+]
+},
+"pw_uisprite": {
+"nome": "UISprite",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"sharedassets1.assets.split0"
 ]
 },
 "pw_vegetagtnew4alticonblast": {
@@ -104425,6 +104401,30 @@
 },
 "pw_vertical_scrollbar": {
 "nome": "vertical scrollbar",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_vertical_scrollbar_thumb": {
+"nome": "vertical scrollbar thumb",
+"cat": "pw",
+"tipo": "interface",
+"fonte": "pw",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"unity default resources"
+]
+},
+"pw_warningsign": {
+"nome": "WarningSign",
 "cat": "pw",
 "tipo": "interface",
 "fonte": "pw",
@@ -109307,6 +109307,18 @@
 "Acessorios"
 ]
 },
+"spw_auraclassica": {
+"nome": "AuraClassica",
+"cat": "spw",
+"tipo": "efeitos",
+"fonte": "spw",
+"anims": 20,
+"quadros": 60,
+"atlas": 2,
+"objs": [
+"AuraClassica"
+]
+},
 "spw_cameraprincipal": {
 "nome": "CameraPrincipal",
 "cat": "spw",
@@ -109917,18 +109929,6 @@
 "atlas": 1,
 "objs": [
 "WhatIfPage"
-]
-},
-"spw_auraclassica": {
-"nome": "AuraClassica",
-"cat": "spw",
-"tipo": "cenarios",
-"fonte": "spw",
-"anims": 20,
-"quadros": 60,
-"atlas": 2,
-"objs": [
-"AuraClassica"
 ]
 },
 "spw_c12": {
@@ -112233,6 +112233,54 @@
 "atlas": 1,
 "objs": [
 "efeito_circulo_salto_2"
+]
+},
+"swz_efeito_dano_1": {
+"nome": "efeito_dano_1",
+"cat": "swz",
+"tipo": "efeitos",
+"fonte": "swz",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"efeito_dano_1"
+]
+},
+"swz_efeito_dano_1_2": {
+"nome": "efeito_dano_1_2",
+"cat": "swz",
+"tipo": "efeitos",
+"fonte": "swz",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"efeito_dano_1_2"
+]
+},
+"swz_efeito_dano_2": {
+"nome": "efeito_dano_2",
+"cat": "swz",
+"tipo": "efeitos",
+"fonte": "swz",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"efeito_dano_2"
+]
+},
+"swz_efeito_dano_2_2": {
+"nome": "efeito_dano_2_2",
+"cat": "swz",
+"tipo": "efeitos",
+"fonte": "swz",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"efeito_dano_2_2"
 ]
 },
 "swz_efeito_frente_e_tras_2": {
@@ -114683,18 +114731,6 @@
 "background_base"
 ]
 },
-"swz_background_pause": {
-"nome": "background_pause",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"background_pause"
-]
-},
 "swz_bal_o_de_numeros": {
 "nome": "balão_de_numeros",
 "cat": "swz",
@@ -115067,54 +115103,6 @@
 "editar"
 ]
 },
-"swz_efeito_dano_1": {
-"nome": "efeito_dano_1",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"efeito_dano_1"
-]
-},
-"swz_efeito_dano_1_2": {
-"nome": "efeito_dano_1_2",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"efeito_dano_1_2"
-]
-},
-"swz_efeito_dano_2": {
-"nome": "efeito_dano_2",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"efeito_dano_2"
-]
-},
-"swz_efeito_dano_2_2": {
-"nome": "efeito_dano_2_2",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"efeito_dano_2_2"
-]
-},
 "swz_episodio_desbloqueado_base": {
 "nome": "episodio_desbloqueado_base",
 "cat": "swz",
@@ -115427,18 +115415,6 @@
 "legenda_capitulo_fight"
 ]
 },
-"swz_logos_png": {
-"nome": "logos_png",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 3,
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"logos_png"
-]
-},
 "swz_macaco_cenario_31": {
 "nome": "macaco_cenario_31",
 "cat": "swz",
@@ -115449,18 +115425,6 @@
 "atlas": 1,
 "objs": [
 "macaco_cenario_31"
-]
-},
-"swz_mapas_logo": {
-"nome": "mapas_logo",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 2,
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"mapas_logo"
 ]
 },
 "swz_medrosos_torneio_cenario_32": {
@@ -115607,18 +115571,6 @@
 "opções_de_batalha"
 ]
 },
-"swz_op_es_de_batlha_logo": {
-"nome": "opções_de_batlha_logo",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"opções_de_batlha_logo"
-]
-},
 "swz_passaro_cenario_24": {
 "nome": "passaro_cenario_24",
 "cat": "swz",
@@ -115629,18 +115581,6 @@
 "atlas": 1,
 "objs": [
 "passaro_cenario_24"
-]
-},
-"swz_pause_de_duelo": {
-"nome": "pause_de_duelo",
-"cat": "swz",
-"tipo": "cenarios",
-"fonte": "swz",
-"anims": 2,
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"pause_de_duelo"
 ]
 },
 "swz_pratos_concluidos": {
@@ -115965,6 +115905,18 @@
 "atlas": 1,
 "objs": [
 "yachirobe_cenario_2"
+]
+},
+"swz_background_pause": {
+"nome": "background_pause",
+"cat": "swz",
+"tipo": "interface",
+"fonte": "swz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"background_pause"
 ]
 },
 "swz_banner_lateral": {
@@ -116435,6 +116387,30 @@
 "life_player"
 ]
 },
+"swz_logos_png": {
+"nome": "logos_png",
+"cat": "swz",
+"tipo": "interface",
+"fonte": "swz",
+"anims": 3,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"logos_png"
+]
+},
+"swz_mapas_logo": {
+"nome": "mapas_logo",
+"cat": "swz",
+"tipo": "interface",
+"fonte": "swz",
+"anims": 2,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"mapas_logo"
+]
+},
 "swz_menu_principal_logo": {
 "nome": "menu_principal_logo",
 "cat": "swz",
@@ -116495,6 +116471,18 @@
 "new_saga_logo"
 ]
 },
+"swz_op_es_de_batlha_logo": {
+"nome": "opções_de_batlha_logo",
+"cat": "swz",
+"tipo": "interface",
+"fonte": "swz",
+"anims": 1,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"opções_de_batlha_logo"
+]
+},
 "swz_op_es_logo": {
 "nome": "opções_logo",
 "cat": "swz",
@@ -116517,6 +116505,18 @@
 "atlas": 1,
 "objs": [
 "pause"
+]
+},
+"swz_pause_de_duelo": {
+"nome": "pause_de_duelo",
+"cat": "swz",
+"tipo": "interface",
+"fonte": "swz",
+"anims": 2,
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"pause_de_duelo"
 ]
 },
 "swz_pause_logo_1": {
@@ -129477,6 +129477,18 @@
 "Dragon"
 ]
 },
+"uh_efeitobeast": {
+"nome": "EfeitoBeast",
+"cat": "uh",
+"tipo": "efeitos",
+"fonte": "uh",
+"anims": 4,
+"quadros": 68,
+"atlas": 3,
+"objs": [
+"EfeitoBeast"
+]
+},
 "uh_efeitoblack": {
 "nome": "EfeitoBlack",
 "cat": "uh",
@@ -129739,6 +129751,30 @@
 "atlas": 1,
 "objs": [
 "Fusão"
+]
+},
+"uh_genkidama": {
+"nome": "Genkidama",
+"cat": "uh",
+"tipo": "efeitos",
+"fonte": "uh",
+"anims": 72,
+"quadros": 222,
+"atlas": 2,
+"objs": [
+"Genkidama"
+]
+},
+"uh_genkidama2": {
+"nome": "Genkidama2",
+"cat": "uh",
+"tipo": "efeitos",
+"fonte": "uh",
+"anims": 72,
+"quadros": 222,
+"atlas": 2,
+"objs": [
+"Genkidama2"
 ]
 },
 "uh_genkidamaut": {
@@ -132129,18 +132165,6 @@
 "Dual"
 ]
 },
-"uh_efeitobeast": {
-"nome": "EfeitoBeast",
-"cat": "uh",
-"tipo": "cenarios",
-"fonte": "uh",
-"anims": 4,
-"quadros": 68,
-"atlas": 3,
-"objs": [
-"EfeitoBeast"
-]
-},
 "uh_fundo_itens": {
 "nome": "fundo_itens",
 "cat": "uh",
@@ -132271,30 +132295,6 @@
 "atlas": 1,
 "objs": [
 "FundoTuto"
-]
-},
-"uh_genkidama": {
-"nome": "Genkidama",
-"cat": "uh",
-"tipo": "cenarios",
-"fonte": "uh",
-"anims": 72,
-"quadros": 222,
-"atlas": 2,
-"objs": [
-"Genkidama"
-]
-},
-"uh_genkidama2": {
-"nome": "Genkidama2",
-"cat": "uh",
-"tipo": "cenarios",
-"fonte": "uh",
-"anims": 72,
-"quadros": 222,
-"atlas": 2,
-"objs": [
-"Genkidama2"
 ]
 },
 "uh_gokuswl5": {

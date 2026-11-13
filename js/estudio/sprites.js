@@ -230,21 +230,28 @@
     const jogo = lista.filter(s => !FF.Assets.doAcervo(s));
     const acervo = lista.filter(s => FF.Assets.doAcervo(s));
     if (!acervo.length) { jogo.forEach(s => item(s, ui.sprites)); return; }
-    // agrupado: sprites do jogo, depois o acervo do Z Legends 3 por categoria (abre/fecha)
+    // agrupado: sprites do jogo, depois o acervo por categoria/jogo (abre/fecha); dentro de cada jogo, por tipo
     const NOMES = FF.Assets.categoriasAcervo();
+    const TIPOS_ACERVO = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
+    const ICONE_TIPO = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };
+    const NOME_TIPO = { personagens: 'Personagens', efeitos: 'Efeitos', cenarios: 'Cenários', interface: 'Interface e outros', cutscenes: 'Cutscenes' };
     const abertas = new Set(E.rascunho.ler('sprites_cats_abertas') || []);
-    if (st.id && FF.Assets.doAcervo(st.id)) abertas.add(FF.Assets.categoriaSprite(st.id));
-    const grupo = (chave, titulo, ids) => {
+    if (st.id && FF.Assets.doAcervo(st.id)) { abertas.add(FF.Assets.categoriaSprite(st.id)); abertas.add(FF.Assets.categoriaSprite(st.id) + ':' + FF.Assets.tipoSprite(st.id)); }
+    const grupo = (chave, titulo, ids, sub) => {
       if (!ids.length) return;
       const aberta = !!f || chave === 'jogo' ? !abertas.has('!' + chave) : abertas.has(chave);
-      const cab = el('div', 'ess-cat', (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
+      const cab = el('div', 'ess-cat' + (sub ? ' ess-cat-sub' : ''), (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
       cab.onclick = () => {
         if (chave === 'jogo') { abertas.has('!jogo') ? abertas.delete('!jogo') : abertas.add('!jogo'); }
         else { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); }
         E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites();
       };
       ui.sprites.appendChild(cab);
-      if (aberta) ids.forEach(s => item(s, ui.sprites));
+      if (!aberta) return;
+      // jogo inteiro (ex.: Drag Warriors): separa por tipo (personagens, efeitos, cenários, interface)
+      const tipos = sub ? [] : TIPOS_ACERVO.filter(t => ids.some(s => FF.Assets.tipoSprite(s) === t));
+      if (chave === 'jogo' || tipos.length < 2) { ids.forEach(s => item(s, ui.sprites)); return; }
+      tipos.forEach(t => grupo(chave + ':' + t, ICONE_TIPO[t] + ' ' + NOME_TIPO[t], ids.filter(s => FF.Assets.tipoSprite(s) === t), true));
     };
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];

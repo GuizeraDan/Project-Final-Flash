@@ -114,3 +114,4 @@
 /* acervo do Z Legends 3: categorias que abrem/fecham na lista de sprites */
 .ess-cat { font-size: 11px; font-weight: bold; color: var(--ouro); padding: 5px 6px 3px; cursor: pointer; user-select: none; border-top: 1px solid var(--linha); }
 .ess-cat:hover { background: var(--painel); }
+.ess-cat-sub { padding-left: 16px; border-top: none; color: var(--texto, #ddd); font-weight: normal; }

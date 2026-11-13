@@ -1,2698 +1,2698 @@
 {
-"chave": "dw",
-"nome": "Drag Warriors",
-"categorias": {
-"dw": "Drag Warriors"
-},
-"sprites": {
-"dw_vgta_baby": {
-"nome": "vgta_baby",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"04ee4ffb27ad0af4da16ffbebed3207c"
-],
-"anims": {
-"Todos": 54,
-"grupo": 3,
-"baby_vgta": 51
-}
-},
-"dw_beam_fight_06": {
-"nome": "beam_fight_06",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"0550cfc98ac297047aae2f2403cf1876"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_active_skill_r": {
-"nome": "active_skill_r",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 25,
-"atlas": 1,
-"objs": [
-"06984cab0214cb4488798e6f8a7cffa8"
-],
-"anims": {
-"Todos": 25
-}
-},
-"dw_latla": {
-"nome": "latla",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"0ae10d24488827548ab134346173e2a7"
-],
-"anims": {
-"Todos": 59,
-"grupo": 2,
-"latla": 57
-}
-},
-"dw_buu_thunder": {
-"nome": "buu_thunder",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"0c0864738d76e864d9f63df654259fdd"
-],
-"anims": {
-"Todos": 15,
-"buu_thunder": 6,
-"buu_thunder_hit": 9
-}
-},
-"dw_bdoy_xe": {
-"nome": "bdoy_xe",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"0ea03d9d8a0773a4cb0890a8a8966113"
-],
-"anims": {
-"Todos": 54,
-"grupo": 3,
-"intro_xen_broolly": 8,
-"xen_broolly": 43
-}
-},
-"dw_white1px": {
-"nome": "White1px",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"127279d577f25ac4ea17dae3782e5074"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_jiren_limit": {
-"nome": "jiren_limit",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"12822e30e04edae44a27e0b3d7cd9916"
-],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"jiren_limit": 52
-}
-},
-"dw_ground_smash_fx_09": {
-"nome": "ground_smash_fx_09",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"18b19c22d945ba549a0ee1efda9f278d"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_tut_s4": {
-"nome": "tut_s4",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"21e27f3a56518164eaad10203e39598d"
-],
-"anims": {
-"Todos": 57,
-"grupo": 2,
-"tut_s4": 55
-}
-},
-"dw_hidetoshi": {
-"nome": "hidetoshi",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 84,
-"atlas": 1,
-"objs": [
-"234af68a6f88cf148b4951c0e1e12215"
-],
-"anims": {
-"Todos": 84,
-"grupo": 2,
-"hidetoshi": 82
-}
-},
-"dw_beam_fight_04": {
-"nome": "beam_fight_04",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"242ee44ee81ae81409741091f627fac8"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_kanba": {
-"nome": "kanba",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 58,
-"atlas": 1,
-"objs": [
-"2574afce7f8559e4ca36995aeff066e9"
-],
-"anims": {
-"Todos": 58,
-"grupo": 3,
-"kanba": 55
-}
-},
-"dw_el_her": {
-"nome": "el_her",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 77,
-"atlas": 1,
-"objs": [
-"333fc524d971dd448a3dd4fcae266fb4"
-],
-"anims": {
-"Todos": 77,
-"grupo": 3,
-"el_her": 74
-}
-},
-"dw_ground_smash_fx_00": {
-"nome": "ground_smash_fx_00",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"33b5ec83022d0994ca6bb0fe00addb55"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ground_smash_fx_05": {
-"nome": "ground_smash_fx_05",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"38d772dcf44e0ac44ad6a909f28f2fec"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_friza_4": {
-"nome": "friza_4",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 40,
-"atlas": 1,
-"objs": [
-"3b2a221fa5302474f8b05b47a1fccc38"
-],
-"anims": {
-"Todos": 40,
-"grupo": 2,
-"frieezza": 38
-}
-},
-"dw_byte": {
-"nome": "BYTE",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 72,
-"atlas": 1,
-"objs": [
-"3fcda4f28011bfd4faa75e088053dee0"
-],
-"anims": {
-"Todos": 72,
-"grupo": 2,
-"byte": 70
-}
-},
-"dw_bly_ball_font": {
-"nome": "bly_ball_font",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 17,
-"atlas": 1,
-"objs": [
-"41a1770d52743a9469448e30c8fa3b0d"
-],
-"anims": {
-"Todos": 17,
-"bg_big": 1,
-"BLY_BALL_font": 16
-}
-},
-"dw_agustin_god": {
-"nome": "agustin_god",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 80,
-"atlas": 1,
-"objs": [
-"4448fe2573fcb484690401405f346049"
-],
-"anims": {
-"Todos": 80,
-"grupo": 2,
-"agustin": 78
-}
-},
-"dw_dash_pre": {
-"nome": "dash_pre",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"4aae8d9dba70f2849ac637a33f1f14c2"
-],
-"anims": {
-"Todos": 5
-}
-},
-"dw_vgta_sj5": {
-"nome": "vgta_sj5",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"4b4194041e5fc6c4c875e65c003e4d4f"
-],
-"anims": {
-"Todos": 57,
-"grupo": 2,
-"vgta_sj5": 55
-}
-},
-"dw_bado": {
-"nome": "bado",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 78,
-"atlas": 1,
-"objs": [
-"642f234797b0d0441a643b1e5312e406"
-],
-"anims": {
-"Todos": 78,
-"grupo": 3,
-"bado": 75
-}
-},
-"dw_beam_fight_02": {
-"nome": "beam_fight_02",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"681a686a53234e2468c64471cf37f6ce"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ground_smash_fx_06": {
-"nome": "ground_smash_fx_06",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"68a43297bb896844d8433976a77fa828"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_beam_fight_05": {
-"nome": "beam_fight_05",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"6ba88bc324aa3a044992dfe15103a1e0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_bb_atk": {
-"nome": "BB_ATK",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"6eb269cedbd460d4dab44b5b61520f83"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_yacha": {
-"nome": "yacha",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 61,
-"atlas": 1,
-"objs": [
-"75f0bbe36d9c86b43a1cb750940ab975"
-],
-"anims": {
-"Todos": 61,
-"grupo": 2,
-"yamcha": 58,
-"yamcha_22": 1
-}
-},
-"dw_zoku_sj5": {
-"nome": "zoku_sj5",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"767151c24fac3c54585e3f13f692729f"
-],
-"anims": {
-"Todos": 57,
-"grupo": 2,
-"zoku_sj5": 55
-}
-},
-"dw_uifoldoutclosed": {
-"nome": "UIFoldoutClosed",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"7a0568d5e3330b84687e307992be3030"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_kenzan": {
-"nome": "kenzan",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 7,
-"atlas": 1,
-"objs": [
-"7c9be6f5a3c6e1a4681066f50aba780a"
-],
-"anims": {
-"Todos": 7,
-"kenzan": 3,
-"kenzan_hit": 4
-}
-},
-"dw_ground_smash_fx_04": {
-"nome": "ground_smash_fx_04",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"7cf9d17e8845b5b4d8cad2d1710b49b3"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_mira": {
-"nome": "mira",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"82422563802be5f4a9b8afdfc3ff78e8"
-],
-"anims": {
-"Todos": 56,
-"grupo": 1,
-"mira": 55
-}
-},
-"dw_ki_blast_big": {
-"nome": "ki_blast_big",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"865e32ab37b1f604190b9376808c8453"
-],
-"anims": {
-"Todos": 10
-}
-},
-"dw_arena_god_600_3": {
-"nome": "arena_god_600-3",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"88d47851f900330479fa5343677276bf"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_finger_beam": {
-"nome": "FINGER_BEAM",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"8a98ac0b5f86f034c994e0157c610a5d"
-],
-"anims": {
-"Todos": 6,
-"fb_tail": 4,
-"finger_beam_head": 1,
-"finger_beam_tail": 1
-}
-},
-"dw_arena_god_600_0": {
-"nome": "arena_god_600-0",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"8ef3f665a4224d240bd4f1ff8c72f831"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_vgta_baby_s1": {
-"nome": "vgta_baby_s1",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"9147c50eccef1cd478d3e639de09c5f0"
-],
-"anims": {
-"Todos": 46,
-"grupo": 3,
-"vgta_gt_ssj": 43
-}
-},
-"dw_ke_baby": {
-"nome": "ke_baby",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 63,
-"atlas": 1,
-"objs": [
-"97e4539a563d9694995053b1930c92f8"
-],
-"anims": {
-"Todos": 63,
-"grupo": 3,
-"ke_ba": 60
-}
-},
-"dw_beam_fight_00": {
-"nome": "beam_fight_00",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"9cec64c73a5b47c40952371fa5d92472"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_active_skill_w": {
-"nome": "active_skill_w",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 9,
-"atlas": 1,
-"objs": [
-"9d673c710a6f10d40b6f563d794a44e4"
-],
-"anims": {
-"Todos": 12
-}
-},
-"dw_dyan": {
-"nome": "dyan",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"a1d7e094d1fe7ab499245eda0046364f"
-],
-"anims": {
-"Todos": 73,
-"grupo": 3,
-"dyan": 70
-}
-},
-"dw_beam_fight_01": {
-"nome": "beam_fight_01",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"a341b83df5e3e9a4f94cc455fc4ee27f"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_uifoldoutopened": {
-"nome": "UIFoldoutOpened",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"a674720496c1ed248a5b7ea3e22a11fd"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_touga": {
-"nome": "touga",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 78,
-"atlas": 1,
-"objs": [
-"aa1bf4c802cfba44fa29875831a1c225"
-],
-"anims": {
-"Todos": 78,
-"grupo": 2,
-"touge": 76
-}
-},
-"dw_beam_fight_07": {
-"nome": "beam_fight_07",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"acf6f865aef451b4aa9e80dd46998e2f"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_bly_b_s_pack": {
-"nome": "bly_b_s_pack",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 17,
-"atlas": 1,
-"objs": [
-"b0edfb0360f926641a1832508dede1b4"
-],
-"anims": {
-"Todos": 17
-}
-},
-"dw_uicheckmark": {
-"nome": "UICheckMark",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"b346b2a2df1d290438be3287b6419408"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ground_smash_fx_01": {
-"nome": "ground_smash_fx_01",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"ba7678798c9b1f14da035dfc06c52d70"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_finger_beam_body": {
-"nome": "finger_beam_body",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"c0b0c2cff023995489c0b754803690d7"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_digegra": {
-"nome": "digegra",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 61,
-"atlas": 1,
-"objs": [
-"c69d71b0f990bd14ca2f8df4423120d6"
-],
-"anims": {
-"Todos": 61,
-"grupo": 2,
-"dimega": 59
-}
-},
-"dw_ground_smash_fx_02": {
-"nome": "ground_smash_fx_02",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"d037e055a520cec4b80196a3b0a14e7a"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_topo_god": {
-"nome": "topo_god",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 47,
-"atlas": 1,
-"objs": [
-"d3544492b4b9c434f9b715d7d38b8283"
-],
-"anims": {
-"Todos": 47,
-"grupo": 3,
-"topo_god": 44
-}
-},
-"dw_uielement8px": {
-"nome": "UIElement8px",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"d49e78756811bfa4aafb8b6535417991"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_thun_f": {
-"nome": "thun_f",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"d548d1e13764ab34382147eb457ab9ec"
-],
-"anims": {
-"Todos": 4
-}
-},
-"dw_ground_smash_fx_07": {
-"nome": "ground_smash_fx_07",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"db2f6f15f5a00904fb80b598abce466e"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_beam_fight_03": {
-"nome": "beam_fight_03",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"e2caff509405bba48ba5d356c32becf7"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ground_smash_fx_08": {
-"nome": "ground_smash_fx_08",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"e54b7ab7dee08664fb254fba31c3c9ca"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_air_p": {
-"nome": "AIR_P",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"ecbe5e1a94eeba04a9eacd2fbdcc9fb8"
-],
-"anims": {
-"Todos": 12
-}
-},
-"dw_antom": {
-"nome": "antom",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"fb0c5e389375a4d4db14fdd224ea4b95"
-],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"antom": 52
-}
-},
-"dw_ground_smash_fx_03": {
-"nome": "ground_smash_fx_03",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"fd60ef6ec3d3b1c4091c3a1deeb58e06"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_omega": {
-"nome": "omega",
-"cat": "dw",
-"tipo": "personagens",
-"quadros": 42,
-"atlas": 1,
-"objs": [
-"febce176446761a4f80f4b1d5a3ea236"
-],
-"anims": {
-"Todos": 42,
-"grupo": 3,
-"omega": 39
-}
-},
-"dw_uisprite": {
-"nome": "UISprite",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_uimask": {
-"nome": "UIMask",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ads_icon": {
-"nome": "ads_icon",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitysplash_cube": {
-"nome": "UnitySplash-cube",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
-"nome": "sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff": {
-"nome": "sactx-1024x1024-ETC2-CHIKARI_PACK-0e6ffdff",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
-"nome": "sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8": {
-"nome": "sactx-1024x1024-ETC2-ACTIVE_SKILL_BG_PACK-1793eaa8",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd": {
-"nome": "sactx-2048x2048-ETC2-D_PLANET_PACK-2addc9dd",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214": {
-"nome": "sactx-256x128-Uncompressed-BALL_CHARGE_PACK-33e25214",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_galic_pack_36ec096e": {
-"nome": "sactx-512x512-ETC2-GALIC_PACK-36ec096e",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
-"nome": "sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa": {
-"nome": "sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
-"nome": "sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
-"nome": "sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
-"nome": "sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x256_etc2_ki_beam_pack_742c5349": {
-"nome": "sactx-512x256-ETC2-KI_BEAM_PACK-742c5349",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
-"nome": "sactx-256x256-ETC2-KI_BLAST_PACK-82f34169",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x1024_etc2_c_g_stage_853da8c3": {
-"nome": "sactx-2048x1024-ETC2-C_G_STAGE-853da8c3",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
-"nome": "sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08": {
-"nome": "sactx-2048x1024-ETC2-S_PLANET_PACK-9b8a5a08",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209": {
-"nome": "sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
-"nome": "sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x1024_etc2_chiko_pack_d34853b7": {
-"nome": "sactx-1024x1024-ETC2-CHIKO_PACK-d34853b7",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x512_etc2_univer_sky_d751abae": {
-"nome": "sactx-2048x512-ETC2-UNIVER_SKY-d751abae",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4": {
-"nome": "sactx-512x512-ETC2-DRAGON_PUNCH_PACK-d930f2c4",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
-"nome": "sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
-"nome": "sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d": {
-"nome": "sactx-2048x2048-ETC2-G_V_H-f2b2e61d",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
-"nome": "sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_combat": {
-"nome": "combat",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"582fc439bf0d56549859a11dc2c77bc3"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_9": {
-"nome": "LDR_LLL1_9",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium01": {
-"nome": "Medium01",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_23": {
-"nome": "LDR_LLL1_23",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_2": {
-"nome": "LDR_LLL1_2",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_17": {
-"nome": "LDR_LLL1_17",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_31": {
-"nome": "LDR_LLL1_31",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_25": {
-"nome": "LDR_LLL1_25",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_4": {
-"nome": "LDR_LLL1_4",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_6": {
-"nome": "LDR_LLL1_6",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_14": {
-"nome": "LDR_LLL1_14",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_15": {
-"nome": "LDR_LLL1_15",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium05": {
-"nome": "Medium05",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_searchtex": {
-"nome": "SearchTex",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_large02": {
-"nome": "Large02",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_thin01": {
-"nome": "Thin01",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_3": {
-"nome": "LDR_LLL1_3",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_0": {
-"nome": "LDR_LLL1_0",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_30": {
-"nome": "LDR_LLL1_30",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_10": {
-"nome": "LDR_LLL1_10",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium03": {
-"nome": "Medium03",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_16": {
-"nome": "LDR_LLL1_16",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_24": {
-"nome": "LDR_LLL1_24",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium06": {
-"nome": "Medium06",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium04": {
-"nome": "Medium04",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_12": {
-"nome": "LDR_LLL1_12",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_7": {
-"nome": "LDR_LLL1_7",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_27": {
-"nome": "LDR_LLL1_27",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_20": {
-"nome": "LDR_LLL1_20",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_26": {
-"nome": "LDR_LLL1_26",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_areatex": {
-"nome": "AreaTex",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_18": {
-"nome": "LDR_LLL1_18",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_19": {
-"nome": "LDR_LLL1_19",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_1": {
-"nome": "LDR_LLL1_1",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_13": {
-"nome": "LDR_LLL1_13",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_21": {
-"nome": "LDR_LLL1_21",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_thin02": {
-"nome": "Thin02",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_5": {
-"nome": "LDR_LLL1_5",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_8": {
-"nome": "LDR_LLL1_8",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium02": {
-"nome": "Medium02",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_22": {
-"nome": "LDR_LLL1_22",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_29": {
-"nome": "LDR_LLL1_29",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_11": {
-"nome": "LDR_LLL1_11",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_large01": {
-"nome": "Large01",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_28": {
-"nome": "LDR_LLL1_28",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_9_": {
-"nome": "LDR_LLL1_9",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium01_": {
-"nome": "Medium01",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_23_": {
-"nome": "LDR_LLL1_23",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_2_": {
-"nome": "LDR_LLL1_2",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_17_": {
-"nome": "LDR_LLL1_17",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_31_": {
-"nome": "LDR_LLL1_31",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_25_": {
-"nome": "LDR_LLL1_25",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_4_": {
-"nome": "LDR_LLL1_4",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_6_": {
-"nome": "LDR_LLL1_6",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_14_": {
-"nome": "LDR_LLL1_14",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_ldr_lll1_15_": {
-"nome": "LDR_LLL1_15",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_medium05_": {
-"nome": "Medium05",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_searchtex_": {
-"nome": "SearchTex",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_large02_": {
-"nome": "Large02",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
-"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
-"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
-"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082": {
-"nome": "sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
-"nome": "sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_": {
-"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_": {
-"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_": {
-"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
-"nome": "sactx-256x128-Uncompressed-NPC_PACK-a988f2ae",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
-"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x256_uncompressed_menu_stage_f25645df": {
-"nome": "sactx-512x256-Uncompressed-MENU_STAGE-f25645df",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_": {
-"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets.split0"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_sactx_512x1024_etc2_end_fight_pack_b956320f": {
-"nome": "sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets3.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_soft": {
-"nome": "Soft",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_small": {
-"nome": "UnityWatermark-small",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_esctoexit_text": {
-"nome": "EscToExit_Text",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_trial_big": {
-"nome": "UnityWatermark-trial-big",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_trial": {
-"nome": "UnityWatermark-trial",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_beta": {
-"nome": "UnityWatermark-beta",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_edu": {
-"nome": "UnityWatermark-edu",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_dev": {
-"nome": "UnityWatermark-dev",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_warningsign": {
-"nome": "WarningSign",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermark_proto": {
-"nome": "UnityWatermark-proto",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_unitywatermarkplugin_beta": {
-"nome": "UnityWatermarkPlugin-beta",
-"cat": "dw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_box": {
-"nome": "box",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_button_active": {
-"nome": "button active",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_button_hover": {
-"nome": "button hover",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_button_on_hover": {
-"nome": "button on hover",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_button_on": {
-"nome": "button on",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_button": {
-"nome": "button",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_horizontal_scrollbar": {
-"nome": "horizontal scrollbar",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_slider_thumb": {
-"nome": "slider thumb",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle_active": {
-"nome": "toggle active",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle_hover": {
-"nome": "toggle hover",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle_on": {
-"nome": "toggle on",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_toggle": {
-"nome": "toggle",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "dw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_vertical_scrollbar": {
-"nome": "vertical scrollbar",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_window_on": {
-"nome": "window on",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_window": {
-"nome": "window",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_textfield": {
-"nome": "textfield",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_textfield_on": {
-"nome": "textfield on",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"dw_textfield_hover": {
-"nome": "textfield hover",
-"cat": "dw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-}
-},
-"sem_formato": {
-"1": 1,
-"4": 2
-}
+ "chave": "dw",
+ "nome": "Drag Warriors",
+ "categorias": {
+  "dw": "Drag Warriors"
+ },
+ "sprites": {
+  "dw_vgta_baby": {
+   "nome": "vgta_baby",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "04ee4ffb27ad0af4da16ffbebed3207c"
+   ],
+   "anims": {
+    "Todos": 54,
+    "grupo": 3,
+    "baby_vgta": 51
+   }
+  },
+  "dw_beam_fight_06": {
+   "nome": "beam_fight_06",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "0550cfc98ac297047aae2f2403cf1876"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_active_skill_r": {
+   "nome": "active_skill_r",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 25,
+   "atlas": 1,
+   "objs": [
+    "06984cab0214cb4488798e6f8a7cffa8"
+   ],
+   "anims": {
+    "Todos": 25
+   }
+  },
+  "dw_latla": {
+   "nome": "latla",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 59,
+   "atlas": 1,
+   "objs": [
+    "0ae10d24488827548ab134346173e2a7"
+   ],
+   "anims": {
+    "Todos": 59,
+    "grupo": 2,
+    "latla": 57
+   }
+  },
+  "dw_buu_thunder": {
+   "nome": "buu_thunder",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "0c0864738d76e864d9f63df654259fdd"
+   ],
+   "anims": {
+    "Todos": 15,
+    "buu_thunder": 6,
+    "buu_thunder_hit": 9
+   }
+  },
+  "dw_bdoy_xe": {
+   "nome": "bdoy_xe",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 54,
+   "atlas": 1,
+   "objs": [
+    "0ea03d9d8a0773a4cb0890a8a8966113"
+   ],
+   "anims": {
+    "Todos": 54,
+    "grupo": 3,
+    "intro_xen_broolly": 8,
+    "xen_broolly": 43
+   }
+  },
+  "dw_white1px": {
+   "nome": "White1px",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "127279d577f25ac4ea17dae3782e5074"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_jiren_limit": {
+   "nome": "jiren_limit",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "12822e30e04edae44a27e0b3d7cd9916"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 3,
+    "jiren_limit": 52
+   }
+  },
+  "dw_ground_smash_fx_09": {
+   "nome": "ground_smash_fx_09",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "18b19c22d945ba549a0ee1efda9f278d"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_tut_s4": {
+   "nome": "tut_s4",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "21e27f3a56518164eaad10203e39598d"
+   ],
+   "anims": {
+    "Todos": 57,
+    "grupo": 2,
+    "tut_s4": 55
+   }
+  },
+  "dw_hidetoshi": {
+   "nome": "hidetoshi",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 84,
+   "atlas": 1,
+   "objs": [
+    "234af68a6f88cf148b4951c0e1e12215"
+   ],
+   "anims": {
+    "Todos": 84,
+    "grupo": 2,
+    "hidetoshi": 82
+   }
+  },
+  "dw_beam_fight_04": {
+   "nome": "beam_fight_04",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "242ee44ee81ae81409741091f627fac8"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_kanba": {
+   "nome": "kanba",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 58,
+   "atlas": 1,
+   "objs": [
+    "2574afce7f8559e4ca36995aeff066e9"
+   ],
+   "anims": {
+    "Todos": 58,
+    "grupo": 3,
+    "kanba": 55
+   }
+  },
+  "dw_el_her": {
+   "nome": "el_her",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 77,
+   "atlas": 1,
+   "objs": [
+    "333fc524d971dd448a3dd4fcae266fb4"
+   ],
+   "anims": {
+    "Todos": 77,
+    "grupo": 3,
+    "el_her": 74
+   }
+  },
+  "dw_ground_smash_fx_00": {
+   "nome": "ground_smash_fx_00",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "33b5ec83022d0994ca6bb0fe00addb55"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ground_smash_fx_05": {
+   "nome": "ground_smash_fx_05",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "38d772dcf44e0ac44ad6a909f28f2fec"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_friza_4": {
+   "nome": "friza_4",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 40,
+   "atlas": 1,
+   "objs": [
+    "3b2a221fa5302474f8b05b47a1fccc38"
+   ],
+   "anims": {
+    "Todos": 40,
+    "grupo": 2,
+    "frieezza": 38
+   }
+  },
+  "dw_byte": {
+   "nome": "BYTE",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 72,
+   "atlas": 1,
+   "objs": [
+    "3fcda4f28011bfd4faa75e088053dee0"
+   ],
+   "anims": {
+    "Todos": 72,
+    "grupo": 2,
+    "byte": 70
+   }
+  },
+  "dw_bly_ball_font": {
+   "nome": "bly_ball_font",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 17,
+   "atlas": 1,
+   "objs": [
+    "41a1770d52743a9469448e30c8fa3b0d"
+   ],
+   "anims": {
+    "Todos": 17,
+    "bg_big": 1,
+    "BLY_BALL_font": 16
+   }
+  },
+  "dw_agustin_god": {
+   "nome": "agustin_god",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 80,
+   "atlas": 1,
+   "objs": [
+    "4448fe2573fcb484690401405f346049"
+   ],
+   "anims": {
+    "Todos": 80,
+    "grupo": 2,
+    "agustin": 78
+   }
+  },
+  "dw_dash_pre": {
+   "nome": "dash_pre",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 5,
+   "atlas": 1,
+   "objs": [
+    "4aae8d9dba70f2849ac637a33f1f14c2"
+   ],
+   "anims": {
+    "Todos": 5
+   }
+  },
+  "dw_vgta_sj5": {
+   "nome": "vgta_sj5",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "4b4194041e5fc6c4c875e65c003e4d4f"
+   ],
+   "anims": {
+    "Todos": 57,
+    "grupo": 2,
+    "vgta_sj5": 55
+   }
+  },
+  "dw_bado": {
+   "nome": "bado",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 78,
+   "atlas": 1,
+   "objs": [
+    "642f234797b0d0441a643b1e5312e406"
+   ],
+   "anims": {
+    "Todos": 78,
+    "grupo": 3,
+    "bado": 75
+   }
+  },
+  "dw_beam_fight_02": {
+   "nome": "beam_fight_02",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "681a686a53234e2468c64471cf37f6ce"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ground_smash_fx_06": {
+   "nome": "ground_smash_fx_06",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "68a43297bb896844d8433976a77fa828"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_beam_fight_05": {
+   "nome": "beam_fight_05",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "6ba88bc324aa3a044992dfe15103a1e0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_bb_atk": {
+   "nome": "BB_ATK",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "6eb269cedbd460d4dab44b5b61520f83"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_yacha": {
+   "nome": "yacha",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 61,
+   "atlas": 1,
+   "objs": [
+    "75f0bbe36d9c86b43a1cb750940ab975"
+   ],
+   "anims": {
+    "Todos": 61,
+    "grupo": 2,
+    "yamcha": 58,
+    "yamcha_22": 1
+   }
+  },
+  "dw_zoku_sj5": {
+   "nome": "zoku_sj5",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "767151c24fac3c54585e3f13f692729f"
+   ],
+   "anims": {
+    "Todos": 57,
+    "grupo": 2,
+    "zoku_sj5": 55
+   }
+  },
+  "dw_uifoldoutclosed": {
+   "nome": "UIFoldoutClosed",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "7a0568d5e3330b84687e307992be3030"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_kenzan": {
+   "nome": "kenzan",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 7,
+   "atlas": 1,
+   "objs": [
+    "7c9be6f5a3c6e1a4681066f50aba780a"
+   ],
+   "anims": {
+    "Todos": 7,
+    "kenzan": 3,
+    "kenzan_hit": 4
+   }
+  },
+  "dw_ground_smash_fx_04": {
+   "nome": "ground_smash_fx_04",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "7cf9d17e8845b5b4d8cad2d1710b49b3"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_mira": {
+   "nome": "mira",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 56,
+   "atlas": 1,
+   "objs": [
+    "82422563802be5f4a9b8afdfc3ff78e8"
+   ],
+   "anims": {
+    "Todos": 56,
+    "grupo": 1,
+    "mira": 55
+   }
+  },
+  "dw_ki_blast_big": {
+   "nome": "ki_blast_big",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "865e32ab37b1f604190b9376808c8453"
+   ],
+   "anims": {
+    "Todos": 10
+   }
+  },
+  "dw_arena_god_600_3": {
+   "nome": "arena_god_600-3",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "88d47851f900330479fa5343677276bf"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_finger_beam": {
+   "nome": "FINGER_BEAM",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "8a98ac0b5f86f034c994e0157c610a5d"
+   ],
+   "anims": {
+    "Todos": 6,
+    "fb_tail": 4,
+    "finger_beam_head": 1,
+    "finger_beam_tail": 1
+   }
+  },
+  "dw_arena_god_600_0": {
+   "nome": "arena_god_600-0",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "8ef3f665a4224d240bd4f1ff8c72f831"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_vgta_baby_s1": {
+   "nome": "vgta_baby_s1",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "9147c50eccef1cd478d3e639de09c5f0"
+   ],
+   "anims": {
+    "Todos": 46,
+    "grupo": 3,
+    "vgta_gt_ssj": 43
+   }
+  },
+  "dw_ke_baby": {
+   "nome": "ke_baby",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 63,
+   "atlas": 1,
+   "objs": [
+    "97e4539a563d9694995053b1930c92f8"
+   ],
+   "anims": {
+    "Todos": 63,
+    "grupo": 3,
+    "ke_ba": 60
+   }
+  },
+  "dw_beam_fight_00": {
+   "nome": "beam_fight_00",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "9cec64c73a5b47c40952371fa5d92472"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_active_skill_w": {
+   "nome": "active_skill_w",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 9,
+   "atlas": 1,
+   "objs": [
+    "9d673c710a6f10d40b6f563d794a44e4"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "dw_dyan": {
+   "nome": "dyan",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 67,
+   "atlas": 1,
+   "objs": [
+    "a1d7e094d1fe7ab499245eda0046364f"
+   ],
+   "anims": {
+    "Todos": 73,
+    "grupo": 3,
+    "dyan": 70
+   }
+  },
+  "dw_beam_fight_01": {
+   "nome": "beam_fight_01",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "a341b83df5e3e9a4f94cc455fc4ee27f"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_uifoldoutopened": {
+   "nome": "UIFoldoutOpened",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "a674720496c1ed248a5b7ea3e22a11fd"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_touga": {
+   "nome": "touga",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 78,
+   "atlas": 1,
+   "objs": [
+    "aa1bf4c802cfba44fa29875831a1c225"
+   ],
+   "anims": {
+    "Todos": 78,
+    "grupo": 2,
+    "touge": 76
+   }
+  },
+  "dw_beam_fight_07": {
+   "nome": "beam_fight_07",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "acf6f865aef451b4aa9e80dd46998e2f"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_bly_b_s_pack": {
+   "nome": "bly_b_s_pack",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 17,
+   "atlas": 1,
+   "objs": [
+    "b0edfb0360f926641a1832508dede1b4"
+   ],
+   "anims": {
+    "Todos": 17
+   }
+  },
+  "dw_uicheckmark": {
+   "nome": "UICheckMark",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "b346b2a2df1d290438be3287b6419408"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ground_smash_fx_01": {
+   "nome": "ground_smash_fx_01",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "ba7678798c9b1f14da035dfc06c52d70"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_finger_beam_body": {
+   "nome": "finger_beam_body",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "c0b0c2cff023995489c0b754803690d7"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_digegra": {
+   "nome": "digegra",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 61,
+   "atlas": 1,
+   "objs": [
+    "c69d71b0f990bd14ca2f8df4423120d6"
+   ],
+   "anims": {
+    "Todos": 61,
+    "grupo": 2,
+    "dimega": 59
+   }
+  },
+  "dw_ground_smash_fx_02": {
+   "nome": "ground_smash_fx_02",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "d037e055a520cec4b80196a3b0a14e7a"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_topo_god": {
+   "nome": "topo_god",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 47,
+   "atlas": 1,
+   "objs": [
+    "d3544492b4b9c434f9b715d7d38b8283"
+   ],
+   "anims": {
+    "Todos": 47,
+    "grupo": 3,
+    "topo_god": 44
+   }
+  },
+  "dw_uielement8px": {
+   "nome": "UIElement8px",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "d49e78756811bfa4aafb8b6535417991"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_thun_f": {
+   "nome": "thun_f",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 4,
+   "atlas": 1,
+   "objs": [
+    "d548d1e13764ab34382147eb457ab9ec"
+   ],
+   "anims": {
+    "Todos": 4
+   }
+  },
+  "dw_ground_smash_fx_07": {
+   "nome": "ground_smash_fx_07",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "db2f6f15f5a00904fb80b598abce466e"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_beam_fight_03": {
+   "nome": "beam_fight_03",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "e2caff509405bba48ba5d356c32becf7"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ground_smash_fx_08": {
+   "nome": "ground_smash_fx_08",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "e54b7ab7dee08664fb254fba31c3c9ca"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_air_p": {
+   "nome": "AIR_P",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "ecbe5e1a94eeba04a9eacd2fbdcc9fb8"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "dw_antom": {
+   "nome": "antom",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "fb0c5e389375a4d4db14fdd224ea4b95"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 3,
+    "antom": 52
+   }
+  },
+  "dw_ground_smash_fx_03": {
+   "nome": "ground_smash_fx_03",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "fd60ef6ec3d3b1c4091c3a1deeb58e06"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_omega": {
+   "nome": "omega",
+   "cat": "dw",
+   "tipo": "personagens",
+   "quadros": 42,
+   "atlas": 1,
+   "objs": [
+    "febce176446761a4f80f4b1d5a3ea236"
+   ],
+   "anims": {
+    "Todos": 42,
+    "grupo": 3,
+    "omega": 39
+   }
+  },
+  "dw_uisprite": {
+   "nome": "UISprite",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_uimask": {
+   "nome": "UIMask",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ads_icon": {
+   "nome": "ads_icon",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitysplash_cube": {
+   "nome": "UnitySplash-cube",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
+   "nome": "sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff": {
+   "nome": "sactx-1024x1024-ETC2-CHIKARI_PACK-0e6ffdff",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
+   "nome": "sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8": {
+   "nome": "sactx-1024x1024-ETC2-ACTIVE_SKILL_BG_PACK-1793eaa8",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd": {
+   "nome": "sactx-2048x2048-ETC2-D_PLANET_PACK-2addc9dd",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214": {
+   "nome": "sactx-256x128-Uncompressed-BALL_CHARGE_PACK-33e25214",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_galic_pack_36ec096e": {
+   "nome": "sactx-512x512-ETC2-GALIC_PACK-36ec096e",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
+   "nome": "sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
+   "nome": "sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa": {
+   "nome": "sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
+   "nome": "sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
+   "nome": "sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
+   "nome": "sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x256_etc2_ki_beam_pack_742c5349": {
+   "nome": "sactx-512x256-ETC2-KI_BEAM_PACK-742c5349",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
+   "nome": "sactx-256x256-ETC2-KI_BLAST_PACK-82f34169",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x1024_etc2_c_g_stage_853da8c3": {
+   "nome": "sactx-2048x1024-ETC2-C_G_STAGE-853da8c3",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
+   "nome": "sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08": {
+   "nome": "sactx-2048x1024-ETC2-S_PLANET_PACK-9b8a5a08",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209": {
+   "nome": "sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
+   "nome": "sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x1024_etc2_chiko_pack_d34853b7": {
+   "nome": "sactx-1024x1024-ETC2-CHIKO_PACK-d34853b7",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x512_etc2_univer_sky_d751abae": {
+   "nome": "sactx-2048x512-ETC2-UNIVER_SKY-d751abae",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4": {
+   "nome": "sactx-512x512-ETC2-DRAGON_PUNCH_PACK-d930f2c4",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
+   "nome": "sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
+   "nome": "sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d": {
+   "nome": "sactx-2048x2048-ETC2-G_V_H-f2b2e61d",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
+   "nome": "sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
+   "nome": "sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "00000000000000000000000000000000"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_combat": {
+   "nome": "combat",
+   "cat": "dw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "582fc439bf0d56549859a11dc2c77bc3"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_9": {
+   "nome": "LDR_LLL1_9",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium01": {
+   "nome": "Medium01",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_23": {
+   "nome": "LDR_LLL1_23",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_2": {
+   "nome": "LDR_LLL1_2",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_17": {
+   "nome": "LDR_LLL1_17",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_31": {
+   "nome": "LDR_LLL1_31",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_25": {
+   "nome": "LDR_LLL1_25",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_4": {
+   "nome": "LDR_LLL1_4",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_6": {
+   "nome": "LDR_LLL1_6",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_14": {
+   "nome": "LDR_LLL1_14",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_15": {
+   "nome": "LDR_LLL1_15",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium05": {
+   "nome": "Medium05",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_searchtex": {
+   "nome": "SearchTex",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_large02": {
+   "nome": "Large02",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_thin01": {
+   "nome": "Thin01",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_3": {
+   "nome": "LDR_LLL1_3",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_0": {
+   "nome": "LDR_LLL1_0",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_30": {
+   "nome": "LDR_LLL1_30",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_10": {
+   "nome": "LDR_LLL1_10",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium03": {
+   "nome": "Medium03",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_16": {
+   "nome": "LDR_LLL1_16",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_24": {
+   "nome": "LDR_LLL1_24",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium06": {
+   "nome": "Medium06",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium04": {
+   "nome": "Medium04",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_12": {
+   "nome": "LDR_LLL1_12",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_7": {
+   "nome": "LDR_LLL1_7",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_27": {
+   "nome": "LDR_LLL1_27",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_20": {
+   "nome": "LDR_LLL1_20",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_26": {
+   "nome": "LDR_LLL1_26",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_areatex": {
+   "nome": "AreaTex",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_18": {
+   "nome": "LDR_LLL1_18",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_19": {
+   "nome": "LDR_LLL1_19",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_1": {
+   "nome": "LDR_LLL1_1",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_13": {
+   "nome": "LDR_LLL1_13",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_21": {
+   "nome": "LDR_LLL1_21",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_thin02": {
+   "nome": "Thin02",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_5": {
+   "nome": "LDR_LLL1_5",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_8": {
+   "nome": "LDR_LLL1_8",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium02": {
+   "nome": "Medium02",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_22": {
+   "nome": "LDR_LLL1_22",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_29": {
+   "nome": "LDR_LLL1_29",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_11": {
+   "nome": "LDR_LLL1_11",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_large01": {
+   "nome": "Large01",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_28": {
+   "nome": "LDR_LLL1_28",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_9_": {
+   "nome": "LDR_LLL1_9",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium01_": {
+   "nome": "Medium01",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_23_": {
+   "nome": "LDR_LLL1_23",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_2_": {
+   "nome": "LDR_LLL1_2",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_17_": {
+   "nome": "LDR_LLL1_17",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_31_": {
+   "nome": "LDR_LLL1_31",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_25_": {
+   "nome": "LDR_LLL1_25",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_4_": {
+   "nome": "LDR_LLL1_4",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_6_": {
+   "nome": "LDR_LLL1_6",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_14_": {
+   "nome": "LDR_LLL1_14",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_ldr_lll1_15_": {
+   "nome": "LDR_LLL1_15",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_medium05_": {
+   "nome": "Medium05",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_searchtex_": {
+   "nome": "SearchTex",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_large02_": {
+   "nome": "Large02",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
+   "nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
+   "nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
+   "nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082": {
+   "nome": "sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
+   "nome": "sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_": {
+   "nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_": {
+   "nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_": {
+   "nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
+   "nome": "sactx-256x128-Uncompressed-NPC_PACK-a988f2ae",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
+   "nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets2.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x256_uncompressed_menu_stage_f25645df": {
+   "nome": "sactx-512x256-Uncompressed-MENU_STAGE-f25645df",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets2.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_": {
+   "nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets2.assets.split0"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_sactx_512x1024_etc2_end_fight_pack_b956320f": {
+   "nome": "sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets3.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_soft": {
+   "nome": "Soft",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_small": {
+   "nome": "UnityWatermark-small",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_esctoexit_back": {
+   "nome": "EscToExit_back",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_esctoexit_text": {
+   "nome": "EscToExit_Text",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_trial_big": {
+   "nome": "UnityWatermark-trial-big",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_trial": {
+   "nome": "UnityWatermark-trial",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_beta": {
+   "nome": "UnityWatermark-beta",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_edu": {
+   "nome": "UnityWatermark-edu",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_dev": {
+   "nome": "UnityWatermark-dev",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_warningsign": {
+   "nome": "WarningSign",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermark_proto": {
+   "nome": "UnityWatermark-proto",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_unitywatermarkplugin_beta": {
+   "nome": "UnityWatermarkPlugin-beta",
+   "cat": "dw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_box": {
+   "nome": "box",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_button_active": {
+   "nome": "button active",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_button_hover": {
+   "nome": "button hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_button_on_hover": {
+   "nome": "button on hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_button_on": {
+   "nome": "button on",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_button": {
+   "nome": "button",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_horizontal_scrollbar_thumb": {
+   "nome": "horizontal scrollbar thumb",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_horizontal_scrollbar": {
+   "nome": "horizontal scrollbar",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_slider_thumb_active": {
+   "nome": "slider thumb active",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_slider_thumb": {
+   "nome": "slider thumb",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_slidert_humb_hover": {
+   "nome": "slidert humb hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle_active": {
+   "nome": "toggle active",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle_hover": {
+   "nome": "toggle hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle_on_hover": {
+   "nome": "toggle on hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle_on": {
+   "nome": "toggle on",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle_on_active": {
+   "nome": "toggle on active",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_toggle": {
+   "nome": "toggle",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_vertical_scrollbar_thumb": {
+   "nome": "vertical scrollbar thumb",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_vertical_scrollbar": {
+   "nome": "vertical scrollbar",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_window_on": {
+   "nome": "window on",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_window": {
+   "nome": "window",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_textfield": {
+   "nome": "textfield",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_textfield_on": {
+   "nome": "textfield on",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "dw_textfield_hover": {
+   "nome": "textfield hover",
+   "cat": "dw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  }
+ },
+ "sem_formato": {
+  "1": 1,
+  "4": 2
+ }
 }

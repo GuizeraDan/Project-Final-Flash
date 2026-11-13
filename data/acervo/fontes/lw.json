@@ -1,3637 +1,3637 @@
 {
-"chave": "lw",
-"nome": "Legend Warrior",
-"categorias": {
-"lw": "Legend Warrior"
-},
-"sprites": {
-"lw_splash": {
-"nome": "splash",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"globalgamemanagers.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_loading_icon": {
-"nome": "loading_icon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 9,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"Todos": 9
-}
-},
-"lw_lose_fx": {
-"nome": "lose_fx",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"sharedassets3.assets"
-],
-"anims": {
-"Todos": 4
-}
-},
-"lw_cell_intro": {
-"nome": "cell_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 30,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 30,
-"grupo": 6,
-"and18": 1,
-"android": 1,
-"bo_hung_intro": 10,
-"bo_hung_semi_ul2": 10,
-"bo_hung_semi_ul": 1,
-"shadow": 1
-}
-},
-"lw_mr_satan": {
-"nome": "mr_satan",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 52,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 52,
-"mr_satan": 51,
-"shadow": 1
-}
-},
-"lw_buu_gohan": {
-"nome": "buu_gohan",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 54
-}
-},
-"lw_vegeta_xeno_ssj4": {
-"nome": "vegeta_xeno_ssj4",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 65,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 65,
-"vegeta_xeno": 1,
-"vegeta_xeno_04": 1,
-"vegeta_xeno_77": 1,
-"vegeta_xeno_78": 1,
-"vegeta_xeno_ssj4": 61
-}
-},
-"lw_and18_dbs": {
-"nome": "and18_dbs",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"and18_dbs": 52
-}
-},
-"lw_and17_dbs": {
-"nome": "and17_dbs",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 56,
-"grupo": 2,
-"and17_dbs": 53,
-"and17_dbs_66": 1
-}
-},
-"lw_broly_dbs_base": {
-"nome": "broly_dbs_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 67,
-"broly_dbs": 2,
-"broly_dbs_base": 65
-}
-},
-"lw_cooler_golden": {
-"nome": "cooler_golden",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 62,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 62,
-"grupo": 3,
-"cooler_golden": 59
-}
-},
-"lw_and17_cell": {
-"nome": "and17_cell",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 50,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 50,
-"grupo": 3,
-"and17_cell2": 12,
-"and17_cell": 34,
-"shadow": 1
-}
-},
-"lw_and18_cell": {
-"nome": "and18_cell",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 57,
-"grupo": 3,
-"and18_cell": 53,
-"shadow": 1
-}
-},
-"lw_bardock_base": {
-"nome": "bardock_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 73,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 73,
-"bardock_base": 72,
-"bardock_base_68": 1
-}
-},
-"lw_trunks_cell_ssj": {
-"nome": "trunks_cell_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 69,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 69
-}
-},
-"lw_cell_imperfect": {
-"nome": "cell_imperfect",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 67,
-"grupo": 3,
-"imperfect_cell": 64
-}
-},
-"lw_gotenks_intro": {
-"nome": "gotenks_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 15,
-"gotenks": 3,
-"gotenks_intro": 11,
-"shadow": 1
-}
-},
-"lw_gotenks_xeno": {
-"nome": "gotenks_xeno",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 65,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 65,
-"grupo": 3,
-"g0tenk_adult": 49,
-"gotenks_intro": 12,
-"shadow": 1
-}
-},
-"lw_frost_f3": {
-"nome": "frost_f3",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 57,
-"frost_f3": 55,
-"frost_f3_34": 1,
-"frost_f3_35": 1
-}
-},
-"lw_goku_xeno_ssj4": {
-"nome": "goku_xeno_ssj4",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 65,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 65,
-"goku_xeno": 1,
-"goku_xeno_81": 1,
-"goku_xeno_82": 1,
-"goku_xeno_ssj4": 62
-}
-},
-"lw_vegeta_ssj_god": {
-"nome": "vegeta_ssj_god",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 82,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 82
-}
-},
-"lw_hit": {
-"nome": "hit",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 79,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 79,
-"hit": 78,
-"shadow": 1
-}
-},
-"lw_bardock_ssj": {
-"nome": "bardock_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 56
-}
-},
-"lw_buu_dbs": {
-"nome": "buu_dbs",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53
-}
-},
-"lw_zamasu": {
-"nome": "zamasu",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 51,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 51,
-"grupo": 3,
-"zamasu": 47,
-"zamasu_48": 1
-}
-},
-"lw_vegito_ssj_blue": {
-"nome": "vegito_ssj_blue",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 77,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 77,
-"vegito_ssj_blue": 65,
-"vgto_sjb": 12
-}
-},
-"lw_gogeta_base": {
-"nome": "gogeta_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55
-}
-},
-"lw_turles_ssj": {
-"nome": "turles_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 61,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 61,
-"turlle": 5,
-"turtles_ssj": 55,
-"turtles_ssj_28": 1
-}
-},
-"lw_vegito_base": {
-"nome": "vegito_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 67,
-"vegito_base": 63,
-"vgito": 2,
-"vgito_sj1": 2
-}
-},
-"lw_impact_exp": {
-"nome": "impact_exp",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12
-}
-},
-"lw_gotenks_base": {
-"nome": "gotenks_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 46,
-"grupo": 2,
-"gotenks": 34,
-"gotenks_base": 10
-}
-},
-"lw_caulifla_ssj": {
-"nome": "caulifla_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53,
-"grupo": 2,
-"caufla": 50,
-"caulfla": 1
-}
-},
-"lw_trunks_cell_base": {
-"nome": "trunks_cell_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 63,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 63
-}
-},
-"lw_kefla": {
-"nome": "kefla",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 57,
-"kefla_base": 55,
-"kefla_base_92": 1,
-"kefla_base_94": 1
-}
-},
-"lw_android13": {
-"nome": "android13",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 49,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 49
-}
-},
-"lw_vegito_xeno_intro": {
-"nome": "vegito_xeno_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 13,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 13,
-"shadow": 1,
-"vgto_xeno": 12
-}
-},
-"lw_goku_xeno": {
-"nome": "goku_xeno",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 66,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 66
-}
-},
-"lw_picolo_super": {
-"nome": "picolo_super",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 58,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 58
-}
-},
-"lw_gotenks_ssj": {
-"nome": "gotenks_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 44,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 44,
-"gotenks_base": 1,
-"gotenks_ssj": 39,
-"gotenks_ssj_21": 1,
-"gotenks_ssj_32": 3
-}
-},
-"lw_vegito_intro": {
-"nome": "vegito_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 13,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 13,
-"shadow": 1,
-"vegito": 12
-}
-},
-"lw_android16": {
-"nome": "android16",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 52,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 52,
-"android_16": 49,
-"android_16_08": 2,
-"shadow": 1
-}
-},
-"lw_vegeta_xeno": {
-"nome": "vegeta_xeno",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 57
-}
-},
-"lw_black_base": {
-"nome": "black_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53,
-"grupo": 3,
-"black_ssr": 3,
-"goku_black": 47
-}
-},
-"lw_dyspo": {
-"nome": "dyspo",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 64,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 64
-}
-},
-"lw_ground_effect": {
-"nome": "ground_effect",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 44,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 44,
-"ground_smash_fx": 10,
-"jump_fx": 8,
-"move_fx": 14,
-"shadow": 1,
-"Spr_Smoke1": 11
-}
-},
-"lw_cooler_f1": {
-"nome": "cooler_f1",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 52,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 52,
-"grupo": 3,
-"cooler_f1": 49
-}
-},
-"lw_tournament": {
-"nome": "tournament",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6,
-"build1": 2,
-"build": 1,
-"ground": 2,
-"road": 1
-}
-},
-"lw_spirit_sword": {
-"nome": "Spirit_sword",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6
-}
-},
-"lw_trunks_dbs": {
-"nome": "trunks_dbs",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 58,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 58,
-"grupo": 2,
-"trun_dbs": 56
-}
-},
-"lw_finger_beam": {
-"nome": "FINGER_BEAM",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10,
-"fb_tail": 4,
-"finger_beam_body": 2,
-"finger_beam_head": 1,
-"finger_beam_tail": 1,
-"ki_push": 2
-}
-},
-"lw_goku_base": {
-"nome": "goku_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 59,
-"grupo": 3,
-"gk_special_skill": 3,
-"gk_ssj": 1,
-"gk_ultimate": 47,
-"gkkku": 5
-}
-},
-"lw_cooler_f3": {
-"nome": "cooler_f3",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"cooler": 42,
-"cooler_f1": 4,
-"cooler_f3": 6
-}
-},
-"lw_lucky_wheel": {
-"nome": "lucky_wheel",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12
-}
-},
-"lw_beerus": {
-"nome": "beerus",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 56,
-"grupo": 3,
-"birot": 52,
-"birot_10": 1
-}
-},
-"lw_namek_atlas": {
-"nome": "Namek_atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 29,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 29,
-"naek_0": 2,
-"naek_0-0": 1,
-"naek_1": 5,
-"naek_1-2": 2,
-"naek_2": 5,
-"naek_3": 2,
-"naek_5": 8,
-"naek_6": 4
-}
-},
-"lw_dragon_fist": {
-"nome": "Dragon_fist",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 3,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 3
-}
-},
-"lw_ingame_ui": {
-"nome": "ingame_ui",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12,
-"block_btn": 1,
-"charge_ki_btn": 1,
-"combo_btn": 1,
-"counter_btn": 1,
-"ki_blast_btn": 1,
-"punch_btn": 1,
-"push_ki_press": 1,
-"shadedDark": 2,
-"special_btn": 1,
-"teleport_btn": 1,
-"tranform_btn": 1
-}
-},
-"lw_vegeta_ssj": {
-"nome": "vegeta_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 65,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 65,
-"grupo": 2,
-"vegita_sj1": 4,
-"vgta_ssj": 51,
-"vgta_transform": 8
-}
-},
-"lw_frieza_golden": {
-"nome": "frieza_golden",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 68,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 68,
-"grupo": 3,
-"fraida_g": 56,
-"friza_golden": 1,
-"golden_trans": 8
-}
-},
-"lw_gogeta_intro": {
-"nome": "gogeta_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 16,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 16,
-"gogeta_intro": 15,
-"shadow": 1
-}
-},
-"lw_beam_fight": {
-"nome": "BEAM_FIGHT",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 8,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 8
-}
-},
-"lw_goku_ssj_blue": {
-"nome": "goku_ssj_blue",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 85,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 85,
-"grupo": 2,
-"gku_sjb": 81,
-"Gku_sjb_113": 1,
-"Gku_sjb_114": 1
-}
-},
-"lw_god_planet": {
-"nome": "God_Planet",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6
-}
-},
-"lw_cell_semi": {
-"nome": "cell_semi",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 60,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 60,
-"grupo": 7,
-"bo_hung_semi_ul": 6,
-"xen_bo_semi": 47
-}
-},
-"lw_zamas_fusion": {
-"nome": "zamas_fusion",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 65,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 65,
-"grupo": 1,
-"shadow": 1,
-"zamas_mer": 62,
-"zamas_mer_04": 1
-}
-},
-"lw_item_sprite": {
-"nome": "item_sprite",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_vegeta_base": {
-"nome": "vegeta_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 2,
-"vegita": 8,
-"vgta": 45
-}
-},
-"lw_bullet": {
-"nome": "bullet",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 2
-}
-},
-"lw_wasteland_map": {
-"nome": "wasteland_map",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 8,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 8,
-"wasteland_0": 3,
-"wasteland_1": 1,
-"wasteland_2": 4
-}
-},
-"lw_vegito_ssj": {
-"nome": "vegito_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 83,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 83,
-"grupo": 1,
-"vgito_sj1": 82
-}
-},
-"lw_goku_ssj_blue_kaioken": {
-"nome": "goku_ssj_blue_kaioken",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 74,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 74,
-"gku_sjb": 5,
-"goku_ssj_blue_kaioken": 69
-}
-},
-"lw_tornado_fx": {
-"nome": "tornado_fx",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 15
-}
-},
-"lw_vegeta_gt_base": {
-"nome": "vegeta_gt_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 58,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 58
-}
-},
-"lw_appule": {
-"nome": "appule",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 31,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 31,
-"grupo": 3,
-"Appule": 28
-}
-},
-"lw_vegeta_gt_ssj": {
-"nome": "vegeta_gt_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53,
-"grupo": 3,
-"vegeta_gt_ssj": 39,
-"vgta_gt_ssj": 11
-}
-},
-"lw_basil": {
-"nome": "basil",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 50,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 50
-}
-},
-"lw_cell_jr": {
-"nome": "cell_jr",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 73,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 73,
-"cell_jr": 72,
-"shadow": 1
-}
-},
-"lw_puipui": {
-"nome": "puipui",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 38,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 38
-}
-},
-"lw_fireza_mecha": {
-"nome": "fireza_mecha",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 54,
-"mecha_freeza": 51,
-"mecha_frieza": 3
-}
-},
-"lw_cui": {
-"nome": "cui",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 31,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 31,
-"grupo": 3,
-"cui": 28
-}
-},
-"lw_dabura": {
-"nome": "dabura",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 62,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 62,
-"dabura": 60,
-"dabura_22": 1,
-"dabura_67": 1
-}
-},
-"lw_invander": {
-"nome": "invander",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 45,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 45
-}
-},
-"lw_frieza_f1": {
-"nome": "frieza_f1",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 46,
-"frieza_0": 12,
-"frieza_f1": 31,
-"frieza_f1_08": 2,
-"shadow": 1
-}
-},
-"lw_skill_bg_break": {
-"nome": "skill_bg_break",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10
-}
-},
-"lw_spopo": {
-"nome": "spopo",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 33,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 33
-}
-},
-"lw_yakon": {
-"nome": "yakon",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 41,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 41
-}
-},
-"lw_buu_intro": {
-"nome": "buu_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 21,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 21,
-"buu_intro": 18,
-"ghan": 2,
-"shadow": 1
-}
-},
-"lw_hit_effect": {
-"nome": "hit_effect",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 27,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 27,
-"hit_pur": 4,
-"hit_purple": 14,
-"hit_red_1": 4,
-"hit_shockwave": 5
-}
-},
-"lw_buu_super": {
-"nome": "buu_super",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 49,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 49,
-"grupo": 2,
-"buu_super": 46,
-"shadow": 1
-}
-},
-"lw_yamu": {
-"nome": "yamu",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 31,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 31
-}
-},
-"lw_galactic_donut": {
-"nome": "galactic_donut",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 13,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 13
-}
-},
-"lw_dashfx": {
-"nome": "dashFx",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 5
-}
-},
-"lw_kefla_intro": {
-"nome": "kefla_intro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 16,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 16,
-"kefla_base": 12,
-"kefla_base_07": 3,
-"shadow": 1
-}
-},
-"lw_hit_break_fx": {
-"nome": "hit_break_fx",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 4
-}
-},
-"lw_ghost_skill": {
-"nome": "ghost_skill",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 15,
-"ghost": 8,
-"ghost_buu": 7
-}
-},
-"lw_uisprite": {
-"nome": "UISprite",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_background": {
-"nome": "Background",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_cloud2": {
-"nome": "cloud2",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_goku_ssj3": {
-"nome": "goku_ssj3",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 79,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 79,
-"grupo": 1,
-"gkk_trans_sj3": 23,
-"gkku_sj3": 55
-}
-},
-"lw_sky": {
-"nome": "sky",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_genki_pack": {
-"nome": "GENKI_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 5,
-"genki_ball_border": 1,
-"genkida": 4
-}
-},
-"lw_genki_ball_atlas": {
-"nome": "genki_ball_atlas",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 4
-}
-},
-"lw_gohan_cell_ssj_2": {
-"nome": "gohan_cell_ssj_2",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 68,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 69,
-"grupo": 2,
-"ghan_teen": 67
-}
-},
-"lw_ki_explosion_blue_00": {
-"nome": "ki_explosion_blue_00",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_radiz": {
-"nome": "radiz",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 36,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 36,
-"grupo": 2,
-"radiizz": 34
-}
-},
-"lw_vegeta_ssj_blue": {
-"nome": "vegeta_ssj_blue",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 83,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 83,
-"grupo": 3,
-"vgta_blue": 1,
-"vgta_sjb": 79
-}
-},
-"lw_bigbang_charge": {
-"nome": "bigbang_charge",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 15,
-"big_bang_charge_1": 12,
-"big_bang_charge_2": 3
-}
-},
-"lw_begamo": {
-"nome": "begamo",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 37,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 37,
-"grupo": 2,
-"begamo": 35
-}
-},
-"lw_tien": {
-"nome": "tien",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 48,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 49,
-"grupo": 3,
-"thien_shin": 46
-}
-},
-"lw_aura_thunder_old": {
-"nome": "aura_thunder_old",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12
-}
-},
-"lw_active_skill2": {
-"nome": "active_skill2",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12
-}
-},
-"lw_ki_beam_charge": {
-"nome": "ki_beam_charge",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 26,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 26
-}
-},
-"lw_desert_atlas": {
-"nome": "desert_atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10,
-"desert_mountain_0": 1,
-"desert_mountain_1": 7,
-"desert_mountain_7": 1,
-"desert_mountain_8": 1
-}
-},
-"lw_black_stage_atlas": {
-"nome": "black_stage_atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_ki_blast_big": {
-"nome": "ki_blast_big",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10
-}
-},
-"lw_active_skill_fx": {
-"nome": "active_skill_fx",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 24,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 24
-}
-},
-"lw_nio": {
-"nome": "nio",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 60,
-"grupo": 2,
-"nio": 58
-}
-},
-"lw_ki_big_exp": {
-"nome": "ki_big_exp",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 24,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 24
-}
-},
-"lw_ki_beam_charge2": {
-"nome": "ki_beam_charge2",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6
-}
-},
-"lw_kami_house": {
-"nome": "kami_house",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6,
-"km_look_0": 2,
-"km_look_1": 4
-}
-},
-"lw_slash_pack": {
-"nome": "SLASH_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 2
-}
-},
-"lw_ki_ball_exp": {
-"nome": "ki_ball_exp",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 19,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 19
-}
-},
-"lw_hit_spark_effect": {
-"nome": "hit_spark_effect",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 31,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 31,
-"hit_slash": 4,
-"hit_spard_red": 4,
-"hit_spard_white": 4,
-"hit_spard_yellow": 8,
-"ki_explosion": 11
-}
-},
-"lw_cloud1": {
-"nome": "cloud1",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_frieza_f3": {
-"nome": "frieza_f3",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"fraizza": 52
-}
-},
-"lw_baby_vgta": {
-"nome": "baby_vgta",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 46,
-"grupo": 3,
-"baby_vgta": 43
-}
-},
-"lw_trunks_dbs_ssj": {
-"nome": "trunks_dbs_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 68,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 68,
-"grupo": 2,
-"trun_dbs": 2,
-"trun_rare": 64
-}
-},
-"lw_brolly": {
-"nome": "brolly",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 58,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 58,
-"grupo": 3,
-"bdolly": 46,
-"bdolly_intro": 9
-}
-},
-"lw_dark_ball_pack": {
-"nome": "DARK_BALL_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10
-}
-},
-"lw_cell_peffect": {
-"nome": "cell_peffect",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 59,
-"grupo": 3,
-"bo_hung": 56
-}
-},
-"lw_buu_fat": {
-"nome": "buu_fat",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 48,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 48,
-"grupo": 3,
-"buu_beo": 45
-}
-},
-"lw_vegeta_young": {
-"nome": "vegeta_young",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 57,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 57,
-"grupo": 3,
-"vgta_pri": 54
-}
-},
-"lw_gohan_mystic": {
-"nome": "gohan_mystic",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 70,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 70,
-"grupo": 2,
-"ghan": 68
-}
-},
-"lw_kame_fast": {
-"nome": "kame_fast",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 9,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 9
-}
-},
-"lw_zaaiko": {
-"nome": "zaaiko",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 46,
-"grupo": 2,
-"zaaiko": 44
-}
-},
-"lw_broly_xeno": {
-"nome": "broly_xeno",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 42,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 42,
-"grupo": 3,
-"xen_broolly": 39
-}
-},
-"lw_cloud3": {
-"nome": "cloud3",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_black_ssj_rose": {
-"nome": "black_ssj_rose",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 88,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 88,
-"grupo": 3,
-"black_ssr": 85
-}
-},
-"lw_horizontal": {
-"nome": "horizontal",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_ki_ball_mini": {
-"nome": "ki_ball_mini",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 5
-}
-},
-"lw_dead_forest_atlas": {
-"nome": "dead_forest_atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 2
-}
-},
-"lw_aura_transform": {
-"nome": "aura_transform",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 26,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 26,
-"aura_trans": 18,
-"aura_transform": 8
-}
-},
-"lw_dark_judgement": {
-"nome": "DARK_JUDGEMENT",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 4,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 4
-}
-},
-"lw_dead_ball_pack": {
-"nome": "DEAD_BALL_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 8,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 8
-}
-},
-"lw_self_destruction_pack": {
-"nome": "SELF_DESTRUCTION_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 2
-}
-},
-"lw_ki_beam_pack": {
-"nome": "KI_BEAM_PACK",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 15,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 15,
-"kame_head": 3,
-"kame_scale": 3,
-"kame_start": 3,
-"ki_beam_tail": 6
-}
-},
-"lw_charge_ki_ground": {
-"nome": "charge_ki_ground",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 19,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 19,
-"charge_ki_ground_fx_2": 8,
-"ground_charge_gust": 11
-}
-},
-"lw_ki_blast_pack": {
-"nome": "KI_BLAST_PACK",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 12,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 12
-}
-},
-"lw_picolo": {
-"nome": "picolo",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53,
-"grupo": 3,
-"piccolo": 2,
-"pocolo": 48
-}
-},
-"lw_cloud4": {
-"nome": "cloud4",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_goku_ssj_god": {
-"nome": "goku_ssj_god",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 75,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 75,
-"grupo": 1,
-"gku_sjg": 66,
-"gku_sjg_trans": 8
-}
-},
-"lw_cumber": {
-"nome": "cumber",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 53,
-"grupo": 3,
-"kanba": 50
-}
-},
-"lw_future_stage_1_atlas": {
-"nome": "future_stage_1_atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_cabba": {
-"nome": "cabba",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 47,
-"grupo": 3,
-"cabba": 44
-}
-},
-"lw_caulifla": {
-"nome": "caulifla",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 40,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 40,
-"grupo": 2,
-"caulfla": 38
-}
-},
-"lw_big_exp": {
-"nome": "big_exp",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 18,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 18
-}
-},
-"lw_cloud4_1": {
-"nome": "cloud4-1",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_baby_kefla": {
-"nome": "baby_kefla",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 54,
-"grupo": 3,
-"baby_kefla": 1,
-"ke_ba": 50
-}
-},
-"lw_turles": {
-"nome": "turles",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 47,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 47,
-"grupo": 3,
-"turlle": 44
-}
-},
-"lw_ball_charge": {
-"nome": "ball_charge",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 19,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 19
-}
-},
-"lw_krilin": {
-"nome": "krilin",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 45,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 45,
-"grupo": 2,
-"carillin": 43
-}
-},
-"lw_kengzang_atlas": {
-"nome": "kengzang_atlas",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 2,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 2
-}
-},
-"lw_gohan_suit": {
-"nome": "gohan_suit",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 46,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 46,
-"grupo": 2,
-"gohan_tracksuit": 44
-}
-},
-"lw_yamcha": {
-"nome": "yamcha",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 2,
-"yamcha": 52,
-"yamcha_22": 1
-}
-},
-"lw_gohan_kid": {
-"nome": "gohan_kid",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 56,
-"grupo": 2,
-"ghan_kid": 54
-}
-},
-"lw_active_skill_purple": {
-"nome": "active_skill_purple",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 16,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 16
-}
-},
-"lw_judgement_ball_atlas": {
-"nome": "judgement_ball_atlas",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 5,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 5
-}
-},
-"lw_goku_ssj": {
-"nome": "goku_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 60,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 60,
-"grupo": 1,
-"gk_ssj": 55,
-"gk_ultimate": 4
-}
-},
-"lw_aura_fx": {
-"nome": "aura_fx",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 30,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 30,
-"aura_b": 3,
-"aura_c": 3,
-"aura_d": 3,
-"aura_dash": 2,
-"aura_font": 3,
-"aura_god": 3,
-"aura_start": 13
-}
-},
-"lw_vegito_xeno_base": {
-"nome": "vegito_xeno_base",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 55,
-"grupo": 1,
-"vegito_xeno_base": 1,
-"xen_vgto": 47,
-"xen_vgto_sw": 6
-}
-},
-"lw_buu_kid": {
-"nome": "buu_kid",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 67,
-"grupo": 4,
-"buu_kid": 63
-}
-},
-"lw_kale": {
-"nome": "kale",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 34,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 34,
-"grupo": 2,
-"kale": 32
-}
-},
-"lw_lybro": {
-"nome": "lybro",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 47,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 47,
-"grupo": 2,
-"lybro": 45
-}
-},
-"lw_buu_thunder": {
-"nome": "buu_thunder",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 6,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 6
-}
-},
-"lw_normal_fx_pack": {
-"nome": "NORMAL_FX_PACK",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 10,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 10,
-"dash_normal_fx": 5,
-"ki_fire": 5
-}
-},
-"lw_cabba_ssj": {
-"nome": "cabba_ssj",
-"cat": "lw",
-"tipo": "personagens",
-"quadros": 44,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"Todos": 44,
-"grupo": 3,
-"cabba_ssj": 41
-}
-},
-"lw_skill_bg_normal": {
-"nome": "skill_bg_normal",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_right_arraw": {
-"nome": "scroller_right_arraw",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_warning_icon": {
-"nome": "warning_icon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_clear": {
-"nome": "clear",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_selected": {
-"nome": "selected",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button_active": {
-"nome": "button_active",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_info": {
-"nome": "info",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_left_arraw": {
-"nome": "scroller_left_arraw",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_user": {
-"nome": "user",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_clearonsceneloaded": {
-"nome": "clearOnSceneLoaded",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_collapse": {
-"nome": "collapse",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_save": {
-"nome": "Save",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_down_arraw": {
-"nome": "scroller_down_arraw",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_horizental_back": {
-"nome": "scroller_horizental_back",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_software": {
-"nome": "software",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_error_icon": {
-"nome": "error_icon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_timer_1": {
-"nome": "timer_1",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_vertical_thumb": {
-"nome": "scroller_vertical_thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_copy": {
-"nome": "copy",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_bar": {
-"nome": "bar",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_up_arraw": {
-"nome": "scroller_up_arraw",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_buildfrom": {
-"nome": "buildFrom",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_odd_log": {
-"nome": "odd_log",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_fps": {
-"nome": "fps",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_graphiccard": {
-"nome": "graphicCard",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_back": {
-"nome": "back",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_date": {
-"nome": "date",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_close": {
-"nome": "close",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_search": {
-"nome": "search",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_even_log": {
-"nome": "even_log",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_log_icon": {
-"nome": "log_icon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_computericon": {
-"nome": "ComputerIcon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_horizental_thumb": {
-"nome": "scroller_horizental_thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_memory": {
-"nome": "memory",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_scroller_vertical_back": {
-"nome": "scroller_vertical_back",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unityicon": {
-"nome": "UnityIcon",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_font_ui_sdf_atlas": {
-"nome": "Font-ui SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets3.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_number_sdf_atlas": {
-"nome": "Number SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_main_sdf_atlas": {
-"nome": "Main SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
-"nome": "sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
-"nome": "sactx-0-512x512-ETC2-ui_character_pack-635b0817",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_emojione": {
-"nome": "EmojiOne",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_liberationsans_sdf_atlas": {
-"nome": "LiberationSans SDF Atlas",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_soft": {
-"nome": "Soft",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_small": {
-"nome": "UnityWatermark-small",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_esctoexit_back": {
-"nome": "EscToExit_back",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_esctoexit_text": {
-"nome": "EscToExit_Text",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_trial_big": {
-"nome": "UnityWatermark-trial-big",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_trial": {
-"nome": "UnityWatermark-trial",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_beta": {
-"nome": "UnityWatermark-beta",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_edu": {
-"nome": "UnityWatermark-edu",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_dev": {
-"nome": "UnityWatermark-dev",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_warningsign": {
-"nome": "WarningSign",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermark_proto": {
-"nome": "UnityWatermark-proto",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_unitywatermarkplugin_beta": {
-"nome": "UnityWatermarkPlugin-beta",
-"cat": "lw",
-"tipo": "cenarios",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_box": {
-"nome": "box",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button_active_": {
-"nome": "button active",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button_hover": {
-"nome": "button hover",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button_on_hover": {
-"nome": "button on hover",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button_on": {
-"nome": "button on",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_button": {
-"nome": "button",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_horizontal_scrollbar_thumb": {
-"nome": "horizontal scrollbar thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_horizontal_scrollbar": {
-"nome": "horizontal scrollbar",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_slider_thumb_active": {
-"nome": "slider thumb active",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_slider_thumb": {
-"nome": "slider thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_slidert_humb_hover": {
-"nome": "slidert humb hover",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle_active": {
-"nome": "toggle active",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle_hover": {
-"nome": "toggle hover",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle_on_hover": {
-"nome": "toggle on hover",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle_on": {
-"nome": "toggle on",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle_on_active": {
-"nome": "toggle on active",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_toggle": {
-"nome": "toggle",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_vertical_scrollbar_thumb": {
-"nome": "vertical scrollbar thumb",
-"cat": "lw",
-"tipo": "efeitos",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_vertical_scrollbar": {
-"nome": "vertical scrollbar",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_window_on": {
-"nome": "window on",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_window": {
-"nome": "window",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_textfield": {
-"nome": "textfield",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_textfield_on": {
-"nome": "textfield on",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-},
-"lw_textfield_hover": {
-"nome": "textfield hover",
-"cat": "lw",
-"tipo": "interface",
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"unity default resources"
-],
-"anims": {
-"folha": 1
-}
-}
-},
-"sem_formato": {
-"29": 1
-}
+ "chave": "lw",
+ "nome": "Legend Warrior",
+ "categorias": {
+  "lw": "Legend Warrior"
+ },
+ "sprites": {
+  "lw_splash": {
+   "nome": "splash",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "globalgamemanagers.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_loading_icon": {
+   "nome": "loading_icon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 9,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "Todos": 9
+   }
+  },
+  "lw_lose_fx": {
+   "nome": "lose_fx",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 4,
+   "atlas": 1,
+   "objs": [
+    "sharedassets3.assets"
+   ],
+   "anims": {
+    "Todos": 4
+   }
+  },
+  "lw_cell_intro": {
+   "nome": "cell_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 30,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 30,
+    "grupo": 6,
+    "and18": 1,
+    "android": 1,
+    "bo_hung_intro": 10,
+    "bo_hung_semi_ul2": 10,
+    "bo_hung_semi_ul": 1,
+    "shadow": 1
+   }
+  },
+  "lw_mr_satan": {
+   "nome": "mr_satan",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 52,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 52,
+    "mr_satan": 51,
+    "shadow": 1
+   }
+  },
+  "lw_buu_gohan": {
+   "nome": "buu_gohan",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 54,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 54
+   }
+  },
+  "lw_vegeta_xeno_ssj4": {
+   "nome": "vegeta_xeno_ssj4",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 65,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 65,
+    "vegeta_xeno": 1,
+    "vegeta_xeno_04": 1,
+    "vegeta_xeno_77": 1,
+    "vegeta_xeno_78": 1,
+    "vegeta_xeno_ssj4": 61
+   }
+  },
+  "lw_and18_dbs": {
+   "nome": "and18_dbs",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 3,
+    "and18_dbs": 52
+   }
+  },
+  "lw_and17_dbs": {
+   "nome": "and17_dbs",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 56,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 56,
+    "grupo": 2,
+    "and17_dbs": 53,
+    "and17_dbs_66": 1
+   }
+  },
+  "lw_broly_dbs_base": {
+   "nome": "broly_dbs_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 67,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 67,
+    "broly_dbs": 2,
+    "broly_dbs_base": 65
+   }
+  },
+  "lw_cooler_golden": {
+   "nome": "cooler_golden",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 62,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 62,
+    "grupo": 3,
+    "cooler_golden": 59
+   }
+  },
+  "lw_and17_cell": {
+   "nome": "and17_cell",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 50,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 50,
+    "grupo": 3,
+    "and17_cell2": 12,
+    "and17_cell": 34,
+    "shadow": 1
+   }
+  },
+  "lw_and18_cell": {
+   "nome": "and18_cell",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 57,
+    "grupo": 3,
+    "and18_cell": 53,
+    "shadow": 1
+   }
+  },
+  "lw_bardock_base": {
+   "nome": "bardock_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 73,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 73,
+    "bardock_base": 72,
+    "bardock_base_68": 1
+   }
+  },
+  "lw_trunks_cell_ssj": {
+   "nome": "trunks_cell_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 69,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 69
+   }
+  },
+  "lw_cell_imperfect": {
+   "nome": "cell_imperfect",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 67,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 67,
+    "grupo": 3,
+    "imperfect_cell": 64
+   }
+  },
+  "lw_gotenks_intro": {
+   "nome": "gotenks_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 15,
+    "gotenks": 3,
+    "gotenks_intro": 11,
+    "shadow": 1
+   }
+  },
+  "lw_gotenks_xeno": {
+   "nome": "gotenks_xeno",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 65,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 65,
+    "grupo": 3,
+    "g0tenk_adult": 49,
+    "gotenks_intro": 12,
+    "shadow": 1
+   }
+  },
+  "lw_frost_f3": {
+   "nome": "frost_f3",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 57,
+    "frost_f3": 55,
+    "frost_f3_34": 1,
+    "frost_f3_35": 1
+   }
+  },
+  "lw_goku_xeno_ssj4": {
+   "nome": "goku_xeno_ssj4",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 65,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 65,
+    "goku_xeno": 1,
+    "goku_xeno_81": 1,
+    "goku_xeno_82": 1,
+    "goku_xeno_ssj4": 62
+   }
+  },
+  "lw_vegeta_ssj_god": {
+   "nome": "vegeta_ssj_god",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 82,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 82
+   }
+  },
+  "lw_hit": {
+   "nome": "hit",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 79,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 79,
+    "hit": 78,
+    "shadow": 1
+   }
+  },
+  "lw_bardock_ssj": {
+   "nome": "bardock_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 56,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 56
+   }
+  },
+  "lw_buu_dbs": {
+   "nome": "buu_dbs",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53
+   }
+  },
+  "lw_zamasu": {
+   "nome": "zamasu",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 51,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 51,
+    "grupo": 3,
+    "zamasu": 47,
+    "zamasu_48": 1
+   }
+  },
+  "lw_vegito_ssj_blue": {
+   "nome": "vegito_ssj_blue",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 77,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 77,
+    "vegito_ssj_blue": 65,
+    "vgto_sjb": 12
+   }
+  },
+  "lw_gogeta_base": {
+   "nome": "gogeta_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55
+   }
+  },
+  "lw_turles_ssj": {
+   "nome": "turles_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 61,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 61,
+    "turlle": 5,
+    "turtles_ssj": 55,
+    "turtles_ssj_28": 1
+   }
+  },
+  "lw_vegito_base": {
+   "nome": "vegito_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 67,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 67,
+    "vegito_base": 63,
+    "vgito": 2,
+    "vgito_sj1": 2
+   }
+  },
+  "lw_impact_exp": {
+   "nome": "impact_exp",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "lw_gotenks_base": {
+   "nome": "gotenks_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 46,
+    "grupo": 2,
+    "gotenks": 34,
+    "gotenks_base": 10
+   }
+  },
+  "lw_caulifla_ssj": {
+   "nome": "caulifla_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53,
+    "grupo": 2,
+    "caufla": 50,
+    "caulfla": 1
+   }
+  },
+  "lw_trunks_cell_base": {
+   "nome": "trunks_cell_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 63,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 63
+   }
+  },
+  "lw_kefla": {
+   "nome": "kefla",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 57,
+    "kefla_base": 55,
+    "kefla_base_92": 1,
+    "kefla_base_94": 1
+   }
+  },
+  "lw_android13": {
+   "nome": "android13",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 49,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 49
+   }
+  },
+  "lw_vegito_xeno_intro": {
+   "nome": "vegito_xeno_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 13,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 13,
+    "shadow": 1,
+    "vgto_xeno": 12
+   }
+  },
+  "lw_goku_xeno": {
+   "nome": "goku_xeno",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 66,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 66
+   }
+  },
+  "lw_picolo_super": {
+   "nome": "picolo_super",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 58,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 58
+   }
+  },
+  "lw_gotenks_ssj": {
+   "nome": "gotenks_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 44,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 44,
+    "gotenks_base": 1,
+    "gotenks_ssj": 39,
+    "gotenks_ssj_21": 1,
+    "gotenks_ssj_32": 3
+   }
+  },
+  "lw_vegito_intro": {
+   "nome": "vegito_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 13,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 13,
+    "shadow": 1,
+    "vegito": 12
+   }
+  },
+  "lw_android16": {
+   "nome": "android16",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 52,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 52,
+    "android_16": 49,
+    "android_16_08": 2,
+    "shadow": 1
+   }
+  },
+  "lw_vegeta_xeno": {
+   "nome": "vegeta_xeno",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 57
+   }
+  },
+  "lw_black_base": {
+   "nome": "black_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53,
+    "grupo": 3,
+    "black_ssr": 3,
+    "goku_black": 47
+   }
+  },
+  "lw_dyspo": {
+   "nome": "dyspo",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 64,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 64
+   }
+  },
+  "lw_ground_effect": {
+   "nome": "ground_effect",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 44,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 44,
+    "ground_smash_fx": 10,
+    "jump_fx": 8,
+    "move_fx": 14,
+    "shadow": 1,
+    "Spr_Smoke1": 11
+   }
+  },
+  "lw_cooler_f1": {
+   "nome": "cooler_f1",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 52,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 52,
+    "grupo": 3,
+    "cooler_f1": 49
+   }
+  },
+  "lw_tournament": {
+   "nome": "tournament",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6,
+    "build1": 2,
+    "build": 1,
+    "ground": 2,
+    "road": 1
+   }
+  },
+  "lw_spirit_sword": {
+   "nome": "Spirit_sword",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6
+   }
+  },
+  "lw_trunks_dbs": {
+   "nome": "trunks_dbs",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 58,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 58,
+    "grupo": 2,
+    "trun_dbs": 56
+   }
+  },
+  "lw_finger_beam": {
+   "nome": "FINGER_BEAM",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10,
+    "fb_tail": 4,
+    "finger_beam_body": 2,
+    "finger_beam_head": 1,
+    "finger_beam_tail": 1,
+    "ki_push": 2
+   }
+  },
+  "lw_goku_base": {
+   "nome": "goku_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 59,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 59,
+    "grupo": 3,
+    "gk_special_skill": 3,
+    "gk_ssj": 1,
+    "gk_ultimate": 47,
+    "gkkku": 5
+   }
+  },
+  "lw_cooler_f3": {
+   "nome": "cooler_f3",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 3,
+    "cooler": 42,
+    "cooler_f1": 4,
+    "cooler_f3": 6
+   }
+  },
+  "lw_lucky_wheel": {
+   "nome": "lucky_wheel",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "lw_beerus": {
+   "nome": "beerus",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 56,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 56,
+    "grupo": 3,
+    "birot": 52,
+    "birot_10": 1
+   }
+  },
+  "lw_namek_atlas": {
+   "nome": "Namek_atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 29,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 29,
+    "naek_0": 2,
+    "naek_0-0": 1,
+    "naek_1": 5,
+    "naek_1-2": 2,
+    "naek_2": 5,
+    "naek_3": 2,
+    "naek_5": 8,
+    "naek_6": 4
+   }
+  },
+  "lw_dragon_fist": {
+   "nome": "Dragon_fist",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 3,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 3
+   }
+  },
+  "lw_ingame_ui": {
+   "nome": "ingame_ui",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12,
+    "block_btn": 1,
+    "charge_ki_btn": 1,
+    "combo_btn": 1,
+    "counter_btn": 1,
+    "ki_blast_btn": 1,
+    "punch_btn": 1,
+    "push_ki_press": 1,
+    "shadedDark": 2,
+    "special_btn": 1,
+    "teleport_btn": 1,
+    "tranform_btn": 1
+   }
+  },
+  "lw_vegeta_ssj": {
+   "nome": "vegeta_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 65,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 65,
+    "grupo": 2,
+    "vegita_sj1": 4,
+    "vgta_ssj": 51,
+    "vgta_transform": 8
+   }
+  },
+  "lw_frieza_golden": {
+   "nome": "frieza_golden",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 68,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 68,
+    "grupo": 3,
+    "fraida_g": 56,
+    "friza_golden": 1,
+    "golden_trans": 8
+   }
+  },
+  "lw_gogeta_intro": {
+   "nome": "gogeta_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 16,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 16,
+    "gogeta_intro": 15,
+    "shadow": 1
+   }
+  },
+  "lw_beam_fight": {
+   "nome": "BEAM_FIGHT",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 8,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 8
+   }
+  },
+  "lw_goku_ssj_blue": {
+   "nome": "goku_ssj_blue",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 85,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 85,
+    "grupo": 2,
+    "gku_sjb": 81,
+    "Gku_sjb_113": 1,
+    "Gku_sjb_114": 1
+   }
+  },
+  "lw_god_planet": {
+   "nome": "God_Planet",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6
+   }
+  },
+  "lw_cell_semi": {
+   "nome": "cell_semi",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 60,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 60,
+    "grupo": 7,
+    "bo_hung_semi_ul": 6,
+    "xen_bo_semi": 47
+   }
+  },
+  "lw_zamas_fusion": {
+   "nome": "zamas_fusion",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 65,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 65,
+    "grupo": 1,
+    "shadow": 1,
+    "zamas_mer": 62,
+    "zamas_mer_04": 1
+   }
+  },
+  "lw_item_sprite": {
+   "nome": "item_sprite",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_vegeta_base": {
+   "nome": "vegeta_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 2,
+    "vegita": 8,
+    "vgta": 45
+   }
+  },
+  "lw_bullet": {
+   "nome": "bullet",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 2,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 2
+   }
+  },
+  "lw_wasteland_map": {
+   "nome": "wasteland_map",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 8,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 8,
+    "wasteland_0": 3,
+    "wasteland_1": 1,
+    "wasteland_2": 4
+   }
+  },
+  "lw_vegito_ssj": {
+   "nome": "vegito_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 83,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 83,
+    "grupo": 1,
+    "vgito_sj1": 82
+   }
+  },
+  "lw_goku_ssj_blue_kaioken": {
+   "nome": "goku_ssj_blue_kaioken",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 74,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 74,
+    "gku_sjb": 5,
+    "goku_ssj_blue_kaioken": 69
+   }
+  },
+  "lw_tornado_fx": {
+   "nome": "tornado_fx",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 15
+   }
+  },
+  "lw_vegeta_gt_base": {
+   "nome": "vegeta_gt_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 58,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 58
+   }
+  },
+  "lw_appule": {
+   "nome": "appule",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 31,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 31,
+    "grupo": 3,
+    "Appule": 28
+   }
+  },
+  "lw_vegeta_gt_ssj": {
+   "nome": "vegeta_gt_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53,
+    "grupo": 3,
+    "vegeta_gt_ssj": 39,
+    "vgta_gt_ssj": 11
+   }
+  },
+  "lw_basil": {
+   "nome": "basil",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 50,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 50
+   }
+  },
+  "lw_cell_jr": {
+   "nome": "cell_jr",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 73,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 73,
+    "cell_jr": 72,
+    "shadow": 1
+   }
+  },
+  "lw_puipui": {
+   "nome": "puipui",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 38,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 38
+   }
+  },
+  "lw_fireza_mecha": {
+   "nome": "fireza_mecha",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 54,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 54,
+    "mecha_freeza": 51,
+    "mecha_frieza": 3
+   }
+  },
+  "lw_cui": {
+   "nome": "cui",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 31,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 31,
+    "grupo": 3,
+    "cui": 28
+   }
+  },
+  "lw_dabura": {
+   "nome": "dabura",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 62,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 62,
+    "dabura": 60,
+    "dabura_22": 1,
+    "dabura_67": 1
+   }
+  },
+  "lw_invander": {
+   "nome": "invander",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 45,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 45
+   }
+  },
+  "lw_frieza_f1": {
+   "nome": "frieza_f1",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 46,
+    "frieza_0": 12,
+    "frieza_f1": 31,
+    "frieza_f1_08": 2,
+    "shadow": 1
+   }
+  },
+  "lw_skill_bg_break": {
+   "nome": "skill_bg_break",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10
+   }
+  },
+  "lw_spopo": {
+   "nome": "spopo",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 33,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 33
+   }
+  },
+  "lw_yakon": {
+   "nome": "yakon",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 41,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 41
+   }
+  },
+  "lw_buu_intro": {
+   "nome": "buu_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 21,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 21,
+    "buu_intro": 18,
+    "ghan": 2,
+    "shadow": 1
+   }
+  },
+  "lw_hit_effect": {
+   "nome": "hit_effect",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 27,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 27,
+    "hit_pur": 4,
+    "hit_purple": 14,
+    "hit_red_1": 4,
+    "hit_shockwave": 5
+   }
+  },
+  "lw_buu_super": {
+   "nome": "buu_super",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 49,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 49,
+    "grupo": 2,
+    "buu_super": 46,
+    "shadow": 1
+   }
+  },
+  "lw_yamu": {
+   "nome": "yamu",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 31,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 31
+   }
+  },
+  "lw_galactic_donut": {
+   "nome": "galactic_donut",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 13,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 13
+   }
+  },
+  "lw_dashfx": {
+   "nome": "dashFx",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 5,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 5
+   }
+  },
+  "lw_kefla_intro": {
+   "nome": "kefla_intro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 16,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 16,
+    "kefla_base": 12,
+    "kefla_base_07": 3,
+    "shadow": 1
+   }
+  },
+  "lw_hit_break_fx": {
+   "nome": "hit_break_fx",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 4,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 4
+   }
+  },
+  "lw_ghost_skill": {
+   "nome": "ghost_skill",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 15,
+    "ghost": 8,
+    "ghost_buu": 7
+   }
+  },
+  "lw_uisprite": {
+   "nome": "UISprite",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_background": {
+   "nome": "Background",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_cloud2": {
+   "nome": "cloud2",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_goku_ssj3": {
+   "nome": "goku_ssj3",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 79,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 79,
+    "grupo": 1,
+    "gkk_trans_sj3": 23,
+    "gkku_sj3": 55
+   }
+  },
+  "lw_sky": {
+   "nome": "sky",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_genki_pack": {
+   "nome": "GENKI_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 5,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 5,
+    "genki_ball_border": 1,
+    "genkida": 4
+   }
+  },
+  "lw_genki_ball_atlas": {
+   "nome": "genki_ball_atlas",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 4,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 4
+   }
+  },
+  "lw_gohan_cell_ssj_2": {
+   "nome": "gohan_cell_ssj_2",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 68,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 69,
+    "grupo": 2,
+    "ghan_teen": 67
+   }
+  },
+  "lw_ki_explosion_blue_00": {
+   "nome": "ki_explosion_blue_00",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_radiz": {
+   "nome": "radiz",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 36,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 36,
+    "grupo": 2,
+    "radiizz": 34
+   }
+  },
+  "lw_vegeta_ssj_blue": {
+   "nome": "vegeta_ssj_blue",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 83,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 83,
+    "grupo": 3,
+    "vgta_blue": 1,
+    "vgta_sjb": 79
+   }
+  },
+  "lw_bigbang_charge": {
+   "nome": "bigbang_charge",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 15,
+    "big_bang_charge_1": 12,
+    "big_bang_charge_2": 3
+   }
+  },
+  "lw_begamo": {
+   "nome": "begamo",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 37,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 37,
+    "grupo": 2,
+    "begamo": 35
+   }
+  },
+  "lw_tien": {
+   "nome": "tien",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 48,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 49,
+    "grupo": 3,
+    "thien_shin": 46
+   }
+  },
+  "lw_aura_thunder_old": {
+   "nome": "aura_thunder_old",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "lw_active_skill2": {
+   "nome": "active_skill2",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "lw_ki_beam_charge": {
+   "nome": "ki_beam_charge",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 26,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 26
+   }
+  },
+  "lw_desert_atlas": {
+   "nome": "desert_atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10,
+    "desert_mountain_0": 1,
+    "desert_mountain_1": 7,
+    "desert_mountain_7": 1,
+    "desert_mountain_8": 1
+   }
+  },
+  "lw_black_stage_atlas": {
+   "nome": "black_stage_atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_ki_blast_big": {
+   "nome": "ki_blast_big",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10
+   }
+  },
+  "lw_active_skill_fx": {
+   "nome": "active_skill_fx",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 24,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 24
+   }
+  },
+  "lw_nio": {
+   "nome": "nio",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 59,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 60,
+    "grupo": 2,
+    "nio": 58
+   }
+  },
+  "lw_ki_big_exp": {
+   "nome": "ki_big_exp",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 24,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 24
+   }
+  },
+  "lw_ki_beam_charge2": {
+   "nome": "ki_beam_charge2",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6
+   }
+  },
+  "lw_kami_house": {
+   "nome": "kami_house",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6,
+    "km_look_0": 2,
+    "km_look_1": 4
+   }
+  },
+  "lw_slash_pack": {
+   "nome": "SLASH_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 2,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 2
+   }
+  },
+  "lw_ki_ball_exp": {
+   "nome": "ki_ball_exp",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 19,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 19
+   }
+  },
+  "lw_hit_spark_effect": {
+   "nome": "hit_spark_effect",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 31,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 31,
+    "hit_slash": 4,
+    "hit_spard_red": 4,
+    "hit_spard_white": 4,
+    "hit_spard_yellow": 8,
+    "ki_explosion": 11
+   }
+  },
+  "lw_cloud1": {
+   "nome": "cloud1",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_frieza_f3": {
+   "nome": "frieza_f3",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 3,
+    "fraizza": 52
+   }
+  },
+  "lw_baby_vgta": {
+   "nome": "baby_vgta",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 46,
+    "grupo": 3,
+    "baby_vgta": 43
+   }
+  },
+  "lw_trunks_dbs_ssj": {
+   "nome": "trunks_dbs_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 68,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 68,
+    "grupo": 2,
+    "trun_dbs": 2,
+    "trun_rare": 64
+   }
+  },
+  "lw_brolly": {
+   "nome": "brolly",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 58,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 58,
+    "grupo": 3,
+    "bdolly": 46,
+    "bdolly_intro": 9
+   }
+  },
+  "lw_dark_ball_pack": {
+   "nome": "DARK_BALL_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10
+   }
+  },
+  "lw_cell_peffect": {
+   "nome": "cell_peffect",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 59,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 59,
+    "grupo": 3,
+    "bo_hung": 56
+   }
+  },
+  "lw_buu_fat": {
+   "nome": "buu_fat",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 48,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 48,
+    "grupo": 3,
+    "buu_beo": 45
+   }
+  },
+  "lw_vegeta_young": {
+   "nome": "vegeta_young",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 57,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 57,
+    "grupo": 3,
+    "vgta_pri": 54
+   }
+  },
+  "lw_gohan_mystic": {
+   "nome": "gohan_mystic",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 70,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 70,
+    "grupo": 2,
+    "ghan": 68
+   }
+  },
+  "lw_kame_fast": {
+   "nome": "kame_fast",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 9,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 9
+   }
+  },
+  "lw_zaaiko": {
+   "nome": "zaaiko",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 46,
+    "grupo": 2,
+    "zaaiko": 44
+   }
+  },
+  "lw_broly_xeno": {
+   "nome": "broly_xeno",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 42,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 42,
+    "grupo": 3,
+    "xen_broolly": 39
+   }
+  },
+  "lw_cloud3": {
+   "nome": "cloud3",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_black_ssj_rose": {
+   "nome": "black_ssj_rose",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 88,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 88,
+    "grupo": 3,
+    "black_ssr": 85
+   }
+  },
+  "lw_horizontal": {
+   "nome": "horizontal",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_ki_ball_mini": {
+   "nome": "ki_ball_mini",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 5,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 5
+   }
+  },
+  "lw_dead_forest_atlas": {
+   "nome": "dead_forest_atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 2,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 2
+   }
+  },
+  "lw_aura_transform": {
+   "nome": "aura_transform",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 26,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 26,
+    "aura_trans": 18,
+    "aura_transform": 8
+   }
+  },
+  "lw_dark_judgement": {
+   "nome": "DARK_JUDGEMENT",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 4,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 4
+   }
+  },
+  "lw_dead_ball_pack": {
+   "nome": "DEAD_BALL_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 8,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 8
+   }
+  },
+  "lw_self_destruction_pack": {
+   "nome": "SELF_DESTRUCTION_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 2,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 2
+   }
+  },
+  "lw_ki_beam_pack": {
+   "nome": "KI_BEAM_PACK",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 15,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 15,
+    "kame_head": 3,
+    "kame_scale": 3,
+    "kame_start": 3,
+    "ki_beam_tail": 6
+   }
+  },
+  "lw_charge_ki_ground": {
+   "nome": "charge_ki_ground",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 19,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 19,
+    "charge_ki_ground_fx_2": 8,
+    "ground_charge_gust": 11
+   }
+  },
+  "lw_ki_blast_pack": {
+   "nome": "KI_BLAST_PACK",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 12,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 12
+   }
+  },
+  "lw_picolo": {
+   "nome": "picolo",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53,
+    "grupo": 3,
+    "piccolo": 2,
+    "pocolo": 48
+   }
+  },
+  "lw_cloud4": {
+   "nome": "cloud4",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_goku_ssj_god": {
+   "nome": "goku_ssj_god",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 75,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 75,
+    "grupo": 1,
+    "gku_sjg": 66,
+    "gku_sjg_trans": 8
+   }
+  },
+  "lw_cumber": {
+   "nome": "cumber",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 53,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 53,
+    "grupo": 3,
+    "kanba": 50
+   }
+  },
+  "lw_future_stage_1_atlas": {
+   "nome": "future_stage_1_atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_cabba": {
+   "nome": "cabba",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 47,
+    "grupo": 3,
+    "cabba": 44
+   }
+  },
+  "lw_caulifla": {
+   "nome": "caulifla",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 40,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 40,
+    "grupo": 2,
+    "caulfla": 38
+   }
+  },
+  "lw_big_exp": {
+   "nome": "big_exp",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 18,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 18
+   }
+  },
+  "lw_cloud4_1": {
+   "nome": "cloud4-1",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_baby_kefla": {
+   "nome": "baby_kefla",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 54,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 54,
+    "grupo": 3,
+    "baby_kefla": 1,
+    "ke_ba": 50
+   }
+  },
+  "lw_turles": {
+   "nome": "turles",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 47,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 47,
+    "grupo": 3,
+    "turlle": 44
+   }
+  },
+  "lw_ball_charge": {
+   "nome": "ball_charge",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 19,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 19
+   }
+  },
+  "lw_krilin": {
+   "nome": "krilin",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 45,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 45,
+    "grupo": 2,
+    "carillin": 43
+   }
+  },
+  "lw_kengzang_atlas": {
+   "nome": "kengzang_atlas",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 2,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 2
+   }
+  },
+  "lw_gohan_suit": {
+   "nome": "gohan_suit",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 46,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 46,
+    "grupo": 2,
+    "gohan_tracksuit": 44
+   }
+  },
+  "lw_yamcha": {
+   "nome": "yamcha",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 2,
+    "yamcha": 52,
+    "yamcha_22": 1
+   }
+  },
+  "lw_gohan_kid": {
+   "nome": "gohan_kid",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 56,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 56,
+    "grupo": 2,
+    "ghan_kid": 54
+   }
+  },
+  "lw_active_skill_purple": {
+   "nome": "active_skill_purple",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 16,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 16
+   }
+  },
+  "lw_judgement_ball_atlas": {
+   "nome": "judgement_ball_atlas",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 5,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 5
+   }
+  },
+  "lw_goku_ssj": {
+   "nome": "goku_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 60,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 60,
+    "grupo": 1,
+    "gk_ssj": 55,
+    "gk_ultimate": 4
+   }
+  },
+  "lw_aura_fx": {
+   "nome": "aura_fx",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 30,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 30,
+    "aura_b": 3,
+    "aura_c": 3,
+    "aura_d": 3,
+    "aura_dash": 2,
+    "aura_font": 3,
+    "aura_god": 3,
+    "aura_start": 13
+   }
+  },
+  "lw_vegito_xeno_base": {
+   "nome": "vegito_xeno_base",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 55,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 55,
+    "grupo": 1,
+    "vegito_xeno_base": 1,
+    "xen_vgto": 47,
+    "xen_vgto_sw": 6
+   }
+  },
+  "lw_buu_kid": {
+   "nome": "buu_kid",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 67,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 67,
+    "grupo": 4,
+    "buu_kid": 63
+   }
+  },
+  "lw_kale": {
+   "nome": "kale",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 34,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 34,
+    "grupo": 2,
+    "kale": 32
+   }
+  },
+  "lw_lybro": {
+   "nome": "lybro",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 47,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 47,
+    "grupo": 2,
+    "lybro": 45
+   }
+  },
+  "lw_buu_thunder": {
+   "nome": "buu_thunder",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 6,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 6
+   }
+  },
+  "lw_normal_fx_pack": {
+   "nome": "NORMAL_FX_PACK",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 10,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 10,
+    "dash_normal_fx": 5,
+    "ki_fire": 5
+   }
+  },
+  "lw_cabba_ssj": {
+   "nome": "cabba_ssj",
+   "cat": "lw",
+   "tipo": "personagens",
+   "quadros": 44,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "Todos": 44,
+    "grupo": 3,
+    "cabba_ssj": 41
+   }
+  },
+  "lw_skill_bg_normal": {
+   "nome": "skill_bg_normal",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_right_arraw": {
+   "nome": "scroller_right_arraw",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_warning_icon": {
+   "nome": "warning_icon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_clear": {
+   "nome": "clear",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_selected": {
+   "nome": "selected",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button_active": {
+   "nome": "button_active",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_info": {
+   "nome": "info",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_left_arraw": {
+   "nome": "scroller_left_arraw",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_user": {
+   "nome": "user",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_clearonsceneloaded": {
+   "nome": "clearOnSceneLoaded",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_collapse": {
+   "nome": "collapse",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_save": {
+   "nome": "Save",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_down_arraw": {
+   "nome": "scroller_down_arraw",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_horizental_back": {
+   "nome": "scroller_horizental_back",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_software": {
+   "nome": "software",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_error_icon": {
+   "nome": "error_icon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_timer_1": {
+   "nome": "timer_1",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_vertical_thumb": {
+   "nome": "scroller_vertical_thumb",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_copy": {
+   "nome": "copy",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_bar": {
+   "nome": "bar",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_up_arraw": {
+   "nome": "scroller_up_arraw",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_buildfrom": {
+   "nome": "buildFrom",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_odd_log": {
+   "nome": "odd_log",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_fps": {
+   "nome": "fps",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_graphiccard": {
+   "nome": "graphicCard",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_back": {
+   "nome": "back",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_date": {
+   "nome": "date",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_close": {
+   "nome": "close",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_search": {
+   "nome": "search",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_even_log": {
+   "nome": "even_log",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_log_icon": {
+   "nome": "log_icon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_computericon": {
+   "nome": "ComputerIcon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_horizental_thumb": {
+   "nome": "scroller_horizental_thumb",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_memory": {
+   "nome": "memory",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_scroller_vertical_back": {
+   "nome": "scroller_vertical_back",
+   "cat": "lw",
+   "tipo": "efeitos",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unityicon": {
+   "nome": "UnityIcon",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets0.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_font_ui_sdf_atlas": {
+   "nome": "Font-ui SDF Atlas",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "sharedassets3.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_number_sdf_atlas": {
+   "nome": "Number SDF Atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_main_sdf_atlas": {
+   "nome": "Main SDF Atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
+   "nome": "sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
+   "nome": "sactx-0-512x512-ETC2-ui_character_pack-635b0817",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_emojione": {
+   "nome": "EmojiOne",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_liberationsans_sdf_atlas": {
+   "nome": "LiberationSans SDF Atlas",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "resources.assets"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_soft": {
+   "nome": "Soft",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_small": {
+   "nome": "UnityWatermark-small",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_esctoexit_back": {
+   "nome": "EscToExit_back",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_esctoexit_text": {
+   "nome": "EscToExit_Text",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_trial_big": {
+   "nome": "UnityWatermark-trial-big",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_trial": {
+   "nome": "UnityWatermark-trial",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_beta": {
+   "nome": "UnityWatermark-beta",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_edu": {
+   "nome": "UnityWatermark-edu",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_dev": {
+   "nome": "UnityWatermark-dev",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_warningsign": {
+   "nome": "WarningSign",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermark_proto": {
+   "nome": "UnityWatermark-proto",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_unitywatermarkplugin_beta": {
+   "nome": "UnityWatermarkPlugin-beta",
+   "cat": "lw",
+   "tipo": "cenarios",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_box": {
+   "nome": "box",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button_active_": {
+   "nome": "button active",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button_hover": {
+   "nome": "button hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button_on_hover": {
+   "nome": "button on hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button_on": {
+   "nome": "button on",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_button": {
+   "nome": "button",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_horizontal_scrollbar_thumb": {
+   "nome": "horizontal scrollbar thumb",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_horizontal_scrollbar": {
+   "nome": "horizontal scrollbar",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_slider_thumb_active": {
+   "nome": "slider thumb active",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_slider_thumb": {
+   "nome": "slider thumb",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_slidert_humb_hover": {
+   "nome": "slidert humb hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle_active": {
+   "nome": "toggle active",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle_hover": {
+   "nome": "toggle hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle_on_hover": {
+   "nome": "toggle on hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle_on": {
+   "nome": "toggle on",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle_on_active": {
+   "nome": "toggle on active",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_toggle": {
+   "nome": "toggle",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_vertical_scrollbar_thumb": {
+   "nome": "vertical scrollbar thumb",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_vertical_scrollbar": {
+   "nome": "vertical scrollbar",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_window_on": {
+   "nome": "window on",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_window": {
+   "nome": "window",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_textfield": {
+   "nome": "textfield",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_textfield_on": {
+   "nome": "textfield on",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  },
+  "lw_textfield_hover": {
+   "nome": "textfield hover",
+   "cat": "lw",
+   "tipo": "interface",
+   "quadros": 1,
+   "atlas": 1,
+   "objs": [
+    "unity default resources"
+   ],
+   "anims": {
+    "folha": 1
+   }
+  }
+ },
+ "sem_formato": {
+  "29": 1
+ }
 }

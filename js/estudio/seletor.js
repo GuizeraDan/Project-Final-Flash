@@ -10,7 +10,9 @@ window.FF = window.FF || {};
   const E = FF.Estudio;
   const UTIL = ['hud_zl3', 'retratos', 'cenarios_preview', 'stage_campo', 'hud_moderno'];   // fim da lista do jogo
   const ORDEM_CAT = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
-  const ICONE_CAT = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };   // outras categorias (um jogo inteiro) usam 🎮
+  const ICONE_CAT = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };
+  const TIPOS = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
+  const NOME_TIPO = { personagens: 'Personagens', efeitos: 'Efeitos', cenarios: 'Cenários', interface: 'Interface e outros', cutscenes: 'Cutscenes' };   // outras categorias (um jogo inteiro) usam 🎮
 
   // nome amigável: personagem que usa o sprite (ex.: "Goku · gokubase") ou o nome do acervo
   function nomes() {
@@ -103,8 +105,10 @@ window.FF = window.FF || {};
     if (acervo.length) {
       lado.appendChild(E.el('div', 'es-sub', 'Acervo (' + acervo.length + ')'));
       const abertas = new Set(E.rascunho.ler('seletor_cats_abertas') || []);
-      const catDaFonte = /^cat:/.test(fonte) ? fonte.slice(4) : (FF.Assets.doAcervo(fonte) ? FF.Assets.categoriaSprite(fonte) : null);
+      const catDaFonte = /^cat:/.test(fonte) ? fonte.slice(4).split(':')[0] : (FF.Assets.doAcervo(fonte) ? FF.Assets.categoriaSprite(fonte) : null);
       if (catDaFonte) abertas.add(catDaFonte);
+      if (/^cat:.+:/.test(fonte)) abertas.add(fonte.slice(4));
+      else if (FF.Assets.doAcervo(fonte)) abertas.add(catDaFonte + ':' + FF.Assets.tipoSprite(fonte));
       cats.forEach(cat => {
         const cab = E.el('div', 'es-seletor-cat');
         const corpo = E.el('div', 'es-seletor-cat-corpo');
@@ -114,7 +118,22 @@ window.FF = window.FF || {};
         const montar = () => {
           if (montado) return; montado = true;
           bt('cat:' + cat, '☰ Todas de ' + (NOME_CAT[cat] || cat).toLowerCase(), null, corpo);
-          porCat[cat].forEach(id => mini(bt(id, NM[id] || id, String((FF.Assets.acervo()[id] || [])[2] || ''), corpo), id));
+          const item = (id, onde) => mini(bt(id, NM[id] || id, String((FF.Assets.acervo()[id] || [])[2] || ''), onde), id);
+          // jogo inteiro (ex.: Drag Warriors): subgrupos por tipo, cada um abre/fecha e tem o seu "Todos"
+          const tipos = TIPOS.filter(t => porCat[cat].some(id => FF.Assets.tipoSprite(id) === t));
+          if (tipos.length < 2) { porCat[cat].forEach(id => item(id, corpo)); return; }
+          tipos.forEach(t => {
+            const chave = cat + ':' + t, ids = porCat[cat].filter(id => FF.Assets.tipoSprite(id) === t);
+            const sc = E.el('div', 'es-seletor-cat es-seletor-subcat'), sb = E.el('div', 'es-seletor-cat-corpo');
+            const tt = () => (abertas.has(chave) ? '▾ ' : '▸ ') + ICONE_CAT[t] + ' ' + NOME_TIPO[t] + ' (' + ids.length + ')';
+            let feito = false;
+            const ap = () => {
+              sb.style.display = abertas.has(chave) ? '' : 'none'; sc.textContent = tt();
+              if (abertas.has(chave) && !feito) { feito = true; bt('cat:' + chave, '☰ Todos: ' + NOME_TIPO[t].toLowerCase(), null, sb); ids.forEach(id => item(id, sb)); }
+            };
+            sc.onclick = () => { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); E.rascunho.gravar('seletor_cats_abertas', [...abertas]); ap(); };
+            corpo.append(sc, sb); ap();
+          });
         };
         const aplicar = () => { corpo.style.display = abertas.has(cat) ? '' : 'none'; cab.textContent = titulo(); if (abertas.has(cat)) montar(); };
         cab.onclick = () => { abertas.has(cat) ? abertas.delete(cat) : abertas.add(cat); E.rascunho.gravar('seletor_cats_abertas', [...abertas]); aplicar(); };
@@ -131,7 +150,7 @@ window.FF = window.FF || {};
       let lista;
       if (fonte === 'todos' || f) lista = ids;                       // buscar procura em tudo
       else if (fonte === 'efeitos') lista = jogo.concat(acervo.filter(id => FF.Assets.tipoSprite(id) === 'efeitos'));
-      else if (/^cat:/.test(fonte)) lista = porCat[fonte.slice(4)] || [];
+      else if (/^cat:/.test(fonte)) { const [cc, tp] = fonte.slice(4).split(':'); lista = (porCat[cc] || []).filter(id => !tp || FF.Assets.tipoSprite(id) === tp); }
       else lista = [fonte];
       grade.innerHTML = '<p class="es-vazio">Carregando…</p>';
       const doJogo = lista.filter(id => !FF.Assets.doAcervo(id));

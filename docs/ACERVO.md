@@ -563,6 +563,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_assets_separados_efeitos_e_golpes_pink_explosion` | Pink Explosion | Efeitos | 1 | 5 | Assets_Separados/Efeitos_e_golpes/Pink Explosion |
 | `ast_assets_separados_efeitos_e_golpes_redeffect` | RedEffect | Efeitos | 1 | 2 | Assets_Separados/Efeitos_e_golpes/RedEffect |
 | `ast_assets_separados_efeitos_e_golpes_redeffect_1` | RedEffect 1 | Efeitos | 1 | 2 | Assets_Separados/Efeitos_e_golpes/RedEffect 1 |
+| `ast_assets_separados_efeitos_e_golpes_rocklee_fast_effect` | rocklee fast effect | Efeitos | 1 | 7 | Assets_Separados/Efeitos_e_golpes/rocklee fast effect |
 | `ast_assets_separados_efeitos_e_golpes_smallblast` | SmallBlast | Efeitos | 1 | 5 | Assets_Separados/Efeitos_e_golpes/SmallBlast |
 | `ast_assets_separados_efeitos_e_golpes_startskilleffect` | StartSkillEffect | Efeitos | 1 | 4 | Assets_Separados/Efeitos_e_golpes/StartSkillEffect |
 | `ast_assets_separados_efeitos_e_golpes_tien_bigbang_final` | Tien Bigbang Final | Efeitos | 1 | 39 | Assets_Separados/Efeitos_e_golpes/Tien Bigbang Final |
@@ -572,7 +573,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_assets_separados_cenarios_miniaturas_das_fases` | Assets_Separados / Cenarios / Miniaturas_das_fases | Cenários | 1 | 20 | Assets_Separados/Cenarios/Miniaturas_das_fases |
 | `ast_assets_separados_efeitos_e_golpes_maphongba` | Maphongba | Cenários | 2 | 41 | Assets_Separados/Efeitos_e_golpes/Maphongba |
 | `ast_assets_separados_efeitos_e_golpes_maphongba_appear` | Maphongba appear | Cenários | 1 | 6 | Assets_Separados/Efeitos_e_golpes/Maphongba appear |
-| `ast_assets_separados_efeitos_e_golpes_rocklee_fast_effect` | rocklee fast effect | Cenários | 1 | 7 | Assets_Separados/Efeitos_e_golpes/rocklee fast effect |
 | `ast_assets_separados_interface_e_outros` | Assets_Separados / Interface_e_outros | Interface | 84 | 130 | Assets_Separados/Interface_e_outros |
 | `ast_assets_separados_retratos_personagens` | Assets_Separados / Retratos_personagens | Interface | 36 | 65 | Assets_Separados/Retratos_personagens |
 | `ast_assets_separados_texturas_sem_sprite` | Assets_Separados / Texturas_sem_sprite | Interface | 1 | 4 | Assets_Separados/Texturas_sem_sprite |
@@ -621,143 +621,55 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_beam_fight_05` | beam_fight_05 | Efeitos | 1 | 1 | 6ba88bc324aa3a044992dfe15103a1e0 |
 | `dw_beam_fight_06` | beam_fight_06 | Efeitos | 1 | 1 | 0550cfc98ac297047aae2f2403cf1876 |
 | `dw_beam_fight_07` | beam_fight_07 | Efeitos | 1 | 1 | acf6f865aef451b4aa9e80dd46998e2f |
-| `dw_box` | box | Efeitos | 1 | 1 | unity default resources |
 | `dw_combat` | combat | Efeitos | 1 | 1 | 582fc439bf0d56549859a11dc2c77bc3 |
 | `dw_dash_pre` | dash_pre | Efeitos | 1 | 5 | 4aae8d9dba70f2849ac637a33f1f14c2 |
-| `dw_esctoexit_back` | EscToExit_back | Efeitos | 1 | 1 | unity default resources |
 | `dw_finger_beam` | FINGER_BEAM | Efeitos | 4 | 6 | 8a98ac0b5f86f034c994e0157c610a5d |
 | `dw_finger_beam_body` | finger_beam_body | Efeitos | 1 | 1 | c0b0c2cff023995489c0b754803690d7 |
-| `dw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
+| `dw_ground_smash_fx_00` | ground_smash_fx_00 | Efeitos | 1 | 1 | 33b5ec83022d0994ca6bb0fe00addb55 |
+| `dw_ground_smash_fx_01` | ground_smash_fx_01 | Efeitos | 1 | 1 | ba7678798c9b1f14da035dfc06c52d70 |
+| `dw_ground_smash_fx_02` | ground_smash_fx_02 | Efeitos | 1 | 1 | d037e055a520cec4b80196a3b0a14e7a |
+| `dw_ground_smash_fx_03` | ground_smash_fx_03 | Efeitos | 1 | 1 | fd60ef6ec3d3b1c4091c3a1deeb58e06 |
+| `dw_ground_smash_fx_04` | ground_smash_fx_04 | Efeitos | 1 | 1 | 7cf9d17e8845b5b4d8cad2d1710b49b3 |
+| `dw_ground_smash_fx_05` | ground_smash_fx_05 | Efeitos | 1 | 1 | 38d772dcf44e0ac44ad6a909f28f2fec |
+| `dw_ground_smash_fx_06` | ground_smash_fx_06 | Efeitos | 1 | 1 | 68a43297bb896844d8433976a77fa828 |
+| `dw_ground_smash_fx_07` | ground_smash_fx_07 | Efeitos | 1 | 1 | db2f6f15f5a00904fb80b598abce466e |
+| `dw_ground_smash_fx_08` | ground_smash_fx_08 | Efeitos | 1 | 1 | e54b7ab7dee08664fb254fba31c3c9ca |
+| `dw_ground_smash_fx_09` | ground_smash_fx_09 | Efeitos | 1 | 1 | 18b19c22d945ba549a0ee1efda9f278d |
 | `dw_kenzan` | kenzan | Efeitos | 3 | 7 | 7c9be6f5a3c6e1a4681066f50aba780a |
 | `dw_ki_blast_big` | ki_blast_big | Efeitos | 1 | 10 | 865e32ab37b1f604190b9376808c8453 |
-| `dw_ldr_lll1_0` | LDR_LLL1_0 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_1` | LDR_LLL1_1 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_10` | LDR_LLL1_10 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_11` | LDR_LLL1_11 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_12` | LDR_LLL1_12 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_13` | LDR_LLL1_13 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_14` | LDR_LLL1_14 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_14_` | LDR_LLL1_14 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_15` | LDR_LLL1_15 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_15_` | LDR_LLL1_15 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_16` | LDR_LLL1_16 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_17` | LDR_LLL1_17 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_17_` | LDR_LLL1_17 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_18` | LDR_LLL1_18 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_19` | LDR_LLL1_19 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_2` | LDR_LLL1_2 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_2_` | LDR_LLL1_2 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_20` | LDR_LLL1_20 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_21` | LDR_LLL1_21 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_22` | LDR_LLL1_22 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_23` | LDR_LLL1_23 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_23_` | LDR_LLL1_23 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_24` | LDR_LLL1_24 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_25` | LDR_LLL1_25 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_25_` | LDR_LLL1_25 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_26` | LDR_LLL1_26 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_27` | LDR_LLL1_27 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_28` | LDR_LLL1_28 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_29` | LDR_LLL1_29 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_3` | LDR_LLL1_3 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_30` | LDR_LLL1_30 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_31` | LDR_LLL1_31 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_31_` | LDR_LLL1_31 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_4` | LDR_LLL1_4 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_4_` | LDR_LLL1_4 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_5` | LDR_LLL1_5 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_6` | LDR_LLL1_6 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_6_` | LDR_LLL1_6 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_ldr_lll1_7` | LDR_LLL1_7 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_8` | LDR_LLL1_8 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_9` | LDR_LLL1_9 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_ldr_lll1_9_` | LDR_LLL1_9 | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73` | sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e` | sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df` | sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2` | sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb` | sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0` | sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba` | sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214` | sactx-256x128-Uncompressed-BALL_CHARGE_PACK-33e25214 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_256x128_uncompressed_npc_pack_a988f2ae` | sactx-256x128-Uncompressed-NPC_PACK-a988f2ae | Efeitos | 1 | 1 | sharedassets0.assets.split0 |
 | `dw_sactx_256x256_etc2_ki_blast_pack_82f34169` | sactx-256x256-ETC2-KI_BLAST_PACK-82f34169 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_256x512_etc2_genki_pack_6f6bcfa0` | sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6` | sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_512x256_etc2_ki_beam_pack_742c5349` | sactx-512x256-ETC2-KI_BEAM_PACK-742c5349 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Efeitos | 1 | 1 | sharedassets2.assets |
-| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Efeitos | 1 | 1 | sharedassets2.assets.split0 |
 | `dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa` | sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Efeitos | 1 | 1 | sharedassets0.assets |
-| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Efeitos | 1 | 1 | sharedassets0.assets.split0 |
+| `dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb` | sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_beam_charge_pack_37b093fa` | sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958` | sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4` | sactx-512x512-ETC2-DRAGON_PUNCH_PACK-d930f2c4 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_searchtex` | SearchTex | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dw_searchtex_` | SearchTex | Efeitos | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_slider_thumb` | slider thumb | Efeitos | 1 | 1 | unity default resources |
-| `dw_slider_thumb_active` | slider thumb active | Efeitos | 1 | 1 | unity default resources |
-| `dw_slidert_humb_hover` | slidert humb hover | Efeitos | 1 | 1 | unity default resources |
-| `dw_soft` | Soft | Efeitos | 1 | 1 | unity default resources |
+| `dw_sactx_512x512_etc2_normal_fx_pack_8fcda289` | sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_thun_f` | thun_f | Efeitos | 1 | 4 | d548d1e13764ab34382147eb457ab9ec |
-| `dw_toggle` | toggle | Efeitos | 1 | 1 | unity default resources |
-| `dw_toggle_active` | toggle active | Efeitos | 1 | 1 | unity default resources |
-| `dw_toggle_hover` | toggle hover | Efeitos | 1 | 1 | unity default resources |
-| `dw_toggle_on` | toggle on | Efeitos | 1 | 1 | unity default resources |
-| `dw_toggle_on_active` | toggle on active | Efeitos | 1 | 1 | unity default resources |
-| `dw_toggle_on_hover` | toggle on hover | Efeitos | 1 | 1 | unity default resources |
-| `dw_uicheckmark` | UICheckMark | Efeitos | 1 | 1 | b346b2a2df1d290438be3287b6419408 |
-| `dw_uielement8px` | UIElement8px | Efeitos | 1 | 1 | d49e78756811bfa4aafb8b6535417991 |
-| `dw_uifoldoutclosed` | UIFoldoutClosed | Efeitos | 1 | 1 | 7a0568d5e3330b84687e307992be3030 |
-| `dw_uifoldoutopened` | UIFoldoutOpened | Efeitos | 1 | 1 | a674720496c1ed248a5b7ea3e22a11fd |
-| `dw_uimask` | UIMask | Efeitos | 1 | 1 | sharedassets0.assets |
-| `dw_uisprite` | UISprite | Efeitos | 1 | 1 | sharedassets0.assets |
-| `dw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
-| `dw_warningsign` | WarningSign | Efeitos | 1 | 1 | unity default resources |
-| `dw_white1px` | White1px | Efeitos | 1 | 1 | 127279d577f25ac4ea17dae3782e5074 |
-| `dw_areatex` | AreaTex | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_arena_god_600_0` | arena_god_600-0 | Cenários | 1 | 1 | 8ef3f665a4224d240bd4f1ff8c72f831 |
 | `dw_arena_god_600_3` | arena_god_600-3 | Cenários | 1 | 1 | 88d47851f900330479fa5343677276bf |
-| `dw_ground_smash_fx_00` | ground_smash_fx_00 | Cenários | 1 | 1 | 33b5ec83022d0994ca6bb0fe00addb55 |
-| `dw_ground_smash_fx_01` | ground_smash_fx_01 | Cenários | 1 | 1 | ba7678798c9b1f14da035dfc06c52d70 |
-| `dw_ground_smash_fx_02` | ground_smash_fx_02 | Cenários | 1 | 1 | d037e055a520cec4b80196a3b0a14e7a |
-| `dw_ground_smash_fx_03` | ground_smash_fx_03 | Cenários | 1 | 1 | fd60ef6ec3d3b1c4091c3a1deeb58e06 |
-| `dw_ground_smash_fx_04` | ground_smash_fx_04 | Cenários | 1 | 1 | 7cf9d17e8845b5b4d8cad2d1710b49b3 |
-| `dw_ground_smash_fx_05` | ground_smash_fx_05 | Cenários | 1 | 1 | 38d772dcf44e0ac44ad6a909f28f2fec |
-| `dw_ground_smash_fx_06` | ground_smash_fx_06 | Cenários | 1 | 1 | 68a43297bb896844d8433976a77fa828 |
-| `dw_ground_smash_fx_07` | ground_smash_fx_07 | Cenários | 1 | 1 | db2f6f15f5a00904fb80b598abce466e |
-| `dw_ground_smash_fx_08` | ground_smash_fx_08 | Cenários | 1 | 1 | e54b7ab7dee08664fb254fba31c3c9ca |
-| `dw_ground_smash_fx_09` | ground_smash_fx_09 | Cenários | 1 | 1 | 18b19c22d945ba549a0ee1efda9f278d |
-| `dw_large01` | Large01 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_large02` | Large02 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_large02_` | Large02 | Cenários | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_medium01` | Medium01 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_medium01_` | Medium01 | Cenários | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_medium02` | Medium02 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_medium03` | Medium03 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_medium04` | Medium04 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_medium05` | Medium05 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dw_medium05_` | Medium05 | Cenários | 1 | 1 | globalgamemanagers.assets.split0 |
-| `dw_medium06` | Medium06 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8` | sactx-1024x1024-ETC2-ACTIVE_SKILL_BG_PACK-1793eaa8 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff` | sactx-1024x1024-ETC2-CHIKARI_PACK-0e6ffdff | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_1024x1024_etc2_chiko_pack_d34853b7` | sactx-1024x1024-ETC2-CHIKO_PACK-d34853b7 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73` | sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e` | sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df` | sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2` | sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb` | sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Cenários | 1 | 1 | sharedassets0.assets |
-| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Cenários | 1 | 1 | sharedassets0.assets.split0 |
 | `dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209` | sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba` | sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_2048x1024_etc2_c_g_stage_853da8c3` | sactx-2048x1024-ETC2-C_G_STAGE-853da8c3 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08` | sactx-2048x1024-ETC2-S_PLANET_PACK-9b8a5a08 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd` | sactx-2048x2048-ETC2-D_PLANET_PACK-2addc9dd | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d` | sactx-2048x2048-ETC2-G_V_H-f2b2e61d | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_2048x512_etc2_univer_sky_d751abae` | sactx-2048x512-ETC2-UNIVER_SKY-d751abae | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_256x512_etc2_genki_pack_6f6bcfa0` | sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_512x1024_etc2_end_fight_pack_b956320f` | sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f | Cenários | 1 | 1 | sharedassets3.assets |
-| `dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6` | sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_512x256_uncompressed_menu_stage_f25645df` | sactx-512x256-Uncompressed-MENU_STAGE-f25645df | Cenários | 1 | 1 | sharedassets2.assets |
-| `dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb` | sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_beam_charge_pack_37b093fa` | sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958` | sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
 | `dw_sactx_512x512_etc2_galic_pack_36ec096e` | sactx-512x512-ETC2-GALIC_PACK-36ec096e | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Cenários | 1 | 1 | sharedassets0.assets |
-| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Cenários | 1 | 1 | sharedassets0.assets.split0 |
-| `dw_sactx_512x512_etc2_normal_fx_pack_8fcda289` | sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a` | sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a | Cenários | 1 | 1 | sharedassets0.assets |
 | `dw_thin01` | Thin01 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_thin02` | Thin02 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_unitysplash_cube` | UnitySplash-cube | Cenários | 1 | 1 | unity default resources |
@@ -770,19 +682,107 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_unitywatermark_trial_big` | UnityWatermark-trial-big | Cenários | 1 | 1 | unity default resources |
 | `dw_unitywatermarkplugin_beta` | UnityWatermarkPlugin-beta | Cenários | 1 | 1 | unity default resources |
 | `dw_ads_icon` | ads_icon | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_areatex` | AreaTex | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_bly_ball_font` | bly_ball_font | Interface | 3 | 17 | 41a1770d52743a9469448e30c8fa3b0d |
+| `dw_box` | box | Interface | 1 | 1 | unity default resources |
 | `dw_button` | button | Interface | 1 | 1 | unity default resources |
 | `dw_button_active` | button active | Interface | 1 | 1 | unity default resources |
 | `dw_button_hover` | button hover | Interface | 1 | 1 | unity default resources |
 | `dw_button_on` | button on | Interface | 1 | 1 | unity default resources |
 | `dw_button_on_hover` | button on hover | Interface | 1 | 1 | unity default resources |
+| `dw_esctoexit_back` | EscToExit_back | Interface | 1 | 1 | unity default resources |
 | `dw_esctoexit_text` | EscToExit_Text | Interface | 1 | 1 | unity default resources |
 | `dw_horizontal_scrollbar` | horizontal scrollbar | Interface | 1 | 1 | unity default resources |
+| `dw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
+| `dw_large01` | Large01 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_large02` | Large02 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_large02_` | Large02 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_0` | LDR_LLL1_0 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_1` | LDR_LLL1_1 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_10` | LDR_LLL1_10 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_11` | LDR_LLL1_11 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_12` | LDR_LLL1_12 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_13` | LDR_LLL1_13 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_14` | LDR_LLL1_14 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_14_` | LDR_LLL1_14 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_15` | LDR_LLL1_15 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_15_` | LDR_LLL1_15 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_16` | LDR_LLL1_16 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_17` | LDR_LLL1_17 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_17_` | LDR_LLL1_17 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_18` | LDR_LLL1_18 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_19` | LDR_LLL1_19 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_2` | LDR_LLL1_2 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_2_` | LDR_LLL1_2 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_20` | LDR_LLL1_20 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_21` | LDR_LLL1_21 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_22` | LDR_LLL1_22 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_23` | LDR_LLL1_23 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_23_` | LDR_LLL1_23 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_24` | LDR_LLL1_24 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_25` | LDR_LLL1_25 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_25_` | LDR_LLL1_25 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_26` | LDR_LLL1_26 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_27` | LDR_LLL1_27 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_28` | LDR_LLL1_28 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_29` | LDR_LLL1_29 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_3` | LDR_LLL1_3 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_30` | LDR_LLL1_30 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_31` | LDR_LLL1_31 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_31_` | LDR_LLL1_31 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_4` | LDR_LLL1_4 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_4_` | LDR_LLL1_4 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_5` | LDR_LLL1_5 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_6` | LDR_LLL1_6 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_6_` | LDR_LLL1_6 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_ldr_lll1_7` | LDR_LLL1_7 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_8` | LDR_LLL1_8 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_9` | LDR_LLL1_9 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_ldr_lll1_9_` | LDR_LLL1_9 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_medium01` | Medium01 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_medium01_` | Medium01 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_medium02` | Medium02 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_medium03` | Medium03 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_medium04` | Medium04 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_medium05` | Medium05 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_medium05_` | Medium05 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_medium06` | Medium06 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Interface | 1 | 1 | sharedassets0.assets.split0 |
 | `dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082` | sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082 | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_sactx_256x128_uncompressed_npc_pack_a988f2ae` | sactx-256x128-Uncompressed-NPC_PACK-a988f2ae | Interface | 1 | 1 | sharedassets0.assets.split0 |
+| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Interface | 1 | 1 | sharedassets2.assets |
+| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Interface | 1 | 1 | sharedassets2.assets.split0 |
+| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Interface | 1 | 1 | sharedassets0.assets.split0 |
+| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Interface | 1 | 1 | sharedassets0.assets.split0 |
+| `dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a` | sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_searchtex` | SearchTex | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_searchtex_` | SearchTex | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
+| `dw_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |
+| `dw_slidert_humb_hover` | slidert humb hover | Interface | 1 | 1 | unity default resources |
+| `dw_soft` | Soft | Interface | 1 | 1 | unity default resources |
 | `dw_textfield` | textfield | Interface | 1 | 1 | unity default resources |
 | `dw_textfield_hover` | textfield hover | Interface | 1 | 1 | unity default resources |
 | `dw_textfield_on` | textfield on | Interface | 1 | 1 | unity default resources |
+| `dw_toggle` | toggle | Interface | 1 | 1 | unity default resources |
+| `dw_toggle_active` | toggle active | Interface | 1 | 1 | unity default resources |
+| `dw_toggle_hover` | toggle hover | Interface | 1 | 1 | unity default resources |
+| `dw_toggle_on` | toggle on | Interface | 1 | 1 | unity default resources |
+| `dw_toggle_on_active` | toggle on active | Interface | 1 | 1 | unity default resources |
+| `dw_toggle_on_hover` | toggle on hover | Interface | 1 | 1 | unity default resources |
+| `dw_uicheckmark` | UICheckMark | Interface | 1 | 1 | b346b2a2df1d290438be3287b6419408 |
+| `dw_uielement8px` | UIElement8px | Interface | 1 | 1 | d49e78756811bfa4aafb8b6535417991 |
+| `dw_uifoldoutclosed` | UIFoldoutClosed | Interface | 1 | 1 | 7a0568d5e3330b84687e307992be3030 |
+| `dw_uifoldoutopened` | UIFoldoutOpened | Interface | 1 | 1 | a674720496c1ed248a5b7ea3e22a11fd |
+| `dw_uimask` | UIMask | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_uisprite` | UISprite | Interface | 1 | 1 | sharedassets0.assets |
 | `dw_vertical_scrollbar` | vertical scrollbar | Interface | 1 | 1 | unity default resources |
+| `dw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Interface | 1 | 1 | unity default resources |
+| `dw_warningsign` | WarningSign | Interface | 1 | 1 | unity default resources |
+| `dw_white1px` | White1px | Interface | 1 | 1 | 127279d577f25ac4ea17dae3782e5074 |
 | `dw_window` | window | Interface | 1 | 1 | unity default resources |
 | `dw_window_on` | window on | Interface | 1 | 1 | unity default resources |
 
@@ -887,8 +887,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_android_17` | Android 17 | Efeitos | 1 | 8 | sharedassets1.assets |
 | `dlz_attack` | Attack | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_aura_template` | Aura Template | Efeitos | 1 | 4 | sharedassets1.assets |
-| `dlz_avatar` | avatar | Efeitos | 1 | 1 | sharedassets1.assets |
-| `dlz_avatar_` | avatar | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_avt` | avt | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_avt_` | Avt | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_avt__` | Avt | Efeitos | 1 | 1 | sharedassets1.assets |
@@ -898,6 +896,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_baba` | Baba | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_back` | Back | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_banana_kame` | Banana Kame | Efeitos | 1 | 3 | sharedassets1.assets |
+| `dlz_bigkame_yellow` | BigKame Yellow | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_blue_aura_template_2` | Blue Aura Template 2 | Efeitos | 1 | 6 | sharedassets1.assets |
 | `dlz_blue_bigkame` | Blue BigKame | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_blue_explode` | Blue Explode | Efeitos | 1 | 5 | sharedassets1.assets |
@@ -907,7 +906,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_blue_laze` | Blue Laze | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_blue_spark` | Blue Spark | Efeitos | 1 | 6 | sharedassets1.assets |
 | `dlz_blue_spike` | Blue Spike | Efeitos | 1 | 3 | sharedassets1.assets |
-| `dlz_box` | box | Efeitos | 1 | 1 | unity default resources |
 | `dlz_burter` | Burter | Efeitos | 1 | 8 | sharedassets1.assets |
 | `dlz_butbi3` | Butbi3 | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_butbi4` | Butbi4 | Efeitos | 1 | 2 | sharedassets1.assets |
@@ -1061,7 +1059,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_e_9_4` | e_9-4 | Efeitos | 1 | 1 | sharedassets26.assets |
 | `dlz_e_9_5` | e_9-5 | Efeitos | 1 | 1 | sharedassets26.assets |
 | `dlz_e_9_6` | e_9-6 | Efeitos | 1 | 1 | sharedassets26.assets |
-| `dlz_esctoexit_back` | EscToExit_back | Efeitos | 1 | 1 | unity default resources |
 | `dlz_explode_blue` | Explode Blue | Efeitos | 1 | 5 | sharedassets1.assets |
 | `dlz_explode_dark_blue` | Explode Dark Blue | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_explode_dark_template` | Explode Dark Template | Efeitos | 1 | 4 | sharedassets1.assets |
@@ -1095,45 +1092,12 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_handle_plain` | Handle_Plain | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_health_mask` | Health Mask | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_healthbar_dark` | HealthBar DARK | Efeitos | 1 | 1 | sharedassets2.assets |
-| `dlz_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
 | `dlz_k_o` | K.O | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_kama_second` | Kama Second | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_ki_mask_1` | Ki Mask 1 | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_kid_goku_sprite_by_dragonsoul2004_d53iiwz` | kid_goku_sprite_by_dragonsoul2004_d53iiwz | Efeitos | 1 | 8 | sharedassets1.assets |
 | `dlz_kienzan` | Kienzan | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_kindpng_1069038` | kindpng_1069038 | Efeitos | 1 | 1 | sharedassets2.assets |
-| `dlz_ldr_lll1_0` | LDR_LLL1_0 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_1` | LDR_LLL1_1 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_10` | LDR_LLL1_10 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_11` | LDR_LLL1_11 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_12` | LDR_LLL1_12 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_13` | LDR_LLL1_13 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_14` | LDR_LLL1_14 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_15` | LDR_LLL1_15 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_16` | LDR_LLL1_16 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_17` | LDR_LLL1_17 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_18` | LDR_LLL1_18 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_19` | LDR_LLL1_19 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_2` | LDR_LLL1_2 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_20` | LDR_LLL1_20 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_21` | LDR_LLL1_21 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_22` | LDR_LLL1_22 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_23` | LDR_LLL1_23 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_24` | LDR_LLL1_24 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_25` | LDR_LLL1_25 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_26` | LDR_LLL1_26 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_27` | LDR_LLL1_27 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_28` | LDR_LLL1_28 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_29` | LDR_LLL1_29 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_3` | LDR_LLL1_3 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_30` | LDR_LLL1_30 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_31` | LDR_LLL1_31 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_4` | LDR_LLL1_4 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_5` | LDR_LLL1_5 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_6` | LDR_LLL1_6 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_7` | LDR_LLL1_7 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_8` | LDR_LLL1_8 | Efeitos | 1 | 1 | globalgamemanagers.assets |
-| `dlz_ldr_lll1_9` | LDR_LLL1_9 | Efeitos | 1 | 1 | globalgamemanagers.assets |
 | `dlz_m_1_2` | m_1-2 | Efeitos | 1 | 1 | sharedassets24.assets |
 | `dlz_m_1_3` | m_1-3 | Efeitos | 1 | 1 | sharedassets24.assets |
 | `dlz_m_1_4` | m_1-4 | Efeitos | 1 | 1 | sharedassets24.assets |
@@ -1144,6 +1108,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_move` | Move | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_mui` | MUI | Efeitos | 1 | 7 | sharedassets1.assets |
 | `dlz_orange_big_fireball` | Orange Big FireBall | Efeitos | 1 | 1 | sharedassets2.assets |
+| `dlz_orange_kame` | Orange Kame | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_picolo_skill` | Picolo Skill | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_pink_ball` | Pink Ball | Efeitos | 1 | 3 | sharedassets1.assets |
 | `dlz_pink_kame` | Pink Kame | Efeitos | 1 | 2 | sharedassets1.assets |
@@ -1155,6 +1120,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_pu_` | PU | Efeitos | 1 | 5 | sharedassets1.assets |
 | `dlz_pu__` | PU | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_pu_2` | PU 2 | Efeitos | 1 | 2 | sharedassets1.assets |
+| `dlz_punch_template` | Punch Template | Efeitos | 1 | 6 | sharedassets1.assets |
+| `dlz_punch_template_1` | Punch Template 1 | Efeitos | 1 | 6 | sharedassets1.assets |
 | `dlz_purple_2` | Purple 2 | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_purple_fireball` | Purple Fireball | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_pxart` | pxArt | Efeitos | 1 | 1 | sharedassets1.assets |
@@ -1185,23 +1152,21 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_scene_7` | Scene 7 | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_scene_8` | Scene 8 | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_scene_9` | Scene 9 | Efeitos | 1 | 1 | sharedassets1.assets |
-| `dlz_searchtex` | SearchTex | Efeitos | 1 | 1 | globalgamemanagers.assets |
 | `dlz_setting` | Setting | Efeitos | 1 | 1 | sharedassets1.assets |
+| `dlz_shockwave` | Shockwave | Efeitos | 1 | 1 | sharedassets1.assets |
+| `dlz_shockwave_trans` | Shockwave Trans | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_show_hide` | Show Hide | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_skill` | SKill | Efeitos | 1 | 8 | sharedassets1.assets |
 | `dlz_skill_` | Skill | Efeitos | 1 | 6 | sharedassets1.assets |
 | `dlz_skill__` | Skill | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_skill___` | SKill | Efeitos | 1 | 2 | sharedassets1.assets |
-| `dlz_slider_thumb` | slider thumb | Efeitos | 1 | 1 | unity default resources |
-| `dlz_slider_thumb_active` | slider thumb active | Efeitos | 1 | 1 | unity default resources |
-| `dlz_slidert_humb_hover` | slidert humb hover | Efeitos | 1 | 1 | unity default resources |
 | `dlz_small_blue_explode` | Small Blue  Explode | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_small_green_explode` | Small Green Explode | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_small_kame` | Small Kame | Efeitos | 1 | 3 | sharedassets1.assets |
 | `dlz_small_yellow_kame` | Small Yellow Kame | Efeitos | 1 | 2 | sharedassets1.assets |
-| `dlz_soft` | Soft | Efeitos | 1 | 1 | unity default resources |
 | `dlz_special_2` | Special 2 | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_spirit_ball` | Spirit Ball | Efeitos | 1 | 3 | sharedassets1.assets |
+| `dlz_spirit_bomb_bw` | Spirit Bomb BW | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_sprite_goku_ssj_blue_dbs_broly_in_my_style_ulsw_by_andresz2021_df4l2qw` | sprite_goku_ssj_blue_dbs_broly_in_my_style_ulsw_by_andresz2021_df4l2qw | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_spritesheet_demo` | Spritesheet-DEMO | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_square` | Square | Efeitos | 1 | 1 | sharedassets1.assets |
@@ -1210,37 +1175,23 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_super_ghost_fx` | Super Ghost Fx | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_template` | Template | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_temple_night` | Temple Night | Efeitos | 1 | 2 | sharedassets16.assets |
+| `dlz_thunder` | Thunder | Efeitos | 1 | 15 | sharedassets1.assets |
 | `dlz_thunder_aura` | Thunder Aura | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_thunder_aura_green` | Thunder Aura Green | Efeitos | 1 | 3 | sharedassets1.assets |
 | `dlz_thunder_yellow` | Thunder Yellow | Efeitos | 1 | 2 | sharedassets1.assets |
-| `dlz_toggle` | toggle | Efeitos | 1 | 1 | unity default resources |
-| `dlz_toggle_active` | toggle active | Efeitos | 1 | 1 | unity default resources |
-| `dlz_toggle_hover` | toggle hover | Efeitos | 1 | 1 | unity default resources |
-| `dlz_toggle_on` | toggle on | Efeitos | 1 | 1 | unity default resources |
-| `dlz_toggle_on_active` | toggle on active | Efeitos | 1 | 1 | unity default resources |
-| `dlz_toggle_on_hover` | toggle on hover | Efeitos | 1 | 1 | unity default resources |
 | `dlz_tornado` | Tornado | Efeitos | 1 | 4 | sharedassets1.assets |
 | `dlz_transform_mask` | Transform Mask | Efeitos | 1 | 1 | sharedassets2.assets |
 | `dlz_trunks_armor_ss` | Trunks Armor SS | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_trunks_ss_skill` | Trunks SS SKill | Efeitos | 1 | 2 | sharedassets1.assets |
-| `dlz_ui` | ui | Efeitos | 1 | 1 | sharedassets7.assets |
-| `dlz_uicheckmark` | UICheckMark | Efeitos | 1 | 1 | resources.assets |
-| `dlz_uielement8px` | UIElement8px | Efeitos | 1 | 1 | resources.assets |
-| `dlz_uifoldoutclosed` | UIFoldoutClosed | Efeitos | 1 | 1 | resources.assets |
-| `dlz_uifoldoutopened` | UIFoldoutOpened | Efeitos | 1 | 1 | resources.assets |
-| `dlz_uimask` | UIMask | Efeitos | 1 | 1 | resources.assets |
 | `dlz_uis_ki` | UIS Ki | Efeitos | 1 | 3 | sharedassets1.assets |
-| `dlz_uisprite` | UISprite | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_ultra_ego_aura` | Ultra Ego Aura | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_ultra_ego_aura_2` | Ultra Ego Aura 2 | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_ultraego_kame` | UltraEgo Kame | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_unknow` | unknow | Efeitos | 1 | 1 | sharedassets1.assets |
 | `dlz_vegito_ball` | Vegito Ball | Efeitos | 1 | 2 | sharedassets1.assets |
-| `dlz_vertical_scrollbar_thumb` | vertical scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
 | `dlz_videl_kame` | Videl Kame | Efeitos | 1 | 10 | sharedassets1.assets |
 | `dlz_violet_ball` | Violet Ball | Efeitos | 1 | 7 | sharedassets1.assets |
-| `dlz_warningsign` | WarningSign | Efeitos | 1 | 1 | unity default resources |
-| `dlz_white1px` | White1px | Efeitos | 1 | 1 | resources.assets |
+| `dlz_yellow_bigkame` | Yellow BigKame | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_yellow_bigkame_2` | Yellow BigKame 2 | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_yellow_energyball` | Yellow EnergyBall | Efeitos | 1 | 2 | sharedassets1.assets |
 | `dlz_yellow_fireball_2` | Yellow Fireball 2 | Efeitos | 1 | 1 | sharedassets1.assets |
@@ -1274,11 +1225,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_a_1_0` | a_1-0 | Cenários | 1 | 1 | sharedassets25.assets |
 | `dlz_a_1_1` | a_1-1 | Cenários | 1 | 1 | sharedassets25.assets |
 | `dlz_allaxis_outline` | AllAxis_Outline | Cenários | 1 | 1 | sharedassets2.assets |
-| `dlz_areatex` | AreaTex | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dlz_asd` | asd | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_background` | Background | Cenários | 1 | 1 | sharedassets0.assets |
 | `dlz_background_` | Background | Cenários | 1 | 5 | sharedassets2.assets |
-| `dlz_bigkame_yellow` | BigKame Yellow | Cenários | 1 | 2 | sharedassets1.assets |
 | `dlz_black_goku_rose_prv` | Black Goku Rose PRV | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_browser_games_dragon_ball_z_kart_backgrounds` | Browser Games - Dragon Ball Z Kart - Backgrounds | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_city` | City | Cenários | 3 | 5 | sharedassets15.assets |
@@ -1320,23 +1269,13 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_kings_palace` | Kings Palace | Cenários | 1 | 2 | sharedassets19.assets |
 | `dlz_krillin_prv` | Krillin PRV | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_land_of_korin` | Land Of Korin | Cenários | 1 | 2 | sharedassets18.assets |
-| `dlz_large01` | Large01 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_large02` | Large02 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dlz_liberationsans_sdf_atlas` | LiberationSans SDF Atlas | Cenários | 1 | 1 | resources.assets |
 | `dlz_lines` | lines | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_lock` | lock | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_m_0_0` | m_0-0 | Cenários | 1 | 1 | sharedassets24.assets |
 | `dlz_m_10_0` | m_10-0 | Cenários | 1 | 1 | sharedassets24.assets |
 | `dlz_map7_tep_0000000004` | map7_tep-0000000004 | Cenários | 1 | 2 | sharedassets4.assets |
-| `dlz_medium01` | Medium01 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_medium02` | Medium02 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_medium03` | Medium03 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_medium04` | Medium04 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_medium05` | Medium05 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_medium06` | Medium06 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dlz_midnight_sdf_atlas` | Midnight SDF Atlas | Cenários | 1 | 1 | sharedassets1.assets |
-| `dlz_moro_ui_by_emadart_by_emadart_de7taf3` | moro_ui_by_emadart_by_emadart_de7taf3 | Cenários | 3 | 3 | sharedassets6.assets |
-| `dlz_orange_kame` | Orange Kame | Cenários | 1 | 2 | sharedassets1.assets |
 | `dlz_pixelae_bold_sdf_atlas` | PixelAE-Bold SDF Atlas | Cenários | 1 | 1 | sharedassets0.assets |
 | `dlz_preview` | Preview | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_preview_` | Preview | Cenários | 1 | 1 | sharedassets1.assets |
@@ -1396,8 +1335,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_prv____________________________________________________` | PRV | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_prv_____________________________________________________` | PRV | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_prv1` | PRV1 | Cenários | 1 | 1 | sharedassets1.assets |
-| `dlz_punch_template` | Punch Template | Cenários | 1 | 6 | sharedassets1.assets |
-| `dlz_punch_template_1` | Punch Template 1 | Cenários | 1 | 6 | sharedassets1.assets |
 | `dlz_purple` | Purple | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_purple_trunks_prv` | Purple Trunks PRV | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_retro_gaming_sdf_atlas` | Retro Gaming SDF Atlas | Cenários | 1 | 1 | sharedassets1.assets |
@@ -1406,16 +1343,12 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_scene_24` | Scene 24 | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_scene_25` | Scene 25 | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_scene_26` | Scene 26 | Cenários | 1 | 1 | sharedassets1.assets |
-| `dlz_shockwave` | Shockwave | Cenários | 1 | 1 | sharedassets1.assets |
-| `dlz_shockwave_trans` | Shockwave Trans | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_snow_map` | Snow Map | Cenários | 1 | 1 | sharedassets20.assets |
-| `dlz_spirit_bomb_bw` | Spirit Bomb BW | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_stage_anim` | Stage Anim | Cenários | 1 | 8 | sharedassets1.assets |
 | `dlz_table` | Table | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_thanks_for_the_100_watchers_faceset_extra_by_aldetskywalker_de03lg5` | thanks_for_the_100_watchers____faceset_extra_by_aldetskywalker_de03lg5 | Cenários | 1 | 5 | sharedassets1.assets |
 | `dlz_thin01` | Thin01 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dlz_thin02` | Thin02 | Cenários | 1 | 1 | globalgamemanagers.assets |
-| `dlz_thunder` | Thunder | Cenários | 1 | 15 | sharedassets1.assets |
 | `dlz_triangle` | Triangle | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_ulsw_super_baby_by_black_vinas_by_blackvinas_dex9i5h` | ulsw___super_baby___by_black_vinas_by_blackvinas_dex9i5h | Cenários | 1 | 2 | sharedassets1.assets |
 | `dlz_unitysplash_cube` | UnitySplash-cube | Cenários | 1 | 1 | unity default resources |
@@ -1431,7 +1364,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_vegeta_ss2_majin_preview` | Vegeta SS2 Majin Preview | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_vogue_sdf_atlas` | Vogue SDF Atlas | Cenários | 1 | 1 | sharedassets1.assets |
 | `dlz_x` | x | Cenários | 1 | 1 | sharedassets1.assets |
-| `dlz_yellow_bigkame` | Yellow BigKame | Cenários | 1 | 2 | sharedassets1.assets |
+| `dlz_areatex` | AreaTex | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_avatar` | avatar | Interface | 1 | 1 | sharedassets1.assets |
+| `dlz_avatar_` | avatar | Interface | 1 | 1 | sharedassets1.assets |
+| `dlz_box` | box | Interface | 1 | 1 | unity default resources |
 | `dlz_btn` | Btn | Interface | 1 | 1 | sharedassets1.assets |
 | `dlz_btn_1` | Btn 1 | Interface | 1 | 1 | sharedassets1.assets |
 | `dlz_button` | button | Interface | 1 | 1 | unity default resources |
@@ -1441,17 +1377,81 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dlz_button_on_hover` | button on hover | Interface | 1 | 1 | unity default resources |
 | `dlz_coins` | Coins | Interface | 1 | 2 | sharedassets1.assets |
 | `dlz_dialog` | dialog | Interface | 1 | 1 | sharedassets1.assets |
+| `dlz_esctoexit_back` | EscToExit_back | Interface | 1 | 1 | unity default resources |
 | `dlz_esctoexit_text` | EscToExit_Text | Interface | 1 | 1 | unity default resources |
 | `dlz_gold_btn` | Gold Btn | Interface | 1 | 1 | sharedassets1.assets |
 | `dlz_horizontal_scrollbar` | horizontal scrollbar | Interface | 1 | 1 | unity default resources |
+| `dlz_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
 | `dlz_interface` | Interface | Interface | 1 | 1 | sharedassets1.assets |
+| `dlz_large01` | Large01 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_large02` | Large02 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_0` | LDR_LLL1_0 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_1` | LDR_LLL1_1 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_10` | LDR_LLL1_10 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_11` | LDR_LLL1_11 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_12` | LDR_LLL1_12 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_13` | LDR_LLL1_13 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_14` | LDR_LLL1_14 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_15` | LDR_LLL1_15 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_16` | LDR_LLL1_16 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_17` | LDR_LLL1_17 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_18` | LDR_LLL1_18 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_19` | LDR_LLL1_19 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_2` | LDR_LLL1_2 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_20` | LDR_LLL1_20 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_21` | LDR_LLL1_21 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_22` | LDR_LLL1_22 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_23` | LDR_LLL1_23 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_24` | LDR_LLL1_24 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_25` | LDR_LLL1_25 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_26` | LDR_LLL1_26 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_27` | LDR_LLL1_27 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_28` | LDR_LLL1_28 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_29` | LDR_LLL1_29 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_3` | LDR_LLL1_3 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_30` | LDR_LLL1_30 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_31` | LDR_LLL1_31 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_4` | LDR_LLL1_4 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_5` | LDR_LLL1_5 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_6` | LDR_LLL1_6 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_7` | LDR_LLL1_7 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_8` | LDR_LLL1_8 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_ldr_lll1_9` | LDR_LLL1_9 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium01` | Medium01 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium02` | Medium02 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium03` | Medium03 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium04` | Medium04 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium05` | Medium05 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_medium06` | Medium06 | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_moro_ui_by_emadart_by_emadart_de7taf3` | moro_ui_by_emadart_by_emadart_de7taf3 | Interface | 3 | 3 | sharedassets6.assets |
+| `dlz_searchtex` | SearchTex | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dlz_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
+| `dlz_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |
+| `dlz_slidert_humb_hover` | slidert humb hover | Interface | 1 | 1 | unity default resources |
+| `dlz_soft` | Soft | Interface | 1 | 1 | unity default resources |
 | `dlz_textfield` | textfield | Interface | 1 | 1 | unity default resources |
 | `dlz_textfield_hover` | textfield hover | Interface | 1 | 1 | unity default resources |
 | `dlz_textfield_on` | textfield on | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle` | toggle | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle_active` | toggle active | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle_hover` | toggle hover | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle_on` | toggle on | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle_on_active` | toggle on active | Interface | 1 | 1 | unity default resources |
+| `dlz_toggle_on_hover` | toggle on hover | Interface | 1 | 1 | unity default resources |
 | `dlz_transformkibar` | TransformKiBar | Interface | 1 | 15 | sharedassets2.assets |
+| `dlz_ui` | ui | Interface | 1 | 1 | sharedassets7.assets |
 | `dlz_ui_menu_button_active` | UI-Menu-Button-Active | Interface | 1 | 1 | sharedassets1.assets |
 | `dlz_ui_menu_button_default` | UI-Menu-Button-Default | Interface | 1 | 1 | sharedassets1.assets |
+| `dlz_uicheckmark` | UICheckMark | Interface | 1 | 1 | resources.assets |
+| `dlz_uielement8px` | UIElement8px | Interface | 1 | 1 | resources.assets |
+| `dlz_uifoldoutclosed` | UIFoldoutClosed | Interface | 1 | 1 | resources.assets |
+| `dlz_uifoldoutopened` | UIFoldoutOpened | Interface | 1 | 1 | resources.assets |
+| `dlz_uimask` | UIMask | Interface | 1 | 1 | resources.assets |
+| `dlz_uisprite` | UISprite | Interface | 1 | 1 | sharedassets1.assets |
 | `dlz_vertical_scrollbar` | vertical scrollbar | Interface | 1 | 1 | unity default resources |
+| `dlz_vertical_scrollbar_thumb` | vertical scrollbar thumb | Interface | 1 | 1 | unity default resources |
+| `dlz_warningsign` | WarningSign | Interface | 1 | 1 | unity default resources |
+| `dlz_white1px` | White1px | Interface | 1 | 1 | resources.assets |
 | `dlz_window` | window | Interface | 1 | 1 | unity default resources |
 | `dlz_window_on` | window on | Interface | 1 | 1 | unity default resources |
 
@@ -1590,10 +1590,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_zamasu` | zamasu | Personagens | 4 | 51 | resources.assets |
 | `lw_back` | back | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_beam_fight` | BEAM_FIGHT | Efeitos | 1 | 8 | resources.assets |
-| `lw_box` | box | Efeitos | 1 | 1 | unity default resources |
 | `lw_buildfrom` | buildFrom | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_bullet` | bullet | Efeitos | 1 | 2 | resources.assets |
 | `lw_buu_thunder` | buu_thunder | Efeitos | 1 | 6 | resources.assets |
+| `lw_charge_ki_ground` | charge_ki_ground | Efeitos | 3 | 19 | resources.assets |
 | `lw_clear` | clear | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_clearonsceneloaded` | clearOnSceneLoaded | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_close` | close | Efeitos | 1 | 1 | sharedassets0.assets |
@@ -1604,14 +1604,13 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_date` | date | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_dead_ball_pack` | DEAD_BALL_PACK | Efeitos | 1 | 8 | resources.assets |
 | `lw_dragon_fist` | Dragon_fist | Efeitos | 1 | 3 | resources.assets |
-| `lw_esctoexit_back` | EscToExit_back | Efeitos | 1 | 1 | unity default resources |
 | `lw_even_log` | even_log | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_finger_beam` | FINGER_BEAM | Efeitos | 6 | 10 | resources.assets |
 | `lw_fps` | fps | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_genki_ball_atlas` | genki_ball_atlas | Efeitos | 1 | 4 | resources.assets |
 | `lw_genki_pack` | GENKI_PACK | Efeitos | 3 | 5 | resources.assets |
+| `lw_ground_effect` | ground_effect | Efeitos | 6 | 44 | resources.assets |
 | `lw_hit_break_fx` | hit_break_fx | Efeitos | 1 | 4 | resources.assets |
-| `lw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
 | `lw_info` | info | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_item_sprite` | item_sprite | Efeitos | 1 | 1 | resources.assets |
 | `lw_judgement_ball_atlas` | judgement_ball_atlas | Efeitos | 1 | 5 | resources.assets |
@@ -1637,26 +1636,12 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_search` | search | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_self_destruction_pack` | SELF_DESTRUCTION_PACK | Efeitos | 1 | 2 | resources.assets |
 | `lw_slash_pack` | SLASH_PACK | Efeitos | 1 | 2 | resources.assets |
-| `lw_slider_thumb` | slider thumb | Efeitos | 1 | 1 | unity default resources |
-| `lw_slider_thumb_active` | slider thumb active | Efeitos | 1 | 1 | unity default resources |
-| `lw_slidert_humb_hover` | slidert humb hover | Efeitos | 1 | 1 | unity default resources |
-| `lw_soft` | Soft | Efeitos | 1 | 1 | unity default resources |
 | `lw_software` | software | Efeitos | 1 | 1 | sharedassets0.assets |
 | `lw_spirit_sword` | Spirit_sword | Efeitos | 1 | 6 | resources.assets |
 | `lw_timer_1` | timer_1 | Efeitos | 1 | 1 | sharedassets0.assets |
-| `lw_toggle` | toggle | Efeitos | 1 | 1 | unity default resources |
-| `lw_toggle_active` | toggle active | Efeitos | 1 | 1 | unity default resources |
-| `lw_toggle_hover` | toggle hover | Efeitos | 1 | 1 | unity default resources |
-| `lw_toggle_on` | toggle on | Efeitos | 1 | 1 | unity default resources |
-| `lw_toggle_on_active` | toggle on active | Efeitos | 1 | 1 | unity default resources |
-| `lw_toggle_on_hover` | toggle on hover | Efeitos | 1 | 1 | unity default resources |
-| `lw_uisprite` | UISprite | Efeitos | 1 | 1 | resources.assets |
 | `lw_user` | user | Efeitos | 1 | 1 | sharedassets0.assets |
-| `lw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
-| `lw_warningsign` | WarningSign | Efeitos | 1 | 1 | unity default resources |
 | `lw_background` | Background | Cenários | 1 | 1 | resources.assets |
 | `lw_black_stage_atlas` | black_stage_atlas | Cenários | 1 | 1 | resources.assets |
-| `lw_charge_ki_ground` | charge_ki_ground | Cenários | 3 | 19 | resources.assets |
 | `lw_cloud1` | cloud1 | Cenários | 1 | 1 | resources.assets |
 | `lw_cloud2` | cloud2 | Cenários | 1 | 1 | resources.assets |
 | `lw_cloud3` | cloud3 | Cenários | 1 | 1 | resources.assets |
@@ -1666,10 +1651,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_dead_forest_atlas` | dead_forest_atlas | Cenários | 1 | 2 | resources.assets |
 | `lw_desert_atlas` | desert_atlas | Cenários | 5 | 10 | resources.assets |
 | `lw_emojione` | EmojiOne | Cenários | 1 | 1 | resources.assets |
-| `lw_font_ui_sdf_atlas` | Font-ui SDF Atlas | Cenários | 1 | 1 | sharedassets3.assets |
 | `lw_future_stage_1_atlas` | future_stage_1_atlas | Cenários | 1 | 1 | resources.assets |
 | `lw_god_planet` | God_Planet | Cenários | 1 | 6 | resources.assets |
-| `lw_ground_effect` | ground_effect | Cenários | 6 | 44 | resources.assets |
 | `lw_horizontal` | horizontal | Cenários | 1 | 1 | resources.assets |
 | `lw_kami_house` | kami_house | Cenários | 3 | 6 | resources.assets |
 | `lw_liberationsans_sdf_atlas` | LiberationSans SDF Atlas | Cenários | 1 | 1 | resources.assets |
@@ -1677,8 +1660,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_main_sdf_atlas` | Main SDF Atlas | Cenários | 1 | 1 | resources.assets |
 | `lw_namek_atlas` | Namek_atlas | Cenários | 9 | 29 | resources.assets |
 | `lw_number_sdf_atlas` | Number SDF Atlas | Cenários | 1 | 1 | resources.assets |
-| `lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74` | sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74 | Cenários | 1 | 1 | resources.assets |
-| `lw_sactx_0_512x512_etc2_ui_character_pack_635b0817` | sactx-0-512x512-ETC2-ui_character_pack-635b0817 | Cenários | 1 | 1 | resources.assets |
 | `lw_skill_bg_break` | skill_bg_break | Cenários | 1 | 10 | resources.assets |
 | `lw_skill_bg_normal` | skill_bg_normal | Cenários | 1 | 1 | resources.assets |
 | `lw_sky` | sky | Cenários | 1 | 1 | resources.assets |
@@ -1694,6 +1675,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_unitywatermarkplugin_beta` | UnityWatermarkPlugin-beta | Cenários | 1 | 1 | unity default resources |
 | `lw_wasteland_map` | wasteland_map | Cenários | 4 | 8 | resources.assets |
 | `lw_bar` | bar | Interface | 1 | 1 | sharedassets0.assets |
+| `lw_box` | box | Interface | 1 | 1 | unity default resources |
 | `lw_button` | button | Interface | 1 | 1 | unity default resources |
 | `lw_button_active_` | button active | Interface | 1 | 1 | unity default resources |
 | `lw_button_hover` | button hover | Interface | 1 | 1 | unity default resources |
@@ -1702,18 +1684,36 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `lw_button_active` | button_active | Interface | 1 | 1 | sharedassets0.assets |
 | `lw_computericon` | ComputerIcon | Interface | 1 | 1 | sharedassets0.assets |
 | `lw_error_icon` | error_icon | Interface | 1 | 1 | sharedassets0.assets |
+| `lw_esctoexit_back` | EscToExit_back | Interface | 1 | 1 | unity default resources |
 | `lw_esctoexit_text` | EscToExit_Text | Interface | 1 | 1 | unity default resources |
+| `lw_font_ui_sdf_atlas` | Font-ui SDF Atlas | Interface | 1 | 1 | sharedassets3.assets |
 | `lw_graphiccard` | graphicCard | Interface | 1 | 1 | sharedassets0.assets |
 | `lw_horizontal_scrollbar` | horizontal scrollbar | Interface | 1 | 1 | unity default resources |
+| `lw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
 | `lw_loading_icon` | loading_icon | Interface | 1 | 9 | sharedassets0.assets |
 | `lw_log_icon` | log_icon | Interface | 1 | 1 | sharedassets0.assets |
+| `lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74` | sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74 | Interface | 1 | 1 | resources.assets |
+| `lw_sactx_0_512x512_etc2_ui_character_pack_635b0817` | sactx-0-512x512-ETC2-ui_character_pack-635b0817 | Interface | 1 | 1 | resources.assets |
 | `lw_selected` | selected | Interface | 1 | 1 | sharedassets0.assets |
+| `lw_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
+| `lw_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |
+| `lw_slidert_humb_hover` | slidert humb hover | Interface | 1 | 1 | unity default resources |
+| `lw_soft` | Soft | Interface | 1 | 1 | unity default resources |
 | `lw_textfield` | textfield | Interface | 1 | 1 | unity default resources |
 | `lw_textfield_hover` | textfield hover | Interface | 1 | 1 | unity default resources |
 | `lw_textfield_on` | textfield on | Interface | 1 | 1 | unity default resources |
+| `lw_toggle` | toggle | Interface | 1 | 1 | unity default resources |
+| `lw_toggle_active` | toggle active | Interface | 1 | 1 | unity default resources |
+| `lw_toggle_hover` | toggle hover | Interface | 1 | 1 | unity default resources |
+| `lw_toggle_on` | toggle on | Interface | 1 | 1 | unity default resources |
+| `lw_toggle_on_active` | toggle on active | Interface | 1 | 1 | unity default resources |
+| `lw_toggle_on_hover` | toggle on hover | Interface | 1 | 1 | unity default resources |
+| `lw_uisprite` | UISprite | Interface | 1 | 1 | resources.assets |
 | `lw_unityicon` | UnityIcon | Interface | 1 | 1 | sharedassets0.assets |
 | `lw_vertical_scrollbar` | vertical scrollbar | Interface | 1 | 1 | unity default resources |
+| `lw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Interface | 1 | 1 | unity default resources |
 | `lw_warning_icon` | warning_icon | Interface | 1 | 1 | sharedassets0.assets |
+| `lw_warningsign` | WarningSign | Interface | 1 | 1 | unity default resources |
 | `lw_window` | window | Interface | 1 | 1 | unity default resources |
 | `lw_window_on` | window on | Interface | 1 | 1 | unity default resources |
 
@@ -2096,6 +2096,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `mc_v_5` | V_5 | Personagens | 37 | 112 | V_5 |
 | `mc_v_97` | V_97 | Personagens | 37 | 104 | V_97 |
 | `mc_ability` | Ability | Efeitos | 1 | 2 | Ability |
+| `mc_aguacasakame` | AguaCasaKame | Efeitos | 1 | 4 | AguaCasaKame |
+| `mc_aura` | Aura | Efeitos | 26 | 75 | Aura |
+| `mc_aura2` | Aura2 | Efeitos | 26 | 75 | Aura2 |
 | `mc_aurakaioken` | AuraKaioken | Efeitos | 2 | 8 | AuraKaioken |
 | `mc_blasteletric` | BlastEletric | Efeitos | 1 | 2 | BlastEletric |
 | `mc_blasteletric2` | BlastEletric2 | Efeitos | 1 | 2 | BlastEletric2 |
@@ -2152,6 +2155,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `mc_efeitopulo` | EfeitoPulo | Efeitos | 1 | 6 | EfeitoPulo |
 | `mc_efeitos` | Efeitos | Efeitos | 8 | 31 | Efeitos |
 | `mc_effectblast` | EffectBlast | Efeitos | 1 | 5 | EffectBlast |
+| `mc_effectextra` | EffectExtra_ | Efeitos | 3 | 10 | EffectExtra_ |
 | `mc_engrenagem` | Engrenagem | Efeitos | 1 | 1 | Engrenagem |
 | `mc_especial` | Especial | Efeitos | 1 | 1 | Especial |
 | `mc_eventmode` | EventMode | Efeitos | 3 | 3 | EventMode |
@@ -2241,14 +2245,12 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `mc_sprite6` | Sprite6 | Efeitos | 1 | 1 | Sprite6 |
 | `mc_sprite7` | Sprite7 | Efeitos | 1 | 2 | Sprite7 |
 | `mc_sprite8` | Sprite8 | Efeitos | 5 | 24 | Sprite8 |
+| `mc_superbeam` | SuperBeam | Efeitos | 3 | 7 | SuperBeam |
 | `mc_superexplosion` | SuperExplosion | Efeitos | 3 | 24 | SuperExplosion |
 | `mc_transformar` | Transformar | Efeitos | 1 | 1 | Transformar |
 | `mc_vovouranai` | VovoUranai | Efeitos | 1 | 1 | VovoUranai |
 | `mc_youtube` | Youtube | Efeitos | 1 | 1 | Youtube |
 | `mc_zamas` | Zamas | Efeitos | 2 | 13 | Zamas |
-| `mc_aguacasakame` | AguaCasaKame | Cenários | 1 | 4 | AguaCasaKame |
-| `mc_aura` | Aura | Cenários | 26 | 75 | Aura |
-| `mc_aura2` | Aura2 | Cenários | 26 | 75 | Aura2 |
 | `mc_b_101` | B_101 | Cenários | 43 | 147 | B_101 |
 | `mc_b_82f1` | B_82F1 | Cenários | 38 | 166 | B_82F1 |
 | `mc_botao_fechar` | Botao_Fechar | Cenários | 1 | 1 | Botao_Fechar |
@@ -2270,7 +2272,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `mc_sprite16` | Sprite16 | Cenários | 12 | 58 | Sprite16 |
 | `mc_sprite9` | Sprite9 | Cenários | 1 | 2 | Sprite9 |
 | `mc_stage` | Stage | Cenários | 28 | 98 | Stage |
-| `mc_superbeam` | SuperBeam | Cenários | 3 | 7 | SuperBeam |
 | `mc_superbigbang` | SuperBigBang | Cenários | 5 | 12 | SuperBigBang |
 | `mc_superbigbang2` | SuperBigBang2 | Cenários | 5 | 12 | SuperBigBang2 |
 | `mc_v_54` | V_54 | Cenários | 42 | 138 | V_54 |
@@ -2313,7 +2314,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `mc_circulosele_o` | CirculoSeleção | Interface | 1 | 2 | CirculoSeleção |
 | `mc_cursor` | Cursor | Interface | 1 | 1 | Cursor |
 | `mc_dificultbuttons` | DificultButtons | Interface | 2 | 6 | DificultButtons |
-| `mc_effectextra` | EffectExtra_ | Interface | 3 | 10 | EffectExtra_ |
 | `mc_facesetp` | FaceSetP | Interface | 182 | 182 | FaceSetP |
 | `mc_hudmiss_es` | HudMissões | Interface | 1 | 5 | HudMissões |
 | `mc_iconbuff` | IconBuff | Interface | 1 | 4 | IconBuff |
@@ -3352,7 +3352,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_bojackspecial` | BojackSpecial | Efeitos | 1 | 5 | 0061da74d1be4984db7c4c586b617ab2 |
 | `pw_bojackstatus` | BojackStatus | Efeitos | 1 | 4 | c8a99857c6db6294f80a93e12d137332 |
 | `pw_bojackthrowenergy` | BojackThrowEnergy | Efeitos | 1 | 3 | 4287010dda1f1a14da51ee54a3c5a8b0 |
-| `pw_box` | box | Efeitos | 1 | 1 | unity default resources |
 | `pw_broly` | Broly | Efeitos | 1 | 1 | 95485637dbc1a56448344eb1cb8412fa |
 | `pw_broly1` | Broly1 | Efeitos | 1 | 1 | ee4f2a2196da46b4cb0d1342ca642e4a |
 | `pw_broly2` | Broly2 | Efeitos | 1 | 1 | b640db35758d16242bd1edf7dd91b389 |
@@ -3773,6 +3772,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_celltransform` | CellTransform | Efeitos | 1 | 9 | ae41117d18707bf4a8f3f35f801afa47 |
 | `pw_celltransformstanding` | CellTransformStanding | Efeitos | 1 | 2 | e2a76a97bb8795b438e1464a737f49b7 |
 | `pw_cf_arcade_stick_lever_base` | CF-Arcade-Stick-Lever-Base | Efeitos | 1 | 1 | sharedassets0.assets.split0 |
+| `pw_chaoscharge` | ChaosCharge | Efeitos | 1 | 4 | 04c40ab4dec80e84e9b7a3278d158d84 |
+| `pw_chaoskiblast` | ChaosKiBlast | Efeitos | 1 | 2 | 8f0f2591de9f3ee48885f0631565806b |
 | `pw_character1` | Character1 | Efeitos | 1 | 1 | 7788dc0bf64a0414ba4a984375bd5d7f |
 | `pw_character1ability` | Character1Ability | Efeitos | 1 | 7 | 2db0f4b3b1784ff4a84839be7fa2fbf4 |
 | `pw_character1ability2` | Character1Ability2 | Efeitos | 1 | 1 | e91cd33a814255d4faf236a4a8ccae4b |
@@ -3791,6 +3792,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_charge_` | Charge | Efeitos | 1 | 3 | 053a736604f753d409f1ccfd29fd58f3 |
 | `pw_charge__` | Charge | Efeitos | 1 | 3 | 19713313f3159fd4ca075e34441fcb0b |
 | `pw_charge___` | Charge | Efeitos | 1 | 3 | 34288372330338741bbccd456cbb3812 |
+| `pw_charge____` | Charge | Efeitos | 1 | 1 | 3d293aa38cffd3243ad8d09dcb171ec5 |
 | `pw_charge_____` | Charge | Efeitos | 1 | 3 | 5343a4221dcf67146a9ab09837c31b08 |
 | `pw_charge______` | Charge | Efeitos | 1 | 2 | 66552c8b98ca18f41a6371c2b12d3bf0 |
 | `pw_charge_______` | Charge | Efeitos | 1 | 3 | d4218970a5bf95a47a81028c167f08b1 |
@@ -3913,6 +3915,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_daburamovement` | DaburaMovement | Efeitos | 1 | 3 | 30d311c0e05b92e4a92d313266ba68da |
 | `pw_daburaspecial` | DaburaSpecial | Efeitos | 1 | 2 | 2d73e7d66a8c0ac45afbecf7cfb917bc |
 | `pw_daburastatus` | DaburaStatus | Efeitos | 1 | 4 | 71f909f8df4815f45b8dbaee83c7e505 |
+| `pw_dash` | Dash | Efeitos | 1 | 1 | sharedassets11.assets |
 | `pw_dead` | Dead | Efeitos | 1 | 1 | 40d70b8709a832c459bcdb9f8c2b1ea0 |
 | `pw_dead_` | Dead | Efeitos | 1 | 1 | da942e1ccf1934d4e85d7f7726dcfdd7 |
 | `pw_death_ball_export1` | death_ball-export1 | Efeitos | 1 | 1 | 7e9632a8d32afd546a10aadffd1fd2f0 |
@@ -3988,6 +3991,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_energy_1010_2` | energy_1010-2 | Efeitos | 1 | 1 | ce14375f93af1c149ac85ef598ce7be1 |
 | `pw_energy_1010_3` | energy_1010-3 | Efeitos | 1 | 1 | 1756f374147024a4e93746a878872469 |
 | `pw_energy_1010_4` | energy_1010-4 | Efeitos | 1 | 1 | 35d1b12612df5384da82a549ddb01688 |
+| `pw_energy_20_00008` | energy_20_00008 | Efeitos | 1 | 1 | b9fae2c050a4a8e41a658ca9f84a94f9 |
+| `pw_energy_20_00009` | energy_20_00009 | Efeitos | 1 | 1 | 7ccd0303acad73c42b1191ee73267f7f |
+| `pw_energy_20_00010` | energy_20_00010 | Efeitos | 1 | 1 | 42464cd51065b5949be9adaa47a2dca1 |
 | `pw_energyalternate` | EnergyAlternate | Efeitos | 1 | 2 | 84ab6ab3880aed049ba26628243d7411 |
 | `pw_energyattack` | EnergyAttack | Efeitos | 1 | 3 | 19bb0f6b33e2ba242b07ce9a571a9b29 |
 | `pw_energyattackballyellow` | EnergyAttackBallYellow | Efeitos | 1 | 2 | 088dfa9baf2ddb74abe8a6e841be23b9 |
@@ -4056,6 +4062,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_energyexplosiongreen` | EnergyExplosionGreen | Efeitos | 1 | 3 | f22b36b3a28c66642b0d394f7d25031e |
 | `pw_energyexplosionpurpledark` | EnergyExplosionPurpleDark | Efeitos | 1 | 3 | 9a1d0d0077a37ee48a9a15ce1a8e5edd |
 | `pw_energyglarered` | EnergyGlareRed | Efeitos | 1 | 3 | 190b6c1a9d9c9334f97cd7a4313a9104 |
+| `pw_energygroundexplosion` | EnergyGroundExplosion | Efeitos | 1 | 4 | 5cd7f7554a6f63b449a1199de2b05519 |
 | `pw_energyhand` | EnergyHand | Efeitos | 1 | 2 | 05ffd845b33462a4a929d1fc573ab086 |
 | `pw_energyovalyellow` | EnergyOvalYellow | Efeitos | 1 | 1 | 30bf0ec874670ef4992bf807d1bb32f7 |
 | `pw_energypushforcegreen` | EnergyPushForceGreen | Efeitos | 1 | 6 | f2bf293b31565094388bf24d264a1c82 |
@@ -4163,7 +4170,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_erickjc5stand` | ErickJC5Stand | Efeitos | 1 | 6 | a3e9b0b43de013c4099aed43f05dec76 |
 | `pw_erickjc5stand2` | ErickJC5Stand2 | Efeitos | 1 | 3 | f5ddcb4c03152b24b896f9ae1a39b318 |
 | `pw_erickjc5status` | ErickJC5Status | Efeitos | 1 | 3 | cd653addb46bd0c48bd010f659c4c82b |
-| `pw_esctoexit_back` | EscToExit_back | Efeitos | 1 | 1 | unity default resources |
 | `pw_explosion_2512_0` | Explosion_2512-0 | Efeitos | 1 | 1 | 2f091adeadbcfc5409dbb5cab251bb7d |
 | `pw_explosion_2512_1` | Explosion_2512-1 | Efeitos | 1 | 1 | 8ac1c5a2bbe8726429c12b258a4b6f90 |
 | `pw_explosion_2512_10` | Explosion_2512-10 | Efeitos | 1 | 1 | 489b3d687f0b1ba40afab28c36b6039b |
@@ -4411,6 +4417,16 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_futuregohanstatus` | FutureGohanStatus | Efeitos | 1 | 2 | e52b76b03210942469b7e5e461b77e46 |
 | `pw_futuregohanstatus2` | FutureGohanStatus2 | Efeitos | 1 | 1 | 05685a559f6a7c34b8ebd0ef71c25cf2 |
 | `pw_futuregohanthrowenergy` | FutureGohanThrowEnergy | Efeitos | 1 | 3 | 9def2024650a8ce48a85dc69b366d84c |
+| `pw_fx_2_ver_1_01` | fx_2_ver_1_01 | Efeitos | 1 | 1 | 987cc54ecbdd3dd41b2d5535826d4514 |
+| `pw_fx_2_ver_1_02` | fx_2_ver_1_02 | Efeitos | 1 | 1 | 49d9b4dc715d05340b3a89cc1cdd4c27 |
+| `pw_fx_2_ver_1_03` | fx_2_ver_1_03 | Efeitos | 1 | 1 | 8608160fff9c28f4cbb75eb222507dca |
+| `pw_fx_2_ver_1_04` | fx_2_ver_1_04 | Efeitos | 1 | 1 | 2deb31b73abbeec4696496b5388e228d |
+| `pw_fx_2_ver_1_05` | fx_2_ver_1_05 | Efeitos | 1 | 1 | a4e9a7563ef7bb14390acf925d457a4a |
+| `pw_fx_2_ver_1_06` | fx_2_ver_1_06 | Efeitos | 1 | 1 | e70d1d07ecae28a4ebbdd128c3d029ff |
+| `pw_fx_2_ver_1_07` | fx_2_ver_1_07 | Efeitos | 1 | 1 | 8c9943397f894724dbd1b056a33ff2b8 |
+| `pw_fx_2_ver_1_08` | fx_2_ver_1_08 | Efeitos | 1 | 1 | 5dce0313cfa94904abfc82431cdfe991 |
+| `pw_fx_2_ver_1_09` | fx_2_ver_1_09 | Efeitos | 1 | 1 | 4132a553f7537d74482d924117e34a53 |
+| `pw_fx_2_ver_1_10` | fx_2_ver_1_10 | Efeitos | 1 | 1 | 8cd8d29b12b06b840a5f5bc55c60be81 |
 | `pw_gamma1` | Gamma1 | Efeitos | 1 | 1 | 2606a78274b9ff64cb05d6e45e1043d5 |
 | `pw_gamma1attack2` | Gamma1Attack2 | Efeitos | 1 | 1 | 543929403561dd14ca191bdcad9a4005 |
 | `pw_gamma1charge` | Gamma1Charge | Efeitos | 1 | 1 | bd322f453b07e504382a10302cea8a04 |
@@ -5992,7 +6008,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_hitstand` | HitStand | Efeitos | 1 | 2 | d20c5492db69991488e62b05d9ce1539 |
 | `pw_hitstatus` | HitStatus | Efeitos | 1 | 4 | e3cbea24cddd51a4283f81f1fd4e5173 |
 | `pw_hitstopeffect` | HitStopEffect | Efeitos | 1 | 1 | 8281b802a01972041abcce6a212c3c50 |
-| `pw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
 | `pw_huitzilopochtli` | HUITZILOPOCHTLI | Efeitos | 1 | 1 | b84b59e39e4812e408777c4f0163aba6 |
 | `pw_huitzilopochtliability` | HUITZILOPOCHTLIAbility | Efeitos | 1 | 8 | 3d46c7a9e5b00dd428c4fa2ba0bb14b9 |
 | `pw_huitzilopochtliattack` | HUITZILOPOCHTLIAttack | Efeitos | 1 | 8 | 57343536f1f4fe6459944060cfa80567 |
@@ -6872,9 +6887,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_shenron2status` | Shenron2Status | Efeitos | 1 | 3 | 37d8489c3b60cfa4fa7a9ea801848467 |
 | `pw_shockwave` | ShockWave | Efeitos | 1 | 1 | e12f8e30c9a7e49a589559cf53454a29 |
 | `pw_simple_horizontal_00` | Simple Horizontal 00 | Efeitos | 1 | 2 | 8fe7ea9a8eb59c54cb0b421b2479d4db |
-| `pw_slider_thumb` | slider thumb | Efeitos | 1 | 1 | unity default resources |
-| `pw_slider_thumb_active` | slider thumb active | Efeitos | 1 | 1 | unity default resources |
-| `pw_slidert_humb_hover` | slidert humb hover | Efeitos | 1 | 1 | unity default resources |
 | `pw_slug1` | Slug1 | Efeitos | 1 | 1 | 69032fef9eed8984e93c42b46d9975d3 |
 | `pw_slug1charge` | Slug1Charge | Efeitos | 1 | 3 | d9f3a55d9a2126447a1635afacd08d94 |
 | `pw_slug1energy` | Slug1Energy | Efeitos | 1 | 2 | 886df91626f605442a261e8fae99381f |
@@ -6883,7 +6895,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_slug1stand` | Slug1Stand | Efeitos | 1 | 5 | cda3eafeb38a0424199959d1beedd4dd |
 | `pw_slug1status` | Slug1Status | Efeitos | 1 | 4 | e2458299376bb4846b588f14bf6ea9d4 |
 | `pw_slug2` | Slug2 | Efeitos | 1 | 1 | b7e3ef49540048b4f93af0bb6dcba832 |
-| `pw_soft` | Soft | Efeitos | 1 | 1 | unity default resources |
 | `pw_solarflare` | SolarFlare | Efeitos | 1 | 3 | 6ed642aaa50a283408b58ebc98e2175d |
 | `pw_soldier` | Soldier | Efeitos | 1 | 1 | 9f40b87514eee2e4da02ea9c78660b77 |
 | `pw_soldier2` | Soldier2 | Efeitos | 1 | 1 | 3ed7f62e0c89b62438435264d2766abf |
@@ -6934,8 +6945,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_specialballblackred` | SpecialBallBlackRed | Efeitos | 1 | 1 | 4c04f5967c049384096db11dc8f81134 |
 | `pw_specialballblue` | SpecialBallBlue | Efeitos | 1 | 4 | 9e7005541b30e6b428f1a4d212cd6162 |
 | `pw_specialballblue_1` | SpecialBallBlue 1 | Efeitos | 1 | 1 | 0a84f8ae1a5468743b8fe71a95aebe6e |
+| `pw_specialballbroyred` | SpecialBallBroyRed | Efeitos | 1 | 1 | e75ccac02e1d06c4e911e5c974bb561b |
 | `pw_specialballdarkred` | SpecialBallDarkRed | Efeitos | 1 | 1 | 0844473761844f24ba324d76e6a307be |
 | `pw_specialballdeathbiggreen` | SpecialBallDeathBigGreen | Efeitos | 1 | 2 | 5a3a6ee3499d70b429b36f844512b668 |
+| `pw_specialballdeathpurple` | SpecialBallDeathPurple | Efeitos | 1 | 3 | fd8c58ed864eba542bfa93ce8d819026 |
 | `pw_specialballfire` | SpecialBallFire | Efeitos | 1 | 4 | ae0b69589953d794b9d8f4e59d199cf3 |
 | `pw_specialballfireblue` | SpecialBallFireBlue | Efeitos | 1 | 4 | 4303a9d0afc3e324a8536a7036456bd1 |
 | `pw_specialballgreen` | SpecialBallGreen | Efeitos | 1 | 4 | bdb4b832fc7ad38409169fe740781ed2 |
@@ -7268,12 +7281,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_tienstand` | TienStand | Efeitos | 1 | 4 | fce5843b9284f1243b8dec910ca987a9 |
 | `pw_tienstatus` | TienStatus | Efeitos | 1 | 4 | 4d72283bce12e3c449947941e40c3071 |
 | `pw_to2` | to2 | Efeitos | 3 | 9 | 26c8d568e8a51bd4fa3c85e2667f9194 |
-| `pw_toggle` | toggle | Efeitos | 1 | 1 | unity default resources |
-| `pw_toggle_active` | toggle active | Efeitos | 1 | 1 | unity default resources |
-| `pw_toggle_hover` | toggle hover | Efeitos | 1 | 1 | unity default resources |
-| `pw_toggle_on` | toggle on | Efeitos | 1 | 1 | unity default resources |
-| `pw_toggle_on_active` | toggle on active | Efeitos | 1 | 1 | unity default resources |
-| `pw_toggle_on_hover` | toggle on hover | Efeitos | 1 | 1 | unity default resources |
 | `pw_toma` | Toma | Efeitos | 1 | 1 | 88dfd29bd3e6bde44b9ccb653bc68818 |
 | `pw_tomaattack` | TomaAttack | Efeitos | 1 | 11 | 7a66a4cac5c9ca1428878f09ea4f188c |
 | `pw_tomacharge` | TomaCharge | Efeitos | 1 | 5 | c9b19601a445c194dacafc82a551caf4 |
@@ -7538,7 +7545,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_turlesnewstand` | TurlesNewStand | Efeitos | 1 | 3 | 9b7af2fc60189774d8b925e37854f11a |
 | `pw_turlesnewstatus` | TurlesNewStatus | Efeitos | 1 | 4 | 8e6bcb75cef771a439437dfa7d928137 |
 | `pw_turlesnewteleport` | TurlesNewTeleport | Efeitos | 1 | 2 | b22398b76380fce42aacf8d4f1c584f4 |
-| `pw_uisprite` | UISprite | Efeitos | 1 | 1 | sharedassets1.assets.split0 |
 | `pw_vanille` | Vanille | Efeitos | 1 | 1 | 820316cd69127f8458eacf4f80daab85 |
 | `pw_vanilleability` | VanilleAbility | Efeitos | 1 | 4 | 0a49e6d8865c1064da3b91589ed90cb0 |
 | `pw_vanilleabilityenergy` | VanilleAbilityEnergy | Efeitos | 1 | 2 | 2d73377dbeb3669488758c8ecbc093e4 |
@@ -8265,7 +8271,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_vegitoswspecial4` | VegitoSwSpecial4 | Efeitos | 1 | 8 | 55efbe7874e44b94fab929b927679e4e |
 | `pw_vegitoteleport` | VegitoTeleport | Efeitos | 1 | 2 | d5e843a6d3c2e0b47bc2d86e9eba6981 |
 | `pw_vegitotransform` | VegitoTransform | Efeitos | 1 | 9 | 29850693ed95dec4195b85543787f730 |
-| `pw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Efeitos | 1 | 1 | unity default resources |
 | `pw_videl` | Videl | Efeitos | 1 | 1 | 89112a4653b59154ab3c5790ca9740be |
 | `pw_videlability` | VidelAbility | Efeitos | 1 | 3 | ca460fadbd03a5849a4b8458211b9560 |
 | `pw_videlattack` | VidelAttack | Efeitos | 1 | 9 | a31f5d8662ed7ab4fa39919f71091407 |
@@ -8302,7 +8307,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_vwstand` | VWStand | Efeitos | 1 | 4 | 48347bf8060757443ab39d633bb64ed7 |
 | `pw_vwstatus` | VWStatus | Efeitos | 1 | 5 | 095e71e186f459d49b6d58ee01354a2e |
 | `pw_vwteleport` | VWTeleport | Efeitos | 1 | 2 | d269130f25e1db54eb530c3a8298c11a |
-| `pw_warningsign` | WarningSign | Efeitos | 1 | 1 | unity default resources |
 | `pw_whis` | Whis | Efeitos | 1 | 1 | c8c6facf2c91bc64fb95b65b584ae30d |
 | `pw_whisattack` | WhisAttack | Efeitos | 1 | 10 | a7e88f74e2bdd12498a451d8e387ff1d |
 | `pw_whisattack2` | WhisAttack2 | Efeitos | 1 | 5 | 5fe12d4142032b6479e1c6166680ffd8 |
@@ -8478,10 +8482,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_chaosattack` | ChaosAttack | Cenários | 1 | 12 | 0f176a72bfbe03745b4332888e33d502 |
 | `pw_chaosattackdown` | ChaosAttackDown | Cenários | 1 | 6 | 3cc7a6e4ca6af17458b69248872abb1e |
 | `pw_chaosback` | ChaosBack | Cenários | 1 | 3 | 91ddb0432f509f741b74594054664f88 |
-| `pw_chaoscharge` | ChaosCharge | Cenários | 1 | 4 | 04c40ab4dec80e84e9b7a3278d158d84 |
 | `pw_chaosforward` | ChaosForward | Cenários | 1 | 3 | 6aab131bdff87a3449280ace2ec18a07 |
 | `pw_chaosguard` | ChaosGuard | Cenários | 1 | 2 | 6531929c3f97c3448b34b6f3896f4b40 |
-| `pw_chaoskiblast` | ChaosKiBlast | Cenários | 1 | 2 | 8f0f2591de9f3ee48885f0631565806b |
 | `pw_chaosspecial` | ChaosSpecial | Cenários | 1 | 13 | 7878e96ac05db1247a5fb574ab408ce2 |
 | `pw_chaosspecial2` | ChaosSpecial2 | Cenários | 1 | 10 | 2ca5bbbc0ce0fdc46b0a92f53a3f3b14 |
 | `pw_chaosspecial3` | ChaosSpecial3 | Cenários | 1 | 11 | 47bff0b30a3a3c74bb799bdf13b6dfc3 |
@@ -8493,10 +8495,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_chaosstatus` | ChaosStatus | Cenários | 1 | 3 | 6a5f4fde5f16bb2499bc160ce9f198f1 |
 | `pw_chaosteleport` | ChaosTeleport | Cenários | 1 | 2 | a130184f26e77dc408c9684822758386 |
 | `pw_chaosup` | ChaosUp | Cenários | 1 | 3 | 34021f7b40a45dd4da116ac3ca739598 |
-| `pw_charge____` | Charge | Cenários | 1 | 1 | 3d293aa38cffd3243ad8d09dcb171ec5 |
 | `pw_clouds` | Clouds | Cenários | 1 | 6 | 704786a6cf49aaa468b7993822080267 |
-| `pw_dash` | Dash | Cenários | 1 | 1 | sharedassets11.assets |
-| `pw_dashbutton` | DashButton | Cenários | 1 | 1 | sharedassets0.assets.split0 |
 | `pw_dialog` | Dialog | Cenários | 1 | 1 | b0490bb36f63a654794d04593104c9a8 |
 | `pw_dialogwhite` | DialogWhite | Cenários | 1 | 1 | 5513da9d73765b34a90bad2baf025368 |
 | `pw_ef_11_0000` | ef_11_0000 | Cenários | 1 | 1 | 56c1c6bea5e017e4f855bbabcf491faf |
@@ -8552,21 +8551,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_ef_7_0009` | ef_7_0009 | Cenários | 1 | 1 | 1a6eab960e0092444af3aa906281ebb7 |
 | `pw_ef_7_0010` | ef_7_0010 | Cenários | 1 | 1 | 4f8c93b50c29711429c17bc25dc2c7da |
 | `pw_ef_7_0011` | ef_7_0011 | Cenários | 1 | 1 | 4e45fae208461fa4ab5631c288e6bb88 |
-| `pw_energy_20_00008` | energy_20_00008 | Cenários | 1 | 1 | b9fae2c050a4a8e41a658ca9f84a94f9 |
-| `pw_energy_20_00009` | energy_20_00009 | Cenários | 1 | 1 | 7ccd0303acad73c42b1191ee73267f7f |
-| `pw_energy_20_00010` | energy_20_00010 | Cenários | 1 | 1 | 42464cd51065b5949be9adaa47a2dca1 |
-| `pw_energygroundexplosion` | EnergyGroundExplosion | Cenários | 1 | 4 | 5cd7f7554a6f63b449a1199de2b05519 |
 | `pw_frame_7_delay_0_12s` | frame_7_delay-0.12s | Cenários | 1 | 1 | sharedassets56.assets.split0 |
-| `pw_fx_2_ver_1_01` | fx_2_ver_1_01 | Cenários | 1 | 1 | 987cc54ecbdd3dd41b2d5535826d4514 |
-| `pw_fx_2_ver_1_02` | fx_2_ver_1_02 | Cenários | 1 | 1 | 49d9b4dc715d05340b3a89cc1cdd4c27 |
-| `pw_fx_2_ver_1_03` | fx_2_ver_1_03 | Cenários | 1 | 1 | 8608160fff9c28f4cbb75eb222507dca |
-| `pw_fx_2_ver_1_04` | fx_2_ver_1_04 | Cenários | 1 | 1 | 2deb31b73abbeec4696496b5388e228d |
-| `pw_fx_2_ver_1_05` | fx_2_ver_1_05 | Cenários | 1 | 1 | a4e9a7563ef7bb14390acf925d457a4a |
-| `pw_fx_2_ver_1_06` | fx_2_ver_1_06 | Cenários | 1 | 1 | e70d1d07ecae28a4ebbdd128c3d029ff |
-| `pw_fx_2_ver_1_07` | fx_2_ver_1_07 | Cenários | 1 | 1 | 8c9943397f894724dbd1b056a33ff2b8 |
-| `pw_fx_2_ver_1_08` | fx_2_ver_1_08 | Cenários | 1 | 1 | 5dce0313cfa94904abfc82431cdfe991 |
-| `pw_fx_2_ver_1_09` | fx_2_ver_1_09 | Cenários | 1 | 1 | 4132a553f7537d74482d924117e34a53 |
-| `pw_fx_2_ver_1_10` | fx_2_ver_1_10 | Cenários | 1 | 1 | 8cd8d29b12b06b840a5f5bc55c60be81 |
 | `pw_gohanadultmangaguard` | GohanAdultMangaGuard | Cenários | 1 | 1 | f56056685aad3e748959880263b8a965 |
 | `pw_gokuchristmas` | GokuChristmas | Cenários | 1 | 1 | 34f1536f49ac2764fb3e9828e52fad6f |
 | `pw_granolaguard` | GranolaGuard | Cenários | 1 | 1 | 712a0923c10128649aac32c0d5d36a69 |
@@ -8597,12 +8582,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_lazer_15` | lazer_15 | Cenários | 1 | 1 | 1e0f0bad95b2ac64a852e60d5c1302db |
 | `pw_mobile_cartoon_gui_theme_01_for_example_scene` | Mobile Cartoon GUI Theme 01 for Example Scene | Cenários | 1 | 1 | a5508a7b95a644b659f70c6981ef42af |
 | `pw_oozaruvegetaguard` | OozaruVegetaGuard | Cenários | 1 | 1 | 20e0600e35d7f8c458502c3fa81c1cba |
-| `pw_powerfighterz_ui_hp` | PowerFighterZ_UI_HP | Cenários | 1 | 1 | ccb6185cdbb12934291e5a09ff56ac0e |
 | `pw_ribriannehearth` | RibrianneHearth | Cenários | 1 | 1 | 77d1dd6ed461a3947bf34097ead2f981 |
 | `pw_sky` | sky | Cenários | 1 | 1 | sharedassets42.assets |
 | `pw_sky_` | sky | Cenários | 1 | 1 | sharedassets49.assets |
 | `pw_special___________` | Special | Cenários | 1 | 1 | dd639383aa3b5c548b4e050f453373e2 |
-| `pw_specialballbroyred` | SpecialBallBroyRed | Cenários | 1 | 1 | e75ccac02e1d06c4e911e5c974bb561b |
 | `pw_specialraylightpinkdouble` | SpecialRayLightPinkDouble | Cenários | 1 | 2 | f7fd916c820ddee4cb680d7d8b8855e4 |
 | `pw_specialraypurple` | SpecialRayPurple | Cenários | 1 | 1 | 01ff736285e62fa45b75c8708325d41e |
 | `pw_specialrayred` | SpecialRayRed | Cenários | 1 | 1 | 5217247d465bb6f4e99b9c8dc530fc98 |
@@ -8624,7 +8607,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_stage14` | Stage14 | Cenários | 1 | 1 | ae136f2e0e358fc4fb98c0cf010ee137 |
 | `pw_stage14boss` | Stage14Boss | Cenários | 1 | 1 | b0668492f0ebce349ac03e9300f37b2d |
 | `pw_stage15` | Stage15 | Cenários | 1 | 1 | ebe23eea5bd2efd4e934f0867b9f64f1 |
-| `pw_stage15icon` | Stage15Icon | Cenários | 1 | 1 | sharedassets14.assets.split0 |
 | `pw_stage16` | Stage16 | Cenários | 1 | 1 | 31d931f2c57d2d948a85a5416813987a |
 | `pw_stage16_` | Stage16 | Cenários | 1 | 1 | sharedassets7.assets |
 | `pw_stage17` | Stage17 | Cenários | 1 | 1 | f48f171b3f3bfa047a5098dba11c0a2f |
@@ -8635,7 +8617,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_stage20` | Stage20 | Cenários | 1 | 1 | 405c555d1db150e47b701b6bb918608b |
 | `pw_stage21` | Stage21 | Cenários | 1 | 1 | 56f054c68dc301d42a3112cb04bbdb85 |
 | `pw_stage21_` | Stage21 | Cenários | 1 | 1 | sharedassets38.assets |
-| `pw_stage21icon` | Stage21Icon | Cenários | 1 | 1 | sharedassets14.assets.split0 |
 | `pw_stage22` | Stage22 | Cenários | 1 | 1 | 6e0e8bdf055e3e8449b65b3c8c09d924 |
 | `pw_stage23` | Stage23 | Cenários | 1 | 1 | 104a33fc37ce70f4c87d5cc32a7c9fe2 |
 | `pw_stage24` | Stage24 | Cenários | 1 | 1 | c1f84139f4932d749a9aab84980e2c8e |
@@ -8654,7 +8635,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_stage35` | Stage35 | Cenários | 1 | 1 | 69f3c7db48315ac4482058a20fdbb42a |
 | `pw_stage4` | Stage4 | Cenários | 1 | 1 | b00ea4a77454a3c46adc57018f20a656 |
 | `pw_stage4_` | Stage4 | Cenários | 1 | 1 | sharedassets19.assets |
-| `pw_stage4icon` | stage4Icon | Cenários | 1 | 1 | sharedassets14.assets.split0 |
 | `pw_stage5` | Stage5 | Cenários | 1 | 1 | ef6dc154d56c615489541417a4f889ac |
 | `pw_stage5spawnenemy` | Stage5SpawnEnemy | Cenários | 1 | 1 | 7e7601f8031fb704b8045a4d3c71f59e |
 | `pw_stage6` | Stage6 | Cenários | 1 | 1 | 7ce3b6d015d828b42a70e75e709af6a8 |
@@ -8681,6 +8661,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_abilityz_icon_1` | AbilityZ_Icon_1 | Interface | 1 | 1 | 123b8ca7c85c6d145944942d926f5b9c |
 | `pw_arrow2` | Arrow2 | Interface | 1 | 1 | c94b23e59bd617e43ae03cc154ec0cb0 |
 | `pw_bardockdamagedselect` | BardockDamagedSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
+| `pw_box` | box | Interface | 1 | 1 | unity default resources |
 | `pw_btn_green_check` | btn_green_check | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_btn_home` | btn_home | Interface | 1 | 1 | ff08cf8efbfc04f7fb8fc1577874a02e |
 | `pw_btn_left_arrow` | btn_left_arrow | Interface | 1 | 1 | 685e9c9f5542c4648bb27c505efdd2ce |
@@ -8705,8 +8686,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_button_on_hover` | button on hover | Interface | 1 | 1 | unity default resources |
 | `pw_buttoncircle` | buttonCircle | Interface | 1 | 1 | 8ace49592e9228f4e9d5f004cc553603 |
 | `pw_buusupergohanselect` | BuuSuperGohanSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
+| `pw_dashbutton` | DashButton | Interface | 1 | 1 | sharedassets0.assets.split0 |
 | `pw_dodoriaselect` | DodoriaSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_emptybar` | EmptyBar | Interface | 1 | 1 | 0d6573be55fcff546871ff57e9fb1547 |
+| `pw_esctoexit_back` | EscToExit_back | Interface | 1 | 1 | unity default resources |
 | `pw_esctoexit_text` | EscToExit_Text | Interface | 1 | 1 | unity default resources |
 | `pw_friezablackselect` | FriezaBlackSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_gogetaswl1select` | GogetaSwl1Select | Interface | 1 | 1 | sharedassets8.assets |
@@ -8720,6 +8703,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_gotenchild1select` | GotenChild1Select | Interface | 1 | 1 | sharedassets8.assets |
 | `pw_guldoselect` | GuldoSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_horizontal_scrollbar` | horizontal scrollbar | Interface | 1 | 1 | unity default resources |
+| `pw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
 | `pw_huitzilopochtliselect` | HUITZILOPOCHTLISelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_icon_drag_drop` | icon_drag_drop | Interface | 1 | 1 | 525b2d05de9b7e7459d4d58af0434e5b |
 | `pw_menu_credits` | menu_credits | Interface | 1 | 1 | sharedassets1.assets.split0 |
@@ -8732,6 +8716,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_paikuhanselect` | PaikuhanSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_panchristmasselect` | PanChristmasSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_piccolohero1select2` | PiccoloHero1Select2 | Interface | 1 | 1 | sharedassets13.assets.split0 |
+| `pw_powerfighterz_ui_hp` | PowerFighterZ_UI_HP | Interface | 1 | 1 | ccb6185cdbb12934291e5a09ff56ac0e |
 | `pw_recoomeselect` | RecoomeSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_red_arrow_left_pointing_5` | red-arrow-left-pointing-5 | Interface | 1 | 1 | 90a1539abbe6fa64c848458666bc9c28 |
 | `pw_selectcharacterbutton` | selectCharacterButton | Interface | 1 | 1 | sharedassets13.assets.split0 |
@@ -8739,18 +8724,31 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_shop_coin_01` | shop_coin_01 | Interface | 1 | 1 | 195d5d4f0e4e3402a9537dceb1b1b82d |
 | `pw_shop_coin_04` | shop_coin_04 | Interface | 1 | 1 | sharedassets1.assets.split0 |
 | `pw_shop_coin_05` | shop_coin_05 | Interface | 1 | 1 | sharedassets1.assets.split0 |
+| `pw_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
+| `pw_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |
+| `pw_slidert_humb_hover` | slidert humb hover | Interface | 1 | 1 | unity default resources |
+| `pw_soft` | Soft | Interface | 1 | 1 | unity default resources |
 | `pw_specialarrowgreen` | SpecialArrowGreen | Interface | 1 | 5 | 3003d858cab640c49910073ef6483dfa |
 | `pw_specialarrowpink` | SpecialArrowPink | Interface | 1 | 3 | c3b88e8c83ef6034287101fd63cd3d8e |
 | `pw_specialarrowpinkdark` | SpecialArrowPinkDark | Interface | 1 | 3 | a517b4fb94adf8049be012414e5856d8 |
 | `pw_specialarrowred` | SpecialArrowRed | Interface | 1 | 5 | c6402f981a9150642a34cc855264bf99 |
-| `pw_specialballdeathpurple` | SpecialBallDeathPurple | Interface | 1 | 3 | fd8c58ed864eba542bfa93ce8d819026 |
 | `pw_specialslashpink` | SpecialSlashPink | Interface | 1 | 4 | 2b1c2d0c0276b76439cb0e5abe88874f |
 | `pw_specialslashpinkpurple` | SpecialSlashPinkPurple | Interface | 1 | 2 | 532d0201ce7651a458623835490ac8e5 |
 | `pw_specialslashpurple` | SpecialSlashPurple | Interface | 1 | 4 | a1d1799901b448940ac0cc82be6f79b4 |
+| `pw_stage15icon` | Stage15Icon | Interface | 1 | 1 | sharedassets14.assets.split0 |
+| `pw_stage21icon` | Stage21Icon | Interface | 1 | 1 | sharedassets14.assets.split0 |
+| `pw_stage4icon` | stage4Icon | Interface | 1 | 1 | sharedassets14.assets.split0 |
 | `pw_textfield` | textfield | Interface | 1 | 1 | unity default resources |
 | `pw_textfield_hover` | textfield hover | Interface | 1 | 1 | unity default resources |
 | `pw_textfield_on` | textfield on | Interface | 1 | 1 | unity default resources |
+| `pw_toggle` | toggle | Interface | 1 | 1 | unity default resources |
+| `pw_toggle_active` | toggle active | Interface | 1 | 1 | unity default resources |
+| `pw_toggle_hover` | toggle hover | Interface | 1 | 1 | unity default resources |
+| `pw_toggle_on` | toggle on | Interface | 1 | 1 | unity default resources |
+| `pw_toggle_on_active` | toggle on active | Interface | 1 | 1 | unity default resources |
+| `pw_toggle_on_hover` | toggle on hover | Interface | 1 | 1 | unity default resources |
 | `pw_trunkschild1select` | TrunksChild1Select | Interface | 1 | 1 | sharedassets13.assets.split0 |
+| `pw_uisprite` | UISprite | Interface | 1 | 1 | sharedassets1.assets.split0 |
 | `pw_vegetagtnew4alticonblast` | VegetaGTNew4AltIconBlast | Interface | 1 | 1 | e8aad3f8056515e4c94bdb6a66a6a2c8 |
 | `pw_vegetamanga7altextra` | VegetaManga7AltExtra | Interface | 1 | 1 | ac0203679e7e34d43863a776762f67f1 |
 | `pw_vegetamanga7iconaura` | VegetaManga7IconAura | Interface | 1 | 3 | 9262fff06d2775645b290b5439bbc2df |
@@ -8761,6 +8759,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `pw_vegetazombieselect` | VegetaZombieSelect | Interface | 1 | 1 | sharedassets13.assets.split0 |
 | `pw_vegitoswl5select` | VegitoSwl5Select | Interface | 1 | 1 | sharedassets8.assets |
 | `pw_vertical_scrollbar` | vertical scrollbar | Interface | 1 | 1 | unity default resources |
+| `pw_vertical_scrollbar_thumb` | vertical scrollbar thumb | Interface | 1 | 1 | unity default resources |
+| `pw_warningsign` | WarningSign | Interface | 1 | 1 | unity default resources |
 | `pw_window` | window | Interface | 1 | 1 | unity default resources |
 | `pw_window_on` | window on | Interface | 1 | 1 | unity default resources |
 | `pw_yellowbutton` | YellowButton | Interface | 1 | 1 | sharedassets1.assets.split0 |
@@ -9174,6 +9174,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `spw_zeno1_0` | Zeno1_0 | Personagens | 13 | 11 | Zeno1_0 |
 | `spw_zeno1_1` | Zeno1_1 | Personagens | 14 | 36 | Zeno1_1 |
 | `spw_acessorios` | Acessorios | Efeitos | 5 | 12 | Acessorios |
+| `spw_auraclassica` | AuraClassica | Efeitos | 20 | 60 | AuraClassica |
 | `spw_cameraprincipal` | CameraPrincipal | Efeitos | 1 | 1 | CameraPrincipal |
 | `spw_colisao` | Colisao | Efeitos | 2 | 7 | Colisao |
 | `spw_dash` | Dash | Efeitos | 2 | 9 | Dash |
@@ -9225,7 +9226,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `spw_sprite9` | Sprite9 | Efeitos | 1 | 1 | Sprite9 |
 | `spw_tp` | Tp | Efeitos | 1 | 4 | Tp |
 | `spw_whatifpage` | WhatIfPage | Efeitos | 1 | 1 | WhatIfPage |
-| `spw_auraclassica` | AuraClassica | Cenários | 20 | 60 | AuraClassica |
 | `spw_c12` | c12 | Cenários | 18 | 49 | c12 |
 | `spw_chaodestruido` | ChaoDestruido | Cenários | 1 | 3 | ChaoDestruido |
 | `spw_chaos1_0` | Chaos1_0 | Cenários | 15 | 55 | Chaos1_0 |
@@ -9425,6 +9425,10 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_divis_o_preta` | divisão_preta | Efeitos | 1 | 1 | divisão_preta |
 | `swz_efeito_circulo_salto_1` | efeito_circulo_salto_1 | Efeitos | 1 | 5 | efeito_circulo_salto_1 |
 | `swz_efeito_circulo_salto_2` | efeito_circulo_salto_2 | Efeitos | 1 | 5 | efeito_circulo_salto_2 |
+| `swz_efeito_dano_1` | efeito_dano_1 | Efeitos | 1 | 5 | efeito_dano_1 |
+| `swz_efeito_dano_1_2` | efeito_dano_1_2 | Efeitos | 1 | 5 | efeito_dano_1_2 |
+| `swz_efeito_dano_2` | efeito_dano_2 | Efeitos | 1 | 3 | efeito_dano_2 |
+| `swz_efeito_dano_2_2` | efeito_dano_2_2 | Efeitos | 1 | 3 | efeito_dano_2_2 |
 | `swz_efeito_frente_e_tras_2` | efeito_frente_e_tras_2 | Efeitos | 1 | 4 | efeito_frente_e_tras_2 |
 | `swz_efeito_frente_e_tr_s_1` | efeito_frente_e_trás_1 | Efeitos | 1 | 4 | efeito_frente_e_trás_1 |
 | `swz_efeito_poder_maximo_1` | efeito_poder_maximo_1 | Efeitos | 1 | 4 | efeito_poder_maximo_1 |
@@ -9629,7 +9633,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_aves_cenario_7` | aves_cenario_7 | Cenários | 1 | 3 | aves_cenario_7 |
 | `swz_background_azul_inicial` | background_azul_inicial | Cenários | 1 | 1 | background_azul_inicial |
 | `swz_background_base` | background_base | Cenários | 2 | 2 | background_base |
-| `swz_background_pause` | background_pause | Cenários | 1 | 1 | background_pause |
 | `swz_bal_o_de_numeros` | balão_de_numeros | Cenários | 1 | 3 | balão_de_numeros |
 | `swz_barra_de_cima` | barra_de_cima | Cenários | 1 | 1 | barra_de_cima |
 | `swz_barra_de_nomes_das_sagas` | barra_de_nomes_das_sagas | Cenários | 1 | 1 | barra_de_nomes_das_sagas |
@@ -9661,10 +9664,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_dif_cil_op_o` | difícil_opção | Cenários | 2 | 2 | difícil_opção |
 | `swz_doce_de_urso_cenario_47` | doce_de_urso_cenario_47 | Cenários | 1 | 1 | doce_de_urso_cenario_47 |
 | `swz_editar` | editar | Cenários | 2 | 2 | editar |
-| `swz_efeito_dano_1` | efeito_dano_1 | Cenários | 1 | 5 | efeito_dano_1 |
-| `swz_efeito_dano_1_2` | efeito_dano_1_2 | Cenários | 1 | 5 | efeito_dano_1_2 |
-| `swz_efeito_dano_2` | efeito_dano_2 | Cenários | 1 | 3 | efeito_dano_2 |
-| `swz_efeito_dano_2_2` | efeito_dano_2_2 | Cenários | 1 | 3 | efeito_dano_2_2 |
 | `swz_episodio_desbloqueado_base` | episodio_desbloqueado_base | Cenários | 1 | 1 | episodio_desbloqueado_base |
 | `swz_episodios_desbloqueados` | episodios_desbloqueados | Cenários | 3 | 4 | episodios_desbloqueados |
 | `swz_exit` | EXIT | Cenários | 2 | 2 | EXIT |
@@ -9691,9 +9690,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_kamisama_cenario_27` | kamisama_cenario_27 | Cenários | 1 | 5 | kamisama_cenario_27 |
 | `swz_larva_vulcanica_cenario_16` | larva_vulcanica_cenario_16 | Cenários | 1 | 3 | larva_vulcanica_cenario_16 |
 | `swz_legenda_capitulo_fight` | legenda_capitulo_fight | Cenários | 1 | 1 | legenda_capitulo_fight |
-| `swz_logos_png` | logos_png | Cenários | 3 | 3 | logos_png |
 | `swz_macaco_cenario_31` | macaco_cenario_31 | Cenários | 1 | 9 | macaco_cenario_31 |
-| `swz_mapas_logo` | mapas_logo | Cenários | 2 | 2 | mapas_logo |
 | `swz_medrosos_torneio_cenario_32` | medrosos_torneio_cenario_32 | Cenários | 1 | 7 | medrosos_torneio_cenario_32 |
 | `swz_modo_1p_vs_2p` | modo_1p_vs_2p | Cenários | 3 | 3 | modo_1p_vs_2p |
 | `swz_modo_1p_vs_com` | modo_1p_vs_com | Cenários | 2 | 2 | modo_1p_vs_com |
@@ -9706,9 +9703,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_opacidade` | opacidade | Cenários | 2 | 2 | opacidade |
 | `swz_op_o_treino` | opção_treino | Cenários | 2 | 2 | opção_treino |
 | `swz_op_es_de_batalha` | opções_de_batalha | Cenários | 2 | 2 | opções_de_batalha |
-| `swz_op_es_de_batlha_logo` | opções_de_batlha_logo | Cenários | 1 | 1 | opções_de_batlha_logo |
 | `swz_passaro_cenario_24` | passaro_cenario_24 | Cenários | 1 | 2 | passaro_cenario_24 |
-| `swz_pause_de_duelo` | pause_de_duelo | Cenários | 2 | 2 | pause_de_duelo |
 | `swz_pratos_concluidos` | pratos_concluidos | Cenários | 1 | 1 | pratos_concluidos |
 | `swz_radar_cenario_9` | radar_cenario_9 | Cenários | 1 | 7 | radar_cenario_9 |
 | `swz_raios_tempestade_cenario_16` | raios_tempestade_cenario_16 | Cenários | 1 | 3 | raios_tempestade_cenario_16 |
@@ -9736,6 +9731,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_vibracao_op_o` | vibracao_opção | Cenários | 2 | 2 | vibracao_opção |
 | `swz_vovo_urenai_cenario` | vovo_urenai_cenario | Cenários | 1 | 1 | vovo_urenai_cenario |
 | `swz_yachirobe_cenario_2` | yachirobe_cenario_2 | Cenários | 1 | 7 | yachirobe_cenario_2 |
+| `swz_background_pause` | background_pause | Interface | 1 | 1 | background_pause |
 | `swz_banner_lateral` | banner_lateral | Interface | 3 | 3 | banner_lateral |
 | `swz_banner_lateral_png` | banner_lateral_png | Interface | 2 | 2 | banner_lateral_png |
 | `swz_barra_azul_1` | barra_azul_1 | Interface | 1 | 1 | barra_azul_1 |
@@ -9775,13 +9771,17 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `swz_hud_player` | hud_player | Interface | 1 | 1 | hud_player |
 | `swz_life_bot` | life_bot | Interface | 3 | 3 | life_bot |
 | `swz_life_player` | life_player | Interface | 3 | 3 | life_player |
+| `swz_logos_png` | logos_png | Interface | 3 | 3 | logos_png |
+| `swz_mapas_logo` | mapas_logo | Interface | 2 | 2 | mapas_logo |
 | `swz_menu_principal_logo` | menu_principal_logo | Interface | 1 | 1 | menu_principal_logo |
 | `swz_menu_versus_logo` | menu_versus_logo | Interface | 1 | 1 | menu_versus_logo |
 | `swz_musicas_logo` | musicas_logo | Interface | 1 | 1 | musicas_logo |
 | `swz_musicas_logo_animado` | musicas_logo_animado | Interface | 1 | 1 | musicas_logo_animado |
 | `swz_new_saga_logo` | new_saga_logo | Interface | 1 | 1 | new_saga_logo |
+| `swz_op_es_de_batlha_logo` | opções_de_batlha_logo | Interface | 1 | 1 | opções_de_batlha_logo |
 | `swz_op_es_logo` | opções_logo | Interface | 4 | 4 | opções_logo |
 | `swz_pause` | pause | Interface | 2 | 2 | pause |
+| `swz_pause_de_duelo` | pause_de_duelo | Interface | 2 | 2 | pause_de_duelo |
 | `swz_pause_logo_1` | pause_logo_1 | Interface | 4 | 4 | pause_logo_1 |
 | `swz_pause_logo_2` | pause_logo_2 | Interface | 2 | 2 | pause_logo_2 |
 | `swz_pular_bot_o` | Pular_botão | Interface | 2 | 2 | Pular_botão |
@@ -10786,6 +10786,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `uh_discord` | Discord | Efeitos | 1 | 1 | Discord |
 | `uh_doisjogadores` | DoisJogadores | Efeitos | 1 | 1 | DoisJogadores |
 | `uh_dragon` | Dragon | Efeitos | 2 | 9 | Dragon |
+| `uh_efeitobeast` | EfeitoBeast | Efeitos | 4 | 68 | EfeitoBeast |
 | `uh_efeitoblack` | EfeitoBlack | Efeitos | 4 | 3 | EfeitoBlack |
 | `uh_efeitodyspo` | EfeitoDyspo | Efeitos | 2 | 2 | EfeitoDyspo |
 | `uh_effect1` | Effect1 | Efeitos | 1 | 4 | Effect1 |
@@ -10808,6 +10809,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `uh_fullpowerbtm` | FullPowerBtm | Efeitos | 1 | 5 | FullPowerBtm |
 | `uh_funfotuto2` | FunfoTUTO2 | Efeitos | 1 | 1 | FunfoTUTO2 |
 | `uh_fus_o` | Fusão | Efeitos | 1 | 1 | Fusão |
+| `uh_genkidama` | Genkidama | Efeitos | 72 | 222 | Genkidama |
+| `uh_genkidama2` | Genkidama2 | Efeitos | 72 | 222 | Genkidama2 |
 | `uh_genkidamaut` | GenkidamaUT | Efeitos | 2 | 8 | GenkidamaUT |
 | `uh_ginyuassit` | GinyuAssit | Efeitos | 3 | 4 | GinyuAssit |
 | `uh_gohanassit` | GohanAssit | Efeitos | 3 | 6 | GohanAssit |
@@ -11007,7 +11010,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `uh_chaosassit` | ChaosAssit | Cenários | 3 | 5 | ChaosAssit |
 | `uh_ch_oloja` | ChãoLoja | Cenários | 1 | 2 | ChãoLoja |
 | `uh_dual` | Dual | Cenários | 35 | 78 | Dual |
-| `uh_efeitobeast` | EfeitoBeast | Cenários | 4 | 68 | EfeitoBeast |
 | `uh_fundo_itens` | fundo_itens | Cenários | 1 | 2 | fundo_itens |
 | `uh_fundo_status2` | fundo_status2 | Cenários | 1 | 1 | fundo_status2 |
 | `uh_fundoabertura` | FundoAbertura | Cenários | 1 | 1 | FundoAbertura |
@@ -11019,8 +11021,6 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `uh_fundoselecao` | FundoSelecao | Cenários | 1 | 28 | FundoSelecao |
 | `uh_fundosumon` | FundoSumon | Cenários | 1 | 1 | FundoSumon |
 | `uh_fundotuto` | FundoTuto | Cenários | 2 | 4 | FundoTuto |
-| `uh_genkidama` | Genkidama | Cenários | 72 | 222 | Genkidama |
-| `uh_genkidama2` | Genkidama2 | Cenários | 72 | 222 | Genkidama2 |
 | `uh_gokuswl5` | GokuSwl5 | Cenários | 33 | 136 | GokuSwl5 |
 | `uh_hudfundo` | HudFundo | Cenários | 1 | 2 | HudFundo |
 | `uh_introef22` | IntroEF22 | Cenários | 1 | 19 | IntroEF22 |
