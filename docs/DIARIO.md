@@ -202,3 +202,16 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 - Estúdio/Sprites: modo **✂ Cortar** — arrastar um retângulo no palco (vale para os quadros escolhidos, que aparecem sobrepostos) e "Criar animação nova" só com aquele pedaço (ex.: o raio do Break Cannon sem o Nappa), com nova origem no centro, na borda esquerda (raio saindo da mão) ou mantida; ou "Cortar aqui mesmo". Só muda as caixas dos quadros no atlas (não mexe nos pixels). Teste: `tools/testes/estudio_corte.js`.
 
+
+## 12/11/2026 — Acervo de sprites (extração de tudo)
+**Pedido:** extrair todas as sprites possíveis e deixar disponíveis no Estúdio (aba Sprites e seletor das cenas/golpes), sem criar personagem nem habilidade. Depois: "pode incluir todas as pastas".
+
+**Feito:**
+- **Z Legends 3 inteiro:** `tools/extrair_acervo.py` lê o `data.js` e gera 326 sprites (53 personagens com as versões inimigo+jogador juntas, 86 efeitos, 24 cenários por cenário, 97 de interface, 66 cutscenes por luta/personagem; ~9.800 animações). Objetos invisíveis (caixas de colisão, câmera) ficaram de fora.
+- **Twiss Dragno** (GameMaker, `game.droid`): 49 sprites (45 lutadores + habilidades, efeitos, cenários, interface). Nomes dos lutadores são palpites pela abreviação (código entre parênteses).
+- Acervo fora do bundle (bundle cresceu só ~20 KB): `FF.Assets.loadSprite` carrega `data/acervo/<id>.js` por `<script>` (funciona em file://). Pedidos simultâneos do mesmo sprite agora compartilham o carregamento (vale para todos os sprites).
+- Estúdio: seletor de sprites com categorias do acervo (abre/fecha), "Efeitos (todos)" inclui os efeitos do acervo, busca nos nomes de animação sem baixar imagens, miniaturas só quando aparecem na tela. Aba Sprites agrupada (Do jogo + categorias). Forma de personagem aceita sprites de tipo "personagens" de qualquer fonte.
+- `tools/extrair_jogos.py` pronto para Construct 3 (Mini Champion, Super Pixel Warriors, Ultimate Heroes), GDevelop (Super Warriors Z), Unity 2017–2021 sem compressão (Drag Warriors testado com uma textura) e pastas de PNG (pasta Assets).
+- Teste novo `tools/testes/acervo.js`. Observação: `estudio_melhorias.js` já falhava em "seletor de efeito mostra os do Bills primeiro" antes desta sessão (conferido no código anterior).
+
+**Falta:** os outros jogos e a pasta Assets. Têm milhares de arquivos; pedi ao usuário um .zip por pasta em `T:\Project Final Flash Sprites` para trazer de uma vez. Unity: animações originais (AnimationClip) não são lidas — cada textura vira "Todos" + grupos por nome; texturas comprimidas (ETC/ASTC) não são decodificadas.
