@@ -1,0 +1,100 @@
+{
+"nome": "Goku SSJ4 GT (ULSW HD)",
+"anims": {
+"Corte": {
+"q": "0,30,79,92,96",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "1-2,7,15-16,45,47-49,51-54,57-59,61-62,74-78,81,85-91,94,97-99,101-103,105-108,110-111,114",
+"fps": 4,
+"loop": false
+},
+"Golpes": {
+"q": "3-6,9-11,13,18-24,32-33,35-44,64-66,68-72",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "8,14",
+"fps": 12,
+"loop": false
+},
+"Rajada_Fogo": {
+"q": "12,50",
+"fps": 10,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "17,55",
+"fps": 8,
+"loop": false
+},
+"Retrato": {
+"q": "25,95",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "26-29",
+"fps": 4,
+"loop": true
+},
+"Esfera": {
+"q": "31,83",
+"fps": 8,
+"loop": false
+},
+"Punho_Dragao": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "46,93,113",
+"fps": 8,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "60,80,82,100",
+"fps": 10,
+"loop": false
+},
+"Aura_Chao": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Deslize": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "73,104",
+"fps": 8,
+"loop": false
+},
+"Alvo_Explosao": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "109",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "112",
+"fps": 0,
+"loop": false
+}
+}
+}

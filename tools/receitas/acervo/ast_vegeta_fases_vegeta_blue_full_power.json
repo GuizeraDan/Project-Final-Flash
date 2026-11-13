@@ -1,0 +1,100 @@
+{
+"nome": "Vegeta Blue (Força Total)",
+"anims": {
+"Vegeta_Base": {
+"q": "0-1",
+"fps": 4,
+"loop": false
+},
+"Transformacao": {
+"q": "2-8",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "9-19",
+"fps": 4,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "20",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "21",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "22-32,34-35,37-38,40-46,48-56",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "33,36,39,47",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "57",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "58-60",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "61,64,66-67,71-74,78,91-94",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "62-63,65",
+"fps": 12,
+"loop": false
+},
+"Esferas": {
+"q": "68-70",
+"fps": 10,
+"loop": false
+},
+"Aura_Roxa": {
+"q": "75-76",
+"fps": 10,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Aura_Poses": {
+"q": "79-82",
+"fps": 8,
+"loop": false
+},
+"Relampago": {
+"q": "83",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Golpes_Aura": {
+"q": "85-90",
+"fps": 10,
+"loop": false
+},
+"Explosao_Dourada": {
+"q": "95-98",
+"fps": 10,
+"loop": false
+}
+}
+}

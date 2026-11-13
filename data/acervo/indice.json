@@ -4643,6 +4643,18 @@
 "Assets_Separados/Sprites_soltos_de_personagens/raditz"
 ]
 },
+"ast_vegeta_baby_vegeta_ulsw_hd": {
+"nome": "Baby Vegeta (ULSW HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 7,
+"quadros": 58,
+"atlas": 3,
+"objs": [
+"Vegeta/Baby Vegeta Ulsw Hd"
+]
+},
 "ast_bardock_fases_bardock": {
 "nome": "Bardock",
 "cat": "ast",
@@ -4749,6 +4761,30 @@
 "atlas": 1,
 "objs": [
 "BROLY fases/Broly Ssj4"
+]
+},
+"ast_kyabe_fases_kyabe": {
+"nome": "Cabba",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 11,
+"quadros": 51,
+"atlas": 1,
+"objs": [
+"KYABE fases/Kyabe"
+]
+},
+"ast_kyabe_fases_kyabe_ssj": {
+"nome": "Cabba SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 11,
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"KYABE fases/Kyabe ssj"
 ]
 },
 "ast_caulifla": {
@@ -5099,6 +5135,18 @@
 "GOKU fases/Goku"
 ]
 },
+"ast_goku_fases_goku_whis_gi": {
+"nome": "Goku (Gi do Whis)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 10,
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Whis Gi"
+]
+},
 "ast_goku_goku_base_ulsw": {
 "nome": "Goku (ULSW)",
 "cat": "ast",
@@ -5111,60 +5159,24 @@
 "Goku/Goku Base Ulsw"
 ]
 },
-"ast_goku_goku_blue_ulsw_hd": {
-"nome": "Goku / Goku Blue Ulsw Hd",
+"ast_goku_fases_goku_versi_n2": {
+"nome": "Goku (Versão 2)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 4,
-"quadros": 120,
-"atlas": 5,
+"anims": 18,
+"quadros": 133,
+"atlas": 1,
 "objs": [
-"Goku/Goku Blue Ulsw Hd"
-]
-},
-"ast_goku_goku_ssj_ulsw": {
-"nome": "Goku / Goku SSJ Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 3,
-"quadros": 141,
-"atlas": 21,
-"objs": [
-"Goku/Goku SSJ Ulsw"
-]
-},
-"ast_goku_goku_ssj3_ulsw": {
-"nome": "Goku / Goku SSJ3 Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 95,
-"atlas": 18,
-"objs": [
-"Goku/Goku SSJ3 Ulsw"
-]
-},
-"ast_goku_goku_ssj4_gt_ulsw_hd": {
-"nome": "Goku / Goku ssj4 GT Ulsw Hd",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 115,
-"atlas": 4,
-"objs": [
-"Goku/Goku ssj4 GT Ulsw Hd"
+"GOKU fases/Goku (versión2)"
 ]
 },
 "ast_goku_goku_ulsw2_hd": {
-"nome": "Goku / Goku Ulsw2 Hd",
+"nome": "Goku Base (ULSW 2 HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 13,
 "quadros": 88,
 "atlas": 5,
 "objs": [
@@ -5279,6 +5291,30 @@
 "GOKU fases/Goku Blue 2"
 ]
 },
+"ast_goku_fases_goku_blue_whis_gi": {
+"nome": "Goku Blue (Gi do Whis)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 17,
+"quadros": 69,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Blue Whis Gi"
+]
+},
+"ast_goku_goku_blue_ulsw_hd": {
+"nome": "Goku Blue (ULSW HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 21,
+"quadros": 120,
+"atlas": 5,
+"objs": [
+"Goku/Goku Blue Ulsw Hd"
+]
+},
 "ast_goku_fases_goku_blue_kaioken_whis_gi": {
 "nome": "Goku Blue Kaioken (Gi do Whis)",
 "cat": "ast",
@@ -5303,48 +5339,24 @@
 "Goku/Goku Blue Ulsw Hd/Aerial kamehameha"
 ]
 },
-"ast_goku_fases_goku_versi_n2": {
-"nome": "GOKU fases / Goku (versión2)",
+"ast_goku_fases_goku_ssj_falso": {
+"nome": "Goku Falso SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 5,
-"quadros": 133,
+"anims": 16,
+"quadros": 106,
 "atlas": 1,
 "objs": [
-"GOKU fases/Goku (versión2)"
-]
-},
-"ast_goku_fases_goku_blue_whis_gi": {
-"nome": "GOKU fases / Goku Blue Whis Gi",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 69,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Blue Whis Gi"
-]
-},
-"ast_goku_fases_goku_god": {
-"nome": "GOKU fases / Goku God",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 62,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku God"
+"GOKU fases/Goku Ssj Falso"
 ]
 },
 "ast_goku_fases_goku_instinto_superior": {
-"nome": "GOKU fases / Goku Instinto Superior",
+"nome": "Goku Instinto Superior",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
 "quadros": 114,
 "atlas": 1,
 "objs": [
@@ -5352,123 +5364,15 @@
 ]
 },
 "ast_goku_fases_goku_instinto_superior_completo": {
-"nome": "GOKU fases / Goku Instinto Superior Completo",
+"nome": "Goku Instinto Superior Completo",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 14,
 "quadros": 59,
 "atlas": 1,
 "objs": [
 "GOKU fases/Goku Instinto Superior Completo"
-]
-},
-"ast_goku_fases_goku_ssj_1": {
-"nome": "GOKU fases / Goku SSJ 1",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 1"
-]
-},
-"ast_goku_fases_goku_ssj_1_versi_n_2": {
-"nome": "GOKU fases / Goku SSJ 1(versión 2)",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 112,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 1(versión 2)"
-]
-},
-"ast_goku_fases_goku_ssj_2": {
-"nome": "GOKU fases / Goku SSJ 2",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 53,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 2"
-]
-},
-"ast_goku_fases_goku_ssj_3": {
-"nome": "GOKU fases / Goku SSJ 3",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 3"
-]
-},
-"ast_goku_fases_goku_ssj_3_mais_sprites": {
-"nome": "GOKU fases / Goku SSJ 3 Mais Sprites",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 74,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 3 Mais Sprites"
-]
-},
-"ast_goku_fases_goku_ssj_4": {
-"nome": "GOKU fases / Goku SSJ 4",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 63,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ 4"
-]
-},
-"ast_goku_fases_goku_ssj_falso": {
-"nome": "GOKU fases / Goku Ssj Falso",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 106,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Ssj Falso"
-]
-},
-"ast_goku_fases_goku_ssj_kaioken": {
-"nome": "GOKU fases / Goku SSJ Kaioken",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 76,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku SSJ Kaioken"
-]
-},
-"ast_goku_fases_goku_whis_gi": {
-"nome": "GOKU fases / Goku Whis Gi",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Whis Gi"
 ]
 },
 "ast_goku_fases_goku_kaioken": {
@@ -5483,6 +5387,18 @@
 "GOKU fases/Goku kaioken"
 ]
 },
+"ast_goku_fases_goku_ssj_1": {
+"nome": "Goku SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 13,
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 1"
+]
+},
 "ast_goku_fases_goku_ssj_saga_freeza": {
 "nome": "Goku SSJ (Saga Freeza)",
 "cat": "ast",
@@ -5493,6 +5409,162 @@
 "atlas": 1,
 "objs": [
 "GOKU fases/Goku Ssj (Saga Freeza)"
+]
+},
+"ast_goku_goku_ssj_ulsw": {
+"nome": "Goku SSJ (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 28,
+"quadros": 141,
+"atlas": 21,
+"objs": [
+"Goku/Goku SSJ Ulsw"
+]
+},
+"ast_goku_fases_goku_ssj_1_versi_n_2": {
+"nome": "Goku SSJ (Versão 2)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 22,
+"quadros": 112,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 1(versión 2)"
+]
+},
+"ast_goku_fases_goku_god": {
+"nome": "Goku SSJ God",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 62,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku God"
+]
+},
+"ast_goku_fases_goku_ssj_kaioken": {
+"nome": "Goku SSJ Kaioken",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 13,
+"quadros": 76,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ Kaioken"
+]
+},
+"ast_goku_fases_goku_ssj_2": {
+"nome": "Goku SSJ2",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 2"
+]
+},
+"ast_goku_fases_goku_ssj_3": {
+"nome": "Goku SSJ3",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 3"
+]
+},
+"ast_goku_fases_goku_ssj_3_mais_sprites": {
+"nome": "Goku SSJ3 (Extra)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 74,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 3 Mais Sprites"
+]
+},
+"ast_goku_goku_ssj3_ulsw": {
+"nome": "Goku SSJ3 (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 17,
+"quadros": 95,
+"atlas": 18,
+"objs": [
+"Goku/Goku SSJ3 Ulsw"
+]
+},
+"ast_goku_fases_goku_ssj_4": {
+"nome": "Goku SSJ4",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 14,
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 4"
+]
+},
+"ast_goku_goku_ssj4_gt_ulsw_hd": {
+"nome": "Goku SSJ4 GT (ULSW HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 20,
+"quadros": 115,
+"atlas": 4,
+"objs": [
+"Goku/Goku ssj4 GT Ulsw Hd"
+]
+},
+"ast_xeno_goku_xeno_goku_hd_ulsw": {
+"nome": "Goku Xeno (ULSW HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 22,
+"quadros": 141,
+"atlas": 19,
+"objs": [
+"Xeno Goku/Xeno goku hd ULSW"
+]
+},
+"ast_xeno_goku_xeno_goku_super_saiyajin_xeno_goku_super_saiyajin": {
+"nome": "Goku Xeno SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 20,
+"quadros": 113,
+"atlas": 8,
+"objs": [
+"Xeno Goku/Xeno_Goku_Super_Saiyajin/Xeno Goku Super Saiyajin"
+]
+},
+"ast_xeno_goku_xeno_goku_ssj4_ulsw_hd": {
+"nome": "Goku Xeno SSJ4 (ULSW HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 11,
+"quadros": 103,
+"atlas": 6,
+"objs": [
+"Xeno Goku/Xeno Goku ssj4 Ulsw Hd"
 ]
 },
 "ast_freeza_formas_golden_freeza": {
@@ -5508,11 +5580,11 @@
 ]
 },
 "ast_goten_goten_base_ulsw": {
-"nome": "Goten / Goten Base Ulsw",
+"nome": "Goten (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 89,
 "atlas": 8,
 "objs": [
@@ -5520,11 +5592,11 @@
 ]
 },
 "ast_gotenks_base": {
-"nome": "Gotenks Base",
+"nome": "Gotenks",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 18,
 "quadros": 108,
 "atlas": 1,
 "objs": [
@@ -5536,7 +5608,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 16,
 "quadros": 72,
 "atlas": 1,
 "objs": [
@@ -5548,7 +5620,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 11,
 "quadros": 73,
 "atlas": 1,
 "objs": [
@@ -5556,11 +5628,11 @@
 ]
 },
 "ast_jiren_hd": {
-"nome": "Jiren HD",
+"nome": "Jiren (HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 4,
+"anims": 19,
 "quadros": 147,
 "atlas": 25,
 "objs": [
@@ -5568,11 +5640,11 @@
 ]
 },
 "ast_kale_fases_kale": {
-"nome": "KALE fases / Kale",
+"nome": "Kale",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 10,
 "quadros": 46,
 "atlas": 1,
 "objs": [
@@ -5580,11 +5652,11 @@
 ]
 },
 "ast_kale_fases_kale_ssj": {
-"nome": "KALE fases / Kale Ssj",
+"nome": "Kale SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 14,
 "quadros": 54,
 "atlas": 1,
 "objs": [
@@ -5592,15 +5664,27 @@
 ]
 },
 "ast_kefla_super_sayajin": {
-"nome": "Kefla Super Sayajin",
+"nome": "Kefla",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 4,
+"anims": 25,
 "quadros": 165,
 "atlas": 1,
 "objs": [
 "Kefla Super Sayajin"
+]
+},
+"ast_majin_buu_formas_kid_buu": {
+"nome": "Kid Buu",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 17,
+"quadros": 80,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Kid Buu"
 ]
 },
 "ast_kuririn": {
@@ -5627,112 +5711,52 @@
 "Kuririn Ulsw"
 ]
 },
-"ast_kyabe_fases_kyabe": {
-"nome": "KYABE fases / Kyabe",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 51,
-"atlas": 1,
-"objs": [
-"KYABE fases/Kyabe"
-]
-},
-"ast_kyabe_fases_kyabe_ssj": {
-"nome": "KYABE fases / Kyabe ssj",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"KYABE fases/Kyabe ssj"
-]
-},
-"ast_majin_buu_formas_kid_buu": {
-"nome": "MAJIN BUU formas / Kid Buu",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 80,
-"atlas": 1,
-"objs": [
-"MAJIN BUU formas/Kid Buu"
-]
-},
-"ast_majin_buu_formas_majin_buu": {
-"nome": "MAJIN BUU formas / Majin Buu",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 75,
-"atlas": 1,
-"objs": [
-"MAJIN BUU formas/Majin Buu"
-]
-},
 "ast_majin_buu_formas_majin_buu_gohan": {
-"nome": "MAJIN BUU formas / Majin Buu Gohan",
+"nome": "Majin Buu (Gohan Absorvido)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 16,
 "quadros": 70,
 "atlas": 1,
 "objs": [
 "MAJIN BUU formas/Majin Buu Gohan"
 ]
 },
-"ast_majin_buu_formas_majin_buu_flaco": {
-"nome": "MAJIN BUU formas / Majin Buu(Flaco)",
+"ast_majin_buu_formas_majin_buu": {
+"nome": "Majin Buu (Gordo)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 16,
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Majin Buu"
+]
+},
+"ast_majin_buu_formas_majin_buu_flaco": {
+"nome": "Majin Buu (Magro)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 21,
 "quadros": 92,
 "atlas": 1,
 "objs": [
 "MAJIN BUU formas/Majin Buu(Flaco)"
 ]
 },
-"ast_majin_buu_formas_super_buu": {
-"nome": "MAJIN BUU formas / Super Buu",
+"ast_vegeta_fases_majin_vegeta": {
+"nome": "Majin Vegeta",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 63,
+"anims": 13,
+"quadros": 59,
 "atlas": 1,
 "objs": [
-"MAJIN BUU formas/Super Buu"
-]
-},
-"ast_mirai_trunks_fases_mirai_trunks": {
-"nome": "MIRAI TRUNKS fases / Mirai Trunks",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 108,
-"atlas": 1,
-"objs": [
-"MIRAI TRUNKS fases/Mirai Trunks"
-]
-},
-"ast_mirai_trunks_fases_super_mirai_trunks": {
-"nome": "MIRAI TRUNKS fases / Super Mirai Trunks",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 108,
-"atlas": 1,
-"objs": [
-"MIRAI TRUNKS fases/Super Mirai Trunks"
+"VEGETA fases/Majin Vegeta"
 ]
 },
 "ast_piccolo": {
@@ -5795,12 +5819,24 @@
 "Sr. Kaioh"
 ]
 },
+"ast_majin_buu_formas_super_buu": {
+"nome": "Super Buu",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 13,
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Super Buu"
+]
+},
 "ast_toppo": {
 "nome": "Toppo",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 14,
 "quadros": 77,
 "atlas": 1,
 "objs": [
@@ -5808,15 +5844,39 @@
 ]
 },
 "ast_trunks_armadura": {
-"nome": "Trunks Armadura",
+"nome": "Trunks (Armadura)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 13,
 "quadros": 75,
 "atlas": 1,
 "objs": [
 "Trunks Armadura"
+]
+},
+"ast_mirai_trunks_fases_mirai_trunks": {
+"nome": "Trunks do Futuro",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 18,
+"quadros": 108,
+"atlas": 1,
+"objs": [
+"MIRAI TRUNKS fases/Mirai Trunks"
+]
+},
+"ast_mirai_trunks_fases_super_mirai_trunks": {
+"nome": "Trunks do Futuro SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 20,
+"quadros": 108,
+"atlas": 1,
+"objs": [
+"MIRAI TRUNKS fases/Super Mirai Trunks"
 ]
 },
 "ast_turles": {
@@ -5824,7 +5884,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 14,
 "quadros": 67,
 "atlas": 1,
 "objs": [
@@ -5843,6 +5903,18 @@
 "VEGETA fases/Vegeta"
 ]
 },
+"ast_vegeta_fases_vegeta_buu_saga": {
+"nome": "Vegeta (Saga Majin Boo)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 11,
+"quadros": 51,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Buu Saga"
+]
+},
 "ast_vegeta_fases_vegeta_sayajin_saga": {
 "nome": "Vegeta (Saga Saiyajin)",
 "cat": "ast",
@@ -5855,108 +5927,24 @@
 "VEGETA fases/Vegeta Sayajin Saga"
 ]
 },
-"ast_vegeta_baby_vegeta_ulsw_hd": {
-"nome": "Vegeta / Baby Vegeta Ulsw Hd",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 58,
-"atlas": 3,
-"objs": [
-"Vegeta/Baby Vegeta Ulsw Hd"
-]
-},
 "ast_vegeta_vegeta_base_ulsw": {
-"nome": "Vegeta / Vegeta Base Ulsw",
+"nome": "Vegeta Base (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 24,
 "quadros": 133,
 "atlas": 9,
 "objs": [
 "Vegeta/Vegeta Base Ulsw"
 ]
 },
-"ast_vegeta_vegeta_blue_ulsw_hd": {
-"nome": "Vegeta / Vegeta Blue Ulsw Hd",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 12,
-"quadros": 125,
-"atlas": 7,
-"objs": [
-"Vegeta/Vegeta Blue Ulsw Hd"
-]
-},
-"ast_vegeta_vegeta_royal_blue_ulsw_hd": {
-"nome": "Vegeta / Vegeta Royal Blue Ulsw Hd",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 5,
-"quadros": 137,
-"atlas": 7,
-"objs": [
-"Vegeta/Vegeta Royal Blue Ulsw Hd"
-]
-},
-"ast_vegeta_vegeta_ssj_ulsw": {
-"nome": "Vegeta / Vegeta SSJ Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 6,
-"quadros": 118,
-"atlas": 15,
-"objs": [
-"Vegeta/Vegeta SSJ Ulsw"
-]
-},
-"ast_vegeta_vegeta_ssj2_ulsw": {
-"nome": "Vegeta / Vegeta SSJ2 Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 98,
-"atlas": 15,
-"objs": [
-"Vegeta/Vegeta SSJ2 Ulsw"
-]
-},
-"ast_vegeta_vegeta_ssj4_hd": {
-"nome": "Vegeta / VEGETA SSJ4 HD",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 65,
-"atlas": 4,
-"objs": [
-"Vegeta/VEGETA SSJ4 HD"
-]
-},
-"ast_vegeta_fases_majin_vegeta": {
-"nome": "VEGETA fases / Majin Vegeta",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 59,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Majin Vegeta"
-]
-},
 "ast_vegeta_fases_vegeta_blue": {
-"nome": "VEGETA fases / Vegeta Blue",
+"nome": "Vegeta Blue",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 14,
 "quadros": 107,
 "atlas": 1,
 "objs": [
@@ -5964,75 +5952,39 @@
 ]
 },
 "ast_vegeta_fases_vegeta_blue_full_power": {
-"nome": "VEGETA fases / Vegeta Blue Full Power",
+"nome": "Vegeta Blue (Força Total)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
 "quadros": 99,
 "atlas": 1,
 "objs": [
 "VEGETA fases/Vegeta Blue Full Power"
 ]
 },
-"ast_vegeta_fases_vegeta_buu_saga": {
-"nome": "VEGETA fases / Vegeta Buu Saga",
+"ast_vegeta_vegeta_blue_ulsw_hd": {
+"nome": "Vegeta Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 51,
-"atlas": 1,
+"anims": 20,
+"quadros": 125,
+"atlas": 7,
 "objs": [
-"VEGETA fases/Vegeta Buu Saga"
+"Vegeta/Vegeta Blue Ulsw Hd"
 ]
 },
-"ast_vegeta_fases_vegeta_saga_buu_ssj": {
-"nome": "VEGETA fases / Vegeta Saga Buu SSJ",
+"ast_vegeta_vegeta_royal_blue_ulsw_hd": {
+"nome": "Vegeta Royal Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 53,
-"atlas": 1,
+"anims": 22,
+"quadros": 137,
+"atlas": 7,
 "objs": [
-"VEGETA fases/Vegeta Saga Buu SSJ"
-]
-},
-"ast_vegeta_fases_vegeta_ssj_4": {
-"nome": "VEGETA fases / Vegeta SSJ 4",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 56,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Vegeta SSJ 4"
-]
-},
-"ast_vegeta_fases_vegeta_ssj_god": {
-"nome": "VEGETA fases / Vegeta Ssj God",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 54,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Vegeta Ssj God"
-]
-},
-"ast_vegeta_fases_vegeta_ssj_grade": {
-"nome": "VEGETA fases / Vegeta Ssj Grade",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 68,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Vegeta Ssj Grade"
+"Vegeta/Vegeta Royal Blue Ulsw Hd"
 ]
 },
 "ast_vegeta_vegeta_royal_blue_ulsw_hd_rage": {
@@ -6047,16 +5999,112 @@
 "Vegeta/Vegeta Royal Blue Ulsw Hd/Rage"
 ]
 },
-"ast_vegetto_blue_ulsw": {
-"nome": "Vegetto Blue Ulsw",
+"ast_vegeta_fases_vegeta_ssj_grade": {
+"nome": "Vegeta SSJ (Grau 2)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 13,
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Ssj Grade"
+]
+},
+"ast_vegeta_fases_vegeta_saga_buu_ssj": {
+"nome": "Vegeta SSJ (Saga Majin Boo)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Saga Buu SSJ"
+]
+},
+"ast_vegeta_vegeta_ssj_ulsw": {
+"nome": "Vegeta SSJ (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 23,
+"quadros": 118,
+"atlas": 15,
+"objs": [
+"Vegeta/Vegeta SSJ Ulsw"
+]
+},
+"ast_vegeta_fases_vegeta_ssj_god": {
+"nome": "Vegeta SSJ God",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Ssj God"
+]
+},
+"ast_vegeta_vegeta_ssj2_ulsw": {
+"nome": "Vegeta SSJ2 (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 19,
+"quadros": 98,
+"atlas": 15,
+"objs": [
+"Vegeta/Vegeta SSJ2 Ulsw"
+]
+},
+"ast_vegeta_fases_vegeta_ssj_4": {
+"nome": "Vegeta SSJ4",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 14,
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta SSJ 4"
+]
+},
+"ast_vegeta_vegeta_ssj4_hd": {
+"nome": "Vegeta SSJ4 (HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 6,
+"quadros": 65,
+"atlas": 4,
+"objs": [
+"Vegeta/VEGETA SSJ4 HD"
+]
+},
+"ast_vegetto_blue_ulsw": {
+"nome": "Vegetto Blue (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 21,
 "quadros": 95,
 "atlas": 7,
 "objs": [
 "Vegetto Blue Ulsw"
+]
+},
+"ast_vegito_fases_vegito": {
+"nome": "Vegito",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 13,
+"quadros": 93,
+"atlas": 1,
+"objs": [
+"VEGITO fases/Vegito"
 ]
 },
 "ast_baby_vegito_black_lsw_ulsw": {
@@ -6071,24 +6119,12 @@
 "Baby vegito black (lsw-ulsw)"
 ]
 },
-"ast_vegito_fases_vegito": {
-"nome": "VEGITO fases / Vegito",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 93,
-"atlas": 1,
-"objs": [
-"VEGITO fases/Vegito"
-]
-},
 "ast_vegito_fases_vegito_ssj_blue": {
-"nome": "VEGITO fases / Vegito SSJ Blue",
+"nome": "Vegito Blue",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 14,
 "quadros": 112,
 "atlas": 1,
 "objs": [
@@ -6096,11 +6132,11 @@
 ]
 },
 "ast_vegito_fases_vegito_ssj1": {
-"nome": "VEGITO fases / Vegito Ssj1",
+"nome": "Vegito SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 17,
 "quadros": 109,
 "atlas": 1,
 "objs": [
@@ -6108,59 +6144,23 @@
 ]
 },
 "ast_vegito_fases_vegito_ssj2": {
-"nome": "VEGITO fases / Vegito Ssj2",
+"nome": "Vegito SSJ2",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 16,
 "quadros": 130,
 "atlas": 1,
 "objs": [
 "VEGITO fases/Vegito Ssj2"
 ]
 },
-"ast_xeno_goku_xeno_goku_hd_ulsw": {
-"nome": "Xeno Goku / Xeno goku hd ULSW",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 3,
-"quadros": 141,
-"atlas": 19,
-"objs": [
-"Xeno Goku/Xeno goku hd ULSW"
-]
-},
-"ast_xeno_goku_xeno_goku_ssj4_ulsw_hd": {
-"nome": "Xeno Goku / Xeno Goku ssj4 Ulsw Hd",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 103,
-"atlas": 6,
-"objs": [
-"Xeno Goku/Xeno Goku ssj4 Ulsw Hd"
-]
-},
-"ast_xeno_goku_xeno_goku_super_saiyajin_xeno_goku_super_saiyajin": {
-"nome": "Xeno Goku / Xeno_Goku_Super_Saiyajin / Xeno Goku Super Saiyajin",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 113,
-"atlas": 8,
-"objs": [
-"Xeno Goku/Xeno_Goku_Super_Saiyajin/Xeno Goku Super Saiyajin"
-]
-},
 "ast_zamasu_formas_zamasu": {
-"nome": "ZAMASU formas / Zamasu",
+"nome": "Zamasu",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 19,
 "quadros": 77,
 "atlas": 1,
 "objs": [
@@ -6168,35 +6168,23 @@
 ]
 },
 "ast_zamasu_formas_zamasu_e_black_fusion": {
-"nome": "ZAMASU formas / Zamasu e Black Fusion",
+"nome": "Zamasu Fundido",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 18,
 "quadros": 91,
 "atlas": 1,
 "objs": [
 "ZAMASU formas/Zamasu e Black Fusion"
 ]
 },
-"ast_zamasu_formas_zamasu_e_black_fusion_robotica": {
-"nome": "ZAMASU formas / Zamasu e Black fusion Robotica",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 117,
-"atlas": 1,
-"objs": [
-"ZAMASU formas/Zamasu e Black fusion Robotica"
-]
-},
 "ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando": {
-"nome": "ZAMASU formas / Zamasu e Black Fusão Desmanchando",
+"nome": "Zamasu Fundido (Desmanchando)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 13,
 "quadros": 136,
 "atlas": 1,
 "objs": [
@@ -6213,6 +6201,18 @@
 "atlas": 1,
 "objs": [
 "ZAMASU formas/Zamasu e Black Fusão Desmanchando/Damage"
+]
+},
+"ast_zamasu_formas_zamasu_e_black_fusion_robotica": {
+"nome": "Zamasu Fundido (Robótico)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 19,
+"quadros": 117,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu e Black fusion Robotica"
 ]
 },
 "ast_assets_separados_efeitos_e_golpes_black_small_blast": {
@@ -6324,11 +6324,11 @@
 ]
 },
 "ast_hitto_hitto": {
-"nome": "HITTO / Hitto",
+"nome": "Hit",
 "cat": "ast",
 "tipo": "efeitos",
 "fonte": "ast",
-"anims": 1,
+"anims": 15,
 "quadros": 97,
 "atlas": 1,
 "objs": [
@@ -6336,11 +6336,11 @@
 ]
 },
 "ast_hitto_hitto_2": {
-"nome": "HITTO / Hitto 2",
+"nome": "Hit (2)",
 "cat": "ast",
 "tipo": "efeitos",
 "fonte": "ast",
-"anims": 1,
+"anims": 10,
 "quadros": 86,
 "atlas": 1,
 "objs": [

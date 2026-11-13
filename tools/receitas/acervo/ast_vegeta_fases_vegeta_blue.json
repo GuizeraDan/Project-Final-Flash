@@ -1,0 +1,70 @@
+{
+"nome": "Vegeta Blue",
+"anims": {
+"Aura": {
+"q": "0-1",
+"fps": 10,
+"loop": true
+},
+"Pose": {
+"q": "2,77-80,87,89-92,95-96,99-101,103-106",
+"fps": 4,
+"loop": false
+},
+"Vegeta_Base": {
+"q": "3-4",
+"fps": 4,
+"loop": false
+},
+"Transformacao": {
+"q": "5-11",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "12-14",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "15-69",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "70",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "71-76",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "81-83",
+"fps": 12,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Aura_Roxa": {
+"q": "85-86,88",
+"fps": 10,
+"loop": false
+},
+"Esfera": {
+"q": "93,97",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "94,98,102",
+"fps": 10,
+"loop": false
+}
+}
+}

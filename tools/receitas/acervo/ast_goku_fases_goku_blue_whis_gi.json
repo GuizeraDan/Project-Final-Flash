@@ -1,0 +1,85 @@
+{
+"nome": "Goku Blue (Gi do Whis)",
+"anims": {
+"Parado": {
+"q": "0-6",
+"fps": 4,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "7-8",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "9-14,17-19,43-46,50-54,56",
+"fps": 4,
+"loop": false
+},
+"Golpe": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "16,57",
+"fps": 6,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "20-23",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "24-31,33-38,40",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "32,39",
+"fps": 10,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "41-42",
+"fps": 10,
+"loop": true
+},
+"Aura_Chao": {
+"q": "47",
+"fps": 0,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "48-49",
+"fps": 12,
+"loop": false
+},
+"Dano": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "58-59",
+"fps": 10,
+"loop": true
+},
+"Rajada_Kaioken": {
+"q": "60",
+"fps": 0,
+"loop": false
+},
+"Kaioken_Poses": {
+"q": "61-64,66-68",
+"fps": 4,
+"loop": false
+},
+"Kamehameha": {
+"q": "65",
+"fps": 0,
+"loop": false
+}
+}
+}

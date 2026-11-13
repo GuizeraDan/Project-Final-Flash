@@ -1,0 +1,115 @@
+{
+"nome": "Vegeta SSJ (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0,111",
+"fps": 0,
+"loop": false
+},
+"Vegeta_Base": {
+"q": "1,104,107",
+"fps": 4,
+"loop": false
+},
+"Aura_Branca": {
+"q": "2-4",
+"fps": 10,
+"loop": true
+},
+"Transformacao": {
+"q": "5-8",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "9-16",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "17-18",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "19-21",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "22-63,70-75",
+"fps": 10,
+"loop": false
+},
+"Disparo": {
+"q": "64,83",
+"fps": 8,
+"loop": false
+},
+"Poses": {
+"q": "65-67,77-78,81-82,86-87,92-93,95-96,99-102,105",
+"fps": 4,
+"loop": false
+},
+"Meteoros": {
+"q": "68-69",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "76",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "79-80,112-115",
+"fps": 10,
+"loop": true
+},
+"Esferas": {
+"q": "84-85,90-91",
+"fps": 10,
+"loop": false
+},
+"Aura_Pose": {
+"q": "88-89",
+"fps": 8,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "94",
+"fps": 0,
+"loop": false
+},
+"Investida": {
+"q": "97",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "98",
+"fps": 0,
+"loop": false
+},
+"Branco": {
+"q": "103,106",
+"fps": 4,
+"loop": false
+},
+"Base_Dano": {
+"q": "108-109",
+"fps": 6,
+"loop": false
+},
+"Separador": {
+"q": "110",
+"fps": 0,
+"loop": false
+},
+"Esfera_Eletrica": {
+"q": "116-117",
+"fps": 10,
+"loop": false
+}
+}
+}

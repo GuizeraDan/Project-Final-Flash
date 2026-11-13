@@ -1,0 +1,95 @@
+{
+"nome": "Zamasu",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "4-5,15-20,22-24,26-29",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "6-8,33-37,40,42-44,47-50",
+"fps": 4,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "9,14",
+"fps": 12,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "10-13,65",
+"fps": 12,
+"loop": false
+},
+"Corte": {
+"q": "21,30",
+"fps": 10,
+"loop": false
+},
+"Lamina_Verde": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "31-32",
+"fps": 10,
+"loop": true
+},
+"Raio": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Projetil": {
+"q": "39",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "45-46",
+"fps": 6,
+"loop": false
+},
+"Esfera": {
+"q": "51-52",
+"fps": 8,
+"loop": false
+},
+"Lamina_Ki": {
+"q": "53-64",
+"fps": 10,
+"loop": false
+},
+"Com_Black": {
+"q": "66-69,74-75",
+"fps": 6,
+"loop": false
+},
+"Rajada_Fogo": {
+"q": "70",
+"fps": 0,
+"loop": false
+},
+"Aneis": {
+"q": "71",
+"fps": 0,
+"loop": false
+},
+"Esfera_Grande": {
+"q": "72-73,76",
+"fps": 8,
+"loop": false
+}
+}
+}

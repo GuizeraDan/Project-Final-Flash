@@ -1,0 +1,30 @@
+{
+"nome": "Vegeta SSJ4 (HD)",
+"anims": {
+"Parado": {
+"q": "0,9-12",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "1-2,4-8,13-16,18-35,37,39-63",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "17,36,38",
+"fps": 10,
+"loop": false
+},
+"Retrato": {
+"q": "64",
+"fps": 0,
+"loop": false
+}
+}
+}

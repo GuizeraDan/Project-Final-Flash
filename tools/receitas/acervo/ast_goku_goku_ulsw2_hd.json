@@ -1,0 +1,65 @@
+{
+"nome": "Goku Base (ULSW 2 HD)",
+"anims": {
+"Golpes": {
+"q": "0,2-5,8-9,31-37,39-50,52-55,57-59,62-68,70-74",
+"fps": 10,
+"loop": false
+},
+"Meteoro": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Retrato": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "7,38",
+"fps": 12,
+"loop": false
+},
+"Parado": {
+"q": "10-29",
+"fps": 4,
+"loop": true
+},
+"Caido": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "51,69",
+"fps": 12,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "60,87",
+"fps": 8,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "61",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "75-78,80-86",
+"fps": 4,
+"loop": false
+},
+"Corte": {
+"q": "79",
+"fps": 0,
+"loop": false
+}
+}
+}

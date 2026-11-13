@@ -1,0 +1,90 @@
+{
+"nome": "Zamasu Fundido",
+"anims": {
+"Zamasu": {
+"q": "0-8,10-12",
+"fps": 4,
+"loop": false
+},
+"Black_Rose": {
+"q": "9,13-15",
+"fps": 4,
+"loop": false
+},
+"Brinco_Potara": {
+"q": "16",
+"fps": 0,
+"loop": false
+},
+"Silhueta_Fusao": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "18-29",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "30-36,38-39,41-58",
+"fps": 10,
+"loop": false
+},
+"Lamina_Verde": {
+"q": "37,40",
+"fps": 10,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "59-61",
+"fps": 10,
+"loop": true
+},
+"Raios_Roxos": {
+"q": "62,81",
+"fps": 10,
+"loop": false
+},
+"Halo": {
+"q": "63-65",
+"fps": 8,
+"loop": false
+},
+"Poses": {
+"q": "66,68-72,83,88-90",
+"fps": 4,
+"loop": false
+},
+"Rajada": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Corte_Vermelho": {
+"q": "73,79",
+"fps": 10,
+"loop": false
+},
+"Explosao_Vermelha": {
+"q": "74-78",
+"fps": 10,
+"loop": false
+},
+"Asas_Roxas": {
+"q": "80,82",
+"fps": 8,
+"loop": false
+},
+"Sol": {
+"q": "84-85",
+"fps": 8,
+"loop": false
+},
+"Explosoes": {
+"q": "86-87",
+"fps": 10,
+"loop": false
+}
+}
+}

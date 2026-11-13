@@ -1,0 +1,85 @@
+{
+"nome": "Kid Buu",
+"anims": {
+"Rastro_Teleporte": {
+"q": "0-2,11",
+"fps": 12,
+"loop": false
+},
+"Parado": {
+"q": "3-6",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "7-8",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "9-10",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "12-30",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "31",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "32-34",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "35-38,42-44,50-53,58,65,68,71-73,76-79",
+"fps": 4,
+"loop": false
+},
+"Raio_Antena": {
+"q": "39-41,45-46",
+"fps": 10,
+"loop": false
+},
+"Golpe_Elastico": {
+"q": "47-49",
+"fps": 10,
+"loop": false
+},
+"Fumaca": {
+"q": "54-57",
+"fps": 8,
+"loop": false
+},
+"Bola_Rolando": {
+"q": "59-64",
+"fps": 12,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "66,69",
+"fps": 12,
+"loop": false
+},
+"Esfera": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "70,75",
+"fps": 10,
+"loop": false
+},
+"Explosao": {
+"q": "74",
+"fps": 0,
+"loop": false
+}
+}
+}

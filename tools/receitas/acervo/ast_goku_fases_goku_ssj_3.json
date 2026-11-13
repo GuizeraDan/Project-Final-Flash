@@ -1,0 +1,60 @@
+{
+"nome": "Goku SSJ3",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "4-5",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "6-8",
+"fps": 10,
+"loop": true
+},
+"Golpes": {
+"q": "9-21,23-29",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "22",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "30-31",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "32",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "33-34,39-47,50-53,55",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "35-38",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "48-49",
+"fps": 10,
+"loop": false
+},
+"Punho_Dragao": {
+"q": "54",
+"fps": 0,
+"loop": false
+}
+}
+}

@@ -1,0 +1,70 @@
+{
+"nome": "Turles",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "4-5",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6-7",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "8-11",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "12-24,26-29",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "30-37,39-40,44-49,53-56,58-62,64-65",
+"fps": 4,
+"loop": false
+},
+"Caido": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "41-43",
+"fps": 12,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "50-52",
+"fps": 10,
+"loop": true
+},
+"Raio": {
+"q": "57",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Esfera_Grande": {
+"q": "66",
+"fps": 0,
+"loop": false
+}
+}
+}

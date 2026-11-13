@@ -215,3 +215,14 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Teste novo `tools/testes/acervo.js`. Observação: `estudio_melhorias.js` já falhava em "seletor de efeito mostra os do Bills primeiro" antes desta sessão (conferido no código anterior).
 
 **Falta:** os outros jogos e a pasta Assets. Têm milhares de arquivos; pedi ao usuário um .zip por pasta em `T:\Project Final Flash Sprites` para trazer de uma vez. Unity: animações originais (AnimationClip) não são lidas — cada textura vira "Todos" + grupos por nome; texturas comprimidas (ETC/ASTC) não são decodificadas.
+
+## 13/11/2026 — Acervo completo + animações nomeadas nas pastas de fãs
+**Pedido:** incluir todas as pastas de `T:\Project Final Flash Sprites` no acervo e, nos "Assets (Sprites Soltos)", separar as animações por função (parado, golpes, poderes…), pasta por pasta.
+
+**Feito:**
+- Acervo completo: 11.002 sprites de 11 fontes (Z Legends 3, Twiss, Mini Champion, Super Pixel Warriors, Ultimate Heroes, Super Warriors Z, Drag Warriors, Power Warrior, Legendary Warrior, DLZ, Assets). Leitores novos: Unity (UnityFS LZ4/LZMA, ETC1/ETC2/DXT em `tools/etc.py`), .7z (`tools/sete_zip.py`).
+- As 136 pastas de sprites de fãs (`ast_*`) ganharam animações com nome (Parado, Avanco, Rastro_Dash, Rastro_Teleporte, Golpes/Combo, Corte, Dano, Lancado, Caido, Carregar_Ki, Disparo, Projetil_Ki, Kamehameha, Transformacao, Aura, efeitos próprios de cada personagem, Retrato, Separador…). Receitas em `tools/receitas/acervo/`, aplicadas por `tools/aplicar_receitas_acervo.py`; "Todos" continua lá com todos os quadros. Leitura feita olhando a folha numerada de cada pasta: os nomes são uma interpretação e podem ser corrigidos no Estúdio ou na receita.
+- As pastas "Assets Separados" já vinham com nomes do jogo original (Attack1, Skill2, Explosion…) e ficaram como estão.
+
+**Falta:** nada do pedido. Possíveis ajustes finos de fps/loop/nomes conforme o usuário for usando.
+

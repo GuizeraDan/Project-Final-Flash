@@ -1,0 +1,90 @@
+{
+"nome": "Gotenks",
+"anims": {
+"Goten": {
+"q": "0-10",
+"fps": 6,
+"loop": false
+},
+"Trunks": {
+"q": "11-21",
+"fps": 6,
+"loop": false
+},
+"Silhueta_Fusao": {
+"q": "22,28",
+"fps": 8,
+"loop": false
+},
+"Explosao_Fusao": {
+"q": "23-27",
+"fps": 10,
+"loop": false
+},
+"Parado": {
+"q": "29-35",
+"fps": 4,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "36-37",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "38-39",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "40-47,49-51,53-57,60-61,66-74",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "48,52,59",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "58,77,90-91",
+"fps": 6,
+"loop": false
+},
+"Rajada_Socos": {
+"q": "62-65",
+"fps": 12,
+"loop": false
+},
+"Poses": {
+"q": "75-76,78,82-83,87,92-98",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "79-81",
+"fps": 12,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "84-86",
+"fps": 10,
+"loop": true
+},
+"Investida_Kamikaze": {
+"q": "88-89",
+"fps": 10,
+"loop": true
+},
+"Fantasmas_Kamikaze": {
+"q": "99-106",
+"fps": 8,
+"loop": false
+},
+"Explosao": {
+"q": "107",
+"fps": 0,
+"loop": false
+}
+}
+}

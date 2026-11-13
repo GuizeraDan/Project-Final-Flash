@@ -1,0 +1,80 @@
+{
+"nome": "Majin Buu (Gohan Absorvido)",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "3-17",
+"fps": 10,
+"loop": false
+},
+"Bola_Rolando": {
+"q": "18-22",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "23-28,33-34,42-44,46,49-51,53-55,59-60",
+"fps": 4,
+"loop": false
+},
+"Caido": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "30-32,62-64",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "35-36",
+"fps": 12,
+"loop": false
+},
+"Massa_Rosa": {
+"q": "37-38",
+"fps": 8,
+"loop": false
+},
+"Regeneracao": {
+"q": "39-41",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "45,52,61",
+"fps": 10,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "47",
+"fps": 0,
+"loop": false
+},
+"Eletrico": {
+"q": "48",
+"fps": 0,
+"loop": false
+},
+"Fragmentos": {
+"q": "56-57",
+"fps": 10,
+"loop": false
+},
+"Explosao": {
+"q": "58",
+"fps": 0,
+"loop": false
+},
+"Esfera_Achatando": {
+"q": "65-69",
+"fps": 10,
+"loop": false
+}
+}
+}

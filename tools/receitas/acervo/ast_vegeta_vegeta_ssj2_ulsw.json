@@ -1,0 +1,95 @@
+{
+"nome": "Vegeta SSJ2 (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0,97",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "1-2,5-13",
+"fps": 4,
+"loop": true
+},
+"Silhueta": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Aura_Eletrica": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "14",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "15-16",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "17-57,64-69",
+"fps": 10,
+"loop": false
+},
+"Disparo": {
+"q": "58,77",
+"fps": 8,
+"loop": false
+},
+"Poses": {
+"q": "59-61,71-72,75-76,80-81,83-84,86-88,91",
+"fps": 4,
+"loop": false
+},
+"Meteoros": {
+"q": "62-63",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "70",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "73-74",
+"fps": 10,
+"loop": true
+},
+"Esferas": {
+"q": "78-79",
+"fps": 10,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "82",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Branco": {
+"q": "89,92",
+"fps": 4,
+"loop": false
+},
+"Vegeta_Base": {
+"q": "90,93-95",
+"fps": 4,
+"loop": false
+},
+"Separador": {
+"q": "96",
+"fps": 0,
+"loop": false
+}
+}
+}

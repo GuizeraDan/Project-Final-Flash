@@ -1,0 +1,65 @@
+{
+"nome": "Zamasu Fundido (Desmanchando)",
+"anims": {
+"Parado": {
+"q": "0-8",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "9-12,15-22,30-36,45-74",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "13-14,29,44,118-119,121-124,127-133,135",
+"fps": 4,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "23-26,37-40",
+"fps": 12,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "27-28,41-42",
+"fps": 12,
+"loop": false
+},
+"Retrato": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Lamina_Ki": {
+"q": "75-108",
+"fps": 10,
+"loop": false
+},
+"Esferas": {
+"q": "109-111,114-116",
+"fps": 10,
+"loop": false
+},
+"Aura_Poses": {
+"q": "112-113,117",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "120",
+"fps": 0,
+"loop": false
+},
+"Esfera_Sol": {
+"q": "125-126",
+"fps": 8,
+"loop": false
+},
+"Explosao": {
+"q": "134",
+"fps": 0,
+"loop": false
+}
+}
+}

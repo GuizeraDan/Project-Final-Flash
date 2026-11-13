@@ -1,0 +1,95 @@
+{
+"nome": "Zamasu Fundido (Robótico)",
+"anims": {
+"Interface": {
+"q": "0-1,3,6-7,21-22,26,34-38,57,63-64,70,72,74-75,77,89,91,95-96,100,103-104,106,110-116",
+"fps": 4,
+"loop": false
+},
+"Silhueta": {
+"q": "2",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "4-5,8-18",
+"fps": 4,
+"loop": true
+},
+"Halo": {
+"q": "19-20,85-88",
+"fps": 8,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "23-24,28-29",
+"fps": 12,
+"loop": false
+},
+"Poses": {
+"q": "25,27,30-31,68-69,80-81,97-99,105,109",
+"fps": 4,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "32-33",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "39-56,58-59",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "60-62",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "65-67",
+"fps": 10,
+"loop": true
+},
+"Projetil": {
+"q": "71,73",
+"fps": 12,
+"loop": false
+},
+"Corte_Vermelho": {
+"q": "76,82",
+"fps": 10,
+"loop": false
+},
+"Explosao_Vermelha": {
+"q": "78-79",
+"fps": 10,
+"loop": false
+},
+"Raios": {
+"q": "83,90",
+"fps": 10,
+"loop": false
+},
+"Asas_Roxas": {
+"q": "84,92-93",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "94",
+"fps": 0,
+"loop": false
+},
+"Sol": {
+"q": "101-102",
+"fps": 8,
+"loop": false
+},
+"Pose_Explosao": {
+"q": "107-108",
+"fps": 8,
+"loop": false
+}
+}
+}

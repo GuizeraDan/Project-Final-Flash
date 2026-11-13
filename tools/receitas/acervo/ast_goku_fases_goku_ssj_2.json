@@ -1,0 +1,60 @@
+{
+"nome": "Goku SSJ2",
+"anims": {
+"Carregar_Ki": {
+"q": "0-2",
+"fps": 10,
+"loop": true
+},
+"Parado": {
+"q": "3-6",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "7-9",
+"fps": 8,
+"loop": false
+},
+"Golpes": {
+"q": "10-22,24-29",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "30-33",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "35,44",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "36-37,41-43,45-49,51-52",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "38-40",
+"fps": 12,
+"loop": false
+},
+"Esfera": {
+"q": "50",
+"fps": 0,
+"loop": false
+}
+}
+}

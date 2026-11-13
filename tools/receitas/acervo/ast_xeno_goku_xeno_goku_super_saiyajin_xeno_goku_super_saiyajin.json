@@ -1,0 +1,100 @@
+{
+"nome": "Goku Xeno SSJ",
+"anims": {
+"Transformacao": {
+"q": "0-3",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "4-6,8-11",
+"fps": 4,
+"loop": true
+},
+"Separador": {
+"q": "7",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "12-13,76,100",
+"fps": 12,
+"loop": false
+},
+"Avanco": {
+"q": "14-16",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "17-18,112",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "19-28,31-59,77-84,91-92,102-103",
+"fps": 10,
+"loop": false
+},
+"Retrato": {
+"q": "29-30",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "60-61",
+"fps": 6,
+"loop": false
+},
+"Poses": {
+"q": "62,66,68-73,75,87-89,95-96,98,106-108,111",
+"fps": 4,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "63-64,101",
+"fps": 10,
+"loop": true
+},
+"Esfera_Dupla": {
+"q": "65",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "74,85,94,97",
+"fps": 10,
+"loop": false
+},
+"Aura_Eletrica": {
+"q": "86,99",
+"fps": 10,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "90",
+"fps": 0,
+"loop": false
+},
+"Explosao_Luz": {
+"q": "93",
+"fps": 0,
+"loop": false
+},
+"Goku_Base": {
+"q": "104,109",
+"fps": 4,
+"loop": false
+},
+"Ultra_Instinto": {
+"q": "105,110",
+"fps": 4,
+"loop": false
+}
+}
+}

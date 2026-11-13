@@ -1,0 +1,70 @@
+{
+"nome": "Vegeta SSJ4",
+"anims": {
+"Parado": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "5-6",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "7-9",
+"fps": 10,
+"loop": true
+},
+"Golpes": {
+"q": "10-12,14-19,21-22,24-29",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "13,20,23",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "30-32,35-38,40-42,45-46,50-52",
+"fps": 4,
+"loop": false
+},
+"Caido": {
+"q": "33",
+"fps": 0,
+"loop": false
+},
+"Esfera_Verde": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Raio_Verde": {
+"q": "39",
+"fps": 0,
+"loop": false
+},
+"Aura_Roxa": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "44",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "47-49",
+"fps": 10,
+"loop": false
+},
+"Meteoros": {
+"q": "53-55",
+"fps": 10,
+"loop": false
+}
+}
+}

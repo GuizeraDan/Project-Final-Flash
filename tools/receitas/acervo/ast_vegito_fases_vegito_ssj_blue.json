@@ -1,0 +1,70 @@
+{
+"nome": "Vegito Blue",
+"anims": {
+"Goku": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Vegeta": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Danca_Fusao": {
+"q": "2-3",
+"fps": 6,
+"loop": false
+},
+"Vegito_Base": {
+"q": "4-8",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "9-22",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "23-24",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "26,77-78,84",
+"fps": 6,
+"loop": false
+},
+"Poses": {
+"q": "25,27-28,79-83,88-93,98-102,105-111",
+"fps": 4,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "30-76",
+"fps": 10,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "85-87",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "94-96,103",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "97,104",
+"fps": 10,
+"loop": false
+}
+}
+}

@@ -1,0 +1,55 @@
+{
+"nome": "Goku Xeno SSJ4 (ULSW HD)",
+"anims": {
+"Retrato": {
+"q": "0-1",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "2-5",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "6-13",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "14-15",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "16-17",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "18-84",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "86-93,100-102",
+"fps": 4,
+"loop": false
+},
+"Silhueta": {
+"q": "94",
+"fps": 0,
+"loop": false
+},
+"Forma_Branca": {
+"q": "95-99",
+"fps": 6,
+"loop": false
+}
+}
+}

@@ -1,0 +1,80 @@
+{
+"nome": "Janemba",
+"anims": {
+"Parado": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "7",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "8-25,27-29",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "26",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "30-32",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "33-35,37-38,49-54,56,63-64",
+"fps": 4,
+"loop": false
+},
+"Raio": {
+"q": "36",
+"fps": 0,
+"loop": false
+},
+"Portal": {
+"q": "39-41",
+"fps": 8,
+"loop": false
+},
+"Portal_Disparo": {
+"q": "42-48",
+"fps": 10,
+"loop": false
+},
+"Rajada_Azul": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Espada": {
+"q": "57-61",
+"fps": 10,
+"loop": false
+},
+"Rastro_Roxo": {
+"q": "62",
+"fps": 0,
+"loop": false
+},
+"Desintegrar": {
+"q": "65-71",
+"fps": 10,
+"loop": false
+}
+}
+}

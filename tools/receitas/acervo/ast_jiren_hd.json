@@ -1,0 +1,95 @@
+{
+"nome": "Jiren (HD)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "1-2,28-31",
+"fps": 12,
+"loop": false
+},
+"Parado": {
+"q": "3-17",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "18-19,22-25,32-41,43-44,46-47,49-50,52-53,55-57,59-60,62-63,65-79,90,92-94,104-106",
+"fps": 10,
+"loop": false
+},
+"Meditacao": {
+"q": "20-21",
+"fps": 6,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "26-27,115,119",
+"fps": 12,
+"loop": false
+},
+"Corte": {
+"q": "42,45,48,51,54,58,61",
+"fps": 10,
+"loop": false
+},
+"Aura_Chao": {
+"q": "64",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "80",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "81-84,140,142-143",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "85,87,97-103,107-110,114,116,120-123,128,130,139",
+"fps": 4,
+"loop": false
+},
+"Disparo": {
+"q": "86,117",
+"fps": 8,
+"loop": false
+},
+"Rajada_Fogo": {
+"q": "88-89,96,136-138",
+"fps": 10,
+"loop": false
+},
+"Explosao": {
+"q": "91,118,145-146",
+"fps": 10,
+"loop": false
+},
+"Esfera_Fogo": {
+"q": "95,124-127,129,141,144",
+"fps": 8,
+"loop": false
+},
+"Lanca_Ki": {
+"q": "111-113",
+"fps": 10,
+"loop": false
+},
+"Aneis": {
+"q": "131-133",
+"fps": 10,
+"loop": false
+},
+"Arcos": {
+"q": "134-135",
+"fps": 10,
+"loop": false
+}
+}
+}

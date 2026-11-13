@@ -1,0 +1,85 @@
+{
+"nome": "Goku SSJ3 (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Silhueta": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "2-4,6-7",
+"fps": 8,
+"loop": false
+},
+"Pose": {
+"q": "5,24,76,78,80,82-83,86-90,92-93",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "8-14",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "15-19",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "20-21",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "22-23,26-65,67,69-74",
+"fps": 10,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "66,68",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "75",
+"fps": 0,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "79,81",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "84-85",
+"fps": 10,
+"loop": true
+},
+"Punho_Dragao": {
+"q": "91",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "94",
+"fps": 0,
+"loop": false
+}
+}
+}

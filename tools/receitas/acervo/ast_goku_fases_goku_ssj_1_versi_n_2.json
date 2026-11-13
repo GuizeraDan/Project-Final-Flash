@@ -1,0 +1,110 @@
+{
+"nome": "Goku SSJ (Versão 2)",
+"anims": {
+"Aura": {
+"q": "0-1,73-75",
+"fps": 10,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "2,27-30",
+"fps": 12,
+"loop": false
+},
+"Transformacao": {
+"q": "3,10-11",
+"fps": 8,
+"loop": false
+},
+"Goku_Base": {
+"q": "4-9,108-111",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "12-21",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "22",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "23,25-26,59-60,62-64,71-72,78,86-88,91-94,96-97,99-101,103-105",
+"fps": 4,
+"loop": false
+},
+"Golpes": {
+"q": "24,31-34,37-51,57",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "35-36",
+"fps": 12,
+"loop": true
+},
+"Dano": {
+"q": "52-56,65",
+"fps": 8,
+"loop": false
+},
+"Corte": {
+"q": "58,61",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "66-68",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "69-70",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "76-77",
+"fps": 12,
+"loop": false
+},
+"Investida_Aura": {
+"q": "79-84",
+"fps": 10,
+"loop": false
+},
+"Kamehameha": {
+"q": "85,90",
+"fps": 10,
+"loop": false
+},
+"Brilho": {
+"q": "89",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "95",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "98",
+"fps": 0,
+"loop": false
+},
+"Aura_Branca": {
+"q": "102",
+"fps": 0,
+"loop": false
+},
+"Silhueta": {
+"q": "106-107",
+"fps": 8,
+"loop": false
+}
+}
+}

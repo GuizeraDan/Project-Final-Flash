@@ -1,0 +1,55 @@
+{
+"nome": "Vegeta (Saga Majin Boo)",
+"anims": {
+"Parado": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "6-8",
+"fps": 10,
+"loop": true
+},
+"Golpes": {
+"q": "9-29",
+"fps": 10,
+"loop": false
+},
+"Poses": {
+"q": "30-31,33-35,37-40,43-46",
+"fps": 4,
+"loop": false
+},
+"Caido": {
+"q": "32",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "36",
+"fps": 0,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "41-42",
+"fps": 12,
+"loop": false
+},
+"Esfera_Pequena": {
+"q": "47",
+"fps": 0,
+"loop": false
+},
+"Esfera_Azul": {
+"q": "48-50",
+"fps": 10,
+"loop": false
+}
+}
+}

@@ -1,0 +1,140 @@
+{
+"nome": "Goku SSJ (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0,139",
+"fps": 0,
+"loop": false
+},
+"Goku_Base": {
+"q": "1,130,136",
+"fps": 4,
+"loop": false
+},
+"Aura_Branca": {
+"q": "2-4",
+"fps": 10,
+"loop": true
+},
+"Transformacao": {
+"q": "5,7-8",
+"fps": 8,
+"loop": false
+},
+"Ultra_Instinto": {
+"q": "6,129,135",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "9,11-13",
+"fps": 4,
+"loop": true
+},
+"Poses": {
+"q": "15-16,25,37,102,104,106,109,112-114,118-120,123-128,132-134,137-138,140",
+"fps": 4,
+"loop": false
+},
+"Emote_Exclamacao": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Emote_Interrogacao": {
+"q": "18",
+"fps": 0,
+"loop": false
+},
+"Emote_Susto": {
+"q": "19",
+"fps": 0,
+"loop": false
+},
+"Emote_Bravo": {
+"q": "20",
+"fps": 0,
+"loop": false
+},
+"Emote_Raiva": {
+"q": "21",
+"fps": 0,
+"loop": false
+},
+"Emote_Gota": {
+"q": "22",
+"fps": 0,
+"loop": false
+},
+"Emote_Halo": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "27-30",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "31-32,122",
+"fps": 12,
+"loop": false
+},
+"Pulo": {
+"q": "34-35",
+"fps": 8,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "38-39,115-117",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "41-47,49,51-62,64-73,75-80,83-86,91",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "88-90",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "94-99",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "100",
+"fps": 0,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "103",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "105,107",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "110-111",
+"fps": 10,
+"loop": true
+},
+"Silhueta": {
+"q": "121",
+"fps": 0,
+"loop": false
+},
+"Separador": {
+"q": "10,14,24,26,33,36,40,48,50,63,74,81,82,87,92,93,101,108,131",
+"fps": 4,
+"loop": false
+}
+}
+}

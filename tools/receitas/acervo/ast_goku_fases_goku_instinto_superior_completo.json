@@ -1,0 +1,70 @@
+{
+"nome": "Goku Instinto Superior Completo",
+"anims": {
+"Goku_Base": {
+"q": "0-2,52-58",
+"fps": 4,
+"loop": false
+},
+"Transformacao": {
+"q": "3-9",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "10-13",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "14",
+"fps": 0,
+"loop": false
+},
+"Poeira": {
+"q": "15-16",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "17-18",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "19-25,34-43,45-50",
+"fps": 10,
+"loop": false
+},
+"Aura_Pose": {
+"q": "26,30",
+"fps": 4,
+"loop": false
+},
+"Rajada_Socos": {
+"q": "27-29",
+"fps": 12,
+"loop": false
+},
+"Parado_2": {
+"q": "31-32",
+"fps": 4,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "33",
+"fps": 0,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "44",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "51",
+"fps": 0,
+"loop": false
+}
+}
+}

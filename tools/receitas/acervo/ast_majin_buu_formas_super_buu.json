@@ -1,0 +1,65 @@
+{
+"nome": "Super Buu",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Caido": {
+"q": "3-4,33",
+"fps": 6,
+"loop": false
+},
+"Golpes": {
+"q": "5-19",
+"fps": 10,
+"loop": false
+},
+"Bola_Rolando": {
+"q": "20-25",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "26-32,39,46-47,49-50,52-53,56-57,59-61",
+"fps": 4,
+"loop": false
+},
+"Massa_Rosa": {
+"q": "34-35",
+"fps": 8,
+"loop": false
+},
+"Regeneracao": {
+"q": "36-38",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "40-45",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "48",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "51,54,58",
+"fps": 10,
+"loop": false
+},
+"Explosao": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Fragmentos": {
+"q": "62",
+"fps": 0,
+"loop": false
+}
+}
+}

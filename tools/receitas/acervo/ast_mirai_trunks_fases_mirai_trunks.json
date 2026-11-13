@@ -1,0 +1,90 @@
+{
+"nome": "Trunks do Futuro",
+"anims": {
+"Parado": {
+"q": "0-5",
+"fps": 4,
+"loop": true
+},
+"Golpe_Espada": {
+"q": "6-9,23,51,53-75",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "10-11,35",
+"fps": 12,
+"loop": false
+},
+"Aura": {
+"q": "12-13",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "14-19,25-29,46-47,49-50,77-80,83-85,87-91,93,103-105",
+"fps": 4,
+"loop": false
+},
+"Avanco": {
+"q": "20-22",
+"fps": 8,
+"loop": false
+},
+"Aura_Chao": {
+"q": "24",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "36,48,52",
+"fps": 6,
+"loop": false
+},
+"Golpes": {
+"q": "30-34,37-45",
+"fps": 10,
+"loop": false
+},
+"Rajada": {
+"q": "76,81,94",
+"fps": 10,
+"loop": false
+},
+"Masenko": {
+"q": "82",
+"fps": 0,
+"loop": false
+},
+"Esfera_Roxa": {
+"q": "86",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "92",
+"fps": 0,
+"loop": false
+},
+"Raio_Verde": {
+"q": "95-96",
+"fps": 10,
+"loop": false
+},
+"Mafuba_Texto": {
+"q": "97",
+"fps": 0,
+"loop": false
+},
+"Mafuba": {
+"q": "98,101-102",
+"fps": 10,
+"loop": false
+},
+"Com_Mai": {
+"q": "99-100,106-107",
+"fps": 6,
+"loop": false
+}
+}
+}

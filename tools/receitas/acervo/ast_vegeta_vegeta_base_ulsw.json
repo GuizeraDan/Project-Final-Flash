@@ -1,0 +1,120 @@
+{
+ "nome": "Vegeta Base (ULSW)",
+ "anims": {
+  "Retrato": {
+   "q": "0,132",
+   "fps": 0,
+   "loop": false
+  },
+  "Rastro_Teleporte": {
+   "q": "1",
+   "fps": 0,
+   "loop": false
+  },
+  "Parado": {
+   "q": "2-7",
+   "fps": 4,
+   "loop": true
+  },
+  "Poses": {
+   "q": "9-10,12,66-68,71-74,80-83,87-89,99,103,105-107,109-110,112-113,121-124",
+   "fps": 4,
+   "loop": false
+  },
+  "Avanco": {
+   "q": "13-15",
+   "fps": 8,
+   "loop": false
+  },
+  "Rastro_Dash": {
+   "q": "16-17",
+   "fps": 12,
+   "loop": true
+  },
+  "Golpes": {
+   "q": "19-28,30-33,35-64,75-77",
+   "fps": 10,
+   "loop": false
+  },
+  "Meteoros": {
+   "q": "69-70",
+   "fps": 10,
+   "loop": false
+  },
+  "Caido": {
+   "q": "78",
+   "fps": 0,
+   "loop": false
+  },
+  "Aura_Roxa": {
+   "q": "84-85",
+   "fps": 10,
+   "loop": true
+  },
+  "Raio_Roxo": {
+   "q": "86",
+   "fps": 0,
+   "loop": false
+  },
+  "Aura_Azul": {
+   "q": "90-91",
+   "fps": 10,
+   "loop": true
+  },
+  "Esfera_Azul": {
+   "q": "92-93",
+   "fps": 10,
+   "loop": false
+  },
+  "Sem_Camisa": {
+   "q": "95-97,115-119",
+   "fps": 4,
+   "loop": false
+  },
+  "Aura_Branca": {
+   "q": "100-102",
+   "fps": 10,
+   "loop": true
+  },
+  "Separador": {
+   "q": "8,11,18,29,34,65,79,94,98,104,108,111,114,120",
+   "fps": 4,
+   "loop": false
+  },
+  "Emote_Exclamacao": {
+   "q": "125",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Interrogacao": {
+   "q": "126",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Susto": {
+   "q": "127",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Bravo": {
+   "q": "128",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Raiva": {
+   "q": "129",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Gota": {
+   "q": "130",
+   "fps": 0,
+   "loop": false
+  },
+  "Emote_Halo": {
+   "q": "131",
+   "fps": 0,
+   "loop": false
+  }
+ }
+}

@@ -1,0 +1,90 @@
+{
+"nome": "Goku (Versão 2)",
+"anims": {
+"Caido": {
+"q": "0,26,69",
+"fps": 6,
+"loop": false
+},
+"Parado": {
+"q": "1-14",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "15-16,23-25,42-68",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "17-18",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "19-22,29,35-37,82,86-88,91-93,96-97,99,101-107,114-116,118-119,129-132",
+"fps": 4,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "27-28,30-34",
+"fps": 12,
+"loop": false
+},
+"Nuvem_Voadora": {
+"q": "38-41",
+"fps": 8,
+"loop": true
+},
+"Silhueta": {
+"q": "70,121",
+"fps": 0,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "71",
+"fps": 0,
+"loop": false
+},
+"Kaioken": {
+"q": "72-81",
+"fps": 10,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "83-85",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "89-90,94-95",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "98,100,120",
+"fps": 10,
+"loop": false
+},
+"Genki_Dama": {
+"q": "108,112-113",
+"fps": 8,
+"loop": false
+},
+"Ultra_Instinto": {
+"q": "109",
+"fps": 0,
+"loop": false
+},
+"SSJ": {
+"q": "110-111,122-128",
+"fps": 4,
+"loop": false
+},
+"Corte": {
+"q": "117",
+"fps": 0,
+"loop": false
+}
+}
+}

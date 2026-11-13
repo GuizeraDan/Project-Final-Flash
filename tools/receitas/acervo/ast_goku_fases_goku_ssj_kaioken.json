@@ -1,0 +1,65 @@
+{
+"nome": "Goku SSJ Kaioken",
+"anims": {
+"Parado": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "5-6",
+"fps": 8,
+"loop": false
+},
+"Golpes": {
+"q": "7-14,16-41",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "42",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "43-46",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "47-52,60-65,67-70,72-74",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "53-56",
+"fps": 12,
+"loop": false
+},
+"Esfera_Kaioken": {
+"q": "57-59",
+"fps": 10,
+"loop": false
+},
+"Kamehameha": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "71",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "75",
+"fps": 0,
+"loop": false
+}
+}
+}

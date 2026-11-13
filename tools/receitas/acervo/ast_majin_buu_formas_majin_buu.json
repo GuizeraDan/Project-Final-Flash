@@ -1,0 +1,80 @@
+{
+"nome": "Majin Buu (Gordo)",
+"anims": {
+"Parado": {
+"q": "0-9",
+"fps": 4,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "10",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "11",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "12-32",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "33",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "34-37,42-44,46-47,49-50,52,54-58,66,69-71",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "39-41",
+"fps": 10,
+"loop": true
+},
+"Rajada": {
+"q": "45,48",
+"fps": 10,
+"loop": false
+},
+"Eletrico": {
+"q": "51,68",
+"fps": 10,
+"loop": false
+},
+"Raio_Amarelo": {
+"q": "53",
+"fps": 0,
+"loop": false
+},
+"Fumaca_Rosa": {
+"q": "59-62",
+"fps": 8,
+"loop": false
+},
+"Esfera_Rosa": {
+"q": "63-65",
+"fps": 8,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Esfera_Achatando": {
+"q": "72-74",
+"fps": 10,
+"loop": false
+}
+}
+}

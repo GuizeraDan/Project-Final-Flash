@@ -1,0 +1,105 @@
+{
+"nome": "Goten (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0,88",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "1-12",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "13-14",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "15-16",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "17-30,34-40",
+"fps": 10,
+"loop": false
+},
+"Chute_Rastro": {
+"q": "31-33",
+"fps": 10,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Pose": {
+"q": "42,45,48,55-58,86",
+"fps": 4,
+"loop": false
+},
+"Disparo": {
+"q": "43,60-62",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "44",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "46-47,49-50",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "51",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "52-54,65-67",
+"fps": 10,
+"loop": true
+},
+"Kamehameha_Carga": {
+"q": "59,83",
+"fps": 8,
+"loop": false
+},
+"Kamehameha": {
+"q": "63,77,84,87",
+"fps": 10,
+"loop": false
+},
+"Retrato_SSJ": {
+"q": "64",
+"fps": 0,
+"loop": false
+},
+"Aura_SSJ": {
+"q": "68,70",
+"fps": 10,
+"loop": false
+},
+"SSJ": {
+"q": "69,71-76",
+"fps": 4,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "78,85",
+"fps": 12,
+"loop": false
+},
+"Com_Trunks": {
+"q": "79-82",
+"fps": 6,
+"loop": false
+}
+}
+}

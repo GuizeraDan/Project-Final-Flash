@@ -2999,7 +2999,7 @@
 }
 },
 "ast_goku_fases_goku_versi_n2": {
-"nome": "GOKU fases / Goku (versión2)",
+"nome": "Goku (Versão 2)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 133,
@@ -3008,11 +3008,24 @@
 "GOKU fases/Goku (versión2)"
 ],
 "anims": {
-"Todos": 133,
-"Cabeça pra Baixo": 1,
-"Goku confuso": 1,
-"Goku-2": 130,
-"Goku-Fraco": 1
+"Caido": 3,
+"Parado": 14,
+"Golpes": 32,
+"Rastro_Dash": 2,
+"Poses": 34,
+"Rastro_Teleporte": 7,
+"Nuvem_Voadora": 4,
+"Silhueta": 2,
+"Aura_Kaioken": 1,
+"Kaioken": 10,
+"Carregar_Ki": 3,
+"Projetil_Ki": 4,
+"Kamehameha": 3,
+"Genki_Dama": 3,
+"Ultra_Instinto": 1,
+"SSJ": 9,
+"Corte": 1,
+"Todos": 133
 }
 },
 "ast_goku_fases_goku_blue": {
@@ -3102,7 +3115,7 @@
 }
 },
 "ast_goku_fases_goku_blue_whis_gi": {
-"nome": "GOKU fases / Goku Blue Whis Gi",
+"nome": "Goku Blue (Gi do Whis)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 69,
@@ -3111,11 +3124,27 @@
 "GOKU fases/Goku Blue Whis Gi"
 ],
 "anims": {
+"Parado": 7,
+"Rastro_Dash": 2,
+"Poses": 19,
+"Golpe": 1,
+"Caido": 2,
+"Rastro_Teleporte": 4,
+"Golpes": 15,
+"Corte": 2,
+"Carregar_Ki": 2,
+"Aura_Chao": 1,
+"Projetil_Ki": 2,
+"Dano": 1,
+"Aura_Kaioken": 2,
+"Rajada_Kaioken": 1,
+"Kaioken_Poses": 7,
+"Kamehameha": 1,
 "Todos": 69
 }
 },
 "ast_goku_fases_goku_god": {
-"nome": "GOKU fases / Goku God",
+"nome": "Goku SSJ God",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 62,
@@ -3124,11 +3153,22 @@
 "GOKU fases/Goku God"
 ],
 "anims": {
+"Parado": 8,
+"Rastro_Dash": 2,
+"Poses": 20,
+"Rastro_Teleporte": 4,
+"Golpes": 16,
+"Corte": 2,
+"Carregar_Ki": 2,
+"Projetil_Ki": 4,
+"Dano": 2,
+"Caido": 1,
+"Kamehameha": 1,
 "Todos": 62
 }
 },
 "ast_goku_fases_goku_instinto_superior": {
-"nome": "GOKU fases / Goku Instinto Superior",
+"nome": "Goku Instinto Superior",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 114,
@@ -3137,11 +3177,30 @@
 "GOKU fases/Goku Instinto Superior"
 ],
 "anims": {
+"Goku_Base": 8,
+"Transformacao": 4,
+"Pose": 21,
+"Aura": 4,
+"Parado": 6,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 2,
+"Combo": 49,
+"Caido": 1,
+"Esfera_Dupla": 1,
+"Disparo": 2,
+"Aura_Branca": 1,
+"Pilar_Luz": 2,
+"Rastro_Giro": 1,
+"Rajada_Socos": 3,
+"Kamehameha_Carga": 2,
+"Projetil_Grande": 2,
+"Kamehameha": 1,
 "Todos": 114
 }
 },
 "ast_goku_fases_goku_instinto_superior_completo": {
-"nome": "GOKU fases / Goku Instinto Superior Completo",
+"nome": "Goku Instinto Superior Completo",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 59,
@@ -3150,11 +3209,24 @@
 "GOKU fases/Goku Instinto Superior Completo"
 ],
 "anims": {
+"Goku_Base": 10,
+"Transformacao": 7,
+"Parado": 4,
+"Avanco": 1,
+"Poeira": 2,
+"Rastro_Dash": 2,
+"Golpes": 23,
+"Aura_Pose": 2,
+"Rajada_Socos": 3,
+"Parado_2": 2,
+"Rastro_Teleporte": 1,
+"Kamehameha_Carga": 1,
+"Kamehameha": 1,
 "Todos": 59
 }
 },
 "ast_goku_fases_goku_ssj_1": {
-"nome": "GOKU fases / Goku SSJ 1",
+"nome": "Goku SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 55,
@@ -3163,11 +3235,23 @@
 "GOKU fases/Goku SSJ 1"
 ],
 "anims": {
+"Parado": 4,
+"Avanco": 2,
+"Carregar_Ki": 3,
+"Golpes": 20,
+"Corte": 1,
+"Poses": 14,
+"Caido": 1,
+"Projetil_Ki": 4,
+"Explosao_Azul": 1,
+"Raio": 2,
+"Esfera": 1,
+"Kamehameha": 2,
 "Todos": 55
 }
 },
 "ast_goku_fases_goku_ssj_1_versi_n_2": {
-"nome": "GOKU fases / Goku SSJ 1(versión 2)",
+"nome": "Goku SSJ (Versão 2)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 112,
@@ -3176,11 +3260,32 @@
 "GOKU fases/Goku SSJ 1(versión 2)"
 ],
 "anims": {
+"Aura": 5,
+"Rastro_Teleporte": 5,
+"Transformacao": 3,
+"Goku_Base": 10,
+"Parado": 10,
+"Avanco": 1,
+"Poses": 26,
+"Golpes": 21,
+"Rastro_Dash": 2,
+"Dano": 6,
+"Corte": 2,
+"Caido": 3,
+"Carregar_Ki": 2,
+"Projetil_Ki": 2,
+"Investida_Aura": 6,
+"Kamehameha": 2,
+"Brilho": 1,
+"Esfera": 1,
+"Rajada": 1,
+"Aura_Branca": 1,
+"Silhueta": 2,
 "Todos": 112
 }
 },
 "ast_goku_fases_goku_ssj_2": {
-"nome": "GOKU fases / Goku SSJ 2",
+"nome": "Goku SSJ2",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 53,
@@ -3189,11 +3294,22 @@
 "GOKU fases/Goku SSJ 2"
 ],
 "anims": {
+"Carregar_Ki": 3,
+"Parado": 4,
+"Avanco": 3,
+"Golpes": 19,
+"Corte": 1,
+"Dano": 4,
+"Caido": 1,
+"Kamehameha": 2,
+"Poses": 12,
+"Projetil_Ki": 3,
+"Esfera": 1,
 "Todos": 53
 }
 },
 "ast_goku_fases_goku_ssj_3": {
-"nome": "GOKU fases / Goku SSJ 3",
+"nome": "Goku SSJ3",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 56,
@@ -3202,11 +3318,22 @@
 "GOKU fases/Goku SSJ 3"
 ],
 "anims": {
+"Parado": 4,
+"Avanco": 2,
+"Carregar_Ki": 3,
+"Golpes": 20,
+"Corte": 1,
+"Dano": 2,
+"Caido": 1,
+"Poses": 16,
+"Projetil_Ki": 4,
+"Kamehameha": 2,
+"Punho_Dragao": 1,
 "Todos": 56
 }
 },
 "ast_goku_fases_goku_ssj_3_mais_sprites": {
-"nome": "GOKU fases / Goku SSJ 3 Mais Sprites",
+"nome": "Goku SSJ3 (Extra)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 74,
@@ -3215,11 +3342,22 @@
 "GOKU fases/Goku SSJ 3 Mais Sprites"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 2,
+"Golpes": 35,
+"Corte": 1,
+"Caido": 1,
+"Carregar_Ki": 3,
+"Poses": 17,
+"Projetil_Ki": 4,
+"Kamehameha": 3,
+"Punho_Dragao": 1,
+"Pulo": 2,
 "Todos": 74
 }
 },
 "ast_goku_fases_goku_ssj_4": {
-"nome": "GOKU fases / Goku SSJ 4",
+"nome": "Goku SSJ4",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 63,
@@ -3228,11 +3366,24 @@
 "GOKU fases/Goku SSJ 4"
 ],
 "anims": {
+"Parado": 4,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 4,
+"Golpes": 16,
+"Corte": 1,
+"Carregar_Ki": 3,
+"Poses": 20,
+"Projetil_Ki": 3,
+"Dano": 4,
+"Caido": 1,
+"Kamehameha": 2,
+"Punho_Dragao": 1,
 "Todos": 63
 }
 },
 "ast_goku_fases_goku_ssj_kaioken": {
-"nome": "GOKU fases / Goku SSJ Kaioken",
+"nome": "Goku SSJ Kaioken",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 76,
@@ -3241,6 +3392,18 @@
 "GOKU fases/Goku SSJ Kaioken"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 2,
+"Golpes": 34,
+"Corte": 1,
+"Caido": 1,
+"Carregar_Ki": 4,
+"Poses": 19,
+"Projetil_Ki": 4,
+"Esfera_Kaioken": 3,
+"Kamehameha": 1,
+"Rastro_Teleporte": 1,
+"Rastro_Dash": 1,
 "Todos": 76
 }
 },
@@ -3279,7 +3442,7 @@
 }
 },
 "ast_goku_fases_goku_ssj_falso": {
-"nome": "GOKU fases / Goku Ssj Falso",
+"nome": "Goku Falso SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 106,
@@ -3288,11 +3451,26 @@
 "GOKU fases/Goku Ssj Falso"
 ],
 "anims": {
+"Goku_Base": 2,
+"Aura_Branca": 3,
+"Transformacao": 4,
+"Parado": 7,
+"Avanco": 3,
+"Rastro_Dash": 3,
+"Pulo": 2,
+"Poses": 24,
+"Rastro_Teleporte": 5,
+"Golpes": 41,
+"Corte": 3,
+"Escudo": 1,
+"Dano": 4,
+"Caido": 3,
+"Ultra_Instinto": 1,
 "Todos": 106
 }
 },
 "ast_goku_fases_goku_whis_gi": {
-"nome": "GOKU fases / Goku Whis Gi",
+"nome": "Goku (Gi do Whis)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 59,
@@ -3301,6 +3479,15 @@
 "GOKU fases/Goku Whis Gi"
 ],
 "anims": {
+"Rastro_Teleporte": 3,
+"Parado": 2,
+"Golpes": 34,
+"Caido": 2,
+"Corte": 2,
+"Poses": 9,
+"Carregar_Ki": 3,
+"Projetil_Ki": 2,
+"Kamehameha": 2,
 "Todos": 59
 }
 },
@@ -3756,7 +3943,7 @@
 }
 },
 "ast_goku_goku_blue_ulsw_hd": {
-"nome": "Goku / Goku Blue Ulsw Hd",
+"nome": "Goku Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 120,
@@ -3765,10 +3952,27 @@
 "Goku/Goku Blue Ulsw Hd"
 ],
 "anims": {
-"Todos": 120,
-"no aura": 2,
-"received": 116,
-"Transformação (ep 61)": 2
+"Aura_Blue": 5,
+"Parado": 9,
+"Ultra_Instinto": 2,
+"Goku_Base": 9,
+"Golpes": 53,
+"Poses_Grandes": 2,
+"Corte": 5,
+"Caido": 1,
+"Poses": 14,
+"Esfera_Dupla": 1,
+"Disparo": 1,
+"Carregar_Ki": 2,
+"Kamehameha_Carga": 1,
+"Retrato": 2,
+"Silhueta": 1,
+"Aura_Kaioken": 1,
+"Transformacao": 4,
+"Avanco": 2,
+"Rastro_Dash": 3,
+"Rastro_Teleporte": 2,
+"Todos": 120
 }
 },
 "ast_goku_goku_blue_ulsw_hd_aerial_kamehameha": {
@@ -3786,7 +3990,7 @@
 }
 },
 "ast_goku_goku_ssj_ulsw": {
-"nome": "Goku / Goku SSJ Ulsw",
+"nome": "Goku SSJ (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 141,
@@ -3795,13 +3999,38 @@
 "Goku/Goku SSJ Ulsw"
 ],
 "anims": {
-"Todos": 141,
-"grupo": 140,
-"Kamecharge": 1
+"Retrato": 2,
+"Goku_Base": 3,
+"Aura_Branca": 3,
+"Transformacao": 3,
+"Ultra_Instinto": 3,
+"Parado": 4,
+"Poses": 26,
+"Emote_Exclamacao": 1,
+"Emote_Interrogacao": 1,
+"Emote_Susto": 1,
+"Emote_Bravo": 1,
+"Emote_Raiva": 1,
+"Emote_Gota": 1,
+"Emote_Halo": 1,
+"Avanco": 4,
+"Rastro_Dash": 3,
+"Pulo": 2,
+"Rastro_Teleporte": 5,
+"Golpes": 41,
+"Corte": 3,
+"Dano": 6,
+"Caido": 1,
+"Esfera_Dupla": 1,
+"Disparo": 2,
+"Carregar_Ki": 2,
+"Silhueta": 1,
+"Separador": 19,
+"Todos": 141
 }
 },
 "ast_goku_goku_ssj3_ulsw": {
-"nome": "Goku / Goku SSJ3 Ulsw",
+"nome": "Goku SSJ3 (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 95,
@@ -3810,11 +4039,27 @@
 "Goku/Goku SSJ3 Ulsw"
 ],
 "anims": {
+"Retrato": 1,
+"Silhueta": 1,
+"Transformacao": 5,
+"Pose": 14,
+"Parado": 7,
+"Avanco": 5,
+"Rastro_Dash": 2,
+"Golpes": 49,
+"Rastro_Teleporte": 1,
+"Corte": 2,
+"Caido": 1,
+"Esfera_Dupla": 1,
+"Disparo": 2,
+"Carregar_Ki": 2,
+"Punho_Dragao": 1,
+"Kamehameha": 1,
 "Todos": 95
 }
 },
 "ast_goku_goku_ulsw2_hd": {
-"nome": "Goku / Goku Ulsw2 Hd",
+"nome": "Goku Base (ULSW 2 HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 88,
@@ -3823,11 +4068,23 @@
 "Goku/Goku Ulsw2 Hd"
 ],
 "anims": {
+"Golpes": 45,
+"Meteoro": 1,
+"Retrato": 1,
+"Rastro_Dash": 2,
+"Parado": 20,
+"Caido": 1,
+"Rastro_Teleporte": 2,
+"Kamehameha_Carga": 1,
+"Disparo": 2,
+"Esfera_Dupla": 1,
+"Poses": 11,
+"Corte": 1,
 "Todos": 88
 }
 },
 "ast_goku_goku_ssj4_gt_ulsw_hd": {
-"nome": "Goku / Goku ssj4 GT Ulsw Hd",
+"nome": "Goku SSJ4 GT (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 115,
@@ -3836,11 +4093,30 @@
 "Goku/Goku ssj4 GT Ulsw Hd"
 ],
 "anims": {
+"Corte": 5,
+"Poses": 45,
+"Golpes": 35,
+"Rastro_Dash": 2,
+"Rajada_Fogo": 2,
+"Kamehameha_Carga": 2,
+"Retrato": 2,
+"Parado": 4,
+"Esfera": 2,
+"Punho_Dragao": 1,
+"Transformacao": 3,
+"Esfera_Dupla": 1,
+"Carregar_Ki": 4,
+"Aura_Chao": 1,
+"Deslize": 1,
+"Disparo": 2,
+"Alvo_Explosao": 1,
+"Caido": 1,
+"Explosao": 1,
 "Todos": 115
 }
 },
 "ast_goten_goten_base_ulsw": {
-"nome": "Goten / Goten Base Ulsw",
+"nome": "Goten (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 89,
@@ -3849,11 +4125,31 @@
 "Goten/Goten Base Ulsw"
 ],
 "anims": {
+"Retrato": 2,
+"Parado": 12,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Golpes": 21,
+"Chute_Rastro": 3,
+"Esfera_Dupla": 1,
+"Pose": 8,
+"Disparo": 4,
+"Rajada": 1,
+"Dano": 4,
+"Caido": 1,
+"Carregar_Ki": 6,
+"Kamehameha_Carga": 2,
+"Kamehameha": 4,
+"Retrato_SSJ": 1,
+"Aura_SSJ": 2,
+"SSJ": 7,
+"Rastro_Teleporte": 2,
+"Com_Trunks": 4,
 "Todos": 89
 }
 },
 "ast_gotenks_base": {
-"nome": "Gotenks Base",
+"nome": "Gotenks",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 108,
@@ -3862,11 +4158,28 @@
 "Gotenks Base"
 ],
 "anims": {
+"Goten": 11,
+"Trunks": 11,
+"Silhueta_Fusao": 2,
+"Explosao_Fusao": 5,
+"Parado": 7,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 2,
+"Golpes": 27,
+"Corte": 3,
+"Caido": 4,
+"Rajada_Socos": 4,
+"Poses": 13,
+"Projetil_Ki": 3,
+"Carregar_Ki": 3,
+"Investida_Kamikaze": 2,
+"Fantasmas_Kamikaze": 8,
+"Explosao": 1,
 "Todos": 108
 }
 },
 "ast_hitto_hitto": {
-"nome": "HITTO / Hitto",
+"nome": "Hit",
 "cat": "ast",
 "tipo": "efeitos",
 "quadros": 97,
@@ -3875,11 +4188,25 @@
 "HITTO/Hitto"
 ],
 "anims": {
+"Parado": 9,
+"Salto_Temporal": 2,
+"Rastro_Teleporte": 7,
+"Avanco": 1,
+"Golpes": 25,
+"Corte": 1,
+"Caido": 1,
+"Carregar_Ki": 3,
+"Rastro_Dash": 3,
+"Poses": 27,
+"Projetil_Ki": 5,
+"Rajada": 1,
+"Golpe_Invisivel": 8,
+"Prisao_Dimensional": 4,
 "Todos": 97
 }
 },
 "ast_hitto_hitto_2": {
-"nome": "HITTO / Hitto 2",
+"nome": "Hit (2)",
 "cat": "ast",
 "tipo": "efeitos",
 "quadros": 86,
@@ -3888,6 +4215,15 @@
 "HITTO/Hitto 2"
 ],
 "anims": {
+"Parado": 10,
+"Golpes": 32,
+"Pose": 10,
+"Projetil": 1,
+"Laminas_Ki": 4,
+"Salto_Temporal": 3,
+"Rastro": 14,
+"Dano": 11,
+"Golpe_Giro": 1,
 "Todos": 86
 }
 },
@@ -3901,6 +4237,21 @@
 "Janemba"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 1,
+"Rastro_Dash": 1,
+"Rastro_Teleporte": 1,
+"Golpes": 21,
+"Caido": 1,
+"Carregar_Ki": 3,
+"Poses": 14,
+"Raio": 1,
+"Portal": 3,
+"Portal_Disparo": 7,
+"Rajada_Azul": 1,
+"Espada": 5,
+"Rastro_Roxo": 1,
+"Desintegrar": 7,
 "Todos": 72
 }
 },
@@ -3914,13 +4265,21 @@
 "Jiren"
 ],
 "anims": {
-"Todos": 73,
-"lsw_sprite_sheet_jiren_the_gray_by_exigeek__by_me__by_keegixe-dbsqnpc_01.": 1,
-"lsw_sprite_sheet_jiren_the_gray_by_exigeek__by_me__by_keegixe-dbsqnpc": 72
+"Parado": 4,
+"Golpes": 51,
+"Rastro_Dash": 2,
+"Dano": 2,
+"Poses": 2,
+"Meditacao": 1,
+"Corte": 1,
+"Caido": 1,
+"Projetil_Ki": 5,
+"Carregar_Ki": 4,
+"Todos": 73
 }
 },
 "ast_jiren_hd": {
-"nome": "Jiren HD",
+"nome": "Jiren (HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 147,
@@ -3929,14 +4288,29 @@
 "Jiren HD"
 ],
 "anims": {
-"Todos": 147,
-"grupo": 145,
-"130 extra": 1,
-"131 extra": 1
+"Retrato": 1,
+"Rastro_Teleporte": 6,
+"Parado": 15,
+"Golpes": 53,
+"Meditacao": 2,
+"Rastro_Dash": 4,
+"Corte": 7,
+"Aura_Chao": 1,
+"Caido": 1,
+"Carregar_Ki": 7,
+"Poses": 22,
+"Disparo": 2,
+"Rajada_Fogo": 6,
+"Explosao": 4,
+"Esfera_Fogo": 8,
+"Lanca_Ki": 3,
+"Aneis": 3,
+"Arcos": 2,
+"Todos": 147
 }
 },
 "ast_kale_fases_kale": {
-"nome": "KALE fases / Kale",
+"nome": "Kale",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 46,
@@ -3945,11 +4319,20 @@
 "KALE fases/Kale"
 ],
 "anims": {
+"Parado": 2,
+"Avanco": 4,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 2,
+"Golpes": 19,
+"Caido": 1,
+"Poses": 4,
+"Projetil_Ki": 5,
+"Transformacao": 7,
 "Todos": 46
 }
 },
 "ast_kale_fases_kale_ssj": {
-"nome": "KALE fases / Kale Ssj",
+"nome": "Kale SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 54,
@@ -3958,11 +4341,24 @@
 "KALE fases/Kale Ssj"
 ],
 "anims": {
+"Parado": 2,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 2,
+"Golpes": 20,
+"Caido": 1,
+"Projetil_Ki": 3,
+"Carregar_Ki": 3,
+"Poses": 12,
+"Explosao": 1,
+"Barreira": 2,
+"Brilho": 1,
+"Rajada": 3,
 "Todos": 54
 }
 },
 "ast_kyabe_fases_kyabe": {
-"nome": "KYABE fases / Kyabe",
+"nome": "Cabba",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 51,
@@ -3971,11 +4367,21 @@
 "KYABE fases/Kyabe"
 ],
 "anims": {
+"Parado": 8,
+"Corte": 4,
+"Golpes": 24,
+"Caido": 1,
+"Carregar_Ki": 2,
+"Rajada": 1,
+"Poses": 8,
+"Explosao": 1,
+"Projetil_Ki": 1,
+"Raio": 1,
 "Todos": 51
 }
 },
 "ast_kyabe_fases_kyabe_ssj": {
-"nome": "KYABE fases / Kyabe ssj",
+"nome": "Cabba SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 54,
@@ -3984,11 +4390,21 @@
 "KYABE fases/Kyabe ssj"
 ],
 "anims": {
+"Parado": 8,
+"Corte": 4,
+"Golpes": 27,
+"Caido": 1,
+"Carregar_Ki": 2,
+"Rajada": 1,
+"Explosao": 1,
+"Projetil_Ki": 1,
+"Poses": 8,
+"Raio": 1,
 "Todos": 54
 }
 },
 "ast_kefla_super_sayajin": {
-"nome": "Kefla Super Sayajin",
+"nome": "Kefla",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 165,
@@ -3997,10 +4413,31 @@
 "Kefla Super Sayajin"
 ],
 "anims": {
-"Todos": 165,
-"kefla___ultimate_lsw_sheet_by_qsab101-dbust8q": 84,
-"saitama_jus_sprites_by_xmaygrrr-d9oqas6": 80,
-"saitama_jus_sprites_by_xmaygrrr-d9oqas6_57.": 1
+"Caulifla_Kale": 6,
+"Fusao": 3,
+"Kefla_Base": 12,
+"Aura_Branca": 4,
+"Transformacao": 2,
+"Aura_SSJ": 1,
+"Parado": 11,
+"Avanco": 1,
+"Rastro_Dash": 2,
+"Golpes": 54,
+"Dano": 1,
+"Caido": 3,
+"Barreira": 3,
+"Poses": 27,
+"Esfera_Grande": 3,
+"Esferas_Pequenas": 5,
+"Projetil_Verde": 5,
+"Transformacao_2": 5,
+"Rajada_Vermelha": 3,
+"Explosao_Vermelha": 3,
+"Projetil_Vermelho": 2,
+"Aura_Poses": 5,
+"Rajada_Gigante": 3,
+"Silhueta": 1,
+"Todos": 165
 }
 },
 "ast_kuririn": {
@@ -4097,7 +4534,7 @@
 }
 },
 "ast_majin_buu_formas_kid_buu": {
-"nome": "MAJIN BUU formas / Kid Buu",
+"nome": "Kid Buu",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 80,
@@ -4106,11 +4543,27 @@
 "MAJIN BUU formas/Kid Buu"
 ],
 "anims": {
+"Rastro_Teleporte": 4,
+"Parado": 4,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Golpes": 19,
+"Caido": 1,
+"Carregar_Ki": 3,
+"Poses": 21,
+"Raio_Antena": 5,
+"Golpe_Elastico": 3,
+"Fumaca": 4,
+"Bola_Rolando": 6,
+"Projetil_Ki": 2,
+"Esfera": 1,
+"Rajada": 2,
+"Explosao": 1,
 "Todos": 80
 }
 },
 "ast_majin_buu_formas_majin_buu": {
-"nome": "MAJIN BUU formas / Majin Buu",
+"nome": "Majin Buu (Gordo)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 75,
@@ -4119,11 +4572,26 @@
 "MAJIN BUU formas/Majin Buu"
 ],
 "anims": {
+"Parado": 10,
+"Rastro_Dash": 1,
+"Rastro_Teleporte": 1,
+"Golpes": 21,
+"Caido": 1,
+"Poses": 21,
+"Projetil_Ki": 1,
+"Carregar_Ki": 3,
+"Rajada": 2,
+"Eletrico": 2,
+"Raio_Amarelo": 1,
+"Fumaca_Rosa": 4,
+"Esfera_Rosa": 3,
+"Raio_Roxo": 1,
+"Esfera_Achatando": 3,
 "Todos": 75
 }
 },
 "ast_majin_buu_formas_majin_buu_gohan": {
-"nome": "MAJIN BUU formas / Majin Buu Gohan",
+"nome": "Majin Buu (Gohan Absorvido)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 70,
@@ -4132,13 +4600,26 @@
 "MAJIN BUU formas/Majin Buu Gohan"
 ],
 "anims": {
-"Todos": 70,
-"Buu": 67,
-"buu": 3
+"Parado": 3,
+"Golpes": 15,
+"Bola_Rolando": 5,
+"Poses": 20,
+"Caido": 1,
+"Carregar_Ki": 6,
+"Projetil_Ki": 2,
+"Massa_Rosa": 2,
+"Regeneracao": 3,
+"Rajada": 3,
+"Raio_Roxo": 1,
+"Eletrico": 1,
+"Fragmentos": 2,
+"Explosao": 1,
+"Esfera_Achatando": 5,
+"Todos": 70
 }
 },
 "ast_majin_buu_formas_majin_buu_flaco": {
-"nome": "MAJIN BUU formas / Majin Buu(Flaco)",
+"nome": "Majin Buu (Magro)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 92,
@@ -4147,11 +4628,31 @@
 "MAJIN BUU formas/Majin Buu(Flaco)"
 ],
 "anims": {
+"Parado": 3,
+"Capa": 2,
+"Golpes": 29,
+"Regeneracao": 5,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 4,
+"Corte": 1,
+"Pose": 23,
+"Escudo": 1,
+"Dano": 1,
+"Caido": 1,
+"Silhueta": 1,
+"Carregar_Ki": 3,
+"Projetil_Ki": 6,
+"Chuva_Ki": 1,
+"Explosao": 1,
+"Rajada": 2,
+"Raio_Roxo": 1,
+"Eletrico": 1,
+"Bola_Rolando": 4,
 "Todos": 92
 }
 },
 "ast_majin_buu_formas_super_buu": {
-"nome": "MAJIN BUU formas / Super Buu",
+"nome": "Super Buu",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 63,
@@ -4160,11 +4661,23 @@
 "MAJIN BUU formas/Super Buu"
 ],
 "anims": {
+"Parado": 3,
+"Caido": 3,
+"Golpes": 15,
+"Bola_Rolando": 6,
+"Poses": 19,
+"Massa_Rosa": 2,
+"Regeneracao": 3,
+"Carregar_Ki": 6,
+"Projetil_Ki": 1,
+"Rajada": 3,
+"Explosao": 1,
+"Fragmentos": 1,
 "Todos": 63
 }
 },
 "ast_mirai_trunks_fases_mirai_trunks": {
-"nome": "MIRAI TRUNKS fases / Mirai Trunks",
+"nome": "Trunks do Futuro",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 108,
@@ -4173,11 +4686,28 @@
 "MIRAI TRUNKS fases/Mirai Trunks"
 ],
 "anims": {
+"Parado": 6,
+"Golpe_Espada": 29,
+"Rastro_Dash": 3,
+"Aura": 2,
+"Poses": 31,
+"Avanco": 3,
+"Aura_Chao": 1,
+"Caido": 3,
+"Golpes": 14,
+"Rajada": 3,
+"Masenko": 1,
+"Esfera_Roxa": 1,
+"Esfera": 1,
+"Raio_Verde": 2,
+"Mafuba_Texto": 1,
+"Mafuba": 3,
+"Com_Mai": 4,
 "Todos": 108
 }
 },
 "ast_mirai_trunks_fases_super_mirai_trunks": {
-"nome": "MIRAI TRUNKS fases / Super Mirai Trunks",
+"nome": "Trunks do Futuro SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 108,
@@ -4186,6 +4716,25 @@
 "MIRAI TRUNKS fases/Super Mirai Trunks"
 ],
 "anims": {
+"Pilar_Luz": 2,
+"Aura": 4,
+"Trunks_Base": 1,
+"Transformacao": 1,
+"Golpe_Espada": 38,
+"Parado": 6,
+"Rastro_Dash": 2,
+"Golpes": 28,
+"Caido": 1,
+"Rajada": 1,
+"Poses": 8,
+"Raio_Amarelo": 1,
+"Raio_Roxo": 1,
+"Rastro_Teleporte": 1,
+"Com_Goku_Blue": 7,
+"Esferas": 3,
+"Raio_Azul": 1,
+"Aura_Espada": 1,
+"Esfera_Aura": 1,
 "Todos": 108
 }
 },
@@ -4359,13 +4908,24 @@
 "Toppo"
 ],
 "anims": {
-"Todos": 77,
-"grupo": 3,
-"toppo_sprite_sheet_by_thekrillmaster-dbpuw71": 74
+"Parado": 5,
+"Golpes": 43,
+"Rastro_Dash": 2,
+"Caido": 1,
+"Silhueta": 1,
+"Carregar_Ki": 3,
+"Poses": 12,
+"Projetil_Ki": 3,
+"Disparo": 2,
+"Esfera": 1,
+"Rajada": 2,
+"Dano": 1,
+"Esfera_Pequena": 1,
+"Todos": 77
 }
 },
 "ast_trunks_armadura": {
-"nome": "Trunks Armadura",
+"nome": "Trunks (Armadura)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 75,
@@ -4374,6 +4934,18 @@
 "Trunks Armadura"
 ],
 "anims": {
+"Parado": 4,
+"Golpes": 55,
+"Caido": 1,
+"Pose": 1,
+"Transformacao": 3,
+"Raio_Roxo": 1,
+"Esfera_Roxa": 1,
+"Raio": 3,
+"Esfera": 1,
+"Esferas_Azuis": 3,
+"Explosao": 1,
+"Pilar_Luz": 1,
 "Todos": 75
 }
 },
@@ -4387,11 +4959,24 @@
 "Turles"
 ],
 "anims": {
+"Parado": 4,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 4,
+"Golpes": 17,
+"Corte": 1,
+"Poses": 27,
+"Caido": 1,
+"Projetil_Ki": 3,
+"Carregar_Ki": 3,
+"Raio": 1,
+"Esfera": 1,
+"Esfera_Grande": 1,
 "Todos": 67
 }
 },
 "ast_vegeta_fases_majin_vegeta": {
-"nome": "VEGETA fases / Majin Vegeta",
+"nome": "Majin Vegeta",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 59,
@@ -4400,6 +4985,18 @@
 "VEGETA fases/Majin Vegeta"
 ],
 "anims": {
+"Parado": 4,
+"Avanco": 2,
+"Carregar_Ki": 3,
+"Golpes": 20,
+"Caido": 1,
+"Poses": 11,
+"Rajada": 2,
+"Barreira": 4,
+"Explosao_Final_Carga": 4,
+"Esfera": 3,
+"Esfera_Achatando": 3,
+"Estatua": 2,
 "Todos": 59
 }
 },
@@ -4431,7 +5028,7 @@
 }
 },
 "ast_vegeta_fases_vegeta_blue": {
-"nome": "VEGETA fases / Vegeta Blue",
+"nome": "Vegeta Blue",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 107,
@@ -4440,11 +5037,24 @@
 "VEGETA fases/Vegeta Blue"
 ],
 "anims": {
+"Aura": 2,
+"Pose": 19,
+"Vegeta_Base": 2,
+"Transformacao": 7,
+"Parado": 3,
+"Golpes": 55,
+"Caido": 1,
+"Carregar_Ki": 6,
+"Projetil_Ki": 3,
+"Raio_Roxo": 1,
+"Aura_Roxa": 3,
+"Esfera": 2,
+"Rajada": 3,
 "Todos": 107
 }
 },
 "ast_vegeta_fases_vegeta_blue_full_power": {
-"nome": "VEGETA fases / Vegeta Blue Full Power",
+"nome": "Vegeta Blue (Força Total)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 99,
@@ -4453,11 +5063,30 @@
 "VEGETA fases/Vegeta Blue Full Power"
 ],
 "anims": {
+"Vegeta_Base": 2,
+"Transformacao": 7,
+"Parado": 11,
+"Rastro_Teleporte": 1,
+"Rastro_Dash": 1,
+"Golpes": 31,
+"Corte": 4,
+"Caido": 1,
+"Carregar_Ki": 3,
+"Poses": 13,
+"Projetil_Ki": 3,
+"Esferas": 3,
+"Aura_Roxa": 2,
+"Raio_Roxo": 1,
+"Aura_Poses": 4,
+"Relampago": 1,
+"Rajada": 1,
+"Golpes_Aura": 6,
+"Explosao_Dourada": 4,
 "Todos": 99
 }
 },
 "ast_vegeta_fases_vegeta_buu_saga": {
-"nome": "VEGETA fases / Vegeta Buu Saga",
+"nome": "Vegeta (Saga Majin Boo)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 51,
@@ -4466,11 +5095,21 @@
 "VEGETA fases/Vegeta Buu Saga"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 1,
+"Carregar_Ki": 3,
+"Golpes": 21,
+"Poses": 13,
+"Caido": 1,
+"Raio_Roxo": 1,
+"Projetil_Ki": 2,
+"Esfera_Pequena": 1,
+"Esfera_Azul": 3,
 "Todos": 51
 }
 },
 "ast_vegeta_fases_vegeta_ssj_4": {
-"nome": "VEGETA fases / Vegeta SSJ 4",
+"nome": "Vegeta SSJ4",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 56,
@@ -4479,11 +5118,24 @@
 "VEGETA fases/Vegeta SSJ 4"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 2,
+"Carregar_Ki": 3,
+"Golpes": 17,
+"Corte": 3,
+"Poses": 15,
+"Caido": 1,
+"Esfera_Verde": 1,
+"Raio_Verde": 1,
+"Aura_Roxa": 1,
+"Rajada": 1,
+"Esfera": 3,
+"Meteoros": 3,
 "Todos": 56
 }
 },
 "ast_vegeta_fases_vegeta_saga_buu_ssj": {
-"nome": "VEGETA fases / Vegeta Saga Buu SSJ",
+"nome": "Vegeta SSJ (Saga Majin Boo)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 53,
@@ -4492,6 +5144,17 @@
 "VEGETA fases/Vegeta Saga Buu SSJ"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 1,
+"Carregar_Ki": 3,
+"Golpes": 21,
+"Poses": 14,
+"Caido": 1,
+"Raio_Roxo": 1,
+"Aura_Eletrica": 2,
+"Rajada": 1,
+"Esfera_Pequena": 1,
+"Esfera_Azul": 3,
 "Todos": 53
 }
 },
@@ -4532,7 +5195,7 @@
 }
 },
 "ast_vegeta_fases_vegeta_ssj_god": {
-"nome": "VEGETA fases / Vegeta Ssj God",
+"nome": "Vegeta SSJ God",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 54,
@@ -4541,11 +5204,22 @@
 "VEGETA fases/Vegeta Ssj God"
 ],
 "anims": {
+"Parado": 5,
+"Avanco": 1,
+"Carregar_Ki": 3,
+"Golpes": 21,
+"Poses": 15,
+"Caido": 1,
+"Raio_Roxo": 2,
+"Aura_Eletrica": 2,
+"Rajada": 1,
+"Esfera_Pequena": 1,
+"Esfera": 2,
 "Todos": 54
 }
 },
 "ast_vegeta_fases_vegeta_ssj_grade": {
-"nome": "VEGETA fases / Vegeta Ssj Grade",
+"nome": "Vegeta SSJ (Grau 2)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 68,
@@ -4554,11 +5228,23 @@
 "VEGETA fases/Vegeta Ssj Grade"
 ],
 "anims": {
+"Carregar_Ki": 3,
+"Parado": 3,
+"Avanco": 4,
+"Golpes": 36,
+"Corte": 2,
+"Caido": 1,
+"Projeteis_Triplos": 2,
+"Esfera_Acima": 1,
+"Poses": 12,
+"Explosao": 1,
+"Aura_Eletrica": 2,
+"Rajada": 1,
 "Todos": 68
 }
 },
 "ast_vegito_fases_vegito": {
-"nome": "VEGITO fases / Vegito",
+"nome": "Vegito",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 93,
@@ -4567,11 +5253,23 @@
 "VEGITO fases/Vegito"
 ],
 "anims": {
+"Goku": 6,
+"Parado": 10,
+"Danca_Fusao": 2,
+"Golpes": 48,
+"Rastro_Teleporte": 1,
+"Caido": 2,
+"Corte": 1,
+"Carregar_Ki": 3,
+"Poses": 15,
+"Projetil_Ki": 2,
+"Kamehameha": 2,
+"Rajada": 1,
 "Todos": 93
 }
 },
 "ast_vegito_fases_vegito_ssj_blue": {
-"nome": "VEGITO fases / Vegito SSJ Blue",
+"nome": "Vegito Blue",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 112,
@@ -4580,11 +5278,24 @@
 "VEGITO fases/Vegito SSJ Blue"
 ],
 "anims": {
+"Goku": 1,
+"Vegeta": 1,
+"Danca_Fusao": 2,
+"Vegito_Base": 5,
+"Parado": 14,
+"Avanco": 2,
+"Caido": 4,
+"Poses": 26,
+"Rastro_Teleporte": 1,
+"Golpes": 47,
+"Carregar_Ki": 3,
+"Projetil_Ki": 4,
+"Kamehameha": 2,
 "Todos": 112
 }
 },
 "ast_vegito_fases_vegito_ssj1": {
-"nome": "VEGITO fases / Vegito Ssj1",
+"nome": "Vegito SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 109,
@@ -4593,11 +5304,27 @@
 "VEGITO fases/Vegito Ssj1"
 ],
 "anims": {
+"Parado": 6,
+"Avanco": 2,
+"Rastro_Dash": 1,
+"Golpes": 33,
+"Rastro_Teleporte": 1,
+"Corte": 2,
+"Caido": 2,
+"Carregar_Ki": 3,
+"Poses": 41,
+"Projetil_Ki": 4,
+"Espada_Espiritual": 4,
+"Kamehameha": 1,
+"Escudo": 1,
+"Raio_Roxo": 1,
+"Esfera": 4,
+"Rajada": 3,
 "Todos": 109
 }
 },
 "ast_vegito_fases_vegito_ssj2": {
-"nome": "VEGITO fases / Vegito Ssj2",
+"nome": "Vegito SSJ2",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 130,
@@ -4606,11 +5333,26 @@
 "VEGITO fases/Vegito Ssj2"
 ],
 "anims": {
+"Goku": 2,
+"Vegeta": 2,
+"Vegito_Base": 4,
+"Transformacao": 1,
+"Parado": 16,
+"Avanco": 3,
+"Caido": 4,
+"Pose": 39,
+"Rastro_Teleporte": 1,
+"Golpes": 41,
+"Corte": 2,
+"Carregar_Ki": 6,
+"Projetil_Ki": 3,
+"Kamehameha": 3,
+"Rajada": 3,
 "Todos": 130
 }
 },
 "ast_vegeta_baby_vegeta_ulsw_hd": {
-"nome": "Vegeta / Baby Vegeta Ulsw Hd",
+"nome": "Baby Vegeta (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 58,
@@ -4619,11 +5361,17 @@
 "Vegeta/Baby Vegeta Ulsw Hd"
 ],
 "anims": {
+"Parado": 4,
+"Golpes": 48,
+"Retrato": 2,
+"Esfera_Escura": 1,
+"Caido": 2,
+"Pose": 1,
 "Todos": 58
 }
 },
 "ast_vegeta_vegeta_ssj4_hd": {
-"nome": "Vegeta / VEGETA SSJ4 HD",
+"nome": "Vegeta SSJ4 (HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 65,
@@ -4632,11 +5380,16 @@
 "Vegeta/VEGETA SSJ4 HD"
 ],
 "anims": {
+"Parado": 5,
+"Golpes": 55,
+"Caido": 1,
+"Corte": 3,
+"Retrato": 1,
 "Todos": 65
 }
 },
 "ast_vegeta_vegeta_base_ulsw": {
-"nome": "Vegeta / Vegeta Base Ulsw",
+"nome": "Vegeta Base (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 133,
@@ -4645,13 +5398,34 @@
 "Vegeta/Vegeta Base Ulsw"
 ],
 "anims": {
-"Todos": 133,
-"grupo": 132,
-"75_578": 1
+"Retrato": 2,
+"Rastro_Teleporte": 1,
+"Parado": 6,
+"Poses": 30,
+"Avanco": 3,
+"Rastro_Dash": 2,
+"Golpes": 47,
+"Meteoros": 2,
+"Caido": 1,
+"Aura_Roxa": 2,
+"Raio_Roxo": 1,
+"Aura_Azul": 2,
+"Esfera_Azul": 2,
+"Sem_Camisa": 8,
+"Aura_Branca": 3,
+"Separador": 14,
+"Emote_Exclamacao": 1,
+"Emote_Interrogacao": 1,
+"Emote_Susto": 1,
+"Emote_Bravo": 1,
+"Emote_Raiva": 1,
+"Emote_Gota": 1,
+"Emote_Halo": 1,
+"Todos": 133
 }
 },
 "ast_vegeta_vegeta_blue_ulsw_hd": {
-"nome": "Vegeta / Vegeta Blue Ulsw Hd",
+"nome": "Vegeta Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 125,
@@ -4660,22 +5434,30 @@
 "Vegeta/Vegeta Blue Ulsw Hd"
 ],
 "anims": {
-"Todos": 125,
-"grupo": 3,
-"211_720": 1,
-"212_392": 1,
-"221_720": 1,
-"1557099640301djajja": 1,
-"1557099640301djajja_720": 1,
-"1557099657037hshaj": 1,
-"1557099657037hshaj_720": 1,
-"Finalflash_720": 1,
-"received": 113,
-"received_1677104132398282(juuj)": 1
+"Investida": 2,
+"Golpes": 65,
+"Final_Flash": 5,
+"Vegeta_Base": 6,
+"Retrato": 1,
+"Poses": 17,
+"Branco": 2,
+"Parado": 4,
+"Disparo_Eletrico": 2,
+"Aura_Chao": 1,
+"Aura_Eletrica": 1,
+"Eletrico_Roxo": 1,
+"Esfera": 2,
+"Disparo": 2,
+"Rastro_Dash": 3,
+"Carregar_Ki": 6,
+"Caido": 1,
+"Meteoro": 1,
+"Transformacao": 3,
+"Todos": 125
 }
 },
 "ast_vegeta_vegeta_royal_blue_ulsw_hd": {
-"nome": "Vegeta / Vegeta Royal Blue Ulsw Hd",
+"nome": "Vegeta Royal Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 137,
@@ -4684,11 +5466,28 @@
 "Vegeta/Vegeta Royal Blue Ulsw Hd"
 ],
 "anims": {
-"Todos": 137,
-"aruassdssje_720": 1,
-"aura ssdssje2_720": 1,
-"aura ssdssje_720": 1,
-"received": 134
+"Aura": 7,
+"Rastro_Dash": 3,
+"Golpes": 71,
+"Branco": 2,
+"Aura_Chao": 1,
+"Explosao": 1,
+"Transformacao": 1,
+"Corte": 2,
+"Base_Dano": 3,
+"Sem_Camisa": 6,
+"Brilho": 1,
+"Disparo": 1,
+"Caido": 1,
+"Poses": 15,
+"Esfera": 6,
+"Meteoros": 2,
+"Eletrico": 1,
+"Aura_Dourada": 1,
+"Explosao_Final": 9,
+"Vegeta_Base": 2,
+"Esfera_Dupla": 1,
+"Todos": 137
 }
 },
 "ast_vegeta_vegeta_royal_blue_ulsw_hd_rage": {
@@ -4706,7 +5505,7 @@
 }
 },
 "ast_vegeta_vegeta_ssj_ulsw": {
-"nome": "Vegeta / Vegeta SSJ Ulsw",
+"nome": "Vegeta SSJ (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 118,
@@ -4715,16 +5514,33 @@
 "Vegeta/Vegeta SSJ Ulsw"
 ],
 "anims": {
-"Todos": 118,
-"grupo": 112,
-"supervegeta": 3,
-"supervegeta1_604": 1,
-"supervegeta2_665": 1,
-"supervegeta3_720": 1
+"Retrato": 2,
+"Vegeta_Base": 3,
+"Aura_Branca": 3,
+"Transformacao": 4,
+"Parado": 8,
+"Avanco": 2,
+"Rastro_Dash": 3,
+"Golpes": 48,
+"Disparo": 2,
+"Poses": 18,
+"Meteoros": 2,
+"Caido": 1,
+"Carregar_Ki": 6,
+"Esferas": 4,
+"Aura_Pose": 2,
+"Esfera_Dupla": 1,
+"Investida": 1,
+"Rajada": 1,
+"Branco": 2,
+"Base_Dano": 2,
+"Separador": 1,
+"Esfera_Eletrica": 2,
+"Todos": 118
 }
 },
 "ast_vegeta_vegeta_ssj2_ulsw": {
-"nome": "Vegeta / Vegeta SSJ2 Ulsw",
+"nome": "Vegeta SSJ2 (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 98,
@@ -4733,11 +5549,29 @@
 "Vegeta/Vegeta SSJ2 Ulsw"
 ],
 "anims": {
+"Retrato": 2,
+"Parado": 11,
+"Silhueta": 1,
+"Aura_Eletrica": 1,
+"Avanco": 1,
+"Rastro_Dash": 2,
+"Golpes": 47,
+"Disparo": 2,
+"Poses": 15,
+"Meteoros": 2,
+"Caido": 1,
+"Carregar_Ki": 2,
+"Esferas": 2,
+"Esfera_Dupla": 1,
+"Rajada": 1,
+"Branco": 2,
+"Vegeta_Base": 4,
+"Separador": 1,
 "Todos": 98
 }
 },
 "ast_vegetto_blue_ulsw": {
-"nome": "Vegetto Blue Ulsw",
+"nome": "Vegetto Blue (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 95,
@@ -4746,11 +5580,31 @@
 "Vegetto Blue Ulsw"
 ],
 "anims": {
+"Retrato": 1,
+"Rastro_Teleporte": 1,
+"Vegetto_Base": 2,
+"Transformacao": 4,
+"Parado": 8,
+"Avanco": 2,
+"Rastro_Dash": 3,
+"Golpes": 39,
+"Caido": 1,
+"Poses": 11,
+"Carregar_Ki": 2,
+"Disparo": 3,
+"Lamina_Ki": 2,
+"Esfera_Eletrica": 2,
+"Kamehameha_Carga": 2,
+"Rajada": 2,
+"Silhueta": 1,
+"Esfera_Fusao": 2,
+"Goku_Vegeta": 6,
+"Brinco_Potara": 1,
 "Todos": 95
 }
 },
 "ast_xeno_goku_xeno_goku_ssj4_ulsw_hd": {
-"nome": "Xeno Goku / Xeno Goku ssj4 Ulsw Hd",
+"nome": "Goku Xeno SSJ4 (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 103,
@@ -4759,11 +5613,21 @@
 "Xeno Goku/Xeno Goku ssj4 Ulsw Hd"
 ],
 "anims": {
+"Retrato": 2,
+"Transformacao": 4,
+"Parado": 8,
+"Avanco": 2,
+"Rastro_Dash": 2,
+"Golpes": 67,
+"Caido": 1,
+"Poses": 11,
+"Silhueta": 1,
+"Forma_Branca": 5,
 "Todos": 103
 }
 },
 "ast_xeno_goku_xeno_goku_hd_ulsw": {
-"nome": "Xeno Goku / Xeno goku hd ULSW",
+"nome": "Goku Xeno (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 141,
@@ -4772,13 +5636,32 @@
 "Xeno Goku/Xeno goku hd ULSW"
 ],
 "anims": {
-"Todos": 141,
-"grupo": 140,
-"angry faceset": 1
+"Retrato": 3,
+"Rastro_Teleporte": 2,
+"Parado": 11,
+"Avanco": 3,
+"Rastro_Dash": 2,
+"Poses": 31,
+"Golpes": 48,
+"Caido": 3,
+"Esfera_Dupla": 1,
+"Disparo": 2,
+"Carregar_Ki": 6,
+"Esfera": 4,
+"Kamehameha": 3,
+"Silhueta": 3,
+"Kamehameha_Carga": 2,
+"SSJ": 5,
+"SSJ4": 3,
+"Aura": 6,
+"Ultra_Instinto": 1,
+"Transformacao": 1,
+"Separador": 1,
+"Todos": 141
 }
 },
 "ast_xeno_goku_xeno_goku_super_saiyajin_xeno_goku_super_saiyajin": {
-"nome": "Xeno Goku / Xeno_Goku_Super_Saiyajin / Xeno Goku Super Saiyajin",
+"nome": "Goku Xeno SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 113,
@@ -4787,11 +5670,30 @@
 "Xeno Goku/Xeno_Goku_Super_Saiyajin/Xeno Goku Super Saiyajin"
 ],
 "anims": {
+"Transformacao": 4,
+"Parado": 7,
+"Separador": 1,
+"Rastro_Teleporte": 4,
+"Avanco": 3,
+"Rastro_Dash": 3,
+"Golpes": 51,
+"Retrato": 2,
+"Caido": 2,
+"Poses": 19,
+"Carregar_Ki": 3,
+"Esfera_Dupla": 1,
+"Rajada": 1,
+"Kamehameha": 4,
+"Aura_Eletrica": 2,
+"Kamehameha_Carga": 1,
+"Explosao_Luz": 1,
+"Goku_Base": 2,
+"Ultra_Instinto": 2,
 "Todos": 113
 }
 },
 "ast_zamasu_formas_zamasu": {
-"nome": "ZAMASU formas / Zamasu",
+"nome": "Zamasu",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 77,
@@ -4800,11 +5702,29 @@
 "ZAMASU formas/Zamasu"
 ],
 "anims": {
+"Parado": 4,
+"Golpes": 15,
+"Poses": 16,
+"Rastro_Dash": 2,
+"Rastro_Teleporte": 5,
+"Corte": 2,
+"Lamina_Verde": 1,
+"Carregar_Ki": 2,
+"Raio": 1,
+"Projetil": 1,
+"Rajada": 1,
+"Caido": 2,
+"Esfera": 2,
+"Lamina_Ki": 12,
+"Com_Black": 6,
+"Rajada_Fogo": 1,
+"Aneis": 1,
+"Esfera_Grande": 3,
 "Todos": 77
 }
 },
 "ast_zamasu_formas_zamasu_e_black_fusion": {
-"nome": "ZAMASU formas / Zamasu e Black Fusion",
+"nome": "Zamasu Fundido",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 91,
@@ -4813,11 +5733,28 @@
 "ZAMASU formas/Zamasu e Black Fusion"
 ],
 "anims": {
+"Zamasu": 12,
+"Black_Rose": 4,
+"Brinco_Potara": 1,
+"Silhueta_Fusao": 1,
+"Parado": 12,
+"Golpes": 27,
+"Lamina_Verde": 2,
+"Carregar_Ki": 3,
+"Raios_Roxos": 2,
+"Halo": 3,
+"Poses": 10,
+"Rajada": 1,
+"Corte_Vermelho": 2,
+"Explosao_Vermelha": 5,
+"Asas_Roxas": 2,
+"Sol": 2,
+"Explosoes": 2,
 "Todos": 91
 }
 },
 "ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando": {
-"nome": "ZAMASU formas / Zamasu e Black Fusão Desmanchando",
+"nome": "Zamasu Fundido (Desmanchando)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 136,
@@ -4826,6 +5763,18 @@
 "ZAMASU formas/Zamasu e Black Fusão Desmanchando"
 ],
 "anims": {
+"Parado": 9,
+"Golpes": 49,
+"Poses": 18,
+"Rastro_Teleporte": 8,
+"Rastro_Dash": 4,
+"Retrato": 1,
+"Lamina_Ki": 34,
+"Esferas": 6,
+"Aura_Poses": 3,
+"Rajada": 1,
+"Esfera_Sol": 2,
+"Explosao": 1,
 "Todos": 136
 }
 },
@@ -4844,7 +5793,7 @@
 }
 },
 "ast_zamasu_formas_zamasu_e_black_fusion_robotica": {
-"nome": "ZAMASU formas / Zamasu e Black fusion Robotica",
+"nome": "Zamasu Fundido (Robótico)",
 "cat": "ast",
 "tipo": "personagens",
 "quadros": 117,
@@ -4853,6 +5802,24 @@
 "ZAMASU formas/Zamasu e Black fusion Robotica"
 ],
 "anims": {
+"Interface": 36,
+"Silhueta": 1,
+"Parado": 13,
+"Halo": 6,
+"Rastro_Teleporte": 4,
+"Poses": 13,
+"Rastro_Dash": 2,
+"Golpes": 20,
+"Dano": 3,
+"Carregar_Ki": 3,
+"Projetil": 2,
+"Corte_Vermelho": 2,
+"Explosao_Vermelha": 2,
+"Raios": 2,
+"Asas_Roxas": 3,
+"Rajada": 1,
+"Sol": 2,
+"Pose_Explosao": 2,
 "Todos": 117
 }
 }

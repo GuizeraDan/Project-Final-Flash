@@ -1,0 +1,65 @@
+{
+"nome": "Vegito",
+"anims": {
+"Goku": {
+"q": "0-5",
+"fps": 6,
+"loop": false
+},
+"Parado": {
+"q": "6-11,14-17",
+"fps": 4,
+"loop": true
+},
+"Danca_Fusao": {
+"q": "12-13",
+"fps": 6,
+"loop": false
+},
+"Golpes": {
+"q": "18-32,34-37,39-42,44-68",
+"fps": 10,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "33",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "38,69",
+"fps": 6,
+"loop": false
+},
+"Corte": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "70-72",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "73-74,77-79,82-84,86-92",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "75-76",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "80-81",
+"fps": 10,
+"loop": false
+},
+"Rajada": {
+"q": "85",
+"fps": 0,
+"loop": false
+}
+}
+}

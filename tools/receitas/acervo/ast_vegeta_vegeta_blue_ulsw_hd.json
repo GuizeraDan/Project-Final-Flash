@@ -1,0 +1,100 @@
+{
+"nome": "Vegeta Blue (ULSW HD)",
+"anims": {
+"Investida": {
+"q": "0-1",
+"fps": 10,
+"loop": false
+},
+"Golpes": {
+"q": "2-5,43,45-46,52-58,63-104,108-116",
+"fps": 10,
+"loop": false
+},
+"Final_Flash": {
+"q": "6-10",
+"fps": 10,
+"loop": false
+},
+"Vegeta_Base": {
+"q": "11,14-16,20,123",
+"fps": 4,
+"loop": false
+},
+"Retrato": {
+"q": "12",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "13,18,27-28,31-33,35-37,41-42,49,60-61,105,124",
+"fps": 4,
+"loop": false
+},
+"Branco": {
+"q": "17,19",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "21-24",
+"fps": 4,
+"loop": true
+},
+"Disparo_Eletrico": {
+"q": "25-26",
+"fps": 10,
+"loop": false
+},
+"Aura_Chao": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Aura_Eletrica": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Eletrico_Roxo": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "38,40",
+"fps": 8,
+"loop": false
+},
+"Disparo": {
+"q": "39,62",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "44,106-107",
+"fps": 12,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "47-48,50,117-119",
+"fps": 10,
+"loop": true
+},
+"Caido": {
+"q": "51",
+"fps": 0,
+"loop": false
+},
+"Meteoro": {
+"q": "59",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "120-122",
+"fps": 8,
+"loop": false
+}
+}
+}

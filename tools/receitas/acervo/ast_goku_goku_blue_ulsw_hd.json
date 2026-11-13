@@ -1,0 +1,105 @@
+{
+"nome": "Goku Blue (ULSW HD)",
+"anims": {
+"Aura_Blue": {
+"q": "0-1,57-59",
+"fps": 10,
+"loop": true
+},
+"Parado": {
+"q": "2-3,60-66",
+"fps": 4,
+"loop": true
+},
+"Ultra_Instinto": {
+"q": "4,44",
+"fps": 0,
+"loop": false
+},
+"Goku_Base": {
+"q": "5,43,45-48,50-51,118",
+"fps": 4,
+"loop": false
+},
+"Golpes": {
+"q": "6-8,11-12,16-24,73-74,79-95,98-117",
+"fps": 10,
+"loop": false
+},
+"Poses_Grandes": {
+"q": "9-10",
+"fps": 4,
+"loop": false
+},
+"Corte": {
+"q": "13-15,96-97",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "26,28,30,33-35,37-39,41-42,76-77,119",
+"fps": 4,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "27",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "31-32",
+"fps": 10,
+"loop": true
+},
+"Kamehameha_Carga": {
+"q": "36",
+"fps": 0,
+"loop": false
+},
+"Retrato": {
+"q": "40,72",
+"fps": 0,
+"loop": false
+},
+"Silhueta": {
+"q": "49",
+"fps": 0,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "52",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "53-56",
+"fps": 8,
+"loop": false
+},
+"Avanco": {
+"q": "67,69",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "68,70-71",
+"fps": 12,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "75,78",
+"fps": 12,
+"loop": false
+}
+}
+}

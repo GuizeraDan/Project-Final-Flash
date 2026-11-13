@@ -1,0 +1,75 @@
+{
+"nome": "Hit",
+"anims": {
+"Parado": {
+"q": "0-8",
+"fps": 4,
+"loop": true
+},
+"Salto_Temporal": {
+"q": "9-10",
+"fps": 10,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "11-12,45-49",
+"fps": 12,
+"loop": false
+},
+"Avanco": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "14-20,22-39",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "21",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "40",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "41-43",
+"fps": 10,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "44,74-75",
+"fps": 12,
+"loop": false
+},
+"Poses": {
+"q": "50-51,55-57,61-69,79-86,88,92-95",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "52-54,58-59",
+"fps": 12,
+"loop": false
+},
+"Rajada": {
+"q": "60",
+"fps": 0,
+"loop": false
+},
+"Golpe_Invisivel": {
+"q": "70-73,76-78,87",
+"fps": 12,
+"loop": false
+},
+"Prisao_Dimensional": {
+"q": "89-91,96",
+"fps": 8,
+"loop": false
+}
+}
+}

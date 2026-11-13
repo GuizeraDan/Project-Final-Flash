@@ -1,0 +1,110 @@
+{
+"nome": "Vegeta Royal Blue (ULSW HD)",
+"anims": {
+"Aura": {
+"q": "0-2,56,79,84,100",
+"fps": 10,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "3-4,85",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "5-27,29-33,35-40,42,46-55,57-61,63-64,67,70-78,86-89,110-114",
+"fps": 10,
+"loop": false
+},
+"Branco": {
+"q": "28,119",
+"fps": 4,
+"loop": false
+},
+"Aura_Chao": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "44-45",
+"fps": 10,
+"loop": false
+},
+"Base_Dano": {
+"q": "62,69,126",
+"fps": 6,
+"loop": false
+},
+"Sem_Camisa": {
+"q": "65,130-134",
+"fps": 4,
+"loop": false
+},
+"Brilho": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "68",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "80",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "81-83,93-95,98-99,103,105-108,120,136",
+"fps": 4,
+"loop": false
+},
+"Esfera": {
+"q": "90-92,101-102,104",
+"fps": 8,
+"loop": false
+},
+"Meteoros": {
+"q": "96-97",
+"fps": 10,
+"loop": false
+},
+"Eletrico": {
+"q": "109",
+"fps": 0,
+"loop": false
+},
+"Aura_Dourada": {
+"q": "115",
+"fps": 0,
+"loop": false
+},
+"Explosao_Final": {
+"q": "116-118,122-123,125,127-129",
+"fps": 10,
+"loop": false
+},
+"Vegeta_Base": {
+"q": "121,124",
+"fps": 4,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "135",
+"fps": 0,
+"loop": false
+}
+}
+}

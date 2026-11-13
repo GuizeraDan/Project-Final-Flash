@@ -1,0 +1,70 @@
+{
+"nome": "Goku SSJ4",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "4-5",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6-7",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "8-11",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "12-15,17-23,32-36",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "16",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "24-26",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "27-28,43-46,48-60,62",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "29-31",
+"fps": 12,
+"loop": false
+},
+"Dano": {
+"q": "37-40",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "42,47",
+"fps": 10,
+"loop": false
+},
+"Punho_Dragao": {
+"q": "61",
+"fps": 0,
+"loop": false
+}
+}
+}

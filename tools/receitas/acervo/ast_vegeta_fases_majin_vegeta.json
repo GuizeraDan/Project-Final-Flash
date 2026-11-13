@@ -1,0 +1,65 @@
+{
+"nome": "Majin Vegeta",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "4-5",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "6-8",
+"fps": 10,
+"loop": true
+},
+"Golpes": {
+"q": "9-27,29",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "30-31,33-36,39,43-46",
+"fps": 4,
+"loop": false
+},
+"Rajada": {
+"q": "32,38",
+"fps": 10,
+"loop": false
+},
+"Barreira": {
+"q": "37,40-42",
+"fps": 8,
+"loop": false
+},
+"Explosao_Final_Carga": {
+"q": "47-50",
+"fps": 8,
+"loop": false
+},
+"Esfera": {
+"q": "51-53",
+"fps": 8,
+"loop": false
+},
+"Esfera_Achatando": {
+"q": "54-56",
+"fps": 10,
+"loop": false
+},
+"Estatua": {
+"q": "57-58",
+"fps": 6,
+"loop": false
+}
+}
+}

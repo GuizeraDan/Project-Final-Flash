@@ -1,0 +1,105 @@
+{
+"nome": "Majin Buu (Magro)",
+"anims": {
+"Parado": {
+"q": "0,2-3",
+"fps": 4,
+"loop": true
+},
+"Capa": {
+"q": "1,9",
+"fps": 4,
+"loop": false
+},
+"Golpes": {
+"q": "4-8,21-37,39-44,49",
+"fps": 10,
+"loop": false
+},
+"Regeneracao": {
+"q": "10-14",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "15-16",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "17-20",
+"fps": 12,
+"loop": false
+},
+"Corte": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Pose": {
+"q": "45,48,55-56,59-60,63-65,70-73,75,82-90",
+"fps": 4,
+"loop": false
+},
+"Escudo": {
+"q": "46",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "47",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "50",
+"fps": 0,
+"loop": false
+},
+"Silhueta": {
+"q": "51",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "52-54",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "57-58,61,67-69",
+"fps": 12,
+"loop": false
+},
+"Chuva_Ki": {
+"q": "62",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Rajada": {
+"q": "74,91",
+"fps": 10,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "76",
+"fps": 0,
+"loop": false
+},
+"Eletrico": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Bola_Rolando": {
+"q": "78-81",
+"fps": 12,
+"loop": true
+}
+}
+}

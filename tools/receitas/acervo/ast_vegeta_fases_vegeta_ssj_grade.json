@@ -1,0 +1,65 @@
+{
+"nome": "Vegeta SSJ (Grau 2)",
+"anims": {
+"Carregar_Ki": {
+"q": "0-2",
+"fps": 10,
+"loop": true
+},
+"Parado": {
+"q": "3-5",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "6-9",
+"fps": 8,
+"loop": false
+},
+"Golpes": {
+"q": "10-19,21-22,24-47",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "20,23",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "48",
+"fps": 0,
+"loop": false
+},
+"Projeteis_Triplos": {
+"q": "49-50",
+"fps": 12,
+"loop": false
+},
+"Esfera_Acima": {
+"q": "51",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "52-55,57-61,64-66",
+"fps": 4,
+"loop": false
+},
+"Explosao": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Aura_Eletrica": {
+"q": "62-63",
+"fps": 10,
+"loop": true
+},
+"Rajada": {
+"q": "67",
+"fps": 0,
+"loop": false
+}
+}
+}

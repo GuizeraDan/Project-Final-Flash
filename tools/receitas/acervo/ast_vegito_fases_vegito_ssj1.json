@@ -1,0 +1,85 @@
+{
+"nome": "Vegito SSJ",
+"anims": {
+"Parado": {
+"q": "0-5",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "6-7",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "8",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "9-19,21-26,28-35,37-44",
+"fps": 10,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "20",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "27,36",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "46-47",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "48-50",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "45,51-53,56-58,61-62,67-72,74-77,79-80,82-84,89-94,96-106",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "54-55,59-60",
+"fps": 12,
+"loop": false
+},
+"Espada_Espiritual": {
+"q": "63-66",
+"fps": 10,
+"loop": false
+},
+"Kamehameha": {
+"q": "73",
+"fps": 0,
+"loop": false
+},
+"Escudo": {
+"q": "78",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "81",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "85-88",
+"fps": 10,
+"loop": false
+},
+"Rajada": {
+"q": "95,107-108",
+"fps": 10,
+"loop": false
+}
+}
+}

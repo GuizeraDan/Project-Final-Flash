@@ -1,0 +1,65 @@
+{
+"nome": "Trunks (Armadura)",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "4-29,31-59",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Pose": {
+"q": "60",
+"fps": 0,
+"loop": false
+},
+"Transformacao": {
+"q": "61-63",
+"fps": 8,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "64",
+"fps": 0,
+"loop": false
+},
+"Esfera_Roxa": {
+"q": "65",
+"fps": 0,
+"loop": false
+},
+"Raio": {
+"q": "66-67,72",
+"fps": 10,
+"loop": false
+},
+"Esfera": {
+"q": "68",
+"fps": 0,
+"loop": false
+},
+"Esferas_Azuis": {
+"q": "69-71",
+"fps": 10,
+"loop": false
+},
+"Explosao": {
+"q": "73",
+"fps": 0,
+"loop": false
+},
+"Pilar_Luz": {
+"q": "74",
+"fps": 0,
+"loop": false
+}
+}
+}

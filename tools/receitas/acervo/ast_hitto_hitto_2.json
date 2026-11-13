@@ -1,0 +1,50 @@
+{
+"nome": "Hit (2)",
+"anims": {
+"Parado": {
+"q": "0-9",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "10-41",
+"fps": 10,
+"loop": false
+},
+"Pose": {
+"q": "43,68-69,73-75,82-85",
+"fps": 4,
+"loop": false
+},
+"Projetil": {
+"q": "44",
+"fps": 0,
+"loop": false
+},
+"Laminas_Ki": {
+"q": "45-48",
+"fps": 10,
+"loop": false
+},
+"Salto_Temporal": {
+"q": "49-50,76",
+"fps": 10,
+"loop": false
+},
+"Rastro": {
+"q": "51-53,65-67,70-72,77-81",
+"fps": 12,
+"loop": false
+},
+"Dano": {
+"q": "54-64",
+"fps": 8,
+"loop": false
+},
+"Golpe_Giro": {
+"q": "42",
+"fps": 0,
+"loop": false
+}
+}
+}

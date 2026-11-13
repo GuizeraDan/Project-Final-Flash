@@ -1,0 +1,55 @@
+{
+"nome": "Cabba SSJ",
+"anims": {
+"Parado": {
+"q": "0-7",
+"fps": 4,
+"loop": true
+},
+"Corte": {
+"q": "8,20,22,49",
+"fps": 10,
+"loop": false
+},
+"Golpes": {
+"q": "9-19,21,23-37",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "39-40",
+"fps": 10,
+"loop": true
+},
+"Rajada": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "42",
+"fps": 0,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "44-46,48,50-53",
+"fps": 4,
+"loop": false
+},
+"Raio": {
+"q": "47",
+"fps": 0,
+"loop": false
+}
+}
+}

@@ -1,0 +1,105 @@
+{
+"nome": "Vegetto Blue (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Vegetto_Base": {
+"q": "2-3",
+"fps": 4,
+"loop": false
+},
+"Transformacao": {
+"q": "4-7",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "8-15",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "16-17",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "18-20",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "21-59",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "60",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "61-62,70-72,76-78,82-84",
+"fps": 4,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "63-64",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "65-67",
+"fps": 8,
+"loop": false
+},
+"Lamina_Ki": {
+"q": "68-69",
+"fps": 10,
+"loop": false
+},
+"Esfera_Eletrica": {
+"q": "73-74",
+"fps": 10,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "75,80",
+"fps": 8,
+"loop": false
+},
+"Rajada": {
+"q": "79,81",
+"fps": 10,
+"loop": false
+},
+"Silhueta": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Esfera_Fusao": {
+"q": "86-87",
+"fps": 8,
+"loop": false
+},
+"Goku_Vegeta": {
+"q": "88-93",
+"fps": 6,
+"loop": false
+},
+"Brinco_Potara": {
+"q": "94",
+"fps": 0,
+"loop": false
+}
+}
+}
