@@ -1,0 +1,125 @@
+{
+"nome": "Golden Freeza",
+"anims": {
+"Parado": {
+"q": "0-1",
+"fps": 4,
+"loop": true
+},
+"Poses": {
+"q": "2-3",
+"fps": 4,
+"loop": false
+},
+"Golpe": {
+"q": "4-6",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "7-8",
+"fps": 12,
+"loop": false
+},
+"Golpe_Cauda": {
+"q": "9-12",
+"fps": 10,
+"loop": false
+},
+"Golpes": {
+"q": "13-14",
+"fps": 10,
+"loop": false
+},
+"Combo": {
+"q": "15-17,19-29",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "18,50",
+"fps": 6,
+"loop": false
+},
+"Combo_2": {
+"q": "30-33",
+"fps": 10,
+"loop": false
+},
+"Transformacao": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "35-36",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "37-39",
+"fps": 8,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "40",
+"fps": 0,
+"loop": false
+},
+"Poses_2": {
+"q": "41-45",
+"fps": 4,
+"loop": false
+},
+"Dano": {
+"q": "46-49",
+"fps": 8,
+"loop": false
+},
+"Disco_Carga": {
+"q": "51-53",
+"fps": 8,
+"loop": false
+},
+"Poses_3": {
+"q": "54,56,58-59",
+"fps": 4,
+"loop": false
+},
+"Corte": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Disco": {
+"q": "57",
+"fps": 0,
+"loop": false
+},
+"Golpe_Cauda_2": {
+"q": "60-62",
+"fps": 10,
+"loop": false
+},
+"Rajada_Rosa": {
+"q": "63-64",
+"fps": 10,
+"loop": false
+},
+"Pose_4": {
+"q": "65,67",
+"fps": 4,
+"loop": false
+},
+"Esfera_Morte_Carga": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Esfera_Morte": {
+"q": "68-70",
+"fps": 10,
+"loop": false
+}
+}
+}

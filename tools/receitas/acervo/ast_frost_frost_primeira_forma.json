@@ -1,0 +1,105 @@
+{
+"nome": "Frost (Primeira Forma)",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Pose": {
+"q": "4,9",
+"fps": 4,
+"loop": false
+},
+"Avanco": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Golpes": {
+"q": "6-7,11-16",
+"fps": 10,
+"loop": false
+},
+"Pulo": {
+"q": "8",
+"fps": 0,
+"loop": false
+},
+"Lancado": {
+"q": "10",
+"fps": 0,
+"loop": false
+},
+"Corte_Cauda": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Golpes_2": {
+"q": "18-23",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "24-25",
+"fps": 10,
+"loop": false
+},
+"Golpes_3": {
+"q": "26-27",
+"fps": 10,
+"loop": false
+},
+"Chicote_Cauda": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Pose_2": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "30-34",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "35",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "36-38",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "39-40,43",
+"fps": 8,
+"loop": false
+},
+"Projetil_Amarelo": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Pose_3": {
+"q": "42,47-49",
+"fps": 4,
+"loop": false
+},
+"Projetil_Rosa": {
+"q": "44-46",
+"fps": 12,
+"loop": true
+},
+"Rajada_Grande": {
+"q": "50",
+"fps": 0,
+"loop": false
+}
+}
+}

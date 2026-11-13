@@ -1,0 +1,110 @@
+{
+"nome": "Gogeta Blue (ULSW 2)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "1-4",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "5-8",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "9-10",
+"fps": 8,
+"loop": false
+},
+"Aura_Flash": {
+"q": "11-12",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "13-14",
+"fps": 12,
+"loop": true
+},
+"Golpe": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "16-17",
+"fps": 12,
+"loop": false
+},
+"Combo": {
+"q": "18-37,39-40,42-50",
+"fps": 10,
+"loop": false
+},
+"Corte_Giro": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "41",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "51-52",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "53-55,61-62,64-65,67-69,74-75,80-81",
+"fps": 4,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "57-59",
+"fps": 8,
+"loop": false
+},
+"Kamehameha": {
+"q": "60",
+"fps": 0,
+"loop": false
+},
+"Eletrico_Roxo": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Esfera_Azul": {
+"q": "70-73",
+"fps": 10,
+"loop": false
+},
+"Explosao_Azul": {
+"q": "76-79",
+"fps": 10,
+"loop": false
+},
+"Icone": {
+"q": "82",
+"fps": 0,
+"loop": false
+}
+}
+}

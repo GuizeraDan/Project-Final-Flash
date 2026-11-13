@@ -1,0 +1,175 @@
+{
+"nome": "Gogeta Blue (ULSW HD)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Goku_Fusao": {
+"q": "1-10,24",
+"fps": 6,
+"loop": false
+},
+"Retrato_Goku": {
+"q": "11",
+"fps": 0,
+"loop": false
+},
+"Vegeta_Fusao": {
+"q": "12-22,25",
+"fps": 6,
+"loop": false
+},
+"Retrato_Vegeta": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Silhueta_Fusao": {
+"q": "26-27",
+"fps": 8,
+"loop": false
+},
+"Gogeta_SSJ": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Gogeta_Base": {
+"q": "29-34",
+"fps": 4,
+"loop": true
+},
+"Transformacao_Blue": {
+"q": "35-41",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "42-44",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "45-52,56-58",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "53",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "54-55",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "59-60",
+"fps": 12,
+"loop": false
+},
+"Combo": {
+"q": "61-103",
+"fps": 10,
+"loop": false
+},
+"Meteoro_Azul": {
+"q": "104",
+"fps": 0,
+"loop": false
+},
+"Chama_Azul": {
+"q": "105-109",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "110-114",
+"fps": 4,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "115-116",
+"fps": 10,
+"loop": true
+},
+"Golpes_2": {
+"q": "117-119",
+"fps": 10,
+"loop": false
+},
+"Lancado": {
+"q": "120",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "121",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "122-124",
+"fps": 8,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "125",
+"fps": 0,
+"loop": false
+},
+"Poses_2": {
+"q": "126-131,141-142",
+"fps": 4,
+"loop": false
+},
+"Orbe_Arco_Iris": {
+"q": "132-138",
+"fps": 8,
+"loop": false
+},
+"Stardust_Breaker": {
+"q": "139-140",
+"fps": 10,
+"loop": true
+},
+"Aura": {
+"q": "143",
+"fps": 0,
+"loop": false
+},
+"Golpes_3": {
+"q": "144-147",
+"fps": 10,
+"loop": false
+},
+"Disparo_2": {
+"q": "148",
+"fps": 0,
+"loop": false
+},
+"Esfera_Grande": {
+"q": "149-150",
+"fps": 10,
+"loop": false
+},
+"Poses_3": {
+"q": "151-162,169-171,176-184",
+"fps": 4,
+"loop": false
+},
+"Raio_Azul": {
+"q": "163-168",
+"fps": 12,
+"loop": false
+},
+"Rajada_Azul": {
+"q": "172-175",
+"fps": 10,
+"loop": false
+}
+}
+}

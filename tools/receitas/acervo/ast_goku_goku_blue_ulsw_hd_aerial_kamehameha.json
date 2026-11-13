@@ -1,0 +1,10 @@
+{
+"nome": "Goku Blue · Kamehameha aéreo",
+"anims": {
+"Kamehameha_Aereo": {
+"q": "0-8",
+"fps": 10,
+"loop": false
+}
+}
+}

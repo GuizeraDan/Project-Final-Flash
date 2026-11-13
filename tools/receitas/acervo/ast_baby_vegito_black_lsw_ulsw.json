@@ -1,0 +1,110 @@
+{
+"nome": "Vegito Black (Baby)",
+"anims": {
+"Retrato": {
+"q": "0-1",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "2-5",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "6-7",
+"fps": 6,
+"loop": false
+},
+"Avanco": {
+"q": "9-10",
+"fps": 8,
+"loop": false
+},
+"Pulo": {
+"q": "11",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "14-17",
+"fps": 10,
+"loop": false
+},
+"Golpe": {
+"q": "20,26",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "19,24",
+"fps": 10,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "27",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Disparo_Lamina": {
+"q": "22",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "29-30",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "31",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "35",
+"fps": 0,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "38-39",
+"fps": 10,
+"loop": true
+},
+"Lamina_Ki": {
+"q": "40-57,64,69-73,75-82",
+"fps": 10,
+"loop": false
+},
+"Aura_Especial": {
+"q": "65",
+"fps": 0,
+"loop": false
+},
+"Raio_Cinza": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "68,74",
+"fps": 8,
+"loop": false
+},
+"Variados": {
+"q": "8,12,18,21,23,25,32-34,36-37,58-63,67",
+"fps": 4,
+"loop": false
+}
+}
+}

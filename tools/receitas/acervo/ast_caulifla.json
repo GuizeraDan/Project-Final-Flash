@@ -1,0 +1,130 @@
+{
+"nome": "Caulifla",
+"anims": {
+"Parado": {
+"q": "0-7",
+"fps": 4,
+"loop": true
+},
+"Golpe": {
+"q": "8-9",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "14-16",
+"fps": 8,
+"loop": false
+},
+"Pulo": {
+"q": "17-19",
+"fps": 8,
+"loop": false
+},
+"Golpe_2": {
+"q": "20-23",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "24-25",
+"fps": 12,
+"loop": true
+},
+"Golpe_3": {
+"q": "26-32",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "33-35",
+"fps": 6,
+"loop": false
+},
+"Soco": {
+"q": "36-39",
+"fps": 10,
+"loop": false
+},
+"Golpes_4": {
+"q": "40-47",
+"fps": 10,
+"loop": false
+},
+"Golpe_Aura": {
+"q": "48",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "49-53",
+"fps": 10,
+"loop": false
+},
+"Golpe_5": {
+"q": "54-58",
+"fps": 10,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "59-61",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "62-64",
+"fps": 8,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "65-66,78",
+"fps": 12,
+"loop": true
+},
+"Esfera_Ki": {
+"q": "79",
+"fps": 0,
+"loop": false
+},
+"Raio": {
+"q": "72",
+"fps": 0,
+"loop": false
+},
+"Efeitos_Vermelhos": {
+"q": "80-84",
+"fps": 10,
+"loop": false
+},
+"Efeitos_Pequenos": {
+"q": "85-87",
+"fps": 10,
+"loop": false
+},
+"Transformacao": {
+"q": "88-94",
+"fps": 8,
+"loop": false
+},
+"Aura_Ki": {
+"q": "95-97",
+"fps": 10,
+"loop": true
+},
+"Transformacao_SSJ": {
+"q": "99-101",
+"fps": 8,
+"loop": false
+},
+"SSJ": {
+"q": "102",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "10-13,67-71,73-77,98",
+"fps": 4,
+"loop": false
+}
+}
+}

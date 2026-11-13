@@ -1,0 +1,10 @@
+{
+"nome": "Zamasu Fundido (desmanchando) · Dano",
+"anims": {
+"Dano": {
+"q": "0-9",
+"fps": 8,
+"loop": false
+}
+}
+}

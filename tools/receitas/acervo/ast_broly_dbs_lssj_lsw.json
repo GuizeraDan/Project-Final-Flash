@@ -1,0 +1,60 @@
+{
+"nome": "Broly (Super, LSSJ)",
+"anims": {
+"Retrato": {
+"q": "19,32,88",
+"fps": 0,
+"loop": false
+},
+"Broly_Base": {
+"q": "1,25,64",
+"fps": 4,
+"loop": false
+},
+"Grito": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "5,8,14,16-17,22,24,29,36-37,50-51,57,60,62,67,70,72,85",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "0,3-4,10-11,15,23,30-31,33,35,38,44-46,48,53-55,58,65,71,76-77,79-80,83",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "78",
+"fps": 0,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "21,40-41,68,73,82",
+"fps": 8,
+"loop": false
+},
+"Efeitos_Verdes": {
+"q": "2,7,9,13,49,52,59,66,84,87",
+"fps": 10,
+"loop": false
+},
+"Aura_Transformacao": {
+"q": "12,18,28,39,43,47,56,61,63,74,81,86",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "20,26,42",
+"fps": 12,
+"loop": true
+},
+"Teletransporte": {
+"q": "27,34,69,75",
+"fps": 16,
+"loop": false
+}
+}
+}

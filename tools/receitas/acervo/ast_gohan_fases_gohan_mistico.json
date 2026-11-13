@@ -1,0 +1,115 @@
+{
+"nome": "Gohan Místico",
+"anims": {
+"Rastro_Teleporte": {
+"q": "0-1",
+"fps": 12,
+"loop": false
+},
+"Parado": {
+"q": "2-5",
+"fps": 4,
+"loop": true
+},
+"Transformacao": {
+"q": "6-11",
+"fps": 8,
+"loop": false
+},
+"Parado_2": {
+"q": "12-20",
+"fps": 4,
+"loop": true
+},
+"Poeira": {
+"q": "21,23",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "22,24",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Combo": {
+"q": "26-47,50-59",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "48-49",
+"fps": 10,
+"loop": false
+},
+"Lancado": {
+"q": "60-61,63,68",
+"fps": 8,
+"loop": false
+},
+"Golpe_Giro": {
+"q": "62",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "64-67",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "69",
+"fps": 0,
+"loop": false
+},
+"Pose": {
+"q": "70,74,82-83,89-90,93",
+"fps": 4,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "71-73",
+"fps": 10,
+"loop": true
+},
+"Esfera_Brilho": {
+"q": "75",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "76-77,79-80,85-87",
+"fps": 8,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "78,81",
+"fps": 12,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "88",
+"fps": 0,
+"loop": false
+},
+"Masenko_Carga": {
+"q": "91-92",
+"fps": 8,
+"loop": false
+},
+"Masenko": {
+"q": "94",
+"fps": 0,
+"loop": false
+}
+}
+}

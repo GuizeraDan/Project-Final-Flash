@@ -1,0 +1,65 @@
+{
+"nome": "Goku Blue Kaioken (Gi do Whis)",
+"anims": {
+"Parado": {
+"q": "0-5",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "6-7",
+"fps": 8,
+"loop": false
+},
+"Golpes": {
+"q": "8-44",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "45-47",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "48-49",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "50-51",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "52-54,57-60,67-70,72-77,83-84",
+"fps": 4,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "55-56,61-62",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "63,66,71",
+"fps": 10,
+"loop": false
+},
+"Investida": {
+"q": "64-65",
+"fps": 10,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "78-80",
+"fps": 10,
+"loop": true
+},
+"Aura_Blue": {
+"q": "81-82",
+"fps": 10,
+"loop": true
+}
+}
+}

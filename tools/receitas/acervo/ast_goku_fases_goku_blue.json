@@ -1,0 +1,90 @@
+{
+"nome": "Goku Blue",
+"anims": {
+"Transformacao_Aura": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Goku_Base": {
+"q": "1-6",
+"fps": 4,
+"loop": true
+},
+"Silhueta": {
+"q": "7,87",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "8-14",
+"fps": 4,
+"loop": true
+},
+"Poses": {
+"q": "15,18-24,29,69-71,74-76,80-81,84-86,112-119,121-123",
+"fps": 4,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "16-17",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "25-28",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "30-34,36-64",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "35,65",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "66-68",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "72-73,77-78",
+"fps": 12,
+"loop": false
+},
+"Kamehameha": {
+"q": "79,120",
+"fps": 10,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "82-83",
+"fps": 10,
+"loop": true
+},
+"Kaioken_Parado": {
+"q": "88-89",
+"fps": 4,
+"loop": true
+},
+"Kaioken_Combo": {
+"q": "90-108",
+"fps": 10,
+"loop": false
+},
+"Kaioken_Projetil": {
+"q": "109-110",
+"fps": 12,
+"loop": false
+},
+"Kaioken_Rajada": {
+"q": "111",
+"fps": 0,
+"loop": false
+}
+}
+}

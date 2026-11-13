@@ -1,0 +1,95 @@
+{
+"nome": "Broly (2ª forma)",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Avanco": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "5-6",
+"fps": 12,
+"loop": true
+},
+"Teletransporte": {
+"q": "7-10",
+"fps": 16,
+"loop": false
+},
+"Pulo": {
+"q": "12",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Golpe": {
+"q": "17-18",
+"fps": 10,
+"loop": false
+},
+"Chute": {
+"q": "20,23",
+"fps": 10,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "21",
+"fps": 0,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "24",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "37",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "38-40",
+"fps": 10,
+"loop": true
+},
+"Efeito_Rajada": {
+"q": "43-45",
+"fps": 10,
+"loop": true
+},
+"Rajada_Grande": {
+"q": "46,57",
+"fps": 8,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "47-51",
+"fps": 8,
+"loop": false
+},
+"Escudo": {
+"q": "52",
+"fps": 0,
+"loop": false
+},
+"Esfera": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "11,13-14,16,19,22,25-36,41-42,53-55,58-62",
+"fps": 4,
+"loop": false
+}
+}
+}

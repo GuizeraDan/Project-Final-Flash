@@ -1,0 +1,95 @@
+{
+"nome": "Goku Blue (2)",
+"anims": {
+"Intro": {
+"q": "0-2",
+"fps": 6,
+"loop": false
+},
+"Aura": {
+"q": "3-4",
+"fps": 10,
+"loop": true
+},
+"Goku_Base": {
+"q": "5,7-8",
+"fps": 4,
+"loop": false
+},
+"Silhueta": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "9,11,19-20",
+"fps": 12,
+"loop": false
+},
+"Pose": {
+"q": "10,87-88,92-94,97,99,102-106,112,115-119",
+"fps": 4,
+"loop": false
+},
+"Parado": {
+"q": "12-17",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "18,21-31,33-46,48-80",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "32,47",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "81",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "82-83",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "84-86",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "89-91,95-96",
+"fps": 12,
+"loop": false
+},
+"Esfera": {
+"q": "98",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "100",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "101,113-114",
+"fps": 10,
+"loop": false
+},
+"Aura_Kaioken": {
+"q": "107-109",
+"fps": 10,
+"loop": true
+},
+"Aura_Blue": {
+"q": "110-111",
+"fps": 10,
+"loop": true
+}
+}
+}

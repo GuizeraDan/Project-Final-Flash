@@ -4500,11 +4500,11 @@
 ]
 },
 "ast_androides_androide_16": {
-"nome": "ANDROIDES / Androide 16",
+"nome": "Androide 16",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 64,
 "atlas": 1,
 "objs": [
@@ -4512,11 +4512,11 @@
 ]
 },
 "ast_androides_androide_17": {
-"nome": "ANDROIDES / Androide 17",
+"nome": "Androide 17",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 17,
 "quadros": 41,
 "atlas": 1,
 "objs": [
@@ -4524,11 +4524,11 @@
 ]
 },
 "ast_androides_androide_18": {
-"nome": "ANDROIDES / Androide 18",
+"nome": "Androide 18",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 16,
 "quadros": 47,
 "atlas": 1,
 "objs": [
@@ -4643,18 +4643,6 @@
 "Assets_Separados/Sprites_soltos_de_personagens/raditz"
 ]
 },
-"ast_baby_vegito_black_lsw_ulsw": {
-"nome": "Baby vegito black (lsw-ulsw)",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 83,
-"atlas": 11,
-"objs": [
-"Baby vegito black (lsw-ulsw)"
-]
-},
 "ast_bardock_fases_bardock": {
 "nome": "Bardock",
 "cat": "ast",
@@ -4668,11 +4656,11 @@
 ]
 },
 "ast_bardock_fases_bardock_ssj": {
-"nome": "BARDOCK fases / Bardock Ssj",
+"nome": "Bardock SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 19,
 "quadros": 63,
 "atlas": 1,
 "objs": [
@@ -4680,11 +4668,11 @@
 ]
 },
 "ast_bardock_fases_bardock_ssj4": {
-"nome": "BARDOCK fases / Bardock SSJ4",
+"nome": "Bardock SSJ4",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 19,
 "quadros": 58,
 "atlas": 1,
 "objs": [
@@ -4696,71 +4684,71 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 27,
 "quadros": 78,
 "atlas": 1,
 "objs": [
 "Bills"
 ]
 },
-"ast_broly_dbs_lssj_lsw": {
-"nome": "Broly DBS LSSJ Lsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 89,
-"atlas": 6,
-"objs": [
-"Broly DBS LSSJ Lsw"
-]
-},
-"ast_broly_fases_broly_full_power": {
-"nome": "BROLY fases / Broly Full Power",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 75,
-"atlas": 1,
-"objs": [
-"BROLY fases/Broly Full Power"
-]
-},
 "ast_broly_fases_broly_segunda_forma": {
-"nome": "BROLY fases / Broly Segunda Forma",
+"nome": "Broly (2ª forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 19,
 "quadros": 63,
 "atlas": 1,
 "objs": [
 "BROLY fases/Broly Segunda Forma"
 ]
 },
-"ast_broly_fases_broly_ssj4": {
-"nome": "BROLY fases / Broly Ssj4",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 49,
-"atlas": 1,
-"objs": [
-"BROLY fases/Broly Ssj4"
-]
-},
 "ast_broly_fases_broly_terceira_forma": {
-"nome": "BROLY fases / Broly Terceira forma",
+"nome": "Broly (3ª forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 18,
 "quadros": 47,
 "atlas": 1,
 "objs": [
 "BROLY fases/Broly Terceira forma"
+]
+},
+"ast_broly_fases_broly_full_power": {
+"nome": "Broly (Lendário, 100%)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 24,
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Full Power"
+]
+},
+"ast_broly_dbs_lssj_lsw": {
+"nome": "Broly (Super, LSSJ)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 89,
+"atlas": 6,
+"objs": [
+"Broly DBS LSSJ Lsw"
+]
+},
+"ast_broly_fases_broly_ssj4": {
+"nome": "Broly SSJ4",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 14,
+"quadros": 49,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Ssj4"
 ]
 },
 "ast_caulifla": {
@@ -4768,67 +4756,67 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 26,
 "quadros": 103,
 "atlas": 1,
 "objs": [
 "Caulifla"
 ]
 },
-"ast_cell_2nd_form": {
-"nome": "Cell / 2ND Form",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 72,
-"atlas": 5,
-"objs": [
-"Cell/2ND Form"
-]
-},
-"ast_cell_perfect_cell_hd_ulsw": {
-"nome": "Cell / Perfect Cell HD ULSW",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 3,
-"quadros": 166,
-"atlas": 21,
-"objs": [
-"Cell/Perfect Cell HD ULSW"
-]
-},
 "ast_cell_formas_cell_imperfeito": {
-"nome": "CELL formas / Cell Imperfeito",
+"nome": "Cell (Imperfeito)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
 "quadros": 64,
 "atlas": 1,
 "objs": [
 "CELL formas/Cell Imperfeito"
 ]
 },
-"ast_cell_formas_cell_perfeito": {
-"nome": "CELL formas / cell Perfeito",
+"ast_cell_2nd_form": {
+"nome": "Cell (Segunda Forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
+"quadros": 72,
+"atlas": 5,
+"objs": [
+"Cell/2ND Form"
+]
+},
+"ast_cell_formas_cell_perfeito": {
+"nome": "Cell Perfeito",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 21,
 "quadros": 61,
 "atlas": 1,
 "objs": [
 "CELL formas/cell Perfeito"
 ]
 },
-"ast_cell_formas_cell_semi_perfeito": {
-"nome": "CELL formas / Cell Semi Perfeito",
+"ast_cell_perfect_cell_hd_ulsw": {
+"nome": "Cell Perfeito (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 54,
+"quadros": 166,
+"atlas": 21,
+"objs": [
+"Cell/Perfect Cell HD ULSW"
+]
+},
+"ast_cell_formas_cell_semi_perfeito": {
+"nome": "Cell Semi-Perfeito",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 30,
 "quadros": 88,
 "atlas": 1,
 "objs": [
@@ -4840,7 +4828,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 28,
 "quadros": 81,
 "atlas": 1,
 "objs": [
@@ -4895,24 +4883,12 @@
 "FREEZA formas/Freeza Forma Final"
 ]
 },
-"ast_freeza_formas_golden_freeza": {
-"nome": "FREEZA formas / Golden Freeza",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 71,
-"atlas": 1,
-"objs": [
-"FREEZA formas/Golden Freeza"
-]
-},
 "ast_frost_frost_primeira_forma": {
-"nome": "Frost / Frost Primeira Forma",
+"nome": "Frost (Primeira Forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 51,
 "atlas": 1,
 "objs": [
@@ -4920,11 +4896,11 @@
 ]
 },
 "ast_frost_frost_ultima_forma": {
-"nome": "Frost / Frost Ultima Forma",
+"nome": "Frost (Última Forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 22,
 "quadros": 55,
 "atlas": 1,
 "objs": [
@@ -4936,31 +4912,19 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 25,
 "quadros": 95,
 "atlas": 1,
 "objs": [
 "Gogeta"
 ]
 },
-"ast_gogeta_gogeta_blue_ulsw_hd": {
-"nome": "Gogeta / Gogeta Blue ULSW HD",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 185,
-"atlas": 29,
-"objs": [
-"Gogeta/Gogeta Blue ULSW HD"
-]
-},
 "ast_gogeta_gogeta_blue_ulsw_hd_extra": {
-"nome": "Gogeta / Gogeta Blue ULSW HD / Extra",
+"nome": "Gogeta Base (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 7,
 "quadros": 24,
 "atlas": 3,
 "objs": [
@@ -4968,11 +4932,11 @@
 ]
 },
 "ast_gogeta_gogeta_blue_ulsw_hd_sprites_v0_5_sheets": {
-"nome": "Gogeta / Gogeta Blue ULSW HD / Sprites V0.5 / Sheets",
+"nome": "Gogeta Blue (folha)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 2,
 "quadros": 1,
 "atlas": 1,
 "objs": [
@@ -4980,23 +4944,35 @@
 ]
 },
 "ast_gogeta_gogeta_blue_ulsw2": {
-"nome": "Gogeta / Gogeta Blue Ulsw2",
+"nome": "Gogeta Blue (ULSW 2)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 22,
 "quadros": 83,
 "atlas": 7,
 "objs": [
 "Gogeta/Gogeta Blue Ulsw2"
 ]
 },
-"ast_gogeta_gogeta_ssj_dbz_hd": {
-"nome": "Gogeta / Gogeta ssj dbz HD",
+"ast_gogeta_gogeta_blue_ulsw_hd": {
+"nome": "Gogeta Blue (ULSW HD)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 4,
+"anims": 35,
+"quadros": 185,
+"atlas": 29,
+"objs": [
+"Gogeta/Gogeta Blue ULSW HD"
+]
+},
+"ast_gogeta_gogeta_ssj_dbz_hd": {
+"nome": "Gogeta SSJ (DBZ HD)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 30,
 "quadros": 121,
 "atlas": 17,
 "objs": [
@@ -5015,100 +4991,100 @@
 "GOHAN fases/Gohan"
 ]
 },
-"ast_gohan_gohan_base_ulsw": {
-"nome": "Gohan / Gohan Base Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 142,
-"atlas": 11,
-"objs": [
-"Gohan/Gohan Base Ulsw"
-]
-},
-"ast_gohan_mystic_gohan_complete": {
-"nome": "Gohan / Mystic Gohan (complete)",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 32,
-"quadros": 68,
-"atlas": 9,
-"objs": [
-"Gohan/Mystic Gohan (complete)"
-]
-},
-"ast_gohan_teen_gohan_ulsw": {
-"nome": "Gohan / Teen Gohan Ulsw",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 3,
-"quadros": 137,
-"atlas": 18,
-"objs": [
-"Gohan/Teen Gohan Ulsw"
-]
-},
-"ast_gohan_fases_gohan_adulto": {
-"nome": "GOHAN fases / Gohan Adulto",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 85,
-"atlas": 1,
-"objs": [
-"GOHAN fases/Gohan Adulto"
-]
-},
-"ast_gohan_fases_gohan_mistico": {
-"nome": "GOHAN fases / Gohan Mistico",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 95,
-"atlas": 1,
-"objs": [
-"GOHAN fases/Gohan Mistico"
-]
-},
 "ast_gohan_fases_gohan_possuido": {
-"nome": "GOHAN fases / Gohan Possuido",
+"nome": "Gohan (Possuído)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
 "quadros": 68,
 "atlas": 1,
 "objs": [
 "GOHAN fases/Gohan Possuido"
 ]
 },
-"ast_gohan_fases_teen_gohan_ssj": {
-"nome": "GOHAN fases / Teen Gohan SSJ",
+"ast_gohan_fases_gohan_adulto": {
+"nome": "Gohan Adulto",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 17,
+"quadros": 85,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan Adulto"
+]
+},
+"ast_gohan_gohan_base_ulsw": {
+"nome": "Gohan Base (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 30,
+"quadros": 142,
+"atlas": 11,
+"objs": [
+"Gohan/Gohan Base Ulsw"
+]
+},
+"ast_gohan_fases_teen_gohan_ssj": {
+"nome": "Gohan Jovem SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 15,
 "quadros": 56,
 "atlas": 1,
 "objs": [
 "GOHAN fases/Teen Gohan SSJ"
 ]
 },
-"ast_gohan_fases_teen_gohan_ssj2": {
-"nome": "GOHAN fases / Teen Gohan SSJ2",
+"ast_gohan_teen_gohan_ulsw": {
+"nome": "Gohan Jovem SSJ (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 34,
+"quadros": 137,
+"atlas": 18,
+"objs": [
+"Gohan/Teen Gohan Ulsw"
+]
+},
+"ast_gohan_fases_teen_gohan_ssj2": {
+"nome": "Gohan Jovem SSJ2",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 18,
 "quadros": 59,
 "atlas": 1,
 "objs": [
 "GOHAN fases/Teen Gohan SSJ2"
+]
+},
+"ast_gohan_fases_gohan_mistico": {
+"nome": "Gohan Místico",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 23,
+"quadros": 95,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan Mistico"
+]
+},
+"ast_gohan_mystic_gohan_complete": {
+"nome": "Gohan Místico (Completo)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 12,
+"quadros": 68,
+"atlas": 9,
+"objs": [
+"Gohan/Mystic Gohan (complete)"
 ]
 },
 "ast_goku_fases_goku": {
@@ -5145,18 +5121,6 @@
 "atlas": 5,
 "objs": [
 "Goku/Goku Blue Ulsw Hd"
-]
-},
-"ast_goku_goku_blue_ulsw_hd_aerial_kamehameha": {
-"nome": "Goku / Goku Blue Ulsw Hd / Aerial kamehameha",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 9,
-"atlas": 2,
-"objs": [
-"Goku/Goku Blue Ulsw Hd/Aerial kamehameha"
 ]
 },
 "ast_goku_goku_ssj_ulsw": {
@@ -5207,20 +5171,80 @@
 "Goku/Goku Ulsw2 Hd"
 ]
 },
-"ast_goku_black_base_ulsw": {
-"nome": "Goku Black Base Ulsw",
+"ast_goku_black_formas_goku_black_2": {
+"nome": "Goku Black (2)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 20,
+"quadros": 91,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black 2"
+]
+},
+"ast_goku_black_formas_goku_black": {
+"nome": "Goku Black (folha)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 2,
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black"
+]
+},
+"ast_goku_black_base_ulsw": {
+"nome": "Goku Black (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 36,
 "quadros": 166,
 "atlas": 15,
 "objs": [
 "Goku Black Base Ulsw"
 ]
 },
+"ast_goku_black_formas_goku_black_rose": {
+"nome": "Goku Black Rosé",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 17,
+"quadros": 101,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black Rose"
+]
+},
+"ast_goku_black_formas_goku_black_ssj": {
+"nome": "Goku Black SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 21,
+"quadros": 115,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black SSJ"
+]
+},
+"ast_goku_black_formas_goku_black_ssj_versi_n_2": {
+"nome": "Goku Black SSJ (Versão 2)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 34,
+"quadros": 166,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black SSJ(versión 2)"
+]
+},
 "ast_goku_black_base_ulsw_ssj_ros": {
-"nome": "Goku Black Base Ulsw / Ssj Rosé",
+"nome": "Goku Black SSJ Rosé (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
@@ -5231,64 +5255,52 @@
 "Goku Black Base Ulsw/Ssj Rosé"
 ]
 },
-"ast_goku_black_formas_goku_black": {
-"nome": "GOKU BLACK formas / Goku Black",
+"ast_goku_fases_goku_blue": {
+"nome": "Goku Blue",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 1,
+"anims": 18,
+"quadros": 124,
 "atlas": 1,
 "objs": [
-"GOKU BLACK formas/Goku Black"
+"GOKU fases/Goku Blue"
 ]
 },
-"ast_goku_black_formas_goku_black_2": {
-"nome": "GOKU BLACK formas / Goku Black 2",
+"ast_goku_fases_goku_blue_2": {
+"nome": "Goku Blue (2)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 91,
+"anims": 19,
+"quadros": 120,
 "atlas": 1,
 "objs": [
-"GOKU BLACK formas/Goku Black 2"
+"GOKU fases/Goku Blue 2"
 ]
 },
-"ast_goku_black_formas_goku_black_rose": {
-"nome": "GOKU BLACK formas / Goku Black Rose",
+"ast_goku_fases_goku_blue_kaioken_whis_gi": {
+"nome": "Goku Blue Kaioken (Gi do Whis)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 101,
+"anims": 13,
+"quadros": 85,
 "atlas": 1,
 "objs": [
-"GOKU BLACK formas/Goku Black Rose"
+"GOKU fases/Goku Blue Kaioken Whis Gi"
 ]
 },
-"ast_goku_black_formas_goku_black_ssj": {
-"nome": "GOKU BLACK formas / Goku Black SSJ",
+"ast_goku_goku_blue_ulsw_hd_aerial_kamehameha": {
+"nome": "Goku Blue · Kamehameha aéreo",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
-"quadros": 115,
-"atlas": 1,
+"anims": 2,
+"quadros": 9,
+"atlas": 2,
 "objs": [
-"GOKU BLACK formas/Goku Black SSJ"
-]
-},
-"ast_goku_black_formas_goku_black_ssj_versi_n_2": {
-"nome": "GOKU BLACK formas / Goku Black SSJ(versión 2)",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 166,
-"atlas": 1,
-"objs": [
-"GOKU BLACK formas/Goku Black SSJ(versión 2)"
+"Goku/Goku Blue Ulsw Hd/Aerial kamehameha"
 ]
 },
 "ast_goku_fases_goku_versi_n2": {
@@ -5301,42 +5313,6 @@
 "atlas": 1,
 "objs": [
 "GOKU fases/Goku (versión2)"
-]
-},
-"ast_goku_fases_goku_blue": {
-"nome": "GOKU fases / Goku Blue",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 124,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Blue"
-]
-},
-"ast_goku_fases_goku_blue_2": {
-"nome": "GOKU fases / Goku Blue 2",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 4,
-"quadros": 120,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Blue 2"
-]
-},
-"ast_goku_fases_goku_blue_kaioken_whis_gi": {
-"nome": "GOKU fases / Goku Blue Kaioken Whis Gi",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 85,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Blue Kaioken Whis Gi"
 ]
 },
 "ast_goku_fases_goku_blue_whis_gi": {
@@ -5517,6 +5493,18 @@
 "atlas": 1,
 "objs": [
 "GOKU fases/Goku Ssj (Saga Freeza)"
+]
+},
+"ast_freeza_formas_golden_freeza": {
+"nome": "Golden Freeza",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 25,
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Golden Freeza"
 ]
 },
 "ast_goten_goten_base_ulsw": {
@@ -5915,18 +5903,6 @@
 "Vegeta/Vegeta Royal Blue Ulsw Hd"
 ]
 },
-"ast_vegeta_vegeta_royal_blue_ulsw_hd_rage": {
-"nome": "Vegeta / Vegeta Royal Blue Ulsw Hd / Rage",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 13,
-"atlas": 3,
-"objs": [
-"Vegeta/Vegeta Royal Blue Ulsw Hd/Rage"
-]
-},
 "ast_vegeta_vegeta_ssj_ulsw": {
 "nome": "Vegeta / Vegeta SSJ Ulsw",
 "cat": "ast",
@@ -6059,6 +6035,18 @@
 "VEGETA fases/Vegeta Ssj Grade"
 ]
 },
+"ast_vegeta_vegeta_royal_blue_ulsw_hd_rage": {
+"nome": "Vegeta Royal Blue · Fúria",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 2,
+"quadros": 13,
+"atlas": 3,
+"objs": [
+"Vegeta/Vegeta Royal Blue Ulsw Hd/Rage"
+]
+},
 "ast_vegetto_blue_ulsw": {
 "nome": "Vegetto Blue Ulsw",
 "cat": "ast",
@@ -6069,6 +6057,18 @@
 "atlas": 7,
 "objs": [
 "Vegetto Blue Ulsw"
+]
+},
+"ast_baby_vegito_black_lsw_ulsw": {
+"nome": "Vegito Black (Baby)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 22,
+"quadros": 83,
+"atlas": 11,
+"objs": [
+"Baby vegito black (lsw-ulsw)"
 ]
 },
 "ast_vegito_fases_vegito": {
@@ -6204,11 +6204,11 @@
 ]
 },
 "ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando_damage": {
-"nome": "ZAMASU formas / Zamasu e Black Fusão Desmanchando / Damage",
+"nome": "Zamasu Fundido (desmanchando) · Dano",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 2,
 "quadros": 10,
 "atlas": 1,
 "objs": [

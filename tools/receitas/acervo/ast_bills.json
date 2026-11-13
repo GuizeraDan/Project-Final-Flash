@@ -1,0 +1,135 @@
+{
+"nome": "Bills",
+"anims": {
+"Parado": {
+"q": "0-1",
+"fps": 3,
+"loop": true
+},
+"Virando": {
+"q": "2",
+"fps": 0,
+"loop": false
+},
+"Meditando": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Agachado": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "6-7",
+"fps": 8,
+"loop": false
+},
+"Teletransporte": {
+"q": "9-12",
+"fps": 16,
+"loop": false
+},
+"Voando": {
+"q": "13-14",
+"fps": 10,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "15-16",
+"fps": 12,
+"loop": true
+},
+"Palma": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "18-19",
+"fps": 10,
+"loop": false
+},
+"Cotovelo": {
+"q": "20",
+"fps": 0,
+"loop": false
+},
+"Cauda": {
+"q": "21,34-35",
+"fps": 10,
+"loop": false
+},
+"Joelho": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "24-26",
+"fps": 10,
+"loop": false
+},
+"Palma_Ki": {
+"q": "27-28",
+"fps": 10,
+"loop": false
+},
+"Golpe_Ki": {
+"q": "31-33",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "43",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "44-46",
+"fps": 10,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "48-50",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "51-52",
+"fps": 10,
+"loop": true
+},
+"Esfera_Dedo": {
+"q": "54-56,68-71",
+"fps": 6,
+"loop": false
+},
+"Faiscas": {
+"q": "57-58,64-66",
+"fps": 10,
+"loop": true
+},
+"Rajada_Grande": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Esfera_Destruicao": {
+"q": "72-74",
+"fps": 6,
+"loop": false
+},
+"Whis": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "3,8,22,29-30,36-42,47,53,59-63,75-76",
+"fps": 4,
+"loop": false
+}
+}
+}

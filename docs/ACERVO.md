@@ -2,7 +2,7 @@
 
 Sprites extraídos dos jogos da pasta `Project Final Flash Sprites` (`tools/extrair_acervo.py` para o Z Legends 3, `tools/extrair_jogos.py` para os outros). Cada sprite fica em `data/acervo/<id>.js` + `assets/img/acervo/<id>_<n>.png` e aparece no Estúdio (aba Sprites e seletor de sprites). Nomes de animação são os do jogo de origem.
 
-**11002 sprites · 62865 animações · 203918 quadros.**
+**11002 sprites · 64153 animações · 203918 quadros.**
 
 ## Z Legends 3 (326 sprites)
 
@@ -398,9 +398,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_assets_separados_personagens_7_buu` | 7_Buu | Personagens | 19 | 62 | Assets_Separados/Personagens/7_Buu |
 | `ast_assets_separados_personagens_8_trunks` | 8_Trunks | Personagens | 17 | 54 | Assets_Separados/Personagens/8_Trunks |
 | `ast_assets_separados_personagens_9_majin_vegeta` | 9_Majin Vegeta | Personagens | 17 | 53 | Assets_Separados/Personagens/9_Majin Vegeta |
-| `ast_androides_androide_16` | ANDROIDES / Androide 16 | Personagens | 1 | 64 | ANDROIDES/Androide 16 |
-| `ast_androides_androide_17` | ANDROIDES / Androide 17 | Personagens | 1 | 41 | ANDROIDES/Androide 17 |
-| `ast_androides_androide_18` | ANDROIDES / Androide 18 | Personagens | 1 | 47 | ANDROIDES/Androide 18 |
+| `ast_androides_androide_16` | Androide 16 | Personagens | 21 | 64 | ANDROIDES/Androide 16 |
+| `ast_androides_androide_17` | Androide 17 | Personagens | 17 | 41 | ANDROIDES/Androide 17 |
+| `ast_androides_androide_18` | Androide 18 | Personagens | 16 | 47 | ANDROIDES/Androide 18 |
 | `ast_assets_separados_sprites_soltos_de_personagens_black_goku` | Assets_Separados / Sprites_soltos_de_personagens / black goku | Personagens | 1 | 2 | Assets_Separados/Sprites_soltos_de_personagens/black goku |
 | `ast_assets_separados_sprites_soltos_de_personagens_buu` | Assets_Separados / Sprites_soltos_de_personagens / buu | Personagens | 1 | 2 | Assets_Separados/Sprites_soltos_de_personagens/buu |
 | `ast_assets_separados_sprites_soltos_de_personagens_cell_2nd` | Assets_Separados / Sprites_soltos_de_personagens / cell 2nd | Personagens | 1 | 1 | Assets_Separados/Sprites_soltos_de_personagens/cell 2nd |
@@ -410,70 +410,66 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_assets_separados_sprites_soltos_de_personagens_jamemba` | Assets_Separados / Sprites_soltos_de_personagens / jamemba | Personagens | 1 | 1 | Assets_Separados/Sprites_soltos_de_personagens/jamemba |
 | `ast_assets_separados_sprites_soltos_de_personagens_jeice` | Assets_Separados / Sprites_soltos_de_personagens / jeice | Personagens | 1 | 1 | Assets_Separados/Sprites_soltos_de_personagens/jeice |
 | `ast_assets_separados_sprites_soltos_de_personagens_raditz` | Assets_Separados / Sprites_soltos_de_personagens / raditz | Personagens | 1 | 1 | Assets_Separados/Sprites_soltos_de_personagens/raditz |
-| `ast_baby_vegito_black_lsw_ulsw` | Baby vegito black (lsw-ulsw) | Personagens | 1 | 83 | Baby vegito black (lsw-ulsw) |
-| `ast_bardock_fases_bardock` | BARDOCK fases / Bardock | Personagens | 1 | 60 | BARDOCK fases/Bardock |
-| `ast_bardock_fases_bardock_ssj` | BARDOCK fases / Bardock Ssj | Personagens | 1 | 63 | BARDOCK fases/Bardock Ssj |
-| `ast_bardock_fases_bardock_ssj4` | BARDOCK fases / Bardock SSJ4 | Personagens | 1 | 58 | BARDOCK fases/Bardock SSJ4 |
-| `ast_bills` | Bills | Personagens | 3 | 78 | Bills |
-| `ast_broly_dbs_lssj_lsw` | Broly DBS LSSJ Lsw | Personagens | 1 | 89 | Broly DBS LSSJ Lsw |
-| `ast_broly_fases_broly_full_power` | BROLY fases / Broly Full Power | Personagens | 1 | 75 | BROLY fases/Broly Full Power |
-| `ast_broly_fases_broly_segunda_forma` | BROLY fases / Broly Segunda Forma | Personagens | 1 | 63 | BROLY fases/Broly Segunda Forma |
-| `ast_broly_fases_broly_ssj4` | BROLY fases / Broly Ssj4 | Personagens | 1 | 49 | BROLY fases/Broly Ssj4 |
-| `ast_broly_fases_broly_terceira_forma` | BROLY fases / Broly Terceira forma | Personagens | 1 | 47 | BROLY fases/Broly Terceira forma |
-| `ast_caulifla` | Caulifla | Personagens | 1 | 103 | Caulifla |
-| `ast_cell_2nd_form` | Cell / 2ND Form | Personagens | 1 | 72 | Cell/2ND Form |
-| `ast_cell_perfect_cell_hd_ulsw` | Cell / Perfect Cell HD ULSW | Personagens | 3 | 166 | Cell/Perfect Cell HD ULSW |
-| `ast_cell_formas_cell_imperfeito` | CELL formas / Cell Imperfeito | Personagens | 1 | 64 | CELL formas/Cell Imperfeito |
-| `ast_cell_formas_cell_perfeito` | CELL formas / cell Perfeito | Personagens | 1 | 61 | CELL formas/cell Perfeito |
-| `ast_cell_formas_cell_semi_perfeito` | CELL formas / Cell Semi Perfeito | Personagens | 1 | 88 | CELL formas/Cell Semi Perfeito |
-| `ast_cooler` | Cooler | Personagens | 1 | 81 | Cooler |
-| `ast_freeza_formas_freeza_forma_final` | FREEZA formas / Freeza Forma Final | Personagens | 1 | 64 | FREEZA formas/Freeza Forma Final |
-| `ast_freeza_formas_freeza_full_power` | FREEZA formas / Freeza Full Power | Personagens | 1 | 89 | FREEZA formas/Freeza Full Power |
-| `ast_freeza_formas_freeza_primeira_forma` | FREEZA formas / Freeza Primeira Forma | Personagens | 1 | 60 | FREEZA formas/Freeza Primeira Forma |
-| `ast_freeza_formas_freeza_terceira_forma` | FREEZA formas / Freeza Terceira Forma | Personagens | 3 | 38 | FREEZA formas/Freeza Terceira Forma |
-| `ast_freeza_formas_golden_freeza` | FREEZA formas / Golden Freeza | Personagens | 1 | 71 | FREEZA formas/Golden Freeza |
-| `ast_frost_frost_primeira_forma` | Frost / Frost Primeira Forma | Personagens | 1 | 51 | Frost/Frost Primeira Forma |
-| `ast_frost_frost_ultima_forma` | Frost / Frost Ultima Forma | Personagens | 1 | 55 | Frost/Frost Ultima Forma |
-| `ast_gogeta` | Gogeta | Personagens | 1 | 95 | Gogeta |
-| `ast_gogeta_gogeta_blue_ulsw_hd` | Gogeta / Gogeta Blue ULSW HD | Personagens | 1 | 185 | Gogeta/Gogeta Blue ULSW HD |
-| `ast_gogeta_gogeta_blue_ulsw_hd_extra` | Gogeta / Gogeta Blue ULSW HD / Extra | Personagens | 1 | 24 | Gogeta/Gogeta Blue ULSW HD/Extra |
-| `ast_gogeta_gogeta_blue_ulsw_hd_sprites_v0_5_sheets` | Gogeta / Gogeta Blue ULSW HD / Sprites V0.5 / Sheets | Personagens | 1 | 1 | Gogeta/Gogeta Blue ULSW HD/Sprites V0.5/Sheets |
-| `ast_gogeta_gogeta_blue_ulsw2` | Gogeta / Gogeta Blue Ulsw2 | Personagens | 1 | 83 | Gogeta/Gogeta Blue Ulsw2 |
-| `ast_gogeta_gogeta_ssj_dbz_hd` | Gogeta / Gogeta ssj dbz HD | Personagens | 4 | 121 | Gogeta/Gogeta ssj dbz HD |
-| `ast_gohan_gohan_base_ulsw` | Gohan / Gohan Base Ulsw | Personagens | 1 | 142 | Gohan/Gohan Base Ulsw |
-| `ast_gohan_mystic_gohan_complete` | Gohan / Mystic Gohan (complete) | Personagens | 32 | 68 | Gohan/Mystic Gohan (complete) |
-| `ast_gohan_teen_gohan_ulsw` | Gohan / Teen Gohan Ulsw | Personagens | 3 | 137 | Gohan/Teen Gohan Ulsw |
-| `ast_gohan_fases_gohan` | GOHAN fases / Gohan | Personagens | 1 | 68 | GOHAN fases/Gohan |
-| `ast_gohan_fases_gohan_adulto` | GOHAN fases / Gohan Adulto | Personagens | 1 | 85 | GOHAN fases/Gohan Adulto |
-| `ast_gohan_fases_gohan_mistico` | GOHAN fases / Gohan Mistico | Personagens | 1 | 95 | GOHAN fases/Gohan Mistico |
-| `ast_gohan_fases_gohan_possuido` | GOHAN fases / Gohan Possuido | Personagens | 1 | 68 | GOHAN fases/Gohan Possuido |
-| `ast_gohan_fases_teen_gohan_ssj` | GOHAN fases / Teen Gohan SSJ | Personagens | 1 | 56 | GOHAN fases/Teen Gohan SSJ |
-| `ast_gohan_fases_teen_gohan_ssj2` | GOHAN fases / Teen Gohan SSJ2 | Personagens | 1 | 59 | GOHAN fases/Teen Gohan SSJ2 |
-| `ast_goku_goku_base_ulsw` | Goku / Goku Base Ulsw | Personagens | 10 | 161 | Goku/Goku Base Ulsw |
+| `ast_bardock_fases_bardock` | Bardock | Personagens | 21 | 60 | BARDOCK fases/Bardock |
+| `ast_bardock_fases_bardock_ssj` | Bardock SSJ | Personagens | 19 | 63 | BARDOCK fases/Bardock Ssj |
+| `ast_bardock_fases_bardock_ssj4` | Bardock SSJ4 | Personagens | 19 | 58 | BARDOCK fases/Bardock SSJ4 |
+| `ast_bills` | Bills | Personagens | 27 | 78 | Bills |
+| `ast_broly_fases_broly_segunda_forma` | Broly (2ª forma) | Personagens | 19 | 63 | BROLY fases/Broly Segunda Forma |
+| `ast_broly_fases_broly_terceira_forma` | Broly (3ª forma) | Personagens | 18 | 47 | BROLY fases/Broly Terceira forma |
+| `ast_broly_fases_broly_full_power` | Broly (Lendário, 100%) | Personagens | 24 | 75 | BROLY fases/Broly Full Power |
+| `ast_broly_dbs_lssj_lsw` | Broly (Super, LSSJ) | Personagens | 12 | 89 | Broly DBS LSSJ Lsw |
+| `ast_broly_fases_broly_ssj4` | Broly SSJ4 | Personagens | 14 | 49 | BROLY fases/Broly Ssj4 |
+| `ast_caulifla` | Caulifla | Personagens | 26 | 103 | Caulifla |
+| `ast_cell_formas_cell_imperfeito` | Cell (Imperfeito) | Personagens | 20 | 64 | CELL formas/Cell Imperfeito |
+| `ast_cell_2nd_form` | Cell (Segunda Forma) | Personagens | 20 | 72 | Cell/2ND Form |
+| `ast_cell_formas_cell_perfeito` | Cell Perfeito | Personagens | 21 | 61 | CELL formas/cell Perfeito |
+| `ast_cell_perfect_cell_hd_ulsw` | Cell Perfeito (ULSW HD) | Personagens | 54 | 166 | Cell/Perfect Cell HD ULSW |
+| `ast_cell_formas_cell_semi_perfeito` | Cell Semi-Perfeito | Personagens | 30 | 88 | CELL formas/Cell Semi Perfeito |
+| `ast_cooler` | Cooler | Personagens | 28 | 81 | Cooler |
+| `ast_freeza_formas_freeza_full_power` | Freeza (100%) | Personagens | 21 | 89 | FREEZA formas/Freeza Full Power |
+| `ast_freeza_formas_freeza_primeira_forma` | Freeza (1ª forma) | Personagens | 22 | 60 | FREEZA formas/Freeza Primeira Forma |
+| `ast_freeza_formas_freeza_terceira_forma` | Freeza (3ª forma) | Personagens | 17 | 38 | FREEZA formas/Freeza Terceira Forma |
+| `ast_freeza_formas_freeza_forma_final` | Freeza (forma final) | Personagens | 25 | 64 | FREEZA formas/Freeza Forma Final |
+| `ast_frost_frost_primeira_forma` | Frost (Primeira Forma) | Personagens | 21 | 51 | Frost/Frost Primeira Forma |
+| `ast_frost_frost_ultima_forma` | Frost (Última Forma) | Personagens | 22 | 55 | Frost/Frost Ultima Forma |
+| `ast_gogeta` | Gogeta | Personagens | 25 | 95 | Gogeta |
+| `ast_gogeta_gogeta_blue_ulsw_hd_extra` | Gogeta Base (ULSW HD) | Personagens | 7 | 24 | Gogeta/Gogeta Blue ULSW HD/Extra |
+| `ast_gogeta_gogeta_blue_ulsw_hd_sprites_v0_5_sheets` | Gogeta Blue (folha) | Personagens | 2 | 1 | Gogeta/Gogeta Blue ULSW HD/Sprites V0.5/Sheets |
+| `ast_gogeta_gogeta_blue_ulsw2` | Gogeta Blue (ULSW 2) | Personagens | 22 | 83 | Gogeta/Gogeta Blue Ulsw2 |
+| `ast_gogeta_gogeta_blue_ulsw_hd` | Gogeta Blue (ULSW HD) | Personagens | 35 | 185 | Gogeta/Gogeta Blue ULSW HD |
+| `ast_gogeta_gogeta_ssj_dbz_hd` | Gogeta SSJ (DBZ HD) | Personagens | 30 | 121 | Gogeta/Gogeta ssj dbz HD |
+| `ast_gohan_fases_gohan` | Gohan (criança) | Personagens | 24 | 68 | GOHAN fases/Gohan |
+| `ast_gohan_fases_gohan_possuido` | Gohan (Possuído) | Personagens | 20 | 68 | GOHAN fases/Gohan Possuido |
+| `ast_gohan_fases_gohan_adulto` | Gohan Adulto | Personagens | 17 | 85 | GOHAN fases/Gohan Adulto |
+| `ast_gohan_gohan_base_ulsw` | Gohan Base (ULSW) | Personagens | 30 | 142 | Gohan/Gohan Base Ulsw |
+| `ast_gohan_fases_teen_gohan_ssj` | Gohan Jovem SSJ | Personagens | 15 | 56 | GOHAN fases/Teen Gohan SSJ |
+| `ast_gohan_teen_gohan_ulsw` | Gohan Jovem SSJ (ULSW) | Personagens | 34 | 137 | Gohan/Teen Gohan Ulsw |
+| `ast_gohan_fases_teen_gohan_ssj2` | Gohan Jovem SSJ2 | Personagens | 18 | 59 | GOHAN fases/Teen Gohan SSJ2 |
+| `ast_gohan_fases_gohan_mistico` | Gohan Místico | Personagens | 23 | 95 | GOHAN fases/Gohan Mistico |
+| `ast_gohan_mystic_gohan_complete` | Gohan Místico (Completo) | Personagens | 12 | 68 | Gohan/Mystic Gohan (complete) |
+| `ast_goku_fases_goku` | Goku | Personagens | 34 | 71 | GOKU fases/Goku |
+| `ast_goku_goku_base_ulsw` | Goku (ULSW) | Personagens | 31 | 161 | Goku/Goku Base Ulsw |
 | `ast_goku_goku_blue_ulsw_hd` | Goku / Goku Blue Ulsw Hd | Personagens | 4 | 120 | Goku/Goku Blue Ulsw Hd |
-| `ast_goku_goku_blue_ulsw_hd_aerial_kamehameha` | Goku / Goku Blue Ulsw Hd / Aerial kamehameha | Personagens | 1 | 9 | Goku/Goku Blue Ulsw Hd/Aerial kamehameha |
 | `ast_goku_goku_ssj_ulsw` | Goku / Goku SSJ Ulsw | Personagens | 3 | 141 | Goku/Goku SSJ Ulsw |
 | `ast_goku_goku_ssj3_ulsw` | Goku / Goku SSJ3 Ulsw | Personagens | 1 | 95 | Goku/Goku SSJ3 Ulsw |
 | `ast_goku_goku_ssj4_gt_ulsw_hd` | Goku / Goku ssj4 GT Ulsw Hd | Personagens | 1 | 115 | Goku/Goku ssj4 GT Ulsw Hd |
 | `ast_goku_goku_ulsw2_hd` | Goku / Goku Ulsw2 Hd | Personagens | 1 | 88 | Goku/Goku Ulsw2 Hd |
-| `ast_goku_black_base_ulsw` | Goku Black Base Ulsw | Personagens | 1 | 166 | Goku Black Base Ulsw |
-| `ast_goku_black_base_ulsw_ssj_ros` | Goku Black Base Ulsw / Ssj Rosé | Personagens | 16 | 54 | Goku Black Base Ulsw/Ssj Rosé |
-| `ast_goku_black_formas_goku_black` | GOKU BLACK formas / Goku Black | Personagens | 1 | 1 | GOKU BLACK formas/Goku Black |
-| `ast_goku_black_formas_goku_black_2` | GOKU BLACK formas / Goku Black 2 | Personagens | 1 | 91 | GOKU BLACK formas/Goku Black 2 |
-| `ast_goku_black_formas_goku_black_rose` | GOKU BLACK formas / Goku Black Rose | Personagens | 1 | 101 | GOKU BLACK formas/Goku Black Rose |
-| `ast_goku_black_formas_goku_black_ssj` | GOKU BLACK formas / Goku Black SSJ | Personagens | 1 | 115 | GOKU BLACK formas/Goku Black SSJ |
-| `ast_goku_black_formas_goku_black_ssj_versi_n_2` | GOKU BLACK formas / Goku Black SSJ(versión 2) | Personagens | 1 | 166 | GOKU BLACK formas/Goku Black SSJ(versión 2) |
-| `ast_goku_fases_goku` | GOKU fases / Goku | Personagens | 1 | 71 | GOKU fases/Goku |
+| `ast_goku_black_formas_goku_black_2` | Goku Black (2) | Personagens | 20 | 91 | GOKU BLACK formas/Goku Black 2 |
+| `ast_goku_black_formas_goku_black` | Goku Black (folha) | Personagens | 2 | 1 | GOKU BLACK formas/Goku Black |
+| `ast_goku_black_base_ulsw` | Goku Black (ULSW) | Personagens | 36 | 166 | Goku Black Base Ulsw |
+| `ast_goku_black_formas_goku_black_rose` | Goku Black Rosé | Personagens | 17 | 101 | GOKU BLACK formas/Goku Black Rose |
+| `ast_goku_black_formas_goku_black_ssj` | Goku Black SSJ | Personagens | 21 | 115 | GOKU BLACK formas/Goku Black SSJ |
+| `ast_goku_black_formas_goku_black_ssj_versi_n_2` | Goku Black SSJ (Versão 2) | Personagens | 34 | 166 | GOKU BLACK formas/Goku Black SSJ(versión 2) |
+| `ast_goku_black_base_ulsw_ssj_ros` | Goku Black SSJ Rosé (ULSW) | Personagens | 16 | 54 | Goku Black Base Ulsw/Ssj Rosé |
+| `ast_goku_fases_goku_blue` | Goku Blue | Personagens | 18 | 124 | GOKU fases/Goku Blue |
+| `ast_goku_fases_goku_blue_2` | Goku Blue (2) | Personagens | 19 | 120 | GOKU fases/Goku Blue 2 |
+| `ast_goku_fases_goku_blue_kaioken_whis_gi` | Goku Blue Kaioken (Gi do Whis) | Personagens | 13 | 85 | GOKU fases/Goku Blue Kaioken Whis Gi |
+| `ast_goku_goku_blue_ulsw_hd_aerial_kamehameha` | Goku Blue · Kamehameha aéreo | Personagens | 2 | 9 | Goku/Goku Blue Ulsw Hd/Aerial kamehameha |
 | `ast_goku_fases_goku_versi_n2` | GOKU fases / Goku (versión2) | Personagens | 5 | 133 | GOKU fases/Goku (versión2) |
-| `ast_goku_fases_goku_blue` | GOKU fases / Goku Blue | Personagens | 1 | 124 | GOKU fases/Goku Blue |
-| `ast_goku_fases_goku_blue_2` | GOKU fases / Goku Blue 2 | Personagens | 4 | 120 | GOKU fases/Goku Blue 2 |
-| `ast_goku_fases_goku_blue_kaioken_whis_gi` | GOKU fases / Goku Blue Kaioken Whis Gi | Personagens | 1 | 85 | GOKU fases/Goku Blue Kaioken Whis Gi |
 | `ast_goku_fases_goku_blue_whis_gi` | GOKU fases / Goku Blue Whis Gi | Personagens | 1 | 69 | GOKU fases/Goku Blue Whis Gi |
 | `ast_goku_fases_goku_god` | GOKU fases / Goku God | Personagens | 1 | 62 | GOKU fases/Goku God |
 | `ast_goku_fases_goku_instinto_superior` | GOKU fases / Goku Instinto Superior | Personagens | 1 | 114 | GOKU fases/Goku Instinto Superior |
 | `ast_goku_fases_goku_instinto_superior_completo` | GOKU fases / Goku Instinto Superior Completo | Personagens | 1 | 59 | GOKU fases/Goku Instinto Superior Completo |
-| `ast_goku_fases_goku_kaioken` | GOKU fases / Goku kaioken | Personagens | 1 | 67 | GOKU fases/Goku kaioken |
-| `ast_goku_fases_goku_ssj_saga_freeza` | GOKU fases / Goku Ssj (Saga Freeza) | Personagens | 1 | 80 | GOKU fases/Goku Ssj (Saga Freeza) |
 | `ast_goku_fases_goku_ssj_1` | GOKU fases / Goku SSJ 1 | Personagens | 1 | 55 | GOKU fases/Goku SSJ 1 |
 | `ast_goku_fases_goku_ssj_1_versi_n_2` | GOKU fases / Goku SSJ 1(versión 2) | Personagens | 1 | 112 | GOKU fases/Goku SSJ 1(versión 2) |
 | `ast_goku_fases_goku_ssj_2` | GOKU fases / Goku SSJ 2 | Personagens | 1 | 53 | GOKU fases/Goku SSJ 2 |
@@ -483,6 +479,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_goku_fases_goku_ssj_falso` | GOKU fases / Goku Ssj Falso | Personagens | 1 | 106 | GOKU fases/Goku Ssj Falso |
 | `ast_goku_fases_goku_ssj_kaioken` | GOKU fases / Goku SSJ Kaioken | Personagens | 1 | 76 | GOKU fases/Goku SSJ Kaioken |
 | `ast_goku_fases_goku_whis_gi` | GOKU fases / Goku Whis Gi | Personagens | 1 | 59 | GOKU fases/Goku Whis Gi |
+| `ast_goku_fases_goku_kaioken` | Goku Kaioken | Personagens | 15 | 67 | GOKU fases/Goku kaioken |
+| `ast_goku_fases_goku_ssj_saga_freeza` | Goku SSJ (Saga Freeza) | Personagens | 22 | 80 | GOKU fases/Goku Ssj (Saga Freeza) |
+| `ast_freeza_formas_golden_freeza` | Golden Freeza | Personagens | 25 | 71 | FREEZA formas/Golden Freeza |
 | `ast_goten_goten_base_ulsw` | Goten / Goten Base Ulsw | Personagens | 1 | 89 | Goten/Goten Base Ulsw |
 | `ast_gotenks_base` | Gotenks Base | Personagens | 1 | 108 | Gotenks Base |
 | `ast_janemba` | Janemba | Personagens | 1 | 72 | Janemba |
@@ -491,8 +490,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_kale_fases_kale` | KALE fases / Kale | Personagens | 1 | 46 | KALE fases/Kale |
 | `ast_kale_fases_kale_ssj` | KALE fases / Kale Ssj | Personagens | 1 | 54 | KALE fases/Kale Ssj |
 | `ast_kefla_super_sayajin` | Kefla Super Sayajin | Personagens | 4 | 165 | Kefla Super Sayajin |
-| `ast_kuririn` | Kuririn | Personagens | 1 | 81 | Kuririn |
-| `ast_kuririn_ulsw` | Kuririn Ulsw | Personagens | 3 | 126 | Kuririn Ulsw |
+| `ast_kuririn` | Kuririn | Personagens | 33 | 81 | Kuririn |
+| `ast_kuririn_ulsw` | Kuririn (ULSW) | Personagens | 36 | 126 | Kuririn Ulsw |
 | `ast_kyabe_fases_kyabe` | KYABE fases / Kyabe | Personagens | 1 | 51 | KYABE fases/Kyabe |
 | `ast_kyabe_fases_kyabe_ssj` | KYABE fases / Kyabe ssj | Personagens | 1 | 54 | KYABE fases/Kyabe ssj |
 | `ast_majin_buu_formas_kid_buu` | MAJIN BUU formas / Kid Buu | Personagens | 1 | 80 | MAJIN BUU formas/Kid Buu |
@@ -502,33 +501,34 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_majin_buu_formas_super_buu` | MAJIN BUU formas / Super Buu | Personagens | 1 | 63 | MAJIN BUU formas/Super Buu |
 | `ast_mirai_trunks_fases_mirai_trunks` | MIRAI TRUNKS fases / Mirai Trunks | Personagens | 1 | 108 | MIRAI TRUNKS fases/Mirai Trunks |
 | `ast_mirai_trunks_fases_super_mirai_trunks` | MIRAI TRUNKS fases / Super Mirai Trunks | Personagens | 1 | 108 | MIRAI TRUNKS fases/Super Mirai Trunks |
-| `ast_piccolo` | Piccolo | Personagens | 1 | 107 | Piccolo |
-| `ast_raditz_fases_raditz` | RADITZ fases / Raditz | Personagens | 1 | 47 | RADITZ fases/Raditz |
-| `ast_raditz_fases_raditz_ssj` | RADITZ fases / Raditz Ssj | Personagens | 1 | 45 | RADITZ fases/Raditz Ssj |
-| `ast_saibaman` | Saibaman | Personagens | 1 | 46 | Saibaman |
-| `ast_sr_kaioh` | Sr. Kaioh | Personagens | 1 | 42 | Sr. Kaioh |
+| `ast_piccolo` | Piccolo | Personagens | 31 | 107 | Piccolo |
+| `ast_raditz_fases_raditz` | Raditz | Personagens | 19 | 47 | RADITZ fases/Raditz |
+| `ast_raditz_fases_raditz_ssj` | Raditz SSJ | Personagens | 17 | 45 | RADITZ fases/Raditz Ssj |
+| `ast_saibaman` | Saibaman | Personagens | 21 | 46 | Saibaman |
+| `ast_sr_kaioh` | Sr. Kaioh | Personagens | 12 | 42 | Sr. Kaioh |
 | `ast_toppo` | Toppo | Personagens | 3 | 77 | Toppo |
 | `ast_trunks_armadura` | Trunks Armadura | Personagens | 1 | 75 | Trunks Armadura |
 | `ast_turles` | Turles | Personagens | 1 | 67 | Turles |
+| `ast_vegeta_fases_vegeta` | Vegeta | Personagens | 15 | 55 | VEGETA fases/Vegeta |
+| `ast_vegeta_fases_vegeta_sayajin_saga` | Vegeta (Saga Saiyajin) | Personagens | 24 | 47 | VEGETA fases/Vegeta Sayajin Saga |
 | `ast_vegeta_baby_vegeta_ulsw_hd` | Vegeta / Baby Vegeta Ulsw Hd | Personagens | 1 | 58 | Vegeta/Baby Vegeta Ulsw Hd |
 | `ast_vegeta_vegeta_base_ulsw` | Vegeta / Vegeta Base Ulsw | Personagens | 3 | 133 | Vegeta/Vegeta Base Ulsw |
 | `ast_vegeta_vegeta_blue_ulsw_hd` | Vegeta / Vegeta Blue Ulsw Hd | Personagens | 12 | 125 | Vegeta/Vegeta Blue Ulsw Hd |
 | `ast_vegeta_vegeta_royal_blue_ulsw_hd` | Vegeta / Vegeta Royal Blue Ulsw Hd | Personagens | 5 | 137 | Vegeta/Vegeta Royal Blue Ulsw Hd |
-| `ast_vegeta_vegeta_royal_blue_ulsw_hd_rage` | Vegeta / Vegeta Royal Blue Ulsw Hd / Rage | Personagens | 1 | 13 | Vegeta/Vegeta Royal Blue Ulsw Hd/Rage |
 | `ast_vegeta_vegeta_ssj_ulsw` | Vegeta / Vegeta SSJ Ulsw | Personagens | 6 | 118 | Vegeta/Vegeta SSJ Ulsw |
 | `ast_vegeta_vegeta_ssj2_ulsw` | Vegeta / Vegeta SSJ2 Ulsw | Personagens | 1 | 98 | Vegeta/Vegeta SSJ2 Ulsw |
 | `ast_vegeta_vegeta_ssj4_hd` | Vegeta / VEGETA SSJ4 HD | Personagens | 1 | 65 | Vegeta/VEGETA SSJ4 HD |
 | `ast_vegeta_fases_majin_vegeta` | VEGETA fases / Majin Vegeta | Personagens | 1 | 59 | VEGETA fases/Majin Vegeta |
-| `ast_vegeta_fases_vegeta` | VEGETA fases / Vegeta | Personagens | 1 | 55 | VEGETA fases/Vegeta |
 | `ast_vegeta_fases_vegeta_blue` | VEGETA fases / Vegeta Blue | Personagens | 1 | 107 | VEGETA fases/Vegeta Blue |
 | `ast_vegeta_fases_vegeta_blue_full_power` | VEGETA fases / Vegeta Blue Full Power | Personagens | 1 | 99 | VEGETA fases/Vegeta Blue Full Power |
 | `ast_vegeta_fases_vegeta_buu_saga` | VEGETA fases / Vegeta Buu Saga | Personagens | 1 | 51 | VEGETA fases/Vegeta Buu Saga |
 | `ast_vegeta_fases_vegeta_saga_buu_ssj` | VEGETA fases / Vegeta Saga Buu SSJ | Personagens | 1 | 53 | VEGETA fases/Vegeta Saga Buu SSJ |
-| `ast_vegeta_fases_vegeta_sayajin_saga` | VEGETA fases / Vegeta Sayajin Saga | Personagens | 1 | 47 | VEGETA fases/Vegeta Sayajin Saga |
 | `ast_vegeta_fases_vegeta_ssj_4` | VEGETA fases / Vegeta SSJ 4 | Personagens | 1 | 56 | VEGETA fases/Vegeta SSJ 4 |
 | `ast_vegeta_fases_vegeta_ssj_god` | VEGETA fases / Vegeta Ssj God | Personagens | 1 | 54 | VEGETA fases/Vegeta Ssj God |
 | `ast_vegeta_fases_vegeta_ssj_grade` | VEGETA fases / Vegeta Ssj Grade | Personagens | 1 | 68 | VEGETA fases/Vegeta Ssj Grade |
+| `ast_vegeta_vegeta_royal_blue_ulsw_hd_rage` | Vegeta Royal Blue · Fúria | Personagens | 2 | 13 | Vegeta/Vegeta Royal Blue Ulsw Hd/Rage |
 | `ast_vegetto_blue_ulsw` | Vegetto Blue Ulsw | Personagens | 1 | 95 | Vegetto Blue Ulsw |
+| `ast_baby_vegito_black_lsw_ulsw` | Vegito Black (Baby) | Personagens | 22 | 83 | Baby vegito black (lsw-ulsw) |
 | `ast_vegito_fases_vegito` | VEGITO fases / Vegito | Personagens | 1 | 93 | VEGITO fases/Vegito |
 | `ast_vegito_fases_vegito_ssj_blue` | VEGITO fases / Vegito SSJ Blue | Personagens | 1 | 112 | VEGITO fases/Vegito SSJ Blue |
 | `ast_vegito_fases_vegito_ssj1` | VEGITO fases / Vegito Ssj1 | Personagens | 1 | 109 | VEGITO fases/Vegito Ssj1 |
@@ -540,7 +540,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `ast_zamasu_formas_zamasu_e_black_fusion` | ZAMASU formas / Zamasu e Black Fusion | Personagens | 1 | 91 | ZAMASU formas/Zamasu e Black Fusion |
 | `ast_zamasu_formas_zamasu_e_black_fusion_robotica` | ZAMASU formas / Zamasu e Black fusion Robotica | Personagens | 1 | 117 | ZAMASU formas/Zamasu e Black fusion Robotica |
 | `ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando` | ZAMASU formas / Zamasu e Black Fusão Desmanchando | Personagens | 1 | 136 | ZAMASU formas/Zamasu e Black Fusão Desmanchando |
-| `ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando_damage` | ZAMASU formas / Zamasu e Black Fusão Desmanchando / Damage | Personagens | 1 | 10 | ZAMASU formas/Zamasu e Black Fusão Desmanchando/Damage |
+| `ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando_damage` | Zamasu Fundido (desmanchando) · Dano | Personagens | 2 | 10 | ZAMASU formas/Zamasu e Black Fusão Desmanchando/Damage |
 | `ast_assets_separados_efeitos_e_golpes_black_small_blast` | Black small blast | Efeitos | 2 | 5 | Assets_Separados/Efeitos_e_golpes/Black small blast |
 | `ast_assets_separados_efeitos_e_golpes_buu_death_ball` | Buu Death Ball | Efeitos | 1 | 39 | Assets_Separados/Efeitos_e_golpes/Buu Death Ball |
 | `ast_assets_separados_efeitos_e_golpes_buubodypart` | BuuBodyPart | Efeitos | 2 | 6 | Assets_Separados/Efeitos_e_golpes/BuuBodyPart |

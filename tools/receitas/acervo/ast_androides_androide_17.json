@@ -1,0 +1,85 @@
+{
+"nome": "Androide 17",
+"anims": {
+"Parado": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Postura": {
+"q": "1-3",
+"fps": 6,
+"loop": false
+},
+"Avanco": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "5,14",
+"fps": 16,
+"loop": false
+},
+"Soco": {
+"q": "6-7",
+"fps": 10,
+"loop": false
+},
+"Chute": {
+"q": "8-9",
+"fps": 10,
+"loop": false
+},
+"Pulo": {
+"q": "11",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "13,15",
+"fps": 12,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "17,24-25",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "26-27,30",
+"fps": 10,
+"loop": true
+},
+"Rajada_Dupla": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Raio": {
+"q": "31",
+"fps": 0,
+"loop": false
+},
+"Barreira_Carga": {
+"q": "33-36",
+"fps": 8,
+"loop": true
+},
+"Barreira": {
+"q": "37-40",
+"fps": 8,
+"loop": true
+},
+"Variados": {
+"q": "10,12,16,18-22,29,32",
+"fps": 4,
+"loop": false
+}
+}
+}

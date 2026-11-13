@@ -1,0 +1,150 @@
+{
+"nome": "Cell Semi-Perfeito",
+"anims": {
+"Parado": {
+"q": "0-1",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "2-5",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6-7",
+"fps": 12,
+"loop": false
+},
+"Golpes_2": {
+"q": "8-11",
+"fps": 10,
+"loop": false
+},
+"Golpe_Cauda": {
+"q": "12-14",
+"fps": 10,
+"loop": false
+},
+"Combo": {
+"q": "15-29",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "30-32",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "33",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "35-37",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "38-39",
+"fps": 8,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "40-41",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "42-44,47",
+"fps": 4,
+"loop": false
+},
+"Esfera_Roxa": {
+"q": "45",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "46",
+"fps": 0,
+"loop": false
+},
+"Flash": {
+"q": "48",
+"fps": 0,
+"loop": false
+},
+"Esfera_Branca": {
+"q": "49",
+"fps": 0,
+"loop": false
+},
+"Barreira": {
+"q": "50",
+"fps": 0,
+"loop": false
+},
+"Poses_2": {
+"q": "51-53,56-58",
+"fps": 4,
+"loop": false
+},
+"Bola_Fogo": {
+"q": "54,59-60",
+"fps": 10,
+"loop": false
+},
+"Rajada_Fogo": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Poses_3": {
+"q": "61-66",
+"fps": 4,
+"loop": false
+},
+"Silhueta": {
+"q": "34,67,84-85",
+"fps": 12,
+"loop": false
+},
+"Autodestruicao": {
+"q": "68",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "69",
+"fps": 0,
+"loop": false
+},
+"Brilho": {
+"q": "70",
+"fps": 0,
+"loop": false
+},
+"Larva": {
+"q": "71-73",
+"fps": 6,
+"loop": false
+},
+"Golpe_Sino": {
+"q": "76-79",
+"fps": 10,
+"loop": false
+},
+"Poses_4": {
+"q": "74-75,80-83",
+"fps": 4,
+"loop": false
+},
+"Eletrico": {
+"q": "86-87",
+"fps": 10,
+"loop": true
+}
+}
+}

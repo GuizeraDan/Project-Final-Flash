@@ -1,0 +1,95 @@
+{
+"nome": "Bardock SSJ4",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "7-10",
+"fps": 16,
+"loop": false
+},
+"Soco": {
+"q": "11-12",
+"fps": 10,
+"loop": false
+},
+"Golpe": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "18-19,25",
+"fps": 10,
+"loop": false
+},
+"Chute": {
+"q": "21-22",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "41-42",
+"fps": 10,
+"loop": true
+},
+"Carregar_Ki": {
+"q": "43-45",
+"fps": 10,
+"loop": true
+},
+"Raio": {
+"q": "48-50",
+"fps": 8,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "51-56",
+"fps": 8,
+"loop": false
+},
+"Rajada_Grande": {
+"q": "57",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "13-14,16,20,23-24,26-37,39-40,46-47",
+"fps": 4,
+"loop": false
+}
+}
+}

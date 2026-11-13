@@ -1,0 +1,170 @@
+{
+"nome": "Gohan Jovem SSJ (ULSW)",
+"anims": {
+"Retrato": {
+"q": "0,18",
+"fps": 0,
+"loop": false
+},
+"Capa": {
+"q": "1-5",
+"fps": 6,
+"loop": false
+},
+"Parado": {
+"q": "6-13",
+"fps": 4,
+"loop": true
+},
+"Kamehameha_Carga": {
+"q": "14",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "15-16",
+"fps": 8,
+"loop": false
+},
+"Kamehameha": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "19-20,23",
+"fps": 4,
+"loop": false
+},
+"Aura": {
+"q": "21-22",
+"fps": 10,
+"loop": true
+},
+"Dano_Cabeca": {
+"q": "24",
+"fps": 0,
+"loop": false
+},
+"Explosao_Aura": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Aura_SSJ2": {
+"q": "26-27",
+"fps": 10,
+"loop": false
+},
+"Parado_2": {
+"q": "28-31",
+"fps": 4,
+"loop": true
+},
+"Pulo": {
+"q": "32-34",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "35-36",
+"fps": 12,
+"loop": true
+},
+"Combo": {
+"q": "37-81",
+"fps": 10,
+"loop": false
+},
+"Esfera_Ki": {
+"q": "82",
+"fps": 0,
+"loop": false
+},
+"Esfera_Dupla": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Disparo_2": {
+"q": "83,85,87",
+"fps": 8,
+"loop": false
+},
+"Projetil": {
+"q": "86",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "88-92",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "93",
+"fps": 0,
+"loop": false
+},
+"Golpes_2": {
+"q": "94-96",
+"fps": 10,
+"loop": false
+},
+"Kamehameha_2": {
+"q": "97",
+"fps": 0,
+"loop": false
+},
+"Poses_2": {
+"q": "98-101,103-104,110-114,118-119",
+"fps": 4,
+"loop": false
+},
+"Goku_Fantasma": {
+"q": "102,115,117",
+"fps": 4,
+"loop": false
+},
+"Aura_Dourada": {
+"q": "105-107",
+"fps": 10,
+"loop": false
+},
+"Aura_SSJ": {
+"q": "108-109",
+"fps": 10,
+"loop": true
+},
+"Esfera_Luz": {
+"q": "116",
+"fps": 0,
+"loop": false
+},
+"Raio_Azul": {
+"q": "120-127",
+"fps": 10,
+"loop": false
+},
+"Poses_3": {
+"q": "128-130,133",
+"fps": 4,
+"loop": false
+},
+"Ultra_Instinto": {
+"q": "131,134",
+"fps": 4,
+"loop": false
+},
+"Base": {
+"q": "132,135",
+"fps": 4,
+"loop": false
+},
+"Caido_Base": {
+"q": "136",
+"fps": 0,
+"loop": false
+}
+}
+}

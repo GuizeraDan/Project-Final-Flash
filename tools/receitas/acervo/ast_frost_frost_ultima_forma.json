@@ -1,0 +1,110 @@
+{
+"nome": "Frost (Última Forma)",
+"anims": {
+"Parado": {
+"q": "0-1",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "2-3",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "5-6",
+"fps": 8,
+"loop": false
+},
+"Pose": {
+"q": "7,26,28",
+"fps": 4,
+"loop": false
+},
+"Golpes_2": {
+"q": "8-15",
+"fps": 10,
+"loop": false
+},
+"Corte_Cauda": {
+"q": "16",
+"fps": 0,
+"loop": false
+},
+"Golpes_3": {
+"q": "17-23,25",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "24",
+"fps": 0,
+"loop": false
+},
+"Chicote_Cauda": {
+"q": "27",
+"fps": 0,
+"loop": false
+},
+"Lancado": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "31-36",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "37",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "38-40",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "41-42",
+"fps": 8,
+"loop": false
+},
+"Projetil_Amarelo": {
+"q": "43-44",
+"fps": 12,
+"loop": true
+},
+"Pose_2": {
+"q": "45-46",
+"fps": 4,
+"loop": false
+},
+"Projetil_Rosa": {
+"q": "47-49",
+"fps": 12,
+"loop": true
+},
+"Golpes_4": {
+"q": "50-53",
+"fps": 10,
+"loop": false
+},
+"Rajada_Grande": {
+"q": "54",
+"fps": 0,
+"loop": false
+}
+}
+}

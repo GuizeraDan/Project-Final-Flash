@@ -1,0 +1,80 @@
+{
+"nome": "Androide 18",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "3-4",
+"fps": 6,
+"loop": false
+},
+"Avanco": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Voando": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "7",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "8",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "10",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "13-14,27-33",
+"fps": 8,
+"loop": false
+},
+"Chute": {
+"q": "15-17,19",
+"fps": 10,
+"loop": false
+},
+"Golpe": {
+"q": "20-21",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "22,26",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Kienzan_Discos": {
+"q": "45-46",
+"fps": 10,
+"loop": true
+},
+"Variados": {
+"q": "9,11-12,18,23-25,35-37,39-44",
+"fps": 4,
+"loop": false
+}
+}
+}

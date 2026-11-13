@@ -1,0 +1,170 @@
+{
+"nome": "Goku Black SSJ (Versão 2)",
+"anims": {
+"Black_Base": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Flash": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "5-14",
+"fps": 4,
+"loop": true
+},
+"Poses": {
+"q": "15-23,27,60-63,66-67,70-72,85,87-89,93,104-108,116,143-145,147-149",
+"fps": 4,
+"loop": false
+},
+"Poeira": {
+"q": "24,26",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "29-31",
+"fps": 10,
+"loop": true
+},
+"Golpes": {
+"q": "32-36,40-45,47-58",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "37-38",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "39",
+"fps": 0,
+"loop": false
+},
+"Corte": {
+"q": "46,59,146",
+"fps": 10,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "64-65,68-69",
+"fps": 12,
+"loop": false
+},
+"Lamina_Roxa": {
+"q": "73-82",
+"fps": 10,
+"loop": false
+},
+"Anel_Ki": {
+"q": "83-84,86",
+"fps": 8,
+"loop": false
+},
+"Projetil_Esfera": {
+"q": "90-91",
+"fps": 12,
+"loop": false
+},
+"Esfera_Grande": {
+"q": "92",
+"fps": 0,
+"loop": false
+},
+"Aura_Roxa": {
+"q": "94-96",
+"fps": 10,
+"loop": false
+},
+"Esfera_Roxa": {
+"q": "97-103",
+"fps": 10,
+"loop": false
+},
+"Aura_Rose": {
+"q": "109,118-119",
+"fps": 10,
+"loop": false
+},
+"Silhueta": {
+"q": "110-112",
+"fps": 10,
+"loop": false
+},
+"Transformacao_Rose": {
+"q": "113-115,117",
+"fps": 8,
+"loop": false
+},
+"Lamina_Rosa": {
+"q": "120-126,132-136,141-142",
+"fps": 10,
+"loop": false
+},
+"Projetil_Rosa": {
+"q": "127-131",
+"fps": 12,
+"loop": false
+},
+"Explosao_Rosa": {
+"q": "137-138",
+"fps": 10,
+"loop": false
+},
+"Esfera_Rosa": {
+"q": "139,165",
+"fps": 0,
+"loop": false
+},
+"Anel_Rosa": {
+"q": "140",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "150",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte_2": {
+"q": "151,158",
+"fps": 12,
+"loop": false
+},
+"Com_Zamasu": {
+"q": "152-154,159-160,163-164",
+"fps": 6,
+"loop": false
+},
+"Aneis": {
+"q": "155,161",
+"fps": 8,
+"loop": false
+},
+"Esfera": {
+"q": "156,162",
+"fps": 8,
+"loop": false
+},
+"Rajada_Fogo": {
+"q": "157",
+"fps": 0,
+"loop": false
+}
+}
+}

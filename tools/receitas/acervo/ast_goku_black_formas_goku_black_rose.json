@@ -1,0 +1,85 @@
+{
+"nome": "Goku Black Rosé",
+"anims": {
+"Parado": {
+"q": "0-6",
+"fps": 4,
+"loop": true
+},
+"Rastro_Dash": {
+"q": "7-8",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "9-12",
+"fps": 12,
+"loop": false
+},
+"Poses": {
+"q": "13-14,25,29",
+"fps": 4,
+"loop": false
+},
+"Golpes": {
+"q": "15-24",
+"fps": 10,
+"loop": false
+},
+"Aura": {
+"q": "26",
+"fps": 0,
+"loop": false
+},
+"Aura_Rose": {
+"q": "27-28",
+"fps": 10,
+"loop": true
+},
+"Combo": {
+"q": "30-53",
+"fps": 10,
+"loop": false
+},
+"Lancado": {
+"q": "54",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "55-56",
+"fps": 6,
+"loop": false
+},
+"Lamina_Ki": {
+"q": "57-70,73-83,88-95,97-100",
+"fps": 10,
+"loop": false
+},
+"Transformacao": {
+"q": "71-72",
+"fps": 8,
+"loop": false
+},
+"Esfera_Rosa": {
+"q": "84",
+"fps": 0,
+"loop": false
+},
+"Anel_Ki": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Explosao_Rosa": {
+"q": "86-87",
+"fps": 10,
+"loop": false
+},
+"Raio_Rosa": {
+"q": "96",
+"fps": 0,
+"loop": false
+}
+}
+}

@@ -1,0 +1,150 @@
+{
+"nome": "Gogeta SSJ (DBZ HD)",
+"anims": {
+"Retrato": {
+"q": "0,120",
+"fps": 0,
+"loop": false
+},
+"Danca_Fusao": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Fusao_Flash": {
+"q": "2-3",
+"fps": 8,
+"loop": false
+},
+"Silhueta": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Gogeta_Base": {
+"q": "5-8",
+"fps": 4,
+"loop": true
+},
+"Transformacao": {
+"q": "9-11",
+"fps": 8,
+"loop": false
+},
+"Pose": {
+"q": "12",
+"fps": 0,
+"loop": false
+},
+"Aura_SSJ": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "14-22",
+"fps": 4,
+"loop": true
+},
+"Pulo": {
+"q": "23-24",
+"fps": 8,
+"loop": false
+},
+"Avanco": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "26-27",
+"fps": 12,
+"loop": true
+},
+"Pose_2": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "29-30",
+"fps": 12,
+"loop": false
+},
+"Combo": {
+"q": "31-72",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "73",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "74-75,78-80,86-87,89-90,92-94,102-105,108-112,114,117-119",
+"fps": 4,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "76-77",
+"fps": 10,
+"loop": true
+},
+"Kamehameha_Carga": {
+"q": "81",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "82-84",
+"fps": 8,
+"loop": false
+},
+"Kamehameha": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Eletrico_Roxo": {
+"q": "88",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "91",
+"fps": 0,
+"loop": false
+},
+"Esfera_Azul": {
+"q": "95-98",
+"fps": 10,
+"loop": false
+},
+"Orbe_Arco_Iris": {
+"q": "99-100",
+"fps": 8,
+"loop": false
+},
+"Explosao_Estrela": {
+"q": "101",
+"fps": 0,
+"loop": false
+},
+"Stardust_Breaker": {
+"q": "106-107",
+"fps": 10,
+"loop": true
+},
+"Explosao_Luz": {
+"q": "113",
+"fps": 0,
+"loop": false
+},
+"Rajadas_Azuis": {
+"q": "115-116",
+"fps": 10,
+"loop": false
+}
+}
+}

@@ -1,0 +1,100 @@
+{
+"nome": "Cell (Segunda Forma)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "1,6-8",
+"fps": 4,
+"loop": true
+},
+"Golpe_Varrida": {
+"q": "2-5",
+"fps": 10,
+"loop": false
+},
+"Pose": {
+"q": "9",
+"fps": 0,
+"loop": false
+},
+"Aura": {
+"q": "10",
+"fps": 0,
+"loop": false
+},
+"Barreira": {
+"q": "11-14",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "15-17",
+"fps": 8,
+"loop": false
+},
+"Golpe": {
+"q": "19-21,23-26",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "27-28",
+"fps": 12,
+"loop": true
+},
+"Socos": {
+"q": "30-31,33-38",
+"fps": 10,
+"loop": false
+},
+"Absorcao": {
+"q": "40-43",
+"fps": 6,
+"loop": false
+},
+"Golpes_2": {
+"q": "44,46-49",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "51-53",
+"fps": 8,
+"loop": false
+},
+"Lancado": {
+"q": "54-55",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "56",
+"fps": 0,
+"loop": false
+},
+"Disparo": {
+"q": "58-65",
+"fps": 10,
+"loop": false
+},
+"Efeito_Raios": {
+"q": "66-67",
+"fps": 10,
+"loop": true
+},
+"Golpe_Cauda": {
+"q": "68-70",
+"fps": 10,
+"loop": false
+},
+"Icone": {
+"q": "18,22,29,32,39,45,50,57,71",
+"fps": 4,
+"loop": false
+}
+}
+}

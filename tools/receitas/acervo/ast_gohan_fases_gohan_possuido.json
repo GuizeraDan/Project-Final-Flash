@@ -1,0 +1,100 @@
+{
+"nome": "Gohan (Possuído)",
+"anims": {
+"Rastro_Teleporte": {
+"q": "0-3",
+"fps": 12,
+"loop": false
+},
+"Parado": {
+"q": "4-5",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "6-7,10,14",
+"fps": 10,
+"loop": false
+},
+"Pulo": {
+"q": "8",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "9",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "11-12",
+"fps": 12,
+"loop": true
+},
+"Corte": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Combo": {
+"q": "15-36",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "37",
+"fps": 0,
+"loop": false
+},
+"Aura_Majin": {
+"q": "38-39,41",
+"fps": 10,
+"loop": true
+},
+"Pose": {
+"q": "40",
+"fps": 0,
+"loop": false
+},
+"Projetil_Duplo": {
+"q": "42",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "43-45",
+"fps": 10,
+"loop": true
+},
+"Golpes_2": {
+"q": "46-54",
+"fps": 10,
+"loop": false
+},
+"Lancado": {
+"q": "55-58",
+"fps": 8,
+"loop": false
+},
+"Kamehameha": {
+"q": "59",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "60-63,65",
+"fps": 4,
+"loop": false
+},
+"Disparo_Esfera": {
+"q": "64",
+"fps": 0,
+"loop": false
+},
+"Kamehameha_Pose": {
+"q": "66-67",
+"fps": 8,
+"loop": false
+}
+}
+}

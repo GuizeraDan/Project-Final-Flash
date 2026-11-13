@@ -1,0 +1,115 @@
+{
+"nome": "Broly (Lendário, 100%)",
+"anims": {
+"Transformacao": {
+"q": "0-2,7,41",
+"fps": 6,
+"loop": false
+},
+"Aura": {
+"q": "3-6",
+"fps": 8,
+"loop": true
+},
+"Parado": {
+"q": "8-11",
+"fps": 4,
+"loop": true
+},
+"Teletransporte": {
+"q": "12,17",
+"fps": 16,
+"loop": false
+},
+"Avanco": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "14",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "16",
+"fps": 0,
+"loop": false
+},
+"Investida": {
+"q": "18-19",
+"fps": 8,
+"loop": false
+},
+"Soco": {
+"q": "20-21",
+"fps": 10,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Golpe": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "26-27,30",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "28-29",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "40",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "42-44",
+"fps": 10,
+"loop": true
+},
+"Efeito_Rajada": {
+"q": "46-48",
+"fps": 10,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "49-52,58-62",
+"fps": 8,
+"loop": false
+},
+"Raio": {
+"q": "53,64,73",
+"fps": 8,
+"loop": false
+},
+"Grito": {
+"q": "54",
+"fps": 0,
+"loop": false
+},
+"Esfera_Omega": {
+"q": "57,72",
+"fps": 6,
+"loop": false
+},
+"Explosao": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "15,22,24,31-39,45,55-56,65-71",
+"fps": 4,
+"loop": false
+}
+}
+}

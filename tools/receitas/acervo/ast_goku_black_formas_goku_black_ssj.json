@@ -1,0 +1,105 @@
+{
+"nome": "Goku Black SSJ",
+"anims": {
+"Black_Base": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Transformacao": {
+"q": "5-8",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "9-14",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "15-24",
+"fps": 10,
+"loop": false
+},
+"Pose": {
+"q": "25,63-64,67,70-72,75-76,78-79,97-99,101-102,105,107-113",
+"fps": 4,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "26-27",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "28-31",
+"fps": 12,
+"loop": false
+},
+"Combo": {
+"q": "32-56",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "57-58",
+"fps": 6,
+"loop": false
+},
+"Flash": {
+"q": "59",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "60-62",
+"fps": 10,
+"loop": true
+},
+"Projetil_Ki": {
+"q": "65-66,68-69",
+"fps": 12,
+"loop": false
+},
+"Anel_Ki": {
+"q": "73-74",
+"fps": 8,
+"loop": false
+},
+"Rajada_Amarela": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Lamina_Roxa": {
+"q": "80-91",
+"fps": 10,
+"loop": false
+},
+"Aura_Roxa": {
+"q": "92-94",
+"fps": 10,
+"loop": false
+},
+"Esfera_Roxa": {
+"q": "95-96",
+"fps": 8,
+"loop": false
+},
+"Raio_Verde": {
+"q": "100,103,106",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "104",
+"fps": 0,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "114",
+"fps": 0,
+"loop": false
+}
+}
+}

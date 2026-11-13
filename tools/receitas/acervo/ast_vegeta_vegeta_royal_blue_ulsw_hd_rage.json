@@ -1,0 +1,10 @@
+{
+"nome": "Vegeta Royal Blue · Fúria",
+"anims": {
+"Furia": {
+"q": "0-12",
+"fps": 10,
+"loop": true
+}
+}
+}

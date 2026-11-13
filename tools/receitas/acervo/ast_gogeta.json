@@ -1,0 +1,125 @@
+{
+"nome": "Gogeta",
+"anims": {
+"Goku_SSJ": {
+"q": "0-10",
+"fps": 6,
+"loop": false
+},
+"Vegeta_SSJ": {
+"q": "11-21",
+"fps": 6,
+"loop": false
+},
+"Fusao_Explosao": {
+"q": "22-24",
+"fps": 8,
+"loop": false
+},
+"Flash": {
+"q": "25",
+"fps": 0,
+"loop": false
+},
+"Fusao_Silhueta": {
+"q": "26",
+"fps": 0,
+"loop": false
+},
+"Fusao_Danca": {
+"q": "27-28",
+"fps": 6,
+"loop": false
+},
+"Parado": {
+"q": "29-31",
+"fps": 4,
+"loop": true
+},
+"Golpes": {
+"q": "32-33",
+"fps": 10,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "34-35",
+"fps": 12,
+"loop": true
+},
+"Rastro_Teleporte": {
+"q": "36-39",
+"fps": 12,
+"loop": false
+},
+"Combo": {
+"q": "40-58",
+"fps": 10,
+"loop": false
+},
+"Lancado": {
+"q": "59-62",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "64-66",
+"fps": 10,
+"loop": true
+},
+"Disparo": {
+"q": "67-68",
+"fps": 8,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "69-70",
+"fps": 12,
+"loop": true
+},
+"Poses": {
+"q": "71-72",
+"fps": 4,
+"loop": false
+},
+"Esfera_Ki": {
+"q": "73",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "74",
+"fps": 0,
+"loop": false
+},
+"Disparo_2": {
+"q": "75-78",
+"fps": 8,
+"loop": false
+},
+"Big_Bang": {
+"q": "79",
+"fps": 0,
+"loop": false
+},
+"Poses_2": {
+"q": "80-88",
+"fps": 4,
+"loop": false
+},
+"Vitoria": {
+"q": "89-92",
+"fps": 4,
+"loop": false
+},
+"Brilho": {
+"q": "93-94",
+"fps": 10,
+"loop": true
+}
+}
+}

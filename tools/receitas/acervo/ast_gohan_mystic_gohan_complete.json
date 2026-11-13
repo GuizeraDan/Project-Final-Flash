@@ -1,0 +1,60 @@
+{
+"nome": "Gohan Místico (Completo)",
+"anims": {
+"Retrato": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Parado_Base": {
+"q": "1-2",
+"fps": 4,
+"loop": true
+},
+"Aura_Base": {
+"q": "3-4",
+"fps": 8,
+"loop": false
+},
+"Transformacao": {
+"q": "5-9",
+"fps": 8,
+"loop": false
+},
+"Parado": {
+"q": "10-19",
+"fps": 4,
+"loop": true
+},
+"Pulo": {
+"q": "20-21",
+"fps": 8,
+"loop": false
+},
+"Combo": {
+"q": "22-28,31-34,38-43",
+"fps": 10,
+"loop": false
+},
+"Rajada_Socos": {
+"q": "29-30",
+"fps": 12,
+"loop": false
+},
+"Lancado": {
+"q": "35-37",
+"fps": 8,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "44",
+"fps": 0,
+"loop": false
+},
+"Golpes_2": {
+"q": "45-67",
+"fps": 10,
+"loop": false
+}
+}
+}

@@ -1,0 +1,105 @@
+{
+"nome": "Cell Perfeito",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Pose": {
+"q": "4-5",
+"fps": 4,
+"loop": false
+},
+"Avanco": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "7-8",
+"fps": 12,
+"loop": false
+},
+"Golpes": {
+"q": "9-14",
+"fps": 10,
+"loop": false
+},
+"Chutes": {
+"q": "15-18",
+"fps": 10,
+"loop": false
+},
+"Golpes_2": {
+"q": "19-29",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "31-33",
+"fps": 8,
+"loop": false
+},
+"Esfera_Ki": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Projetil_Ki": {
+"q": "35",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "36-38",
+"fps": 10,
+"loop": true
+},
+"Poses": {
+"q": "39-43",
+"fps": 4,
+"loop": false
+},
+"Disparo": {
+"q": "44-45",
+"fps": 8,
+"loop": false
+},
+"Raio_Fogo": {
+"q": "46-47",
+"fps": 10,
+"loop": true
+},
+"Poses_2": {
+"q": "48-52",
+"fps": 4,
+"loop": false
+},
+"Kamehameha_Carga": {
+"q": "53",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "54-55",
+"fps": 10,
+"loop": false
+},
+"Vitoria": {
+"q": "56-59",
+"fps": 4,
+"loop": false
+},
+"Barreira": {
+"q": "60",
+"fps": 0,
+"loop": false
+}
+}
+}

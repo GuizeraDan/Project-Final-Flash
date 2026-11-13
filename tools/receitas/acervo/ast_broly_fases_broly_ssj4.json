@@ -1,0 +1,70 @@
+{
+"nome": "Broly SSJ4",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Defesa": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Investida": {
+"q": "7-8,18",
+"fps": 8,
+"loop": false
+},
+"Soco": {
+"q": "9-10",
+"fps": 10,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "12",
+"fps": 0,
+"loop": false
+},
+"Golpe": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "16-17",
+"fps": 10,
+"loop": false
+},
+"Caido": {
+"q": "30",
+"fps": 0,
+"loop": false
+},
+"Variante_Cabelo_Roxo": {
+"q": "31-33",
+"fps": 4,
+"loop": true
+},
+"Grito": {
+"q": "37-38",
+"fps": 6,
+"loop": false
+},
+"Variados": {
+"q": "6,11,13-14,19-29,34-36,39-48",
+"fps": 4,
+"loop": false
+}
+}
+}

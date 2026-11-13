@@ -1,0 +1,270 @@
+{
+"nome": "Cell Perfeito (ULSW HD)",
+"anims": {
+"Retrato": {
+"q": "0,75",
+"fps": 0,
+"loop": false
+},
+"Parado": {
+"q": "1-4",
+"fps": 4,
+"loop": true
+},
+"Poses": {
+"q": "5-10",
+"fps": 4,
+"loop": false
+},
+"Golpe": {
+"q": "11-12",
+"fps": 10,
+"loop": false
+},
+"Avanco": {
+"q": "13",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "14-15",
+"fps": 12,
+"loop": true
+},
+"Golpes": {
+"q": "16-19",
+"fps": 10,
+"loop": false
+},
+"Rastro_Teleporte": {
+"q": "20",
+"fps": 0,
+"loop": false
+},
+"Combo": {
+"q": "21-33",
+"fps": 10,
+"loop": false
+},
+"Golpe_Cauda": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Combo_2": {
+"q": "35-58",
+"fps": 10,
+"loop": false
+},
+"Corte": {
+"q": "59",
+"fps": 0,
+"loop": false
+},
+"Golpes_2": {
+"q": "60-62",
+"fps": 10,
+"loop": false
+},
+"Dano": {
+"q": "63-66",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "67",
+"fps": 0,
+"loop": false
+},
+"Parado_2": {
+"q": "68-69",
+"fps": 4,
+"loop": true
+},
+"Rajada_Rosa": {
+"q": "70-72",
+"fps": 10,
+"loop": false
+},
+"Projetil_Rosa": {
+"q": "73-74",
+"fps": 12,
+"loop": true
+},
+"Parado_3": {
+"q": "76-78",
+"fps": 4,
+"loop": true
+},
+"Aura_Carga": {
+"q": "79-80",
+"fps": 10,
+"loop": true
+},
+"Pose_Ki": {
+"q": "81",
+"fps": 0,
+"loop": false
+},
+"Aura": {
+"q": "82-83",
+"fps": 10,
+"loop": true
+},
+"Flash": {
+"q": "85",
+"fps": 0,
+"loop": false
+},
+"Esfera_Branca": {
+"q": "86",
+"fps": 0,
+"loop": false
+},
+"Barreira": {
+"q": "87",
+"fps": 0,
+"loop": false
+},
+"Retrato_2": {
+"q": "88",
+"fps": 0,
+"loop": false
+},
+"Parado_4": {
+"q": "89-91",
+"fps": 4,
+"loop": true
+},
+"Fumaca": {
+"q": "92-95",
+"fps": 8,
+"loop": false
+},
+"Cell_Energia": {
+"q": "96-99,103-104",
+"fps": 8,
+"loop": false
+},
+"Raios_Azuis": {
+"q": "100-102",
+"fps": 10,
+"loop": true
+},
+"Explosao_Ki": {
+"q": "105",
+"fps": 0,
+"loop": false
+},
+"Kienzan_Pose": {
+"q": "106-108",
+"fps": 8,
+"loop": false
+},
+"Kienzan": {
+"q": "109-113",
+"fps": 10,
+"loop": false
+},
+"Disco_Kienzan": {
+"q": "114-117",
+"fps": 12,
+"loop": true
+},
+"Poses_2": {
+"q": "118-120",
+"fps": 4,
+"loop": false
+},
+"Explosao": {
+"q": "121-123",
+"fps": 10,
+"loop": false
+},
+"Pilar_Luz": {
+"q": "124",
+"fps": 0,
+"loop": false
+},
+"Barreira_Verde": {
+"q": "126-131",
+"fps": 10,
+"loop": false
+},
+"Aura_Verde": {
+"q": "132",
+"fps": 0,
+"loop": false
+},
+"Vitoria": {
+"q": "133",
+"fps": 0,
+"loop": false
+},
+"Poses_3": {
+"q": "134-138",
+"fps": 4,
+"loop": false
+},
+"Corte_2": {
+"q": "139-141",
+"fps": 10,
+"loop": false
+},
+"Linha": {
+"q": "142",
+"fps": 0,
+"loop": false
+},
+"Golpes_3": {
+"q": "143-145",
+"fps": 10,
+"loop": false
+},
+"Disparo": {
+"q": "146",
+"fps": 0,
+"loop": false
+},
+"Aura_Disparo": {
+"q": "147-149",
+"fps": 10,
+"loop": true
+},
+"Dash": {
+"q": "150-152",
+"fps": 12,
+"loop": false
+},
+"Raio_Azul": {
+"q": "153",
+"fps": 0,
+"loop": false
+},
+"Poses_4": {
+"q": "154-158",
+"fps": 4,
+"loop": false
+},
+"Rastro": {
+"q": "159-160",
+"fps": 12,
+"loop": false
+},
+"Poses_5": {
+"q": "161-164",
+"fps": 4,
+"loop": false
+},
+"Icone": {
+"q": "165",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "84,125",
+"fps": 4,
+"loop": false
+}
+}
+}
