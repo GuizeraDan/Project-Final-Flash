@@ -324,14 +324,15 @@ FF.EstudioProps = {
 
   // efeito: lista dos efeitos do jogo + sprites importados (grava "sprite" junto quando é importado)
   campoEfeito(c, k, rot, host, opcional) {
+    const ks = k === 'fx' ? 'sprite' : k + 'Sprite';   // sprite de onde vem o efeito (fx: 'sprite'; disparo: 'disparoSprite'; impacto: 'impactoSprite')
     const E = FF.Estudio;
     const extras = this.efeitosDoLutador(host);
-    const row = E.campo('anim', rot, c[k], (v) => { if (v === undefined) delete c[k]; else c[k] = v; if (k === 'fx' && v && E.efeitos().includes(v)) delete c.sprite; host.mudou(rot); }, { sugestoes: E.efeitos().concat(extras) });
+    const row = E.campo('anim', rot, c[k], (v) => { if (v === undefined) delete c[k]; else c[k] = v; if (v && E.efeitos().includes(v)) delete c[ks]; host.mudou(rot); }, { sugestoes: E.efeitos().concat(extras) });
     return this.comEscolha(row, () => this.escolherEfeito(c[k], (fx, sprite) => {
       c[k] = fx;
-      if (k === 'fx') { if (sprite) c.sprite = sprite; else delete c.sprite; }
+      if (sprite) c[ks] = sprite; else delete c[ks];
       host.mudou(rot);
-    }, opcional && (() => { delete c[k]; host.mudou(rot); }), host, k === 'fx' ? c.sprite : null), () => ({ set: E.setDoEfeito(c[k], k === 'fx' ? c.sprite : null), anim: c[k] }));
+    }, opcional && (() => { delete c[k]; delete c[ks]; host.mudou(rot); }), host, c[ks]), () => ({ set: E.setDoEfeito(c[k], c[ks]), anim: c[k] }));
   },
   // efeitos que vêm no sprite de quem solta (ex.: Bills_Esfera)
   efeitosDoLutador(host) {

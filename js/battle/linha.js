@@ -58,7 +58,11 @@ FF.Linha = {
   // sprites que a linha usa (camadas, efeitos e projéteis de sprites importados)
   spritesUsados(linha) {
     const s = new Set();
-    this.clipes(linha).forEach(({ c }) => { if (c.sprite) s.add(c.sprite); });
+    const add = (o) => { if (!o) return; ['sprite', 'disparoSprite', 'impactoSprite'].forEach(k => { if (o[k]) s.add(o[k]); }); };
+    this.clipes(linha).forEach(({ c }) => {
+      add(c); add(c.acerto);
+      [].concat(c.acertos || [], c.impacto && typeof c.impacto === 'object' ? c.impacto : []).forEach(add);
+    });
     return [...s];
   },
   pronta(linha) { return this.spritesUsados(linha).every(id => FF.Assets.sprites[id]); },

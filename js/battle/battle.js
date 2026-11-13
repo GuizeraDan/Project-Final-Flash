@@ -292,7 +292,7 @@ FF.Battle = class {
       const fxName = spec.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
       // posição da explosão do acerto: dx/dy a partir do peito do alvo (dx positivo = para longe de quem bateu)
       const ex = p.x + (spec.dx || 0) * att.dir, ey = p.y + (spec.dy || 0);
-      this.spawnFx(fxName, ex, ey, att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1));
+      this.spawnFx(fxName, ex, ey, att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1), spec.sprite ? { sprite: spec.sprite } : undefined);
       FF.Audio.play({ leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
       if (spec.lanca || def.hp <= 0) {
         // golpe final: impacto extra (corpo a corpo) ou explosão no alvo (energia)
@@ -411,7 +411,7 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     a.play(fxName, { loop: true });
     if (spec.som) FF.Audio.play(spec.som);
-    if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6);
+    if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6, spec.disparoSprite ? { sprite: spec.disparoSprite } : undefined);
     let res;
     const p = {
       a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1),
@@ -423,7 +423,7 @@ FF.Battle = class {
       done: new Promise(r => (res = r)),
     };
     p.hit = () => {
-      if (spec.impacto) this.spawnFx(spec.impacto, to.x + (spec.impactoDx || 0) * att.dir, to.y + (spec.impactoDy || 0), att.dir < 0, spec.impactoEscala || 1);
+      if (spec.impacto) this.spawnFx(spec.impacto, to.x + (spec.impactoDx || 0) * att.dir, to.y + (spec.impactoDy || 0), att.dir < 0, spec.impactoEscala || 1, spec.impactoSprite ? { sprite: spec.impactoSprite } : undefined);
       if (spec.somImpacto) FF.Audio.play(spec.somImpacto);
       if (spec.tremerImpacto) this.shake(spec.tremerImpacto);
       if (!spec.semAcerto) this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);

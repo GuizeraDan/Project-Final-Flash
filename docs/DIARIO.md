@@ -226,3 +226,7 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 **Falta:** nada do pedido. Possíveis ajustes finos de fps/loop/nomes conforme o usuário for usando.
 
+
+## 13/11/2026 — Correção: explosão escolhida no seletor saía diferente no alvo
+- Causa: nos campos "Explosão" do acerto, "Explosão" do projétil (impacto) e "Efeito na mão" (disparo), o Estúdio guardava só o nome da animação e jogava fora o sprite de onde ela veio. Na luta, o motor procurava qualquer sprite carregado com aquele nome (ex.: "Default") e pegava outro.
+- Agora: o acerto usa `sprite`, o projétil guarda `impactoSprite` e `disparoSprite`; `FF.Battle.spawnFx` recebe o sprite certo e `FF.Linha.spritesUsados` também conta esses campos (inclusive dentro de `acerto`, `acertos` e `impacto[]`), para o sprite ser carregado antes da luta. Golpes já salvos com o problema precisam ter a explosão escolhida de novo.
