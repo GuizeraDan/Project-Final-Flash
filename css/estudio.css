@@ -179,3 +179,17 @@ a { color: var(--ouro); }
 .es-cores-nomes { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 6px; }
 .es-cores-nomes button { display: flex; align-items: center; gap: 6px; justify-content: flex-start; }
 .es-cor-amostra { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid #000; flex: none; }
+
+.es-fav-bt { background: rgba(0,0,0,0.45); border: 1px solid transparent; color: #e8e0ff; font-size: 12px; line-height: 1; padding: 2px 4px; border-radius: 4px; cursor: pointer; }
+.es-fav-bt:hover { border-color: var(--ouro); }
+.es-fav-bt.on { color: #ffd84a; }
+.es-cartao { position: relative; }
+.es-cartao .es-fav-bt { position: absolute; top: 3px; right: 3px; }
+.es-seletor-fonte .es-fav-bt { margin-left: auto; flex: none; opacity: 0.35; }
+.es-seletor-fonte:hover .es-fav-bt, .es-seletor-fonte .es-fav-bt.on { opacity: 1; }
+.es-fav-menu { position: fixed; z-index: 10000; background: #1e1336; border: 1px solid var(--ouro, #ffd84a); border-radius: 6px; padding: 6px; display: flex; flex-direction: column; gap: 3px; min-width: 200px; box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+.es-fav-menu .es-fav-tit { font-size: 11px; color: #cbbdf5; padding: 2px 4px 4px; }
+.es-fav-menu button { text-align: left; background: #2a1c4c; color: #fff; border: 1px solid #3a2a66; border-radius: 4px; padding: 5px 8px; cursor: pointer; font-size: 13px; }
+.es-fav-menu button:hover { border-color: var(--ouro, #ffd84a); }
+.es-fav-menu button.on { border-color: #ffd84a; color: #ffd84a; }
+.es-fav-menu button.tirar { color: #ff9a9a; }

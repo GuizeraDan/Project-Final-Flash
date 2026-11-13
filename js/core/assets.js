@@ -48,7 +48,11 @@ FF.Assets = {
   categoriaSprite(id) { const a = this.acervo()[id]; return a ? a[0] : 'jogo'; },
   nomeSprite(id) { const a = this.acervo()[id]; return a ? a[1] : id; },
   // tipo do conteúdo (vale para todas as fontes): 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes'; 'jogo' fora do acervo
-  tipoSprite(id) { const a = this.acervo()[id]; return a ? (a[3] || a[0]) : 'jogo'; },
+  tipoSprite(id) {
+    const fav = FF.Favoritos && FF.Favoritos.de(id);   // o usuário disse o que é (⭐ no Estúdio)
+    if (fav && this.doAcervo(id)) return fav;
+    const a = this.acervo()[id]; return a ? (a[3] || a[0]) : 'jogo';
+  },
   fonteSprite(id) { const a = this.acervo()[id]; return a ? (a[4] || '') : ''; },
   // nomes das animações de todo o acervo (para buscar sem baixar as imagens) — só o Estúdio usa
   animsAcervo() {

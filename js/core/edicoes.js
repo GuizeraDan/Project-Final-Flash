@@ -9,6 +9,7 @@
 //         habilidades[id], sprites[sprite][animação],
 //         personagens[id]   (Estúdio: campos que substituem os do JSON — nome, atributos, formas, buffs, ia,
 //                            vozes, formaInicial; ou {"novo": true, "def": {...}} para um personagem criado),
+//         favoritos["sprite" | "sprite#animação"] = "efeitos"|"personagens"|"cenarios"|"interface"  (Estúdio: ⭐ do usuário),
 //         ko[id|"padrao"]   (Estúdio: cena de KO — linha do tempo tocada quando o personagem é derrotado; js/battle/ko.js),
 //         spritesNovos[id]  (Estúdio: definição de sprite importado; atlas em assets/img/usr/<id>.png),
 //         spritesInfo[id]   (Estúdio: {"escala": N} escala geral de um sprite/efeito;
@@ -25,7 +26,7 @@ FF.Edicoes = {
   TOKEN: 'ff_github_token',
 
   ULT: 'ff_edicoes_ultimo',
-  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko'],
+  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko', 'favoritos'],
   // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
   // vale a de "rev" mais nova
   base() {
@@ -70,6 +71,18 @@ FF.Edicoes = {
     this._cache = null;
     this.avisar();
     return this.enviar();
+  },
+
+  // como set, mas espera um pouco antes de enviar (cliques seguidos, ex.: favoritar vários sprites, viram um commit só)
+  setDepois(caminho, valor, ms = 4000) {
+    const chave = JSON.stringify(caminho);
+    const l = this.pendentes().filter(m => JSON.stringify(m.c) !== chave);
+    l.push({ c: caminho, v: valor === undefined ? null : valor, t: Date.now() });
+    this.gravarPendentes(l);
+    this._cache = null;
+    this.avisar();
+    clearTimeout(this._depois);
+    this._depois = setTimeout(() => this.enviar(), ms);
   },
 
   // ---------- GitHub ----------

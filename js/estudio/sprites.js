@@ -222,6 +222,7 @@
       if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
       else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
+      if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
     };
@@ -239,10 +240,11 @@
     if (st.id && FF.Assets.doAcervo(st.id)) { abertas.add(FF.Assets.categoriaSprite(st.id)); abertas.add(FF.Assets.categoriaSprite(st.id) + ':' + FF.Assets.tipoSprite(st.id)); }
     const grupo = (chave, titulo, ids, sub) => {
       if (!ids.length) return;
-      const aberta = !!f || chave === 'jogo' ? !abertas.has('!' + chave) : abertas.has(chave);
+      const padraoAberto = chave === 'jogo' || chave.startsWith('fav:');   // do jogo e favoritos começam abertos
+      const aberta = !!f || padraoAberto ? !abertas.has('!' + chave) : abertas.has(chave);
       const cab = el('div', 'ess-cat' + (sub ? ' ess-cat-sub' : ''), (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
       cab.onclick = () => {
-        if (chave === 'jogo') { abertas.has('!jogo') ? abertas.delete('!jogo') : abertas.add('!jogo'); }
+        if (padraoAberto) { abertas.has('!' + chave) ? abertas.delete('!' + chave) : abertas.add('!' + chave); }
         else { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); }
         E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites();
       };
@@ -253,6 +255,11 @@
       if (chave === 'jogo' || tipos.length < 2) { ids.forEach(s => item(s, ui.sprites)); return; }
       tipos.forEach(t => grupo(chave + ':' + t, ICONE_TIPO[t] + ' ' + NOME_TIPO[t], ids.filter(s => FF.Assets.tipoSprite(s) === t), true));
     };
+    // ⭐ favoritos (sprites inteiros) separados pelo tipo que o usuário escolheu
+    if (FF.Favoritos) FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
+      const ids = FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite);
+      grupo('fav:' + t, '⭐ ' + ic + ' ' + nm + 's favoritos', ids);
+    });
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
     cats.forEach(c => grupo(c, '📦 ' + (NOMES[c] || c), acervo.filter(s => FF.Assets.categoriaSprite(s) === c)));

@@ -214,6 +214,22 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const tr = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').alcas().find(x => x.k === 'de').y);
   ok(Math.abs(tr - s2.hy) < 0.6, 'Shift trava o eixo: arrastar na diagonal só move para o lado (y ' + Math.round(s2.hy) + ' → ' + Math.round(tr) + ')');
 
+  // ---- favoritos: ☆ no cartão → tipo; aparece em "Meus favoritos"
+  await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'fx', aoEscolher: () => {} }));
+  await p.waitForSelector('.es-seletor .es-cartao .es-fav-bt', { timeout: 15000 });
+  await p.click('.es-seletor .es-cartao .es-fav-bt');
+  await p.waitForSelector('.es-fav-menu');
+  const menu = await p.evaluate(() => [...document.querySelectorAll('.es-fav-menu button')].map(b => b.textContent));
+  await p.click('.es-fav-menu button:nth-of-type(1)');
+  await p.waitForTimeout(200);
+  const fav = await p.evaluate(() => ({ lista: FF.Favoritos.lista(), lado: [...document.querySelectorAll('.es-seletor-fonte')].map(x => x.textContent).filter(t => /Efeitos\d|Efeitos$|Efeitos1/.test(t) || /✺ Efeitos/.test(t)) }));
+  await p.click('.es-seletor-fonte[data-fonte="fav:efeitos"]');
+  await p.waitForTimeout(400);
+  const cards = await p.evaluate(() => [...document.querySelectorAll('.es-modal:last-of-type .es-cartao')].map(k => k.title));
+  await p.screenshot({ path: OUT + '/0h_favoritos.png' });
+  ok(menu.length === 4 && /Efeito/.test(menu[0]) && /Interface/.test(menu[3]) && fav.lista.length === 1 && fav.lista[0].tipo === 'efeitos' && cards.length === 1, 'favoritar: menu ' + menu.join('/') + ' · ' + JSON.stringify(fav.lista) + ' · "Efeitos" dos favoritos mostra ' + cards.length);
+  await p.evaluate(() => { FF.Favoritos.lista().forEach(v => FF.Favoritos.marcar(v.sprite, v.anim, null)); document.querySelectorAll('.es-modal').forEach(m => m.remove()); });
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');

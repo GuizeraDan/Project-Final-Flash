@@ -129,7 +129,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     itens: document.querySelectorAll('.ess-sprites .es-item').length,
   }));
   ok(s.id === 'zl3_cell' && s.anims === indice.sprites.zl3_cell.anims, 'aba Sprites abre zl3_cell (' + s.anims + ' animações)');
-  ok(s.cats.length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(s.cats[0]), 'lista agrupada: ' + s.cats.join(' | '));
+  ok(s.cats.filter(c => !/⭐/.test(c)).length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(s.cats[0]), 'lista agrupada: ' + s.cats.join(' | '));
   await p.screenshot({ path: OUT + '/3_aba_sprites.png' });
   await p.fill('.ess-busca', 'goku');
   s = await p.evaluate(() => [...document.querySelectorAll('.ess-sprites .es-item')].map(i => i.dataset.sprite));
