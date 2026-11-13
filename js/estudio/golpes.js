@@ -729,6 +729,14 @@ window.FF = window.FF || {};
         if (r.ate) L.push({ k: 'ate', x: r.ate.x + (c.alvoDx || 0) * dir, y: r.ate.y + (c.alvoDy || 0), cor: '#ff5a5a' });
       }
       if (c.tipo === 'acerto' && r.p) L.push({ k: 'acerto', x: r.p.x + (c.dx || 0) * dir, y: r.p.y + (c.dy || 0), cor: '#ff5a5a' });
+      // teleporte/movimento para um ponto da tela: alça no destino (com silhueta do lutador)
+      if ((c.tipo === 'teleporte' || c.tipo === 'mover') && c.para === 'x') {
+        const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
+        if (f) {
+          const dx = c.x != null ? c.x + (FF.W - 1084) / 2 : f.homeX, dy = f.groundY + (c.y || 0);
+          L.push({ k: 'destino', x: dx, y: dy - 30 * f.scale, px: dx, py: dy, cor: '#5fe08a', f });
+        }
+      }
       if (c.tipo === 'anim' && r.f) L.push({ k: 'lutador', x: r.f.x + (r.f.offX || 0), y: r.f.y + (r.f.offY || 0) - 30 * r.f.scale, cor: '#fff', f: r.f });
       if (c.tipo === 'camada') {
         const v = (b.cenasVivas || []).find(x => x.linha);
@@ -744,6 +752,12 @@ window.FF = window.FF || {};
       const proj = L.filter(h => h.k === 'de' || h.k === 'ate');
       if (proj.length === 2) { ctx.strokeStyle = 'rgba(255,216,74,0.8)'; ctx.setLineDash([6, 4]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(proj[0].x, proj[0].y); ctx.lineTo(proj[1].x, proj[1].y); ctx.stroke(); ctx.setLineDash([]); }
       for (const h of L) {
+        if (h.k === 'destino' && h.f) {   // silhueta do lutador no ponto de chegada
+          const f = h.f, an = f.sprite.anim(f.animName('parado')) || f.anim.cur;
+          if (an && an.frames && an.frames[0]) FF.drawFrame(ctx, f.sprite, an.frames[0], h.px, h.py, f.scale, f.dir < 0, { alpha: 0.45 });
+          ctx.strokeStyle = 'rgba(95,224,138,0.8)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(h.px - 22, f.groundY); ctx.lineTo(h.px + 22, f.groundY); ctx.moveTo(h.px, f.groundY); ctx.lineTo(h.px, h.py); ctx.stroke(); ctx.setLineDash([]);
+        }
         if (h.caixa) { ctx.strokeStyle = '#b06cff'; ctx.lineWidth = 2; ctx.strokeRect(h.caixa.x, h.caixa.y, h.caixa.w, h.caixa.h); }
         if (h.k === 'escala' || h.k === 'giro') { ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(h.cx, h.cy); ctx.lineTo(h.x, h.y); ctx.stroke(); }
         if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
@@ -784,6 +798,13 @@ window.FF = window.FF || {};
         switch (h.k) {
           case 'mover': case 'acerto': { const d = c.em === 'tela' ? 1 : dir; c.dx = R((o.dx || 0) + dx * d); c.dy = R((o.dy || 0) + dy); break; }
           case 'lutador': c.dx = R((o.dx || 0) + dx * dir); c.dy = R((o.dy || 0) + dy); break;
+          case 'destino': {
+            const x0 = o.x != null ? o.x : h.f.homeX - (FF.W - 1084) / 2;
+            c.x = Math.max(0, Math.min(1084, R(x0 + dx)));
+            c.y = Math.min(0, R((o.y || 0) + dy));   // não entra no chão
+            if (!c.y) delete c.y;
+            break;
+          }
           case 'de': c.deDx = R((o.deDx || 0) + dx * dir); c.deDy = R((o.deDy || 0) + dy); break;
           case 'ate': c.alvoDx = R((o.alvoDx || 0) + dx * dir); c.alvoDy = R((o.alvoDy || 0) + dy); break;
           case 'escala': { const d0 = Math.hypot(arr.p0.x - h.cx, arr.p0.y - h.cy), d1 = Math.hypot(p.x - h.cx, p.y - h.cy); c.escala = Math.max(0.05, Math.round((o.escala || 1) * d1 / Math.max(1, d0) * 100) / 100); break; }

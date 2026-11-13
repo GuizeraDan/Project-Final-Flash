@@ -124,9 +124,13 @@ FF.EstudioProps = {
       }
       case 'mover': case 'teleporte': {
         if (c.tipo === 'mover') g.appendChild(num(c, 'd', 'Duração (s)', 'Tempo do movimento', { min: 0.01, passo: 0.01 }));
-        g.appendChild(sel(c, 'para', 'Para onde', [['alvo', 'até o alvo'], ['casa', 'para a posição inicial'], ['frente', 'para a frente'], ['tras', 'para trás'], ['x', 'posição X da tela']], null, 'alvo'));
+        g.appendChild(sel(c, 'para', 'Para onde', [['alvo', 'até o alvo'], ['casa', 'para a posição inicial'], ['frente', 'para a frente'], ['tras', 'para trás'], ['x', 'qualquer lugar da tela (arraste no palco)']], null, 'alvo'));
         g.appendChild(num(c, 'dist', 'Distância', 'Alvo: quanto para antes dele. Frente/trás: quanto anda (em px do sprite × escala)'));
-        if (c.para === 'x') g.appendChild(num(c, 'x', 'X na tela', '0 a 1084'));
+        if (c.para === 'x') {
+          g.appendChild(E.el('p', 'es-dica', 'Arraste a bolinha verde (e a silhueta) no palco para escolher o ponto. Vale para cima também: o lutador fica no ar até o próximo movimento.'));
+          g.appendChild(num(c, 'x', 'X na tela', '0 (esquerda) a 1084 (direita)'));
+          g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120)'));
+        }
         g.appendChild(E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }));
         if (c.tipo === 'mover') g.appendChild(E.campo('check', 'Suave', c.suave !== false, (v) => { if (v) delete c.suave; else c.suave = false; host.mudou('Suave'); }));
         break;

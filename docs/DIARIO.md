@@ -242,3 +242,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Motor: `FF.Linha.iniciar` com `{ko: true}` (alvo nocauteado anima; ao terminar só mexe nele; acertos ignorados). Clipe de voz com `vozTipo`/`quem` ("Voz do personagem": dano/lançado de quem solta ou do alvo).
 - Correção: um golpe defendido que zerava a vida deixava o lutador de pé com 0 de vida (a luta não acabava). Agora ele cai.
 - Anel de crítico sem o texto "CRÍTICO" em cima (aparecia o tempo todo, e duplicado quando havia dois anéis); "CRÍTICO!" só aparece quando o jogador acerta. O anel de guarda continua com "GUARDA".
+- Teleporte/movimento "qualquer lugar da tela" (`para: "x"` agora com `y` = altura em relação ao chão, negativo = no ar): no Estúdio aparece uma alça verde com a silhueta do lutador no destino, arrastável no palco; campos "X na tela" e "Altura (Y)". O lutador volta ao chão no fim da linha (`encerrar`).

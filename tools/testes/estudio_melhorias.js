@@ -134,6 +134,19 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const depois = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').tl.guias);
   ok(Math.abs(guias.t - s.tB) < 0.002 && guias.guias.some(x => Math.abs(x.t - s.tB) < 0.002 && x.n >= 2) && !depois, 'arrastar um clipe até o início de outro mostra a guia de alinhamento (' + JSON.stringify(guias) + ') e some ao soltar');
 
+  // ---- teleporte para qualquer ponto da tela (X e altura), com alça no palco
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const tr = g.doc.linha.trilhas.find(t => t.id === 'atacante');
+    const c = { id: 'tpteste', tipo: 'teleporte', t: 0.05, para: 'x', x: 600, y: -120 };
+    tr.clipes.push(c); g.sel = c.id; g.mudou('teste'); g.irPara(0.6); g.renderProps();
+    const f = g.palco._b.atk, al = g.alcas().find(h => h.k === 'destino');
+    const r = { x: Math.round(f.x - (FF.W - 1084) / 2), y: Math.round(f.y - f.groundY), alca: !!al, props: g.props.textContent };
+    tr.clipes.splice(tr.clipes.indexOf(c), 1); g.sel = null; g.mudou('teste');
+    return r;
+  });
+  ok(s.x === 600 && s.y === -120 && s.alca && /Altura \(Y\)/.test(s.props), 'teleporte para qualquer ponto da tela: lutador em x=' + s.x + ' y=' + s.y + ', alça no palco ' + s.alca);
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');

@@ -7,7 +7,8 @@
 //     {tipo:"anim", anim, sprite? (animação de outro sprite), de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, alpha?, flip?,
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?, suave?}
-//     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?}
+//     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?}
+//     para "x" = qualquer ponto da tela: x em pixels da tela (0 a 1084), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
 //            seguir? (anda junto com o lutador em que está preso)}
@@ -166,14 +167,14 @@ FF.Linha = {
   encerrar(b, viva, estado) {
     if (viva.ko) {   // cena de KO: tocou junto com o golpe; devolve só o derrotado
       const f = viva.target;
-      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; }
+      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.y = f.groundY; }
       for (const [g, e] of estado) g.alpha = e.alpha;
       if (b.cam && this.clipes(viva.linha).some(({ c }) => c.tipo === 'camera')) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
       return;
     }
     for (const f of b.all) this.devolverSprite(f);
     for (const [f, e] of estado) f.alpha = e.alpha;
-    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; }
+    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.y = f.groundY; }
     viva.lutadores.forEach(f => { if (f !== viva.actor) { f.busy = false; if (!f.ko) f.idle(); } });
     if (b.cam && (b.cam.zoom !== 1 || b.cam.x || b.cam.y)) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
   },
@@ -181,7 +182,7 @@ FF.Linha = {
   destino(b, f, outro, c) {
     const dist = (c.dist != null ? c.dist : 22) * f.scale;
     if (c.para === 'casa') return f.homeX;
-    if (c.para === 'x') return (c.x || 0) + (FF.W - 1084) / 2;
+    if (c.para === 'x') return c.x != null ? c.x + (FF.W - 1084) / 2 : f.x;
     if (c.para === 'frente') return f.x + f.dir * dist;
     if (c.para === 'tras') return f.x - f.dir * dist;
     return outro ? outro.x - f.dir * dist : f.x;
@@ -217,13 +218,16 @@ FF.Linha = {
         }
         this.devolverSprite(f);
         const dest = this.destino(b, f, outro, c);
+        // ponto da tela: também muda a altura (sem "y" = volta ao chão)
+        const destY = c.para === 'x' ? f.groundY + (c.y || 0) : f.y;
         if (c.tipo === 'mover') {
-          const x0 = f.x, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
+          const x0 = f.x, y0 = f.y, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
           if (c.animMov !== '') f.play(c.animMov || (dest * f.dir >= x0 * f.dir ? 'avancar' : 'recuar'), { loop: true });
           viva.ativos.push((dt, t) => {
             const k = Math.min(1, (t - t0) / d);
             const e = c.suave === false ? k : 1 - Math.pow(1 - k, 2);
             f.x = x0 + (dest - x0) * e;
+            f.y = y0 + (destY - y0) * e;
             if (k >= 1) return false;
           });
           return;
@@ -231,9 +235,9 @@ FF.Linha = {
         // teleporte: some no meio da animação e aparece no destino
         const nome = f.animName(c.animMov || 'teleporte');
         const a = f.sprite.anim(nome);
-        if (!a) { f.x = dest; return; }
+        if (!a) { f.x = dest; f.y = destY; return; }
         const meio = Math.floor(a.frames.length / 2);
-        f.anim.play(nome, { onFrame: (i) => { if (i === meio) f.x = dest; } });
+        f.anim.play(nome, { onFrame: (i) => { if (i === meio) { f.x = dest; f.y = destY; } } });
         return;
       }
       case 'efeito': {
