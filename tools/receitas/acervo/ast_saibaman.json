@@ -1,0 +1,100 @@
+{
+"nome": "Saibaman",
+"anims": {
+"Parado": {
+"q": "0,8-9",
+"fps": 4,
+"loop": true
+},
+"Rastejando": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "2",
+"fps": 0,
+"loop": false
+},
+"Pulo": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "7",
+"fps": 0,
+"loop": false
+},
+"Garra": {
+"q": "10-11,13-14",
+"fps": 10,
+"loop": false
+},
+"Rodopio": {
+"q": "12",
+"fps": 0,
+"loop": false
+},
+"Investida": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "17-21,35",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "23",
+"fps": 0,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "24-25,33",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "26-27",
+"fps": 10,
+"loop": true
+},
+"Carregar_Ki": {
+"q": "28-30",
+"fps": 10,
+"loop": true
+},
+"Raio": {
+"q": "34",
+"fps": 0,
+"loop": false
+},
+"Acido": {
+"q": "36-38",
+"fps": 10,
+"loop": false
+},
+"Autodestruicao": {
+"q": "42",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "43-44",
+"fps": 8,
+"loop": false
+},
+"Poses": {
+"q": "3-4,16,22,31-32,39-41",
+"fps": 4,
+"loop": false
+}
+}
+}

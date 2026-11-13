@@ -1,0 +1,105 @@
+{
+"nome": "Freeza (100%)",
+"anims": {
+"Parado": {
+"q": "0-4",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "5-12",
+"fps": 6,
+"loop": false
+},
+"Dano": {
+"q": "13-14,50-55",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "15,56-59,75",
+"fps": 6,
+"loop": false
+},
+"Soco": {
+"q": "20-24",
+"fps": 10,
+"loop": false
+},
+"Golpe": {
+"q": "25-26,40",
+"fps": 10,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "27,33,41-42",
+"fps": 10,
+"loop": false
+},
+"Investida": {
+"q": "28",
+"fps": 0,
+"loop": false
+},
+"Cauda": {
+"q": "29-30",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "31,37",
+"fps": 10,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "44-47,65",
+"fps": 8,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "60-62",
+"fps": 10,
+"loop": true
+},
+"Efeito_Rajada": {
+"q": "66",
+"fps": 0,
+"loop": false
+},
+"Kienzan": {
+"q": "69",
+"fps": 0,
+"loop": false
+},
+"Kienzan_Discos": {
+"q": "73-74",
+"fps": 8,
+"loop": false
+},
+"Rajada_Grande": {
+"q": "76",
+"fps": 0,
+"loop": false
+},
+"Esfera_Escura": {
+"q": "77",
+"fps": 0,
+"loop": false
+},
+"Esfera_Mortal": {
+"q": "78,82",
+"fps": 8,
+"loop": false
+},
+"Raio_Grande": {
+"q": "86-88",
+"fps": 8,
+"loop": true
+},
+"Poses": {
+"q": "16-19,32,34-36,38-39,43,48-49,63-64,67-68,70-72,79-81,83-85",
+"fps": 4,
+"loop": false
+}
+}
+}

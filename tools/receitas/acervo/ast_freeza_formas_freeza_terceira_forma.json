@@ -1,0 +1,85 @@
+{
+"nome": "Freeza (3ª forma)",
+"anims": {
+"Parado": {
+"q": "0",
+"fps": 0,
+"loop": false
+},
+"Avanco": {
+"q": "1",
+"fps": 0,
+"loop": false
+},
+"Postura": {
+"q": "2",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "6-7,9-10",
+"fps": 10,
+"loop": false
+},
+"Pulo": {
+"q": "11-12",
+"fps": 8,
+"loop": false
+},
+"Golpe_Cauda": {
+"q": "15",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "13-14,17-18",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "19",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "20-21,37",
+"fps": 10,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "22-23,27,29",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "24-25,30",
+"fps": 10,
+"loop": false
+},
+"Esfera_Mortal": {
+"q": "31-32",
+"fps": 6,
+"loop": false
+},
+"Raio_Grande": {
+"q": "34-35",
+"fps": 8,
+"loop": false
+},
+"Poses": {
+"q": "5,8,16,26,28,33,36",
+"fps": 4,
+"loop": false
+}
+}
+}

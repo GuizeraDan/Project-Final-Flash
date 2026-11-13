@@ -1,0 +1,110 @@
+{
+"nome": "Goku SSJ (Saga Freeza)",
+"anims": {
+"Goku_Base": {
+"q": "0-2,4",
+"fps": 4,
+"loop": false
+},
+"Transformacao": {
+"q": "3,5",
+"fps": 6,
+"loop": false
+},
+"Parado": {
+"q": "6-9",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "11-12",
+"fps": 6,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "14-15",
+"fps": 12,
+"loop": true
+},
+"Pulo": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Voando": {
+"q": "18-20,23-24",
+"fps": 8,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "26,34,45",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "29,36,38,48",
+"fps": 10,
+"loop": false
+},
+"Rodopio": {
+"q": "31-32",
+"fps": 10,
+"loop": false
+},
+"Chute": {
+"q": "33,49",
+"fps": 10,
+"loop": false
+},
+"Soco": {
+"q": "35,40-44",
+"fps": 10,
+"loop": false
+},
+"Investida": {
+"q": "37,39",
+"fps": 8,
+"loop": false
+},
+"Dano": {
+"q": "50-55,58",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "56,59",
+"fps": 6,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "60-62",
+"fps": 10,
+"loop": true
+},
+"Efeito_Rajada": {
+"q": "67-68",
+"fps": 10,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "69-71",
+"fps": 8,
+"loop": false
+},
+"Raio_Amarelo": {
+"q": "72",
+"fps": 0,
+"loop": false
+},
+"Kamehameha_Raio": {
+"q": "79",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "10,13,16,21-22,25,27-28,30,46-47,57,63-66,73-78",
+"fps": 4,
+"loop": false
+}
+}
+}

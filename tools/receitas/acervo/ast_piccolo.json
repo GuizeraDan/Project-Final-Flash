@@ -1,0 +1,155 @@
+{
+"nome": "Piccolo",
+"anims": {
+"Parado": {
+"q": "0-3",
+"fps": 4,
+"loop": true
+},
+"Peso_Capa": {
+"q": "4",
+"fps": 0,
+"loop": false
+},
+"Postura": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Teletransporte": {
+"q": "6-9",
+"fps": 16,
+"loop": false
+},
+"Voando": {
+"q": "10,22",
+"fps": 8,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "13-14",
+"fps": 12,
+"loop": true
+},
+"Soco": {
+"q": "15-16",
+"fps": 10,
+"loop": false
+},
+"Golpe_Capa": {
+"q": "17-19",
+"fps": 10,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "23-24",
+"fps": 10,
+"loop": false
+},
+"Chute": {
+"q": "26-27",
+"fps": 10,
+"loop": false
+},
+"Defesa": {
+"q": "28-30",
+"fps": 6,
+"loop": false
+},
+"Dano": {
+"q": "31-34",
+"fps": 8,
+"loop": false
+},
+"Lancado": {
+"q": "35",
+"fps": 0,
+"loop": false
+},
+"Agachado": {
+"q": "37",
+"fps": 0,
+"loop": false
+},
+"Caido": {
+"q": "38",
+"fps": 0,
+"loop": false
+},
+"Rajada_Roxa": {
+"q": "39,42",
+"fps": 8,
+"loop": false
+},
+"Raio_Roxo": {
+"q": "45",
+"fps": 0,
+"loop": false
+},
+"Efeito_Rajada_Azul": {
+"q": "46-50",
+"fps": 10,
+"loop": true
+},
+"Carregar_Ki": {
+"q": "51-57",
+"fps": 10,
+"loop": true
+},
+"Arremesso": {
+"q": "63-64",
+"fps": 8,
+"loop": false
+},
+"Efeito_Fogo": {
+"q": "65-67",
+"fps": 10,
+"loop": true
+},
+"Makankosappo": {
+"q": "72-77",
+"fps": 8,
+"loop": false
+},
+"Esfera_Rosa": {
+"q": "80",
+"fps": 0,
+"loop": false
+},
+"Disparo_Rosa": {
+"q": "81,86",
+"fps": 8,
+"loop": false
+},
+"Golpe_Braco": {
+"q": "82",
+"fps": 0,
+"loop": false
+},
+"Hellzone_Carga": {
+"q": "88-89,92,95",
+"fps": 8,
+"loop": false
+},
+"Hellzone_Esferas": {
+"q": "98-100",
+"fps": 8,
+"loop": false
+},
+"Explosao": {
+"q": "101",
+"fps": 0,
+"loop": false
+},
+"Rajada_Grande": {
+"q": "102",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "11-12,20-21,25,36,40-41,43-44,58-62,68-71,78-79,83-85,87,90-91,93-94,96-97,103-106",
+"fps": 4,
+"loop": false
+}
+}
+}

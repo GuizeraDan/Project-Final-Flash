@@ -4656,11 +4656,11 @@
 ]
 },
 "ast_bardock_fases_bardock": {
-"nome": "BARDOCK fases / Bardock",
+"nome": "Bardock",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 60,
 "atlas": 1,
 "objs": [
@@ -4847,24 +4847,12 @@
 "Cooler"
 ]
 },
-"ast_freeza_formas_freeza_forma_final": {
-"nome": "FREEZA formas / Freeza Forma Final",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 64,
-"atlas": 1,
-"objs": [
-"FREEZA formas/Freeza Forma Final"
-]
-},
 "ast_freeza_formas_freeza_full_power": {
-"nome": "FREEZA formas / Freeza Full Power",
+"nome": "Freeza (100%)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 89,
 "atlas": 1,
 "objs": [
@@ -4872,11 +4860,11 @@
 ]
 },
 "ast_freeza_formas_freeza_primeira_forma": {
-"nome": "FREEZA formas / Freeza Primeira Forma",
+"nome": "Freeza (1ª forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 22,
 "quadros": 60,
 "atlas": 1,
 "objs": [
@@ -4884,15 +4872,27 @@
 ]
 },
 "ast_freeza_formas_freeza_terceira_forma": {
-"nome": "FREEZA formas / Freeza Terceira Forma",
+"nome": "Freeza (3ª forma)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 17,
 "quadros": 38,
 "atlas": 1,
 "objs": [
 "FREEZA formas/Freeza Terceira Forma"
+]
+},
+"ast_freeza_formas_freeza_forma_final": {
+"nome": "Freeza (forma final)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 25,
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Freeza Forma Final"
 ]
 },
 "ast_freeza_formas_golden_freeza": {
@@ -5003,6 +5003,18 @@
 "Gogeta/Gogeta ssj dbz HD"
 ]
 },
+"ast_gohan_fases_gohan": {
+"nome": "Gohan (criança)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 24,
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan"
+]
+},
 "ast_gohan_gohan_base_ulsw": {
 "nome": "Gohan / Gohan Base Ulsw",
 "cat": "ast",
@@ -5037,18 +5049,6 @@
 "atlas": 18,
 "objs": [
 "Gohan/Teen Gohan Ulsw"
-]
-},
-"ast_gohan_fases_gohan": {
-"nome": "GOHAN fases / Gohan",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 68,
-"atlas": 1,
-"objs": [
-"GOHAN fases/Gohan"
 ]
 },
 "ast_gohan_fases_gohan_adulto": {
@@ -5111,12 +5111,24 @@
 "GOHAN fases/Teen Gohan SSJ2"
 ]
 },
-"ast_goku_goku_base_ulsw": {
-"nome": "Goku / Goku Base Ulsw",
+"ast_goku_fases_goku": {
+"nome": "Goku",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 10,
+"anims": 34,
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku"
+]
+},
+"ast_goku_goku_base_ulsw": {
+"nome": "Goku (ULSW)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 31,
 "quadros": 161,
 "atlas": 14,
 "objs": [
@@ -5279,18 +5291,6 @@
 "GOKU BLACK formas/Goku Black SSJ(versión 2)"
 ]
 },
-"ast_goku_fases_goku": {
-"nome": "GOKU fases / Goku",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 71,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku"
-]
-},
 "ast_goku_fases_goku_versi_n2": {
 "nome": "GOKU fases / Goku (versión2)",
 "cat": "ast",
@@ -5385,30 +5385,6 @@
 "atlas": 1,
 "objs": [
 "GOKU fases/Goku Instinto Superior Completo"
-]
-},
-"ast_goku_fases_goku_kaioken": {
-"nome": "GOKU fases / Goku kaioken",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 67,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku kaioken"
-]
-},
-"ast_goku_fases_goku_ssj_saga_freeza": {
-"nome": "GOKU fases / Goku Ssj (Saga Freeza)",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 80,
-"atlas": 1,
-"objs": [
-"GOKU fases/Goku Ssj (Saga Freeza)"
 ]
 },
 "ast_goku_fases_goku_ssj_1": {
@@ -5519,6 +5495,30 @@
 "GOKU fases/Goku Whis Gi"
 ]
 },
+"ast_goku_fases_goku_kaioken": {
+"nome": "Goku Kaioken",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 15,
+"quadros": 67,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku kaioken"
+]
+},
+"ast_goku_fases_goku_ssj_saga_freeza": {
+"nome": "Goku SSJ (Saga Freeza)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 22,
+"quadros": 80,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Ssj (Saga Freeza)"
+]
+},
 "ast_goten_goten_base_ulsw": {
 "nome": "Goten / Goten Base Ulsw",
 "cat": "ast",
@@ -5620,7 +5620,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 33,
 "quadros": 81,
 "atlas": 1,
 "objs": [
@@ -5628,11 +5628,11 @@
 ]
 },
 "ast_kuririn_ulsw": {
-"nome": "Kuririn Ulsw",
+"nome": "Kuririn (ULSW)",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 3,
+"anims": 36,
 "quadros": 126,
 "atlas": 9,
 "objs": [
@@ -5752,7 +5752,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 31,
 "quadros": 107,
 "atlas": 1,
 "objs": [
@@ -5760,11 +5760,11 @@
 ]
 },
 "ast_raditz_fases_raditz": {
-"nome": "RADITZ fases / Raditz",
+"nome": "Raditz",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 19,
 "quadros": 47,
 "atlas": 1,
 "objs": [
@@ -5772,11 +5772,11 @@
 ]
 },
 "ast_raditz_fases_raditz_ssj": {
-"nome": "RADITZ fases / Raditz Ssj",
+"nome": "Raditz SSJ",
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 17,
 "quadros": 45,
 "atlas": 1,
 "objs": [
@@ -5788,7 +5788,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 21,
 "quadros": 46,
 "atlas": 1,
 "objs": [
@@ -5800,7 +5800,7 @@
 "cat": "ast",
 "tipo": "personagens",
 "fonte": "ast",
-"anims": 1,
+"anims": 12,
 "quadros": 42,
 "atlas": 3,
 "objs": [
@@ -5841,6 +5841,30 @@
 "atlas": 1,
 "objs": [
 "Turles"
+]
+},
+"ast_vegeta_fases_vegeta": {
+"nome": "Vegeta",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 15,
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta"
+]
+},
+"ast_vegeta_fases_vegeta_sayajin_saga": {
+"nome": "Vegeta (Saga Saiyajin)",
+"cat": "ast",
+"tipo": "personagens",
+"fonte": "ast",
+"anims": 24,
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Sayajin Saga"
 ]
 },
 "ast_vegeta_baby_vegeta_ulsw_hd": {
@@ -5951,18 +5975,6 @@
 "VEGETA fases/Majin Vegeta"
 ]
 },
-"ast_vegeta_fases_vegeta": {
-"nome": "VEGETA fases / Vegeta",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 55,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Vegeta"
-]
-},
 "ast_vegeta_fases_vegeta_blue": {
 "nome": "VEGETA fases / Vegeta Blue",
 "cat": "ast",
@@ -6009,18 +6021,6 @@
 "atlas": 1,
 "objs": [
 "VEGETA fases/Vegeta Saga Buu SSJ"
-]
-},
-"ast_vegeta_fases_vegeta_sayajin_saga": {
-"nome": "VEGETA fases / Vegeta Sayajin Saga",
-"cat": "ast",
-"tipo": "personagens",
-"fonte": "ast",
-"anims": 1,
-"quadros": 47,
-"atlas": 1,
-"objs": [
-"VEGETA fases/Vegeta Sayajin Saga"
 ]
 },
 "ast_vegeta_fases_vegeta_ssj_4": {

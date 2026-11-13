@@ -1,0 +1,75 @@
+{
+"nome": "Vegeta",
+"anims": {
+"Carregar_Ki": {
+"q": "0-2",
+"fps": 10,
+"loop": true
+},
+"Parado": {
+"q": "3-4",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "5-6",
+"fps": 6,
+"loop": false
+},
+"Avanco": {
+"q": "8",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "9-10",
+"fps": 10,
+"loop": false
+},
+"Pulo": {
+"q": "11-12,15",
+"fps": 8,
+"loop": false
+},
+"Chute": {
+"q": "16-18",
+"fps": 10,
+"loop": false
+},
+"Golpe_Cima": {
+"q": "19-20",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "32",
+"fps": 0,
+"loop": false
+},
+"Raio": {
+"q": "33,51",
+"fps": 8,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "34-36,39-42",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "37-38,43-49",
+"fps": 10,
+"loop": true
+},
+"Esfera": {
+"q": "50",
+"fps": 0,
+"loop": false
+},
+"Variados": {
+"q": "7,13-14,21-31,52-54",
+"fps": 4,
+"loop": false
+}
+}
+}

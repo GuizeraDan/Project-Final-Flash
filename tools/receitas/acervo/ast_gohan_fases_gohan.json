@@ -1,0 +1,115 @@
+{
+"nome": "Gohan (criança)",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "3-4",
+"fps": 6,
+"loop": false
+},
+"Agachado": {
+"q": "5",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "6-7",
+"fps": 12,
+"loop": true
+},
+"Pulo": {
+"q": "8-11",
+"fps": 8,
+"loop": false
+},
+"Avanco": {
+"q": "12-13",
+"fps": 8,
+"loop": false
+},
+"Dano": {
+"q": "14,17-18,46-50",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "15-16,51",
+"fps": 6,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "20,22",
+"fps": 10,
+"loop": false
+},
+"Dano_Agachado": {
+"q": "21",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "23-26",
+"fps": 10,
+"loop": false
+},
+"Chute_Alto": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "31",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "33-34,40",
+"fps": 10,
+"loop": true
+},
+"Rajada_Ki": {
+"q": "35-36,38-39",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "37,41-45",
+"fps": 10,
+"loop": true
+},
+"Kamehameha_Raio": {
+"q": "53",
+"fps": 0,
+"loop": false
+},
+"Kamehameha": {
+"q": "54-58",
+"fps": 8,
+"loop": false
+},
+"Transformacao": {
+"q": "59,64",
+"fps": 6,
+"loop": false
+},
+"SSJ": {
+"q": "60,65-66",
+"fps": 4,
+"loop": false
+},
+"Masenko_Raio": {
+"q": "61",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "19,27-28,30,32,52,62-63",
+"fps": 4,
+"loop": false
+}
+}
+}

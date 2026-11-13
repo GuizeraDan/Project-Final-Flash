@@ -1,0 +1,125 @@
+{
+"nome": "Freeza (forma final)",
+"anims": {
+"Parado": {
+"q": "0-2",
+"fps": 4,
+"loop": true
+},
+"Postura": {
+"q": "3",
+"fps": 0,
+"loop": false
+},
+"Voando": {
+"q": "6",
+"fps": 0,
+"loop": false
+},
+"Rastro_Dash": {
+"q": "7-8",
+"fps": 12,
+"loop": true
+},
+"Teletransporte": {
+"q": "9",
+"fps": 0,
+"loop": false
+},
+"Soco": {
+"q": "10-11,20",
+"fps": 10,
+"loop": false
+},
+"Cauda": {
+"q": "13,21,23",
+"fps": 10,
+"loop": false
+},
+"Golpe": {
+"q": "14,28",
+"fps": 10,
+"loop": false
+},
+"Garra": {
+"q": "17",
+"fps": 0,
+"loop": false
+},
+"Golpe_Giratorio": {
+"q": "18",
+"fps": 0,
+"loop": false
+},
+"Investida": {
+"q": "22",
+"fps": 0,
+"loop": false
+},
+"Golpe_Rastro": {
+"q": "27",
+"fps": 0,
+"loop": false
+},
+"Chute": {
+"q": "29",
+"fps": 0,
+"loop": false
+},
+"Dano": {
+"q": "4,16,31-36",
+"fps": 8,
+"loop": false
+},
+"Caido": {
+"q": "37",
+"fps": 0,
+"loop": false
+},
+"Kienzan_Discos": {
+"q": "38,43",
+"fps": 8,
+"loop": false
+},
+"Rajada_Ki": {
+"q": "39-40,47-49,54",
+"fps": 8,
+"loop": false
+},
+"Efeito_Rajada": {
+"q": "41,50",
+"fps": 10,
+"loop": false
+},
+"Raio": {
+"q": "42",
+"fps": 0,
+"loop": false
+},
+"Carregar_Ki": {
+"q": "44-46",
+"fps": 10,
+"loop": true
+},
+"Esfera_Mortal": {
+"q": "55",
+"fps": 0,
+"loop": false
+},
+"Raio_Grande": {
+"q": "57",
+"fps": 0,
+"loop": false
+},
+"Explosao": {
+"q": "63",
+"fps": 0,
+"loop": false
+},
+"Poses": {
+"q": "5,12,15,19,24-26,30,51-53,56,58-62",
+"fps": 4,
+"loop": false
+}
+}
+}
