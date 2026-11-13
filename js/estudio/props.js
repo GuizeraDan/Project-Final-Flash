@@ -111,6 +111,7 @@ FF.EstudioProps = {
         p.appendChild(num(c, 'dx', 'X (px)', 'Deslocamento para a frente (+) ou para trás (−)'));
         p.appendChild(num(c, 'dy', 'Y (px)', 'Para baixo (+) ou para cima (−)'));
         p.appendChild(num(c, 'escala', 'Tamanho (×)', '1 = normal', { passo: 0.05, min: 0.05 }));
+        p.appendChild(num(c, 'rot', 'Giro (°)', 'Gira o lutador em volta do meio do corpo (no palco: alça azul)'));
         p.appendChild(num(c, 'alpha', 'Opacidade', '0 a 1 (vazio = não muda)', { passo: 0.05, min: 0, max: 1 }));
         p.appendChild(chk(c, 'flip', 'Espelhar'));
         box.appendChild(p);

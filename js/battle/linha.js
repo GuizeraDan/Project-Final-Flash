@@ -4,7 +4,7 @@
 //
 // Tipos de trilha → clipes aceitos (todo clipe tem "t" = início em segundos; "d" = duração quando faz sentido):
 //  lutador  (quem: "atacante" | "alvo" | id de um parceiro, ex.: "piccolo")
-//     {tipo:"anim", anim, sprite? (animação de outro sprite), de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, alpha?, flip?,
+//     {tipo:"anim", anim, sprite? (animação de outro sprite), de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, rot? (°), alpha?, flip?,
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, animMov?, suave?}
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?}
@@ -169,14 +169,14 @@ FF.Linha = {
   encerrar(b, viva, estado) {
     if (viva.ko) {   // cena de KO: tocou junto com o golpe; devolve só o derrotado
       const f = viva.target;
-      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.y = f.groundY; }
+      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.y = f.groundY; }
       for (const [g, e] of estado) g.alpha = e.alpha;
       if (b.cam && this.clipes(viva.linha).some(({ c }) => c.tipo === 'camera')) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
       return;
     }
     for (const f of b.all) this.devolverSprite(f);
     for (const [f, e] of estado) f.alpha = e.alpha;
-    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.y = f.groundY; }
+    for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; f.rotExtra = 0; f.y = f.groundY; }
     viva.lutadores.forEach(f => { if (f !== viva.actor) { f.busy = false; if (!f.ko) f.idle(); } });
     if (b.cam && (b.cam.zoom !== 1 || b.cam.x || b.cam.y)) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
   },
@@ -206,7 +206,7 @@ FF.Linha = {
           const emprestado = c.sprite && FF.Assets.sprites[c.sprite];
           if (emprestado && emprestado !== f.sprite) { if (!f._spriteOrig) f._spriteOrig = { sprite: f.sprite, anim: f.anim }; f.sprite = emprestado; f.anim = new FF.Animator(emprestado); }
           else if (!emprestado) this.devolverSprite(f);
-          f.offX = (c.dx || 0) * f.dir; f.offY = c.dy || 0; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip;
+          f.offX = (c.dx || 0) * f.dir; f.offY = c.dy || 0; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip; f.rotExtra = (c.rot || 0) * f.dir;
           if (c.alpha != null) { guardar(f); f.alpha = c.alpha; }
           const loop = c.loop != null ? !!c.loop : !!c.d;
           f.anim.play(this.trecho(f.sprite, emprestado ? c.anim : f.animName(c.anim), c.de, c.ate), { fps: c.fps || undefined, loop, hold: (c.segurar || 0) + (segurar || 0) });

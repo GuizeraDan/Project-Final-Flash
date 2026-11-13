@@ -178,6 +178,21 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.ks.includes('sprite') && s.ks.includes('escala') && s.ks.includes('giro'), 'projétil voando tem alças de mover, tamanho e giro (' + s.ks + ')');
   ok(s.cor === 110 && /hue-rotate\(72deg\)/.test(s.filtro || '') && /Verde/.test(s.info) && s.nomes === 8, 'cor pelo nome: ' + s.info + ' · filtro ' + s.filtro);
 
+  // ---- lutador: alças de tamanho e giro como os efeitos
+  s = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const tr = g.doc.linha.trilhas.find(t => t.id === 'atacante'), c = tr.clipes.find(k => k.tipo === 'anim');
+    g.sel = c.id; g.irPara(c.t + 0.02); g.renderProps();
+    const hs = g.alcas(), gi = hs.find(h => h.k === 'giro');
+    const r = g.cv.getBoundingClientRect(), k = r.width / g.cv.width;
+    return { id: c.id, ks: hs.map(h => h.k), x: r.left + gi.x * k, y: r.top + gi.y * k, cx: r.left + gi.cx * k, cy: r.top + gi.cy * k };
+  });
+  await p.mouse.move(s.x, s.y); await p.mouse.down(); await p.mouse.move(s.x + 20, s.y + 5, { steps: 3 }); await p.mouse.move(s.cx + 80, s.cy, { steps: 6 }); await p.mouse.up();
+  const lu = await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); const c = g.achar(id).c; return { rot: c.rot, fr: g.palco._b.atk.rotExtra }; }, s.id);
+  await p.screenshot({ path: OUT + '/0g_lutador_giro.png' });
+  ok(s.ks.includes('lutador') && s.ks.includes('escala') && s.ks.includes('giro') && Math.abs(Math.abs(lu.rot) - 90) <= 3 && Math.abs(Math.abs(lu.fr) - 90) <= 3, 'lutador com alças de mover/tamanho/giro; girar pela alça azul: ' + JSON.stringify(lu));
+  await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); delete g.achar(id).c.rot; g.mudou('x'); }, s.id);
+
   // ---- palco: alinhar a saída na mesma altura da chegada (guia) e Shift trava o eixo
   s = await p.evaluate(() => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');

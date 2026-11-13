@@ -746,7 +746,12 @@ window.FF = window.FF || {};
           L.push({ k: 'destino', x: dx, y: dy - 30 * f.scale, px: dx, py: dy, cor: '#5fe08a', f });
         }
       }
-      if (c.tipo === 'anim' && r.f) L.push({ k: 'lutador', x: r.f.x + (r.f.offX || 0), y: r.f.y + (r.f.offY || 0) - 30 * r.f.scale, cor: '#fff', f: r.f });
+      if (c.tipo === 'anim' && r.f) {   // lutador: mover (branca), tamanho (amarela) e giro (azul), como os efeitos
+        const f = r.f, sc = f.scale * (f.escExtra || 1), x = f.x + (f.offX || 0), y = f.y + (f.offY || 0) - 30 * sc, raio = 34 * sc;
+        L.push({ k: 'lutador', x, y, cor: '#fff', f, raio },
+          { k: 'escala', x: x + raio * 0.75, y: y + raio * 0.75, cor: '#ffd84a', cx: x, cy: y },
+          { k: 'giro', x, y: y - raio - 16, cor: '#6cc8ff', cx: x, cy: y });
+      }
       if (c.tipo === 'camada') {
         const v = (b.cenasVivas || []).find(x => x.linha);
         const cam = v && v.cena.camadas.find(k => k.id === c.id);
@@ -780,6 +785,7 @@ window.FF = window.FF || {};
         }
         if (h.caixa && h.k !== 'sprite') { ctx.strokeStyle = '#b06cff'; ctx.lineWidth = 2; ctx.strokeRect(h.caixa.x, h.caixa.y, h.caixa.w, h.caixa.h); }
         if (h.k === 'escala' || h.k === 'giro') { ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(h.cx, h.cy); ctx.lineTo(h.x, h.y); ctx.stroke(); }
+        if (h.k === 'lutador' && h.raio) { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'sprite') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         ctx.fillStyle = h.cor; ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
@@ -853,7 +859,7 @@ window.FF = window.FF || {};
         const R = (v) => Math.round(v);
         switch (h.k) {
           case 'mover': case 'acerto': { const d = c.em === 'tela' ? 1 : dir; c.dx = R((o.dx || 0) + dx * d); c.dy = R((o.dy || 0) + dy); break; }
-          case 'lutador': c.dx = R((o.dx || 0) + dx * dir); c.dy = R((o.dy || 0) + dy); break;
+          case 'lutador': { const dd = r.f ? r.f.dir : dir; c.dx = R((o.dx || 0) + dx * dd); c.dy = R((o.dy || 0) + dy); break; }
           case 'destino': {
             const x0 = o.x != null ? o.x : h.f.homeX - (FF.W - 1084) / 2;
             c.x = Math.max(0, Math.min(1084, R(x0 + dx)));
@@ -865,7 +871,14 @@ window.FF = window.FF || {};
           case 'ate': c.alvoDx = R((o.alvoDx || 0) + dx * dir); c.alvoDy = R((o.alvoDy || 0) + dy); break;
           case 'sprite': c.spriteDx = R((o.spriteDx || 0) + dx * dir); c.spriteDy = R((o.spriteDy || 0) + dy); if (!c.spriteDx) delete c.spriteDx; if (!c.spriteDy) delete c.spriteDy; break;
           case 'escala': { const d0 = Math.hypot(arr.p0.x - h.cx, arr.p0.y - h.cy), d1 = Math.hypot(p.x - h.cx, p.y - h.cy); c.escala = Math.max(0.05, Math.round((o.escala || 1) * d1 / Math.max(1, d0) * 100) / 100); break; }
-          case 'giro': { const ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90; c.rot = R(ang * (c.em === 'tela' ? 1 : dir)); break; }
+          case 'giro': {
+            let ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90;
+            if (ang > 180) ang -= 360;
+            const dd = c.tipo === 'anim' && r.f ? r.f.dir : dir;
+            c.rot = R(ang * (c.em === 'tela' ? 1 : dd));
+            if (Math.abs(c.rot) <= 2) delete c.rot;   // perto do zero = reto
+            break;
+          }
           case 'camada': {
             const tl = this.t - c.t;
             if (this.autoChave) {

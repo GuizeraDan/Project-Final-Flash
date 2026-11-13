@@ -146,8 +146,13 @@ FF.Fighter = class {
     if (sombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
     this.desenharAura(ctx, false);
     // offX/offY/escExtra/flipExtra: posição e tamanho por passo (linha do tempo do Estúdio); padrão sem efeito
-    FF.drawFrame(ctx, this.sprite, this.anim.frame(), this.x + (this.offX || 0), this.y + (this.offY || 0), this.scale * (this.escExtra || 1),
-      (this.dir < 0) !== !!this.flipExtra, { tint: this.tint(), alpha: this.alpha });
+    const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
+    if (this.rotExtra) {   // giro (graus) em volta do meio do corpo — linha do tempo do Estúdio
+      const cy = y - 30 * sc;
+      ctx.save(); ctx.translate(x, cy); ctx.rotate(this.rotExtra * Math.PI / 180);
+      FF.drawFrame(ctx, this.sprite, this.anim.frame(), 0, 30 * sc, sc, flip, { tint: this.tint(), alpha: this.alpha });
+      ctx.restore();
+    } else FF.drawFrame(ctx, this.sprite, this.anim.frame(), x, y, sc, flip, { tint: this.tint(), alpha: this.alpha });
     this.desenharAura(ctx, true);
   }
 
