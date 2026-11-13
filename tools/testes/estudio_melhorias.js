@@ -134,6 +134,25 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const depois = await p.evaluate(() => FF.Estudio.abas.find(a => a.id === 'golpes').tl.guias);
   ok(Math.abs(guias.t - s.tB) < 0.002 && guias.guias.some(x => Math.abs(x.t - s.tB) < 0.002 && x.n >= 2) && !depois, 'arrastar um clipe até o início de outro mostra a guia de alinhamento (' + JSON.stringify(guias) + ') e some ao soltar');
 
+  // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
+  s = await p.evaluate(async () => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const itens = [...document.querySelectorAll('.es-lista .es-item')].filter(i => /💀/.test(i.textContent)).map(i => i.textContent);
+    await g.abrirKO('padrao');
+    const padrao = { tipo: g.doc.origem.tipo, alvo: g.doc.linha.trilhas.find(t => t.id === 'alvo').clipes.map(c => c.anim).join(','), titulo: g.titProps.textContent, props: g.props.textContent };
+    await g.abrirKO(g.cfg.alvo);
+    const alvo = g.cfg.alvo;
+    g.doc.linha.trilhas.find(t => t.id === 'efeitos').clipes[0].escala = 1.5; g.mudou('teste');
+    g.salvar();
+    const salvo = FF.Edicoes.dados().ko[alvo];
+    const usa = FF.KO.linhaDe(alvo).trilhas.find(t => t.id === 'efeitos').clipes[0].escala;
+    const outro = FF.KO.linhaDe('zzz').trilhas.find(t => t.id === 'efeitos').clipes[0].escala;
+    FF.Edicoes.set(['ko', alvo], null);
+    return { itens, padrao, salvo: !!salvo, usa, outro, depois: FF.KO.temPropria(alvo) };
+  });
+  ok(s.itens.length === 2 && s.padrao.tipo === 'ko' && s.padrao.alvo === 'lancado,caido' && /cena de KO/.test(s.padrao.titulo) && /Toca quando a vida/.test(s.padrao.props), 'cena de KO no Estúdio: ' + s.itens.join(' | ') + ' · padrão ' + s.padrao.alvo);
+  ok(s.salvo && s.usa === 1.5 && s.outro === 0.55 && !s.depois, 'cena de KO própria salva e usada só para o personagem; os outros ficam com a padrão');
+
   // ---- miniaturas animadas nos campos de efeito (projétil da Rajada de Ki do Bills)
   await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');
   await pronto(); await p.waitForTimeout(800);

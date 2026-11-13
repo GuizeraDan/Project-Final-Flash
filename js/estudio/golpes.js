@@ -6,7 +6,7 @@ window.FF = window.FF || {};
 (function () {
   const E = FF.Estudio;
   const TIPOS_TRILHA = [['lutador', '🧍 Lutador (parceiro / alvo)'], ['efeitos', '✺ Efeitos'], ['projeteis', '➶ Projéteis'], ['camadas', '▣ Camadas livres'], ['sons', '♪ Sons e vozes'], ['acertos', '✸ Acertos'], ['tela', '🎥 Tela (tremor, flash, câmera, mensagem)'], ['acoes', '⚙ Ações (ki, buff, transformar…)']];
-  const RERENDER = new Set(['Para onde', 'Sprite da camada', 'Ação', 'Editar JSON', 'Desligar trilha', 'Lutador da trilha', 'Animação', 'Efeito', 'Projétil', 'Explosão', 'Efeito na mão', 'Duração automática', 'Chaves', 'Anel', 'Lança o alvo']);
+  const RERENDER = new Set(['Para onde', 'Sprite da camada', 'Ação', 'Editar JSON', 'Desligar trilha', 'Lutador da trilha', 'Animação', 'Efeito', 'Projétil', 'Explosão', 'Efeito na mão', 'Duração automática', 'Chaves', 'Anel', 'Lança o alvo', 'Voz do personagem']);
   const novoId = () => 'c' + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36);
 
   const G = {
@@ -138,6 +138,20 @@ window.FF = window.FF || {};
         it.onclick = () => this.confirmarTroca(() => this.abrirHabilidade(h.id));
         lista.appendChild(it);
       });
+      // cena de KO: o que acontece quando alguém é derrotado (padrão de todos + própria do alvo do palco)
+      lista.appendChild(E.el('div', 'es-sub', '💀 Cena de KO'));
+      const itemKO = (id, nome, tag, dica) => {
+        const it = E.el('div', 'es-item' + (this.doc && this.doc.origem.tipo === 'ko' && this.doc.origem.id === id ? ' sel' : ''));
+        const n = E.el('span'); n.textContent = nome; it.appendChild(n);
+        if (tag) it.appendChild(E.el('span', 'tag' + (tag === '✎' ? ' alt' : ''), tag));
+        it.title = dica;
+        it.onclick = () => this.confirmarTroca(() => this.abrirKO(id));
+        lista.appendChild(it);
+      };
+      const koSalvo = FF.Edicoes.dados().ko || {};
+      itemKO('padrao', '💀 Padrão (todos)', koSalvo.padrao ? '✎' : '', 'Vale para todo personagem que não tem cena de KO própria');
+      const nAlvo = (this.defs[cfg.alvo] || {}).nome || cfg.alvo;
+      itemKO(cfg.alvo, '💀 Quando ' + nAlvo + ' cai', koSalvo[cfg.alvo] ? '✎' : 'usa a padrão', 'Cena própria do ' + nAlvo + ' (troque o Alvo do palco para editar a de outro personagem)');
       L.appendChild(lista);
       // alvo e parceiro
       const t3 = E.el('div', 'es-titulo', 'Palco');
@@ -184,6 +198,13 @@ window.FF = window.FF || {};
       if (!h) return E.aviso('Habilidade não encontrada.', 'erro');
       if (h.personagem !== this.cfg.atacante || (h.forma && h.forma !== this.cfg.forma)) await this.aplicarCfg(Object.assign({}, this.cfg, { atacante: h.personagem, forma: h.forma || null }));
       this.abrirDoc({ origem: { tipo: 'habilidade', personagem: h.personagem, forma: h.forma || this.cfg.forma, id }, golpe: this.meta(h.golpe), linha: this.linhaDe(h.golpe) });
+    },
+    // cena de KO (js/battle/ko.js): id = 'padrao' ou o personagem derrotado (fica como Alvo no palco)
+    async abrirKO(id) {
+      if (id !== 'padrao' && id !== this.cfg.alvo) await this.aplicarCfg(Object.assign({}, this.cfg, { alvo: id, alvoForma: null }));
+      const nome = id === 'padrao' ? 'Cena de KO (padrão)' : 'KO de ' + ((this.defs[id] || {}).nome || id);
+      this.abrirDoc({ origem: { tipo: 'ko', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome }, linha: FF.KO.linhaDe(id) });
+      if (id !== 'padrao' && !FF.KO.temPropria(id)) E.aviso('💀 ' + nome + ': começa pela cena padrão. Ao salvar, vira a cena própria dele.');
     },
     meta(g) { const m = E.copia(g); delete m.roteiro; delete m.habId; return m; },
     linhaDe(g) {
@@ -565,11 +586,12 @@ window.FF = window.FF || {};
       salvar.style.flex = '1';
       r.appendChild(salvar);
       if (o.tipo === 'golpe' && FF.Edicoes.golpeAlterado(o.personagem, o.id)) r.appendChild(E.botao('↺ Original', () => this.original(), 'Volta este golpe ao original do jogo'));
-      r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
+      if (o.tipo === 'ko' && (FF.Edicoes.dados().ko || {})[o.id]) r.appendChild(E.botao('↺ Original', () => this.original(), o.id === 'padrao' ? 'Volta a cena de KO padrão à do jogo' : 'Apaga a cena própria (volta a usar a padrão)'));
+      if (o.tipo !== 'ko') r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
       if (o.tipo === 'habilidade') r.appendChild(E.botao('🗑', () => this.apagarHab(), 'Apagar esta habilidade', 'es-bt-perigo'));
       r.appendChild(E.botao('🎮', () => this.testarNoJogo(), 'Abrir uma Batalha Livre com este personagem para testar (salve antes)'));
       r.appendChild(E.botao('{ }', () => this.verJson(), 'Ver/colar o JSON do golpe'));
-      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)' }[o.tipo];
+      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)', ko: '💀 cena de KO' }[o.tipo];
       this.titProps.innerHTML = '';
       const t = E.el('span'); t.textContent = (this.doc.golpe.nome || '') + ' · ' + tipo; this.titProps.appendChild(t);
     },
@@ -596,7 +618,11 @@ window.FF = window.FF || {};
       const o = this.doc.origem;
       const g = this.montarGolpe();
       if (!g.nome) g.nome = 'Sem nome';
-      if (o.tipo === 'golpe') {
+      if (o.tipo === 'ko') {
+        const linha = E.copia(this.doc.linha);
+        if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
+        E.salvarNoJogo(['ko', o.id], linha, '💀 ' + g.nome + ' salva no jogo.');
+      } else if (o.tipo === 'golpe') {
         E.salvarNoJogo(['golpes', o.personagem, o.id], g, '💾 "' + g.nome + '" salvo no jogo.');
         // o personagem carregado no palco passa a usar o golpe novo
         const d = this.defs[o.personagem]; if (d) FF.Edicoes.aplicarGolpes(d);
@@ -613,6 +639,13 @@ window.FF = window.FF || {};
     },
     async original() {
       const o = this.doc.origem;
+      if (o.tipo === 'ko') {
+        const txt = o.id === 'padrao' ? 'Voltar a cena de KO padrão à original do jogo?' : 'Apagar a cena de KO própria? Ele volta a usar a padrão.';
+        if (!(await E.confirmar('Voltar ao original', txt + ' (em todos os aparelhos)', '↺ Voltar', true))) return;
+        E.salvarNoJogo(['ko', o.id], null, '↺ Cena de KO voltou ao original.');
+        this.sujo = false;
+        return this.abrirKO(o.id);
+      }
       if (!(await E.confirmar('Voltar ao original', 'Voltar "' + this.doc.golpe.nome + '" ao original do jogo? Sua versão será apagada (em todos os aparelhos).', '↺ Voltar ao original', true))) return;
       E.salvarNoJogo(['golpes', o.personagem, o.id], null, '↺ Golpe voltou ao original.');
       this.carregarDefs().then(() => this.abrirGolpe(o.personagem, o.id));

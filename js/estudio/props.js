@@ -213,7 +213,12 @@ FF.EstudioProps = {
         break;
       }
       case 'som': g.appendChild(E.campo('som', 'Som', c.som, set(c, 'som', 'Som'), { dica: 'Vários separados por vírgula = sorteia um' })); break;
-      case 'voz': g.appendChild(E.campo('som', 'Voz', c.voz, set(c, 'voz', 'Voz'), { dica: 'Vários separados por vírgula = sorteia um', vozes: host.prefixoVoz() })); break;
+      case 'voz':
+        g.appendChild(E.campo('select', 'Voz do personagem', c.vozTipo || '', (v) => { if (v) c.vozTipo = v; else delete c.vozTipo; host.mudou('Voz do personagem'); },
+          { lista: [['', '— arquivo escolhido abaixo —'], ['dano', 'dano'], ['lancado', 'lançado']], dica: 'Usa a voz cadastrada no personagem (aba Personagens), seja ele quem for' }));
+        if (c.vozTipo) g.appendChild(E.campo('select', 'De quem', c.quem || 'atacante', (v) => { c.quem = v; host.mudou('De quem'); }, { lista: [['atacante', 'quem solta'], ['alvo', 'alvo']] }));
+        else g.appendChild(E.campo('som', 'Voz', c.voz, set(c, 'voz', 'Voz'), { dica: 'Vários separados por vírgula = sorteia um', vozes: host.prefixoVoz() }));
+        break;
       case 'acerto': this.camposAcerto(g, c, num, chk, sel, host, true); break;
       case 'tremer': case 'flash': g.appendChild(num(c, 'forca', 'Força', c.tipo === 'tremer' ? 'Ex.: 6 (fraco) a 20 (forte)' : '0 a 1', { passo: c.tipo === 'flash' ? 0.05 : 1 })); break;
       case 'mensagem': g.appendChild(txt(c, 'texto', 'Texto')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1 })); break;
@@ -278,6 +283,13 @@ FF.EstudioProps = {
     const E = FF.Estudio;
     const g = host.doc.golpe;
     const box = E.el('div');
+    if (host.doc.origem.tipo === 'ko') {   // cena de KO: não tem nome, custo nem poder
+      const k = E.grupo('💀 Cena de KO');
+      k.appendChild(E.el('p', 'es-dica', 'Toca quando a vida de alguém chega a zero, junto com o golpe que derrubou. Trilha <b>Alvo</b> = quem caiu (use as animações "lancado" e "caido", empurrão, efeitos "peito/pés do alvo"); trilha <b>Quem solta</b> = quem deu o golpe final. ' +
+        (host.doc.origem.id === 'padrao' ? 'Esta é a padrão: vale para todo mundo que não tem cena própria.' : 'Esta é a cena própria deste personagem; os outros continuam com a padrão.') +
+        ' Acertos não valem aqui. O "congelamento" do golpe final continua automático.'));
+      box.appendChild(k);
+    } else {
     const a = E.grupo('⚔ Golpe');
     a.appendChild(txt(g, 'nome', 'Nome'));
     a.appendChild(E.campo('area', 'Descrição', g.descricao, (v) => { if (v) g.descricao = v; else delete g.descricao; host.mudou('Descrição'); }, { linhas: 2 }));
@@ -287,6 +299,7 @@ FF.EstudioProps = {
     a.appendChild(chk(g, 'supremo', 'Supremo (Fúria cheia)'));
     a.appendChild(E.campo('check', 'Anunciar o nome', g.anuncio !== false, (v) => { if (v) delete g.anuncio; else g.anuncio = false; host.mudou('Anúncio'); }));
     box.appendChild(a);
+    }
     const L = host.doc.linha;
     const d = E.grupo('⏱ Duração');
     const row = E.campo('numero', 'Fim da linha (s)', L.duracao, (v) => { if (v > 0) { L.duracao = v; L.duracaoManual = true; host.mudou('Duração'); } }, { passo: 0.05, min: 0.1 });
@@ -294,6 +307,7 @@ FF.EstudioProps = {
     d.appendChild(E.campo('check', 'Automática', !L.duracaoManual, (v) => { if (v) { delete L.duracaoManual; host.autoDuracao(); } else L.duracaoManual = true; host.mudou('Duração automática'); }, { dica: 'Termina 0,1 s depois do último clipe' }));
     box.appendChild(d);
     const r = E.grupo('🔒 Regras', false);
+    if (host.doc.origem.tipo === 'ko') r.style.display = 'none';
     r.appendChild(E.el('p', 'es-dica', 'mostrar/esconder: {"buff": "kaioken"} ou {"forma": "ssj"}. requer: {"parceiro": {"id": "piccolo", "ki": 30}} para Sparking Combo, {"semBuff": "kaioken"}.'));
     ['mostrar', 'esconder', 'requer'].forEach(k => r.appendChild(E.campo('json', k, g[k], (v) => { if (v === undefined) delete g[k]; else g[k] = v; host.mudou('Regra ' + k); }, { linhas: 2 })));
     box.appendChild(r);

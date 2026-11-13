@@ -9,6 +9,7 @@
 //         habilidades[id], sprites[sprite][animação],
 //         personagens[id]   (Estúdio: campos que substituem os do JSON — nome, atributos, formas, buffs, ia,
 //                            vozes, formaInicial; ou {"novo": true, "def": {...}} para um personagem criado),
+//         ko[id|"padrao"]   (Estúdio: cena de KO — linha do tempo tocada quando o personagem é derrotado; js/battle/ko.js),
 //         spritesNovos[id]  (Estúdio: definição de sprite importado; atlas em assets/img/usr/<id>.png),
 //         spritesInfo[id]   (Estúdio: {"escala": N} escala geral de um sprite/efeito;
 //                            "atlas": [caminhos] imagens extras somadas aos atlas do sprite do jogo —
@@ -24,7 +25,7 @@ FF.Edicoes = {
   TOKEN: 'ff_github_token',
 
   ULT: 'ff_edicoes_ultimo',
-  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo'],
+  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko'],
   // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
   // vale a de "rev" mais nova
   base() {

@@ -151,6 +151,8 @@ FF.Battle = class {
     await Promise.all(this.paralelos);
     this.paralelos = [];
     await Promise.all(this.projectiles.map(p => p.done));
+    await Promise.all(this.cenasKO || []);   // espera a cena de KO de quem caiu terminar
+    this.cenasKO = [];
     await FF.Clock.wait(0.25);
     actor.busy = false;
     actor.idle();
@@ -288,6 +290,8 @@ FF.Battle = class {
       this.spawnFx('guarda', p.x + def.dir * 10, p.y, def.dir < 0, 0.3);
       FF.Audio.play(forca === 'forte' || forca === 'energia' ? 'guard_large' : ['guard_small-a', 'guard_small-b']);
       def.reagir('guarda', 0.25);
+      // a defesa não salva quem já está sem vida: cai mesmo defendendo
+      if (def.hp <= 0) { def.ko = true; FF.Clock.hitstop(0.35); (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def)); }
     } else {
       const fxName = spec.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
       // posição da explosão do acerto: dx/dy a partir do peito do alvo (dx positivo = para longe de quem bateu)
@@ -301,14 +305,9 @@ FF.Battle = class {
       }
       if (def.hp <= 0) {
         def.ko = true;
-        def.voz('lancado');
-        def.lancar(700);
-        FF.Audio.play('blow_down');
-        FF.Audio.play('explosao', 0.8);
-        this.spawnFx('Explosao11', p.x, p.y + 30, att.dir < 0, 0.55);
-        this.flash(0.45);
-        this.shake(16);
         FF.Clock.hitstop(0.35);
+        // cena de KO (js/battle/ko.js; editável no Estúdio): animação, efeitos, sons, tela
+        (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def));
       } else if (spec.lanca) {
         def.lancar(spec.empurrao || 520);
         def.voz('lancado');
@@ -616,7 +615,8 @@ FF.Battle = class {
       ctx.strokeStyle = inWin ? 'rgba(255,255,255,0.95)' : 'rgba(' + col + ',0.7)';
       ctx.beginPath(); ctx.arc(p.x, p.y, 26 + 90 * k, 0, Math.PI * 2); ctx.stroke();
       if (q.press) { ctx.fillStyle = 'rgba(' + col + ',0.35)'; ctx.beginPath(); ctx.arc(p.x, p.y, 26, 0, Math.PI * 2); ctx.fill(); }
-      FF.HUD.text(ctx, q.mode === 'guarda' ? 'GUARDA' : 'CRÍTICO', p.x, p.y - 38 - 90 * k * 0.3, 14, '#fff', 'center');
+      // o anel do crítico não tem texto: "CRÍTICO!" só aparece quando o jogador acerta (popup em applyHit)
+      if (q.mode === 'guarda') FF.HUD.text(ctx, 'GUARDA', p.x, p.y - 38 - 90 * k * 0.3, 14, '#fff', 'center');
       ctx.restore();
     }
   }

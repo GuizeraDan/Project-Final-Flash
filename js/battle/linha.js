@@ -14,6 +14,7 @@
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?}
 //  camadas  {tipo:"camada", d, sprite, anim, ancora, x, y, escala, alpha, rot, flip, fps, loop, chaves:[{t,x,y,escala,alpha,rot}]}
 //  sons     {tipo:"som", som} | {tipo:"voz", voz}   (texto ou lista para sortear)
+//           {tipo:"voz", vozTipo: "dano"|"lancado"|..., quem: "atacante"|"alvo"}  (a voz do próprio personagem)
 //  acertos  {tipo:"acerto", fracao, forca, lanca?, empurrao?, fx?, dx?, dy?, fxEscala?, anel?}
 //           anel: true = abre um anel de guarda/crítico novo; false = usa o anel do acerto anterior;
 //           sem o campo: anel novo quando o acerto anterior foi há mais de 0,6 s.
@@ -87,9 +88,11 @@ FF.Linha = {
 
   // começa a tocar e devolve o objeto "vivo" (tick a cada quadro pela batalha). Síncrono: o Estúdio usa
   // para simular até um instante qualquer (arrastar o cursor do tempo).
-  iniciar(b, actor, target, move, linha) {
+  // opts.ko: cena de KO (js/battle/ko.js) — o alvo já está nocauteado e anima mesmo assim; ao terminar só mexe nele
+  iniciar(b, actor, target, move, linha, opts) {
+    const ehKO = !!(opts && opts.ko);
     const dur = linha.duracao || 1;
-    const lista = this.clipes(linha).map(x => Object.assign({ t: 0 }, x.c, { _tr: x.tr })).sort((a, c) => (a.t || 0) - (c.t || 0));
+    const lista = this.clipes(linha).map(x => Object.assign({ t: 0 }, x.c, { _tr: x.tr })).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
     // anéis de guarda/crítico: agrupa os acertos e abre cada anel LEAD s antes do 1º acerto do grupo
     const mode = target ? b.qteMode(actor, target) : null;
     const acertos = lista.filter(c => c.tipo === 'acerto');
@@ -110,7 +113,7 @@ FF.Linha = {
       const ini = Math.max(prev, g.t - this.LEAD, -atraso);
       if (mode) eventos.push({ t: ini, ordem: -1, fn: () => { if (!target.ko) g.qte = b.addQte(mode, target, g.t - viva.t); } });
     });
-    const viva = { linha, actor, target, move, t: -atraso, cena: { camadas: [] }, dur, ativos: [], lutadores: new Set() };
+    const viva = { linha, actor, target, move, t: -atraso, cena: { camadas: [] }, dur, ativos: [], lutadores: new Set(), ko: ehKO };
     let fimRes;
     viva.fim = new Promise(r => (fimRes = r));
     const estado = new Map();     // alpha original de quem a linha mexe
@@ -129,7 +132,7 @@ FF.Linha = {
     viva.eventos = eventos;
 
     // lutadores com animação na linha ficam "ocupados" (na frente, sem reação automática), menos o alvo
-    lista.filter(c => c._tr.tipo === 'lutador' && c._tr.quem !== 'alvo').forEach(c => {
+    lista.filter(c => c._tr.tipo === 'lutador' && c._tr.quem !== 'alvo' && !ehKO).forEach(c => {
       const f = this.lutadorDe(b, actor, target, c._tr.quem);
       if (f) { f.busy = true; viva.lutadores.add(f); }
     });
@@ -161,6 +164,13 @@ FF.Linha = {
   },
 
   encerrar(b, viva, estado) {
+    if (viva.ko) {   // cena de KO: tocou junto com o golpe; devolve só o derrotado
+      const f = viva.target;
+      if (f) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; }
+      for (const [g, e] of estado) g.alpha = e.alpha;
+      if (b.cam && this.clipes(viva.linha).some(({ c }) => c.tipo === 'camera')) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
+      return;
+    }
     for (const f of b.all) this.devolverSprite(f);
     for (const [f, e] of estado) f.alpha = e.alpha;
     for (const f of b.all) { f.offX = 0; f.offY = 0; f.escExtra = 1; f.flipExtra = false; }
@@ -184,7 +194,7 @@ FF.Linha = {
     switch (c.tipo) {
       case 'anim': case 'mover': case 'teleporte': case 'visivel': {
         const f = this.lutadorDe(b, actor, target, tr.quem);
-        if (!f || (f.ko && tr.quem !== 'atacante')) return;
+        if (!f || (f.ko && tr.quem !== 'atacante' && !(viva.ko && f === target))) return;
         const outro = f === actor ? target : actor;
         if (c.tipo === 'visivel') { guardar(f); f.alpha = c.alpha != null ? c.alpha : 1; return; }
         if (c.tipo === 'anim') {
@@ -239,7 +249,11 @@ FF.Linha = {
       }
       case 'projetil': if (target && actor) b.spawnProjectile(actor, target, move, c); return;
       case 'som': FF.Audio.play(FF.Script.pick(c.som)); return;
-      case 'voz': FF.Audio.voice(FF.Script.pick(c.voz)); return;
+      case 'voz': {
+        // vozTipo: a voz do próprio personagem (dano, lancado, ...) de quem está na trilha "quem"
+        if (c.vozTipo) { const f = this.lutadorDe(b, actor, target, c.quem); if (f) f.voz(c.vozTipo); return; }
+        FF.Audio.voice(FF.Script.pick(c.voz)); return;
+      }
       case 'acerto': if (target && actor) b.applyHit(actor, target, move, c, c._g && c._g.qte); return;
       case 'tremer': b.shake(c.forca || 6); return;
       case 'flash': b.flash(c.forca || 0.5); return;
