@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_sky",{"id":"lw_sky","atlases":["assets/img/acervo/lw_sky_0.png"],"acervo":{"nome":"sky","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,100,369,50,184,1]]}}});

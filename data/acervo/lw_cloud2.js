@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_cloud2",{"id":"lw_cloud2","atlases":["assets/img/acervo/lw_cloud2_0.png"],"acervo":{"nome":"cloud2","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1028,204,514,102,1]]}}});

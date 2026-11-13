@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_computericon",{"id":"lw_computericon","atlases":["assets/img/acervo/lw_computericon_0.png"],"acervo":{"nome":"ComputerIcon","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,61,50,30,50,1]]}}});

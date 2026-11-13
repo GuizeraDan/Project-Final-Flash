@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_slash_pack",{"id":"lw_slash_pack","atlases":["assets/img/acervo/lw_slash_pack_0.png"],"acervo":{"nome":"SLASH_PACK","fonte":"Legend Warrior","tipo":"efeitos","origem":"resources.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,193,0,63,100,32,50,1],[0,0,0,192,200,96,100,1]]}},"tipo":"efeito"});

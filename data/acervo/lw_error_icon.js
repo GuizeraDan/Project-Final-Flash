@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_error_icon",{"id":"lw_error_icon","atlases":["assets/img/acervo/lw_error_icon_0.png"],"acervo":{"nome":"error_icon","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,31,16,31,1]]}}});

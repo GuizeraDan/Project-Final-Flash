@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_button_active_",{"id":"lw_button_active_","atlases":["assets/img/acervo/lw_button_active__0.png"],"acervo":{"nome":"button active","fonte":"Legend Warrior","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,12,12,6,12,1]]}}});

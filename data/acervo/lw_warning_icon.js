@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_warning_icon",{"id":"lw_warning_icon","atlases":["assets/img/acervo/lw_warning_icon_0.png"],"acervo":{"nome":"warning_icon","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,30,16,30,1]]}}});

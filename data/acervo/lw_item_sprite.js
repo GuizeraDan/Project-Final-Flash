@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_item_sprite",{"id":"lw_item_sprite","atlases":["assets/img/acervo/lw_item_sprite_0.png"],"acervo":{"nome":"item_sprite","fonte":"Legend Warrior","tipo":"efeitos","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,57,59,28,30,1]]}},"tipo":"efeito"});

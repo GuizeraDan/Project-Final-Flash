@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_even_log",{"id":"lw_even_log","atlases":["assets/img/acervo/lw_even_log_0.png"],"acervo":{"nome":"even_log","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,16,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_kengzang_atlas",{"id":"lw_kengzang_atlas","atlases":["assets/img/acervo/lw_kengzang_atlas_0.png"],"acervo":{"nome":"kengzang_atlas","fonte":"Legend Warrior","tipo":"efeitos","origem":"resources.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,62,0,57,23,28,12,1],[0,0,0,61,23,30,12,1]]}},"tipo":"efeito"});

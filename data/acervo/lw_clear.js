@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_clear",{"id":"lw_clear","atlases":["assets/img/acervo/lw_clear_0.png"],"acervo":{"nome":"clear","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,63,24,63,1]]}},"tipo":"efeito"});

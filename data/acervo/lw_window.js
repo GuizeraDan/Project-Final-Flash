@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_window",{"id":"lw_window","atlases":["assets/img/acervo/lw_window_0.png"],"acervo":{"nome":"window","fonte":"Legend Warrior","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,17,27,8,27,1]]}}});

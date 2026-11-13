@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_slider_thumb_active",{"id":"lw_slider_thumb_active","atlases":["assets/img/acervo/lw_slider_thumb_active_0.png"],"acervo":{"nome":"slider thumb active","fonte":"Legend Warrior","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,8,12,4,12,1]]}},"tipo":"efeito"});

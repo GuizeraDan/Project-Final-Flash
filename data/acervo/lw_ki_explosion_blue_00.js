@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_ki_explosion_blue_00",{"id":"lw_ki_explosion_blue_00","atlases":["assets/img/acervo/lw_ki_explosion_blue_00_0.png"],"acervo":{"nome":"ki_explosion_blue_00","fonte":"Legend Warrior","tipo":"efeitos","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,24,16,12,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_black_stage_atlas",{"id":"lw_black_stage_atlas","atlases":["assets/img/acervo/lw_black_stage_atlas_0.png"],"acervo":{"nome":"black_stage_atlas","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,887,800,444,400,1]]}}});

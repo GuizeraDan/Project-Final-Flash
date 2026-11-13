@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_memory",{"id":"lw_memory","atlases":["assets/img/acervo/lw_memory_0.png"],"acervo":{"nome":"memory","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,62,36,31,36,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_future_stage_1_atlas",{"id":"lw_future_stage_1_atlas","atlases":["assets/img/acervo/lw_future_stage_1_atlas_0.png"],"acervo":{"nome":"future_stage_1_atlas","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,887,800,444,400,1]]}}});

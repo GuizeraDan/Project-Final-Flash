@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_back",{"id":"lw_back","atlases":["assets/img/acervo/lw_back_0.png"],"acervo":{"nome":"back","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,53,54,26,54,1]]}},"tipo":"efeito"});

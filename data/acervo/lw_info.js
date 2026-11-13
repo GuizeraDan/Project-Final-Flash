@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_info",{"id":"lw_info","atlases":["assets/img/acervo/lw_info_0.png"],"acervo":{"nome":"info","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,62,62,31,62,1]]}},"tipo":"efeito"});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_horizontal_scrollbar",{"id":"lw_horizontal_scrollbar","atlases":["assets/img/acervo/lw_horizontal_scrollbar_0.png"],"acervo":{"nome":"horizontal scrollbar","fonte":"Legend Warrior","tipo":"interface","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,18,15,9,15,1]]}}});

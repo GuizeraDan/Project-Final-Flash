@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_graphiccard",{"id":"lw_graphiccard","atlases":["assets/img/acervo/lw_graphiccard_0.png"],"acervo":{"nome":"graphicCard","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,62,32,62,1]]}}});

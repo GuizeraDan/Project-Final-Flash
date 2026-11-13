@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_splash",{"id":"lw_splash","atlases":["assets/img/acervo/lw_splash_0.png"],"acervo":{"nome":"splash","fonte":"Legend Warrior","tipo":"cenarios","origem":"globalgamemanagers.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1024,1024,512,512,1]]}}});

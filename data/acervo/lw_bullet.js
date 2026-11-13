@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_bullet",{"id":"lw_bullet","atlases":["assets/img/acervo/lw_bullet_0.png"],"acervo":{"nome":"bullet","fonte":"Legend Warrior","tipo":"efeitos","origem":"resources.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,23,8,12,4,1],[0,24,0,23,8,12,4,1]]}},"tipo":"efeito"});

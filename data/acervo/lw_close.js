@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_close",{"id":"lw_close","atlases":["assets/img/acervo/lw_close_0.png"],"acervo":{"nome":"close","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,56,58,28,58,1]]}},"tipo":"efeito"});

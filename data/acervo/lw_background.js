@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_background",{"id":"lw_background","atlases":["assets/img/acervo/lw_background_0.png"],"acervo":{"nome":"Background","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,32,32,16,16,1]]}}});

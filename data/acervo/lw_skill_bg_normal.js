@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_skill_bg_normal",{"id":"lw_skill_bg_normal","atlases":["assets/img/acervo/lw_skill_bg_normal_0.png"],"acervo":{"nome":"skill_bg_normal","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,4,4,2,2,1]]}}});

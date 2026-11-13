@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_copy",{"id":"lw_copy","atlases":["assets/img/acervo/lw_copy_0.png"],"acervo":{"nome":"copy","fonte":"Legend Warrior","tipo":"cenarios","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,492,492,246,492,1]]}}});

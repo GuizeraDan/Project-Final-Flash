@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_collapse",{"id":"lw_collapse","atlases":["assets/img/acervo/lw_collapse_0.png"],"acervo":{"nome":"collapse","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,60,61,30,61,1]]}},"tipo":"efeito"});

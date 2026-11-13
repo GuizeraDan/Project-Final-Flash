@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_liberationsans_sdf_atlas",{"id":"lw_liberationsans_sdf_atlas","atlases":["assets/img/acervo/lw_liberationsans_sdf_atlas_0.png"],"acervo":{"nome":"LiberationSans SDF Atlas","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,1022,1022,511,1022,1]]}}});

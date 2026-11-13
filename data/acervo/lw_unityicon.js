@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_unityicon",{"id":"lw_unityicon","atlases":["assets/img/acervo/lw_unityicon_0.png"],"acervo":{"nome":"UnityIcon","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,48,50,24,50,1]]}}});

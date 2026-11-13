@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_emojione",{"id":"lw_emojione","atlases":["assets/img/acervo/lw_emojione_0.png"],"acervo":{"nome":"EmojiOne","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,504,504,252,504,1]]}}});

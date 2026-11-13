@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_toggle",{"id":"lw_toggle","atlases":["assets/img/acervo/lw_toggle_0.png"],"acervo":{"nome":"toggle","fonte":"Legend Warrior","tipo":"efeitos","origem":"unity default resources"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,13,13,6,13,1]]}},"tipo":"efeito"});

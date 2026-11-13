@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_dead_forest_atlas",{"id":"lw_dead_forest_atlas","atlases":["assets/img/acervo/lw_dead_forest_atlas_0.png"],"acervo":{"nome":"dead_forest_atlas","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"Todos":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,501,1080,480,540,240,1],[0,0,0,1080,500,540,250,1]]}}});

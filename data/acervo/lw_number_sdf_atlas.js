@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_number_sdf_atlas",{"id":"lw_number_sdf_atlas","atlases":["assets/img/acervo/lw_number_sdf_atlas_0.png"],"acervo":{"nome":"Number SDF Atlas","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,507,508,254,508,1]]}}});

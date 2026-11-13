@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_log_icon",{"id":"lw_log_icon","atlases":["assets/img/acervo/lw_log_icon_0.png"],"acervo":{"nome":"log_icon","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,31,32,16,32,1]]}}});

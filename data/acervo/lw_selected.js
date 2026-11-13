@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_selected",{"id":"lw_selected","atlases":["assets/img/acervo/lw_selected_0.png"],"acervo":{"nome":"selected","fonte":"Legend Warrior","tipo":"interface","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,16,16,8,16,1]]}}});

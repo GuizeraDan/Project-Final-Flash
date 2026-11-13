@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_horizontal",{"id":"lw_horizontal","atlases":["assets/img/acervo/lw_horizontal_0.png"],"acervo":{"nome":"horizontal","fonte":"Legend Warrior","tipo":"cenarios","origem":"resources.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,632,112,316,56,1]]}}});

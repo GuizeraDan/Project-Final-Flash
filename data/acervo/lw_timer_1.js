@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_timer_1",{"id":"lw_timer_1","atlases":["assets/img/acervo/lw_timer_1_0.png"],"acervo":{"nome":"timer_1","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,30,48,15,48,1]]}},"tipo":"efeito"});

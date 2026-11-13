@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_user",{"id":"lw_user","atlases":["assets/img/acervo/lw_user_0.png"],"acervo":{"nome":"user","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,64,64,32,64,1]]}},"tipo":"efeito"});

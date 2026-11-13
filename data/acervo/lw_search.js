@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_search",{"id":"lw_search","atlases":["assets/img/acervo/lw_search_0.png"],"acervo":{"nome":"search","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,50,56,25,56,1]]}},"tipo":"efeito"});

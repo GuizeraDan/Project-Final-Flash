@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("lw_fps",{"id":"lw_fps","atlases":["assets/img/acervo/lw_fps_0.png"],"acervo":{"nome":"fps","fonte":"Legend Warrior","tipo":"efeitos","origem":"sharedassets0.assets"},"anims":{"folha":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,41,41,20,41,1]]}},"tipo":"efeito"});
