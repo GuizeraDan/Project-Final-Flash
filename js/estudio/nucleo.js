@@ -390,9 +390,9 @@ FF.Estudio = {
       favBox.innerHTML = '';
       if (!FS) return;
       const l = FS.lista();
-      favBox.appendChild(this.el('div', 'es-sub', '⭐ Meus favoritos (' + l.length + ')'));
-      if (!l.length) favBox.appendChild(this.el('p', 'es-dica', 'Clique na ☆ de um som para favoritar e escolher a categoria.'));
-      FS.TIPOS.forEach(([t, ic]) => { const n = l.filter(x => x.tipo === t).length; if (n) bt('fav:' + t, ic + ' ' + FS.plural[t], n, favBox); });
+      if (!l.length) { favBox.appendChild(this.el('div', 'es-sub', '⭐ Meus favoritos (0)')); favBox.appendChild(this.el('p', 'es-dica', 'Clique na ☆ de um som para favoritar e escolher a categoria.')); return; }
+      bt('fav', '⭐ Meus favoritos (todos)', l.length, favBox);   // clicável: mostra todos; embaixo, um por categoria
+      FS.TIPOS.forEach(([t, ic]) => { const n = l.filter(x => x.tipo === t).length; if (n) bt('fav:' + t, '↳ ' + ic + ' ' + FS.plural[t], n, favBox); });
       fontesBt.forEach(([k, el]) => el.classList.toggle('sel', k === fonte));
     };
     const remontarLado = () => {
@@ -423,7 +423,7 @@ FF.Estudio = {
       const lix = fonte === 'lixeira';
       if (lix) l = todosTudo.filter(x => SU && SU.apagado(x.id));
       else if (f || fonte === 'tudo') l = todos;
-      else if (/^fav:/.test(fonte)) l = FS.lista(fonte.slice(4)).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
+      else if (/^fav(:|$)/.test(fonte)) l = FS.lista(fonte.slice(4) || null).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
       else l = todos.filter(x => x.fonte === fonte);
       if (f) l = l.filter(x => (x.id + ' ' + x.nome + ' ' + nomeDe(x)).toLowerCase().includes(f));
       // chips das categorias (automáticas pelo nome; o favorito vale mais)
@@ -447,7 +447,7 @@ FF.Estudio = {
         if (ren) n.classList.add('renomeado');
         const meta = this.el('small', 'es-som-meta');
         const k = catDe(x);
-        meta.textContent = (k ? this.CAT_SOM[k] + ' ' : '') + (fonte === 'tudo' || f || /^fav:/.test(fonte) ? (NOMES[x.fonte] || x.fonte) + ' · ' : '') + (x.dur ? x.dur.toFixed(1).replace('.', ',') + ' s' : '');
+        meta.textContent = (k ? this.CAT_SOM[k] + ' ' : '') + (fonte === 'tudo' || f || /^fav(:|$)/.test(fonte) ? (NOMES[x.fonte] || x.fonte) + ' · ' : '') + (x.dur ? x.dur.toFixed(1).replace('.', ',') + ' s' : '');
         r.appendChild(meta);
         if (SU && !lix) {
           r.appendChild(this.botao('✏', () => {
@@ -459,7 +459,7 @@ FF.Estudio = {
             inp.onblur = () => fim(true);
           }, 'Renomear (só o nome que aparece aqui; o som continua o mesmo)'));
         }
-        if (FS && !lix) r.appendChild(FS.botao(x.id, null, () => { montarFav(); if (/^fav:/.test(fonte) || cat) render(); }));
+        if (FS && !lix) r.appendChild(FS.botao(x.id, null, () => { montarFav(); if (/^fav(:|$)/.test(fonte) || cat) render(); }));
         if (SU) r.appendChild(lix
           ? this.botao('↺ Restaurar', () => { SU.apagar(x.id, false); carregarListas(); remontarLado(); render(); }, 'Voltar para a lista')
           : this.botao('🗑', () => { SU.apagar(x.id, true); carregarListas(); remontarLado(); render(); this.aviso('🗑 "' + nomeDe(x) + '" foi para a Lixeira (dá para restaurar lá).'); }, 'Excluir da lista (vai para a Lixeira; golpes que já usam continuam tocando)', 'es-bt-perigo'));

@@ -120,8 +120,8 @@ window.FF = window.FF || {};
       if (!FF.Favoritos) return;
       favBox.innerHTML = '';
       const l = FF.Favoritos.lista();
-      favBox.appendChild(E.el('div', 'es-sub', '⭐ Meus favoritos (' + l.length + ')'));
-      if (!l.length) { favBox.appendChild(E.el('p', 'es-dica', 'Clique na ☆ de um cartão (animação) ou de um sprite na lista para favoritar e dizer o que ele é.')); return; }
+      if (!l.length) { favBox.appendChild(E.el('div', 'es-sub', '⭐ Meus favoritos (0)')); favBox.appendChild(E.el('p', 'es-dica', 'Clique na ☆ de um cartão (animação) ou de um sprite na lista para favoritar e dizer o que ele é.')); return; }
+      bt('fav', '⭐ Meus favoritos (todos)', String(l.length), favBox);
       FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
         const n = l.filter(x => x.tipo === t).length;
         if (n) bt('fav:' + t, ic + ' ' + FF.Favoritos.plural[t], String(n), favBox);
