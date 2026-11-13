@@ -132,7 +132,11 @@ FF.EstudioProps = {
           g.appendChild(num(c, 'x', 'X na tela', '0 (esquerda) a 1084 (direita)'));
           g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120)'));
         }
-        g.appendChild(E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }));
+        // animação do movimento: campo + 🖼 escolher vendo as miniaturas (animações do próprio lutador)
+        g.appendChild(this.comEscolha(
+          E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }),
+          () => this.escolherAnim(host.spriteDe(quem), (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov, (a) => { c.animMov = a; host.mudou('Animação'); }),
+          this.fonteAnim(host, quem, { anim: c.animMov || (c.tipo === 'mover' ? 'avancar' : 'teleporte') })));
         if (c.tipo === 'mover') {
           g.appendChild(E.campo('check', 'Suave', c.suave !== false, (v) => { if (v) delete c.suave; else c.suave = false; host.mudou('Suave'); }));
           g.appendChild(num(c, 'arco', 'Arco (px)', 'Curva do caminho: positivo = sobe no meio (arremesso), negativo = desce'));
