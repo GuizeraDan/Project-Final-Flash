@@ -28,7 +28,8 @@ _ac = os.path.join(root, 'data', 'acervo', 'indice.json')
 if os.path.isfile(_ac):
     with open(_ac, encoding='utf-8') as fh:
         _ac = json.load(fh)
-    out['_indice']['acervo'] = {k: [v['cat'], v['nome'], v['anims']] for k, v in _ac['sprites'].items()}
+    out['_indice']['acervo'] = {k: [v['cat'], v['nome'], v['anims'], v.get('tipo', v['cat']), v.get('fonte', '')] for k, v in _ac['sprites'].items()}
+    out['_indice']['acervoFontes'] = _ac.get('fontes', {})
     out['_indice']['acervoCategorias'] = _ac['categorias']
 with open(os.path.join(root, 'data', 'bundle.js'), 'w', encoding='utf-8') as fh:
     fh.write('// Gerado por tools/build_bundle.py — não edite à mão.\nwindow.FF_BUNDLE = ')

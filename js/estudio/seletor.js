@@ -10,7 +10,7 @@ window.FF = window.FF || {};
   const E = FF.Estudio;
   const UTIL = ['hud_zl3', 'retratos', 'cenarios_preview', 'stage_campo', 'hud_moderno'];   // fim da lista do jogo
   const ORDEM_CAT = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
-  const ICONE_CAT = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };
+  const ICONE_CAT = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };   // outras categorias (um jogo inteiro) usam 🎮
 
   // nome amigável: personagem que usa o sprite (ex.: "Goku · gokubase") ou o nome do acervo
   function nomes() {
@@ -101,14 +101,14 @@ window.FF = window.FF || {};
     jogo.forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null), id));
 
     if (acervo.length) {
-      lado.appendChild(E.el('div', 'es-sub', 'Acervo Z Legends 3 (' + acervo.length + ')'));
+      lado.appendChild(E.el('div', 'es-sub', 'Acervo (' + acervo.length + ')'));
       const abertas = new Set(E.rascunho.ler('seletor_cats_abertas') || []);
       const catDaFonte = /^cat:/.test(fonte) ? fonte.slice(4) : (FF.Assets.doAcervo(fonte) ? FF.Assets.categoriaSprite(fonte) : null);
       if (catDaFonte) abertas.add(catDaFonte);
       cats.forEach(cat => {
         const cab = E.el('div', 'es-seletor-cat');
         const corpo = E.el('div', 'es-seletor-cat-corpo');
-        const titulo = () => (abertas.has(cat) ? '▾ ' : '▸ ') + (ICONE_CAT[cat] || '📦') + ' ' + (NOME_CAT[cat] || cat) + ' (' + porCat[cat].length + ')';
+        const titulo = () => (abertas.has(cat) ? '▾ ' : '▸ ') + (ICONE_CAT[cat] || '🎮') + ' ' + (NOME_CAT[cat] || cat) + ' (' + porCat[cat].length + ')';
         cab.textContent = titulo();
         let montado = false;
         const montar = () => {
@@ -130,7 +130,7 @@ window.FF = window.FF || {};
       const f = busca.value.trim().toLowerCase();
       let lista;
       if (fonte === 'todos' || f) lista = ids;                       // buscar procura em tudo
-      else if (fonte === 'efeitos') lista = jogo.concat(porCat.efeitos || []);
+      else if (fonte === 'efeitos') lista = jogo.concat(acervo.filter(id => FF.Assets.tipoSprite(id) === 'efeitos'));
       else if (/^cat:/.test(fonte)) lista = porCat[fonte.slice(4)] || [];
       else lista = [fonte];
       grade.innerHTML = '<p class="es-vazio">Carregando…</p>';

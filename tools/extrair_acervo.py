@@ -11,12 +11,8 @@ objetos com animação do jogo original e organiza assim:
   · efeitos e interface: um sprite por objeto (objetos repetidos são juntados);
   · objetos vazios de 1 pixel (caixas de colisão, câmera…) ficam de fora.
 
-Saída (nada disso entra no data/bundle.js — o jogo carrega cada sprite só quando precisa):
-  assets/img/acervo/<id>_<n>.png     atlas
-  data/acervo/<id>.js               FF_ACERVO_DEF("<id>", {...})  (abre por file:// e pelo site)
-  data/acervo/indice.json           lista do acervo (categoria, nome, nº de animações) → bundle
-  data/acervo/indice_anims.js       nomes das animações de cada sprite (busca do Estúdio)
-  docs/ACERVO.md                    lista legível
+Saída: veja tools/acervo_comum.py (nada disso entra no data/bundle.js — o jogo carrega cada sprite
+só quando precisa). A ficha desta fonte fica em data/acervo/fontes/zl3.json.
 
 Uso:
   python3 -I tools/extrair_acervo.py --www <pasta assets/www do ZL3> --out <raiz do projeto>
@@ -24,8 +20,6 @@ Uso:
 import argparse, collections, json, os, re
 from PIL import Image
 
-MAX = 2048
-PAD = 1
 
 # ---------------------------------------------------------------- nomes amigáveis
 NOMES_PERSONAGENS = {
@@ -198,29 +192,11 @@ def agrupar(objs):
     return out, pulados
 
 
-# ---------------------------------------------------------------- empacotamento
-def empacotar(rects):
-    """prateleiras por altura. rects: [(key, w, h)] → {key: (atlas, x, y)}, [(w, h)]"""
-    order = sorted(rects, key=lambda r: (-r[2], -r[1]))
-    pos, atlases, cur = {}, [], None
-    for key, w, h in order:
-        if w + PAD > MAX or h + PAD > MAX:
-            raise SystemExit('Quadro grande demais: %s %dx%d' % (key, w, h))
-        if cur is not None and cur['x'] + w + PAD > MAX:
-            cur['y'] += cur['shelf'] + PAD
-            cur['x'], cur['shelf'] = 0, 0
-        if cur is None or cur['y'] + h + PAD > MAX:
-            cur = dict(x=0, y=0, shelf=0, w=0, h=0)
-            atlases.append(cur)
-        pos[key] = (len(atlases) - 1, cur['x'], cur['y'])
-        cur['x'] += w + PAD
-        cur['shelf'] = max(cur['shelf'], h)
-        cur['w'] = max(cur['w'], cur['x'])
-        cur['h'] = max(cur['h'], cur['y'] + h)
-    return pos, [(a['w'], a['h']) for a in atlases]
-
-
+# ---------------------------------------------------------------- gravação (tools/acervo_comum.py)
 def main():
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import acervo_comum as AC
     ap = argparse.ArgumentParser()
     ap.add_argument('--www', required=True)
     ap.add_argument('--out', required=True)
@@ -231,12 +207,6 @@ def main():
     sprites, pulados = agrupar(objs)
     if args.so:
         sprites = [s for s in sprites if s['id'] in args.so.split(',')]
-
-    dimg = os.path.join(args.out, 'assets/img/acervo')
-    ddat = os.path.join(args.out, 'data/acervo')
-    os.makedirs(dimg, exist_ok=True)
-    os.makedirs(ddat, exist_ok=True)
-
     cache = {}
 
     def folha(p):
@@ -246,75 +216,21 @@ def main():
             cache[p] = Image.open(os.path.join(args.www, p)).convert('RGBA')
         return cache[p]
 
-    indice, anims_idx, total_px = {}, {}, 0
+    fonte = AC.Fonte(args.out, 'zl3', 'Z Legends 3', folha)
     for s in sprites:
-        uniq = {}
-        for _, a, _ in s['anims']:
-            for f in a['frames']:
-                uniq.setdefault(chave(f), (f['w'], f['h']))
-        pos, tam = empacotar([(k, w, h) for k, (w, h) in uniq.items()])
-        imgs = [Image.new('RGBA', t, (0, 0, 0, 0)) for t in tam]
-        for k, (ai, x, y) in sorted(pos.items(), key=lambda kv: kv[0][0]):
-            imgs[ai].paste(folha(k[0]).crop((k[1], k[2], k[1] + k[3], k[2] + k[4])), (x, y))
-        atlas = []
-        for i, im in enumerate(imgs):
-            rel = 'assets/img/acervo/%s_%d.png' % (s['id'], i)
-            im.save(os.path.join(args.out, rel), optimize=True)
-            atlas.append(rel)
-            total_px += im.size[0] * im.size[1]
-
-        d = dict(id=s['id'], atlases=atlas, acervo=dict(nome=s['nome'], categoria=s['cat'], origem='ZL3 ' + ','.join(s['objs'])), anims={})
-        if s['cat'] == 'efeitos':
-            d['tipo'] = 'efeito'
+        anims = []
         for nome, a, _ in s['anims']:
-            fl = []
+            fr = []
             for f in a['frames']:
-                ai, x, y = pos[chave(f)]
                 ox, oy = round(f['hx'] * f['w']), round(f['hy'] * f['h'])
-                pts = [[round(p[1] * f['w']) - ox, round(p[2] * f['h']) - oy] for p in (f['pts'] or [])]
-                fl.append([ai, x, y, f['w'], f['h'], ox, oy, f['dur']] + ([pts] if pts else []))
-            d['anims'][nome] = dict(fps=a['speed'], loop=bool(a['loop']), repeatTo=a['repeatTo'],
-                                    pingpong=bool(a['pingpong']), frames=fl)
-        with open(os.path.join(ddat, s['id'] + '.js'), 'w', encoding='utf-8') as fh:
-            fh.write('FF_ACERVO_DEF(%s,' % json.dumps(s['id']))
-            json.dump(d, fh, ensure_ascii=False, separators=(',', ':'))
-            fh.write(');\n')
-        indice[s['id']] = dict(nome=s['nome'], cat=s['cat'], anims=len(d['anims']),
-                               quadros=len(uniq), atlas=len(atlas), objs=s['objs'])
-        anims_idx[s['id']] = {n: len(v['frames']) for n, v in d['anims'].items()}
-        print('%-34s %-11s %4d anims %5d quadros %d atlas' % (s['id'], s['cat'], len(d['anims']), len(uniq), len(atlas)))
-
+                fr.append(dict(img=f['img'], x=f['x'], y=f['y'], w=f['w'], h=f['h'], ox=ox, oy=oy, dur=f['dur'],
+                               pts=[[round(p[1] * f['w']) - ox, round(p[2] * f['h']) - oy] for p in (f['pts'] or [])]))
+            anims.append((nome, dict(fps=a['speed'], loop=a['loop'], repeatTo=a['repeatTo'], pingpong=a['pingpong'], frames=fr)))
+        fonte.gravar(s['id'], s['nome'], s['cat'], anims, s['objs'])
     if args.so:
         return
-    ordem = sorted(indice, key=lambda i: (CATS.index(indice[i]['cat']), indice[i]['nome'].lower()))
-    indice = {i: indice[i] for i in ordem}
-    with open(os.path.join(ddat, 'indice.json'), 'w', encoding='utf-8') as fh:
-        json.dump(dict(categorias=NOME_CAT, sprites=indice, pulados=pulados), fh, ensure_ascii=False, indent=0)
-    with open(os.path.join(ddat, 'indice_anims.js'), 'w', encoding='utf-8') as fh:
-        fh.write('// Gerado por tools/extrair_acervo.py — nomes das animações de cada sprite do acervo (busca do Estúdio).\n')
-        fh.write('window.FF_ACERVO_ANIMS = ')
-        json.dump({i: anims_idx[i] for i in ordem}, fh, ensure_ascii=False, separators=(',', ':'))
-        fh.write(';\n')
-
-    # lista legível
-    linhas = ['# Acervo de sprites do Z Legends 3', '',
-              'Gerado por `tools/extrair_acervo.py` a partir do `data.js` do ZL3. Cada sprite fica em '
-              '`data/acervo/<id>.js` + `assets/img/acervo/<id>_<n>.png` e aparece no Estúdio (aba Sprites e seletor de sprites).',
-              'Os nomes das animações são os do jogo original.', '',
-              '**%d sprites · %d animações · %d quadros.** Objetos vazios deixados de fora (caixas de colisão, câmera…): %s.' % (
-                  len(indice), sum(v['anims'] for v in indice.values()), sum(v['quadros'] for v in indice.values()), ', '.join(pulados)), '']
-    for c in CATS:
-        ids = [i for i in ordem if indice[i]['cat'] == c]
-        if not ids:
-            continue
-        linhas += ['## %s (%d)' % (NOME_CAT[c], len(ids)), '', '| Sprite | Nome | Animações | Quadros | Objetos do ZL3 |', '|---|---|---|---|---|']
-        for i in ids:
-            v = indice[i]
-            linhas.append('| `%s` | %s | %d | %d | %s |' % (i, v['nome'], v['anims'], v['quadros'], ' '.join(v['objs'])))
-        linhas.append('')
-    with open(os.path.join(args.out, 'docs/ACERVO.md'), 'w', encoding='utf-8') as fh:
-        fh.write('\n'.join(linhas))
-    print('total: %d sprites, %.1f Mpx de atlas' % (len(indice), total_px / 1e6))
+    fonte.fechar({c: NOME_CAT[c] for c in CATS}, dict(pulados=pulados))
+    AC.recompor(args.out)
 
 
 if __name__ == '__main__':

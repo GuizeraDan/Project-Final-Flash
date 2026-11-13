@@ -322,7 +322,7 @@
 
       const g = E().grupo('Forma "' + fid + '"');
       g.appendChild(this.cp(f, 'nome', 'texto', 'Nome', { depois: () => this.renderBarra() }));
-      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.categoriaSprite(s)));
+      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.tipoSprite(s)));
       if (f.sprite && !sprites.includes(f.sprite)) sprites.unshift(f.sprite);
       g.appendChild(E().campo('select', 'Sprite', f.sprite, async (v) => {
         f.sprite = v;
@@ -827,7 +827,7 @@
     dialogoNovo(duplicarDe) {
       const c = E().el('div', 'ep-novo');
       const src = duplicarDe ? this.defs[duplicarDe] : null;
-      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.categoriaSprite(s)));
+      const sprites = FF.Assets.listaSprites().filter(s => !NAO_LUTADOR.test(s) && ['jogo', 'personagens'].includes(FF.Assets.tipoSprite(s)));
       const usados = new Set(this.ids.flatMap(i => Object.values((this.defs[i] || {}).formas || {}).map(f => f.sprite)));
       const livre = sprites.find(s => !usados.has(s)) || sprites[0];
       const st = { nome: src ? (this.doc.nome || src.nome) + ' 2' : '', id: '', sprite: livre, modelo: 'goku', copiar: true };

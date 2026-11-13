@@ -40,13 +40,16 @@ FF.Assets = {
   },
 
   // ---- acervo do Z Legends 3 (tools/extrair_acervo.py): data/acervo/<id>.js, fora do bundle,
-  // carregado só quando alguém usa o sprite. Índice: FF_BUNDLE._indice.acervo = {id: [categoria, nome, nº anims]}
+  // carregado só quando alguém usa o sprite. Índice: FF_BUNDLE._indice.acervo = {id: [categoria, nome, nº anims, tipo, fonte]}
   acervo() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).acervo || {}; },
   categoriasAcervo() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).acervoCategorias || {}; },
   doAcervo(id) { return !!this.acervo()[id]; },
   // 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes' para o acervo; 'jogo' para os do projeto
   categoriaSprite(id) { const a = this.acervo()[id]; return a ? a[0] : 'jogo'; },
   nomeSprite(id) { const a = this.acervo()[id]; return a ? a[1] : id; },
+  // tipo do conteúdo (vale para todas as fontes): 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes'; 'jogo' fora do acervo
+  tipoSprite(id) { const a = this.acervo()[id]; return a ? (a[3] || a[0]) : 'jogo'; },
+  fonteSprite(id) { const a = this.acervo()[id]; return a ? (a[4] || '') : ''; },
   // nomes das animações de todo o acervo (para buscar sem baixar as imagens) — só o Estúdio usa
   animsAcervo() {
     if (window.FF_ACERVO_ANIMS) return Promise.resolve(window.FF_ACERVO_ANIMS);

@@ -73,7 +73,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     cartoes: document.querySelectorAll('.es-seletor .es-cartao').length,
     info: document.querySelector('.es-seletor .es-dica').textContent,
   }));
-  ok(s.cats.length === 5 && s.cats.some(c => /Cenários/.test(c)) && s.cats.some(c => /Cutscenes/.test(c)), 'categorias do acervo no seletor: ' + s.cats.join(' | '));
+  ok(s.cats.length === new Set(Object.values(indice.sprites).map(v => v.cat)).size && s.cats.some(c => /Cenários/.test(c)) && s.cats.some(c => /Cutscenes/.test(c)), 'categorias do acervo no seletor: ' + s.cats.join(' | '));
   ok(s.cartoes > 50, 'categoria Cenários mostra ' + s.cartoes + ' animações (' + s.info + ')');
   await p.waitForTimeout(1500);
   s = await p.evaluate(() => {
@@ -115,7 +115,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     itens: document.querySelectorAll('.ess-sprites .es-item').length,
   }));
   ok(s.id === 'zl3_cell' && s.anims === indice.sprites.zl3_cell.anims, 'aba Sprites abre zl3_cell (' + s.anims + ' animações)');
-  ok(s.cats.length === 6 && /Do jogo/.test(s.cats[0]), 'lista agrupada: ' + s.cats.join(' | '));
+  ok(s.cats.length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(s.cats[0]), 'lista agrupada: ' + s.cats.join(' | '));
   await p.screenshot({ path: OUT + '/3_aba_sprites.png' });
   await p.fill('.ess-busca', 'goku');
   s = await p.evaluate(() => [...document.querySelectorAll('.ess-sprites .es-item')].map(i => i.dataset.sprite));
