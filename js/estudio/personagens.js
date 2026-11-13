@@ -178,8 +178,10 @@
     },
 
     forma() { return (this.doc.formas || {})[this.formaSel]; },
-    golpesDisp() {
-      const g = this.ehNovo(this.pid) ? (this.doc.golpes || {}) : (this.defs[this.pid].golpes || {});
+    golpesDisp(comHab) {
+      const g = Object.assign({}, this.ehNovo(this.pid) ? (this.doc.golpes || {}) : (this.defs[this.pid].golpes || {}));
+      // ⭐ habilidades criadas no Estúdio para este personagem (no jogo viram golpes "hab_<id>")
+      if (comHab && FF.Habilidades) FF.Habilidades.listar(this.pid).forEach(h => { g['hab_' + h.id] = Object.assign({}, h.golpe, { nome: '⭐ ' + (h.nome || h.golpe.nome || h.id) + (h.equipada ? '' : ' (desligada)') }); });
       return g;
     },
     animsDoSprite(spriteId, forma) {
@@ -632,10 +634,10 @@
     // ---------- IA ----------
     pIA() {
       const d = this.doc;
-      const disp = this.golpesDisp();
+      const disp = this.golpesDisp(true);
       const auto = !Array.isArray(d.ia) || !d.ia.length;
       const g = E().grupo('Regras da IA');
-      g.appendChild(E().el('p', 'es-dica', 'Quando o personagem é controlado pelo computador, sorteia um golpe pelo <b>peso</b> entre as regras válidas (custo de ki, "vida abaixo de", "ki abaixo de"). Sem regras, usa a IA automática.'));
+      g.appendChild(E().el('p', 'es-dica', 'Quando o personagem é controlado pelo computador, sorteia um golpe pelo <b>peso</b> entre as regras válidas (custo de ki, "vida abaixo de", "ki abaixo de"). Sem regras, usa a IA automática. As ⭐ habilidades equipadas que não estiverem na lista entram sozinhas com peso automático (3 para golpes com ki, 4 sem custo); coloque uma aqui para escolher o peso ou a condição dela.'));
       g.appendChild(E().campo('check', 'IA automática', auto, (v) => {
         if (v) d.ia = null;
         else { const f = (d.formas || {})[d.formaInicial] || {}; d.ia = (f.golpes || []).filter(x => disp[x]).map(x => ({ golpe: x, peso: 3 })); }

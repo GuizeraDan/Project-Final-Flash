@@ -1,6 +1,7 @@
 // IA dos inimigos: escolhe um golpe pelos pesos definidos no JSON do personagem
 // ("ia": [{golpe, peso, kiMin?, hpAbaixo?}]), respeitando o custo de ki.
 // Personagens sem "ia" (ex.: heróis usados como inimigos na Batalha Livre) ganham regras automáticas.
+// Habilidades criadas no Estúdio (hab_*) equipadas entram sempre: com a regra da lista, se houver, ou com a automática.
 window.FF = window.FF || {};
 
 FF.AI = {
@@ -19,7 +20,12 @@ FF.AI = {
   },
 
   choose(actor, target, battle) {
-    const regras = actor.form.ia || actor.def.ia || this.regrasAuto(actor);
+    let regras = actor.form.ia || actor.def.ia || this.regrasAuto(actor);
+    // IA de lista fixa: as ⭐ habilidades equipadas que não estão na lista entram com o peso automático
+    if (actor.form.ia || actor.def.ia) {
+      const na = new Set(regras.map(r => r.golpe));
+      regras = regras.concat(this.regrasAuto(actor).filter(r => r.golpe.startsWith('hab_') && !na.has(r.golpe)));
+    }
     const ok = regras.filter(r => {
       const m = actor.def.golpes[r.golpe];
       if (!m) return false;
