@@ -547,7 +547,6 @@ window.addEventListener('load', () => {
   if (params.get('selecao')) {
     history.replaceState(null, '', location.pathname);
     intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar();
-    FF.Audio.musicaMenu();
     return;
   }
   if (params.get('historia')) {

@@ -68,7 +68,9 @@ FF.Audio = {
     return a;
   },
 
-  // música dos menus (tela de título, submenus, seleção da Batalha Livre)
+  // música dos menus (tela de título, submenus) e da seleção da Batalha Livre (arquivos enviados pelo usuário)
   MENU: 'menu_chala',
+  SELECAO: 'selecao_chala',
   musicaMenu() { return this.music(this.MENU); },
+  musicaSelecao() { return this.music(this.SELECAO); },
 };

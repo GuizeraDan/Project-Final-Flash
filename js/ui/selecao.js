@@ -8,6 +8,7 @@ FF.Selecao = {
   defs: {},
 
   async abrir() {
+    FF.Audio.musicaSelecao();   // música própria da escolha de lutadores
     const el = document.getElementById('selecao');
     const ids = (FF.Assets.listaPersonagens && FF.Assets.listaPersonagens().slice()) || ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     // ordem: heróis da saga primeiro, depois os vilões
@@ -22,7 +23,11 @@ FF.Selecao = {
     el.classList.add('open');
   },
 
-  fechar() { document.getElementById('selecao').classList.remove('open'); },
+  fechar() {
+    const el = document.getElementById('selecao');
+    if (el.classList.contains('open') && FF.Audio.musicaNome === FF.Audio.SELECAO) FF.Audio.musicaMenu();   // saindo para os menus: volta a do menu
+    el.classList.remove('open');
+  },
 
   montarGrade() {
     const grade = document.querySelector('#selecao .sel-grade');
