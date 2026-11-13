@@ -417,6 +417,8 @@ def _unity_textura(d, o, v):
     r.u8()                                                  # readable
     if v >= (2020, 1): r.u8()
     if v >= (2019, 3): r.u8()
+    if v >= (2022, 2):
+        r.align(); r.s_()                                   # m_MipmapLimitGroupName
     if v < (5, 5): r.u8()
     if v >= (2018, 2): r.u8()
     r.align()
@@ -454,7 +456,7 @@ def _unity_sprite(d, o, v):
     return s
 
 
-FMT_UNITY = {1: 'A8', 2: 'ARGB4444', 3: 'RGB24', 4: 'RGBA32', 5: 'ARGB32', 7: 'RGB565', 13: 'RGBA4444', 14: 'BGRA32', 63: 'R8'}
+FMT_UNITY = {10: 'DXT1', 12: 'DXT5', 34: 'ETC1', 45: 'ETC2_RGB', 46: 'ETC2_RGBA1', 47: 'ETC2_RGBA8', 1: 'A8', 2: 'ARGB4444', 3: 'RGB24', 4: 'RGBA32', 5: 'ARGB32', 7: 'RGB565', 13: 'RGBA4444', 14: 'BGRA32', 63: 'R8'}
 
 
 def _unity_imagem(t, dados):
@@ -462,6 +464,10 @@ def _unity_imagem(t, dados):
     w, h, f = t['w'], t['h'], FMT_UNITY.get(t['fmt'])
     if not f:
         return None
+    if f.startswith('ETC') or f.startswith('DXT'):
+        import etc
+        a = etc.decodificar(dados, w, h, f)
+        return Image.fromarray(a, 'RGBA').transpose(Image.FLIP_TOP_BOTTOM)
     n = w * h
     if f in ('RGBA32', 'ARGB32', 'BGRA32'):
         a = np.frombuffer(dados[:n * 4], np.uint8).reshape(h, w, 4)
@@ -485,15 +491,99 @@ def _unity_imagem(t, dados):
     return Image.fromarray(np.ascontiguousarray(a), 'RGBA').transpose(Image.FLIP_TOP_BOTTOM)
 
 
+
+def _lz4(src, tam):
+    """descompressão de bloco LZ4 (puro Python)"""
+    dst = bytearray()
+    i, n = 0, len(src)
+    while i < n:
+        tok = src[i]; i += 1
+        ln = tok >> 4
+        if ln == 15:
+            while True:
+                b = src[i]; i += 1; ln += b
+                if b != 255: break
+        dst += src[i:i + ln]; i += ln
+        if i >= n: break
+        off = src[i] | (src[i + 1] << 8); i += 2
+        ml = tok & 15
+        if ml == 15:
+            while True:
+                b = src[i]; i += 1; ml += b
+                if b != 255: break
+        ml += 4
+        ini = len(dst) - off
+        if off >= ml:
+            dst += dst[ini:ini + ml]
+        else:
+            for k in range(ml):
+                dst.append(dst[ini + k])
+    return bytes(dst)
+
+
+def _descomprimir(dados, modo, tam):
+    if modo == 0:
+        return dados
+    if modo == 1:
+        import lzma
+        props, dsz = dados[0], struct.unpack_from('<I', dados, 1)[0]
+        lc, lp, pb = props % 9, (props // 9) % 5, props // 45
+        f = [{'id': lzma.FILTER_LZMA1, 'dict_size': dsz, 'lc': lc, 'lp': lp, 'pb': pb}]
+        return lzma.LZMADecompressor(lzma.FORMAT_RAW, filters=f).decompress(dados[5:], tam)
+    if modo in (2, 3):
+        return _lz4(dados, tam)
+    raise ValueError('compressão %d' % modo)
+
+
+def _unityfs(d):
+    """pacote UnityFS → {nome: bytes}"""
+    r = _R(d, 8, False)
+    ver = r.u32(); r.cstr(); r.cstr()
+    r.i64(); csz, usz, flags = r.u32(), r.u32(), r.u32()
+    if ver >= 7: r.o = (r.o + 15) & ~15
+    if flags & 0x80:
+        info = d[len(d) - csz:]
+    else:
+        info = d[r.o:r.o + csz]; r.o += csz
+    info = _descomprimir(info, flags & 0x3F, usz)
+    q = _R(info, 16, False)
+    blocos = []
+    for _ in range(q.i32()):
+        blocos.append((q.u32(), q.u32(), q.u('H', 2)))
+    nos = []
+    for _ in range(q.i32()):
+        nos.append((q.i64(), q.i64(), q.u32(), q.cstr()))
+    if flags & 0x200: r.o = (r.o + 15) & ~15
+    dados = bytearray()
+    for us, cs, fl in blocos:
+        dados += _descomprimir(d[r.o:r.o + cs], fl & 0x3F, us); r.o += cs
+    return {os.path.basename(n): bytes(dados[o:o + s]) for o, s, _, n in nos}
+
+
 def fazer_unity(a):
     """--origem: pasta Data do jogo Unity (assets/bin/Data). Cada textura com sprites vira um sprite do acervo,
     com a animação "Todos" (quadros em ordem de nome) e uma por grupo de nome; as animações originais
     (AnimationClip) não são lidas — monte-as no Estúdio a partir desses quadros."""
     raiz = a.origem
     texturas, sprites, sem_formato = {}, [], collections.Counter()
-    arquivos = [f for f in sorted(os.listdir(raiz)) if os.path.isfile(os.path.join(raiz, f)) and not re.search(r'\.(resS|resource|config|json|dll|txt|xml)$', f)]
+    # arquivos soltos da pasta Data + o conteúdo dos pacotes UnityFS (data.unity3d, *.bundle)
+    virtuais = {}
+    for f in sorted(os.listdir(raiz)):
+        p = os.path.join(raiz, f)
+        if not os.path.isfile(p) or re.search(r'\.(resource|config|json|dll|txt|xml)$', f):
+            continue
+        with open(p, 'rb') as fh:
+            ini = fh.read(8)
+        if ini == b'UnityFS\0':
+            print('abrindo pacote', f, flush=True)
+            with open(p, 'rb') as fh:
+                virtuais.update(_unityfs(fh.read()))
+        else:
+            virtuais[f] = p
+    ler_v = lambda f: virtuais[f] if isinstance(virtuais[f], bytes) else open(virtuais[f], 'rb').read()
+    arquivos = [f for f in virtuais if not f.endswith('.resS')]
     for fn in arquivos:
-        d = open(os.path.join(raiz, fn), 'rb').read()
+        d = ler_v(fn)
         try:
             m = _unity_arquivo(d)
         except Exception:
@@ -509,10 +599,14 @@ def fazer_unity(a):
                         continue
                     dados = t['dados']
                     if t['stream'] and t['stream'][1]:
-                        rs = os.path.join(raiz, os.path.basename(t['stream'][2]))
-                        if os.path.exists(rs):
-                            with open(rs, 'rb') as fh:
-                                fh.seek(t['stream'][0]); dados = fh.read(t['stream'][1])
+                        rs = os.path.basename(t['stream'][2])
+                        if rs in virtuais:
+                            v_ = virtuais[rs]
+                            if isinstance(v_, bytes):
+                                dados = v_[t['stream'][0]:t['stream'][0] + t['stream'][1]]
+                            else:
+                                with open(v_, 'rb') as fh:
+                                    fh.seek(t['stream'][0]); dados = fh.read(t['stream'][1])
                     t['arq'], t['dados'] = fn, dados
                     texturas[(fn, pid)] = t
                 elif cid == 213:
@@ -531,12 +625,19 @@ def fazer_unity(a):
         k = (s['arq'], s['tex'])
         if k in texturas:
             por_tex.setdefault(k, []).append(s)
+    for k in texturas:                                       # textura sem recortes (atlas empacotado, cenário…): folha inteira
+        if k not in por_tex and texturas[k]['w'] * texturas[k]['h'] > 64 and not texturas[k]['nome'].startswith('UnitySplash'):
+            t = texturas[k]
+            por_tex[k] = [dict(nome=t['nome'], rect=[0, 0, t['w'], t['h']], pivot=[0.5, 0.0], inteira=True)]
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
     for k, lista in por_tex.items():
         t = texturas[k]
         if k not in imgs:
-            im = _unity_imagem(t, t['dados'])
+            try:
+                im = _unity_imagem(t, t['dados'])
+            except Exception:
+                im = None
             if im is None:
                 sem_formato[t['fmt']] += 1
                 continue
@@ -547,10 +648,16 @@ def fazer_unity(a):
             if w <= 0 or h <= 0:
                 continue
             top = t['h'] - y - h
+            if s.get('inteira'):                             # corta a área transparente em volta
+                bb = imgs[k].getbbox()
+                if not bb:
+                    continue
+                x, top, w, h = bb[0], bb[1], bb[2] - bb[0], bb[3] - bb[1]
+                s['pivot'] = [0.5, 0.0]
             fr.append((s['nome'], dict(img=k, x=x, y=top, w=w, h=h, ox=s['pivot'][0] * w, oy=(1 - s['pivot'][1]) * h, dur=1)))
         if not fr:
             continue
-        anims = [('Todos', dict(fps=10, loop=True, frames=[q for _, q in fr]))]
+        anims = [('Todos' if len(fr) > 1 else 'folha', dict(fps=10, loop=True, frames=[q for _, q in fr]))]
         grupos = collections.OrderedDict()
         for n, q in fr:
             grupos.setdefault(re.sub(r'[\s_\-]*\d+$', '', n), []).append(q)

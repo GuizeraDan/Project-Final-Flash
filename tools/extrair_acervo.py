@@ -229,7 +229,7 @@ def main():
         fonte.gravar(s['id'], s['nome'], s['cat'], anims, s['objs'])
     if args.so:
         return
-    fonte.fechar({c: NOME_CAT[c] for c in CATS}, dict(pulados=pulados))
+    fonte.fechar({c: 'ZL3 · ' + NOME_CAT[c] for c in CATS}, dict(pulados=pulados))
     AC.recompor(args.out)
 
 

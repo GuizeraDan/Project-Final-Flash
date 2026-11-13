@@ -30,9 +30,13 @@ def empacotar(rects):
     """prateleiras por altura. rects: [(key, w, h)] → {key: (atlas, x, y)}, [(w, h)]"""
     order = sorted(rects, key=lambda r: (-r[2], -r[1]))
     pos, atlases, cur = {}, [], None
+    grandes = []
     for key, w, h in order:
-        if w + PAD > MAX or h + PAD > MAX:
-            raise SystemExit('Quadro grande demais: %s %dx%d' % (key, w, h))
+        if w + PAD > MAX or h + PAD > MAX:            # quadro enorme (fundo, aura gigante): atlas só dele
+            if w > 8192 or h > 8192:
+                raise SystemExit('Quadro grande demais: %s %dx%d' % (key, w, h))
+            grandes.append((key, w, h))
+            continue
         if cur is not None and cur['x'] + w + PAD > MAX:
             cur['y'] += cur['shelf'] + PAD
             cur['x'], cur['shelf'] = 0, 0
@@ -44,7 +48,11 @@ def empacotar(rects):
         cur['shelf'] = max(cur['shelf'], h)
         cur['w'] = max(cur['w'], cur['x'])
         cur['h'] = max(cur['h'], cur['y'] + h)
-    return pos, [(a['w'], a['h']) for a in atlases]
+    tam = [(a['w'], a['h']) for a in atlases]
+    for key, w, h in grandes:
+        pos[key] = (len(tam), 0, 0)
+        tam.append((w, h))
+    return pos, tam
 
 
 class Fonte:
