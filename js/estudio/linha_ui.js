@@ -66,7 +66,7 @@ FF.EstudioLinha = class {
     b.appendChild(E.el('span', 'sep'));
     this.info = E.el('span', 'es-tl-info');
     b.appendChild(this.info);
-    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · Shift+clique: seleciona vários (arrastam juntos) · borda direita: esticar · Del apaga · Ctrl+D duplica'));
+    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · duplo clique no clipe: trocar efeito/som/animação · Shift+clique: seleciona vários (arrastam juntos) · borda direita: esticar · Del apaga · Ctrl+D duplica'));
   }
 
   zoom(f, tAncora, xTela) {
@@ -470,6 +470,7 @@ FF.EstudioLinha = class {
       const p = this.pos(e);
       const h = this.achar(p);
       if (h.tr && !h.c) this.host.adicionar(h.tr.id, this.encaixar(p.x / this.pxs, null, e.altKey));
+      else if (h.c && this.host.trocarConteudo) this.host.trocarConteudo(h.c, h.tr);   // duplo clique no clipe: trocar efeito/som/voz/animação
     });
   }
 

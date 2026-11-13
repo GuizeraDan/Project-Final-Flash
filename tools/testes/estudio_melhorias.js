@@ -333,6 +333,26 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(cam.atras && cam.fxAntes, 'efeito marcado "Atrás dos lutadores" é desenhado antes deles ' + JSON.stringify(cam));
 
+  // ---- duplo clique num clipe abre o seletor do que ele toca (som → 🎧, efeito → ✺)
+  const dc = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes'); g.tl.render();
+    if (!g.tl.todos().some(({ c }) => c.tipo === 'som')) { g.doc.linha.trilhas.find(t => t.tipo === 'sons').clipes.push({ id: 'somt', tipo: 'som', t: 0.3, som: 'hit_small-a' }); g.mudou('x'); g.tl.render(); }
+    const som = g.tl.todos().find(({ c }) => c.tipo === 'som'), ef = g.tl.todos().find(({ c }) => c.tipo === 'efeito');
+    g.tl.area.scrollTop = Math.max(0, g.tl.yDe(som.c, som.tr) - 40); g.tl.area.scrollLeft = 0;
+    const r = g.tl.cv.getBoundingClientRect();
+    const pt = (x) => ({ x: r.left + x.c.t * g.tl.pxs + 4, y: r.top + g.tl.yDe(x.c, x.tr) + 10, id: x.c.id });
+    return { som: pt(som), ef: ef && pt(ef) };
+  });
+  await p.mouse.dblclick(dc.som.x, dc.som.y);
+  await p.waitForSelector('.es-sons', { timeout: 5000 });
+  await p.evaluate(() => { const b = [...document.querySelectorAll('.es-sons .es-seletor-fonte')].find(x => /Ultimate/.test(x.textContent)); b.click(); });
+  await p.evaluate(() => [...document.querySelectorAll('.es-sons .es-som')][0].querySelector('.es-bt-ouro').click());
+  const somDepois = await p.evaluate((id) => FF.Estudio.abas.find(a => a.id === 'golpes').achar(id).c.som, dc.som.id);
+  let efOk = true;
+  if (dc.ef) { const pe = await p.evaluate((id) => { const g = FF.Estudio.abas.find(a => a.id === 'golpes'); const x = g.achar(id); g.tl.area.scrollTop = Math.max(0, g.tl.yDe(x.c, x.tr) - 40); const r = g.tl.cv.getBoundingClientRect(); return { x: r.left + x.c.t * g.tl.pxs + 4, y: r.top + g.tl.yDe(x.c, x.tr) + 10 }; }, dc.ef.id); await p.mouse.dblclick(pe.x, pe.y); efOk = await p.waitForSelector('.es-seletor', { timeout: 5000 }).then(() => true).catch(() => false); await p.evaluate(() => document.querySelectorAll('.es-modal').forEach(m => m.remove())); }
+  ok(/^acervo\/uh\//.test(somDepois) && efOk, 'duplo clique no clipe de som troca o som (' + somDepois + ') e no de efeito abre o seletor de efeito');
+  await p.keyboard.press('Control+z');
+
   // ---- arremessar o alvo: mover para um ponto da tela com arco e giro
   await p.goto(R + 'estudio.html?aba=golpes&personagem=goku&golpe=kaioken'); await pronto(); await p.waitForTimeout(800);
   s = await p.evaluate(() => {

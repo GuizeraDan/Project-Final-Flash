@@ -429,6 +429,31 @@ window.FF = window.FF || {};
         acoes: { tipo: 'acao', passo: { ki: 10 } },
       }[tr.tipo] || { tipo: 'som', som: 'hit_small-a' });
     },
+    // duplo clique num clipe da linha do tempo: abre o seletor do que ele toca/mostra
+    trocarConteudo(c, tr) {
+      const P = FF.EstudioProps, quem = tr.quem || 'atacante';
+      const pronto = (rot) => { this.mudou(rot); this.renderProps(); };
+      const efeito = (k, ks, rot) => P.escolherEfeito(c[k], (fx, spr) => { c[k] = fx; if (spr) c[ks] = spr; else delete c[ks]; pronto(rot); }, null, this, c[ks]);
+      switch (c.tipo) {
+        case 'som': return E.escolherSom(Array.isArray(c.som) ? c.som[0] : c.som, (v) => { c.som = v; pronto('Som'); });
+        case 'voz':
+          if (c.vozTipo) { delete c.vozTipo; delete c.quem; }   // escolher um arquivo troca a "voz do personagem" por um som fixo
+          return E.escolherSom(Array.isArray(c.voz) ? c.voz[0] : c.voz, (v) => { c.voz = v; pronto('Voz'); }, this.prefixoVoz());
+        case 'efeito': return efeito('fx', 'sprite', 'Efeito');
+        case 'projetil': return efeito('fx', 'sprite', 'Projétil');
+        case 'acerto': return efeito('fx', 'sprite', 'Explosão');
+        case 'anim': {
+          const prop = this.spriteDe(quem), pid = prop && (prop.def.id || Object.keys(FF.Assets.sprites).find(k => FF.Assets.sprites[k] === prop));
+          return E.escolherSprite({ titulo: '🎬 Animação (de qualquer sprite)', atual: { anim: c.anim, sprite: c.sprite || pid }, inicio: c.sprite || pid,
+            aoEscolher: (a, id) => { c.anim = a; if (id && id !== pid) c.sprite = id; else delete c.sprite; pronto('Animação'); } });
+        }
+        case 'mover': case 'teleporte':
+          return P.escolherAnim(this.spriteDe(quem), c.animMov, (a) => { c.animMov = a; pronto('Animação'); });
+        case 'camada':
+          return E.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; pronto('Sprite da camada'); } });
+        default: return null;   // os outros (tremor, câmera, ação…) se mudam pelas propriedades
+      }
+    },
     remover() {
       if (this.multi && this.multi.size > 1) {   // vários selecionados (Shift+clique): apaga todos
         const ids = new Set(this.multi);
