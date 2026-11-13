@@ -15,6 +15,7 @@ FF.Estudio = {
   async iniciar() {
     const nav = document.getElementById('es-abas');
     const corpo = document.getElementById('es-corpo');
+    FF.Audio.prepararLocais();
     // sprites básicos (efeitos, cenário) antes de montar as abas
     await Promise.all(['fx', 'fx_extra', 'stage_campo', 'hud_zl3', 'retratos'].map(id => FF.Assets.loadSprite(id).catch(() => null)));
     for (const a of this.abas) {
@@ -112,6 +113,12 @@ FF.Estudio = {
   },
 
   // salva no jogo (todas as telas e todos os aparelhos)
+  // nome de exibição / sprite excluído das listas (spritesInfo[id].nome / .oculto), mantendo escala e atlas extras
+  mudarInfoSprite(id, patch) {
+    const v = Object.assign({}, FF.Assets.infoSprite(id), patch);
+    Object.keys(v).forEach(k => { if (v[k] == null || v[k] === '' || v[k] === false) delete v[k]; });
+    FF.Edicoes.setDepois(['spritesInfo', id], Object.keys(v).length ? v : null);
+  },
   salvarNoJogo(caminho, valor, msg) {
     FF.Edicoes.set(caminho, valor);
     this.aviso((msg || '💾 Salvo no jogo.') + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
@@ -316,11 +323,19 @@ FF.Estudio = {
   // seletor de sons: Z Legends 3 (o jogo), ⭐ favoritos por categoria, acervo por jogo; filtro por categoria e busca
   escolherSom(atual, aoEscolher, vozes) {
     const FS = FF.FavSons;
-    const jogo = this.sons().map(n => ({ id: n, nome: n, dur: null, cat: null, fonte: 'zl3' }));
-    const ac = this.sonsAcervo().map(([id, nome, dur, cat, fonte]) => ({ id, nome, dur, cat, fonte }));
-    const todos = jogo.concat(ac);
-    const porId = {}; todos.forEach(x => (porId[x.id] = x));
-    const NOMES = Object.assign({ zl3: 'Z Legends 3 (do jogo)' }, (window.FF_ACERVO_SONS && FF_ACERVO_SONS.fontes) || {});
+    const SU = FF.SonsUsr;
+    const NOMES = Object.assign({ zl3: 'Z Legends 3 (do jogo)', usr: '📥 Meus sons (importados)' }, (window.FF_ACERVO_SONS && FF_ACERVO_SONS.fontes) || {});
+    let todosTudo, todos, porId, jogo, ac, meus;
+    const carregarListas = () => {
+      jogo = this.sons().map(n => ({ id: n, nome: n, dur: null, cat: null, fonte: 'zl3' }));
+      ac = this.sonsAcervo().map(([id, nome, dur, cat, fonte]) => ({ id, nome, dur, cat, fonte }));
+      meus = SU ? SU.importados().map(v => ({ id: v.id, nome: v.nome, dur: v.dur, cat: null, fonte: 'usr' })) : [];
+      todosTudo = meus.concat(jogo, ac);
+      porId = {}; todosTudo.forEach(x => (porId[x.id] = x));
+      todos = todosTudo.filter(x => !(SU && SU.apagado(x.id)));   // excluídos só aparecem na Lixeira
+    };
+    carregarListas();
+    const nomeDe = (x) => (SU && SU.nome(x.id)) || x.nome;
     let fonte = vozes ? 'zl3' : (this.rascunho.ler('som_fonte') || (atual && porId[atual] ? porId[atual].fonte : 'zl3'));
     let cat = '';
     const c = this.el('div', 'es-seletor es-sons');
@@ -331,7 +346,16 @@ FF.Estudio = {
     busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: vgkn, kame, explos, soco, goku)';
     busca.value = vozes || '';
     const info = this.el('span', 'es-dica');
-    topo.append(busca, info);
+    // 📥 importar som do computador (vai para "Meus sons"; sobe para o GitHub com as edições)
+    const arq = document.createElement('input'); arq.type = 'file'; arq.accept = 'audio/*,.ogg,.mp3,.wav,.m4a'; arq.multiple = true; arq.style.display = 'none';
+    arq.onchange = async () => {
+      let ult = null;
+      for (const f of arq.files) { try { ult = await SU.importar(f); } catch (e) { this.aviso(f.name + ': ' + e.message, 'erro'); } }
+      arq.value = '';
+      if (ult) { this.aviso('📥 Som importado: ' + ult.replace(/^usr\//, '') + (FF.Edicoes.conectado() ? '' : ' (vale neste aparelho; conecte ☁ para ir para os outros)'), 'ok'); carregarListas(); fonte = 'usr'; remontarLado(); render(); }
+    };
+    const btImp = this.botao('📥 Importar som', () => arq.click(), 'Trazer um som do computador (.mp3, .ogg, .wav, .m4a): entra na lista "Meus sons"', 'es-bt-ouro');
+    topo.append(busca, info, btImp, arq);
     const chips = this.el('div', 'es-sons-chips');
     const lista = this.el('div', 'es-sons-lista');
     dir.append(topo, chips, lista);
@@ -355,12 +379,19 @@ FF.Estudio = {
       FS.TIPOS.forEach(([t, ic]) => { const n = l.filter(x => x.tipo === t).length; if (n) bt('fav:' + t, ic + ' ' + FS.plural[t], n, favBox); });
       fontesBt.forEach(([k, el]) => el.classList.toggle('sel', k === fonte));
     };
-    lado.appendChild(this.el('div', 'es-sub', 'Mostrar'));
-    bt('tudo', '★ Todos os sons', todos.length);
-    lado.appendChild(favBox); montarFav();
-    lado.appendChild(this.el('div', 'es-sub', 'Jogos'));
-    bt('zl3', NOMES.zl3, jogo.length);
-    Object.keys(NOMES).filter(k => k !== 'zl3').forEach(k => bt(k, NOMES[k], ac.filter(x => x.fonte === k).length));
+    const remontarLado = () => {
+      lado.innerHTML = ''; fontesBt.length = 0;
+      lado.appendChild(this.el('div', 'es-sub', 'Mostrar'));
+      bt('tudo', '★ Todos os sons', todos.length);
+      bt('usr', NOMES.usr, todos.filter(x => x.fonte === 'usr').length);
+      lado.appendChild(favBox); montarFav();
+      lado.appendChild(this.el('div', 'es-sub', 'Jogos'));
+      bt('zl3', NOMES.zl3, todos.filter(x => x.fonte === 'zl3').length);
+      Object.keys(NOMES).filter(k => k !== 'zl3' && k !== 'usr').forEach(k => bt(k, NOMES[k], todos.filter(x => x.fonte === k).length));
+      const nLix = todosTudo.length - todos.length;
+      if (nLix) { lado.appendChild(this.el('div', 'es-sub', ' ')); bt('lixeira', '🗑 Lixeira (excluídos)', nLix); }
+    };
+    remontarLado();
     const m = this.modal('🎧 Sons e vozes (' + todos.length + ')', c, { larga: true });
     let tocando = null;
     const ouvir = (id, b) => {
@@ -373,10 +404,12 @@ FF.Estudio = {
     const render = () => {
       const f = busca.value.trim().toLowerCase();
       let l;
-      if (f || fonte === 'tudo') l = todos;
-      else if (/^fav:/.test(fonte)) l = FS.lista(fonte.slice(4)).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' });
+      const lix = fonte === 'lixeira';
+      if (lix) l = todosTudo.filter(x => SU && SU.apagado(x.id));
+      else if (f || fonte === 'tudo') l = todos;
+      else if (/^fav:/.test(fonte)) l = FS.lista(fonte.slice(4)).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
       else l = todos.filter(x => x.fonte === fonte);
-      if (f) l = l.filter(x => (x.id + ' ' + x.nome).toLowerCase().includes(f));
+      if (f) l = l.filter(x => (x.id + ' ' + x.nome + ' ' + nomeDe(x)).toLowerCase().includes(f));
       // chips das categorias (automáticas pelo nome; o favorito vale mais)
       const catDe = (x) => (FS && FS.de(x.id)) || x.cat || null;
       const conta = {}; l.forEach(x => { const k = catDe(x); if (k) conta[k] = (conta[k] || 0) + 1; });
@@ -393,13 +426,28 @@ FF.Estudio = {
         const r = this.el('div', 'es-som' + (x.id === atual ? ' sel' : ''));
         const play = this.botao('▶', () => ouvir(x.id, play), 'Ouvir (clique de novo para parar)');
         r.appendChild(play);
-        const n = this.el('span', 'es-som-nome'); n.textContent = x.nome; n.title = x.id; r.appendChild(n);
+        const ren = SU && SU.nome(x.id) && SU.nome(x.id) !== x.nome;
+        const n = this.el('span', 'es-som-nome'); n.textContent = nomeDe(x); n.title = x.id + (ren ? ' (nome original: ' + x.nome + ')' : ''); n.dataset.id = x.id; r.appendChild(n);
+        if (ren) n.classList.add('renomeado');
         const meta = this.el('small', 'es-som-meta');
         const k = catDe(x);
         meta.textContent = (k ? this.CAT_SOM[k] + ' ' : '') + (fonte === 'tudo' || f || /^fav:/.test(fonte) ? (NOMES[x.fonte] || x.fonte) + ' · ' : '') + (x.dur ? x.dur.toFixed(1).replace('.', ',') + ' s' : '');
         r.appendChild(meta);
-        if (FS) r.appendChild(FS.botao(x.id, null, () => { montarFav(); if (/^fav:/.test(fonte) || cat) render(); }));
-        r.appendChild(this.botao('Usar', () => { aoEscolher(x.id); m.fechar(); }, null, 'es-bt-ouro'));
+        if (SU && !lix) {
+          r.appendChild(this.botao('✏', () => {
+            // renomear no lugar (Enter salva, Esc cancela; vazio = volta ao nome original)
+            const inp = document.createElement('input'); inp.value = nomeDe(x); inp.className = 'es-som-renomear';
+            n.replaceWith(inp); inp.focus(); inp.select();
+            const fim = (salvar) => { if (salvar) SU.renomear(x.id, inp.value === x.nome ? '' : inp.value); render(); };
+            inp.onkeydown = (e) => { if (e.key === 'Enter') fim(true); if (e.key === 'Escape') fim(false); };
+            inp.onblur = () => fim(true);
+          }, 'Renomear (só o nome que aparece aqui; o som continua o mesmo)'));
+        }
+        if (FS && !lix) r.appendChild(FS.botao(x.id, null, () => { montarFav(); if (/^fav:/.test(fonte) || cat) render(); }));
+        if (SU) r.appendChild(lix
+          ? this.botao('↺ Restaurar', () => { SU.apagar(x.id, false); carregarListas(); remontarLado(); render(); }, 'Voltar para a lista')
+          : this.botao('🗑', () => { SU.apagar(x.id, true); carregarListas(); remontarLado(); render(); this.aviso('🗑 "' + nomeDe(x) + '" foi para a Lixeira (dá para restaurar lá).'); }, 'Excluir da lista (vai para a Lixeira; golpes que já usam continuam tocando)', 'es-bt-perigo'));
+        if (!lix) r.appendChild(this.botao('Usar', () => { aoEscolher(x.id); m.fechar(); }, null, 'es-bt-ouro'));
         lista.appendChild(r);
       });
       if (!l.length) lista.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';

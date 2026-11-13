@@ -7,11 +7,6 @@
    "dur": 1.21,
    "cat": "movimento"
   },
-  "ataque_1": {
-   "nome": "ataque 1",
-   "dur": 0.37,
-   "cat": "golpe"
-  },
   "beamhead": {
    "nome": "beamhead",
    "dur": 3.23,
@@ -67,11 +62,6 @@
    "dur": 0.36,
    "cat": "golpe"
   },
-  "explosion2": {
-   "nome": "Explosion2",
-   "dur": 2.4,
-   "cat": "explosao"
-  },
   "groundhit2": {
    "nome": "groundhit2",
    "dur": 0.8,
@@ -86,11 +76,6 @@
    "nome": "jump",
    "dur": 1.07,
    "cat": "movimento"
-  },
-  "kiblast": {
-   "nome": "kiblast",
-   "dur": 1.22,
-   "cat": "ki"
   },
   "kiplosion": {
    "nome": "kiplosion",
@@ -112,25 +97,10 @@
    "dur": 0.2,
    "cat": "golpe"
   },
-  "soco_forte": {
-   "nome": "soco forte",
-   "dur": 1.36,
-   "cat": "golpe"
-  },
-  "soco_medio": {
-   "nome": "soco medio",
-   "dur": 0.41,
-   "cat": "golpe"
-  },
   "super_saiyajim_1_dominado_saga_cell": {
    "nome": "super saiyajim 1 dominado saga cell",
    "dur": 10.96,
    "cat": "aura"
-  },
-  "teleport00": {
-   "nome": "teleport00",
-   "dur": 0.51,
-   "cat": "movimento"
   },
   "tick2": {
    "nome": "Tick2",
@@ -152,29 +122,14 @@
    "dur": 0.78,
    "cat": "ki"
   },
-  "4_kienza": {
-   "nome": "4-Kienza",
-   "dur": 1.21,
-   "cat": "ki"
-  },
   "deathball_charge": {
    "nome": "deathball_charge",
    "dur": 8.3,
    "cat": "ki"
   },
-  "genki_fire": {
-   "nome": "Genki fire",
-   "dur": 2.22,
-   "cat": "ki"
-  },
   "kamehameha_fire": {
    "nome": "kamehameha_fire",
    "dur": 5.4,
-   "cat": "ki"
-  },
-  "makanko": {
-   "nome": "Makanko",
-   "dur": 5.7,
    "cat": "ki"
   }
  }

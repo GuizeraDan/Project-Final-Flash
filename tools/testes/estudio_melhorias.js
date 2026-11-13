@@ -254,7 +254,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     bts.find(x => /Super Warriors Z/.test(x.textContent)).click();
     const linhas = document.querySelectorAll('.es-sons .es-som').length;
     const chips = [...document.querySelectorAll('.es-sons-chips button')].map(b => b.textContent);
-    const id = document.querySelector('.es-sons .es-som .es-som-nome').title;
+    const id = document.querySelector('.es-sons .es-som .es-som-nome').dataset.id;
     FF.FavSons.marcar(id, null, 'explosao');
     m.fechar();
     await FF.Estudio.abrir('favoritos'); FF.Estudio.Favoritos.modo = 'sons'; FF.Estudio.Favoritos.render();
@@ -265,6 +265,41 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(s.fontes >= 10 && s.linhas > 100 && s.chips > 2 && /^acervo\/swz\//.test(s.id) && s.aba, 'acervo de sons no seletor (' + s.fontes + ' fontes, SWZ ' + s.linhas + ' sons, ' + s.chips + ' categorias) e favorito aparece na aba ⭐ Favoritos');
 
+  // ---- sons: importar, renomear, excluir (Lixeira) · sprites: excluir animação e sprite (Lixeira)
+  const wav = (() => { const n = 8000, b = Buffer.alloc(44 + n * 2); b.write('RIFF', 0); b.writeUInt32LE(36 + n * 2, 4); b.write('WAVEfmt ', 8); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(8000, 24); b.writeUInt32LE(16000, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34); b.write('data', 36); b.writeUInt32LE(n * 2, 40); for (let i = 0; i < n; i++) b.writeInt16LE(Math.round(8000 * Math.sin(i / 8)), 44 + i * 2); return b; })();
+  await p.evaluate(() => FF.Estudio.escolherSom('', () => {}));
+  await p.setInputFiles('.es-sons input[type=file]', { name: 'Meu Grito Teste.wav', mimeType: 'audio/wav', buffer: wav });
+  await p.waitForFunction(() => document.querySelector('.es-sons .es-seletor-fonte.sel') && /Meus sons/.test(document.querySelector('.es-sons .es-seletor-fonte.sel').textContent) && document.querySelectorAll('.es-sons .es-som').length === 1, null, { timeout: 15000 });
+  s = await p.evaluate(async () => {
+    const id = document.querySelector('.es-sons .es-som .es-som-nome').dataset.id;
+    const nome1 = document.querySelector('.es-sons .es-som .es-som-nome').textContent;
+    FF.SonsUsr.renomear('vvgn101', 'Vegeta grito teste');
+    FF.SonsUsr.apagar('acervo/uh/explosion1', true);
+    document.querySelectorAll('.es-modal').forEach(m => m.remove());
+    const m = FF.Estudio.escolherSom('', () => {});
+    const lixeira = [...document.querySelectorAll('.es-sons .es-seletor-fonte')].find(x => /Lixeira/.test(x.textContent));
+    document.querySelector('.es-sons input[type=search]').value = 'grito teste'; document.querySelector('.es-sons input[type=search]').dispatchEvent(new Event('input'));
+    const achouRen = [...document.querySelectorAll('.es-sons .es-som-nome')].map(x => x.textContent);
+    lixeira.click();
+    document.querySelector('.es-sons input[type=search]').value = ''; document.querySelector('.es-sons input[type=search]').dispatchEvent(new Event('input'));
+    const naLix = [...document.querySelectorAll('.es-sons .es-som-nome')].map(x => x.dataset.id);
+    m.fechar();
+    FF.SonsUsr.renomear('vvgn101', ''); FF.SonsUsr.apagar('acervo/uh/explosion1', false);
+    return { id, nome1, achouRen, naLix, url: FF.Audio.url(id).slice(0, 5) };
+  });
+  ok(/^usr\/meu_grito_teste\.wav$/.test(s.id) && s.nome1 === 'Meu Grito Teste' && s.url === 'blob:' && s.achouRen.includes('Vegeta grito teste') && s.naLix.includes('acervo/uh/explosion1'), 'sons: importar, renomear e excluir para a Lixeira (' + JSON.stringify(s) + ')');
+  s = await p.evaluate(async () => {
+    FF.Mods.apagar('fx', 'hit1'); FF.Estudio.mudarInfoSprite('zl3_cell', { oculto: true });
+    const m = FF.Estudio.escolherSprite({ inicio: 'lixeira', aoEscolher: () => {} });
+    await new Promise(r => setTimeout(r, 300));
+    const lix = [...document.querySelectorAll('.es-modal:last-of-type .es-cartao span')].map(x => x.textContent);
+    const naLista = !!document.querySelector('.es-modal:last-of-type .es-seletor-fonte[data-fonte="zl3_cell"]');
+    m.fechar();
+    FF.Mods.restaurar('fx', 'hit1'); FF.Estudio.mudarInfoSprite('zl3_cell', { oculto: null });
+    return { lix, naLista, volta: FF.Assets.listaSprites().includes('zl3_cell') };
+  });
+  ok(s.lix.includes('hit1') && s.lix.length >= 2 && s.volta, 'sprites: animação e sprite excluídos aparecem na Lixeira e voltam ao restaurar (' + s.lix + ')');
+
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {
     const g = FF.Estudio.abas.find(a => a.id === 'golpes');
@@ -273,16 +308,16 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     const padrao = { tipo: g.doc.origem.tipo, alvo: g.doc.linha.trilhas.find(t => t.id === 'alvo').clipes.map(c => c.anim).join(','), titulo: g.titProps.textContent, props: g.props.textContent };
     await g.abrirKO(g.cfg.alvo);
     const alvo = g.cfg.alvo;
-    g.doc.linha.trilhas.find(t => t.id === 'efeitos').clipes[0].escala = 1.5; g.mudou('teste');
+    g.doc.linha.marcaTeste = 1.5; g.mudou('teste');
     g.salvar();
     const salvo = FF.Edicoes.dados().ko[alvo];
-    const usa = FF.KO.linhaDe(alvo).trilhas.find(t => t.id === 'efeitos').clipes[0].escala;
-    const outro = FF.KO.linhaDe('zzz').trilhas.find(t => t.id === 'efeitos').clipes[0].escala;
+    const usa = FF.KO.linhaDe(alvo).marcaTeste;
+    const outro = FF.KO.linhaDe('zzz').marcaTeste;
     FF.Edicoes.set(['ko', alvo], null);
     return { itens, padrao, salvo: !!salvo, usa, outro, depois: FF.KO.temPropria(alvo) };
   });
-  ok(s.itens.length === 2 && s.padrao.tipo === 'ko' && s.padrao.alvo === 'lancado,caido' && /cena de KO/.test(s.padrao.titulo) && /Toca quando a vida/.test(s.padrao.props), 'cena de KO no Estúdio: ' + s.itens.join(' | ') + ' · padrão ' + s.padrao.alvo);
-  ok(s.salvo && s.usa === 1.5 && s.outro === 0.55 && !s.depois, 'cena de KO própria salva e usada só para o personagem; os outros ficam com a padrão');
+  ok(s.itens.length === 2 && s.padrao.tipo === 'ko' && /cena de KO/.test(s.padrao.titulo) && /Toca quando a vida/.test(s.padrao.props), 'cena de KO no Estúdio: ' + s.itens.join(' | ') + ' · padrão ' + s.padrao.alvo);
+  ok(s.salvo && s.usa === 1.5 && s.outro === undefined && !s.depois, 'cena de KO própria salva e usada só para o personagem; os outros ficam com a padrão');
 
   // ---- miniaturas animadas nos campos de efeito (projétil da Rajada de Ki do Bills)
   await p.goto(R + 'estudio.html?aba=golpes&personagem=bills&golpe=rajada_ki');

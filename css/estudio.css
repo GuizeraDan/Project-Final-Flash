@@ -207,3 +207,12 @@ a { color: var(--ouro); }
 .es-favs-tit { font-weight: bold; color: var(--ouro, #ffd84a); margin: 14px 0 6px; font-size: 14px; border-bottom: 1px solid var(--linha, #3a2a66); padding-bottom: 3px; }
 .es-favs-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
 .es-barra button.on { border-color: var(--ouro, #ffd84a); color: var(--ouro, #ffd84a); }
+
+.es-som-nome.renomeado { color: #ffe9a8; }
+.es-som-renomear { flex: 1; min-width: 0; }
+
+.es-seletor-acoes { margin-left: auto; display: flex; gap: 2px; flex: none; }
+.es-seletor-acoes button { opacity: 0.35; padding: 1px 4px; font-size: 11px; }
+.es-seletor-fonte:hover .es-seletor-acoes button, .es-seletor-acoes .es-fav-bt.on { opacity: 1; }
+.es-cartao .es-cartao-del { position: absolute; top: 3px; left: 3px; right: auto; opacity: 0; }
+.es-cartao:hover .es-cartao-del { opacity: 1; }

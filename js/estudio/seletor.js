@@ -33,7 +33,7 @@ window.FF = window.FF || {};
       const pb = b === 'fx' ? 0 : b === 'fx_extra' ? 1 : UTIL.includes(b) ? 3 : 2;
       return pa - pb || a.localeCompare(b);
     });
-    const acervo = Object.keys(FF.Assets.acervo());                      // já vem em ordem de categoria/nome
+    const acervo = Object.keys(FF.Assets.acervo()).filter(id => !FF.Assets.spriteOculto(id));   // já vem em ordem de categoria/nome; sem os excluídos
     const porCat = {};
     acervo.forEach(id => { (porCat[FF.Assets.categoriaSprite(id)] = porCat[FF.Assets.categoriaSprite(id)] || []).push(id); });
     const cats = ORDEM_CAT.filter(c => porCat[c]).concat(Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c)));
@@ -42,7 +42,7 @@ window.FF = window.FF || {};
     const NM = nomes();
 
     let fonte = o.inicio || (o.atual && o.atual.sprite) || E.rascunho.ler('seletor_fonte') || 'efeitos';
-    if (fonte !== 'efeitos' && fonte !== 'todos' && !/^(cat|fav)(:|$)/.test(fonte) && !ids.includes(fonte)) fonte = 'efeitos';
+    if (fonte !== 'efeitos' && fonte !== 'todos' && !/^(cat|fav)(:|$)/.test(fonte) && fonte !== 'lixeira' && !ids.includes(fonte)) fonte = 'efeitos';
 
     const c = E.el('div', 'es-seletor');
     const lado = E.el('div', 'es-seletor-fontes');
@@ -78,7 +78,8 @@ window.FF = window.FF || {};
     const itensAcervo = (id, idx) => {
       const s = FF.Assets.sprites[id];
       if (s) return itensJogo(id);
-      return Object.entries(idx[id] || {}).map(([a, n]) => ({ id, a, s: null, n }));
+      const apag = (FF.Mods && FF.Mods.ler()[id]) || {};
+      return Object.entries(idx[id] || {}).filter(([a]) => !(apag[a] && apag[a].apagada)).map(([a, n]) => ({ id, a, s: null, n }));
     };
 
     // ---- coluna da esquerda
@@ -90,7 +91,21 @@ window.FF = window.FF || {};
       const t = E.el('span'); t.textContent = texto;
       b.append(cv, t);
       if (sub) { const s = E.el('small'); s.textContent = sub; b.appendChild(s); }
-      if (FF.Favoritos && ids.includes(chave)) b.appendChild(FF.Favoritos.botao(chave, null, () => { contarFav(); render(); }));   // ☆ sprite inteiro
+      if (FF.Favoritos && ids.includes(chave)) {
+        const ac = E.el('span', 'es-seletor-acoes');
+        ac.appendChild(E.botao('✏', (e) => {   // renomear o sprite (nome que aparece nas listas)
+          e.stopPropagation();
+          const inp = document.createElement('input'); inp.value = FF.Assets.nomeSprite(chave); inp.className = 'es-som-renomear';
+          t.replaceWith(inp); inp.focus(); inp.select();
+          inp.onclick = (ev) => ev.stopPropagation();
+          const fim = (ok) => { if (ok) E.mudarInfoSprite(chave, { nome: inp.value.trim() && inp.value.trim() !== (FF.Assets.acervo()[chave] || [])[1] ? inp.value.trim() : null }); t.textContent = inp.value.trim() || texto; inp.replaceWith(t); };
+          inp.onkeydown = (ev) => { if (ev.key === 'Enter') fim(true); if (ev.key === 'Escape') fim(false); };
+          inp.onblur = () => fim(true);
+        }, 'Renomear este sprite'));
+        if (FF.Assets.doAcervo(chave)) ac.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); E.mudarInfoSprite(chave, { oculto: true }); b.remove(); E.aviso('🗑 Sprite excluído das listas (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir este sprite das listas (vai para a Lixeira)', 'es-bt-perigo'));
+        ac.appendChild(FF.Favoritos.botao(chave, null, () => { contarFav(); render(); }));   // ☆ sprite inteiro
+        b.appendChild(ac);
+      }
       b.onclick = () => { fonte = chave; E.rascunho.gravar('seletor_fonte', chave); marcar(); render(); };
       (pai || lado).appendChild(b);
       return cv;
@@ -115,6 +130,7 @@ window.FF = window.FF || {};
     };
     bt('todos', '★ Tudo', null);
     lado.appendChild(favBox); contarFav();
+    { const b = E.el('div', 'es-item es-seletor-fonte' + (fonte === 'lixeira' ? ' sel' : '')); b.dataset.fonte = 'lixeira'; b.appendChild(E.el('span', null, '🗑 Lixeira (excluídos)')); b.onclick = () => { fonte = 'lixeira'; marcar(); render(); }; lado.appendChild(b); }
     lado.appendChild(E.el('div', 'es-sub', 'Do jogo (' + jogo.length + ')'));
     jogo.forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null), id));
 
@@ -175,6 +191,7 @@ window.FF = window.FF || {};
       }
       else if (/^cat:/.test(fonte)) { const [cc, tp] = fonte.slice(4).split(':'); lista = (porCat[cc] || []).filter(id => !tp || FF.Assets.tipoSprite(id) === tp); }
       else lista = [fonte];
+      if (fonte === 'lixeira') return renderLixeira();
       grade.innerHTML = '<p class="es-vazio">Carregando…</p>';
       const doJogo = lista.filter(id => !FF.Assets.doAcervo(id));
       const doAcervo = lista.filter(id => FF.Assets.doAcervo(id));
@@ -200,6 +217,7 @@ window.FF = window.FF || {};
         k.title = x.id + ' · ' + x.a + ' (' + x.n + ' quadros)';
         k.append(cv, sp, sb);
         if (FF.Favoritos) k.appendChild(FF.Favoritos.botao(x.id, x.a, () => { contarFav(); if (favs) render(); }));
+        if (FF.Mods) { const del = E.botao('🗑', (e) => { e.stopPropagation(); e.preventDefault(); FF.Mods.apagar(x.id, x.a); k.remove(); E.aviso('🗑 Animação "' + x.a + '" excluída (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir esta animação (vai para a Lixeira)', 'es-fav-bt es-cartao-del'); del.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(del); }
         const desenhar = (s) => {
           if (!s.has(x.a)) return;
           E.miniatura(cv, s, x.a, Math.floor(s.anim(x.a).frames.length / 2));
@@ -216,6 +234,26 @@ window.FF = window.FF || {};
       if (sel0) { const s = grade.querySelector('.es-cartao.sel'); if (s) s.scrollIntoView({ block: 'center' }); sel0 = false; }
     };
     let sel0 = true;
+    // 🗑 Lixeira: sprites e animações excluídos, com "Restaurar"
+    function renderLixeira() {
+      grade.innerHTML = '';
+      const spr = FF.Assets.listaSprites(true).filter(id => FF.Assets.spriteOculto(id));
+      const anims = [];
+      Object.entries((FF.Mods && FF.Mods.ler()) || {}).forEach(([id, m]) => Object.entries(m || {}).forEach(([a, v]) => { if (v && v.apagada) anims.push({ id, a }); }));
+      info.textContent = spr.length + ' sprite(s) e ' + anims.length + ' animação(ões) excluídos';
+      const cartao = (txt, sub, id, anim, restaurar) => {
+        const k = E.el('div', 'es-cartao');
+        const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
+        const sp = E.el('span'); sp.textContent = txt;
+        const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = sub;
+        k.append(cv, sp, sb, E.botao('↺ Restaurar', (e) => { e.stopPropagation(); restaurar(); renderLixeira(); }, 'Voltar para as listas'));
+        desenharQuando(k, id, (s) => { const a = anim && s.def._orig && s.def._orig[anim] ? null : (anim && s.has(anim) ? anim : Object.keys(s.def.anims)[0]); if (a) E.miniatura(cv, s, a, 0); });
+        grade.appendChild(k);
+      };
+      spr.forEach(id => cartao(FF.Assets.nomeSprite(id), 'sprite inteiro · ' + id, id, null, () => E.mudarInfoSprite(id, { oculto: null })));
+      anims.forEach(x => cartao(x.a, FF.Assets.nomeSprite(x.id), x.id, x.a, () => FF.Mods.restaurar(x.id, x.a)));
+      if (!spr.length && !anims.length) grade.innerHTML = '<p class="es-vazio">A Lixeira está vazia.</p>';
+    }
     // efeito = tudo do fx/fx_extra, sprites importados marcados como efeito e animações "soltas" de lutadores
     // (as que não são poses do personagem, ex.: Bills_Esfera). Do acervo, entra a categoria Efeitos inteira.
     const POSES = /^(Special|Ultimate|UltimateAttack|Attack|Dano|SendoLancado|Caido|Parado|Movimento|Pulando|Agachado|CarregandoKi|Sparking|Defesa|Teletransporte|Dash|Dragon_Rush|Troca_De|Change|Vitoria|Pose_De|Intro|Destransformation|Transformation)/;

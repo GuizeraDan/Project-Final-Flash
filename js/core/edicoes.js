@@ -10,6 +10,9 @@
 //         personagens[id]   (Estúdio: campos que substituem os do JSON — nome, atributos, formas, buffs, ia,
 //                            vozes, formaInicial; ou {"novo": true, "def": {...}} para um personagem criado),
 //         favoritos["sprite" | "sprite#animação"] = "efeitos"|"personagens"|"cenarios"|"interface"  (Estúdio: ⭐ do usuário),
+//         sons[id do som] = {nome?, apagado?, usr?, dur?}  (Estúdio: renomear/excluir qualquer som; usr = importado,
+//                            arquivo em assets/audio/usr/, id "usr/<nome>.<ext>"),
+//         spritesInfo[id].nome / .oculto (Estúdio: nome de exibição / sprite excluído das listas),
 //         favSons[id do som] = categoria (explosao, golpe, ki, aura, voz, movimento, musica, interface, outros),
 //         ko[id|"padrao"]   (Estúdio: cena de KO — linha do tempo tocada quando o personagem é derrotado; js/battle/ko.js),
 //         spritesNovos[id]  (Estúdio: definição de sprite importado; atlas em assets/img/usr/<id>.png),
@@ -27,7 +30,7 @@ FF.Edicoes = {
   TOKEN: 'ff_github_token',
 
   ULT: 'ff_edicoes_ultimo',
-  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko', 'favoritos', 'favSons'],
+  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko', 'favoritos', 'favSons', 'sons'],
   // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
   // vale a de "rev" mais nova
   base() {

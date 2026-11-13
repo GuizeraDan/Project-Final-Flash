@@ -202,6 +202,7 @@ FF.start = async function (escolhida) {
   FF.Input.init(canvas);
 
   const params = new URLSearchParams(location.search);
+  FF.Audio.prepararLocais();   // sons importados no Estúdio que ainda não subiram (cópia deste aparelho)
   let def;
   if (escolhida && typeof escolhida === 'object') def = escolhida;     // Batalha Livre (montada na seleção)
   else def = await FF.Assets.loadJSON('data/battles/' + (params.get('batalha') || escolhida || 'saiyajin_01') + '.json');

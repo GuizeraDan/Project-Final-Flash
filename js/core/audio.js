@@ -15,11 +15,27 @@ FF.Audio = {
     if (!list) list = this.pool[name] = [];
     let a = list.find(x => x.paused || x.ended);
     if (!a) {
-      a = new Audio(this.base + name + this.ext);
+      a = new Audio(this.url(name));
       a.preload = 'auto';
       list.push(a);
     }
     return a;
+  },
+
+  // caminho do som: ids com extensão (sons importados, ex.: "usr/meu_som.mp3") e cópia local enquanto não sobe
+  locais: {},
+  url(name) {
+    if (this.locais[name]) return this.locais[name];
+    return this.base + name + (/\.(ogg|mp3|wav|m4a|aac|webm)$/i.test(name) ? '' : this.ext);
+  },
+  async prepararLocais() {
+    if (!FF.ImagensUsr) return;
+    try {
+      for (const x of await FF.ImagensUsr.todas()) {
+        if (x.enviada || !/^assets\/audio\//.test(x.caminho) || !x.blob) continue;
+        this.locais[x.caminho.slice(this.base.length)] = URL.createObjectURL(x.blob);
+      }
+    } catch (e) { /* sem IndexedDB */ }
   },
 
   preload(names) {
@@ -40,7 +56,7 @@ FF.Audio = {
 
   // Loop contínuo (ex.: carregar ki). Retorna função para parar.
   loop(name, vol) {
-    const a = new Audio(this.base + name + this.ext);
+    const a = new Audio(this.url(name));
     a.loop = true;
     a.volume = vol == null ? this.volSfx : vol;
     a.play().catch(() => {});
@@ -55,7 +71,7 @@ FF.Audio = {
     if (this.musica) { this.musica.pause(); this.musica = null; }
     this.musicaNome = name || null;
     if (!name) return null;
-    const a = new Audio(this.base + name + this.ext);
+    const a = new Audio(this.url(name));
     a.loop = true;
     a.volume = this.volMusica;
     // o navegador só deixa tocar som depois de um toque/tecla: se bloquear, tenta de novo no 1º gesto

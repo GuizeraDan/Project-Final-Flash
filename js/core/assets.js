@@ -33,10 +33,11 @@ FF.Assets = {
   },
 
   // listas para as ferramentas e a Batalha Livre (inclui o que foi criado no Estúdio e o acervo do ZL3)
-  listaSprites() {
+  listaSprites(comOcultos) {
     const l = ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).sprites || [];
     const novos = FF.Edicoes ? Object.keys(FF.Edicoes.dados().spritesNovos || {}) : [];
-    return [...new Set(l.concat(novos, Object.keys(this.acervo())))];
+    const t = [...new Set(l.concat(novos, Object.keys(this.acervo())))];
+    return comOcultos ? t : t.filter(id => !this.spriteOculto(id));   // excluídos no Estúdio somem das listas (o jogo ainda abre se algum golpe usar)
   },
 
   // ---- acervo do Z Legends 3 (tools/extrair_acervo.py): data/acervo/<id>.js, fora do bundle,
@@ -46,7 +47,9 @@ FF.Assets = {
   doAcervo(id) { return !!this.acervo()[id]; },
   // 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes' para o acervo; 'jogo' para os do projeto
   categoriaSprite(id) { const a = this.acervo()[id]; return a ? a[0] : 'jogo'; },
-  nomeSprite(id) { const a = this.acervo()[id]; return a ? a[1] : id; },
+  infoSprite(id) { return (FF.Edicoes && (FF.Edicoes.dados().spritesInfo || {})[id]) || {}; },
+  nomeSprite(id) { const n = this.infoSprite(id).nome; if (n) return n; const a = this.acervo()[id]; return a ? a[1] : id; },
+  spriteOculto(id) { return !!this.infoSprite(id).oculto; },
   // tipo do conteúdo (vale para todas as fontes): 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes'; 'jogo' fora do acervo
   tipoSprite(id) {
     const fav = FF.Favoritos && FF.Favoritos.de(id);   // o usuário disse o que é (⭐ no Estúdio)

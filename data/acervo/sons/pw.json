@@ -412,16 +412,6 @@
    "dur": 1.25,
    "cat": "ki"
   },
-  "kiblast": {
-   "nome": "kiblast",
-   "dur": 1.25,
-   "cat": "ki"
-  },
-  "meleestruggletie": {
-   "nome": "meleestruggletie",
-   "dur": 1.63,
-   "cat": "golpe"
-  },
   "solarflare": {
    "nome": "solarflare",
    "dur": 1.59,

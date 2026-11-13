@@ -67,7 +67,8 @@ window.FF = window.FF || {};
       if (!F.lista().length) { corpo.appendChild(E.el('p', 'es-vazio', 'Nenhum som favoritado ainda. Abra o seletor de sons (botão 🎧 num campo de som) e clique na ☆.')); return; }
       const info = {};
       E.sonsAcervo().forEach(([id, nome, dur, cat, fonte]) => (info[id] = { nome, dur, fonte }));
-      const NOMES = Object.assign({ zl3: 'Z Legends 3' }, (window.FF_ACERVO_SONS && FF_ACERVO_SONS.fontes) || {});
+      if (FF.SonsUsr) FF.SonsUsr.importados().forEach(v => (info[v.id] = { nome: v.nome, dur: v.dur, fonte: 'usr' }));
+      const NOMES = Object.assign({ zl3: 'Z Legends 3', usr: 'Meus sons' }, (window.FF_ACERVO_SONS && FF_ACERVO_SONS.fontes) || {});
       F.TIPOS.forEach(([t, ic]) => {
         const l = F.lista(t);
         if (!l.length) return;
@@ -81,7 +82,7 @@ window.FF = window.FF || {};
             this.tocando = FF.Audio.play(id); this.tocandoId = id; play.textContent = '■';
             if (this.tocando) this.tocando.onended = () => { play.textContent = '▶'; };
           }, 'Ouvir');
-          const n = E.el('span', 'es-som-nome'); n.textContent = x.nome; n.title = id;
+          const n = E.el('span', 'es-som-nome'); n.textContent = (FF.SonsUsr && FF.SonsUsr.nome(id)) || x.nome; n.title = id;
           const meta = E.el('small', 'es-som-meta'); meta.textContent = (NOMES[x.fonte] || x.fonte) + (x.dur ? ' · ' + x.dur.toFixed(1).replace('.', ',') + ' s' : '');
           const copiar = E.botao('📋', () => { navigator.clipboard && navigator.clipboard.writeText(id).catch(() => {}); E.aviso('Copiado: ' + id); }, 'Copiar o nome do som (para colar num campo de som)');
           r.append(play, n, meta, copiar, F.botao(id, null, () => this.render()));
