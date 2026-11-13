@@ -1,0 +1,171 @@
+{
+ "chave": "spw",
+ "nome": "Super Pixel Warriors",
+ "sons": {
+  "avolta": {
+   "nome": "aVolta",
+   "dur": 0.46,
+   "cat": "movimento"
+  },
+  "cair": {
+   "nome": "cair",
+   "dur": 1.36,
+   "cat": "golpe"
+  },
+  "charge": {
+   "nome": "Charge",
+   "dur": 2.28,
+   "cat": "ki"
+  },
+  "defesa": {
+   "nome": "Defesa",
+   "dur": 0.68,
+   "cat": "golpe"
+  },
+  "descend": {
+   "nome": "descend",
+   "dur": 0.74,
+   "cat": "movimento"
+  },
+  "error": {
+   "nome": "Error",
+   "dur": 0.82,
+   "cat": "interface"
+  },
+  "explosion1": {
+   "nome": "Explosion1",
+   "dur": 2.28,
+   "cat": "explosao"
+  },
+  "explosion2": {
+   "nome": "Explosion2",
+   "dur": 2.42,
+   "cat": "explosao"
+  },
+  "kamecarga": {
+   "nome": "KameCarga",
+   "dur": 0.92,
+   "cat": "ki"
+  },
+  "kametiro": {
+   "nome": "KameTiro",
+   "dur": 1.56,
+   "cat": "ki"
+  },
+  "kiblast": {
+   "nome": "kiblast",
+   "dur": 1.23,
+   "cat": "ki"
+  },
+  "musica1": {
+   "nome": "Musica1",
+   "dur": 58.2,
+   "cat": "musica"
+  },
+  "musica10": {
+   "nome": "Musica10",
+   "dur": 100.26,
+   "cat": "musica"
+  },
+  "musica11": {
+   "nome": "Musica11",
+   "dur": 80.01,
+   "cat": "musica"
+  },
+  "musica12": {
+   "nome": "Musica12",
+   "dur": 72.93,
+   "cat": "musica"
+  },
+  "musica13": {
+   "nome": "Musica13",
+   "dur": 127.91,
+   "cat": "musica"
+  },
+  "musica2": {
+   "nome": "Musica2",
+   "dur": 91.66,
+   "cat": "musica"
+  },
+  "musica3": {
+   "nome": "Musica3",
+   "dur": 82.87,
+   "cat": "musica"
+  },
+  "musica4": {
+   "nome": "Musica4",
+   "dur": 153.97,
+   "cat": "musica"
+  },
+  "musica5": {
+   "nome": "Musica5",
+   "dur": 108.04,
+   "cat": "musica"
+  },
+  "musica6": {
+   "nome": "Musica6",
+   "dur": 125.39,
+   "cat": "musica"
+  },
+  "musica7": {
+   "nome": "Musica7",
+   "dur": 145.48,
+   "cat": "musica"
+  },
+  "musica8": {
+   "nome": "Musica8",
+   "dur": 193.79,
+   "cat": "musica"
+  },
+  "musica9": {
+   "nome": "Musica9",
+   "dur": 141.57,
+   "cat": "musica"
+  },
+  "popup_close": {
+   "nome": "Popup Close",
+   "dur": 2.01,
+   "cat": "interface"
+  },
+  "popup_open": {
+   "nome": "Popup Open",
+   "dur": 2.02,
+   "cat": "interface"
+  },
+  "sensu": {
+   "nome": "sensu",
+   "dur": 3.2,
+   "cat": "outros"
+  },
+  "socofraco": {
+   "nome": "SocoFraco",
+   "dur": 0.68,
+   "cat": "golpe"
+  },
+  "socofraco2": {
+   "nome": "SocoFraco2",
+   "dur": 0.68,
+   "cat": "golpe"
+  },
+  "special_fire": {
+   "nome": "Special fire",
+   "dur": 3.76,
+   "cat": "ki"
+  },
+  "summining_shenron_sound": {
+   "nome": "Summining Shenron Sound",
+   "dur": 5.02,
+   "cat": "outros"
+  },
+  "swipe": {
+   "nome": "Swipe",
+   "dur": 0.79,
+   "cat": "movimento"
+  },
+  "teleport": {
+   "nome": "teleport",
+   "dur": 0.76,
+   "cat": "movimento"
+  }
+ }
+}

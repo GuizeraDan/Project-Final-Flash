@@ -1,0 +1,181 @@
+{
+ "chave": "mc",
+ "nome": "Mini Champion",
+ "sons": {
+  "airrecover": {
+   "nome": "airrecover",
+   "dur": 1.21,
+   "cat": "movimento"
+  },
+  "ataque_1": {
+   "nome": "ataque 1",
+   "dur": 0.37,
+   "cat": "golpe"
+  },
+  "beamhead": {
+   "nome": "beamhead",
+   "dur": 3.23,
+   "cat": "ki"
+  },
+  "bgm05": {
+   "nome": "BGM05",
+   "dur": 258.31,
+   "cat": "musica"
+  },
+  "bgm10": {
+   "nome": "BGM10",
+   "dur": 256.94,
+   "cat": "musica"
+  },
+  "bgm11": {
+   "nome": "BGM11",
+   "dur": 202.74,
+   "cat": "musica"
+  },
+  "bgm12": {
+   "nome": "BGM12",
+   "dur": 248.0,
+   "cat": "musica"
+  },
+  "bgm13": {
+   "nome": "BGM13",
+   "dur": 224.65,
+   "cat": "musica"
+  },
+  "bgm14": {
+   "nome": "BGM14",
+   "dur": 211.91,
+   "cat": "musica"
+  },
+  "bgm26": {
+   "nome": "BGM26",
+   "dur": 318.55,
+   "cat": "musica"
+  },
+  "bgm56": {
+   "nome": "BGM56",
+   "dur": 203.36,
+   "cat": "musica"
+  },
+  "cair": {
+   "nome": "cair",
+   "dur": 1.36,
+   "cat": "golpe"
+  },
+  "chute_medio": {
+   "nome": "chute medio",
+   "dur": 0.36,
+   "cat": "golpe"
+  },
+  "explosion2": {
+   "nome": "Explosion2",
+   "dur": 2.4,
+   "cat": "explosao"
+  },
+  "groundhit2": {
+   "nome": "groundhit2",
+   "dur": 0.8,
+   "cat": "golpe"
+  },
+  "groundrecover": {
+   "nome": "groundrecover",
+   "dur": 0.42,
+   "cat": "movimento"
+  },
+  "jump": {
+   "nome": "jump",
+   "dur": 1.07,
+   "cat": "movimento"
+  },
+  "kiblast": {
+   "nome": "kiblast",
+   "dur": 1.22,
+   "cat": "ki"
+  },
+  "kiplosion": {
+   "nome": "kiplosion",
+   "dur": 3.08,
+   "cat": "explosao"
+  },
+  "meleestruggletie": {
+   "nome": "meleestruggletie",
+   "dur": 1.64,
+   "cat": "golpe"
+  },
+  "prepunch1": {
+   "nome": "prepunch1",
+   "dur": 0.98,
+   "cat": "golpe"
+  },
+  "soco_defesa": {
+   "nome": "soco defesa",
+   "dur": 0.2,
+   "cat": "golpe"
+  },
+  "soco_forte": {
+   "nome": "soco forte",
+   "dur": 1.36,
+   "cat": "golpe"
+  },
+  "soco_medio": {
+   "nome": "soco medio",
+   "dur": 0.41,
+   "cat": "golpe"
+  },
+  "super_saiyajim_1_dominado_saga_cell": {
+   "nome": "super saiyajim 1 dominado saga cell",
+   "dur": 10.96,
+   "cat": "aura"
+  },
+  "teleport00": {
+   "nome": "teleport00",
+   "dur": 0.51,
+   "cat": "movimento"
+  },
+  "tick2": {
+   "nome": "Tick2",
+   "dur": 0.33,
+   "cat": "interface"
+  },
+  "wallhit": {
+   "nome": "wallhit",
+   "dur": 3.08,
+   "cat": "golpe"
+  },
+  "1_bigatack": {
+   "nome": "1-BigAtack",
+   "dur": 0.82,
+   "cat": "explosao"
+  },
+  "2_leser": {
+   "nome": "2-Leser",
+   "dur": 0.78,
+   "cat": "ki"
+  },
+  "4_kienza": {
+   "nome": "4-Kienza",
+   "dur": 1.21,
+   "cat": "ki"
+  },
+  "deathball_charge": {
+   "nome": "deathball_charge",
+   "dur": 8.3,
+   "cat": "ki"
+  },
+  "genki_fire": {
+   "nome": "Genki fire",
+   "dur": 2.22,
+   "cat": "ki"
+  },
+  "kamehameha_fire": {
+   "nome": "kamehameha_fire",
+   "dur": 5.4,
+   "cat": "ki"
+  },
+  "makanko": {
+   "nome": "Makanko",
+   "dur": 5.7,
+   "cat": "ki"
+  }
+ }
+}

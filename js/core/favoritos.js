@@ -2,16 +2,17 @@
 // (efeito, personagem, cenário, interface). Guardado em data/edicoes.js → favoritos (vale em todos os aparelhos):
 //   favoritos["zl3_explosoes"] = "efeitos"            sprite inteiro (também muda o tipo dele: FF.Assets.tipoSprite)
 //   favoritos["dw_aura#Todos"] = "efeitos"            uma animação só
+//   favSons["acervo/swz/explosao_1"] = "explosao"      sons (FF.FavSons), separados por categoria
 window.FF = window.FF || {};
 
-FF.Favoritos = {
-  TIPOS: [['efeitos', '✺', 'Efeito'], ['personagens', '🥋', 'Personagem'], ['cenarios', '🏞', 'Cenário'], ['interface', '🖥', 'Interface']],
+FF.criarFavoritos = (secao, TIPOS, plural) => ({
+  secao, TIPOS, plural,
   icone(t) { const x = this.TIPOS.find(k => k[0] === t); return x ? x[1] : '⭐'; },
   nome(t) { const x = this.TIPOS.find(k => k[0] === t); return x ? x[2] : t; },
-  todos() { return (FF.Edicoes && FF.Edicoes.dados().favoritos) || {}; },
+  todos() { return (FF.Edicoes && FF.Edicoes.dados()[this.secao]) || {}; },
   chave(sprite, anim) { return anim ? sprite + '#' + anim : sprite; },
   de(sprite, anim) { return this.todos()[this.chave(sprite, anim)] || null; },
-  marcar(sprite, anim, tipo) { FF.Edicoes.setDepois(['favoritos', this.chave(sprite, anim)], tipo || null); },
+  marcar(sprite, anim, tipo) { FF.Edicoes.setDepois([this.secao, this.chave(sprite, anim)], tipo || null); },
   // [{sprite, anim|null, tipo}] (tipo opcional filtra)
   lista(tipo) {
     return Object.entries(this.todos()).filter(([, t]) => !tipo || t === tipo).map(([k, t]) => {
@@ -26,7 +27,7 @@ FF.Favoritos = {
     const m = document.createElement('div');
     m.className = 'es-fav-menu';
     const tit = document.createElement('div'); tit.className = 'es-fav-tit';
-    tit.textContent = '⭐ ' + (anim ? 'Favoritar a animação "' + anim + '" como:' : 'Favoritar o sprite inteiro como:');
+    tit.textContent = '⭐ ' + (this.secao === 'favSons' ? 'Favoritar este som como:' : anim ? 'Favoritar a animação "' + anim + '" como:' : 'Favoritar o sprite inteiro como:');
     m.appendChild(tit);
     this.TIPOS.forEach(([t, ic, nm]) => {
       const b = document.createElement('button');
@@ -51,10 +52,20 @@ FF.Favoritos = {
   botao(sprite, anim, aoMudar) {
     const b = document.createElement('button');
     b.className = 'es-fav-bt';
-    const pintar = () => { const t = this.de(sprite, anim); b.textContent = t ? '⭐' + this.icone(t) : '☆'; b.classList.toggle('on', !!t); b.title = t ? 'Favorito: ' + this.nome(t) + ' (clique para mudar)' : (anim ? 'Favoritar esta animação' : 'Favoritar este sprite'); };
+    const pintar = () => { const t = this.de(sprite, anim); b.textContent = t ? '⭐' + this.icone(t) : '☆'; b.classList.toggle('on', !!t); b.title = t ? 'Favorito: ' + this.nome(t) + ' (clique para mudar)' : (this.secao === 'favSons' ? 'Favoritar este som' : anim ? 'Favoritar esta animação' : 'Favoritar este sprite'); };
     pintar();
     b.onclick = (e) => { e.stopPropagation(); e.preventDefault(); this.menu(b, sprite, anim, (t) => { pintar(); aoMudar && aoMudar(t); }); };
     b.addEventListener('pointerdown', (e) => e.stopPropagation());
     return b;
   },
-};
+});
+
+// sprites (o tipo de um sprite inteiro do acervo vira o tipo dele; "Explosão" conta como efeito)
+FF.Favoritos = FF.criarFavoritos('favoritos',
+  [['explosoes', '💥', 'Explosão'], ['efeitos', '✺', 'Efeito'], ['personagens', '🥋', 'Personagem'], ['cenarios', '🏞', 'Cenário'], ['interface', '🖥', 'Interface']],
+  { explosoes: 'Explosões', efeitos: 'Efeitos', personagens: 'Personagens', cenarios: 'Cenários', interface: 'Interface' });
+// sons (id do som = o nome que o FF.Audio toca, ex.: "acervo/swz/frz_ep_1_voz_tz" ou "goku_kamehame_fire")
+FF.FavSons = FF.criarFavoritos('favSons',
+  [['explosao', '💥', 'Explosão'], ['golpe', '👊', 'Golpe / impacto'], ['ki', '⚡', 'Ki / energia'], ['aura', '✨', 'Aura / transformação'],
+    ['voz', '🗣', 'Voz / personagem'], ['movimento', '💨', 'Movimento'], ['musica', '🎵', 'Música'], ['interface', '🖥', 'Interface'], ['outros', '🔊', 'Outros']],
+  { explosao: 'Explosões', golpe: 'Golpes e impactos', ki: 'Ki e energia', aura: 'Auras e transformações', voz: 'Vozes e personagens', movimento: 'Movimentos', musica: 'Músicas', interface: 'Interface', outros: 'Outros' });

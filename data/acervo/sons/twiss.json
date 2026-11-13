@@ -1,0 +1,96 @@
+{
+ "chave": "twiss",
+ "nome": "Twiss Dragno",
+ "sons": {
+  "sn_bola": {
+   "nome": "sn_bola",
+   "dur": 1.01,
+   "cat": "outros"
+  },
+  "sn_bola_explosion": {
+   "nome": "sn_bola_explosion",
+   "dur": 2.16,
+   "cat": "explosao"
+  },
+  "sn_buy": {
+   "nome": "sn_buy",
+   "dur": 1.37,
+   "cat": "outros"
+  },
+  "sn_charge_ki_1": {
+   "nome": "sn_charge_ki_1",
+   "dur": 1.43,
+   "cat": "ki"
+  },
+  "sn_charge_ki_2": {
+   "nome": "sn_charge_ki_2",
+   "dur": 1.85,
+   "cat": "ki"
+  },
+  "sn_click": {
+   "nome": "sn_click",
+   "dur": 0.04,
+   "cat": "interface"
+  },
+  "sn_hit_1": {
+   "nome": "sn_hit_1",
+   "dur": 0.44,
+   "cat": "golpe"
+  },
+  "sn_hit_2": {
+   "nome": "sn_hit_2",
+   "dur": 0.44,
+   "cat": "golpe"
+  },
+  "sn_hit_3": {
+   "nome": "sn_hit_3",
+   "dur": 0.44,
+   "cat": "golpe"
+  },
+  "sn_seed": {
+   "nome": "sn_seed",
+   "dur": 0.32,
+   "cat": "outros"
+  },
+  "sn_skill_1": {
+   "nome": "sn_skill_1",
+   "dur": 1.97,
+   "cat": "outros"
+  },
+  "sn_skill_2": {
+   "nome": "sn_skill_2",
+   "dur": 4.98,
+   "cat": "outros"
+  },
+  "sn_skill_3": {
+   "nome": "sn_skill_3",
+   "dur": 2.17,
+   "cat": "outros"
+  },
+  "sn_skill_explosion": {
+   "nome": "sn_skill_explosion",
+   "dur": 2.75,
+   "cat": "explosao"
+  },
+  "sn_skill1_charge": {
+   "nome": "sn_skill1_charge",
+   "dur": 0.68,
+   "cat": "ki"
+  },
+  "sn_skill2_charge": {
+   "nome": "sn_skill2_charge",
+   "dur": 1.74,
+   "cat": "ki"
+  },
+  "sn_teleport": {
+   "nome": "sn_teleport",
+   "dur": 1.49,
+   "cat": "movimento"
+  },
+  "sn_tp": {
+   "nome": "sn_tp",
+   "dur": 0.46,
+   "cat": "outros"
+  }
+ }
+}

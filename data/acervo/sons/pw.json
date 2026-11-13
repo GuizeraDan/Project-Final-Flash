@@ -1,0 +1,436 @@
+{
+ "chave": "pw",
+ "nome": "Power Warrior",
+ "sons": {
+  "14": {
+   "nome": "14",
+   "dur": 127.53,
+   "cat": "musica"
+  },
+  "18": {
+   "nome": "18",
+   "dur": 54.07,
+   "cat": "musica"
+  },
+  "9": {
+   "nome": "9",
+   "dur": 132.49,
+   "cat": "musica"
+  },
+  "38": {
+   "nome": "38",
+   "dur": 155.4,
+   "cat": "musica"
+  },
+  "4": {
+   "nome": "4",
+   "dur": 48.0,
+   "cat": "musica"
+  },
+  "10old": {
+   "nome": "10Old",
+   "dur": 152.11,
+   "cat": "musica"
+  },
+  "14old": {
+   "nome": "14Old",
+   "dur": 127.53,
+   "cat": "musica"
+  },
+  "40": {
+   "nome": "40",
+   "dur": 147.51,
+   "cat": "musica"
+  },
+  "17": {
+   "nome": "17",
+   "dur": 168.46,
+   "cat": "musica"
+  },
+  "34": {
+   "nome": "34",
+   "dur": 217.99,
+   "cat": "musica"
+  },
+  "21": {
+   "nome": "21",
+   "dur": 96.05,
+   "cat": "musica"
+  },
+  "41": {
+   "nome": "41",
+   "dur": 251.9,
+   "cat": "musica"
+  },
+  "8": {
+   "nome": "8",
+   "dur": 106.58,
+   "cat": "musica"
+  },
+  "42": {
+   "nome": "42",
+   "dur": 223.82,
+   "cat": "musica"
+  },
+  "47": {
+   "nome": "47",
+   "dur": 222.38,
+   "cat": "musica"
+  },
+  "29": {
+   "nome": "29",
+   "dur": 96.05,
+   "cat": "musica"
+  },
+  "43": {
+   "nome": "43",
+   "dur": 310.99,
+   "cat": "musica"
+  },
+  "16": {
+   "nome": "16",
+   "dur": 141.4,
+   "cat": "musica"
+  },
+  "37": {
+   "nome": "37",
+   "dur": 282.59,
+   "cat": "musica"
+  },
+  "31": {
+   "nome": "31",
+   "dur": 112.43,
+   "cat": "musica"
+  },
+  "story": {
+   "nome": "Story",
+   "dur": 71.34,
+   "cat": "musica"
+  },
+  "32": {
+   "nome": "32",
+   "dur": 92.79,
+   "cat": "musica"
+  },
+  "5": {
+   "nome": "5",
+   "dur": 34.29,
+   "cat": "musica"
+  },
+  "6": {
+   "nome": "6",
+   "dur": 148.92,
+   "cat": "musica"
+  },
+  "44": {
+   "nome": "44",
+   "dur": 154.42,
+   "cat": "musica"
+  },
+  "39": {
+   "nome": "39",
+   "dur": 236.15,
+   "cat": "musica"
+  },
+  "19": {
+   "nome": "19",
+   "dur": 58.36,
+   "cat": "musica"
+  },
+  "1": {
+   "nome": "1",
+   "dur": 217.1,
+   "cat": "musica"
+  },
+  "11": {
+   "nome": "11",
+   "dur": 139.26,
+   "cat": "musica"
+  },
+  "36": {
+   "nome": "36",
+   "dur": 217.65,
+   "cat": "musica"
+  },
+  "0": {
+   "nome": "0",
+   "dur": 72.4,
+   "cat": "musica"
+  },
+  "25": {
+   "nome": "25",
+   "dur": 65.46,
+   "cat": "musica"
+  },
+  "35": {
+   "nome": "35",
+   "dur": 191.78,
+   "cat": "musica"
+  },
+  "30": {
+   "nome": "30",
+   "dur": 83.75,
+   "cat": "musica"
+  },
+  "15": {
+   "nome": "15",
+   "dur": 121.91,
+   "cat": "musica"
+  },
+  "3": {
+   "nome": "3",
+   "dur": 31.5,
+   "cat": "musica"
+  },
+  "20": {
+   "nome": "20",
+   "dur": 126.07,
+   "cat": "musica"
+  },
+  "23": {
+   "nome": "23",
+   "dur": 391.26,
+   "cat": "musica"
+  },
+  "12": {
+   "nome": "12",
+   "dur": 214.23,
+   "cat": "musica"
+  },
+  "26": {
+   "nome": "26",
+   "dur": 93.96,
+   "cat": "musica"
+  },
+  "24": {
+   "nome": "24",
+   "dur": 86.26,
+   "cat": "musica"
+  },
+  "tournament": {
+   "nome": "Tournament",
+   "dur": 138.0,
+   "cat": "musica"
+  },
+  "28": {
+   "nome": "28",
+   "dur": 91.14,
+   "cat": "musica"
+  },
+  "22": {
+   "nome": "22",
+   "dur": 123.48,
+   "cat": "musica"
+  },
+  "49": {
+   "nome": "49",
+   "dur": 223.24,
+   "cat": "musica"
+  },
+  "46": {
+   "nome": "46",
+   "dur": 213.5,
+   "cat": "musica"
+  },
+  "7": {
+   "nome": "7",
+   "dur": 126.07,
+   "cat": "musica"
+  },
+  "select": {
+   "nome": "Select",
+   "dur": 52.85,
+   "cat": "interface"
+  },
+  "27": {
+   "nome": "27",
+   "dur": 154.1,
+   "cat": "musica"
+  },
+  "2": {
+   "nome": "2",
+   "dur": 134.66,
+   "cat": "musica"
+  },
+  "33": {
+   "nome": "33",
+   "dur": 87.95,
+   "cat": "musica"
+  },
+  "50": {
+   "nome": "50",
+   "dur": 230.52,
+   "cat": "musica"
+  },
+  "45": {
+   "nome": "45",
+   "dur": 123.69,
+   "cat": "musica"
+  },
+  "13": {
+   "nome": "13",
+   "dur": 129.67,
+   "cat": "musica"
+  },
+  "10": {
+   "nome": "10",
+   "dur": 152.11,
+   "cat": "musica"
+  },
+  "48": {
+   "nome": "48",
+   "dur": 237.09,
+   "cat": "musica"
+  },
+  "guard": {
+   "nome": "guard",
+   "dur": 0.38,
+   "cat": "golpe"
+  },
+  "changecharacter": {
+   "nome": "changeCharacter",
+   "dur": 0.24,
+   "cat": "outros"
+  },
+  "selectmodebuttonclick": {
+   "nome": "SelectModeButtonClick",
+   "dur": 0.97,
+   "cat": "interface"
+  },
+  "meleemiss2": {
+   "nome": "meleemiss2",
+   "dur": 0.34,
+   "cat": "outros"
+  },
+  "restorehealth": {
+   "nome": "restoreHealth",
+   "dur": 2.64,
+   "cat": "outros"
+  },
+  "kistart": {
+   "nome": "kiStart",
+   "dur": 2.43,
+   "cat": "interface"
+  },
+  "transform": {
+   "nome": "transform",
+   "dur": 1.57,
+   "cat": "aura"
+  },
+  "specialstruggle": {
+   "nome": "specialStruggle",
+   "dur": 3.23,
+   "cat": "ki"
+  },
+  "kicharge": {
+   "nome": "kiCharge",
+   "dur": 2.44,
+   "cat": "ki"
+  },
+  "uidodge": {
+   "nome": "uiDodge",
+   "dur": 1.73,
+   "cat": "outros"
+  },
+  "specialstronghit": {
+   "nome": "specialStrongHit",
+   "dur": 1.63,
+   "cat": "ki"
+  },
+  "mediumpunch": {
+   "nome": "mediumpunch",
+   "dur": 0.43,
+   "cat": "golpe"
+  },
+  "cancelbuttonclick": {
+   "nome": "cancelButtonClick",
+   "dur": 0.74,
+   "cat": "interface"
+  },
+  "enemydown": {
+   "nome": "enemyDown",
+   "dur": 0.93,
+   "cat": "outros"
+  },
+  "unlocked": {
+   "nome": "unlocked",
+   "dur": 1.18,
+   "cat": "outros"
+  },
+  "teleport": {
+   "nome": "teleport",
+   "dur": 1.91,
+   "cat": "movimento"
+  },
+  "bardockspecial": {
+   "nome": "bardockSpecial",
+   "dur": 2.19,
+   "cat": "ki"
+  },
+  "kicut": {
+   "nome": "kiCut",
+   "dur": 0.84,
+   "cat": "outros"
+  },
+  "partnerdown": {
+   "nome": "partnerDown",
+   "dur": 1.0,
+   "cat": "outros"
+  },
+  "special": {
+   "nome": "special",
+   "dur": 1.04,
+   "cat": "ki"
+  },
+  "strongpunch": {
+   "nome": "strongpunch",
+   "dur": 1.39,
+   "cat": "golpe"
+  },
+  "guarddestroyed": {
+   "nome": "GuardDestroyed",
+   "dur": 0.71,
+   "cat": "golpe"
+  },
+  "startbattleclick": {
+   "nome": "startBattleClick",
+   "dur": 1.75,
+   "cat": "interface"
+  },
+  "broly2special": {
+   "nome": "broly2Special",
+   "dur": 3.06,
+   "cat": "ki"
+  },
+  "bark": {
+   "nome": "bark",
+   "dur": 0.6,
+   "cat": "outros"
+  },
+  "kiblastcut": {
+   "nome": "kiblastCut",
+   "dur": 1.25,
+   "cat": "ki"
+  },
+  "kiblast": {
+   "nome": "kiblast",
+   "dur": 1.25,
+   "cat": "ki"
+  },
+  "meleestruggletie": {
+   "nome": "meleestruggletie",
+   "dur": 1.63,
+   "cat": "golpe"
+  },
+  "solarflare": {
+   "nome": "solarflare",
+   "dur": 1.59,
+   "cat": "outros"
+  },
+  "swordhit": {
+   "nome": "swordhit",
+   "dur": 0.37,
+   "cat": "golpe"
+  }
+ }
+}

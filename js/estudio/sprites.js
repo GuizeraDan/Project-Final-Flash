@@ -258,7 +258,7 @@
     // ⭐ favoritos (sprites inteiros) separados pelo tipo que o usuário escolheu
     if (FF.Favoritos) FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
       const ids = FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite);
-      grupo('fav:' + t, '⭐ ' + ic + ' ' + nm + 's favoritos', ids);
+      grupo('fav:' + t, '⭐ ' + ic + ' ' + FF.Favoritos.plural[t] + ' (favoritos)', ids);
     });
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];

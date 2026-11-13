@@ -109,7 +109,7 @@ window.FF = window.FF || {};
       if (!l.length) { favBox.appendChild(E.el('p', 'es-dica', 'Clique na ☆ de um cartão (animação) ou de um sprite na lista para favoritar e dizer o que ele é.')); return; }
       FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
         const n = l.filter(x => x.tipo === t).length;
-        if (n) bt('fav:' + t, ic + ' ' + nm + 's', String(n), favBox);
+        if (n) bt('fav:' + t, ic + ' ' + FF.Favoritos.plural[t], String(n), favBox);
       });
       marcar();
     };
@@ -171,7 +171,7 @@ window.FF = window.FF || {};
       else if (fonte === 'efeitos') {
         lista = jogo.concat(acervo.filter(id => FF.Assets.tipoSprite(id) === 'efeitos'));
         // + animações do acervo que o usuário favoritou como efeito (de sprites de outro tipo)
-        if (FF.Favoritos) FF.Favoritos.lista('efeitos').forEach(v => { if (v.anim && FF.Assets.doAcervo(v.sprite) && !lista.includes(v.sprite)) lista.push(v.sprite); });
+        if (FF.Favoritos) FF.Favoritos.lista('efeitos').concat(FF.Favoritos.lista('explosoes')).forEach(v => { if (v.anim && FF.Assets.doAcervo(v.sprite) && !lista.includes(v.sprite)) lista.push(v.sprite); });
       }
       else if (/^cat:/.test(fonte)) { const [cc, tp] = fonte.slice(4).split(':'); lista = (porCat[cc] || []).filter(id => !tp || FF.Assets.tipoSprite(id) === tp); }
       else lista = [fonte];
@@ -186,7 +186,7 @@ window.FF = window.FF || {};
       if (fonte === 'efeitos' && !f) itens = itens.filter(x => ehEfeito(x));
       doAcervo.forEach(id => { itens = itens.concat(itensAcervo(id, idx)); });
       if (favs) itens = itens.filter(x => favs.some(v => v.sprite === x.id && (!v.anim || v.anim === x.a)));
-      if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? FF.Favoritos.de(x.id, x.a) !== undefined && (FF.Favoritos.de(x.id, x.a) || 'efeitos') === 'efeitos' : FF.Favoritos.de(x.id, x.a) === 'efeitos');
+      if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
       if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '')).toLowerCase().includes(f));
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
@@ -221,7 +221,7 @@ window.FF = window.FF || {};
     const POSES = /^(Special|Ultimate|UltimateAttack|Attack|Dano|SendoLancado|Caido|Parado|Movimento|Pulando|Agachado|CarregandoKi|Sparking|Defesa|Teletransporte|Dash|Dragon_Rush|Troca_De|Change|Vitoria|Pose_De|Intro|Destransformation|Transformation)/;
     function ehEfeito(x) {
       const fv = FF.Favoritos && (FF.Favoritos.de(x.id, x.a) || FF.Favoritos.de(x.id));   // o que o usuário disse vale mais
-      if (fv) return fv === 'efeitos';
+      if (fv) return fv === 'efeitos' || fv === 'explosoes';
       if (x.id === 'fx' || x.id === 'fx_extra') return true;
       if (UTIL.includes(x.id)) return false;
       if (x.s.def.tipo === 'efeito') return true;

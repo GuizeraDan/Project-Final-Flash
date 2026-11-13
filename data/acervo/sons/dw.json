@@ -1,0 +1,91 @@
+{
+ "chave": "dw",
+ "nome": "Drag Warriors",
+ "sons": {
+  "skill_charge_3": {
+   "nome": "skill_charge_3",
+   "dur": 4.14,
+   "cat": "ki"
+  },
+  "groundsmash": {
+   "nome": "GroundSmash",
+   "dur": 0.79,
+   "cat": "golpe"
+  },
+  "skill_active_2": {
+   "nome": "skill_active_2",
+   "dur": 1.29,
+   "cat": "outros"
+  },
+  "skill_release_3": {
+   "nome": "skill_release_3",
+   "dur": 3.24,
+   "cat": "outros"
+  },
+  "fusion_0": {
+   "nome": "fusion_0",
+   "dur": 4.08,
+   "cat": "outros"
+  },
+  "transform_prepare": {
+   "nome": "transform_prepare",
+   "dur": 0.83,
+   "cat": "aura"
+  },
+  "skill_release_2": {
+   "nome": "skill_release_2",
+   "dur": 3.01,
+   "cat": "outros"
+  },
+  "slash_1": {
+   "nome": "slash_1",
+   "dur": 0.59,
+   "cat": "golpe"
+  },
+  "dash_on_air": {
+   "nome": "dash_on_air",
+   "dur": 0.8,
+   "cat": "movimento"
+  },
+  "atk_4": {
+   "nome": "atk_4",
+   "dur": 1.08,
+   "cat": "outros"
+  },
+  "counter": {
+   "nome": "counter",
+   "dur": 0.38,
+   "cat": "outros"
+  },
+  "menu_click": {
+   "nome": "menu_click",
+   "dur": 0.5,
+   "cat": "interface"
+  },
+  "menu_music": {
+   "nome": "menu_music",
+   "dur": 162.01,
+   "cat": "musica"
+  },
+  "select": {
+   "nome": "select",
+   "dur": 0.68,
+   "cat": "interface"
+  },
+  "back": {
+   "nome": "back",
+   "dur": 0.18,
+   "cat": "outros"
+  },
+  "change_fighter": {
+   "nome": "change_fighter",
+   "dur": 0.18,
+   "cat": "outros"
+  },
+  "battle_music": {
+   "nome": "battle_music",
+   "dur": 135.31,
+   "cat": "musica"
+  }
+ }
+}

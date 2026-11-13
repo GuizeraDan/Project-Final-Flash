@@ -1,0 +1,296 @@
+{
+ "chave": "uh",
+ "nome": "Ultimate Heroes",
+ "sons": {
+  "4_kienza": {
+   "nome": "4-Kienza",
+   "dur": 1.19,
+   "cat": "ki"
+  },
+  "ataque_1": {
+   "nome": "ataque-1",
+   "dur": 0.37,
+   "cat": "golpe"
+  },
+  "ataque_2": {
+   "nome": "ataque-2",
+   "dur": 0.33,
+   "cat": "golpe"
+  },
+  "ataque_3": {
+   "nome": "ataque-3",
+   "dur": 0.45,
+   "cat": "golpe"
+  },
+  "avolta": {
+   "nome": "aVolta",
+   "dur": 0.45,
+   "cat": "movimento"
+  },
+  "click_avanco": {
+   "nome": "Click_Avanço",
+   "dur": 0.48,
+   "cat": "interface"
+  },
+  "click_voltar": {
+   "nome": "Click_Voltar",
+   "dur": 0.57,
+   "cat": "interface"
+  },
+  "defesa": {
+   "nome": "Defesa",
+   "dur": 0.66,
+   "cat": "golpe"
+  },
+  "dragon_ball_fighter_z_dramatic_finish_greenscreen": {
+   "nome": "Dragon Ball Fighter Z dramatic finish greenscreen",
+   "dur": 2.32,
+   "cat": "outros"
+  },
+  "genki_fire": {
+   "nome": "Genki fire",
+   "dur": 2.22,
+   "cat": "ki"
+  },
+  "genkidama_goku": {
+   "nome": "Genkidama Goku",
+   "dur": 2.76,
+   "cat": "ki"
+  },
+  "gohan_ut": {
+   "nome": "Gohan UT",
+   "dur": 11.81,
+   "cat": "outros"
+  },
+  "hakay1": {
+   "nome": "Hakay1",
+   "dur": 4.35,
+   "cat": "ki"
+  },
+  "hakay2": {
+   "nome": "Hakay2",
+   "dur": 1.15,
+   "cat": "ki"
+  },
+  "hakayvoz": {
+   "nome": "HakayVoz",
+   "dur": 1.55,
+   "cat": "ki"
+  },
+  "kamehameha_goku": {
+   "nome": "Kamehameha Goku",
+   "dur": 7.8,
+   "cat": "ki"
+  },
+  "leser": {
+   "nome": "Leser",
+   "dur": 0.77,
+   "cat": "ki"
+  },
+  "makanko": {
+   "nome": "Makanko",
+   "dur": 5.7,
+   "cat": "ki"
+  },
+  "musica1": {
+   "nome": "Musica1",
+   "dur": 58.19,
+   "cat": "musica"
+  },
+  "musica10": {
+   "nome": "Musica10",
+   "dur": 251.1,
+   "cat": "musica"
+  },
+  "musica11": {
+   "nome": "Musica11",
+   "dur": 90.94,
+   "cat": "musica"
+  },
+  "musica2": {
+   "nome": "Musica2",
+   "dur": 91.65,
+   "cat": "musica"
+  },
+  "musica3": {
+   "nome": "Musica3",
+   "dur": 82.85,
+   "cat": "musica"
+  },
+  "musica4": {
+   "nome": "Musica4",
+   "dur": 153.97,
+   "cat": "musica"
+  },
+  "musica5": {
+   "nome": "Musica5",
+   "dur": 108.04,
+   "cat": "musica"
+  },
+  "musica6": {
+   "nome": "Musica6",
+   "dur": 89.26,
+   "cat": "musica"
+  },
+  "musica7": {
+   "nome": "Musica7",
+   "dur": 82.74,
+   "cat": "musica"
+  },
+  "musica8": {
+   "nome": "Musica8",
+   "dur": 116.47,
+   "cat": "musica"
+  },
+  "musica9": {
+   "nome": "Musica9",
+   "dur": 238.12,
+   "cat": "musica"
+  },
+  "musicam": {
+   "nome": "MusicaM",
+   "dur": 79.76,
+   "cat": "musica"
+  },
+  "musicam2": {
+   "nome": "MusicaM2",
+   "dur": 145.66,
+   "cat": "musica"
+  },
+  "special_fire": {
+   "nome": "Special fire",
+   "dur": 3.74,
+   "cat": "ki"
+  },
+  "stum": {
+   "nome": "Stum",
+   "dur": 1.54,
+   "cat": "golpe"
+  },
+  "clic2": {
+   "nome": "Clic2",
+   "dur": 0.06,
+   "cat": "interface"
+  },
+  "click": {
+   "nome": "Click",
+   "dur": 0.06,
+   "cat": "interface"
+  },
+  "carga1": {
+   "nome": "Carga1",
+   "dur": 7.02,
+   "cat": "ki"
+  },
+  "carga2": {
+   "nome": "Carga2",
+   "dur": 2.26,
+   "cat": "ki"
+  },
+  "explosion1": {
+   "nome": "Explosion1",
+   "dur": 2.27,
+   "cat": "explosao"
+  },
+  "explosion2": {
+   "nome": "Explosion2",
+   "dur": 2.4,
+   "cat": "explosao"
+  },
+  "teleport": {
+   "nome": "teleport",
+   "dur": 0.78,
+   "cat": "movimento"
+  },
+  "teleport00": {
+   "nome": "teleport00",
+   "dur": 0.5,
+   "cat": "movimento"
+  },
+  "kiblast": {
+   "nome": "kiblast",
+   "dur": 1.22,
+   "cat": "ki"
+  },
+  "soco_forte": {
+   "nome": "soco forte",
+   "dur": 1.39,
+   "cat": "golpe"
+  },
+  "soco_medio": {
+   "nome": "soco-medio",
+   "dur": 0.43,
+   "cat": "golpe"
+  },
+  "deathball_chrg": {
+   "nome": "DeathBall_Chrg",
+   "dur": 2.8,
+   "cat": "ki"
+  },
+  "deathball_fire": {
+   "nome": "DeathBall_Fire",
+   "dur": 3.63,
+   "cat": "ki"
+  },
+  "disccarga": {
+   "nome": "DiscCarga",
+   "dur": 1.6,
+   "cat": "ki"
+  },
+  "discfire": {
+   "nome": "DiscFire",
+   "dur": 1.98,
+   "cat": "ki"
+  },
+  "energiball": {
+   "nome": "EnergiBall",
+   "dur": 1.89,
+   "cat": "ki"
+  },
+  "explos_oa": {
+   "nome": "Explos╞oA",
+   "dur": 1.96,
+   "cat": "explosao"
+  },
+  "explos_ob": {
+   "nome": "Explos╞oB",
+   "dur": 2.25,
+   "cat": "explosao"
+  },
+  "impactpower": {
+   "nome": "ImpactPower",
+   "dur": 1.1,
+   "cat": "golpe"
+  },
+  "jogado": {
+   "nome": "Jogado",
+   "dur": 1.03,
+   "cat": "golpe"
+  },
+  "kamecarga": {
+   "nome": "KameCarga",
+   "dur": 0.92,
+   "cat": "ki"
+  },
+  "kametiro": {
+   "nome": "KameTiro",
+   "dur": 1.56,
+   "cat": "ki"
+  },
+  "kienzancorte": {
+   "nome": "KienzanCorte",
+   "dur": 1.56,
+   "cat": "ki"
+  },
+  "socofraco": {
+   "nome": "SocoFraco",
+   "dur": 0.68,
+   "cat": "golpe"
+  },
+  "socofraco2": {
+   "nome": "SocoFraco2",
+   "dur": 0.68,
+   "cat": "golpe"
+  }
+ }
+}

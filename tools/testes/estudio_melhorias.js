@@ -220,15 +220,34 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.click('.es-seletor .es-cartao .es-fav-bt');
   await p.waitForSelector('.es-fav-menu');
   const menu = await p.evaluate(() => [...document.querySelectorAll('.es-fav-menu button')].map(b => b.textContent));
-  await p.click('.es-fav-menu button:nth-of-type(1)');
+  await p.click('.es-fav-menu button:nth-of-type(2)');
   await p.waitForTimeout(200);
   const fav = await p.evaluate(() => ({ lista: FF.Favoritos.lista(), lado: [...document.querySelectorAll('.es-seletor-fonte')].map(x => x.textContent).filter(t => /Efeitos\d|Efeitos$|Efeitos1/.test(t) || /✺ Efeitos/.test(t)) }));
   await p.click('.es-seletor-fonte[data-fonte="fav:efeitos"]');
   await p.waitForTimeout(400);
   const cards = await p.evaluate(() => [...document.querySelectorAll('.es-modal:last-of-type .es-cartao')].map(k => k.title));
   await p.screenshot({ path: OUT + '/0h_favoritos.png' });
-  ok(menu.length === 4 && /Efeito/.test(menu[0]) && /Interface/.test(menu[3]) && fav.lista.length === 1 && fav.lista[0].tipo === 'efeitos' && cards.length === 1, 'favoritar: menu ' + menu.join('/') + ' · ' + JSON.stringify(fav.lista) + ' · "Efeitos" dos favoritos mostra ' + cards.length);
-  await p.evaluate(() => { FF.Favoritos.lista().forEach(v => FF.Favoritos.marcar(v.sprite, v.anim, null)); document.querySelectorAll('.es-modal').forEach(m => m.remove()); });
+  ok(menu.length >= 5 && /Explosão/.test(menu[0]) && /Efeito/.test(menu[1]) && /Interface/.test(menu[4]) && fav.lista.some(v => v.sprite === 'fx' && v.anim === 'hit_grande' && v.tipo === 'efeitos') && cards.some(t => /^fx · hit_grande/.test(t)), 'favoritar: menu ' + menu.join('/') + ' · ' + JSON.stringify(fav.lista) + ' · "Efeitos" dos favoritos mostra ' + cards.length);
+  await p.evaluate(() => { FF.Favoritos.marcar('fx', 'hit_grande', null); document.querySelectorAll('.es-modal').forEach(m => m.remove()); });
+
+  // ---- sons: acervo no seletor 🎧, favoritar com categoria, aba Favoritos
+  s = await p.evaluate(async () => {
+    const m = FF.Estudio.escolherSom('', () => {});
+    const fontes = [...document.querySelectorAll('.es-sons .es-seletor-fonte')].map(x => x.textContent);
+    const bts = [...document.querySelectorAll('.es-sons .es-seletor-fonte')];
+    bts.find(x => /Super Warriors Z/.test(x.textContent)).click();
+    const linhas = document.querySelectorAll('.es-sons .es-som').length;
+    const chips = [...document.querySelectorAll('.es-sons-chips button')].map(b => b.textContent);
+    const id = document.querySelector('.es-sons .es-som .es-som-nome').title;
+    FF.FavSons.marcar(id, null, 'explosao');
+    m.fechar();
+    await FF.Estudio.abrir('favoritos'); FF.Estudio.Favoritos.modo = 'sons'; FF.Estudio.Favoritos.render();
+    const aba = document.querySelector('.es-favs').textContent;
+    FF.FavSons.marcar(id, null, null);
+    await FF.Estudio.abrir('golpes');
+    return { fontes: fontes.length, linhas, chips: chips.length, id, aba: /Explosões \(1\)/.test(aba) };
+  });
+  ok(s.fontes >= 10 && s.linhas > 100 && s.chips > 2 && /^acervo\/swz\//.test(s.id) && s.aba, 'acervo de sons no seletor (' + s.fontes + ' fontes, SWZ ' + s.linhas + ' sons, ' + s.chips + ' categorias) e favorito aparece na aba ⭐ Favoritos');
 
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio
   s = await p.evaluate(async () => {

@@ -1,0 +1,141 @@
+{
+ "chave": "ast",
+ "nome": "Assets (sprites soltos)",
+ "sons": {
+  "beam_1": {
+   "nome": "Beam 1",
+   "dur": 0.84,
+   "cat": "ki"
+  },
+  "dap": {
+   "nome": "Dap",
+   "dur": 0.48,
+   "cat": "outros"
+  },
+  "fire": {
+   "nome": "Fire",
+   "dur": 1.07,
+   "cat": "ki"
+  },
+  "kuma_combo": {
+   "nome": "Kuma Combo",
+   "dur": 0.47,
+   "cat": "outros"
+  },
+  "melo": {
+   "nome": "Melo",
+   "dur": 2.04,
+   "cat": "outros"
+  },
+  "naruto_shadow_clone": {
+   "nome": "Naruto Shadow Clone",
+   "dur": 1.59,
+   "cat": "outros"
+  },
+  "sat_short": {
+   "nome": "Sat_short",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "attack_sound": {
+   "nome": "attack sound",
+   "dur": 0.84,
+   "cat": "golpe"
+  },
+  "aura_short": {
+   "nome": "aura_short",
+   "dur": 1.62,
+   "cat": "aura"
+  },
+  "bigbang_fire_short": {
+   "nome": "bigbang_fire_short",
+   "dur": 1.78,
+   "cat": "ki"
+  },
+  "bomb1": {
+   "nome": "bomb1",
+   "dur": 0.86,
+   "cat": "explosao"
+  },
+  "chidori": {
+   "nome": "chidori",
+   "dur": 0.94,
+   "cat": "outros"
+  },
+  "click": {
+   "nome": "click",
+   "dur": 0.1,
+   "cat": "interface"
+  },
+  "daily_reward": {
+   "nome": "daily_reward",
+   "dur": 2.76,
+   "cat": "outros"
+  },
+  "dbz_buton_sound": {
+   "nome": "dbz buton sound",
+   "dur": 0.6,
+   "cat": "outros"
+  },
+  "explosion": {
+   "nome": "explosion",
+   "dur": 1.96,
+   "cat": "explosao"
+  },
+  "hit2": {
+   "nome": "hit2",
+   "dur": 0.31,
+   "cat": "golpe"
+  },
+  "hit3": {
+   "nome": "hit3",
+   "dur": 0.42,
+   "cat": "golpe"
+  },
+  "katon": {
+   "nome": "katon",
+   "dur": 1.92,
+   "cat": "outros"
+  },
+  "kunai": {
+   "nome": "kunai",
+   "dur": 0.39,
+   "cat": "outros"
+  },
+  "lignting_charge_short": {
+   "nome": "lignting charge_short",
+   "dur": 0.97,
+   "cat": "ki"
+  },
+  "mini_bomb_1": {
+   "nome": "mini bomb 1",
+   "dur": 0.89,
+   "cat": "explosao"
+  },
+  "small_blast": {
+   "nome": "small_blast",
+   "dur": 0.37,
+   "cat": "outros"
+  },
+  "tayuyasound2": {
+   "nome": "tayuyaSound2",
+   "dur": 1.28,
+   "cat": "outros"
+  },
+  "tayuya_no_genjutsu_mp3cut": {
+   "nome": "tayuya_no_genjutsu (mp3cut",
+   "dur": 4.0,
+   "cat": "outros"
+  },
+  "teleport_1": {
+   "nome": "teleport 1",
+   "dur": 0.6,
+   "cat": "movimento"
+  },
+  "water_sound": {
+   "nome": "water sound",
+   "dur": 1.28,
+   "cat": "outros"
+  }
+ }
+}

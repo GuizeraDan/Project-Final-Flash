@@ -1,0 +1,3146 @@
+{
+ "chave": "swz",
+ "nome": "Super Warriors Z",
+ "sons": {
+  "1p_vs_com_voz_tz": {
+   "nome": "1P VS COM VOZ TZ",
+   "dur": 2.21,
+   "cat": "voz"
+  },
+  "abrindo_load_som_tz": {
+   "nome": "ABRINDO LOAD SOM TZ",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "abrindo_start_som_tz": {
+   "nome": "ABRINDO START SOM TZ",
+   "dur": 0.77,
+   "cat": "interface"
+  },
+  "an21_derrota_voz_tz": {
+   "nome": "AN21 DERROTA VOZ TZ",
+   "dur": 3.88,
+   "cat": "voz"
+  },
+  "an21_ep_1_voz_tz": {
+   "nome": "AN21 EP 1 VOZ TZ",
+   "dur": 4.55,
+   "cat": "voz"
+  },
+  "an21_ep_2_voz_tz": {
+   "nome": "AN21 EP 2 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "an21_intro_0_voz_tz": {
+   "nome": "AN21 INTRO 0 VOZ TZ",
+   "dur": 3.67,
+   "cat": "voz"
+  },
+  "an21_intro_1_voz_tz": {
+   "nome": "AN21 INTRO 1 VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "an21_ki_blast_voz_tz": {
+   "nome": "AN21 KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "an21_ki_max_voz_tz": {
+   "nome": "AN21 KI MAX VOZ TZ",
+   "dur": 1.6,
+   "cat": "voz"
+  },
+  "an21_pre_ki_voz_tz": {
+   "nome": "AN21 PRE KI VOZ TZ",
+   "dur": 1.63,
+   "cat": "voz"
+  },
+  "an21_transformac_o_voz_tz": {
+   "nome": "AN21 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.92,
+   "cat": "voz"
+  },
+  "an21_vitoria_voz_tz": {
+   "nome": "AN21 VITORIA VOZ TZ",
+   "dur": 4.76,
+   "cat": "voz"
+  },
+  "baixo_slots_som": {
+   "nome": "BAIXO SLOTS SOM",
+   "dur": 0.83,
+   "cat": "outros"
+  },
+  "batalha_nica_voz_tz": {
+   "nome": "BATALHA ΘNICA VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "bdc_ssj_transformac_o_voz_tz": {
+   "nome": "BDC (SSJ) TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.78,
+   "cat": "voz"
+  },
+  "bdc_derrota_voz_tz": {
+   "nome": "BDC DERROTA VOZ TZ",
+   "dur": 4.3,
+   "cat": "voz"
+  },
+  "bdc_ep_1_voz_tz": {
+   "nome": "BDC EP 1 VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "bdc_ep_2_voz_tz": {
+   "nome": "BDC EP 2 VOZ TZ",
+   "dur": 8.36,
+   "cat": "voz"
+  },
+  "bdc_intro_0_voz_tz": {
+   "nome": "BDC INTRO 0 VOZ TZ",
+   "dur": 1.9,
+   "cat": "voz"
+  },
+  "bdc_intro_1_voz_tz": {
+   "nome": "BDC INTRO 1 VOZ TZ",
+   "dur": 2.2,
+   "cat": "voz"
+  },
+  "bdc_ki_blast_voz_tz": {
+   "nome": "BDC KI BLAST VOZ TZ",
+   "dur": 0.88,
+   "cat": "voz"
+  },
+  "bdc_ki_max_voz_tz": {
+   "nome": "BDC KI MAX VOZ TZ",
+   "dur": 2.0,
+   "cat": "voz"
+  },
+  "bdc_pre_ki_voz_tz": {
+   "nome": "BDC PRE KI VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "bdc_vit_ria_voz_tz": {
+   "nome": "BDC VITαRIA VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "brly1_derrota_voz_tz": {
+   "nome": "BRLY1 DERROTA VOZ TZ",
+   "dur": 3.85,
+   "cat": "voz"
+  },
+  "brly1_ep_1_voz_tz": {
+   "nome": "BRLY1 EP 1 VOZ TZ",
+   "dur": 3.97,
+   "cat": "voz"
+  },
+  "brly1_ep_2_voz_tz": {
+   "nome": "BRLY1 EP 2 VOZ TZ",
+   "dur": 7.82,
+   "cat": "voz"
+  },
+  "brly1_intro_0_voz_tz": {
+   "nome": "BRLY1 INTRO 0 VOZ TZ",
+   "dur": 2.37,
+   "cat": "voz"
+  },
+  "brly1_intro_1_voz_tz": {
+   "nome": "BRLY1 INTRO 1 VOZ TZ",
+   "dur": 4.57,
+   "cat": "voz"
+  },
+  "brly1_ki_blast_voz_tz": {
+   "nome": "BRLY1 KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "brly1_ki_max_voz_tz": {
+   "nome": "BRLY1 KI MAX VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "brly1_pre_ki_voz_tz": {
+   "nome": "BRLY1 PRE KI VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "brly1_transformac_o_voz_tz": {
+   "nome": "BRLY1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.62,
+   "cat": "voz"
+  },
+  "brly1_vitoria_voz_tz": {
+   "nome": "BRLY1 VITORIA VOZ TZ",
+   "dur": 2.86,
+   "cat": "voz"
+  },
+  "brly2_derrota_voz_tz": {
+   "nome": "BRLY2 DERROTA VOZ TZ",
+   "dur": 4.46,
+   "cat": "voz"
+  },
+  "brly2_ep_1_voz_tz": {
+   "nome": "BRLY2 EP 1 VOZ TZ",
+   "dur": 4.6,
+   "cat": "voz"
+  },
+  "brly2_ep_2_voz_tz": {
+   "nome": "BRLY2 EP 2 VOZ TZ",
+   "dur": 4.97,
+   "cat": "voz"
+  },
+  "brly2_intro_0_voz_tz": {
+   "nome": "BRLY2 INTRO 0 VOZ TZ",
+   "dur": 3.2,
+   "cat": "voz"
+  },
+  "brly2_intro_1_voz_tz": {
+   "nome": "BRLY2 INTRO 1 VOZ TZ",
+   "dur": 2.88,
+   "cat": "voz"
+  },
+  "brly2_ki_blast_voz_tz": {
+   "nome": "BRLY2 KI BLAST VOZ TZ",
+   "dur": 1.18,
+   "cat": "voz"
+  },
+  "brly2_ki_max_voz_tz": {
+   "nome": "BRLY2 KI MAX VOZ TZ",
+   "dur": 1.81,
+   "cat": "voz"
+  },
+  "brly2_pre_ki_voz_tz": {
+   "nome": "BRLY2 PRE KI VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "brly2_transformac_o_voz_tz": {
+   "nome": "BRLY2 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 5.34,
+   "cat": "voz"
+  },
+  "brly2_vitoria_voz_tz": {
+   "nome": "BRLY2 VITORIA VOZ TZ",
+   "dur": 3.9,
+   "cat": "voz"
+  },
+  "brlyz_derrota_voz_tz": {
+   "nome": "BRLYZ DERROTA VOZ TZ",
+   "dur": 2.69,
+   "cat": "voz"
+  },
+  "brlyz_ep_1_voz_tz": {
+   "nome": "BRLYZ EP 1 VOZ TZ",
+   "dur": 4.57,
+   "cat": "voz"
+  },
+  "brlyz_ep_2_voz_tz": {
+   "nome": "BRLYZ EP 2 VOZ TZ",
+   "dur": 12.56,
+   "cat": "voz"
+  },
+  "brlyz_intro_0_voz_tz": {
+   "nome": "BRLYZ INTRO 0 VOZ TZ",
+   "dur": 2.76,
+   "cat": "voz"
+  },
+  "brlyz_intro_1_voz_tz": {
+   "nome": "BRLYZ INTRO 1 VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "brlyz_ki_blast_voz_tz": {
+   "nome": "BRLYZ KI BLAST VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "brlyz_ki_max_voz_tz": {
+   "nome": "BRLYZ KI MAX VOZ TZ",
+   "dur": 1.74,
+   "cat": "voz"
+  },
+  "brlyz_pre_ki_voz_tz": {
+   "nome": "BRLYZ PRE KI VOZ TZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "brlyz_vitoria_voz_tz": {
+   "nome": "BRLYZ VITORIA VOZ TZ",
+   "dur": 5.97,
+   "cat": "voz"
+  },
+  "cachoeira_som_tz2": {
+   "nome": "CACHOEIRA SOM TZ2",
+   "dur": 9.06,
+   "cat": "outros"
+  },
+  "caindo_som_tz": {
+   "nome": "CAINDO SOM TZ",
+   "dur": 0.88,
+   "cat": "outros"
+  },
+  "camera_voz_tz": {
+   "nome": "CAMERA VOZ TZ",
+   "dur": 3.3,
+   "cat": "voz"
+  },
+  "carregando_ki_2_som_tz": {
+   "nome": "CARREGANDO KI 2 SOM  TZ",
+   "dur": 6.13,
+   "cat": "ki"
+  },
+  "cima_slots_som": {
+   "nome": "CIMA SLOTS SOM",
+   "dur": 0.72,
+   "cat": "outros"
+  },
+  "cll_derrota_voz_tz": {
+   "nome": "CLL DERROTA VOZ TZ",
+   "dur": 3.34,
+   "cat": "voz"
+  },
+  "cll_ep_1_voz_tz": {
+   "nome": "CLL EP 1 VOZ TZ",
+   "dur": 8.78,
+   "cat": "voz"
+  },
+  "cll_ep_2_voz_tz": {
+   "nome": "CLL EP 2 VOZ TZ",
+   "dur": 8.52,
+   "cat": "voz"
+  },
+  "cll_intro_0_voz_tz": {
+   "nome": "CLL INTRO 0 VOZ TZ",
+   "dur": 4.04,
+   "cat": "voz"
+  },
+  "cll_intro_1_voz_tz": {
+   "nome": "CLL INTRO 1 VOZ TZ",
+   "dur": 4.95,
+   "cat": "voz"
+  },
+  "cll_ki_blast_voz_tz": {
+   "nome": "CLL KI BLAST VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "cll_ki_max_voz_tz": {
+   "nome": "CLL KI MAX VOZ TZ",
+   "dur": 1.42,
+   "cat": "voz"
+  },
+  "cll_pre_ki_voz_tz": {
+   "nome": "CLL PRE KI VOZ TZ",
+   "dur": 0.79,
+   "cat": "voz"
+  },
+  "cll_vitoria_voz_tz": {
+   "nome": "CLL VITORIA VOZ TZ",
+   "dur": 4.37,
+   "cat": "voz"
+  },
+  "cll1_derrota_voz_tz": {
+   "nome": "CLL1 DERROTA VOZ TZ",
+   "dur": 2.41,
+   "cat": "voz"
+  },
+  "cll1_ep_1_voz_tz": {
+   "nome": "CLL1 EP 1 VOZ TZ",
+   "dur": 3.62,
+   "cat": "voz"
+  },
+  "cll1_ep_2_voz_tz": {
+   "nome": "CLL1 EP 2 VOZ TZ",
+   "dur": 4.57,
+   "cat": "voz"
+  },
+  "cll1_intro_0_voz_tz": {
+   "nome": "CLL1 INTRO 0 VOZ TZ",
+   "dur": 2.27,
+   "cat": "voz"
+  },
+  "cll1_intro_1_voz_tz": {
+   "nome": "CLL1 INTRO 1 VOZ TZ",
+   "dur": 2.27,
+   "cat": "voz"
+  },
+  "cll1_ki_blast_voz_tz": {
+   "nome": "CLL1 KI BLAST VOZ TZ",
+   "dur": 0.98,
+   "cat": "voz"
+  },
+  "cll1_ki_max_voz_tz": {
+   "nome": "CLL1 KI MAX VOZ TZ",
+   "dur": 2.25,
+   "cat": "voz"
+  },
+  "cll1_pre_ki_voz_tz": {
+   "nome": "CLL1 PRE KI VOZ TZ",
+   "dur": 1.42,
+   "cat": "voz"
+  },
+  "cll1_transformac_o_voz_tz": {
+   "nome": "CLL1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 10.73,
+   "cat": "voz"
+  },
+  "cll1_vitoria_voz_tz": {
+   "nome": "CLL1 VITORIA VOZ TZ",
+   "dur": 2.88,
+   "cat": "voz"
+  },
+  "cll2_derrota_voz_tz": {
+   "nome": "CLL2 DERROTA VOZ TZ",
+   "dur": 4.55,
+   "cat": "voz"
+  },
+  "cll2_ep_1_voz_tz": {
+   "nome": "CLL2 EP 1 VOZ TZ",
+   "dur": 4.48,
+   "cat": "voz"
+  },
+  "cll2_ep_2_voz_tz": {
+   "nome": "CLL2 EP 2 VOZ TZ",
+   "dur": 19.37,
+   "cat": "voz"
+  },
+  "cll2_intro_0_voz_tz": {
+   "nome": "CLL2 INTRO 0 VOZ TZ",
+   "dur": 4.41,
+   "cat": "voz"
+  },
+  "cll2_intro_1_voz_tz": {
+   "nome": "CLL2 INTRO 1 VOZ TZ",
+   "dur": 3.46,
+   "cat": "voz"
+  },
+  "cll2_ki_blast_voz_tz": {
+   "nome": "CLL2 KI BLAST VOZ TZ",
+   "dur": 0.97,
+   "cat": "voz"
+  },
+  "cll2_ki_max_voz_tz": {
+   "nome": "CLL2 KI MAX VOZ TZ",
+   "dur": 1.93,
+   "cat": "voz"
+  },
+  "cll2_pre_ki_voz_tz": {
+   "nome": "CLL2 PRE KI VOZ TZ",
+   "dur": 2.0,
+   "cat": "voz"
+  },
+  "cll2_transformac_o_voz_tz": {
+   "nome": "CLL2 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 9.71,
+   "cat": "voz"
+  },
+  "cll2_vitoria_voz_tz": {
+   "nome": "CLL2 VITORIA VOZ TZ",
+   "dur": 4.57,
+   "cat": "voz"
+  },
+  "cll3_derrota_voz_tz": {
+   "nome": "CLL3 DERROTA VOZ TZ",
+   "dur": 5.09,
+   "cat": "voz"
+  },
+  "cll3_ep_1_voz_tz": {
+   "nome": "CLL3 EP 1 VOZ TZ",
+   "dur": 4.62,
+   "cat": "voz"
+  },
+  "cll3_ep_2_voz_tz": {
+   "nome": "CLL3 EP 2 VOZ TZ",
+   "dur": 4.25,
+   "cat": "voz"
+  },
+  "cll3_intro_0_voz_tz": {
+   "nome": "CLL3 INTRO 0 VOZ TZ",
+   "dur": 2.25,
+   "cat": "voz"
+  },
+  "cll3_intro_1_voz_tz": {
+   "nome": "CLL3 INTRO 1 VOZ TZ",
+   "dur": 2.74,
+   "cat": "voz"
+  },
+  "cll3_ki_blast_voz_tz": {
+   "nome": "CLL3 KI BLAST VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "cll3_ki_max_voz_tz": {
+   "nome": "CLL3 KI MAX VOZ TZ",
+   "dur": 2.09,
+   "cat": "voz"
+  },
+  "cll3_pre_ki_voz_tz": {
+   "nome": "CLL3 PRE KI VOZ TZ",
+   "dur": 0.9,
+   "cat": "voz"
+  },
+  "cll3_transformac_o_voz_tz": {
+   "nome": "CLL3 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 6.32,
+   "cat": "voz"
+  },
+  "cll3_vitoria_voz_tz": {
+   "nome": "CLL3 VITORIA VOZ TZ",
+   "dur": 3.46,
+   "cat": "voz"
+  },
+  "conclus_o_de_saga_som_tz": {
+   "nome": "CONCLUS╟O DE SAGA SOM TZ",
+   "dur": 5.8,
+   "cat": "outros"
+  },
+  "controles_voz_tz": {
+   "nome": "CONTROLES VOZ TZ",
+   "dur": 3.09,
+   "cat": "voz"
+  },
+  "dano_3_som_tz": {
+   "nome": "DANO 3 SOM TZ",
+   "dur": 1.72,
+   "cat": "outros"
+  },
+  "dano_som_tz": {
+   "nome": "DANO SOM TZ",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "dash_efeito_sonoro": {
+   "nome": "DASH EFEITO SONORO",
+   "dur": 2.27,
+   "cat": "movimento"
+  },
+  "defesa_2_som_tz": {
+   "nome": "DEFESA 2 SOM TZ",
+   "dur": 0.51,
+   "cat": "golpe"
+  },
+  "derrota_epis_dio_voz_tz": {
+   "nome": "DERROTA EPISαDIO VOZ TZ",
+   "dur": 4.34,
+   "cat": "voz"
+  },
+  "descendo_sonoro_tz": {
+   "nome": "DESCENDO SONORO TZ",
+   "dur": 0.56,
+   "cat": "movimento"
+  },
+  "destruic_o_namek_som_tz": {
+   "nome": "DESTRUIÇ╟O NAMEK SOM TZ",
+   "dur": 15.58,
+   "cat": "outros"
+  },
+  "destruic_o_planet_ria_namek_som": {
+   "nome": "DESTRUIÇ╟O PLANET╡RIA NAMEK SOM",
+   "dur": 5.39,
+   "cat": "outros"
+  },
+  "destruic_o_terra_som_tz": {
+   "nome": "DESTRUIÇ╟O TERRA SOM TZ",
+   "dur": 20.29,
+   "cat": "outros"
+  },
+  "duelo_soundtrack_som_tz": {
+   "nome": "DUELO SOUNDTRACK SOM TZ",
+   "dur": 129.71,
+   "cat": "musica"
+  },
+  "duelo_voz_tz": {
+   "nome": "DUELO VOZ TZ",
+   "dur": 3.34,
+   "cat": "voz"
+  },
+  "efeito_sonoro_0_bt3_0": {
+   "nome": "EFEITO SONORO 0 BT3_-0",
+   "dur": 1.42,
+   "cat": "outros"
+  },
+  "epis_dio_desbloqueado_som_tz": {
+   "nome": "EPISαDIO DESBLOQUEADO SOM TZ",
+   "dur": 1.72,
+   "cat": "outros"
+  },
+  "espada_som_tz": {
+   "nome": "ESPADA SOM TZ",
+   "dur": 0.88,
+   "cat": "outros"
+  },
+  "explos_o_som_tz": {
+   "nome": "EXPLOS╟O SOM TZ",
+   "dur": 1.3,
+   "cat": "explosao"
+  },
+  "fechando_load_som_tz": {
+   "nome": "FECHANDO LOAD SOM TZ",
+   "dur": 1.11,
+   "cat": "outros"
+  },
+  "frente_som_tz": {
+   "nome": "FRENTE SOM TZ",
+   "dur": 1.18,
+   "cat": "outros"
+  },
+  "frz_derrota_voz_tz": {
+   "nome": "FRZ DERROTA VOZ TZ",
+   "dur": 4.16,
+   "cat": "voz"
+  },
+  "frz_ep_1_voz_tz": {
+   "nome": "FRZ EP 1 VOZ TZ",
+   "dur": 4.27,
+   "cat": "voz"
+  },
+  "frz_ep_2_voz_tz": {
+   "nome": "FRZ EP 2 VOZ TZ",
+   "dur": 7.92,
+   "cat": "voz"
+  },
+  "frz_intro_voz_0_tz": {
+   "nome": "FRZ INTRO VOZ 0 TZ",
+   "dur": 3.2,
+   "cat": "voz"
+  },
+  "frz_intro_voz_1_tz": {
+   "nome": "FRZ INTRO VOZ 1 TZ",
+   "dur": 3.83,
+   "cat": "voz"
+  },
+  "frz_ki_blast_voz_tz": {
+   "nome": "FRZ KI BLAST VOZ TZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "frz_ki_max_voz_tz": {
+   "nome": "FRZ KI MAX VOZ TZ",
+   "dur": 1.48,
+   "cat": "voz"
+  },
+  "frz_pre_ki_voz_tz": {
+   "nome": "FRZ PRE KI VOZ TZ",
+   "dur": 1.23,
+   "cat": "voz"
+  },
+  "frz_vitoria_voz_tz": {
+   "nome": "FRZ VITORIA VOZ TZ",
+   "dur": 4.76,
+   "cat": "voz"
+  },
+  "frz1_derrota_voz_tz": {
+   "nome": "FRZ1 DERROTA VOZ TZ",
+   "dur": 2.25,
+   "cat": "voz"
+  },
+  "frz1_ep_1_voz_tz": {
+   "nome": "FRZ1 EP 1 VOZ TZ",
+   "dur": 3.67,
+   "cat": "voz"
+  },
+  "frz1_ep_2_voz_tz": {
+   "nome": "FRZ1 EP 2 VOZ TZ",
+   "dur": 7.52,
+   "cat": "voz"
+  },
+  "frz1_intro_0_voz_tz": {
+   "nome": "FRZ1 INTRO 0 VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "frz1_intro_1_voz_tz": {
+   "nome": "FRZ1 INTRO 1 VOZ TZ",
+   "dur": 3.92,
+   "cat": "voz"
+  },
+  "frz1_ki_blast_voz_tz": {
+   "nome": "FRZ1 KI BLAST VOZ TZ",
+   "dur": 1.14,
+   "cat": "voz"
+  },
+  "frz1_ki_max_voz_tz": {
+   "nome": "FRZ1 KI MAX VOZ TZ",
+   "dur": 1.74,
+   "cat": "voz"
+  },
+  "frz1_pre_ki_voz_tz": {
+   "nome": "FRZ1 PRE KI VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "frz1_transformac_o_voz_tz": {
+   "nome": "FRZ1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.92,
+   "cat": "voz"
+  },
+  "frz1_vitoria_voz_tz": {
+   "nome": "FRZ1 VITORIA VOZ TZ",
+   "dur": 4.06,
+   "cat": "voz"
+  },
+  "frz2_derrota_voz_tz": {
+   "nome": "FRZ2 DERROTA VOZ TZ",
+   "dur": 2.44,
+   "cat": "voz"
+  },
+  "frz2_ep_1_voz_tz": {
+   "nome": "FRZ2 EP 1 VOZ TZ",
+   "dur": 6.39,
+   "cat": "voz"
+  },
+  "frz2_ep_2_voz_tz": {
+   "nome": "FRZ2 EP 2 VOZ TZ",
+   "dur": 4.3,
+   "cat": "voz"
+  },
+  "frz2_intro_0_voz_tz": {
+   "nome": "FRZ2 INTRO 0 VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "frz2_intro_1_voz_tz": {
+   "nome": "FRZ2 INTRO 1 VOZ TZ",
+   "dur": 3.65,
+   "cat": "voz"
+  },
+  "frz2_ki_blast_voz_tz": {
+   "nome": "FRZ2 KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "frz2_ki_max_voz_tz": {
+   "nome": "FRZ2 KI MAX VOZ TZ",
+   "dur": 1.88,
+   "cat": "voz"
+  },
+  "frz2_pre_ki_voz_tz": {
+   "nome": "FRZ2 PRE KI VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "frz2_transformac_o_voz_tz": {
+   "nome": "FRZ2 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.34,
+   "cat": "voz"
+  },
+  "frz2_vitoria_voz_tz": {
+   "nome": "FRZ2 VITORIA VOZ TZ",
+   "dur": 2.27,
+   "cat": "voz"
+  },
+  "frz3_derrota_voz_tz": {
+   "nome": "FRZ3 DERROTA VOZ TZ",
+   "dur": 4.25,
+   "cat": "voz"
+  },
+  "frz3_ep_1_voz_tz": {
+   "nome": "FRZ3 EP 1 VOZ TZ",
+   "dur": 3.62,
+   "cat": "voz"
+  },
+  "frz3_ep_2_voz_tz": {
+   "nome": "FRZ3 EP 2 VOZ TZ",
+   "dur": 9.06,
+   "cat": "voz"
+  },
+  "frz3_intro_0_voz_tz": {
+   "nome": "FRZ3 INTRO 0 VOZ TZ",
+   "dur": 3.27,
+   "cat": "voz"
+  },
+  "frz3_intro_1_voz_tz": {
+   "nome": "FRZ3 INTRO 1 VOZ TZ",
+   "dur": 3.32,
+   "cat": "voz"
+  },
+  "frz3_ki_blast_voz_tz": {
+   "nome": "FRZ3 KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "frz3_ki_max_voz_tz": {
+   "nome": "FRZ3 KI MAX VOZ TZ",
+   "dur": 1.83,
+   "cat": "voz"
+  },
+  "frz3_pre_ki_voz_tz": {
+   "nome": "FRZ3 PRE KI VOZ TZ",
+   "dur": 0.97,
+   "cat": "voz"
+  },
+  "frz3_transformac_o_voz_tz": {
+   "nome": "FRZ3 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 6.29,
+   "cat": "voz"
+  },
+  "frz3_vitoria_voz_tz": {
+   "nome": "FRZ3 VITORIA VOZ TZ",
+   "dur": 3.67,
+   "cat": "voz"
+  },
+  "frz5_derrota_voz_tz": {
+   "nome": "FRZ5 DERROTA VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "frz5_ep_1_voz_tz": {
+   "nome": "FRZ5 EP 1 VOZ TZ",
+   "dur": 3.88,
+   "cat": "voz"
+  },
+  "frz5_ep_2_voz_tz": {
+   "nome": "FRZ5 EP 2 VOZ TZ",
+   "dur": 7.99,
+   "cat": "voz"
+  },
+  "frz5_intro_0_voz_tz": {
+   "nome": "FRZ5 INTRO 0 VOZ TZ",
+   "dur": 3.16,
+   "cat": "voz"
+  },
+  "frz5_intro_1_voz_tz": {
+   "nome": "FRZ5 INTRO 1 VOZ TZ",
+   "dur": 2.37,
+   "cat": "voz"
+  },
+  "frz5_ki_blast_voz_tz": {
+   "nome": "FRZ5 KI BLAST VOZ TZ",
+   "dur": 1.14,
+   "cat": "voz"
+  },
+  "frz5_ki_max_voz_tz": {
+   "nome": "FRZ5 KI MAX VOZ TZ",
+   "dur": 1.46,
+   "cat": "voz"
+  },
+  "frz5_pre_ki_voz_tz": {
+   "nome": "FRZ5 PRE KI VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "frz5_transformac_o_voz_tz": {
+   "nome": "FRZ5 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 5.15,
+   "cat": "voz"
+  },
+  "frz5_vitoria_voz_tz": {
+   "nome": "FRZ5 VITORIA VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "ggtz_derrota_voz_tz": {
+   "nome": "GGTZ DERROTA VOZ TZ",
+   "dur": 2.95,
+   "cat": "voz"
+  },
+  "ggtz_ep_1_voz_tz": {
+   "nome": "GGTZ EP 1 VOZ TZ",
+   "dur": 4.5,
+   "cat": "voz"
+  },
+  "ggtz_ep_2_voz_tz": {
+   "nome": "GGTZ EP 2 VOZ TZ",
+   "dur": 8.8,
+   "cat": "voz"
+  },
+  "ggtz_intro_0_voz_tz": {
+   "nome": "GGTZ INTRO 0 VOZ TZ",
+   "dur": 5.46,
+   "cat": "voz"
+  },
+  "ggtz_intro_1_voz_tz": {
+   "nome": "GGTZ INTRO 1 VOZ TZ",
+   "dur": 2.25,
+   "cat": "voz"
+  },
+  "ggtz_ki_blast_voz_tz": {
+   "nome": "GGTZ KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "ggtz_ki_max_voz_tz": {
+   "nome": "GGTZ KI MAX VOZ TZ",
+   "dur": 1.69,
+   "cat": "voz"
+  },
+  "ggtz_pre_ki_voz_tz": {
+   "nome": "GGTZ PRE KI VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "ggtz_vitoria_voz_tz": {
+   "nome": "GGTZ VITORIA VOZ TZ",
+   "dur": 2.83,
+   "cat": "voz"
+  },
+  "gk_derrota_voz_tz": {
+   "nome": "GK DERROTA VOZ TZ",
+   "dur": 3.95,
+   "cat": "voz"
+  },
+  "gk_ki_max_voz_tz": {
+   "nome": "GK KI MAX VOZ TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "gk_ki_voz": {
+   "nome": "GK KI VOZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "gk_new_ep1_voz_tz": {
+   "nome": "GK NEW EP1 VOZ TZ",
+   "dur": 4.9,
+   "cat": "voz"
+  },
+  "gk_new_ep2_voz_tz": {
+   "nome": "GK NEW EP2 VOZ TZ",
+   "dur": 8.38,
+   "cat": "voz"
+  },
+  "gk_som_voz_ki_blast_tz": {
+   "nome": "GK SOM VOZ KI BLAST TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "gk_vit_ria_voz_tz": {
+   "nome": "GK VITαRIA VOZ TZ",
+   "dur": 2.69,
+   "cat": "voz"
+  },
+  "gk_voz_0_intro_tz": {
+   "nome": "GK VOZ 0 INTRO TZ",
+   "dur": 2.88,
+   "cat": "voz"
+  },
+  "gk_voz_1_intro_tz": {
+   "nome": "GK VOZ 1 INTRO TZ",
+   "dur": 2.39,
+   "cat": "voz"
+  },
+  "gk1_derrota_voz_tz": {
+   "nome": "GK1 DERROTA VOZ TZ",
+   "dur": 4.62,
+   "cat": "voz"
+  },
+  "gk1_ep1_parte_1_voz_tz": {
+   "nome": "GK1 EP1 PARTE 1 VOZ TZ",
+   "dur": 1.97,
+   "cat": "voz"
+  },
+  "gk1_ep11_parte_1_voz_tz": {
+   "nome": "GK1 EP11 PARTE 1 VOZ TZ",
+   "dur": 4.6,
+   "cat": "voz"
+  },
+  "gk1_ep2_voz_tz": {
+   "nome": "GK1 EP2 VOZ TZ",
+   "dur": 8.01,
+   "cat": "voz"
+  },
+  "gk1_intro_1_voz_tz": {
+   "nome": "GK1 INTRO (1) VOZ TZ",
+   "dur": 2.16,
+   "cat": "voz"
+  },
+  "gk1_ki_blast_voz_tz": {
+   "nome": "GK1 KI BLAST VOZ TZ",
+   "dur": 0.83,
+   "cat": "voz"
+  },
+  "gk1_ki_max_voz_tz": {
+   "nome": "GK1 KI MAX VOZ TZ",
+   "dur": 1.7,
+   "cat": "voz"
+  },
+  "gk1_pre_ki_voz_tz": {
+   "nome": "GK1 PRE KI VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "gk1_transformac_o_voz_2_tz": {
+   "nome": "GK1 TRANSFORMAÇ╟O VOZ 2 TZ",
+   "dur": 4.81,
+   "cat": "voz"
+  },
+  "gk1_vitoria_voz_tz": {
+   "nome": "GK1 VITORIA VOZ TZ",
+   "dur": 4.85,
+   "cat": "voz"
+  },
+  "gk1_voz_intro_0_tz": {
+   "nome": "GK1 VOZ INTRO 0 TZ",
+   "dur": 3.46,
+   "cat": "voz"
+  },
+  "gk2_derrota_voz_tz": {
+   "nome": "GK2 DERROTA VOZ TZ",
+   "dur": 3.58,
+   "cat": "voz"
+  },
+  "gk2_ep_1_voz_tz": {
+   "nome": "GK2 EP 1 VOZ TZ",
+   "dur": 4.34,
+   "cat": "voz"
+  },
+  "gk2_ep_2_voz_tz": {
+   "nome": "GK2 EP 2 VOZ TZ",
+   "dur": 8.06,
+   "cat": "voz"
+  },
+  "gk2_intro_0_voz_tz": {
+   "nome": "GK2 INTRO 0 VOZ TZ",
+   "dur": 5.34,
+   "cat": "voz"
+  },
+  "gk2_intro_1_voz_tz": {
+   "nome": "GK2 INTRO 1 VOZ TZ",
+   "dur": 2.27,
+   "cat": "voz"
+  },
+  "gk2_ki_blast_voz_tz": {
+   "nome": "GK2 KI BLAST VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "gk2_ki_max_voz_tz": {
+   "nome": "GK2 KI MAX VOZ TZ",
+   "dur": 1.67,
+   "cat": "voz"
+  },
+  "gk2_pre_ki_voz_tz": {
+   "nome": "GK2 PRE KI VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "gk2_vitoria_voz_tz": {
+   "nome": "GK2 VITORIA VOZ TZ",
+   "dur": 4.76,
+   "cat": "voz"
+  },
+  "gk3_ep_1_voz_tz": {
+   "nome": "GK3 EP 1 VOZ TZ",
+   "dur": 5.85,
+   "cat": "voz"
+  },
+  "gk3_ep_2_part_1_voz_tz": {
+   "nome": "GK3 EP 2 PART 1 VOZ TZ",
+   "dur": 2.44,
+   "cat": "voz"
+  },
+  "gk3_ep_2_part_2_voz_tz": {
+   "nome": "GK3 EP 2 PART 2 VOZ TZ",
+   "dur": 12.91,
+   "cat": "voz"
+  },
+  "gk3_transformac_o_voz_tz": {
+   "nome": "GK3 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.88,
+   "cat": "voz"
+  },
+  "gnu_derrota_voz_tz": {
+   "nome": "GNU DERROTA VOZ TZ",
+   "dur": 4.09,
+   "cat": "voz"
+  },
+  "gnu_ep1_voz_tz": {
+   "nome": "GNU EP1 VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "gnu_ep2_voz_tz": {
+   "nome": "GNU EP2 VOZ TZ",
+   "dur": 3.97,
+   "cat": "voz"
+  },
+  "gnu_intro_0_voz_tz": {
+   "nome": "GNU INTRO 0 VOZ TZ",
+   "dur": 4.57,
+   "cat": "voz"
+  },
+  "gnu_intro_1_voz_tz": {
+   "nome": "GNU INTRO 1 VOZ TZ",
+   "dur": 4.64,
+   "cat": "voz"
+  },
+  "gnu_ki_blast_voz_tz": {
+   "nome": "GNU KI BLAST VOZ TZ",
+   "dur": 1.21,
+   "cat": "voz"
+  },
+  "gnu_ki_max_voz_tz": {
+   "nome": "GNU KI MAX VOZ TZ",
+   "dur": 1.6,
+   "cat": "voz"
+  },
+  "gnu_pre_ki_voz_tz": {
+   "nome": "GNU PRE KI VOZ TZ",
+   "dur": 1.44,
+   "cat": "voz"
+  },
+  "gnu_vitoria_voz_tz": {
+   "nome": "GNU VITORIA VOZ TZ",
+   "dur": 3.78,
+   "cat": "voz"
+  },
+  "gohan_treinamento_voz": {
+   "nome": "GOHAN TREINAMENTO VOZ",
+   "dur": 5.83,
+   "cat": "voz"
+  },
+  "inicial_0_tz_0": {
+   "nome": "INICIAL 0 TZ_-0",
+   "dur": 5.67,
+   "cat": "musica"
+  },
+  "inicial_1_tz": {
+   "nome": "INICIAL 1 TZ",
+   "dur": 2.67,
+   "cat": "musica"
+  },
+  "jnb_derrota_voz_tz": {
+   "nome": "JNB DERROTA VOZ TZ",
+   "dur": 2.9,
+   "cat": "voz"
+  },
+  "jnb_ep_1_voz_tz": {
+   "nome": "JNB EP 1 VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "jnb_ep_2_voz_tz": {
+   "nome": "JNB EP 2 VOZ TZ",
+   "dur": 4.99,
+   "cat": "voz"
+  },
+  "jnb_intro_0_voz_tz": {
+   "nome": "JNB INTRO 0 VOZ TZ",
+   "dur": 3.23,
+   "cat": "voz"
+  },
+  "jnb_intro_1_voz_tz": {
+   "nome": "JNB INTRO 1 VOZ TZ",
+   "dur": 2.39,
+   "cat": "voz"
+  },
+  "jnb_ki_blast_voz_tz": {
+   "nome": "JNB KI BLAST VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "jnb_ki_max_voz_tz": {
+   "nome": "JNB KI MAX VOZ TZ",
+   "dur": 1.63,
+   "cat": "voz"
+  },
+  "jnb_pre_ki_voz_tz": {
+   "nome": "JNB PRE KI VOZ TZ",
+   "dur": 1.28,
+   "cat": "voz"
+  },
+  "jnb_vitoria_voz_tz": {
+   "nome": "JNB VITORIA VOZ TZ",
+   "dur": 1.76,
+   "cat": "voz"
+  },
+  "kghn_derrota_voz_tz": {
+   "nome": "KGHN DERROTA VOZ TZ",
+   "dur": 2.2,
+   "cat": "voz"
+  },
+  "kghn_ep_1_voz_tz": {
+   "nome": "KGHN EP 1 VOZ TZ",
+   "dur": 3.97,
+   "cat": "voz"
+  },
+  "kghn_ep_2_voz_tz": {
+   "nome": "KGHN EP 2 VOZ TZ",
+   "dur": 4.43,
+   "cat": "voz"
+  },
+  "kghn_intro_0_voz_tz": {
+   "nome": "KGHN INTRO 0 VOZ TZ",
+   "dur": 1.95,
+   "cat": "voz"
+  },
+  "kghn_intro_1_voz_tz": {
+   "nome": "KGHN INTRO 1 VOZ TZ",
+   "dur": 1.55,
+   "cat": "voz"
+  },
+  "kghn_ki_blast_voz_tz": {
+   "nome": "KGHN KI BLAST VOZ TZ",
+   "dur": 0.95,
+   "cat": "voz"
+  },
+  "kghn_ki_max_voz_tz": {
+   "nome": "KGHN KI MAX VOZ TZ",
+   "dur": 1.63,
+   "cat": "voz"
+  },
+  "kghn_pre_ki_voz_tz": {
+   "nome": "KGHN PRE KI VOZ TZ",
+   "dur": 0.6,
+   "cat": "voz"
+  },
+  "kghn_vitoria_voz_tz": {
+   "nome": "KGHN VITORIA VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "kgk_derrota_voz_tz": {
+   "nome": "KGK DERROTA VOZ TZ",
+   "dur": 4.64,
+   "cat": "voz"
+  },
+  "kgk_ep_1_voz_tz": {
+   "nome": "KGK EP 1 VOZ TZ",
+   "dur": 4.43,
+   "cat": "voz"
+  },
+  "kgk_ep_2_part_1_voz_tz": {
+   "nome": "KGK EP 2 PART 1 VOZ TZ",
+   "dur": 3.13,
+   "cat": "voz"
+  },
+  "kgk_ep_2_part_2_voz_tz": {
+   "nome": "KGK EP 2 PART 2 VOZ TZ",
+   "dur": 8.31,
+   "cat": "voz"
+  },
+  "kgk_intro_0_voz_tz": {
+   "nome": "KGK INTRO 0 VOZ TZ",
+   "dur": 4.71,
+   "cat": "voz"
+  },
+  "kgk_intro_1_voz_tz": {
+   "nome": "KGK INTRO 1 VOZ TZ",
+   "dur": 1.81,
+   "cat": "voz"
+  },
+  "kgk_ki_blast_voz_tz": {
+   "nome": "KGK KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "kgk_ki_max_voz_tz": {
+   "nome": "KGK KI MAX VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "kgk_pre_ki_voz_tz": {
+   "nome": "KGK PRE KI VOZ TZ",
+   "dur": 0.74,
+   "cat": "voz"
+  },
+  "kgk_vitoria_voz_tz": {
+   "nome": "KGK VITORIA VOZ TZ",
+   "dur": 5.08,
+   "cat": "voz"
+  },
+  "ko_voz_tz": {
+   "nome": "KO VOZ TZ",
+   "dur": 0.81,
+   "cat": "voz"
+  },
+  "krn_derrota_voz_tz": {
+   "nome": "KRN DERROTA VOZ TZ",
+   "dur": 5.08,
+   "cat": "voz"
+  },
+  "krn_ep_1_voz_tz": {
+   "nome": "KRN EP 1 VOZ TZ",
+   "dur": 3.85,
+   "cat": "voz"
+  },
+  "krn_ep_2_voz_tz": {
+   "nome": "KRN EP 2 VOZ TZ",
+   "dur": 5.55,
+   "cat": "voz"
+  },
+  "krn_intro_voz_0_tz": {
+   "nome": "KRN INTRO VOZ 0 TZ",
+   "dur": 3.11,
+   "cat": "voz"
+  },
+  "krn_intro_voz_1_tz": {
+   "nome": "KRN INTRO VOZ 1 TZ",
+   "dur": 2.2,
+   "cat": "voz"
+  },
+  "krn_ki_blast_voz_tz": {
+   "nome": "KRN KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "krn_ki_max_voz_tz": {
+   "nome": "KRN KI MAX VOZ TZ",
+   "dur": 1.65,
+   "cat": "voz"
+  },
+  "krn_pre_ki_voz_tz": {
+   "nome": "KRN PRE KI VOZ TZ",
+   "dur": 1.16,
+   "cat": "voz"
+  },
+  "krn_vitoria_voz_tz": {
+   "nome": "KRN VITORIA VOZ TZ",
+   "dur": 2.76,
+   "cat": "voz"
+  },
+  "kshn_derrota_voz_tz": {
+   "nome": "KSHN DERROTA VOZ TZ",
+   "dur": 2.79,
+   "cat": "voz"
+  },
+  "kshn_ep_1_voz_tz": {
+   "nome": "KSHN EP 1 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "kshn_ep_2_voz_tz": {
+   "nome": "KSHN EP 2 VOZ TZ",
+   "dur": 8.43,
+   "cat": "voz"
+  },
+  "kshn_intro_0_voz_tz": {
+   "nome": "KSHN INTRO 0 VOZ TZ",
+   "dur": 2.83,
+   "cat": "voz"
+  },
+  "kshn_intro_1_voz_tz": {
+   "nome": "KSHN INTRO 1 VOZ TZ",
+   "dur": 3.53,
+   "cat": "voz"
+  },
+  "kshn_ki_blast_voz_tz": {
+   "nome": "KSHN KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "kshn_ki_max_voz_tz": {
+   "nome": "KSHN KI MAX VOZ TZ",
+   "dur": 1.23,
+   "cat": "voz"
+  },
+  "kshn_pre_ki_voz_tz": {
+   "nome": "KSHN PRE KI VOZ TZ",
+   "dur": 1.3,
+   "cat": "voz"
+  },
+  "kshn_vitoria_voz_tz": {
+   "nome": "KSHN VITORIA VOZ TZ",
+   "dur": 4.18,
+   "cat": "voz"
+  },
+  "ktrks_derrota_voz_tz": {
+   "nome": "KTRKS DERROTA VOZ TZ",
+   "dur": 3.62,
+   "cat": "voz"
+  },
+  "ktrks_ep_1_voz_tz": {
+   "nome": "KTRKS EP 1 VOZ TZ",
+   "dur": 3.6,
+   "cat": "voz"
+  },
+  "ktrks_ep_2_voz_tz": {
+   "nome": "KTRKS EP 2 VOZ TZ",
+   "dur": 8.13,
+   "cat": "voz"
+  },
+  "ktrks_intro_0_voz_tz": {
+   "nome": "KTRKS INTRO 0 VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "ktrks_intro_1_voz_tz": {
+   "nome": "KTRKS INTRO 1 VOZ TZ",
+   "dur": 1.76,
+   "cat": "voz"
+  },
+  "ktrks_ki_blast_voz_tz": {
+   "nome": "KTRKS KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "ktrks_ki_max_voz_tz": {
+   "nome": "KTRKS KI MAX VOZ TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "ktrks_pre_ki_voz_tz": {
+   "nome": "KTRKS PRE KI VOZ TZ",
+   "dur": 1.14,
+   "cat": "voz"
+  },
+  "ktrks_vitoria_voz_tz": {
+   "nome": "KTRKS VITORIA VOZ TZ",
+   "dur": 3.83,
+   "cat": "voz"
+  },
+  "man21_derrota_voz_tz": {
+   "nome": "MAN21 DERROTA VOZ TZ",
+   "dur": 2.11,
+   "cat": "voz"
+  },
+  "man21_ep_1_voz_tz": {
+   "nome": "MAN21 EP 1 VOZ TZ",
+   "dur": 4.06,
+   "cat": "voz"
+  },
+  "man21_ep_2_voz_tz": {
+   "nome": "MAN21 EP 2 VOZ TZ",
+   "dur": 5.43,
+   "cat": "voz"
+  },
+  "man21_intro_0_voz_tz": {
+   "nome": "MAN21 INTRO 0 VOZ TZ",
+   "dur": 1.46,
+   "cat": "voz"
+  },
+  "man21_intro_1_voz_tz": {
+   "nome": "MAN21 INTRO 1 VOZ TZ",
+   "dur": 2.0,
+   "cat": "voz"
+  },
+  "man21_ki_blast_voz_tz": {
+   "nome": "MAN21 KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "man21_ki_max_voz_tz": {
+   "nome": "MAN21 KI MAX VOZ TZ",
+   "dur": 1.23,
+   "cat": "voz"
+  },
+  "man21_pre_ki_voz_tz": {
+   "nome": "MAN21 PRE KI VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "man21_vitoria_voz_tz": {
+   "nome": "MAN21 VITORIA VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "mcl_derrota_voz_tz": {
+   "nome": "MCL DERROTA VOZ TZ",
+   "dur": 2.41,
+   "cat": "voz"
+  },
+  "mcl_ep_1_voz_tz": {
+   "nome": "MCL EP 1 VOZ TZ",
+   "dur": 5.32,
+   "cat": "voz"
+  },
+  "mcl_ep_2_voz_tz": {
+   "nome": "MCL EP 2 VOZ TZ",
+   "dur": 7.69,
+   "cat": "voz"
+  },
+  "mcl_intro_voz_0_tz": {
+   "nome": "MCL INTRO VOZ 0 Tz",
+   "dur": 3.58,
+   "cat": "voz"
+  },
+  "mcl_intro_voz_1_tz": {
+   "nome": "MCL INTRO VOZ 1 TZ",
+   "dur": 4.16,
+   "cat": "voz"
+  },
+  "mcl_ki_blast_voz_tz": {
+   "nome": "MCL KI BLAST VOZ TZ",
+   "dur": 0.86,
+   "cat": "voz"
+  },
+  "mcl_ki_max_voz_tz": {
+   "nome": "MCL KI MAX VOZ TZ",
+   "dur": 2.09,
+   "cat": "voz"
+  },
+  "mcl_pre_ki_voz_tz": {
+   "nome": "MCL PRE KI VOZ TZ",
+   "dur": 0.86,
+   "cat": "voz"
+  },
+  "mcl_vit_ria_voz_tz": {
+   "nome": "MCL VITαRIA VOZ TZ",
+   "dur": 4.67,
+   "cat": "voz"
+  },
+  "menu_versus_voz_tz": {
+   "nome": "MENU VERSUS VOZ TZ",
+   "dur": 5.43,
+   "cat": "voz"
+  },
+  "mghn_derrota_voz_tz": {
+   "nome": "MGHN DERROTA VOZ TZ",
+   "dur": 3.85,
+   "cat": "voz"
+  },
+  "mghn_ep_1_voz_tz": {
+   "nome": "MGHN EP 1 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "mghn_ep_2_voz_tz": {
+   "nome": "MGHN EP 2 VOZ TZ",
+   "dur": 8.22,
+   "cat": "voz"
+  },
+  "mghn_intro_voz_0_tz": {
+   "nome": "MGHN INTRO VOZ 0 TZ",
+   "dur": 3.81,
+   "cat": "voz"
+  },
+  "mghn_intro_voz_1_tz": {
+   "nome": "MGHN INTRO VOZ 1 TZ",
+   "dur": 3.04,
+   "cat": "voz"
+  },
+  "mghn_ki_blast_voz_tz": {
+   "nome": "MGHN KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "mghn_ki_max_voz_tz": {
+   "nome": "MGHN KI MAX VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "mghn_pre_ki_voz_tz": {
+   "nome": "MGHN PRE KI VOZ TZ",
+   "dur": 0.58,
+   "cat": "voz"
+  },
+  "mghn_vitoria_voz_tz": {
+   "nome": "MGHN VITORIA VOZ TZ",
+   "dur": 3.25,
+   "cat": "voz"
+  },
+  "mghn1_derrota_voz_tz": {
+   "nome": "MGHN1 DERROTA VOZ TZ",
+   "dur": 3.07,
+   "cat": "voz"
+  },
+  "mghn1_ep_1_voz_tz": {
+   "nome": "MGHN1 EP 1 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "mghn1_ep_2_voz_tz": {
+   "nome": "MGHN1 EP 2 VOZ TZ",
+   "dur": 8.01,
+   "cat": "voz"
+  },
+  "mghn1_intro_0_voz_tz": {
+   "nome": "MGHN1 INTRO 0 VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "mghn1_intro_1_voz_tz": {
+   "nome": "MGHN1 INTRO 1 VOZ TZ",
+   "dur": 1.97,
+   "cat": "voz"
+  },
+  "mghn1_ki_blast_voz_tz": {
+   "nome": "MGHN1 KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "mghn1_ki_max_voz_tz": {
+   "nome": "MGHN1 KI MAX VOZ TZ",
+   "dur": 1.37,
+   "cat": "voz"
+  },
+  "mghn1_pre_ki_voz_tz": {
+   "nome": "MGHN1 PRE KI VOZ TZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "mghn1_transformac_o_voz_tz": {
+   "nome": "MGHN1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.13,
+   "cat": "voz"
+  },
+  "mghn1_vitoria_voz_tz": {
+   "nome": "MGHN1 VITORIA VOZ TZ",
+   "dur": 3.2,
+   "cat": "voz"
+  },
+  "mkm_derrota_voz_tz": {
+   "nome": "MKM DERROTA VOZ TZ",
+   "dur": 5.55,
+   "cat": "voz"
+  },
+  "mkm_ep_1_voz_tz": {
+   "nome": "MKM EP 1 VOZ TZ",
+   "dur": 6.08,
+   "cat": "voz"
+  },
+  "mkm_ep_2_voz_tz": {
+   "nome": "MKM EP 2 VOZ TZ",
+   "dur": 9.8,
+   "cat": "voz"
+  },
+  "mkm_intro_0_voz_tz": {
+   "nome": "MKM INTRO 0 VOZ TZ",
+   "dur": 6.39,
+   "cat": "voz"
+  },
+  "mkm_intro_1_voz_tz": {
+   "nome": "MKM INTRO 1 VOZ TZ",
+   "dur": 3.83,
+   "cat": "voz"
+  },
+  "mkm_ki_blast_voz_tz": {
+   "nome": "MKM KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "mkm_ki_max_voz_tz": {
+   "nome": "MKM KI MAX VOZ TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "mkm_pre_ki_voz_tz": {
+   "nome": "MKM PRE KI VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "mkm_vitoria_voz_tz": {
+   "nome": "MKM VITORIA VOZ TZ",
+   "dur": 4.32,
+   "cat": "voz"
+  },
+  "modo_hist_ria_trunks_voz_tz": {
+   "nome": "MODO HISTαRIA TRUNKS VOZ TZ",
+   "dur": 4.81,
+   "cat": "voz"
+  },
+  "mvgt_derrota_voz_tz": {
+   "nome": "MVGT DERROTA VOZ TZ",
+   "dur": 3.53,
+   "cat": "voz"
+  },
+  "mvgt_ep_1_voz_tz": {
+   "nome": "MVGT EP 1 VOZ TZ",
+   "dur": 4.67,
+   "cat": "voz"
+  },
+  "mvgt_ep_2_voz_tz": {
+   "nome": "MVGT EP 2 VOZ TZ",
+   "dur": 11.73,
+   "cat": "voz"
+  },
+  "mvgt_intro_0_voz_tz": {
+   "nome": "MVGT INTRO 0 VOZ TZ",
+   "dur": 2.86,
+   "cat": "voz"
+  },
+  "mvgt_intro_1_voz_tz": {
+   "nome": "MVGT INTRO 1 VOZ TZ",
+   "dur": 2.07,
+   "cat": "voz"
+  },
+  "mvgt_ki_blast_voz_tz": {
+   "nome": "MVGT KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "mvgt_ki_max_voz_tz": {
+   "nome": "MVGT KI MAX VOZ TZ",
+   "dur": 1.48,
+   "cat": "voz"
+  },
+  "mvgt_pre_ki_voz_tz": {
+   "nome": "MVGT PRE KI VOZ TZ",
+   "dur": 0.77,
+   "cat": "voz"
+  },
+  "mvgt_vitoria_voz_tz": {
+   "nome": "MVGT VITORIA VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "n17_derrota_voz_tz": {
+   "nome": "N17 DERROTA VOZ TZ",
+   "dur": 5.08,
+   "cat": "voz"
+  },
+  "n17_ep_1_voz_tz": {
+   "nome": "N17 EP 1 VOZ TZ",
+   "dur": 3.99,
+   "cat": "voz"
+  },
+  "n17_ep_2_voz_tz": {
+   "nome": "N17 EP 2 VOZ TZ",
+   "dur": 4.25,
+   "cat": "voz"
+  },
+  "n17_intro_voz_0_tz": {
+   "nome": "N17 INTRO VOZ 0 TZ",
+   "dur": 3.09,
+   "cat": "voz"
+  },
+  "n17_intro_voz_1_tz": {
+   "nome": "N17 INTRO VOZ 1 TZ",
+   "dur": 1.21,
+   "cat": "voz"
+  },
+  "n17_ki_blast_voz_tz": {
+   "nome": "N17 KI BLAST VOZ TZ",
+   "dur": 0.95,
+   "cat": "voz"
+  },
+  "n17_ki_max_voz_tz": {
+   "nome": "N17 KI MAX VOZ TZ",
+   "dur": 1.25,
+   "cat": "voz"
+  },
+  "n17_pre_ki_voz_tz": {
+   "nome": "N17 PRE KI VOZ TZ",
+   "dur": 0.95,
+   "cat": "voz"
+  },
+  "n17_vit_ria_voz_tz": {
+   "nome": "N17 VITαRIA VOZ TZ",
+   "dur": 3.69,
+   "cat": "voz"
+  },
+  "n18_derrota_voz_tz": {
+   "nome": "N18 DERROTA VOZ TZ",
+   "dur": 4.5,
+   "cat": "voz"
+  },
+  "n18_ep_1_voz_tz": {
+   "nome": "N18 EP 1 VOZ TZ",
+   "dur": 4.6,
+   "cat": "voz"
+  },
+  "n18_ep_2_voz_tz": {
+   "nome": "N18 EP 2 VOZ TZ",
+   "dur": 4.13,
+   "cat": "voz"
+  },
+  "n18_intro_0_voz_tz": {
+   "nome": "N18 INTRO 0 VOZ TZ",
+   "dur": 3.16,
+   "cat": "voz"
+  },
+  "n18_intro_1_voz_tz": {
+   "nome": "N18 INTRO 1 VOZ TZ",
+   "dur": 2.3,
+   "cat": "voz"
+  },
+  "n18_ki_blast_voz_tz": {
+   "nome": "N18 KI BLAST VOZ TZ",
+   "dur": 1.21,
+   "cat": "voz"
+  },
+  "n18_ki_max_voz_tz": {
+   "nome": "N18 KI MAX VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "n18_pre_ki_voz_tz": {
+   "nome": "N18 PRE KI VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "n18_vitoria_voz_tz": {
+   "nome": "N18 VITORIA VOZ TZ",
+   "dur": 4.18,
+   "cat": "voz"
+  },
+  "n19_derrota_voz_tz": {
+   "nome": "N19 DERROTA VOZ TZ",
+   "dur": 3.32,
+   "cat": "voz"
+  },
+  "n19_ep_1_voz_tz": {
+   "nome": "N19 EP 1 VOZ TZ",
+   "dur": 4.04,
+   "cat": "voz"
+  },
+  "n19_ep_2_part_1_voz_tz": {
+   "nome": "N19 EP 2 PART 1 VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "n19_ep_2_part_2_voz_tz": {
+   "nome": "N19 EP 2 PART 2 VOZ TZ",
+   "dur": 6.06,
+   "cat": "voz"
+  },
+  "n19_intro_0_voz_tz": {
+   "nome": "N19 INTRO 0 VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "n19_intro_1_voz_tz": {
+   "nome": "N19 INTRO 1 VOZ TZ",
+   "dur": 4.76,
+   "cat": "voz"
+  },
+  "n19_ki_blast_voz_tz": {
+   "nome": "N19 KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "n19_ki_max_voz_tz": {
+   "nome": "N19 KI MAX VOZ TZ",
+   "dur": 2.97,
+   "cat": "voz"
+  },
+  "n19_pre_ki_voz_tz": {
+   "nome": "N19 PRE KI VOZ TZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "n19_vitoria_voz_tz": {
+   "nome": "N19 VITORIA VOZ TZ",
+   "dur": 3.69,
+   "cat": "voz"
+  },
+  "npa_derrota_voz_tz": {
+   "nome": "NPA DERROTA VOZ TZ",
+   "dur": 5.2,
+   "cat": "voz"
+  },
+  "npa_ep_1_voz_tz": {
+   "nome": "NPA EP 1 VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "npa_ep_2_voz_tz": {
+   "nome": "NPA EP 2 VOZ TZ",
+   "dur": 8.48,
+   "cat": "voz"
+  },
+  "npa_ki_blast_voz_tz": {
+   "nome": "NPA KI BLAST VOZ TZ",
+   "dur": 1.28,
+   "cat": "voz"
+  },
+  "npa_ki_max_voz_tz": {
+   "nome": "NPA KI MAX VOZ TZ",
+   "dur": 2.69,
+   "cat": "voz"
+  },
+  "npa_pre_ki_voz_tz": {
+   "nome": "NPA PRE KI VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "npa_vitoria_voz_tz": {
+   "nome": "NPA VITORIA VOZ TZ",
+   "dur": 3.07,
+   "cat": "voz"
+  },
+  "npa_voz_0_intro_tz": {
+   "nome": "NPA VOZ 0 INTRO TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "npa_voz_1_intro_tz": {
+   "nome": "NPA VOZ 1 INTRO TZ",
+   "dur": 4.27,
+   "cat": "voz"
+  },
+  "opc_es_de_batalha_voz_tz": {
+   "nome": "OPÇσES DE BATALHA VOZ TZ",
+   "dur": 2.04,
+   "cat": "voz"
+  },
+  "opc_es_voz_menu_principal_tz": {
+   "nome": "OPÇσES VOZ MENU PRINCIPAL TZ",
+   "dur": 3.69,
+   "cat": "voz"
+  },
+  "opc_es_voz_tz": {
+   "nome": "OPÇσES VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "ozr_derrota_voz_tz": {
+   "nome": "OZR DERROTA VOZ TZ",
+   "dur": 2.67,
+   "cat": "voz"
+  },
+  "ozr_ep_1_voz_tz": {
+   "nome": "OZR EP 1 VOZ TZ",
+   "dur": 4.16,
+   "cat": "voz"
+  },
+  "ozr_ep_2_voz_tz": {
+   "nome": "OZR EP 2 VOZ TZ",
+   "dur": 8.48,
+   "cat": "voz"
+  },
+  "ozr_intro_1_voz_tz2": {
+   "nome": "OZR INTRO 1 VOZ TZ2",
+   "dur": 4.6,
+   "cat": "voz"
+  },
+  "ozr_intro_voz_0_tz": {
+   "nome": "OZR INTRO VOZ 0 TZ",
+   "dur": 3.6,
+   "cat": "voz"
+  },
+  "ozr_ki_blast_voz_tz": {
+   "nome": "OZR KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "ozr_ki_max_voz_tz": {
+   "nome": "OZR KI MAX VOZ TZ",
+   "dur": 1.72,
+   "cat": "voz"
+  },
+  "ozr_pre_ki_voz_tz": {
+   "nome": "OZR PRE KI VOZ TZ",
+   "dur": 0.88,
+   "cat": "voz"
+  },
+  "ozr_vitoria_voz_tz": {
+   "nome": "OZR VITORIA VOZ TZ",
+   "dur": 4.55,
+   "cat": "voz"
+  },
+  "pcl_derrota_voz_tz": {
+   "nome": "PCL DERROTA VOZ TZ",
+   "dur": 3.46,
+   "cat": "voz"
+  },
+  "pcl_ep_1_voz_tz": {
+   "nome": "PCL EP 1 VOZ TZ",
+   "dur": 3.27,
+   "cat": "voz"
+  },
+  "pcl_ep_2_voz_tz": {
+   "nome": "PCL EP 2 VOZ TZ",
+   "dur": 4.37,
+   "cat": "voz"
+  },
+  "pcl_ki_blast_voz_tz": {
+   "nome": "PCL KI BLAST VOZ TZ",
+   "dur": 0.97,
+   "cat": "voz"
+  },
+  "pcl_max_ki_voz_tz": {
+   "nome": "PCL MAX KI VOZ TZ",
+   "dur": 1.37,
+   "cat": "voz"
+  },
+  "pcl_pre_ki_voz_tz": {
+   "nome": "PCL PRE KI VOZ TZ",
+   "dur": 0.93,
+   "cat": "voz"
+  },
+  "pcl_vit_ria_voz_tz": {
+   "nome": "PCL VITαRIA VOZ TZ",
+   "dur": 4.18,
+   "cat": "voz"
+  },
+  "pcl_voz_intro_0_tz": {
+   "nome": "PCL VOZ INTRO 0 TZ",
+   "dur": 3.11,
+   "cat": "voz"
+  },
+  "pcl_voz_intro_1_tz": {
+   "nome": "PCL VOZ INTRO 1 TZ",
+   "dur": 2.21,
+   "cat": "voz"
+  },
+  "piccolo_comecar_epis_dio_voz_tz": {
+   "nome": "PICCOLO COMEÇAR EPISαDIO VOZ TZ",
+   "dur": 1.16,
+   "cat": "voz"
+  },
+  "piccolo_saga_saiyan_voz_tz": {
+   "nome": "PICCOLO SAGA SAIYAN VOZ TZ",
+   "dur": 5.04,
+   "cat": "voz"
+  },
+  "player_diferente": {
+   "nome": "PLAYER DIFERENTE",
+   "dur": 0.58,
+   "cat": "outros"
+  },
+  "pulando_som_tz": {
+   "nome": "PULANDO SOM TZ",
+   "dur": 0.88,
+   "cat": "outros"
+  },
+  "rdt_derrota_voz_tz": {
+   "nome": "RDT DERROTA VOZ TZ",
+   "dur": 4.88,
+   "cat": "voz"
+  },
+  "rdt_vitoria_voz_tz": {
+   "nome": "RDT VITORIA VOZ TZ",
+   "dur": 4.69,
+   "cat": "voz"
+  },
+  "rdtz_ep_1_voz_tz": {
+   "nome": "RDTZ EP 1 VOZ TZ",
+   "dur": 4.41,
+   "cat": "voz"
+  },
+  "rdtz_ep_2_voz_tz": {
+   "nome": "RDTZ EP 2 VOZ TZ",
+   "dur": 8.31,
+   "cat": "voz"
+  },
+  "rdtz_intro_voz_0_tz": {
+   "nome": "RDTZ INTRO VOZ 0 TZ",
+   "dur": 1.95,
+   "cat": "voz"
+  },
+  "rdtz_intro_voz_1_tz": {
+   "nome": "RDTZ INTRO VOZ 1 TZ",
+   "dur": 2.83,
+   "cat": "voz"
+  },
+  "rdtz_ki_blast_voz_tz": {
+   "nome": "RDTZ KI BLAST VOZ TZ",
+   "dur": 1.39,
+   "cat": "voz"
+  },
+  "rdtz_ki_max_voz_tz": {
+   "nome": "RDTZ KI MAX VOZ TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "rdtz_pre_ki_voz_tz": {
+   "nome": "RDTZ PRE KI VOZ TZ",
+   "dur": 0.79,
+   "cat": "voz"
+  },
+  "ready_fight_voz_tz": {
+   "nome": "READY FIGHT VOZ TZ",
+   "dur": 3.55,
+   "cat": "voz"
+  },
+  "saga_saiyan_e1_gk_intro_1_voz_tz": {
+   "nome": "SAGA SAIYAN E1 GK INTRO 1 VOZ TZ",
+   "dur": 4.32,
+   "cat": "voz"
+  },
+  "saga_saiyan_e1_gk_intro_3_voz_tz": {
+   "nome": "SAGA SAIYAN E1 GK INTRO 3 VOZ TZ",
+   "dur": 1.95,
+   "cat": "voz"
+  },
+  "saga_saiyan_e1_rdtz_intro_0_voz_tz": {
+   "nome": "SAGA SAIYAN E1 RDTZ INTRO 0 VOZ TZ",
+   "dur": 3.6,
+   "cat": "voz"
+  },
+  "saga_saiyan_e1_rdtz_intro_2_voz_tz": {
+   "nome": "SAGA SAIYAN E1 RDTZ INTRO 2 VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_1_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 1 VOZ TZ",
+   "dur": 3.6,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_10_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 10 VOZ TZ",
+   "dur": 3.72,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_12_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 12 VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_13_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 13 VOZ TZ",
+   "dur": 5.5,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_6_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 6 VOZ TZ",
+   "dur": 6.34,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_gk_7_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 GK 7 VOZ TZ",
+   "dur": 9.78,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_ozaro_14_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 OZARO 14 VOZ TZ",
+   "dur": 6.92,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_ozr_11_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 OZR 11 VOZ TZ",
+   "dur": 9.24,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_ozr_9_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 OZR 9 VOZ TZ",
+   "dur": 7.01,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_vgt_2_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 VGT 2 VOZ TZ",
+   "dur": 4.74,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_vgt_3_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 VGT 3 VOZ TZ",
+   "dur": 2.93,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_vgt_4_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 VGT 4 VOZ TZ",
+   "dur": 3.74,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_vgt_5_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 VGT 5 VOZ TZ",
+   "dur": 3.18,
+   "cat": "voz"
+  },
+  "saga_saiyan_ep_3_vgt_8_voz_tz": {
+   "nome": "SAGA SAIYAN EP 3 VGT 8 VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "saga_saiyan_gk_10_voz_tz": {
+   "nome": "SAGA SAIYAN GK 10 VOZ TZ",
+   "dur": 5.94,
+   "cat": "voz"
+  },
+  "saga_saiyan_gk_12_voz_tz": {
+   "nome": "SAGA SAIYAN GK 12 VOZ TZ",
+   "dur": 6.2,
+   "cat": "voz"
+  },
+  "saga_saiyan_gk_intro_4_voz_tz": {
+   "nome": "SAGA SAIYAN GK INTRO 4 VOZ TZ",
+   "dur": 4.83,
+   "cat": "voz"
+  },
+  "saga_saiyan_goku_voz_tz": {
+   "nome": "SAGA SAIYAN GOKU VOZ TZ",
+   "dur": 5.8,
+   "cat": "voz"
+  },
+  "saga_saiyan_kln_6_voz_tz": {
+   "nome": "SAGA SAIYAN KLN 6 VOZ TZ",
+   "dur": 1.88,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_11_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 11 VOZ TZ",
+   "dur": 5.22,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_13_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 13 VOZ TZ",
+   "dur": 4.62,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_15_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 15 VOZ TZ",
+   "dur": 3.51,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_2_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 2 VOZ TZ",
+   "dur": 6.45,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_4_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 4 VOZ TZ",
+   "dur": 8.38,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_5_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 5 VOZ TZ",
+   "dur": 2.76,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_8_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 8 VOZ TZ",
+   "dur": 4.37,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_9_voz_tz": {
+   "nome": "SAGA SAIYAN NPA 9 VOZ TZ",
+   "dur": 4.46,
+   "cat": "voz"
+  },
+  "saga_saiyan_npa_tien_1_voz_tz": {
+   "nome": "SAGA SAIYAN NPA TIEN 1 VOZ TZ",
+   "dur": 13.72,
+   "cat": "voz"
+  },
+  "saga_saiyan_pcl_intro_11_voz_tz": {
+   "nome": "SAGA SAIYAN PCL INTRO 11 VOZ TZ",
+   "dur": 4.55,
+   "cat": "voz"
+  },
+  "saga_saiyan_pcl_intro_5_voz_tz": {
+   "nome": "SAGA SAIYAN PCL INTRO 5 VOZ TZ",
+   "dur": 6.8,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_derrota_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ DERROTA VOZ TZ",
+   "dur": 7.22,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_intro_10_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ INTRO 10 VOZ TZ",
+   "dur": 14.84,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_intro_6_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ INTRO 6 VOZ TZ",
+   "dur": 7.87,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_intro_7_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ INTRO 7 VOZ TZ",
+   "dur": 14.88,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_intro_8_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ INTRO 8 VOZ TZ",
+   "dur": 6.5,
+   "cat": "voz"
+  },
+  "saga_saiyan_rdtz_intro_9_voz_tz": {
+   "nome": "SAGA SAIYAN RDTZ INTRO 9 VOZ TZ",
+   "dur": 11.7,
+   "cat": "voz"
+  },
+  "saga_saiyan_vgt_14_voz_tz": {
+   "nome": "SAGA SAIYAN VGT 14 VOZ TZ",
+   "dur": 2.95,
+   "cat": "voz"
+  },
+  "saga_saiyan_vgt_3_voz_tz": {
+   "nome": "SAGA SAIYAN VGT 3 VOZ TZ",
+   "dur": 3.99,
+   "cat": "voz"
+  },
+  "saga_saiyan_vgt_7_voz_tz": {
+   "nome": "SAGA SAIYAN VGT 7 VOZ TZ",
+   "dur": 1.53,
+   "cat": "voz"
+  },
+  "saga_selecionada_goku_voz_tz": {
+   "nome": "SAGA SELECIONADA GOKU VOZ TZ",
+   "dur": 6.52,
+   "cat": "voz"
+  },
+  "saindo_start_som_tz": {
+   "nome": "SAINDO START SOM TZ",
+   "dur": 0.83,
+   "cat": "interface"
+  },
+  "save_game_voz_tz": {
+   "nome": "SAVE GAME VOZ TZ",
+   "dur": 4.81,
+   "cat": "voz"
+  },
+  "sbm_derrota_voz_tz": {
+   "nome": "SBM DERROTA VOZ TZ",
+   "dur": 1.76,
+   "cat": "voz"
+  },
+  "sbm_ep_1_voz_tz": {
+   "nome": "SBM EP 1 VOZ TZ",
+   "dur": 3.97,
+   "cat": "voz"
+  },
+  "sbm_ep_2_part_1_voz_tz": {
+   "nome": "SBM EP 2 PART 1 VOZ TZ",
+   "dur": 2.16,
+   "cat": "voz"
+  },
+  "sbm_ep_2_part_2_voz_tz": {
+   "nome": "SBM EP 2 PART 2 VOZ TZ",
+   "dur": 5.71,
+   "cat": "voz"
+  },
+  "sbm_intro_0_voz_tz": {
+   "nome": "SBM INTRO 0 VOZ TZ",
+   "dur": 0.7,
+   "cat": "voz"
+  },
+  "sbm_intro_1_voz_tz": {
+   "nome": "SBM INTRO 1 VOZ TZ",
+   "dur": 0.6,
+   "cat": "voz"
+  },
+  "sbm_ki_blast_voz_tz": {
+   "nome": "SBM KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "sbm_ki_max_voz_tz": {
+   "nome": "SBM KI MAX VOZ TZ",
+   "dur": 1.21,
+   "cat": "voz"
+  },
+  "sbm_pre_ki_voz_tz": {
+   "nome": "SBM PRE KI VOZ TZ",
+   "dur": 0.86,
+   "cat": "voz"
+  },
+  "sbm_vitoria_voz_tz": {
+   "nome": "SBM VITORIA VOZ TZ",
+   "dur": 1.62,
+   "cat": "voz"
+  },
+  "selecionando_som_tz": {
+   "nome": "SELECIONANDO SOM TZ",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "selec_o_de_cen_rios_goku_voz_tz": {
+   "nome": "SELEÇ╟O DE CEN╡RIOS GOKU VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  },
+  "selec_o_de_dificuldade_goku_voz_tz": {
+   "nome": "SELEÇ╟O DE DIFICULDADE GOKU VOZ TZ",
+   "dur": 5.39,
+   "cat": "voz"
+  },
+  "soco_som_tz": {
+   "nome": "SOCO SOM TZ",
+   "dur": 0.46,
+   "cat": "golpe"
+  },
+  "som_sonoro": {
+   "nome": "SOM SONORO",
+   "dur": 0.56,
+   "cat": "outros"
+  },
+  "som_voz_tz": {
+   "nome": "SOM VOZ TZ",
+   "dur": 4.39,
+   "cat": "voz"
+  },
+  "soundtrack_10_hc_som_tz": {
+   "nome": "SOUNDTRACK 10 HC SOM TZ",
+   "dur": 138.65,
+   "cat": "musica"
+  },
+  "soundtrack_11_tz": {
+   "nome": "SOUNDTRACK 11 TZ",
+   "dur": 139.99,
+   "cat": "musica"
+  },
+  "soundtrack_12_tz": {
+   "nome": "SOUNDTRACK 12 TZ",
+   "dur": 129.45,
+   "cat": "musica"
+  },
+  "soundtrack_13_tz": {
+   "nome": "SOUNDTRACK 13 TZ",
+   "dur": 123.0,
+   "cat": "musica"
+  },
+  "soundtrack_14_tz": {
+   "nome": "SOUNDTRACK 14 TZ",
+   "dur": 159.82,
+   "cat": "musica"
+  },
+  "soundtrack_15_tz": {
+   "nome": "SOUNDTRACK 15 TZ",
+   "dur": 143.48,
+   "cat": "musica"
+  },
+  "soundtrack_16_tz": {
+   "nome": "SOUNDTRACK 16 TZ",
+   "dur": 168.37,
+   "cat": "musica"
+  },
+  "soundtrack_17_tz": {
+   "nome": "SOUNDTRACK 17 TZ",
+   "dur": 167.23,
+   "cat": "musica"
+  },
+  "soundtrack_18_tz": {
+   "nome": "SOUNDTRACK 18 TZ",
+   "dur": 123.81,
+   "cat": "musica"
+  },
+  "soundtrack_19_tz": {
+   "nome": "SOUNDTRACK 19 TZ",
+   "dur": 121.53,
+   "cat": "musica"
+  },
+  "soundtrack_20_tz": {
+   "nome": "SOUNDTRACK 20 TZ",
+   "dur": 124.25,
+   "cat": "musica"
+  },
+  "soundtrack_21_tz": {
+   "nome": "SOUNDTRACK 21 TZ",
+   "dur": 92.09,
+   "cat": "musica"
+  },
+  "soundtrack_4_som_tz": {
+   "nome": "SOUNDTRACK 4 SOM TZ",
+   "dur": 113.75,
+   "cat": "musica"
+  },
+  "soundtrack_6_shine_tz_som": {
+   "nome": "SOUNDTRACK 6 SHINE TZ SOM",
+   "dur": 161.51,
+   "cat": "musica"
+  },
+  "soundtrack_7_wr_tz": {
+   "nome": "SOUNDTRACK 7 WR TZ",
+   "dur": 145.7,
+   "cat": "musica"
+  },
+  "soundtrack_8_sm_som_tz": {
+   "nome": "SOUNDTRACK 8 SM SOM TZ",
+   "dur": 133.19,
+   "cat": "musica"
+  },
+  "soundtrack_9_has_som_tz": {
+   "nome": "SOUNDTRACK 9 HAS SOM TZ",
+   "dur": 170.83,
+   "cat": "musica"
+  },
+  "soundtrack_bt3_iw_tz": {
+   "nome": "SOUNDTRACK BT3 IW TZ",
+   "dur": 109.11,
+   "cat": "musica"
+  },
+  "soundtrack_tema_bt3": {
+   "nome": "SOUNDTRACK TEMA BT3",
+   "dur": 131.01,
+   "cat": "musica"
+  },
+  "soundtrack_tema_treinamento": {
+   "nome": "SOUNDTRACK TEMA TREINAMENTO",
+   "dur": 101.77,
+   "cat": "musica"
+  },
+  "strks_derrota_voz_tz": {
+   "nome": "STRKS DERROTA VOZ TZ",
+   "dur": 2.79,
+   "cat": "voz"
+  },
+  "strks_ep_1_voz_tz": {
+   "nome": "STRKS EP 1 VOZ TZ",
+   "dur": 4.04,
+   "cat": "voz"
+  },
+  "strks_ep_2_voz_tz": {
+   "nome": "STRKS EP 2 VOZ TZ",
+   "dur": 6.41,
+   "cat": "voz"
+  },
+  "strks_intro_0_voz_tz": {
+   "nome": "STRKS INTRO 0 VOZ TZ",
+   "dur": 1.74,
+   "cat": "voz"
+  },
+  "strks_intro_1_voz_tz": {
+   "nome": "STRKS INTRO 1 VOZ TZ",
+   "dur": 1.51,
+   "cat": "voz"
+  },
+  "strks_ki_blast_voz_tz": {
+   "nome": "STRKS KI BLAST VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "strks_ki_max_voz_tz": {
+   "nome": "STRKS KI MAX VOZ TZ",
+   "dur": 1.42,
+   "cat": "voz"
+  },
+  "strks_pre_ki_voz_tz": {
+   "nome": "STRKS PRE KI VOZ TZ",
+   "dur": 1.09,
+   "cat": "voz"
+  },
+  "strks_vitoria_voz_tz": {
+   "nome": "STRKS VITORIA VOZ TZ",
+   "dur": 2.18,
+   "cat": "voz"
+  },
+  "svgt_derrota_voz_tz": {
+   "nome": "SVGT DERROTA VOZ TZ",
+   "dur": 3.85,
+   "cat": "voz"
+  },
+  "svgt_ep_1_voz_tz": {
+   "nome": "SVGT EP 1 VOZ TZ",
+   "dur": 4.37,
+   "cat": "voz"
+  },
+  "svgt_ep_2_voz_tz": {
+   "nome": "SVGT EP 2 VOZ TZ",
+   "dur": 8.71,
+   "cat": "voz"
+  },
+  "svgt_intro_0_voz_tz": {
+   "nome": "SVGT INTRO 0 VOZ TZ",
+   "dur": 3.07,
+   "cat": "voz"
+  },
+  "svgt_intro_1_voz_tz": {
+   "nome": "SVGT INTRO 1 VOZ TZ",
+   "dur": 2.02,
+   "cat": "voz"
+  },
+  "svgt_ki_blast_voz_tz": {
+   "nome": "SVGT KI BLAST VOZ TZ",
+   "dur": 1.0,
+   "cat": "voz"
+  },
+  "svgt_ki_max_voz_tz": {
+   "nome": "SVGT KI MAX VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "svgt_pre_ki_voz_tz": {
+   "nome": "SVGT PRE KI VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "svgt_vitoria_voz_tz": {
+   "nome": "SVGT VITORIA VOZ TZ",
+   "dur": 3.04,
+   "cat": "voz"
+  },
+  "tghn_derrota_voz_tz": {
+   "nome": "TGHN DERROTA VOZ TZ",
+   "dur": 2.39,
+   "cat": "voz"
+  },
+  "tghn_ep_1_voz_tz": {
+   "nome": "TGHN EP 1 VOZ TZ",
+   "dur": 5.57,
+   "cat": "voz"
+  },
+  "tghn_ep_2_voz_tz": {
+   "nome": "TGHN EP 2 VOZ TZ",
+   "dur": 11.8,
+   "cat": "voz"
+  },
+  "tghn_intro_0_voz_tz": {
+   "nome": "TGHN INTRO 0 VOZ TZ",
+   "dur": 2.86,
+   "cat": "voz"
+  },
+  "tghn_intro_1_voz_tz": {
+   "nome": "TGHN INTRO 1 VOZ TZ",
+   "dur": 1.79,
+   "cat": "voz"
+  },
+  "tghn_ki_blast_voz_tz": {
+   "nome": "TGHN KI BLAST VOZ TZ",
+   "dur": 0.97,
+   "cat": "voz"
+  },
+  "tghn_ki_max_voz_tz": {
+   "nome": "TGHN KI MAX VOZ TZ",
+   "dur": 1.28,
+   "cat": "voz"
+  },
+  "tghn_pre_ki_voz_tz": {
+   "nome": "TGHN PRE KI VOZ TZ",
+   "dur": 0.74,
+   "cat": "voz"
+  },
+  "tghn_vitoria_voz_tz": {
+   "nome": "TGHN VITORIA VOZ TZ",
+   "dur": 2.44,
+   "cat": "voz"
+  },
+  "tghn1_derrota_voz_tz": {
+   "nome": "TGHN1 DERROTA VOZ TZ",
+   "dur": 3.65,
+   "cat": "voz"
+  },
+  "tghn1_ep_1_voz_tz": {
+   "nome": "TGHN1 EP 1 VOZ TZ",
+   "dur": 4.2,
+   "cat": "voz"
+  },
+  "tghn1_ep_2_voz_tz": {
+   "nome": "TGHN1 EP 2 VOZ TZ",
+   "dur": 7.73,
+   "cat": "voz"
+  },
+  "tghn1_intro_0_voz_tz": {
+   "nome": "TGHN1 INTRO 0 VOZ TZ",
+   "dur": 1.81,
+   "cat": "voz"
+  },
+  "tghn1_intro_1_voz_tz": {
+   "nome": "TGHN1 INTRO 1 VOZ TZ",
+   "dur": 3.13,
+   "cat": "voz"
+  },
+  "tghn1_ki_blast_voz_tz": {
+   "nome": "TGHN1 KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "tghn1_ki_max_voz_tz": {
+   "nome": "TGHN1 KI MAX VOZ TZ",
+   "dur": 1.58,
+   "cat": "voz"
+  },
+  "tghn1_pre_ki_voz_tz": {
+   "nome": "TGHN1 PRE KI VOZ TZ",
+   "dur": 0.77,
+   "cat": "voz"
+  },
+  "tghn1_transformac_o_voz_tz": {
+   "nome": "TGHN1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.6,
+   "cat": "voz"
+  },
+  "tghn1_vitoria_voz_tz": {
+   "nome": "TGHN1 VITORIA VOZ TZ",
+   "dur": 2.46,
+   "cat": "voz"
+  },
+  "tghn2_derrota_voz_tz": {
+   "nome": "TGHN2 DERROTA VOZ TZ",
+   "dur": 4.06,
+   "cat": "voz"
+  },
+  "tghn2_ep_1_voz_tz": {
+   "nome": "TGHN2 EP 1 VOZ TZ",
+   "dur": 7.78,
+   "cat": "voz"
+  },
+  "tghn2_ep_2_voz_tz": {
+   "nome": "TGHN2 EP 2 VOZ TZ",
+   "dur": 4.25,
+   "cat": "voz"
+  },
+  "tghn2_intro_0_voz_tz": {
+   "nome": "TGHN2 INTRO 0 VOZ TZ",
+   "dur": 2.39,
+   "cat": "voz"
+  },
+  "tghn2_intro_1_voz_tz": {
+   "nome": "TGHN2 INTRO 1 VOZ TZ",
+   "dur": 2.44,
+   "cat": "voz"
+  },
+  "tghn2_ki_blast_voz_tz": {
+   "nome": "TGHN2 KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "tghn2_ki_max_voz_tz": {
+   "nome": "TGHN2 KI MAX VOZ TZ",
+   "dur": 1.23,
+   "cat": "voz"
+  },
+  "tghn2_pre_ki_voz_tz": {
+   "nome": "TGHN2 PRE KI VOZ TZ",
+   "dur": 0.7,
+   "cat": "voz"
+  },
+  "tghn2_transformac_o_voz_tz": {
+   "nome": "TGHN2 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.5,
+   "cat": "voz"
+  },
+  "tghn2_vitoria_voz_tz": {
+   "nome": "TGHN2 VITORIA VOZ TZ",
+   "dur": 2.58,
+   "cat": "voz"
+  },
+  "tien_derrota_voz_tz": {
+   "nome": "TIEN DERROTA VOZ TZ",
+   "dur": 3.81,
+   "cat": "voz"
+  },
+  "tien_ep_1_voz_tz": {
+   "nome": "TIEN EP 1 VOZ TZ",
+   "dur": 4.02,
+   "cat": "voz"
+  },
+  "tien_ep_2_voz_tz": {
+   "nome": "TIEN EP 2 VOZ TZ",
+   "dur": 6.29,
+   "cat": "voz"
+  },
+  "tien_intro_0_voz_tz": {
+   "nome": "TIEN INTRO 0 VOZ TZ",
+   "dur": 3.13,
+   "cat": "voz"
+  },
+  "tien_intro_1_voz_tz": {
+   "nome": "TIEN INTRO 1 VOZ TZ",
+   "dur": 1.86,
+   "cat": "voz"
+  },
+  "tien_ki_blast_voz_tz": {
+   "nome": "TIEN KI BLAST VOZ TZ",
+   "dur": 0.98,
+   "cat": "voz"
+  },
+  "tien_ki_max_voz_tz": {
+   "nome": "TIEN KI MAX VOZ TZ",
+   "dur": 1.32,
+   "cat": "voz"
+  },
+  "tien_pre_ki_voz_tz": {
+   "nome": "TIEN PRE KI VOZ TZ",
+   "dur": 1.28,
+   "cat": "voz"
+  },
+  "tien_vitoria_voz_tz": {
+   "nome": "TIEN VITORIA VOZ TZ",
+   "dur": 3.74,
+   "cat": "voz"
+  },
+  "tp_som": {
+   "nome": "TP SOM",
+   "dur": 1.65,
+   "cat": "outros"
+  },
+  "transformac_es_som_tz": {
+   "nome": "TRANSFORMAÇσES SOM TZ",
+   "dur": 1.09,
+   "cat": "aura"
+  },
+  "treinamento_voz": {
+   "nome": "TREINAMENTO VOZ",
+   "dur": 5.9,
+   "cat": "voz"
+  },
+  "trks_derrota_voz_tz": {
+   "nome": "TRKS DERROTA VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "trks_ep_2_voz_tz": {
+   "nome": "TRKS EP 2 VOZ TZ",
+   "dur": 4.9,
+   "cat": "voz"
+  },
+  "trks_ep1_voz_tz": {
+   "nome": "TRKS EP1 VOZ TZ",
+   "dur": 4.34,
+   "cat": "voz"
+  },
+  "trks_intro_0_voz_tz": {
+   "nome": "TRKS INTRO 0 VOZ TZ",
+   "dur": 2.04,
+   "cat": "voz"
+  },
+  "trks_intro_1_voz_tz": {
+   "nome": "TRKS INTRO 1 VOZ TZ",
+   "dur": 2.02,
+   "cat": "voz"
+  },
+  "trks_ki_blast_voz_tz": {
+   "nome": "TRKS KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "trks_ki_max_voz_tz": {
+   "nome": "TRKS KI MAX VOZ TZ",
+   "dur": 1.32,
+   "cat": "voz"
+  },
+  "trks_pre_ki_voz_tz": {
+   "nome": "TRKS PRE KI VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "trks_vit_ria_voz_tz": {
+   "nome": "TRKS VITαRIA VOZ TZ",
+   "dur": 2.79,
+   "cat": "voz"
+  },
+  "trls_derrota_voz_tz": {
+   "nome": "TRLS DERROTA VOZ TZ",
+   "dur": 3.71,
+   "cat": "voz"
+  },
+  "trls_ep_1_voz_tz": {
+   "nome": "TRLS EP 1 VOZ TZ",
+   "dur": 4.62,
+   "cat": "voz"
+  },
+  "trls_ep_2_voz_tz": {
+   "nome": "TRLS EP 2 VOZ TZ",
+   "dur": 4.48,
+   "cat": "voz"
+  },
+  "trls_intro_0_voz_tz": {
+   "nome": "TRLS INTRO 0 VOZ TZ",
+   "dur": 3.58,
+   "cat": "voz"
+  },
+  "trls_intro_1_voz_tz": {
+   "nome": "TRLS INTRO 1 VOZ TZ",
+   "dur": 2.55,
+   "cat": "voz"
+  },
+  "trls_ki_blast_voz_tz": {
+   "nome": "TRLS KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "trls_ki_max_voz_tz": {
+   "nome": "TRLS KI MAX VOZ TZ",
+   "dur": 1.65,
+   "cat": "voz"
+  },
+  "trls_pre_ki_voz_tz": {
+   "nome": "TRLS PRE KI VOZ TZ",
+   "dur": 1.63,
+   "cat": "voz"
+  },
+  "trls_vitoria_voz_tz": {
+   "nome": "TRLS VITORIA VOZ TZ",
+   "dur": 4.27,
+   "cat": "voz"
+  },
+  "tr_s_som_tz": {
+   "nome": "TR╡S SOM TZ",
+   "dur": 0.86,
+   "cat": "outros"
+  },
+  "vdl_derrota_voz_tz": {
+   "nome": "VDL DERROTA VOZ TZ",
+   "dur": 3.04,
+   "cat": "voz"
+  },
+  "vdl_ep_1_part_2_voz_tz": {
+   "nome": "VDL EP 1 PART 2 VOZ TZ",
+   "dur": 3.53,
+   "cat": "voz"
+  },
+  "vdl_ep_2_part_1_voz_tz": {
+   "nome": "VDL EP 2 PART 1 VOZ TZ",
+   "dur": 2.34,
+   "cat": "voz"
+  },
+  "vdl_ep2_part_2_voz_tz": {
+   "nome": "VDL EP2 PART 2 VOZ TZ",
+   "dur": 5.55,
+   "cat": "voz"
+  },
+  "vdl_intro_0_voz_tz": {
+   "nome": "VDL INTRO 0 VOZ TZ",
+   "dur": 2.16,
+   "cat": "voz"
+  },
+  "vdl_intro_1_voz_tz": {
+   "nome": "VDL INTRO 1 VOZ TZ",
+   "dur": 1.67,
+   "cat": "voz"
+  },
+  "vdl_ki_blast_voz_tz": {
+   "nome": "VDL KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "vdl_ki_max_voz_tz": {
+   "nome": "VDL KI MAX VOZ TZ",
+   "dur": 1.44,
+   "cat": "voz"
+  },
+  "vdl_pre_ki_voz_tz": {
+   "nome": "VDL PRE KI VOZ TZ",
+   "dur": 1.3,
+   "cat": "voz"
+  },
+  "vdl_vitoria_voz_tz": {
+   "nome": "VDL VITORIA VOZ TZ",
+   "dur": 2.28,
+   "cat": "voz"
+  },
+  "vghn_derrota_voz_tz": {
+   "nome": "VGHN DERROTA VOZ TZ",
+   "dur": 3.37,
+   "cat": "voz"
+  },
+  "vghn_ep_1_voz_tz": {
+   "nome": "VGHN EP 1 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "vghn_ep_2_part_1_voz_tz": {
+   "nome": "VGHN EP 2 PART 1 VOZ TZ",
+   "dur": 3.11,
+   "cat": "voz"
+  },
+  "vghn_ep_2_part_2_voz_tz": {
+   "nome": "VGHN EP 2 PART 2 VOZ TZ",
+   "dur": 3.09,
+   "cat": "voz"
+  },
+  "vghn_intro_0_voz_tz": {
+   "nome": "VGHN INTRO 0 VOZ TZ",
+   "dur": 4.04,
+   "cat": "voz"
+  },
+  "vghn_intro_1_voz_tz": {
+   "nome": "VGHN INTRO 1 VOZ TZ",
+   "dur": 4.23,
+   "cat": "voz"
+  },
+  "vghn_ki_blast_voz_tz": {
+   "nome": "VGHN KI BLAST VOZ TZ",
+   "dur": 1.02,
+   "cat": "voz"
+  },
+  "vghn_ki_max_voz_tz": {
+   "nome": "VGHN KI MAX VOZ TZ",
+   "dur": 3.06,
+   "cat": "voz"
+  },
+  "vghn_pre_ki_voz_tz": {
+   "nome": "VGHN PRE KI VOZ TZ",
+   "dur": 1.21,
+   "cat": "voz"
+  },
+  "vghn_vitoria_voz_tz": {
+   "nome": "VGHN VITORIA VOZ TZ",
+   "dur": 5.87,
+   "cat": "voz"
+  },
+  "vgt_derrota_voz_tz": {
+   "nome": "VGT DERROTA VOZ TZ",
+   "dur": 4.95,
+   "cat": "voz"
+  },
+  "vgt_ep_1_voz_tz": {
+   "nome": "VGT EP 1 VOZ TZ",
+   "dur": 4.67,
+   "cat": "voz"
+  },
+  "vgt_ep_2_voz_tz": {
+   "nome": "VGT EP 2 VOZ TZ",
+   "dur": 6.64,
+   "cat": "voz"
+  },
+  "vgt_intro_voz_0_tz": {
+   "nome": "VGT INTRO VOZ 0 TZ",
+   "dur": 4.71,
+   "cat": "voz"
+  },
+  "vgt_intro_voz_1_tz": {
+   "nome": "VGT INTRO VOZ 1 TZ",
+   "dur": 6.01,
+   "cat": "voz"
+  },
+  "vgt_ki_blast_voz_tz": {
+   "nome": "VGT KI BLAST VOZ TZ",
+   "dur": 1.07,
+   "cat": "voz"
+  },
+  "vgt_ki_max_voz_tz": {
+   "nome": "VGT KI MAX VOZ TZ",
+   "dur": 1.97,
+   "cat": "voz"
+  },
+  "vgt_pre_ki_voz_tz": {
+   "nome": "VGT PRE KI VOZ TZ",
+   "dur": 0.67,
+   "cat": "voz"
+  },
+  "vgt_transformac_o_ozaru_voz_tz": {
+   "nome": "VGT TRANSFORMAÇ╟O OZARU VOZ TZ",
+   "dur": 9.08,
+   "cat": "voz"
+  },
+  "vgt_vitoria_voz_tz": {
+   "nome": "VGT VITORIA VOZ TZ",
+   "dur": 2.53,
+   "cat": "voz"
+  },
+  "vgt1_derrota_voz_tz": {
+   "nome": "VGT1 DERROTA VOZ TZ",
+   "dur": 1.76,
+   "cat": "voz"
+  },
+  "vgt1_ep_1_voz_tz": {
+   "nome": "VGT1 EP 1 VOZ TZ",
+   "dur": 4.02,
+   "cat": "voz"
+  },
+  "vgt1_ep_2_voz_tz": {
+   "nome": "VGT1 EP 2 VOZ TZ",
+   "dur": 4.02,
+   "cat": "voz"
+  },
+  "vgt1_intro_0_voz_tz": {
+   "nome": "VGT1 INTRO 0 VOZ TZ",
+   "dur": 3.99,
+   "cat": "voz"
+  },
+  "vgt1_intro_1_voz_tz": {
+   "nome": "VGT1 INTRO 1 VOZ TZ",
+   "dur": 2.32,
+   "cat": "voz"
+  },
+  "vgt1_ki_blast_voz_tz": {
+   "nome": "VGT1 KI BLAST VOZ TZ",
+   "dur": 1.04,
+   "cat": "voz"
+  },
+  "vgt1_ki_max_voz_tz": {
+   "nome": "VGT1 KI MAX VOZ TZ",
+   "dur": 2.04,
+   "cat": "voz"
+  },
+  "vgt1_pre_ki_voz_tz": {
+   "nome": "VGT1 PRE KI VOZ TZ",
+   "dur": 0.7,
+   "cat": "voz"
+  },
+  "vgt1_transformac_o_voz_tz": {
+   "nome": "VGT1 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.37,
+   "cat": "voz"
+  },
+  "vgt1_vitoria_voz_tz": {
+   "nome": "VGT1 VITORIA VOZ TZ",
+   "dur": 4.83,
+   "cat": "voz"
+  },
+  "vgt2_derrota_voz_tz": {
+   "nome": "VGT2 DERROTA VOZ TZ",
+   "dur": 3.72,
+   "cat": "voz"
+  },
+  "vgt2_ep_1_voz_tz": {
+   "nome": "VGT2 EP 1 VOZ TZ",
+   "dur": 3.99,
+   "cat": "voz"
+  },
+  "vgt2_ep_2_voz_tz": {
+   "nome": "VGT2 EP 2 VOZ TZ",
+   "dur": 8.03,
+   "cat": "voz"
+  },
+  "vgt2_intro_0_voz_tz": {
+   "nome": "VGT2 INTRO 0 VOZ TZ",
+   "dur": 1.83,
+   "cat": "voz"
+  },
+  "vgt2_intro_1_voz_tz": {
+   "nome": "VGT2 INTRO 1 VOZ TZ",
+   "dur": 1.79,
+   "cat": "voz"
+  },
+  "vgt2_ki_blast_voz_tz": {
+   "nome": "VGT2 KI BLAST VOZ TZ",
+   "dur": 1.11,
+   "cat": "voz"
+  },
+  "vgt2_ki_max_voz_tz": {
+   "nome": "VGT2 KI MAX VOZ TZ",
+   "dur": 2.18,
+   "cat": "voz"
+  },
+  "vgt2_pre_ki_voz_tz": {
+   "nome": "VGT2 PRE KI VOZ TZ",
+   "dur": 0.88,
+   "cat": "voz"
+  },
+  "vgt2_transformac_o_voz_tz": {
+   "nome": "VGT2 TRANSFORMAÇ╟O VOZ TZ",
+   "dur": 4.25,
+   "cat": "voz"
+  },
+  "vgt2_vitoria_voz_tz": {
+   "nome": "VGT2 VITORIA VOZ TZ",
+   "dur": 1.32,
+   "cat": "voz"
+  },
+  "vitoria_epis_dio_som_tz": {
+   "nome": "VITORIA EPISαDIO SOM TZ",
+   "dur": 3.92,
+   "cat": "outros"
+  },
+  "vld_ep_1_part_1_voz_tz": {
+   "nome": "VLD EP 1 PART 1 VOZ TZ",
+   "dur": 1.16,
+   "cat": "voz"
+  },
+  "voltar_sonoro": {
+   "nome": "VOLTAR SONORO",
+   "dur": 1.23,
+   "cat": "interface"
+  },
+  "ych_derrota_voz_tz": {
+   "nome": "YCH DERROTA VOZ TZ",
+   "dur": 3.23,
+   "cat": "voz"
+  },
+  "ych_ep_1_voz_tz": {
+   "nome": "YCH EP 1 VOZ TZ",
+   "dur": 4.11,
+   "cat": "voz"
+  },
+  "ych_ep_2_part_1_voz_tz": {
+   "nome": "YCH EP 2 PART 1 VOZ TZ",
+   "dur": 3.71,
+   "cat": "voz"
+  },
+  "ych_ep_2_part_2_voz_tz": {
+   "nome": "YCH EP 2 PART 2 VOZ TZ",
+   "dur": 6.01,
+   "cat": "voz"
+  },
+  "ych_intro_voz_0_tz": {
+   "nome": "YCH INTRO VOZ 0 TZ",
+   "dur": 2.95,
+   "cat": "voz"
+  },
+  "ych_intro_voz_1_tz": {
+   "nome": "YCH INTRO VOZ 1 TZ",
+   "dur": 1.55,
+   "cat": "voz"
+  },
+  "ych_ki_blast_voz_tz": {
+   "nome": "YCH KI BLAST VOZ TZ",
+   "dur": 0.9,
+   "cat": "voz"
+  },
+  "ych_ki_max_voz_tz": {
+   "nome": "YCH KI MAX VOZ TZ",
+   "dur": 1.6,
+   "cat": "voz"
+  },
+  "ych_pre_ki_voz_tz": {
+   "nome": "YCH PRE KI VOZ TZ",
+   "dur": 0.86,
+   "cat": "voz"
+  },
+  "ych_vit_ria_voz_tz": {
+   "nome": "YCH VITαRIA VOZ TZ",
+   "dur": 3.02,
+   "cat": "voz"
+  }
+ }
+}

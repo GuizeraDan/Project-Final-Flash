@@ -50,7 +50,7 @@ FF.Assets = {
   // tipo do conteúdo (vale para todas as fontes): 'personagens' | 'efeitos' | 'cenarios' | 'interface' | 'cutscenes'; 'jogo' fora do acervo
   tipoSprite(id) {
     const fav = FF.Favoritos && FF.Favoritos.de(id);   // o usuário disse o que é (⭐ no Estúdio)
-    if (fav && this.doAcervo(id)) return fav;
+    if (fav && this.doAcervo(id)) return fav === 'explosoes' ? 'efeitos' : fav;
     const a = this.acervo()[id]; return a ? (a[3] || a[0]) : 'jogo';
   },
   fonteSprite(id) { const a = this.acervo()[id]; return a ? (a[4] || '') : ''; },

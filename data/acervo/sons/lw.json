@@ -1,0 +1,326 @@
+{
+ "chave": "lw",
+ "nome": "Legend Warrior",
+ "sons": {
+  "resources_0_0": {
+   "nome": "resources_0_0",
+   "dur": 0.35,
+   "cat": "outros"
+  },
+  "resources_1_0": {
+   "nome": "resources_1_0",
+   "dur": 1.64,
+   "cat": "outros"
+  },
+  "resources_2_0": {
+   "nome": "resources_2_0",
+   "dur": 0.42,
+   "cat": "outros"
+  },
+  "resources_3_0": {
+   "nome": "resources_3_0",
+   "dur": 0.57,
+   "cat": "outros"
+  },
+  "resources_4_0": {
+   "nome": "resources_4_0",
+   "dur": 1.06,
+   "cat": "outros"
+  },
+  "resources_5_0": {
+   "nome": "resources_5_0",
+   "dur": 2.04,
+   "cat": "outros"
+  },
+  "resources_6_0": {
+   "nome": "resources_6_0",
+   "dur": 0.61,
+   "cat": "outros"
+  },
+  "resources_7_0": {
+   "nome": "resources_7_0",
+   "dur": 1.0,
+   "cat": "outros"
+  },
+  "resources_8_0": {
+   "nome": "resources_8_0",
+   "dur": 1.2,
+   "cat": "outros"
+  },
+  "resources_9_0": {
+   "nome": "resources_9_0",
+   "dur": 1.85,
+   "cat": "outros"
+  },
+  "resources_10_0": {
+   "nome": "resources_10_0",
+   "dur": 3.76,
+   "cat": "outros"
+  },
+  "resources_11_0": {
+   "nome": "resources_11_0",
+   "dur": 2.44,
+   "cat": "outros"
+  },
+  "resources_12_0": {
+   "nome": "resources_12_0",
+   "dur": 1.69,
+   "cat": "outros"
+  },
+  "resources_13_0": {
+   "nome": "resources_13_0",
+   "dur": 3.25,
+   "cat": "outros"
+  },
+  "resources_14_0": {
+   "nome": "resources_14_0",
+   "dur": 0.85,
+   "cat": "outros"
+  },
+  "resources_15_0": {
+   "nome": "resources_15_0",
+   "dur": 2.16,
+   "cat": "outros"
+  },
+  "resources_16_0": {
+   "nome": "resources_16_0",
+   "dur": 0.91,
+   "cat": "outros"
+  },
+  "resources_17_0": {
+   "nome": "resources_17_0",
+   "dur": 0.43,
+   "cat": "outros"
+  },
+  "resources_18_0": {
+   "nome": "resources_18_0",
+   "dur": 3.05,
+   "cat": "outros"
+  },
+  "resources_19_0": {
+   "nome": "resources_19_0",
+   "dur": 0.37,
+   "cat": "outros"
+  },
+  "resources_20_0": {
+   "nome": "resources_20_0",
+   "dur": 0.6,
+   "cat": "outros"
+  },
+  "resources_21_0": {
+   "nome": "resources_21_0",
+   "dur": 0.61,
+   "cat": "outros"
+  },
+  "resources_22_0": {
+   "nome": "resources_22_0",
+   "dur": 0.42,
+   "cat": "outros"
+  },
+  "resources_23_0": {
+   "nome": "resources_23_0",
+   "dur": 0.76,
+   "cat": "outros"
+  },
+  "resources_24_0": {
+   "nome": "resources_24_0",
+   "dur": 1.52,
+   "cat": "outros"
+  },
+  "resources_25_0": {
+   "nome": "resources_25_0",
+   "dur": 3.16,
+   "cat": "outros"
+  },
+  "resources_26_0": {
+   "nome": "resources_26_0",
+   "dur": 1.96,
+   "cat": "outros"
+  },
+  "resources_27_0": {
+   "nome": "resources_27_0",
+   "dur": 0.31,
+   "cat": "outros"
+  },
+  "resources_28_0": {
+   "nome": "resources_28_0",
+   "dur": 0.7,
+   "cat": "outros"
+  },
+  "resources_29_0": {
+   "nome": "resources_29_0",
+   "dur": 1.45,
+   "cat": "outros"
+  },
+  "resources_30_0": {
+   "nome": "resources_30_0",
+   "dur": 3.0,
+   "cat": "outros"
+  },
+  "resources_31_0": {
+   "nome": "resources_31_0",
+   "dur": 0.5,
+   "cat": "outros"
+  },
+  "resources_32_0": {
+   "nome": "resources_32_0",
+   "dur": 1.31,
+   "cat": "outros"
+  },
+  "resources_33_0": {
+   "nome": "resources_33_0",
+   "dur": 0.34,
+   "cat": "outros"
+  },
+  "resources_34_0": {
+   "nome": "resources_34_0",
+   "dur": 0.61,
+   "cat": "outros"
+  },
+  "resources_35_0": {
+   "nome": "resources_35_0",
+   "dur": 1.64,
+   "cat": "outros"
+  },
+  "resources_36_0": {
+   "nome": "resources_36_0",
+   "dur": 0.49,
+   "cat": "outros"
+  },
+  "resources_37_0": {
+   "nome": "resources_37_0",
+   "dur": 1.59,
+   "cat": "outros"
+  },
+  "resources_38_0": {
+   "nome": "resources_38_0",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "resources_39_0": {
+   "nome": "resources_39_0",
+   "dur": 4.68,
+   "cat": "outros"
+  },
+  "resources_40_0": {
+   "nome": "resources_40_0",
+   "dur": 1.08,
+   "cat": "outros"
+  },
+  "resources_41_0": {
+   "nome": "resources_41_0",
+   "dur": 0.56,
+   "cat": "outros"
+  },
+  "resources_43_0": {
+   "nome": "resources_43_0",
+   "dur": 1.07,
+   "cat": "outros"
+  },
+  "resources_44_0": {
+   "nome": "resources_44_0",
+   "dur": 0.14,
+   "cat": "outros"
+  },
+  "resources_45_0": {
+   "nome": "resources_45_0",
+   "dur": 3.29,
+   "cat": "outros"
+  },
+  "resources_46_0": {
+   "nome": "resources_46_0",
+   "dur": 0.8,
+   "cat": "outros"
+  },
+  "resources_47_0": {
+   "nome": "resources_47_0",
+   "dur": 0.24,
+   "cat": "outros"
+  },
+  "resources_48_0": {
+   "nome": "resources_48_0",
+   "dur": 0.78,
+   "cat": "outros"
+  },
+  "resources_49_0": {
+   "nome": "resources_49_0",
+   "dur": 0.38,
+   "cat": "outros"
+  },
+  "resources_50_0": {
+   "nome": "resources_50_0",
+   "dur": 3.16,
+   "cat": "outros"
+  },
+  "resources_51_0": {
+   "nome": "resources_51_0",
+   "dur": 1.36,
+   "cat": "outros"
+  },
+  "resources_53_0": {
+   "nome": "resources_53_0",
+   "dur": 0.42,
+   "cat": "outros"
+  },
+  "sharedassets_0_0": {
+   "nome": "sharedassets_0_0",
+   "dur": 1.09,
+   "cat": "outros"
+  },
+  "sharedassets_1_0": {
+   "nome": "sharedassets_1_0",
+   "dur": 1.37,
+   "cat": "outros"
+  },
+  "sharedassets_2_0": {
+   "nome": "sharedassets_2_0",
+   "dur": 3.06,
+   "cat": "outros"
+  },
+  "sharedassets_3_0": {
+   "nome": "sharedassets_3_0",
+   "dur": 0.14,
+   "cat": "outros"
+  },
+  "sharedassets_4_0": {
+   "nome": "sharedassets_4_0",
+   "dur": 0.65,
+   "cat": "outros"
+  },
+  "sharedassets_6_0": {
+   "nome": "sharedassets_6_0",
+   "dur": 0.18,
+   "cat": "outros"
+  },
+  "sharedassets_7_0": {
+   "nome": "sharedassets_7_0",
+   "dur": 0.09,
+   "cat": "outros"
+  },
+  "sharedassets_9_0": {
+   "nome": "sharedassets_9_0",
+   "dur": 2.95,
+   "cat": "outros"
+  },
+  "sharedassets_10_0": {
+   "nome": "sharedassets_10_0",
+   "dur": 77.01,
+   "cat": "musica"
+  },
+  "sharedassets_11_0": {
+   "nome": "sharedassets_11_0",
+   "dur": 1.83,
+   "cat": "outros"
+  },
+  "sharedassets_12_0": {
+   "nome": "sharedassets_12_0",
+   "dur": 4.03,
+   "cat": "outros"
+  },
+  "sharedassets_13_0": {
+   "nome": "sharedassets_13_0",
+   "dur": 150.0,
+   "cat": "musica"
+  }
+ }
+}

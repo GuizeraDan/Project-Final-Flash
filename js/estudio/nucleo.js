@@ -310,28 +310,104 @@ FF.Estudio = {
   },
 
   sons() { return ((window.FF_BUNDLE && FF_BUNDLE._indice) || {}).audios || []; },
+  // acervo de sons dos outros jogos (data/acervo/sons.js): [id, nome original, duração, categoria, fonte]
+  sonsAcervo() { return (window.FF_ACERVO_SONS && FF_ACERVO_SONS.sons) || []; },
+  CAT_SOM: { explosao: '💥', golpe: '👊', ki: '⚡', aura: '✨', voz: '🗣', movimento: '💨', musica: '🎵', interface: '🖥', outros: '🔊' },
+  // seletor de sons: Z Legends 3 (o jogo), ⭐ favoritos por categoria, acervo por jogo; filtro por categoria e busca
   escolherSom(atual, aoEscolher, vozes) {
-    const c = this.el('div', 'es-sons');
+    const FS = FF.FavSons;
+    const jogo = this.sons().map(n => ({ id: n, nome: n, dur: null, cat: null, fonte: 'zl3' }));
+    const ac = this.sonsAcervo().map(([id, nome, dur, cat, fonte]) => ({ id, nome, dur, cat, fonte }));
+    const todos = jogo.concat(ac);
+    const porId = {}; todos.forEach(x => (porId[x.id] = x));
+    const NOMES = Object.assign({ zl3: 'Z Legends 3 (do jogo)' }, (window.FF_ACERVO_SONS && FF_ACERVO_SONS.fontes) || {});
+    let fonte = vozes ? 'zl3' : (this.rascunho.ler('som_fonte') || (atual && porId[atual] ? porId[atual].fonte : 'zl3'));
+    let cat = '';
+    const c = this.el('div', 'es-seletor es-sons');
+    const lado = this.el('div', 'es-seletor-fontes');
+    const dir = this.el('div', 'es-seletor-dir');
+    const topo = this.el('div', 'es-barra');
     const busca = document.createElement('input');
-    busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: vgkn, kame, hit, explos)';
+    busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: vgkn, kame, explos, soco, goku)';
     busca.value = vozes || '';
+    const info = this.el('span', 'es-dica');
+    topo.append(busca, info);
+    const chips = this.el('div', 'es-sons-chips');
     const lista = this.el('div', 'es-sons-lista');
+    dir.append(topo, chips, lista);
+    c.append(lado, dir);
+    const fontesBt = [];
+    const bt = (chave, texto, n, pai) => {
+      const b = this.el('div', 'es-item es-seletor-fonte' + (chave === fonte ? ' sel' : ''));
+      const t = this.el('span'); t.textContent = texto; b.appendChild(t);
+      if (n != null) { const sm = this.el('small'); sm.textContent = n; b.appendChild(sm); }
+      b.onclick = () => { fonte = chave; this.rascunho.gravar('som_fonte', chave); fontesBt.forEach(([k, el]) => el.classList.toggle('sel', k === fonte)); render(); };
+      fontesBt.push([chave, b]);
+      (pai || lado).appendChild(b);
+    };
+    const favBox = this.el('div');
+    const montarFav = () => {
+      favBox.innerHTML = '';
+      if (!FS) return;
+      const l = FS.lista();
+      favBox.appendChild(this.el('div', 'es-sub', '⭐ Meus favoritos (' + l.length + ')'));
+      if (!l.length) favBox.appendChild(this.el('p', 'es-dica', 'Clique na ☆ de um som para favoritar e escolher a categoria.'));
+      FS.TIPOS.forEach(([t, ic]) => { const n = l.filter(x => x.tipo === t).length; if (n) bt('fav:' + t, ic + ' ' + FS.plural[t], n, favBox); });
+      fontesBt.forEach(([k, el]) => el.classList.toggle('sel', k === fonte));
+    };
+    lado.appendChild(this.el('div', 'es-sub', 'Mostrar'));
+    bt('tudo', '★ Todos os sons', todos.length);
+    lado.appendChild(favBox); montarFav();
+    lado.appendChild(this.el('div', 'es-sub', 'Jogos'));
+    bt('zl3', NOMES.zl3, jogo.length);
+    Object.keys(NOMES).filter(k => k !== 'zl3').forEach(k => bt(k, NOMES[k], ac.filter(x => x.fonte === k).length));
+    const m = this.modal('🎧 Sons e vozes (' + todos.length + ')', c, { larga: true });
+    let tocando = null;
+    const ouvir = (id, b) => {
+      if (tocando) { tocando.a.pause(); tocando.b.textContent = '▶'; if (tocando.id === id) { tocando = null; return; } }
+      const a = FF.Audio.play(id); b.textContent = '■';
+      tocando = { a, b, id };
+      if (a) a.onended = () => { b.textContent = '▶'; if (tocando && tocando.a === a) tocando = null; };
+    };
+    const fecharOrig = m.fechar; m.fechar = function () { if (tocando) tocando.a.pause(); return fecharOrig.apply(this, arguments); };
     const render = () => {
+      const f = busca.value.trim().toLowerCase();
+      let l;
+      if (f || fonte === 'tudo') l = todos;
+      else if (/^fav:/.test(fonte)) l = FS.lista(fonte.slice(4)).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' });
+      else l = todos.filter(x => x.fonte === fonte);
+      if (f) l = l.filter(x => (x.id + ' ' + x.nome).toLowerCase().includes(f));
+      // chips das categorias (automáticas pelo nome; o favorito vale mais)
+      const catDe = (x) => (FS && FS.de(x.id)) || x.cat || null;
+      const conta = {}; l.forEach(x => { const k = catDe(x); if (k) conta[k] = (conta[k] || 0) + 1; });
+      chips.innerHTML = '';
+      if (Object.keys(conta).length > 1) {
+        const ch = (k, txt) => { const b = this.botao(txt, () => { cat = cat === k ? '' : k; render(); }); if (cat === k) b.classList.add('on'); chips.appendChild(b); };
+        ch('', 'Todas');
+        Object.keys(this.CAT_SOM).filter(k => conta[k]).forEach(k => ch(k, this.CAT_SOM[k] + ' ' + (FS ? FS.plural[k] : k) + ' (' + conta[k] + ')'));
+      }
+      if (cat) l = l.filter(x => catDe(x) === cat);
       lista.innerHTML = '';
-      const f = busca.value.toLowerCase();
-      this.sons().filter(s => !f || s.toLowerCase().includes(f)).slice(0, 400).forEach(s => {
-        const r = this.el('div', 'es-som' + (s === atual ? ' sel' : ''));
-        r.appendChild(this.botao('▶', () => FF.Audio.play(s), 'Ouvir'));
-        const n = this.el('span'); n.textContent = s; r.appendChild(n);
-        r.appendChild(this.botao('Usar', () => { aoEscolher(s); m.fechar(); }, null, 'es-bt-ouro'));
+      info.textContent = l.length + ' som(ns)' + (l.length > 400 ? ' · mostrando 400, use o filtro' : '');
+      l.slice(0, 400).forEach(x => {
+        const r = this.el('div', 'es-som' + (x.id === atual ? ' sel' : ''));
+        const play = this.botao('▶', () => ouvir(x.id, play), 'Ouvir (clique de novo para parar)');
+        r.appendChild(play);
+        const n = this.el('span', 'es-som-nome'); n.textContent = x.nome; n.title = x.id; r.appendChild(n);
+        const meta = this.el('small', 'es-som-meta');
+        const k = catDe(x);
+        meta.textContent = (k ? this.CAT_SOM[k] + ' ' : '') + (fonte === 'tudo' || f || /^fav:/.test(fonte) ? (NOMES[x.fonte] || x.fonte) + ' · ' : '') + (x.dur ? x.dur.toFixed(1).replace('.', ',') + ' s' : '');
+        r.appendChild(meta);
+        if (FS) r.appendChild(FS.botao(x.id, null, () => { montarFav(); if (/^fav:/.test(fonte) || cat) render(); }));
+        r.appendChild(this.botao('Usar', () => { aoEscolher(x.id); m.fechar(); }, null, 'es-bt-ouro'));
         lista.appendChild(r);
       });
+      if (!l.length) lista.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';
     };
     busca.oninput = render;
-    c.append(busca, lista);
-    const m = this.modal('🎧 Sons e vozes (' + this.sons().length + ')', c, { larga: true });
     render();
     setTimeout(() => busca.focus(), 30);
+    return m;
   },
 
   // todas as animações de efeitos (fx + fx_extra + sprites importados marcados como efeito)

@@ -1,0 +1,136 @@
+{
+ "chave": "dlz",
+ "nome": "Dragon Legend Z",
+ "sons": {
+  "sharedassets_0_0": {
+   "nome": "sharedassets_0_0",
+   "dur": 1.14,
+   "cat": "outros"
+  },
+  "sharedassets_1_0": {
+   "nome": "sharedassets_1_0",
+   "dur": 1.93,
+   "cat": "outros"
+  },
+  "sharedassets_2_0": {
+   "nome": "sharedassets_2_0",
+   "dur": 0.6,
+   "cat": "outros"
+  },
+  "sharedassets_3_0": {
+   "nome": "sharedassets_3_0",
+   "dur": 1.53,
+   "cat": "outros"
+  },
+  "sharedassets_4_0": {
+   "nome": "sharedassets_4_0",
+   "dur": 1.04,
+   "cat": "outros"
+  },
+  "sharedassets_5_0": {
+   "nome": "sharedassets_5_0",
+   "dur": 1.04,
+   "cat": "outros"
+  },
+  "sharedassets_6_0": {
+   "nome": "sharedassets_6_0",
+   "dur": 2.77,
+   "cat": "outros"
+  },
+  "sharedassets_7_0": {
+   "nome": "sharedassets_7_0",
+   "dur": 0.58,
+   "cat": "outros"
+  },
+  "sharedassets_8_0": {
+   "nome": "sharedassets_8_0",
+   "dur": 1.79,
+   "cat": "outros"
+  },
+  "sharedassets_9_0": {
+   "nome": "sharedassets_9_0",
+   "dur": 0.72,
+   "cat": "outros"
+  },
+  "sharedassets_10_0": {
+   "nome": "sharedassets_10_0",
+   "dur": 0.67,
+   "cat": "outros"
+  },
+  "sharedassets_11_0": {
+   "nome": "sharedassets_11_0",
+   "dur": 1.07,
+   "cat": "outros"
+  },
+  "sharedassets_12_0": {
+   "nome": "sharedassets_12_0",
+   "dur": 1.16,
+   "cat": "outros"
+  },
+  "sharedassets_13_0": {
+   "nome": "sharedassets_13_0",
+   "dur": 2.16,
+   "cat": "outros"
+  },
+  "sharedassets_14_0": {
+   "nome": "sharedassets_14_0",
+   "dur": 0.81,
+   "cat": "outros"
+  },
+  "sharedassets_15_0": {
+   "nome": "sharedassets_15_0",
+   "dur": 2.5,
+   "cat": "outros"
+  },
+  "sharedassets_16_0": {
+   "nome": "sharedassets_16_0",
+   "dur": 1.56,
+   "cat": "outros"
+  },
+  "sharedassets_17_0": {
+   "nome": "sharedassets_17_0",
+   "dur": 1.85,
+   "cat": "outros"
+  },
+  "sharedassets_18_0": {
+   "nome": "sharedassets_18_0",
+   "dur": 0.88,
+   "cat": "outros"
+  },
+  "sharedassets_19_0": {
+   "nome": "sharedassets_19_0",
+   "dur": 2.55,
+   "cat": "outros"
+  },
+  "sharedassets_21_0": {
+   "nome": "sharedassets_21_0",
+   "dur": 1.28,
+   "cat": "outros"
+  },
+  "sharedassets_22_0": {
+   "nome": "sharedassets_22_0",
+   "dur": 1.86,
+   "cat": "outros"
+  },
+  "sharedassets_23_0": {
+   "nome": "sharedassets_23_0",
+   "dur": 0.67,
+   "cat": "outros"
+  },
+  "sharedassets_24_0": {
+   "nome": "sharedassets_24_0",
+   "dur": 9.95,
+   "cat": "outros"
+  },
+  "sharedassets_25_0": {
+   "nome": "sharedassets_25_0",
+   "dur": 1.5,
+   "cat": "outros"
+  },
+  "sharedassets_26_0": {
+   "nome": "sharedassets_26_0",
+   "dur": 1.54,
+   "cat": "outros"
+  }
+ }
+}

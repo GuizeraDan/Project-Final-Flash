@@ -193,3 +193,17 @@ a { color: var(--ouro); }
 .es-fav-menu button:hover { border-color: var(--ouro, #ffd84a); }
 .es-fav-menu button.on { border-color: #ffd84a; color: #ffd84a; }
 .es-fav-menu button.tirar { color: #ff9a9a; }
+
+.es-sons-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+.es-sons-chips button.on { border-color: var(--ouro, #ffd84a); color: var(--ouro, #ffd84a); }
+.es-sons .es-sons-lista { overflow: auto; flex: 1; }
+.es-som { display: flex; align-items: center; gap: 6px; padding: 3px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.es-som.sel { background: #2a1c4c; }
+.es-som-nome { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.es-som-meta { color: #a89ad0; white-space: nowrap; font-size: 11px; }
+
+.es-favs-centro { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.es-favs-corpo { padding: 8px 12px; }
+.es-favs-tit { font-weight: bold; color: var(--ouro, #ffd84a); margin: 14px 0 6px; font-size: 14px; border-bottom: 1px solid var(--linha, #3a2a66); padding-bottom: 3px; }
+.es-favs-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px; }
+.es-barra button.on { border-color: var(--ouro, #ffd84a); color: var(--ouro, #ffd84a); }
