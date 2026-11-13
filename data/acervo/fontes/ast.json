@@ -1,0 +1,3572 @@
+{
+"chave": "ast",
+"nome": "Assets (sprites soltos)",
+"categorias": {
+"ast": "Assets (sprites soltos)"
+},
+"sprites": {
+"ast_assets_separados_personagens_1_goku": {
+"nome": "1_Goku",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/1_Goku"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 4,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 5,
+"Skill2Attack": 14,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_2_vegeta": {
+"nome": "2_Vegeta",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/2_Vegeta"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 4,
+"Attack3": 4,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 4,
+"Move": 1,
+"Skill1": 4,
+"Skill1End": 7,
+"Skill1Loop": 4,
+"Skill2": 7,
+"Skill3": 8,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_3_gohan": {
+"nome": "3_Gohan",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/3_Gohan"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 4,
+"Attack3": 4,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"FastMove_1897": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 6,
+"Skill2": 2,
+"Skill3": 9,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_4_picollo": {
+"nome": "4_Picollo",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 50,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/4_Picollo"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 4,
+"Attack3": 3,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 4,
+"Skill2": 4,
+"Skill3": 7,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_5_frizea": {
+"nome": "5_frizea",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 52,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/5_frizea"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 1,
+"Skill2Attack": 3,
+"Skill2Finish": 5,
+"Skill3": 3,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_6_cell": {
+"nome": "6_Cell",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/6_Cell"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 7,
+"Skill2": 3,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_7_buu": {
+"nome": "7_Buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 62,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/7_Buu"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 4,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 5,
+"Skill2End": 8,
+"Skill2Loop": 4,
+"Skill3": 4,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_8_trunks": {
+"nome": "8_Trunks",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/8_Trunks"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 5,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 6,
+"Skill2": 2,
+"Skill3": 8,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_9_majin_vegeta": {
+"nome": "9_Majin Vegeta",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/9_Majin Vegeta"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 4,
+"Attack3": 2,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 2,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 3,
+"Skill3": 12,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_10_fat_buu": {
+"nome": "10_Fat buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 50,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/10_Fat buu"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 8,
+"Skill2": 2,
+"Skill3": 3,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_11_krilin": {
+"nome": "11_Krilin",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 50,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/11_Krilin"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 2,
+"Attack3": 5,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 2,
+"Skill2": 5,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_12_tien": {
+"nome": "12_Tien",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 80,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/12_Tien"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 4,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 2,
+"FastMove": 2,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 4,
+"Skill2": 2,
+"Skill2Attack": 13,
+"Skill3": 24,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_13_mgohan": {
+"nome": "13_MGohan",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 70,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/13_MGohan"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 21,
+"Skill2": 4,
+"Skill3": 8,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_14_frizea1": {
+"nome": "14_Frizea1",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 45,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/14_Frizea1"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 2,
+"Skill2": 2,
+"Skill3": 3,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_15_frizea2": {
+"nome": "15_Frizea2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 58,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/15_Frizea2"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 7,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 3,
+"Skill3": 2,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_16_frizea3": {
+"nome": "16_Frizea3",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 57,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/16_Frizea3"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 7,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 2,
+"Skill3": 3,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_17_jeice": {
+"nome": "17_Jeice",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/17_Jeice"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 6,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 3,
+"Skill3": 5,
+"Start": 4,
+"Stop": 1,
+"Stop_1574": 1,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_18_android_16": {
+"nome": "18_Android 16",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 46,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/18_Android 16"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 2,
+"Skill2": 4,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_18_recoome": {
+"nome": "18_Recoome",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 61,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/18_Recoome"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 2,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 6,
+"Skill2Attack": 2,
+"Skill3": 7,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_19_android_17": {
+"nome": "19_Android 17",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 44,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/19_Android 17"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 6,
+"Skill2": 2,
+"Skill3": 2,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_20_android_18": {
+"nome": "20_Android 18",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/20_Android 18"
+],
+"anims": {
+"Attack1": 4,
+"Attack2": 4,
+"Attack3": 3,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 8,
+"Skill2": 2,
+"Skill3": 5,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_21_napa": {
+"nome": "21_Napa",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/21_Napa"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 2,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 4,
+"Skill1End": 4,
+"Skill1Loop": 3,
+"Skill2": 4,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_22_raditz": {
+"nome": "22_Raditz",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/22_Raditz"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 2,
+"Attack3": 2,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill1End": 3,
+"Skill1Loop": 3,
+"Skill2": 2,
+"Skill3": 7,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_23_ginuy": {
+"nome": "23_Ginuy",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 52,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/23_Ginuy"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 2,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 4,
+"Skill1End": 4,
+"Skill1Loop": 3,
+"Skill2": 7,
+"Skill3": 1,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_24_cell_1st": {
+"nome": "24_Cell 1st",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/24_Cell 1st"
+],
+"anims": {
+"Attack1": 1,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill1End": 3,
+"Skill1Loop": 3,
+"Skill2": 3,
+"Skill3": 12,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_25_buu_com": {
+"nome": "25_Buu com",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 62,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/25_Buu com"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill1End": 3,
+"Skill1Loop": 3,
+"Skill2": 7,
+"Skill3": 7,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_26_super_buu": {
+"nome": "26_Super Buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/26_Super Buu"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 2,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill1End": 3,
+"Skill1Loop": 3,
+"Skill2": 3,
+"Skill3": 12,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_27_buuhand": {
+"nome": "27_BuuHand",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/27_BuuHand"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 2,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 3,
+"Skill1End": 3,
+"Skill1Loop": 3,
+"Skill2": 3,
+"Skill3": 12,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_28_vegito": {
+"nome": "28_Vegito",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/28_Vegito"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 2,
+"Attack3": 3,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 2,
+"FastMove": 1,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 4,
+"Skill2": 3,
+"Skill3": 7,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_29_jamemba": {
+"nome": "29_Jamemba",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/29_Jamemba"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 3,
+"Attack3": 2,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 2,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 6,
+"Skill2Attack": 14,
+"Skill3": 4,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_30_cooler": {
+"nome": "30_Cooler",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/30_Cooler"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 3,
+"Attack3": 5,
+"Charge": 1,
+"Damaged": 1,
+"Defend": 1,
+"Die": 3,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 5,
+"Move": 1,
+"Skill1": 3,
+"Skill2": 1,
+"Skill2Attack": 10,
+"Skill3": 3,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_31_gotenks": {
+"nome": "31_Gotenks",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 65,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/31_Gotenks"
+],
+"anims": {
+"Attack1": 2,
+"Attack2": 5,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 4,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 1,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 6,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 4,
+"Skill3": 6,
+"Start": 4,
+"Stop": 1,
+"Teleport": 8
+}
+},
+"ast_assets_separados_personagens_32_black_goku": {
+"nome": "32_Black goku",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 74,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Personagens/32_Black goku"
+],
+"anims": {
+"Attack1": 3,
+"Attack2": 4,
+"Attack3": 3,
+"Charge": 3,
+"Damaged": 1,
+"Defend": 1,
+"Die": 5,
+"FastMove": 2,
+"Idle": 1,
+"Jump": 2,
+"JumpAttack": 3,
+"Move": 1,
+"Skill1": 14,
+"Skill1End": 6,
+"Skill1Loop": 3,
+"Skill2": 4,
+"Skill3": 6,
+"Start": 4,
+"Teleport": 8
+}
+},
+"ast_assets_separados_efeitos_e_golpes_black_small_blast": {
+"nome": "Black small blast",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Black small blast"
+],
+"anims": {
+"Explosion": 4,
+"Flying": 1
+}
+},
+"ast_assets_separados_efeitos_e_golpes_buu_death_ball": {
+"nome": "Buu Death Ball",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 39,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Buu Death Ball"
+],
+"anims": {
+"Explosion": 39
+}
+},
+"ast_assets_separados_efeitos_e_golpes_buubodypart": {
+"nome": "BuuBodyPart",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/BuuBodyPart"
+],
+"anims": {
+"Holding": 4,
+"Looping": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_cellocxoay_1": {
+"nome": "CellOcXoay (1)",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 39,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/CellOcXoay (1)"
+],
+"anims": {
+"Explosion": 39
+}
+},
+"ast_assets_separados_efeitos_e_golpes_diabay": {
+"nome": "DiaBay",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 41,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/DiaBay"
+],
+"anims": {
+"Explosion": 39,
+"Flying": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_diabay1_1": {
+"nome": "diabay1 (1)",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/diabay1 (1)"
+],
+"anims": {
+"Flying": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_explosion": {
+"nome": "Explosion",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 39,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Explosion"
+],
+"anims": {
+"Explosion": 39
+}
+},
+"ast_assets_separados_efeitos_e_golpes_frizea_death_ball": {
+"nome": "Frizea Death Ball",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 13,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Frizea Death Ball"
+],
+"anims": {
+"Explosion": 12,
+"Flying": 1
+}
+},
+"ast_assets_separados_efeitos_e_golpes_goku_big_blast": {
+"nome": "Goku Big Blast",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 42,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Goku Big Blast"
+],
+"anims": {
+"Explosion": 39,
+"Flying": 3
+}
+},
+"ast_assets_separados_efeitos_e_golpes_jamemba_hand": {
+"nome": "jamemba hand",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/jamemba hand"
+],
+"anims": {
+"JamembaHand": 5
+}
+},
+"ast_assets_separados_efeitos_e_golpes_jutsucharge": {
+"nome": "JutsuCharge",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/JutsuCharge"
+],
+"anims": {
+"JutsuCharge": 4
+}
+},
+"ast_assets_separados_efeitos_e_golpes_krilin_ball1": {
+"nome": "Krilin Ball1",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 41,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Krilin Ball1"
+],
+"anims": {
+"Explosion": 39,
+"Flying": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_krilin_ball_sprites_soltos": {
+"nome": "krilin ball (sprites soltos)",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/krilin ball (sprites soltos)"
+],
+"anims": {
+"Soltos": 1
+}
+},
+"ast_assets_separados_efeitos_e_golpes_krilin_dia_bay": {
+"nome": "Krilin Dia Bay",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 41,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Krilin Dia Bay"
+],
+"anims": {
+"Explosion": 39,
+"Flying": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_lighting_aura": {
+"nome": "Lighting aura",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Lighting aura"
+],
+"anims": {
+"LightingAura": 4
+}
+},
+"ast_assets_separados_efeitos_e_golpes_maphongba": {
+"nome": "Maphongba",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 41,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Maphongba"
+],
+"anims": {
+"Explosion": 39,
+"Flying": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_maphongba_appear": {
+"nome": "Maphongba appear",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Maphongba appear"
+],
+"anims": {
+"Maphongba appear": 6
+}
+},
+"ast_assets_separados_efeitos_e_golpes_napamocskill": {
+"nome": "NapaMocSKill",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/NapaMocSKill"
+],
+"anims": {
+"MocSkill": 7
+}
+},
+"ast_assets_separados_efeitos_e_golpes_picollo_skill_object_2": {
+"nome": "Picollo Skill Object 2",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 30,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Picollo Skill Object 2"
+],
+"anims": {
+"Object": 30
+}
+},
+"ast_assets_separados_efeitos_e_golpes_pink_explosion": {
+"nome": "Pink Explosion",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Pink Explosion"
+],
+"anims": {
+"PinkExplosion": 5
+}
+},
+"ast_assets_separados_efeitos_e_golpes_redeffect": {
+"nome": "RedEffect",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/RedEffect"
+],
+"anims": {
+"RedEffect": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_redeffect_1": {
+"nome": "RedEffect 1",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/RedEffect 1"
+],
+"anims": {
+"BlueEffect": 2
+}
+},
+"ast_assets_separados_efeitos_e_golpes_rocklee_fast_effect": {
+"nome": "rocklee fast effect",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/rocklee fast effect"
+],
+"anims": {
+"fast effect": 7
+}
+},
+"ast_assets_separados_efeitos_e_golpes_smallblast": {
+"nome": "SmallBlast",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/SmallBlast"
+],
+"anims": {
+"Explosion": 5
+}
+},
+"ast_assets_separados_efeitos_e_golpes_startskilleffect": {
+"nome": "StartSkillEffect",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/StartSkillEffect"
+],
+"anims": {
+"StartSkillEffect": 4
+}
+},
+"ast_assets_separados_efeitos_e_golpes_tien_bigbang_final": {
+"nome": "Tien Bigbang Final",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 39,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Tien Bigbang Final"
+],
+"anims": {
+"Explosion": 39
+}
+},
+"ast_assets_separados_efeitos_e_golpes_yellow_explosion": {
+"nome": "Yellow explosion",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Efeitos_e_golpes/Yellow explosion"
+],
+"anims": {
+"YellowExplosion": 6
+}
+},
+"ast_androides_androide_16": {
+"nome": "ANDROIDES / Androide 16",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"ANDROIDES/Androide 16"
+],
+"anims": {
+"Todos": 64
+}
+},
+"ast_androides_androide_17": {
+"nome": "ANDROIDES / Androide 17",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 41,
+"atlas": 1,
+"objs": [
+"ANDROIDES/Androide 17"
+],
+"anims": {
+"Todos": 41
+}
+},
+"ast_androides_androide_18": {
+"nome": "ANDROIDES / Androide 18",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"ANDROIDES/Androide 18"
+],
+"anims": {
+"Todos": 47
+}
+},
+"ast_assets_separados_cenarios": {
+"nome": "Assets_Separados / Cenarios",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 18,
+"atlas": 6,
+"objs": [
+"Assets_Separados/Cenarios"
+],
+"anims": {
+"Todos": 18,
+"grupo": 9,
+"1_stage icon": 1,
+"2-": 1,
+"3_icon stage": 1,
+"4_icon stage": 1,
+"5-": 1,
+"6_icon stage": 1,
+"7-": 1,
+"9-": 1,
+"goku_black_stage_by_rbm_kyuubi-dajpxvp": 1
+}
+},
+"ast_assets_separados_cenarios_miniaturas_das_fases": {
+"nome": "Assets_Separados / Cenarios / Miniaturas_das_fases",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 20,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Cenarios/Miniaturas_das_fases"
+],
+"anims": {
+"Todos": 20
+}
+},
+"ast_assets_separados_cenarios_foreground": {
+"nome": "Assets_Separados / Cenarios / foreground",
+"cat": "ast",
+"tipo": "cenarios",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Cenarios/foreground"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_interface_e_outros": {
+"nome": "Assets_Separados / Interface_e_outros",
+"cat": "ast",
+"tipo": "interface",
+"quadros": 130,
+"atlas": 3,
+"objs": [
+"Assets_Separados/Interface_e_outros"
+],
+"anims": {
+"Todos": 130,
+"grupo": 6,
+"Asset": 1,
+"atk btn_empty": 1,
+"attack": 1,
+"Background": 1,
+"ball": 3,
+"button_everyplay": 1,
+"button_facebook": 1,
+"charge btn": 1,
+"circle": 1,
+"coin": 2,
+"color": 1,
+"complete": 1,
+"dbz tct": 1,
+"defence": 1,
+"defend btn": 1,
+"defendbar": 1,
+"effect": 1,
+"empty buttn": 1,
+"end": 12,
+"end 1 copy": 1,
+"endred": 1,
+"Get Ready": 1,
+"go": 1,
+"handsigh": 1,
+"Health Bar black border": 1,
+"health bar white": 1,
+"Health Bar": 1,
+"item": 1,
+"jump": 1,
+"leftArrow": 1,
+"lifebar": 2,
+"light-gray-button-rectangle-md": 1,
+"like icon": 1,
+"mid": 12,
+"mid 1 coppy": 1,
+"midred": 1,
+"oc xoay": 1,
+"Pause": 1,
+"power": 2,
+"purple circle": 1,
+"raised-fist-800px": 1,
+"rateicon": 1,
+"rectangle btn": 1,
+"review": 1,
+"reward": 1,
+"rightArrow": 1,
+"Rules": 1,
+"sheet": 1,
+"slice03": 1,
+"slice04": 1,
+"slice05": 2,
+"slice07": 1,
+"slice54": 1,
+"slice55": 1,
+"slice59": 1,
+"slice75": 1,
+"slice81_81 copy": 1,
+"slice81": 1,
+"slice82_82 copy": 1,
+"slice82": 1,
+"slice84_84 copy": 1,
+"slice84": 1,
+"sound_off": 1,
+"sound_on": 1,
+"start": 12,
+"start 1 copy": 1,
+"startred": 1,
+"teleport btn": 1,
+"transforme": 1,
+"UI board Large  parchment": 1,
+"UI board Large  stone": 1,
+"UI board Medium  parchment": 1,
+"UI board Small  parchment": 1,
+"UIMask": 1,
+"Untitled-1": 2,
+"Untitled": 1,
+"Untitled-2": 2,
+"untitled_by_vebills-dakd1co": 1,
+"vide": 1,
+"window": 1,
+"windown": 1,
+"yeallo circle": 2
+}
+},
+"ast_assets_separados_retratos_personagens": {
+"nome": "Assets_Separados / Retratos_personagens",
+"cat": "ast",
+"tipo": "interface",
+"quadros": 65,
+"atlas": 2,
+"objs": [
+"Assets_Separados/Retratos_personagens"
+],
+"anims": {
+"Todos": 65,
+"grupo": 31,
+"0_Black": 1,
+"1": 1,
+"1_goku": 1,
+"2_gohan": 1,
+"3_Krilin": 1,
+"4_vegeta": 1,
+"5": 1,
+"5_picollo": 1,
+"6_Frizea": 1,
+"7_Frizea": 1,
+"8_frizea": 1,
+"9_Jeice": 1,
+"10_Recoome": 1,
+"11_Frizea": 1,
+"12_Cell": 1,
+"13_Trunks": 1,
+"14_majin vegeat": 1,
+"15_FatBuu": 1,
+"16_buu": 1,
+"17_Tien": 1,
+"18_MGohan": 1,
+"19": 1,
+"21": 1,
+"22": 1,
+"23": 1,
+"24": 1,
+"26": 1,
+"27": 1,
+"28": 1,
+"29_Vegito": 1,
+"30_Cooler": 1,
+"31_Gotenks": 1,
+"32_Jamemba": 1,
+"33_Black": 1
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_black_goku": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / black goku",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/black goku"
+],
+"anims": {
+"Todos": 2
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_buu": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/buu"
+],
+"anims": {
+"Todos": 2
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_cell_2nd": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / cell 2nd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/cell 2nd"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_fatbuu": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / fatbuu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 2,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/fatbuu"
+],
+"anims": {
+"Todos": 2
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_frizea_2nd_form": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / frizea 2nd form",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/frizea 2nd form"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_frizea_first_form": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / frizea first form",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/frizea first form"
+],
+"anims": {
+"Todos": 4
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_jamemba": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / jamemba",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/jamemba"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_jeice": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / jeice",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/jeice"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_sprites_soltos_de_personagens_raditz": {
+"nome": "Assets_Separados / Sprites_soltos_de_personagens / raditz",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Sprites_soltos_de_personagens/raditz"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_assets_separados_texturas_sem_sprite": {
+"nome": "Assets_Separados / Texturas_sem_sprite",
+"cat": "ast",
+"tipo": "interface",
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"Assets_Separados/Texturas_sem_sprite"
+],
+"anims": {
+"Todos": 4
+}
+},
+"ast_bardock_fases_bardock": {
+"nome": "BARDOCK fases / Bardock",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"BARDOCK fases/Bardock"
+],
+"anims": {
+"Todos": 60
+}
+},
+"ast_bardock_fases_bardock_ssj4": {
+"nome": "BARDOCK fases / Bardock SSJ4",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 58,
+"atlas": 1,
+"objs": [
+"BARDOCK fases/Bardock SSJ4"
+],
+"anims": {
+"Todos": 58
+}
+},
+"ast_bardock_fases_bardock_ssj": {
+"nome": "BARDOCK fases / Bardock Ssj",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"BARDOCK fases/Bardock Ssj"
+],
+"anims": {
+"Todos": 63
+}
+},
+"ast_broly_fases_broly_full_power": {
+"nome": "BROLY fases / Broly Full Power",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Full Power"
+],
+"anims": {
+"Todos": 75
+}
+},
+"ast_broly_fases_broly_segunda_forma": {
+"nome": "BROLY fases / Broly Segunda Forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Segunda Forma"
+],
+"anims": {
+"Todos": 63
+}
+},
+"ast_broly_fases_broly_ssj4": {
+"nome": "BROLY fases / Broly Ssj4",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 49,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Ssj4"
+],
+"anims": {
+"Todos": 49
+}
+},
+"ast_broly_fases_broly_terceira_forma": {
+"nome": "BROLY fases / Broly Terceira forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"BROLY fases/Broly Terceira forma"
+],
+"anims": {
+"Todos": 47
+}
+},
+"ast_baby_vegito_black_lsw_ulsw": {
+"nome": "Baby vegito black (lsw-ulsw)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 83,
+"atlas": 11,
+"objs": [
+"Baby vegito black (lsw-ulsw)"
+],
+"anims": {
+"Todos": 83
+}
+},
+"ast_bills": {
+"nome": "Bills",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 78,
+"atlas": 1,
+"objs": [
+"Bills"
+],
+"anims": {
+"Todos": 78,
+"Bills": 77,
+"Whis": 1
+}
+},
+"ast_broly_dbs_lssj_lsw": {
+"nome": "Broly DBS LSSJ Lsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 89,
+"atlas": 6,
+"objs": [
+"Broly DBS LSSJ Lsw"
+],
+"anims": {
+"Todos": 89
+}
+},
+"ast_cell_formas_cell_imperfeito": {
+"nome": "CELL formas / Cell Imperfeito",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"CELL formas/Cell Imperfeito"
+],
+"anims": {
+"Todos": 64
+}
+},
+"ast_cell_formas_cell_semi_perfeito": {
+"nome": "CELL formas / Cell Semi Perfeito",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 88,
+"atlas": 1,
+"objs": [
+"CELL formas/Cell Semi Perfeito"
+],
+"anims": {
+"Todos": 88
+}
+},
+"ast_cell_formas_cell_perfeito": {
+"nome": "CELL formas / cell Perfeito",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 61,
+"atlas": 1,
+"objs": [
+"CELL formas/cell Perfeito"
+],
+"anims": {
+"Todos": 61
+}
+},
+"ast_caulifla": {
+"nome": "Caulifla",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 103,
+"atlas": 1,
+"objs": [
+"Caulifla"
+],
+"anims": {
+"Todos": 103
+}
+},
+"ast_cell_2nd_form": {
+"nome": "Cell / 2ND Form",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 72,
+"atlas": 5,
+"objs": [
+"Cell/2ND Form"
+],
+"anims": {
+"Todos": 72
+}
+},
+"ast_cell_perfect_cell_hd_ulsw": {
+"nome": "Cell / Perfect Cell HD ULSW",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 166,
+"atlas": 21,
+"objs": [
+"Cell/Perfect Cell HD ULSW"
+],
+"anims": {
+"Todos": 166,
+"grupo": 165,
+"163 (extra)": 1
+}
+},
+"ast_cooler": {
+"nome": "Cooler",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 81,
+"atlas": 1,
+"objs": [
+"Cooler"
+],
+"anims": {
+"Todos": 81
+}
+},
+"ast_freeza_formas_freeza_forma_final": {
+"nome": "FREEZA formas / Freeza Forma Final",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 64,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Freeza Forma Final"
+],
+"anims": {
+"Todos": 64
+}
+},
+"ast_freeza_formas_freeza_full_power": {
+"nome": "FREEZA formas / Freeza Full Power",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 89,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Freeza Full Power"
+],
+"anims": {
+"Todos": 89
+}
+},
+"ast_freeza_formas_freeza_primeira_forma": {
+"nome": "FREEZA formas / Freeza Primeira Forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 60,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Freeza Primeira Forma"
+],
+"anims": {
+"Todos": 60
+}
+},
+"ast_freeza_formas_freeza_terceira_forma": {
+"nome": "FREEZA formas / Freeza Terceira Forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 38,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Freeza Terceira Forma"
+],
+"anims": {
+"Todos": 38,
+"Freeza Segunda Forma": 36,
+"Freeza Segunda Forma": 2
+}
+},
+"ast_freeza_formas_golden_freeza": {
+"nome": "FREEZA formas / Golden Freeza",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"FREEZA formas/Golden Freeza"
+],
+"anims": {
+"Todos": 71
+}
+},
+"ast_frost_frost_primeira_forma": {
+"nome": "Frost / Frost Primeira Forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 51,
+"atlas": 1,
+"objs": [
+"Frost/Frost Primeira Forma"
+],
+"anims": {
+"Todos": 51
+}
+},
+"ast_frost_frost_ultima_forma": {
+"nome": "Frost / Frost Ultima Forma",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"Frost/Frost Ultima Forma"
+],
+"anims": {
+"Todos": 55
+}
+},
+"ast_gohan_fases_gohan": {
+"nome": "GOHAN fases / Gohan",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan"
+],
+"anims": {
+"Todos": 68
+}
+},
+"ast_gohan_fases_gohan_adulto": {
+"nome": "GOHAN fases / Gohan Adulto",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 85,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan Adulto"
+],
+"anims": {
+"Todos": 85
+}
+},
+"ast_gohan_fases_gohan_mistico": {
+"nome": "GOHAN fases / Gohan Mistico",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 95,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan Mistico"
+],
+"anims": {
+"Todos": 95
+}
+},
+"ast_gohan_fases_gohan_possuido": {
+"nome": "GOHAN fases / Gohan Possuido",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Gohan Possuido"
+],
+"anims": {
+"Todos": 68
+}
+},
+"ast_gohan_fases_teen_gohan_ssj": {
+"nome": "GOHAN fases / Teen Gohan SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Teen Gohan SSJ"
+],
+"anims": {
+"Todos": 56
+}
+},
+"ast_gohan_fases_teen_gohan_ssj2": {
+"nome": "GOHAN fases / Teen Gohan SSJ2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"GOHAN fases/Teen Gohan SSJ2"
+],
+"anims": {
+"Todos": 59
+}
+},
+"ast_goku_black_formas_goku_black": {
+"nome": "GOKU BLACK formas / Goku Black",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_goku_black_formas_goku_black_2": {
+"nome": "GOKU BLACK formas / Goku Black 2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 91,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black 2"
+],
+"anims": {
+"Todos": 91
+}
+},
+"ast_goku_black_formas_goku_black_rose": {
+"nome": "GOKU BLACK formas / Goku Black Rose",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 101,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black Rose"
+],
+"anims": {
+"Todos": 101
+}
+},
+"ast_goku_black_formas_goku_black_ssj": {
+"nome": "GOKU BLACK formas / Goku Black SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 115,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black SSJ"
+],
+"anims": {
+"Todos": 115
+}
+},
+"ast_goku_black_formas_goku_black_ssj_versi_n_2": {
+"nome": "GOKU BLACK formas / Goku Black SSJ(versión 2)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 166,
+"atlas": 1,
+"objs": [
+"GOKU BLACK formas/Goku Black SSJ(versión 2)"
+],
+"anims": {
+"Todos": 166
+}
+},
+"ast_goku_fases_goku": {
+"nome": "GOKU fases / Goku",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 71,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku"
+],
+"anims": {
+"Todos": 71
+}
+},
+"ast_goku_fases_goku_versi_n2": {
+"nome": "GOKU fases / Goku (versión2)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 133,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku (versión2)"
+],
+"anims": {
+"Todos": 133,
+"Cabeça pra Baixo": 1,
+"Goku confuso": 1,
+"Goku-2": 130,
+"Goku-Fraco": 1
+}
+},
+"ast_goku_fases_goku_blue": {
+"nome": "GOKU fases / Goku Blue",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 124,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Blue"
+],
+"anims": {
+"Todos": 124
+}
+},
+"ast_goku_fases_goku_blue_2": {
+"nome": "GOKU fases / Goku Blue 2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 120,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Blue 2"
+],
+"anims": {
+"Todos": 120,
+"Cabeça": 1,
+"cabeça": 2,
+"Goku-Blue": 117
+}
+},
+"ast_goku_fases_goku_blue_kaioken_whis_gi": {
+"nome": "GOKU fases / Goku Blue Kaioken Whis Gi",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 85,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Blue Kaioken Whis Gi"
+],
+"anims": {
+"Todos": 85
+}
+},
+"ast_goku_fases_goku_blue_whis_gi": {
+"nome": "GOKU fases / Goku Blue Whis Gi",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 69,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Blue Whis Gi"
+],
+"anims": {
+"Todos": 69
+}
+},
+"ast_goku_fases_goku_god": {
+"nome": "GOKU fases / Goku God",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 62,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku God"
+],
+"anims": {
+"Todos": 62
+}
+},
+"ast_goku_fases_goku_instinto_superior": {
+"nome": "GOKU fases / Goku Instinto Superior",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 114,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Instinto Superior"
+],
+"anims": {
+"Todos": 114
+}
+},
+"ast_goku_fases_goku_instinto_superior_completo": {
+"nome": "GOKU fases / Goku Instinto Superior Completo",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Instinto Superior Completo"
+],
+"anims": {
+"Todos": 59
+}
+},
+"ast_goku_fases_goku_ssj_1": {
+"nome": "GOKU fases / Goku SSJ 1",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 1"
+],
+"anims": {
+"Todos": 55
+}
+},
+"ast_goku_fases_goku_ssj_1_versi_n_2": {
+"nome": "GOKU fases / Goku SSJ 1(versión 2)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 112,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 1(versión 2)"
+],
+"anims": {
+"Todos": 112
+}
+},
+"ast_goku_fases_goku_ssj_2": {
+"nome": "GOKU fases / Goku SSJ 2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 2"
+],
+"anims": {
+"Todos": 53
+}
+},
+"ast_goku_fases_goku_ssj_3": {
+"nome": "GOKU fases / Goku SSJ 3",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 3"
+],
+"anims": {
+"Todos": 56
+}
+},
+"ast_goku_fases_goku_ssj_3_mais_sprites": {
+"nome": "GOKU fases / Goku SSJ 3 Mais Sprites",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 74,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 3 Mais Sprites"
+],
+"anims": {
+"Todos": 74
+}
+},
+"ast_goku_fases_goku_ssj_4": {
+"nome": "GOKU fases / Goku SSJ 4",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ 4"
+],
+"anims": {
+"Todos": 63
+}
+},
+"ast_goku_fases_goku_ssj_kaioken": {
+"nome": "GOKU fases / Goku SSJ Kaioken",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 76,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku SSJ Kaioken"
+],
+"anims": {
+"Todos": 76
+}
+},
+"ast_goku_fases_goku_ssj_saga_freeza": {
+"nome": "GOKU fases / Goku Ssj (Saga Freeza)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 80,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Ssj (Saga Freeza)"
+],
+"anims": {
+"Todos": 80
+}
+},
+"ast_goku_fases_goku_ssj_falso": {
+"nome": "GOKU fases / Goku Ssj Falso",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 106,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Ssj Falso"
+],
+"anims": {
+"Todos": 106
+}
+},
+"ast_goku_fases_goku_whis_gi": {
+"nome": "GOKU fases / Goku Whis Gi",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku Whis Gi"
+],
+"anims": {
+"Todos": 59
+}
+},
+"ast_goku_fases_goku_kaioken": {
+"nome": "GOKU fases / Goku kaioken",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 67,
+"atlas": 1,
+"objs": [
+"GOKU fases/Goku kaioken"
+],
+"anims": {
+"Todos": 67
+}
+},
+"ast_gogeta": {
+"nome": "Gogeta",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 95,
+"atlas": 1,
+"objs": [
+"Gogeta"
+],
+"anims": {
+"Todos": 95
+}
+},
+"ast_gogeta_gogeta_blue_ulsw_hd": {
+"nome": "Gogeta / Gogeta Blue ULSW HD",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 185,
+"atlas": 29,
+"objs": [
+"Gogeta/Gogeta Blue ULSW HD"
+],
+"anims": {
+"Todos": 185
+}
+},
+"ast_gogeta_gogeta_blue_ulsw_hd_extra": {
+"nome": "Gogeta / Gogeta Blue ULSW HD / Extra",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 24,
+"atlas": 3,
+"objs": [
+"Gogeta/Gogeta Blue ULSW HD/Extra"
+],
+"anims": {
+"Todos": 24
+}
+},
+"ast_gogeta_gogeta_blue_ulsw_hd_sprites_v0_5_sheets": {
+"nome": "Gogeta / Gogeta Blue ULSW HD / Sprites V0.5 / Sheets",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 1,
+"atlas": 1,
+"objs": [
+"Gogeta/Gogeta Blue ULSW HD/Sprites V0.5/Sheets"
+],
+"anims": {
+"Todos": 1
+}
+},
+"ast_gogeta_gogeta_blue_ulsw2": {
+"nome": "Gogeta / Gogeta Blue Ulsw2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 83,
+"atlas": 7,
+"objs": [
+"Gogeta/Gogeta Blue Ulsw2"
+],
+"anims": {
+"Todos": 83
+}
+},
+"ast_gogeta_gogeta_ssj_dbz_hd": {
+"nome": "Gogeta / Gogeta ssj dbz HD",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 121,
+"atlas": 17,
+"objs": [
+"Gogeta/Gogeta ssj dbz HD"
+],
+"anims": {
+"Todos": 121,
+"000_569": 1,
+"grupo": 119,
+"faceset alternativo": 1
+}
+},
+"ast_gohan_gohan_base_ulsw": {
+"nome": "Gohan / Gohan Base Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 142,
+"atlas": 11,
+"objs": [
+"Gohan/Gohan Base Ulsw"
+],
+"anims": {
+"Todos": 142
+}
+},
+"ast_gohan_mystic_gohan_complete": {
+"nome": "Gohan / Mystic Gohan (complete)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 68,
+"atlas": 9,
+"objs": [
+"Gohan/Mystic Gohan (complete)"
+],
+"anims": {
+"Todos": 68,
+"grupo": 38,
+"Blanco28_720": 1,
+"Blanco38_567": 1,
+"Blanco39_720": 1,
+"Blanco40_654": 1,
+"Blanco41_581": 1,
+"Blanco42_588": 1,
+"Blanco43_720": 1,
+"Blanco44_607": 1,
+"Blanco45_669": 1,
+"Gohan03_588": 1,
+"Gohan04_653": 1,
+"Gohan05_620": 1,
+"Gohan06_610": 1,
+"Gohan07_537": 1,
+"Gohan08_474": 1,
+"Gohan46_720": 1,
+"Gohan70_720": 1,
+"Gohan71_720": 1,
+"Gohan72_720": 1,
+"Gohan76_553": 1,
+"Gohan77_720": 1,
+"Gohan78_603": 1,
+"Gohan79_720": 1,
+"Gohan81_720": 1,
+"Gohan82_459": 1,
+"Gohan83_551": 1,
+"Gohan84_482": 1,
+"Gohan85_500": 1,
+"Gohan86_720": 1,
+"Gohan87_688": 1
+}
+},
+"ast_gohan_teen_gohan_ulsw": {
+"nome": "Gohan / Teen Gohan Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 137,
+"atlas": 18,
+"objs": [
+"Gohan/Teen Gohan Ulsw"
+],
+"anims": {
+"Todos": 137,
+"grupo": 136,
+"099 (extra)": 1
+}
+},
+"ast_goku_black_base_ulsw": {
+"nome": "Goku Black Base Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 166,
+"atlas": 15,
+"objs": [
+"Goku Black Base Ulsw"
+],
+"anims": {
+"Todos": 166
+}
+},
+"ast_goku_black_base_ulsw_ssj_ros": {
+"nome": "Goku Black Base Ulsw / Ssj Rosé",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 10,
+"objs": [
+"Goku Black Base Ulsw/Ssj Rosé"
+],
+"anims": {
+"Todos": 54,
+"grupo": 40,
+"black rosé extra2_720": 1,
+"black rosé extra3_596": 1,
+"black rosé extra_640": 1,
+"charge_681": 1,
+"dameg": 1,
+"dameg_550": 1,
+"ending2_700": 1,
+"ending3_705": 1,
+"ending_720": 1,
+"kameha1_720": 1,
+"Kameha2_720": 1,
+"Kameha3_720": 1,
+"soco1_544": 1,
+"soco2_720": 1
+}
+},
+"ast_goku_goku_base_ulsw": {
+"nome": "Goku / Goku Base Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 161,
+"atlas": 14,
+"objs": [
+"Goku/Goku Base Ulsw"
+],
+"anims": {
+"Todos": 161,
+"grupo": 152,
+"8,": 2,
+"76 (1)": 1,
+"assustadu_506": 1,
+"Faceset nervoso": 1,
+"Goku extra1_720": 1,
+"Goku extra2_720": 1,
+"Goku extra3_720": 1,
+"Parado": 1
+}
+},
+"ast_goku_goku_blue_ulsw_hd": {
+"nome": "Goku / Goku Blue Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 120,
+"atlas": 5,
+"objs": [
+"Goku/Goku Blue Ulsw Hd"
+],
+"anims": {
+"Todos": 120,
+"no aura": 2,
+"received": 116,
+"Transformação (ep 61)": 2
+}
+},
+"ast_goku_goku_blue_ulsw_hd_aerial_kamehameha": {
+"nome": "Goku / Goku Blue Ulsw Hd / Aerial kamehameha",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 9,
+"atlas": 2,
+"objs": [
+"Goku/Goku Blue Ulsw Hd/Aerial kamehameha"
+],
+"anims": {
+"Todos": 9
+}
+},
+"ast_goku_goku_ssj_ulsw": {
+"nome": "Goku / Goku SSJ Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 141,
+"atlas": 21,
+"objs": [
+"Goku/Goku SSJ Ulsw"
+],
+"anims": {
+"Todos": 141,
+"grupo": 140,
+"Kamecharge": 1
+}
+},
+"ast_goku_goku_ssj3_ulsw": {
+"nome": "Goku / Goku SSJ3 Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 95,
+"atlas": 18,
+"objs": [
+"Goku/Goku SSJ3 Ulsw"
+],
+"anims": {
+"Todos": 95
+}
+},
+"ast_goku_goku_ulsw2_hd": {
+"nome": "Goku / Goku Ulsw2 Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 88,
+"atlas": 5,
+"objs": [
+"Goku/Goku Ulsw2 Hd"
+],
+"anims": {
+"Todos": 88
+}
+},
+"ast_goku_goku_ssj4_gt_ulsw_hd": {
+"nome": "Goku / Goku ssj4 GT Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 115,
+"atlas": 4,
+"objs": [
+"Goku/Goku ssj4 GT Ulsw Hd"
+],
+"anims": {
+"Todos": 115
+}
+},
+"ast_goten_goten_base_ulsw": {
+"nome": "Goten / Goten Base Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 89,
+"atlas": 8,
+"objs": [
+"Goten/Goten Base Ulsw"
+],
+"anims": {
+"Todos": 89
+}
+},
+"ast_gotenks_base": {
+"nome": "Gotenks Base",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 108,
+"atlas": 1,
+"objs": [
+"Gotenks Base"
+],
+"anims": {
+"Todos": 108
+}
+},
+"ast_hitto_hitto": {
+"nome": "HITTO / Hitto",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 97,
+"atlas": 1,
+"objs": [
+"HITTO/Hitto"
+],
+"anims": {
+"Todos": 97
+}
+},
+"ast_hitto_hitto_2": {
+"nome": "HITTO / Hitto 2",
+"cat": "ast",
+"tipo": "efeitos",
+"quadros": 86,
+"atlas": 1,
+"objs": [
+"HITTO/Hitto 2"
+],
+"anims": {
+"Todos": 86
+}
+},
+"ast_janemba": {
+"nome": "Janemba",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 72,
+"atlas": 1,
+"objs": [
+"Janemba"
+],
+"anims": {
+"Todos": 72
+}
+},
+"ast_jiren": {
+"nome": "Jiren",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 73,
+"atlas": 1,
+"objs": [
+"Jiren"
+],
+"anims": {
+"Todos": 73,
+"lsw_sprite_sheet_jiren_the_gray_by_exigeek__by_me__by_keegixe-dbsqnpc_01.": 1,
+"lsw_sprite_sheet_jiren_the_gray_by_exigeek__by_me__by_keegixe-dbsqnpc": 72
+}
+},
+"ast_jiren_hd": {
+"nome": "Jiren HD",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 147,
+"atlas": 25,
+"objs": [
+"Jiren HD"
+],
+"anims": {
+"Todos": 147,
+"grupo": 145,
+"130 extra": 1,
+"131 extra": 1
+}
+},
+"ast_kale_fases_kale": {
+"nome": "KALE fases / Kale",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 46,
+"atlas": 1,
+"objs": [
+"KALE fases/Kale"
+],
+"anims": {
+"Todos": 46
+}
+},
+"ast_kale_fases_kale_ssj": {
+"nome": "KALE fases / Kale Ssj",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"KALE fases/Kale Ssj"
+],
+"anims": {
+"Todos": 54
+}
+},
+"ast_kyabe_fases_kyabe": {
+"nome": "KYABE fases / Kyabe",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 51,
+"atlas": 1,
+"objs": [
+"KYABE fases/Kyabe"
+],
+"anims": {
+"Todos": 51
+}
+},
+"ast_kyabe_fases_kyabe_ssj": {
+"nome": "KYABE fases / Kyabe ssj",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"KYABE fases/Kyabe ssj"
+],
+"anims": {
+"Todos": 54
+}
+},
+"ast_kefla_super_sayajin": {
+"nome": "Kefla Super Sayajin",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 165,
+"atlas": 1,
+"objs": [
+"Kefla Super Sayajin"
+],
+"anims": {
+"Todos": 165,
+"kefla___ultimate_lsw_sheet_by_qsab101-dbust8q": 84,
+"saitama_jus_sprites_by_xmaygrrr-d9oqas6": 80,
+"saitama_jus_sprites_by_xmaygrrr-d9oqas6_57.": 1
+}
+},
+"ast_kuririn": {
+"nome": "Kuririn",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 81,
+"atlas": 1,
+"objs": [
+"Kuririn"
+],
+"anims": {
+"Todos": 81
+}
+},
+"ast_kuririn_ulsw": {
+"nome": "Kuririn Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 126,
+"atlas": 9,
+"objs": [
+"Kuririn Ulsw"
+],
+"anims": {
+"Todos": 126,
+"grupo": 125,
+"1559688548044_720": 1
+}
+},
+"ast_majin_buu_formas_kid_buu": {
+"nome": "MAJIN BUU formas / Kid Buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 80,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Kid Buu"
+],
+"anims": {
+"Todos": 80
+}
+},
+"ast_majin_buu_formas_majin_buu": {
+"nome": "MAJIN BUU formas / Majin Buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Majin Buu"
+],
+"anims": {
+"Todos": 75
+}
+},
+"ast_majin_buu_formas_majin_buu_gohan": {
+"nome": "MAJIN BUU formas / Majin Buu Gohan",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 70,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Majin Buu Gohan"
+],
+"anims": {
+"Todos": 70,
+"Buu": 67,
+"buu": 3
+}
+},
+"ast_majin_buu_formas_majin_buu_flaco": {
+"nome": "MAJIN BUU formas / Majin Buu(Flaco)",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 92,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Majin Buu(Flaco)"
+],
+"anims": {
+"Todos": 92
+}
+},
+"ast_majin_buu_formas_super_buu": {
+"nome": "MAJIN BUU formas / Super Buu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 63,
+"atlas": 1,
+"objs": [
+"MAJIN BUU formas/Super Buu"
+],
+"anims": {
+"Todos": 63
+}
+},
+"ast_mirai_trunks_fases_mirai_trunks": {
+"nome": "MIRAI TRUNKS fases / Mirai Trunks",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 108,
+"atlas": 1,
+"objs": [
+"MIRAI TRUNKS fases/Mirai Trunks"
+],
+"anims": {
+"Todos": 108
+}
+},
+"ast_mirai_trunks_fases_super_mirai_trunks": {
+"nome": "MIRAI TRUNKS fases / Super Mirai Trunks",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 108,
+"atlas": 1,
+"objs": [
+"MIRAI TRUNKS fases/Super Mirai Trunks"
+],
+"anims": {
+"Todos": 108
+}
+},
+"ast_piccolo": {
+"nome": "Piccolo",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 107,
+"atlas": 1,
+"objs": [
+"Piccolo"
+],
+"anims": {
+"Todos": 107
+}
+},
+"ast_raditz_fases_raditz": {
+"nome": "RADITZ fases / Raditz",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"RADITZ fases/Raditz"
+],
+"anims": {
+"Todos": 47
+}
+},
+"ast_raditz_fases_raditz_ssj": {
+"nome": "RADITZ fases / Raditz Ssj",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 45,
+"atlas": 1,
+"objs": [
+"RADITZ fases/Raditz Ssj"
+],
+"anims": {
+"Todos": 45
+}
+},
+"ast_saibaman": {
+"nome": "Saibaman",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 46,
+"atlas": 1,
+"objs": [
+"Saibaman"
+],
+"anims": {
+"Todos": 46
+}
+},
+"ast_sr_kaioh": {
+"nome": "Sr. Kaioh",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 42,
+"atlas": 3,
+"objs": [
+"Sr. Kaioh"
+],
+"anims": {
+"Todos": 42
+}
+},
+"ast_toppo": {
+"nome": "Toppo",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 77,
+"atlas": 1,
+"objs": [
+"Toppo"
+],
+"anims": {
+"Todos": 77,
+"grupo": 3,
+"toppo_sprite_sheet_by_thekrillmaster-dbpuw71": 74
+}
+},
+"ast_trunks_armadura": {
+"nome": "Trunks Armadura",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 75,
+"atlas": 1,
+"objs": [
+"Trunks Armadura"
+],
+"anims": {
+"Todos": 75
+}
+},
+"ast_turles": {
+"nome": "Turles",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 67,
+"atlas": 1,
+"objs": [
+"Turles"
+],
+"anims": {
+"Todos": 67
+}
+},
+"ast_vegeta_fases_majin_vegeta": {
+"nome": "VEGETA fases / Majin Vegeta",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Majin Vegeta"
+],
+"anims": {
+"Todos": 59
+}
+},
+"ast_vegeta_fases_vegeta": {
+"nome": "VEGETA fases / Vegeta",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 55,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta"
+],
+"anims": {
+"Todos": 55
+}
+},
+"ast_vegeta_fases_vegeta_blue": {
+"nome": "VEGETA fases / Vegeta Blue",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 107,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Blue"
+],
+"anims": {
+"Todos": 107
+}
+},
+"ast_vegeta_fases_vegeta_blue_full_power": {
+"nome": "VEGETA fases / Vegeta Blue Full Power",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 99,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Blue Full Power"
+],
+"anims": {
+"Todos": 99
+}
+},
+"ast_vegeta_fases_vegeta_buu_saga": {
+"nome": "VEGETA fases / Vegeta Buu Saga",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 51,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Buu Saga"
+],
+"anims": {
+"Todos": 51
+}
+},
+"ast_vegeta_fases_vegeta_ssj_4": {
+"nome": "VEGETA fases / Vegeta SSJ 4",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 56,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta SSJ 4"
+],
+"anims": {
+"Todos": 56
+}
+},
+"ast_vegeta_fases_vegeta_saga_buu_ssj": {
+"nome": "VEGETA fases / Vegeta Saga Buu SSJ",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 53,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Saga Buu SSJ"
+],
+"anims": {
+"Todos": 53
+}
+},
+"ast_vegeta_fases_vegeta_sayajin_saga": {
+"nome": "VEGETA fases / Vegeta Sayajin Saga",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 47,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Sayajin Saga"
+],
+"anims": {
+"Todos": 47
+}
+},
+"ast_vegeta_fases_vegeta_ssj_god": {
+"nome": "VEGETA fases / Vegeta Ssj God",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 54,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Ssj God"
+],
+"anims": {
+"Todos": 54
+}
+},
+"ast_vegeta_fases_vegeta_ssj_grade": {
+"nome": "VEGETA fases / Vegeta Ssj Grade",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 68,
+"atlas": 1,
+"objs": [
+"VEGETA fases/Vegeta Ssj Grade"
+],
+"anims": {
+"Todos": 68
+}
+},
+"ast_vegito_fases_vegito": {
+"nome": "VEGITO fases / Vegito",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 93,
+"atlas": 1,
+"objs": [
+"VEGITO fases/Vegito"
+],
+"anims": {
+"Todos": 93
+}
+},
+"ast_vegito_fases_vegito_ssj_blue": {
+"nome": "VEGITO fases / Vegito SSJ Blue",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 112,
+"atlas": 1,
+"objs": [
+"VEGITO fases/Vegito SSJ Blue"
+],
+"anims": {
+"Todos": 112
+}
+},
+"ast_vegito_fases_vegito_ssj1": {
+"nome": "VEGITO fases / Vegito Ssj1",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 109,
+"atlas": 1,
+"objs": [
+"VEGITO fases/Vegito Ssj1"
+],
+"anims": {
+"Todos": 109
+}
+},
+"ast_vegito_fases_vegito_ssj2": {
+"nome": "VEGITO fases / Vegito Ssj2",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 130,
+"atlas": 1,
+"objs": [
+"VEGITO fases/Vegito Ssj2"
+],
+"anims": {
+"Todos": 130
+}
+},
+"ast_vegeta_baby_vegeta_ulsw_hd": {
+"nome": "Vegeta / Baby Vegeta Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 58,
+"atlas": 3,
+"objs": [
+"Vegeta/Baby Vegeta Ulsw Hd"
+],
+"anims": {
+"Todos": 58
+}
+},
+"ast_vegeta_vegeta_ssj4_hd": {
+"nome": "Vegeta / VEGETA SSJ4 HD",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 65,
+"atlas": 4,
+"objs": [
+"Vegeta/VEGETA SSJ4 HD"
+],
+"anims": {
+"Todos": 65
+}
+},
+"ast_vegeta_vegeta_base_ulsw": {
+"nome": "Vegeta / Vegeta Base Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 133,
+"atlas": 9,
+"objs": [
+"Vegeta/Vegeta Base Ulsw"
+],
+"anims": {
+"Todos": 133,
+"grupo": 132,
+"75_578": 1
+}
+},
+"ast_vegeta_vegeta_blue_ulsw_hd": {
+"nome": "Vegeta / Vegeta Blue Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 125,
+"atlas": 7,
+"objs": [
+"Vegeta/Vegeta Blue Ulsw Hd"
+],
+"anims": {
+"Todos": 125,
+"grupo": 3,
+"211_720": 1,
+"212_392": 1,
+"221_720": 1,
+"1557099640301djajja": 1,
+"1557099640301djajja_720": 1,
+"1557099657037hshaj": 1,
+"1557099657037hshaj_720": 1,
+"Finalflash_720": 1,
+"received": 113,
+"received_1677104132398282(juuj)": 1
+}
+},
+"ast_vegeta_vegeta_royal_blue_ulsw_hd": {
+"nome": "Vegeta / Vegeta Royal Blue Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 137,
+"atlas": 7,
+"objs": [
+"Vegeta/Vegeta Royal Blue Ulsw Hd"
+],
+"anims": {
+"Todos": 137,
+"aruassdssje_720": 1,
+"aura ssdssje2_720": 1,
+"aura ssdssje_720": 1,
+"received": 134
+}
+},
+"ast_vegeta_vegeta_royal_blue_ulsw_hd_rage": {
+"nome": "Vegeta / Vegeta Royal Blue Ulsw Hd / Rage",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 13,
+"atlas": 3,
+"objs": [
+"Vegeta/Vegeta Royal Blue Ulsw Hd/Rage"
+],
+"anims": {
+"Todos": 13
+}
+},
+"ast_vegeta_vegeta_ssj_ulsw": {
+"nome": "Vegeta / Vegeta SSJ Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 118,
+"atlas": 15,
+"objs": [
+"Vegeta/Vegeta SSJ Ulsw"
+],
+"anims": {
+"Todos": 118,
+"grupo": 112,
+"supervegeta": 3,
+"supervegeta1_604": 1,
+"supervegeta2_665": 1,
+"supervegeta3_720": 1
+}
+},
+"ast_vegeta_vegeta_ssj2_ulsw": {
+"nome": "Vegeta / Vegeta SSJ2 Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 98,
+"atlas": 15,
+"objs": [
+"Vegeta/Vegeta SSJ2 Ulsw"
+],
+"anims": {
+"Todos": 98
+}
+},
+"ast_vegetto_blue_ulsw": {
+"nome": "Vegetto Blue Ulsw",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 95,
+"atlas": 7,
+"objs": [
+"Vegetto Blue Ulsw"
+],
+"anims": {
+"Todos": 95
+}
+},
+"ast_xeno_goku_xeno_goku_ssj4_ulsw_hd": {
+"nome": "Xeno Goku / Xeno Goku ssj4 Ulsw Hd",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 103,
+"atlas": 6,
+"objs": [
+"Xeno Goku/Xeno Goku ssj4 Ulsw Hd"
+],
+"anims": {
+"Todos": 103
+}
+},
+"ast_xeno_goku_xeno_goku_hd_ulsw": {
+"nome": "Xeno Goku / Xeno goku hd ULSW",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 141,
+"atlas": 19,
+"objs": [
+"Xeno Goku/Xeno goku hd ULSW"
+],
+"anims": {
+"Todos": 141,
+"grupo": 140,
+"angry faceset": 1
+}
+},
+"ast_xeno_goku_xeno_goku_super_saiyajin_xeno_goku_super_saiyajin": {
+"nome": "Xeno Goku / Xeno_Goku_Super_Saiyajin / Xeno Goku Super Saiyajin",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 113,
+"atlas": 8,
+"objs": [
+"Xeno Goku/Xeno_Goku_Super_Saiyajin/Xeno Goku Super Saiyajin"
+],
+"anims": {
+"Todos": 113
+}
+},
+"ast_zamasu_formas_zamasu": {
+"nome": "ZAMASU formas / Zamasu",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 77,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu"
+],
+"anims": {
+"Todos": 77
+}
+},
+"ast_zamasu_formas_zamasu_e_black_fusion": {
+"nome": "ZAMASU formas / Zamasu e Black Fusion",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 91,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu e Black Fusion"
+],
+"anims": {
+"Todos": 91
+}
+},
+"ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando": {
+"nome": "ZAMASU formas / Zamasu e Black Fusão Desmanchando",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 136,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu e Black Fusão Desmanchando"
+],
+"anims": {
+"Todos": 136
+}
+},
+"ast_zamasu_formas_zamasu_e_black_fus_o_desmanchando_damage": {
+"nome": "ZAMASU formas / Zamasu e Black Fusão Desmanchando / Damage",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu e Black Fusão Desmanchando/Damage"
+],
+"anims": {
+"Todos": 10
+}
+},
+"ast_zamasu_formas_zamasu_e_black_fusion_robotica": {
+"nome": "ZAMASU formas / Zamasu e Black fusion Robotica",
+"cat": "ast",
+"tipo": "personagens",
+"quadros": 117,
+"atlas": 1,
+"objs": [
+"ZAMASU formas/Zamasu e Black fusion Robotica"
+],
+"anims": {
+"Todos": 117
+}
+}
+}
+}
