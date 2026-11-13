@@ -329,6 +329,16 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     tr.clipes.splice(tr.clipes.indexOf(c), 1); g.sel = null; g.mudou('teste');
     return { meio, fim };
   });
+  const sm = await p.evaluate(() => {
+    const g = FF.Estudio.abas.find(a => a.id === 'golpes');
+    const tr = g.doc.linha.trilhas.find(t => t.id === 'alvo');
+    const c = { id: 'arr2', tipo: 'mover', t: 0.05, d: 0.6, para: 'x', x: 500, y: -200, escala: 0.5, rot: 45 };
+    tr.clipes.push(c); g.mudou('x'); g.selecionar('arr2', 'alvo'); g.irPara(0.8);
+    const f = g.palco._b.alvo, r = { ks: g.alcas().map(h => h.k), esc: f.escExtra, rot: Math.round(f.rotExtra) };
+    tr.clipes.splice(tr.clipes.indexOf(c), 1); g.sel = null; g.mudou('x');
+    return r;
+  });
+  ok(sm.ks.includes('destino') && sm.ks.includes('escala') && sm.ks.includes('giro') && sm.esc === 0.5 && Math.abs(sm.rot) === 45, 'alvo no movimento: alças de tamanho e giro na silhueta, aplicados na chegada ' + JSON.stringify(sm));
   ok(s.fim.x === 500 && s.fim.y === -300 && s.meio.y < -300 && Math.abs(s.meio.rot) > 90, 'arremessar o alvo (mover com arco e giro): ' + JSON.stringify(s));
 
   // ---- cena de KO: padrão + própria do alvo, editada e salva no Estúdio

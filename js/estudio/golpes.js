@@ -751,7 +751,10 @@ window.FF = window.FF || {};
         const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
         if (f) {
           const dx = c.x != null ? c.x + (FF.W - 1084) / 2 : f.homeX, dy = f.groundY + (c.y || 0);
-          L.push({ k: 'destino', x: dx, y: dy - 30 * f.scale, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover' });
+          const sc = f.scale * (c.escala || 1), raio = 34 * sc, cy = dy - 30 * sc;
+          L.push({ k: 'destino', x: dx, y: cy, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover', esc: c.escala || 1, rot: (c.rot || 0) * f.dir, raio },
+            { k: 'escala', x: dx + raio * 0.75, y: cy + raio * 0.75, cor: '#ffd84a', cx: dx, cy },
+            { k: 'giro', x: dx, y: cy - raio - 16, cor: '#6cc8ff', cx: dx, cy });
         }
       }
       if (c.tipo === 'anim' && r.f) {   // lutador: mover (branca), tamanho (amarela) e giro (azul), como os efeitos
@@ -787,7 +790,12 @@ window.FF = window.FF || {};
       for (const h of L) {
         if (h.k === 'destino' && h.f) {   // silhueta do lutador no ponto de chegada
           const f = h.f, an = f.sprite.anim(f.animName('parado')) || f.anim.cur;
-          if (an && an.frames && an.frames[0]) FF.drawFrame(ctx, f.sprite, an.frames[0], h.px, h.py, f.scale, f.dir < 0, { alpha: 0.45 });
+          if (an && an.frames && an.frames[0]) {
+            const sc = f.scale * h.esc;
+            if (h.rot) { ctx.save(); ctx.translate(h.px, h.py - 30 * sc); ctx.rotate(h.rot * Math.PI / 180); FF.drawFrame(ctx, f.sprite, an.frames[0], 0, 30 * sc, sc, f.dir < 0, { alpha: 0.45 }); ctx.restore(); }
+            else FF.drawFrame(ctx, f.sprite, an.frames[0], h.px, h.py, sc, f.dir < 0, { alpha: 0.45 });
+          }
+          ctx.strokeStyle = 'rgba(255,255,255,0.6)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
           ctx.strokeStyle = 'rgba(95,224,138,0.8)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.moveTo(h.px - 22, f.groundY); ctx.lineTo(h.px + 22, f.groundY); ctx.moveTo(h.px, f.groundY); ctx.lineTo(h.px, h.py); ctx.stroke(); ctx.setLineDash([]);
           if (h.mover) {   // caminho do movimento (com o arco), a partir de onde o lutador está agora
@@ -888,7 +896,8 @@ window.FF = window.FF || {};
           case 'giro': {
             let ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90;
             if (ang > 180) ang -= 360;
-            const dd = c.tipo === 'anim' && r.f ? r.f.dir : dir;
+            const destino = (c.tipo === 'mover' || c.tipo === 'teleporte') && this.alcas().find(x => x.k === 'destino');
+            const dd = c.tipo === 'anim' && r.f ? r.f.dir : destino && destino.f ? destino.f.dir : dir;
             c.rot = R(ang * (c.em === 'tela' ? 1 : dd));
             if (Math.abs(c.rot) <= 2) delete c.rot;   // perto do zero = reto
             break;
@@ -914,7 +923,8 @@ window.FF = window.FF || {};
       cv.addEventListener('pointercancel', fim);
       cv.addEventListener('wheel', (e) => {
         const c = this.clipe();
-        if (!c || !['efeito', 'camada', 'anim', 'projetil'].includes(c.tipo)) return;
+        if (!c || !['efeito', 'camada', 'anim', 'projetil', 'mover', 'teleporte'].includes(c.tipo)) return;
+        if ((c.tipo === 'mover' || c.tipo === 'teleporte') && c.para !== 'x') return;
         e.preventDefault();
         c.escala = Math.max(0.05, Math.round((c.escala || 1) * (e.deltaY < 0 ? 1.08 : 1 / 1.08) * 100) / 100);
         this._deCanvas = true;

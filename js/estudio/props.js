@@ -131,6 +131,8 @@ FF.EstudioProps = {
           g.appendChild(E.el('p', 'es-dica', 'Arraste a bolinha verde (e a silhueta) no palco para escolher o ponto. Vale para cima também: o lutador fica no ar até o próximo movimento.'));
           g.appendChild(num(c, 'x', 'X na tela', '0 (esquerda) a 1084 (direita)'));
           g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120)'));
+          g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', 'No palco: alça amarela da silhueta (1 = normal)', { passo: 0.05, min: 0.05 }));
+          g.appendChild(num(c, 'rot', 'Giro na chegada (°)', 'No palco: alça azul da silhueta'));
         }
         // animação do movimento: campo + 🖼 escolher vendo as miniaturas (animações do próprio lutador)
         g.appendChild(this.comEscolha(

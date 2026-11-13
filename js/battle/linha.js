@@ -7,7 +7,7 @@
 //     {tipo:"anim", anim, sprite? (animação de outro sprite), de?, ate? (trecho de quadros), fps?, d?, loop?, segurar? (s parado no 1º quadro), dx?, dy?, escala?, rot? (°), alpha?, flip?,
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, suave?, arco? (px, curva para cima), girar? (voltas)}
-//     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?}
+//     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, escala?, rot?}   (mover também aceita escala/rot: tamanho e giro na chegada)
 //     para "x" = qualquer ponto da tela: x em pixels da tela (0 a 1084), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
@@ -224,6 +224,9 @@ FF.Linha = {
         const destY = c.para === 'x' ? f.groundY + (c.y || 0) : f.y;
         if (c.tipo === 'mover') {
           const x0 = f.x, y0 = f.y, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
+          // tamanho e giro no destino (alças no palco): vão mudando durante o movimento
+          const e0 = f.escExtra || 1, e1 = c.escala != null ? c.escala : e0;
+          const r0 = f.rotExtra || 0, r1 = c.rot != null ? c.rot * f.dir : r0;
           if (c.animMov !== '') f.play(c.animMov || (dest * f.dir >= x0 * f.dir ? 'avancar' : 'recuar'), { loop: true });
           viva.ativos.push((dt, t) => {
             const k = Math.min(1, (t - t0) / d);
@@ -232,17 +235,19 @@ FF.Linha = {
             // arco: sobe (ou desce, se negativo) no meio do caminho, como algo arremessado
             f.y = y0 + (destY - y0) * e - (c.arco || 0) * Math.sin(Math.PI * e);
             // girar: voltas durante o movimento (ex.: inimigo arremessado rodando)
-            if (c.girar) f.rotExtra = c.girar * 360 * e * f.dir;
-            if (k >= 1) { if (c.girar && !c.manterGiro) f.rotExtra = 0; return false; }
+            f.escExtra = e0 + (e1 - e0) * e;
+            f.rotExtra = r0 + (r1 - r0) * e + (c.girar ? c.girar * 360 * e * f.dir : 0);
+            if (k >= 1) { if (c.girar && !c.manterGiro) f.rotExtra = r1; return false; }
           });
           return;
         }
         // teleporte: some no meio da animação e aparece no destino
         const nome = f.animName(c.animMov || 'teleporte');
         const a = f.sprite.anim(nome);
-        if (!a) { f.x = dest; f.y = destY; return; }
+        const chegar = () => { f.x = dest; f.y = destY; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; };
+        if (!a) { chegar(); return; }
         const meio = Math.floor(a.frames.length / 2);
-        f.anim.play(nome, { onFrame: (i) => { if (i === meio) { f.x = dest; f.y = destY; } } });
+        f.anim.play(nome, { onFrame: (i) => { if (i === meio) chegar(); } });
         return;
       }
       case 'efeito': {
