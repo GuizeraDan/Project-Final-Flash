@@ -740,9 +740,13 @@ FF.Battle = class {
     if (this.shakeAmt > 0.3) ctx.translate((Math.random() - 0.5) * this.shakeAmt * 2, (Math.random() - 0.5) * this.shakeAmt * 2);
     const cam = this.cam;
     if (cam && (cam.zoom !== 1 || cam.x || cam.y)) {   // zoom/foco da câmera (padrão: sem efeito)
+      // a câmera não sai do cenário (com zoom perto da borda sobrava um pedaço da tela sem desenho = "fantasma")
+      const z = cam.zoom, mx = Math.max(0, FF.W / 2 - FF.W / (2 * z)), my = Math.max(0, FF.H / 2 - FF.H / (2 * z));
+      const cx = Math.max(-mx, Math.min(mx, cam.x)), cy = Math.max(-my, Math.min(my, cam.y));
+      if (z < 1) { ctx.fillStyle = '#000'; ctx.fillRect(0, 0, FF.W, FF.H); }
       ctx.translate(FF.W / 2, FF.H / 2);
-      ctx.scale(cam.zoom, cam.zoom);
-      ctx.translate(-FF.W / 2 - cam.x, -FF.H / 2 - cam.y);
+      ctx.scale(z, z);
+      ctx.translate(-FF.W / 2 - cx, -FF.H / 2 - cy);
     }
     this.drawStage(ctx);
     // camada de cada coisa (Estúdio: "Atrás dos lutadores"): primeiro o que fica atrás, depois os lutadores, depois a frente
