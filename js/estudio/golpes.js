@@ -603,9 +603,17 @@ window.FF = window.FF || {};
       b.appendChild(op('grade', '▦', 'Grade de 50 px e linha do chão'));
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
-      const pp = op('persp', '◢ Perspectiva', 'Mostra o palco na perspectiva diagonal (estilo Attack of the Saiyans), como no jogo com Opções → Perspectiva: Diagonal. Os efeitos presos em quem solta são levados até o alvo. Para arrastar alças com precisão, a visão lateral é a de referência.');
-      pp.querySelector('input').addEventListener('change', () => { if (this.doc) this.irPara(this.t); });
-      b.appendChild(pp);
+      // perspectiva: começa igual às Opções do jogo (Perspectiva: Diagonal) até você trocar aqui
+      if (this.palco.opts.persp == null) { try { this.palco.opts.persp = (JSON.parse(localStorage.getItem('finalflash_save_v1') || '{}').perspectiva === 'diagonal'); } catch (e) { this.palco.opts.persp = false; } }
+      const btP = E.botao('', () => {
+        this.palco.opts.persp = !this.palco.opts.persp;
+        E.rascunho.gravar('palco_opts', this.palco.opts);
+        rotP();
+        if (this.doc) this.irPara(this.t); else this.redesenhar();
+      }, 'Visão do palco: lateral ou diagonal (estilo Attack of the Saiyans, igual ao jogo com Opções → Perspectiva: Diagonal). Na diagonal os efeitos presos em quem solta vão até o alvo. Para arrastar alças com precisão, use a lateral.');
+      const rotP = () => { btP.innerHTML = this.palco.opts.persp ? '◢ Diagonal' : '▬ Lateral'; btP.classList.toggle('es-bt-ouro', !!this.palco.opts.persp); };
+      rotP();
+      b.appendChild(btP);
       b.appendChild(E.el('span', 'sep'));
       b.appendChild(E.botao('⚔ Na batalha', () => this.naBatalha(), 'Roda o golpe completo na batalha real (dano, anéis de guarda/crítico). Espaço/clique = apertar no anel.'));
       b.appendChild(E.botao('＋ Trilha', () => this.novaTrilha(), 'Nova trilha (efeitos, sons, parceiro…)'));
