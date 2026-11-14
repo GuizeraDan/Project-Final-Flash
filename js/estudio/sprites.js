@@ -535,6 +535,9 @@
         }, { passo: 1, min: k >= 3 ? 1 : 0 }));
       });
       if (st.set.images.length > 1) gQ.appendChild(E.campo('select', 'Atlas', String(f[0]), (v) => { f[0] = +v; mudou('Trocar atlas'); }, { lista: st.set.images.map((_, k) => [String(k), 'Atlas ' + k + ' (' + (st.set.def.atlases[k] || '').split('/').pop() + ')']) }));
+      const bl = el('div', 'ess-bts');
+      bl.append(E.botao('✂ Editor livre', () => editorLivre(), 'Abre os quadros escolhidos como camadas soltas: mover, recortar, esticar, espelhar, duplicar e juntar num quadro só', 'es-bt-ouro'));
+      gQ.appendChild(bl);
       if (multi) {
         // mesclar: junta os quadros escolhidos numa imagem só (ex.: dois pedaços de raio = um Kamehameha maior)
         gQ.appendChild(el('div', 'es-dica', '<b>🧩 Mesclar</b> os ' + esc.length + ' escolhidos num quadro só, na ordem da tira:'));
@@ -899,6 +902,30 @@
       E.aviso('📐 ' + ks.length + ' quadro(s) em ' + Math.round(fator * 100) + '%. Salve para valer no jogo.', 'ok');
     } catch (e) { E.aviso('❌ ' + e.message, 'erro'); }
     if (bt) bt.disabled = false;
+  }
+
+  // ✂ Editor livre (js/estudio/montador.js): monta um quadro novo a partir dos escolhidos
+  function editorLivre() {
+    if (!st.anim || !frames().length) return;
+    pausar();
+    const fr = frames(), ks = escolhidos();
+    return FF.EstudioMontador.abrir({
+      set: st.set, quadros: ks.map(k => fr[k]), todos: fr.slice(),
+      aoCriar: async (r, substituir) => {
+        const ad = await A().adicionarImagens(st.id, [r.img]);
+        st.set = ad.set;
+        const p0 = ad.posicoes[0];
+        const novo = [ad.indice, p0.x, p0.y, r.img.largura, r.img.altura, r.ox, r.oy, r.dur || 1];
+        if (r.pontos && r.pontos.length) novo.push(r.pontos);
+        const f2 = frames(), ult = ks[ks.length - 1];
+        if (!substituir) { f2.splice(ult + 1, 0, novo); st.i = ult + 1; }
+        else { for (let j = ks.length - 1; j >= 1; j--) f2.splice(ks[j], 1); f2[ks[0]] = novo; st.i = ks[0]; }
+        st.sel = new Set([st.i]); st.ancora = st.i;
+        mudou('Editor livre');
+        enquadrar(); renderTira(); renderProps();
+        E.aviso('✂ Quadro novo de ' + r.img.largura + '×' + r.img.altura + ' px. Salve para valer no jogo.', 'ok');
+      },
+    });
   }
 
   // junta os quadros escolhidos numa imagem nova (lado a lado, empilhados ou sobrepostos).
@@ -1438,5 +1465,5 @@
   E.registrarAba(aba);
   // para os testes e outras abas
   E.Sprites = { st, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
-    redimensionar, mesclar, compactar, apagarSprite, novaAnimacao, renomearAnim };
+    redimensionar, mesclar, editorLivre, compactar, apagarSprite, novaAnimacao, renomearAnim };
 })();

@@ -61,6 +61,15 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.keyboard.press('Control+z');
   ok(await p.evaluate(() => FF.Estudio.Sprites.st.anim.frames.length) === s.n0, 'Ctrl+Z desfaz o mesclar');
 
+  // ✂ editor livre: duas camadas lado a lado viram um quadro só
+  s = await p.evaluate(async () => { const S = FF.Estudio.Sprites, st = S.st; st.sel = new Set([0, 1]); st.i = 0;
+    const n0 = st.anim.frames.length, a = st.anim.frames[0].slice(), b = st.anim.frames[1].slice();
+    const ed = S.editorLivre(); await new Promise(r => setTimeout(r, 100)); await ed.criar(true);
+    return { n0, n1: st.anim.frames.length, a, b, f: st.anim.frames[0], aberto: !!document.querySelector('.mt') }; });
+  ok(s.n1 === s.n0 - 1 && s.f[3] === s.a[3] + s.b[3] && !s.aberto, 'editor livre junta 2 quadros (' + s.a[3] + '+' + s.b[3] + ' → ' + s.f[3] + ' px)');
+  await p.evaluate(() => document.activeElement && document.activeElement.blur());
+  await p.keyboard.press('Control+z');
+
   // ---- 2) sprite importado (já existente): salvar como nova, renomear, última animação, juntar, apagar
   await p.evaluate(async () => {
     const I = FF.Imagem, a = I.criar(10, 20); a.rgba.fill(255);
