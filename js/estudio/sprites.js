@@ -538,9 +538,11 @@
       if (multi) {
         // mesclar: junta os quadros escolhidos numa imagem só (ex.: dois pedaços de raio = um Kamehameha maior)
         gQ.appendChild(el('div', 'es-dica', '<b>🧩 Mesclar</b> os ' + esc.length + ' escolhidos num quadro só, na ordem da tira:'));
-        const mz = st.mesclar || (st.mesclar = { como: 'lado', espaco: 0, manter: false });
-        gQ.appendChild(E.campo('select', 'Como', mz.como, (v) => { mz.como = v; }, { lista: [['lado', '➡ Lado a lado (alinhados pela origem)'], ['baixo', '⬇ Um embaixo do outro'], ['sobrepor', '◎ Um em cima do outro (origens juntas)']] }));
-        gQ.appendChild(E.campo('numero', 'Espaço (px)', mz.espaco, (v) => { mz.espaco = Math.round(v || 0); }, { passo: 1, dica: 'Distância entre os pedaços. Negativo = encaixa um por cima do outro (bom para esconder a emenda)' }));
+        const mz = st.mesclar || (st.mesclar = { como: 'lado', alinhar: 'centro', igualar: true, espaco: 0, manter: false });
+        gQ.appendChild(E.campo('select', 'Como', mz.como, (v) => { mz.como = v; }, { lista: [['lado', '➡ Lado a lado'], ['baixo', '⬇ Um embaixo do outro'], ['sobrepor', '◎ Um em cima do outro']] }));
+        gQ.appendChild(E.campo('select', 'Alinhar', mz.alinhar || 'centro', (v) => { mz.alinhar = v; }, { lista: [['centro', 'pelo centro do desenho'], ['topo', 'pelo topo'], ['base', 'pela base'], ['origem', 'pela origem (pés)']], dica: 'Para raios use "pelo centro"' }));
+        gQ.appendChild(E.campo('check', 'Mesma grossura', mz.igualar !== false, (v) => { mz.igualar = !!v; }, { dica: 'Estica cada pedaço para ficar da altura do primeiro (lado a lado) ou da largura dele (um embaixo do outro)' }));
+        gQ.appendChild(E.campo('numero', 'Espaço (px)', mz.espaco, (v) => { mz.espaco = Math.round(v || 0); }, { passo: 1, dica: 'Distância entre os pedaços. Negativo = encaixa um por cima do outro (esconde a emenda)' }));
         gQ.appendChild(E.campo('check', 'Manter os originais', mz.manter, (v) => { mz.manter = !!v; }, { dica: 'Desligado: os escolhidos viram o quadro mesclado. Ligado: o mesclado entra depois deles.' }));
         const bm = el('div', 'ess-bts');
         bm.append(E.botao('🧩 Mesclar quadros', (ev, b) => mesclar(mz, b), 'Cria o quadro novo (dá para desfazer; salve para valer no jogo)', 'es-bt-ouro'));
@@ -899,45 +901,68 @@
     if (bt) bt.disabled = false;
   }
 
-  // junta os quadros escolhidos numa imagem nova (lado a lado, empilhados ou sobrepostos)
+  // junta os quadros escolhidos numa imagem nova (lado a lado, empilhados ou sobrepostos).
+  // Usa só a parte desenhada de cada quadro (sem a borda transparente) e alinha pelo centro, topo, base ou origem;
+  // "mesma grossura" estica cada pedaço para a altura (ou largura) do primeiro.
   async function mesclar(mz, bt) {
     const fr = frames(), ks = escolhidos();
-    if (ks.length < 2) return E.aviso('Escolha 2 ou mais quadros (Shift/Ctrl + clique na tira).', 'erro');
+    if (ks.length < 2) return E.aviso('Escolha 2 ou mais quadros (Ctrl + clique na tira).', 'erro');
     pausar();
-    const q = ks.map(k => fr[k]), gap = mz.espaco || 0;
-    const maxOx = Math.max(...q.map(f => f[5])), maxOy = Math.max(...q.map(f => f[6]));
-    let pos, W, H, ox, oy;
-    if (mz.como === 'lado') {
-      let x = 0; pos = q.map(f => { const p = [x, maxOy - f[6]]; x += f[3] + gap; return p; });
-      ox = q[0][5]; oy = maxOy;
-    } else if (mz.como === 'baixo') {
-      let y = 0; pos = q.map(f => { const p = [maxOx - f[5], y]; y += f[4] + gap; return p; });
-      ox = maxOx; oy = q[0][6];
-    } else { pos = q.map(f => [maxOx - f[5], maxOy - f[6]]); ox = maxOx; oy = maxOy; }
-    // espaço negativo pode deixar coordenadas abaixo de zero: desloca tudo
-    const minX = Math.min(0, ...pos.map(p => p[0])), minY = Math.min(0, ...pos.map(p => p[1]));
-    pos = pos.map(p => [p[0] - minX, p[1] - minY]); ox -= minX; oy -= minY;
-    W = Math.max(...q.map((f, j) => pos[j][0] + f[3])); H = Math.max(...q.map((f, j) => pos[j][1] + f[4]));
-    if (W > 2048 || H > 2048) return E.aviso('O quadro mesclado ficaria com ' + W + '×' + H + ' px (máximo 2048).', 'erro');
-    let img;
+    const q = ks.map(k => fr[k]), gap = mz.espaco || 0, alin = mz.alinhar || 'centro', como = mz.como || 'lado';
+    let ps;
     try {
-      const c = document.createElement('canvas'); c.width = W; c.height = H;
-      const g = c.getContext('2d', { willReadFrequently: true });
-      g.imageSmoothingEnabled = false;
-      q.forEach((f, j) => g.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], pos[j][0], pos[j][1], f[3], f[4]));
-      img = FF.Imagem.deCanvas(c);
+      ps = q.map(f => {
+        const c = document.createElement('canvas'); c.width = Math.max(1, f[3]); c.height = Math.max(1, f[4]);
+        const g = c.getContext('2d', { willReadFrequently: true });
+        g.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], 0, 0, f[3], f[4]);
+        const d = g.getImageData(0, 0, c.width, c.height).data;
+        let x0 = c.width, y0 = c.height, x1 = -1, y1 = -1;
+        for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) if (d[(y * c.width + x) * 4 + 3] > 8) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        if (x1 < 0) { x0 = 0; y0 = 0; x1 = c.width - 1; y1 = c.height - 1; }
+        const w = x1 - x0 + 1, h = y1 - y0 + 1;
+        return { c, sx: x0, sy: y0, sw: w, sh: h, w, h, ox: f[5] - x0, oy: f[6] - y0, f };
+      });
     } catch (e) { E.aviso('❌ ' + erroLeitura(e), 'erro'); return; }
+    // mesma grossura
+    if (mz.igualar && como !== 'sobrepor') ps.forEach((p, j) => {
+      if (!j) return;
+      const k = como === 'lado' ? ps[0].h / p.h : ps[0].w / p.w;
+      p.w = Math.max(1, Math.round(p.w * k)); p.h = Math.max(1, Math.round(p.h * k)); p.ox *= k; p.oy *= k; p.k = k;
+    });
+    // ponto de alinhamento de cada pedaço no eixo cruzado
+    const ancora = (p, eixo) => { const t = eixo === 'y' ? p.h : p.w, o = eixo === 'y' ? p.oy : p.ox; return alin === 'topo' ? 0 : alin === 'base' ? t : alin === 'origem' ? o : t / 2; };
+    let pos;
+    if (como === 'lado') {
+      const A = Math.max(...ps.map(p => ancora(p, 'y'))); let x = 0;
+      pos = ps.map(p => { const r = [x, Math.round(A - ancora(p, 'y'))]; x += p.w + gap; return r; });
+    } else if (como === 'baixo') {
+      const A = Math.max(...ps.map(p => ancora(p, 'x'))); let y = 0;
+      pos = ps.map(p => { const r = [Math.round(A - ancora(p, 'x')), y]; y += p.h + gap; return r; });
+    } else {
+      const Ax = Math.max(...ps.map(p => alin === 'origem' ? p.ox : p.w / 2)), Ay = Math.max(...ps.map(p => ancora(p, 'y')));
+      pos = ps.map(p => [Math.round(Ax - (alin === 'origem' ? p.ox : p.w / 2)), Math.round(Ay - ancora(p, 'y'))]);
+    }
+    const minX = Math.min(...pos.map(p => p[0])), minY = Math.min(...pos.map(p => p[1]));
+    pos = pos.map(p => [p[0] - minX, p[1] - minY]);
+    const W = Math.max(...ps.map((p, j) => pos[j][0] + p.w)), H = Math.max(...ps.map((p, j) => pos[j][1] + p.h));
+    if (W > 2048 || H > 2048) return E.aviso('O quadro mesclado ficaria com ' + W + '×' + H + ' px (máximo 2048).', 'erro');
+    const ox = Math.round(pos[0][0] + ps[0].ox), oy = Math.round(pos[0][1] + ps[0].oy);
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const g = c.getContext('2d', { willReadFrequently: true });
+    g.imageSmoothingEnabled = false;
+    ps.forEach((p, j) => g.drawImage(p.c, p.sx, p.sy, p.sw, p.sh, pos[j][0], pos[j][1], p.w, p.h));
+    const img = FF.Imagem.deCanvas(c);
     if (bt) bt.disabled = true;
     try {
       const r = await A().adicionarImagens(st.id, [img]);
       st.set = r.set;
-      const p0 = r.posicoes[0], f0 = q[0];
-      const novo = [r.indice, p0.x, p0.y, W, H, ox, oy, f0[7] || 1];
+      const p0 = r.posicoes[0];
+      const novo = [r.indice, p0.x, p0.y, W, H, ox, oy, q[0][7] || 1];
       // ponto de disparo: o do primeiro quadro que tiver (relativo à origem, então acompanha)
-      const comPt = q.findIndex(f => f[8] && f[8].length);
-      if (comPt >= 0) {
-        const f = q[comPt], dx = pos[comPt][0] + f[5] - ox, dy = pos[comPt][1] + f[6] - oy;
-        novo.push(f[8].map(pt => [pt[0] + dx, pt[1] + dy]));
+      const jp = ps.findIndex(p => p.f[8] && p.f[8].length);
+      if (jp >= 0) {
+        const p = ps[jp], k = p.k || 1, oxj = pos[jp][0] + p.ox, oyj = pos[jp][1] + p.oy;
+        novo.push(p.f[8].map(pt => [Math.round(oxj + pt[0] * k - ox), Math.round(oyj + pt[1] * k - oy)]));
       }
       const ult = ks[ks.length - 1];
       if (mz.manter) { fr.splice(ult + 1, 0, novo); st.i = ult + 1; }

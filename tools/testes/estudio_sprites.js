@@ -56,7 +56,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.evaluate(() => FF.Estudio.Sprites.abrirAnim('Parado'));
   s = await p.evaluate(async () => { const S = FF.Estudio.Sprites, st = S.st; const n0 = st.anim.frames.length, a = st.anim.frames[0].slice(), b = st.anim.frames[1].slice();
     st.sel = new Set([0, 1]); await S.mesclar({ como: 'lado', espaco: 0, manter: false }); return { n0, n1: st.anim.frames.length, a, b, f: st.anim.frames[0] }; });
-  ok(s.n1 === s.n0 - 1 && s.f[3] === s.a[3] + s.b[3] && s.f[5] === s.a[5], 'mesclar 2 quadros lado a lado (' + s.a[3] + '+' + s.b[3] + ' → ' + s.f[3] + ' px)');
+  ok(s.n1 === s.n0 - 1 && s.f[3] > Math.max(s.a[3], s.b[3]) && s.f[3] <= s.a[3] + s.b[3] + 2, 'mesclar 2 quadros lado a lado (' + s.a[3] + '+' + s.b[3] + ' → ' + s.f[3] + ' px)');
   await p.evaluate(() => document.activeElement && document.activeElement.blur());
   await p.keyboard.press('Control+z');
   ok(await p.evaluate(() => FF.Estudio.Sprites.st.anim.frames.length) === s.n0, 'Ctrl+Z desfaz o mesclar');

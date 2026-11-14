@@ -284,4 +284,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Falta: o usuário citou "animações bugadas" sem dizer quais; perguntar.
 
 ## 2026-11-13 — Sprites: 🧩 Mesclar quadros
-- Aba Sprites: com 2+ quadros escolhidos, grupo do quadro ganha "🧩 Mesclar" (lado a lado alinhado pela origem, um embaixo do outro, ou sobrepostos pelas origens; espaço em px, negativo encaixa; manter originais ou substituir). Imagem nova vai para atlas extra (`adicionarImagens`), origem do 1º quadro, disparo acompanha. `FF.Estudio.Sprites.mesclar`; teste em `estudio_sprites.js`.
+- Aba Sprites: com 2+ quadros escolhidos, grupo do quadro ganha "🧩 Mesclar" (lado a lado, um embaixo do outro ou sobrepostos; usa só a parte desenhada, alinha pelo centro/topo/base/origem, "mesma grossura" estica os pedaços para a altura do primeiro; espaço em px, negativo encaixa; manter originais ou substituir). Imagem nova vai para atlas extra (`adicionarImagens`), origem do 1º quadro, disparo acompanha. `FF.Estudio.Sprites.mesclar`; teste em `estudio_sprites.js`.
