@@ -13,7 +13,7 @@ FF.Battle = class {
     this.scale = def.escala || 2.5;
     this.groundY = stage.chaoY || 470;
     // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
-    this.persp = !!(FF.Save && FF.Save.get && FF.Save.get().perspectiva === 'diagonal' && !def.semPerspectiva);
+    this.persp = def.perspectiva === true || !!(FF.Save && FF.Save.get && FF.Save.get().perspectiva === 'diagonal' && !def.semPerspectiva && def.perspectiva !== false);
     this.heroes = [];
     this.enemies = [];
     this.fxList = [];
@@ -609,6 +609,7 @@ FF.Battle = class {
       lista.forEach((f, i) => {
         const d = ds[i] != null ? ds[i] : 0.5;
         f.prof = d;
+        f.latX = f.homeX; f.latG = f.groundY;   // posição na visão lateral (os golpes foram montados nela)
         f.homeX = Math.round(offX + (heroi ? 190 + 175 * d : 1084 - 190 - 175 * d));
         f.homeG = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d);
         f.homeS = this.scale * (1.14 - 0.36 * d);

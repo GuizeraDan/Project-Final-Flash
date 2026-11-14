@@ -50,7 +50,7 @@ FF.EstudioPalco = class {
     const inimigos = heroiAtaca ? timeAlvo : timeAtk;
     const pos = { 1: [170], 2: [250, 150], 3: [250, 150, 350] };
     const posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] };
-    const def = { id: 'estudio', titulo: 'Estúdio', cenario: 'campo', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2,
+    const def = { id: 'estudio', titulo: 'Estúdio', cenario: 'campo', perspectiva: !!this.opts.persp, escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2,
       posicoes: { herois: pos[herois.length], inimigos: posI[inimigos.length] }, herois, inimigos };
     const ui = { chooseMove: () => new Promise(() => {}), chooseTarget: (f) => Promise.resolve(f[0]), showEnd: () => {} };
     const listeners = FF.Input.listeners.slice();
@@ -63,6 +63,7 @@ FF.EstudioPalco = class {
     if (cfg.forma && atk.def.formas[cfg.forma]) atk.setForm(cfg.forma);
     if (cfg.alvoForma && alvo.def.formas[cfg.alvoForma]) alvo.setForm(cfg.alvoForma);
     if (cfg.buff && atk.def.buffs && atk.def.buffs[cfg.buff]) { atk.buffs[cfg.buff] = Object.assign({ id: cfg.buff }, atk.def.buffs[cfg.buff]); atk.idle(); }
+    if (b.persp) { b.montarPerspectiva(); b.acaoAtual = { actor: atk, target: alvo }; }
     b.atk = atk; b.alvo = alvo;
     FF.battle = b;
     return b;

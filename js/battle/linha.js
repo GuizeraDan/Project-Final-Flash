@@ -221,7 +221,8 @@ FF.Linha = {
           return;
         }
         this.devolverSprite(f);
-        const dest = this.destino(b, f, outro, c);
+        let dest = this.destino(b, f, outro, c);
+        if (b.persp && c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
         // ponto da tela: também muda a altura (sem "y" = volta ao chão)
         const destY = c.para === 'x' ? f.groundY + (c.y || 0) : f.y;
         if (c.tipo === 'mover') {
@@ -264,9 +265,18 @@ FF.Linha = {
       case 'efeito': {
         const p = this.ponto(b, actor, target, c.em);
         const dir = actor ? actor.dir : 1;
-        const e = b.spawnFx(c.fx, p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir), p.y + (c.dy || 0), (dir < 0) !== !!c.flip, c.escala || 1,
+        let ex = p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir), ey = p.y + (c.dy || 0);
+        // perspectiva: efeitos presos em quem solta ou na tela vão para o lugar certo entre ele e o alvo
+        // (os de tela bem no alto, como faixas e brilhos de tela cheia, ficam onde estão)
+        let inclina = 0;
+        if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
+          ({ x: ex, y: ey } = this.mapaPersp(b, actor, target, ex, ey, c.em === 'tela'));
+          // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
+          if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null && Math.abs(target.homeX - actor.homeX) > 20) inclina = Math.atan2(target.homeG - actor.homeG, Math.abs(target.homeX - actor.homeX)) * 180 / Math.PI;
+        }
+        const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, c.escala || 1,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras });
-        if (e && c.rot) e.rot = c.rot * dir;
+        if (e && (c.rot || inclina)) e.rot = ((c.rot || 0) + inclina) * dir;
         // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
         const f = c.em === 'alvo' || c.em === 'alvoPes' ? target : c.em === 'tela' ? null : actor;
         if (e && c.seguir && f) e.segue = { f, x0: f.x, y0: f.y, ex: e.x, ey: e.y };
@@ -307,6 +317,21 @@ FF.Linha = {
     else if (c.foco === 'alvo' && pt) { x = pt.x; y = pt.y; }
     else if (c.foco === 'entre' && pa && pt) { x = (pa.x + pt.x) / 2; y = (pa.y + pt.y) / 2; }
     return { x: x - cx + (c.dx || 0) * (actor ? actor.dir : 1), y: y - cy + (c.dy || 0) };
+  },
+
+  // perspectiva diagonal: os golpes foram montados na visão lateral (quem solta e o alvo na mesma altura, a uma
+  // distância fixa). Um ponto calculado a partir de quem solta (ou da tela) é levado para a perspectiva esticando
+  // a linha lateral "quem solta → alvo" até a linha real entre os dois (posição e altura). Assim um especial que
+  // explode "no meio do campo" ou "em cima do inimigo" continua indo para lá. absoluto = x/y já são da visão lateral.
+  mapaPersp(b, actor, target, x, y, absoluto) {
+    if (!b || !b.persp || !actor || !target || actor === target || actor.latX == null || target.latX == null) return { x, y };
+    const Al = { x: actor.latX, y: actor.latG }, Ap = { x: actor.homeX, y: actor.homeG };
+    const Tl = { x: target.latX, y: target.latG }, Tp = { x: target.homeX, y: target.homeG };
+    const lx = absoluto ? x : x - (Ap.x - Al.x), ly = absoluto ? y : y - (Ap.y - Al.y);
+    const den = Tl.x - Al.x;
+    if (Math.abs(den) < 1) return { x: lx + (Ap.x - Al.x), y: ly + (Ap.y - Al.y) };
+    const u = Math.max(-0.8, Math.min(1.8, (lx - Al.x) / den));
+    return { x: Ap.x + (lx - Al.x) * ((Tp.x - Ap.x) / den), y: ly + (Ap.y - Al.y) + u * ((Tp.y - Tl.y) - (Ap.y - Al.y)) };
   },
 
   // pontos de referência usados por efeitos (e pelo Estúdio para posicionar)

@@ -603,6 +603,9 @@ window.FF = window.FF || {};
       b.appendChild(op('grade', '▦', 'Grade de 50 px e linha do chão'));
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
+      const pp = op('persp', '◢ Perspectiva', 'Mostra o palco na perspectiva diagonal (estilo Attack of the Saiyans), como no jogo com Opções → Perspectiva: Diagonal. Os efeitos presos em quem solta são levados até o alvo. Para arrastar alças com precisão, a visão lateral é a de referência.');
+      pp.querySelector('input').addEventListener('change', () => { if (this.doc) this.irPara(this.t); });
+      b.appendChild(pp);
       b.appendChild(E.el('span', 'sep'));
       b.appendChild(E.botao('⚔ Na batalha', () => this.naBatalha(), 'Roda o golpe completo na batalha real (dano, anéis de guarda/crítico). Espaço/clique = apertar no anel.'));
       b.appendChild(E.botao('＋ Trilha', () => this.novaTrilha(), 'Nova trilha (efeitos, sons, parceiro…)'));
@@ -720,7 +723,7 @@ window.FF = window.FF || {};
       const h = [this.cfg.atacante, ...(this.cfg.parceiros || [])].slice(0, 3), i = [this.cfg.alvo, ...(this.cfg.aliadosAlvo || [])].slice(0, 3);
       const herois = this.cfg.lado === 'inimigo' ? i : h, inimigos = this.cfg.lado === 'inimigo' ? h : i;
       const posH = { 1: [170], 2: [250, 150], 3: [250, 150, 350] }[herois.length], posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] }[inimigos.length];
-      const def = { id: 'livre', saga: 'livre', titulo: 'Teste do Estúdio', cenario: 'campo', musica: 'tournament_theme', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois, inimigos, ajustes: {} };
+      const def = { id: 'livre', saga: 'livre', titulo: 'Teste do Estúdio', cenario: 'campo', musica: 'tournament_theme', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois, inimigos, ajustes: {}, perspectiva: this.palco.opts.persp ? true : undefined };
       try { sessionStorage.setItem('ff_livre_def', JSON.stringify(def)); } catch (e) { /* nada */ }
       const w = window.open('index.html?livre=1', '_blank');
       if (!w) location.href = 'index.html?livre=1';

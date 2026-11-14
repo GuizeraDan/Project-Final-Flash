@@ -50,7 +50,10 @@ FF.Cena = {
     const flip = !!c.flip !== (an.dir < 0);
     // px: 'sprite' → x/y em pixels do sprite (acompanham a escala da batalha); padrão: pixels da tela
     const k = c.px === 'sprite' ? b.scale : 1;
-    return { set, f, x: an.x + e.x * k * an.dir, y: an.y + e.y * k, escala: e.escala * b.scale * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
+    let px = an.x + e.x * k * an.dir, py = an.y + e.y * k;
+    // perspectiva diagonal: camadas presas em quem solta / na tela acompanham a linha até o alvo (FF.Linha.mapaPersp)
+    if (b && b.persp && c.ancora !== 'alvo' && FF.Linha && !(c.ancora === 'tela' && py < 140)) ({ x: px, y: py } = FF.Linha.mapaPersp(b, actor, target, px, py, c.ancora === 'tela'));
+    return { set, f, x: px, y: py, escala: e.escala * b.scale * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
   },
 
   desenharCamada(ctx, p) {
