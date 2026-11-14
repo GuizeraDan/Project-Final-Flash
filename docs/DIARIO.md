@@ -282,3 +282,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Estúdio (aba Golpes, painel Palco): Parceiro 1/2 (time de quem solta) e Aliado do alvo 1/2 (time do alvo), até 3 de cada lado; `cfg.aliadosAlvo` em `palco.js`; "Testar no jogo" leva os 6. Trilha de lutador lista parceiros e aliados do alvo.
 - Jogo: `FF.UI.visivel` esconde golpes com `requer.parceiro` quando o parceiro não está no mesmo time (caído ou sem ki continua aparecendo bloqueado). Vale para o menu e para a IA.
 - Falta: o usuário citou "animações bugadas" sem dizer quais; perguntar.
+
+## 2026-11-13 — Sprites: 🧩 Mesclar quadros
+- Aba Sprites: com 2+ quadros escolhidos, grupo do quadro ganha "🧩 Mesclar" (lado a lado alinhado pela origem, um embaixo do outro, ou sobrepostos pelas origens; espaço em px, negativo encaixa; manter originais ou substituir). Imagem nova vai para atlas extra (`adicionarImagens`), origem do 1º quadro, disparo acompanha. `FF.Estudio.Sprites.mesclar`; teste em `estudio_sprites.js`.
