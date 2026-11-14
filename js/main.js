@@ -45,15 +45,16 @@ FF.UI = {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
       box.innerHTML = '';
-      box.classList.remove('alvos');
+      box.className = 'cmd-compacto';   // faixa baixa no meio da tela (entre os lutadores)
       this.cabecalho(box, hero, 'KI ' + Math.floor(hero.ki) + '/' + hero.kiMax + '  ·  Fúria ' + Math.floor(hero.rage) + '%');
       const grade = document.createElement('div');
       grade.className = 'cmd-golpes';
       box.appendChild(grade);
       const desc = document.createElement('div');
       desc.className = 'cmd-desc';
-      box.appendChild(desc);
+      box.querySelector('.cmd-topo').appendChild(desc);   // descrição na mesma linha do nome
       const ids = hero.form.golpes.filter(id => hero.def.golpes[id] && this.visivel(hero, hero.def.golpes[id]));
+      grade.style.gridTemplateColumns = 'repeat(' + Math.max(2, Math.min(6, ids.length <= 8 ? 4 : Math.ceil(ids.length / 2))) + ', 1fr)';
       const btns = [];
       ids.forEach((id, i) => {
         const m = hero.def.golpes[id];
@@ -102,7 +103,7 @@ FF.UI = {
       if (opts.voltar) {   // modo Planejamento: voltar ao herói anterior
         const bv = document.createElement('button'); bv.className = 'cmd-voltar'; bv.textContent = '↩ Voltar (herói anterior)';
         bv.onclick = () => done('__voltar');
-        box.appendChild(bv);
+        box.querySelector('.cmd-topo').appendChild(bv);
       }
       const done = (id) => {
         window.removeEventListener('keydown', key, true);
@@ -119,6 +120,7 @@ FF.UI = {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
       box.innerHTML = '';
+      box.classList.remove('cmd-compacto');
       box.classList.add('alvos');
       const tit = document.createElement('div');
       tit.className = 'cmd-titulo';

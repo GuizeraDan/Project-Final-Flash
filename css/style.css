@@ -469,3 +469,19 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.mg-dock .mg-golpe { position: relative; flex-direction: column; gap: 0.3cqw; min-width: 9.5cqw; width: 9.5cqw; padding: 0.5cqw 0.4cqw; border-radius: 0.6cqw; clip-path: none; text-align: center; }
 #menu.mg-dock .mg-nome { font-size: 1cqw; }
 #menu.mg-dock .mg-ki { position: absolute; top: 0.3cqw; right: 0.3cqw; }
+
+/* menu de golpes "Lista": faixa compacta embaixo, no meio (entre os lutadores, acima da dica) */
+#menu.cmd-compacto { top: auto; bottom: 1.75cqw; left: 27cqw; transform: none; width: 49.4cqw; padding: 0.35cqw 0.5cqw; gap: 0.3cqw; border-radius: 0.8cqw; }
+#menu.cmd-compacto .cmd-topo { gap: 0.6cqw; min-height: 1.4cqw; white-space: nowrap; overflow: hidden; align-items: center; }
+#menu.cmd-compacto .cmd-face { display: none; }
+#menu.cmd-compacto .cmd-topo > div:not(.cmd-desc) { flex: none; }
+#menu.cmd-compacto .cmd-nome { font-size: 1.05cqw; margin-right: 0.4cqw; }
+#menu.cmd-compacto .cmd-sub { font-size: 0.85cqw; }
+#menu.cmd-compacto .cmd-desc { flex: 1; min-width: 0; min-height: 0; border: 0; border-left: 0.1cqw solid rgba(201,162,39,0.45); padding: 0 0 0 0.6cqw; font-size: 0.85cqw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#menu.cmd-compacto .cmd-voltar { flex: none; margin: 0; font-size: 0.8cqw; padding: 0.1cqw 0.45cqw; }
+#menu.cmd-compacto .cmd-golpes { gap: 0.3cqw; }
+#menu.cmd-compacto .cmd-golpes button { min-height: 2.25cqw; height: 2.25cqw; padding: 0.15cqw 0.4cqw 0.15cqw 0.5cqw; font-size: 0.82cqw; line-height: 1.05; gap: 0.3cqw; border-radius: 0.45cqw; border-width: 0.12cqw; }
+#menu.cmd-compacto .cmd-golpes button .nome { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#menu.cmd-compacto .cmd-golpes button .ic { font-size: 1cqw; width: 1.2cqw; }
+#menu.cmd-compacto .cmd-golpes button .ki { font-size: 0.72cqw; padding: 0 0.35cqw; }
+#menu.cmd-compacto .cmd-golpes button .n { font-size: 0.55cqw; top: 0; left: 0.15cqw; }
