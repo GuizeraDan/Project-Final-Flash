@@ -143,7 +143,7 @@ FF.Fighter = class {
   draw(ctx, fx) {
     // sombra
     const sombra = fx && fx.anim('sombra');
-    if (sombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
+    if (sombra && !this.semSombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
     this.desenharAura(ctx, false);
     // offX/offY/escExtra/flipExtra: posição e tamanho por passo (linha do tempo do Estúdio); padrão sem efeito
     const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;

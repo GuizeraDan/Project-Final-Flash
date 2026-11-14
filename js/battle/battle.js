@@ -12,6 +12,8 @@ FF.Battle = class {
     this.ui = ui;
     this.scale = def.escala || 2.5;
     this.groundY = stage.chaoY || 470;
+    // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
+    this.persp = !!(FF.Save && FF.Save.get && FF.Save.get().perspectiva === 'diagonal' && !def.semPerspectiva);
     this.heroes = [];
     this.enemies = [];
     this.fxList = [];
@@ -63,6 +65,7 @@ FF.Battle = class {
 
   // ---------- fluxo ----------
   async run() {
+    if (this.persp) this.montarPerspectiva();
     FF.Audio.music(this.def.musica);
     await this.intro();
     while (!this.over) {
@@ -232,6 +235,7 @@ FF.Battle = class {
       FF.Audio.play('sprkngbrst_expl', 0.8);
     }
     actor.busy = true;
+    this.acaoAtual = { actor, target };
     if (move.anuncio !== false) this.banner(move.nome, move.supremo ? 2.0 : 1.2);
     await FF.Script.run(this, actor, target, move);
     await Promise.all(this.paralelos);
@@ -516,6 +520,8 @@ FF.Battle = class {
       if (!spec.semAcerto) this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);
       res();
     };
+    // perspectiva: o projétil reto aponta para o alvo (fileiras em alturas diferentes)
+    if (this.persp && !p.curva && !p.girar && !p.rot && Math.abs(to.x - from.x) > 20) p.ang = Math.atan2(to.y - from.y, Math.abs(to.x - from.x)) * p.dir;
     this.projectiles.push(p);
   }
 
@@ -590,6 +596,67 @@ FF.Battle = class {
     draw(p.a.frame(), p.x, p.y, p.scale, p.ang);
   }
 
+  // ---------- perspectiva diagonal ----------
+  // Cada lado vira uma diagonal de fileiras: quem está no fundo fica mais alto, menor, mais perto do meio e
+  // um pouco apagado (névoa); na frente, mais baixo e maior. Sombras em elipse no chão, como no DS.
+  // Quem ataca "anda em profundidade" até a fileira do alvo e volta para a sua no retorno.
+  get PERSP() { return { horizonte: 292, fundo: 388, frente: 536 }; }
+  profundidades(n) { return n === 1 ? [0.45] : n === 2 ? [0.2, 0.85] : [0.5, 1, 0]; }
+  montarPerspectiva() {
+    const offX = (FF.W - 1084) / 2;
+    const lado = (lista, heroi) => {
+      const ds = this.profundidades(lista.length);
+      lista.forEach((f, i) => {
+        const d = ds[i] != null ? ds[i] : 0.5;
+        f.prof = d;
+        f.homeX = Math.round(offX + (heroi ? 190 + 175 * d : 1084 - 190 - 175 * d));
+        f.homeG = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d);
+        f.homeS = this.scale * (1.14 - 0.36 * d);
+        f.x = f.homeX; f.groundY = f.homeG; f.y = f.homeG; f.scale = f.homeS;
+        f.semSombra = true;
+      });
+    };
+    lado(this.heroes, true);
+    lado(this.enemies, false);
+  }
+  // a cada quadro: quem é do time de quem age e saiu de casa vai para a fileira do alvo (posição, tamanho)
+  atualizarPerspectiva() {
+    const at = this.acaoAtual;
+    for (const f of this.all) {
+      if (f.homeG == null) continue;
+      let g = f.homeG, s = f.homeS;
+      const t = at && at.target;
+      if (t && t.homeG != null && at.actor && f.lado === at.actor.lado && f !== t) {
+        const longe = Math.max(40, Math.abs(t.homeX - f.homeX) - 60);
+        const k = Math.max(0, Math.min(1, Math.abs(f.x - f.homeX) / longe));
+        const e = k * k * (3 - 2 * k);
+        g = f.homeG + (t.homeG + 4 - f.homeG) * e;
+        s = f.homeS + (f.homeS * (t.homeS / this.scale) / (f.homeS / this.scale) - f.homeS) * e;
+      }
+      const dy = g - f.groundY;
+      if (Math.abs(dy) > 0.01) { f.groundY = g; f.y += dy; }
+      f.scale = s;
+    }
+  }
+  desenharSombras(ctx) {
+    for (const f of this.all) {
+      if (!(f.alpha > 0.05)) continue;
+      const alto = Math.max(0, f.groundY - (f.y + (f.offY || 0)));
+      const k = Math.max(0.35, 1 - alto / 160);
+      const rx = 21 * f.scale * k, ry = 5.5 * f.scale * k;
+      const x = f.x + (f.offX || 0), y = f.groundY + 1;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, rx);
+      g.addColorStop(0, 'rgba(10,20,10,' + (0.55 * f.alpha * k).toFixed(3) + ')');
+      g.addColorStop(0.7, 'rgba(10,20,10,' + (0.35 * f.alpha * k).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(10,20,10,0)');
+      ctx.save();
+      ctx.translate(x, y); ctx.scale(1, ry / rx); ctx.translate(-x, -y);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, rx, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
   tween(f, toX, dur) {
     return new Promise(res => this.tweens.push({ f, x0: f.x, x1: toX, t: 0, dur, res }));
   }
@@ -614,6 +681,7 @@ FF.Battle = class {
   // ---------- loop ----------
   update(dt) {
     this.all.forEach(f => f.update(dt));
+    if (this.persp) this.atualizarPerspectiva();
     this.fxList.forEach(e => {
       e.a.update(dt);
       if (e.segue) { const s = e.segue; e.x = s.ex + (s.f.x - s.x0); e.y = s.ey + (s.f.y - s.y0); }
@@ -691,9 +759,19 @@ FF.Battle = class {
     };
     camada(true);
     // quem está agindo fica na frente; "naFrente"/"atras" do clipe de animação (Estúdio) mandam mais
-    const prio = (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
+    const prio = this.persp
+      ? (f) => (f.camadaExtra || 0) * 10000 + f.groundY + (f.busy ? 0.5 : 0)   // perspectiva: o que está mais embaixo fica na frente
+      : (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
     const order = this.all.slice().sort((a, b) => prio(a) - prio(b));
-    order.forEach(f => f.draw(ctx, this.fx));
+    if (this.persp) {
+      this.desenharSombras(ctx);
+      order.forEach(f => {
+        // névoa: o fundo fica um pouco mais claro e menos saturado (some quando ele vem para a frente)
+        const d = f.homeG != null ? Math.max(0, Math.min(1, (this.PERSP.frente - f.groundY) / (this.PERSP.frente - this.PERSP.fundo))) : 0;
+        if (d > 0.05 && !f.busy) { ctx.save(); ctx.filter = 'saturate(' + (1 - 0.22 * d).toFixed(2) + ') brightness(' + (1 + 0.06 * d).toFixed(2) + ') contrast(' + (1 - 0.12 * d).toFixed(2) + ')'; f.draw(ctx, this.fx); ctx.restore(); }
+        else f.draw(ctx, this.fx);
+      });
+    } else order.forEach(f => f.draw(ctx, this.fx));
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
     this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
@@ -707,7 +785,96 @@ FF.Battle = class {
     }
   }
 
+  // ---------- cenário da perspectiva diagonal ----------
+  // "Planície em perspectiva": céu e arbustos do Campo sobem até o horizonte; o campo de grama ("chao" do ZL3)
+  // vira um chão fundo, com as linhas mais apertadas lá atrás; por cima, em pixel art gerada por código:
+  // trilha de terra que afina até o horizonte, tufos de grama, pedras e uma névoa clara no fundo.
+  // Desenhado uma vez numa imagem guardada (só refaz se a tela mudar de tamanho).
+  drawStagePersp(ctx) {
+    const R = FF.RES || 1, chave = FF.W + 'x' + R;
+    if (!this._palcoPersp || this._palcoPersp.chave !== chave) this._palcoPersp = { chave, c: this.gerarPalcoPersp(R) };
+    ctx.drawImage(this._palcoPersp.c, 0, 0, FF.W, FF.H);
+  }
+  gerarPalcoPersp(R) {
+    const W = FF.W, H = FF.H, P = this.PERSP, hz = P.horizonte;
+    const c = document.createElement('canvas'); c.width = Math.round(W * R); c.height = Math.round(H * R);
+    const g = c.getContext('2d'); g.setTransform(R, 0, 0, R, 0, 0); g.imageSmoothingEnabled = false;
+    const set = this.stageSprite, st = this.stage;
+    // céu: a base dos arbustos (linha 400 da imagem) no horizonte
+    try {
+      const ceu = set.anim(st.ceu || 'ceu').frames[0];
+      const sc = Math.max(W / ceu[3], (hz + 10) / 400);
+      g.drawImage(set.images[ceu[0]], ceu[1], ceu[2], ceu[3], ceu[4], (W - ceu[3] * sc) / 2, hz + 6 - 400 * sc, ceu[3] * sc, ceu[4] * sc);
+    } catch (e) { g.fillStyle = '#7fa8ff'; g.fillRect(0, 0, W, hz); }
+    g.fillStyle = '#4f9a2c'; g.fillRect(0, hz - 2, W, H - hz + 2);
+    // campo de grama em perspectiva: cada linha da imagem vira uma faixa (as de cima bem finas)
+    let chao = null;
+    try { chao = set.has('chao') ? set.anim('chao').frames[0] : null; } catch (e) { chao = null; }
+    const yDe = (v) => hz - 6 + (H - hz + 6) * Math.pow(v, 1.55);
+    if (chao) {
+      const n = chao[4];
+      for (let r = 0; r < n; r++) {
+        const y0 = yDe(r / n), y1 = yDe((r + 1) / n);
+        g.drawImage(set.images[chao[0]], chao[1], chao[2] + r, chao[3], 1, -20, y0, W + 40, Math.max(1, y1 - y0 + 0.6));
+      }
+    }
+    // detalhes em pixel art (desenhados em baixa resolução e ampliados sem suavizar)
+    const PX = 3, w = Math.ceil(W / PX), h = Math.ceil(H / PX);
+    const d = document.createElement('canvas'); d.width = w; d.height = h;
+    const q = d.getContext('2d');
+    let semente = 7;
+    const rnd = () => { semente = (semente * 16807) % 2147483647; return semente / 2147483647; };
+    const hzP = hz / PX;
+    const yP = (v) => yDe(v) / PX;
+    // faixas de grama cortada (alternam claro/escuro, mais largas perto da tela)
+    for (let k = 0; k < 9; k++) {
+      if (k % 2) continue;
+      const a = yP(k / 9), b = yP((k + 1) / 9);
+      q.fillStyle = 'rgba(255,255,190,0.07)'; q.fillRect(0, a, w, b - a);
+    }
+    // trilha de terra: sai do horizonte (um pouco à esquerda) e abre até a frente
+    const trilha = (lado) => { const pts = []; for (let i = 0; i <= 24; i++) { const v = i / 24, y = yP(v), cx = w * (0.47 + 0.06 * Math.sin(v * 2.4)), lg = (4 + 70 * Math.pow(v, 1.4)) / PX * 1.6; pts.push([cx + lado * lg, y]); } return pts; };
+    const esq = trilha(-1), dir = trilha(1);
+    const caminho = () => { q.beginPath(); esq.forEach(([x, y], i) => i ? q.lineTo(x, y) : q.moveTo(x, y)); dir.slice().reverse().forEach(([x, y]) => q.lineTo(x, y)); q.closePath(); };
+    q.fillStyle = '#b58f52'; caminho(); q.fill();
+    q.save(); caminho(); q.clip();
+    q.fillStyle = '#d9bd7c'; q.fillRect(0, 0, w, h);
+    for (let i = 0; i < 260; i++) { const v = Math.pow(rnd(), 0.8), y = yP(v), x = w * (0.3 + rnd() * 0.4), t = Math.max(1, Math.round(v * 2)); q.fillStyle = rnd() < 0.5 ? '#c4a364' : '#ead39a'; q.fillRect(Math.round(x), Math.round(y), t, Math.max(1, t - 1)); }
+    q.restore();
+    // borda da trilha (grama invadindo)
+    q.fillStyle = '#3f8a24';
+    [esq, dir].forEach(l => l.forEach(([x, y], i) => { if (i % 2) return; const v = i / 24, t = Math.max(1, Math.round(v * 3)); q.fillRect(Math.round(x - t / 2), Math.round(y - t), t, t); }));
+    // tufos de grama: pequenos lá atrás, grandes na frente
+    for (let i = 0; i < 340; i++) {
+      const v = Math.pow(rnd(), 0.7), y = Math.round(yP(v)), x = Math.round(rnd() * w);
+      const cx = w * (0.47 + 0.06 * Math.sin(v * 2.4)), lg = (4 + 70 * Math.pow(v, 1.4)) / PX * 1.6;
+      if (Math.abs(x - cx) < lg + 1) continue;
+      const t = 1 + Math.round(v * 3);
+      q.fillStyle = '#2f7a1c'; q.fillRect(x, y - t, 1, t); q.fillRect(x - 1, y - Math.max(1, t - 1), 1, Math.max(1, t - 1)); q.fillRect(x + 1, y - Math.max(1, t - 1), 1, Math.max(1, t - 1));
+      if (t > 2) { q.fillStyle = '#8fd651'; q.fillRect(x, y - t, 1, 1); }
+    }
+    // pedras (só nas laterais, para não ficar embaixo dos lutadores)
+    [[0.06, 0.92, 9], [0.95, 0.85, 7], [0.18, 0.35, 3], [0.83, 0.3, 3], [0.97, 0.55, 4]].forEach(([u, v, t]) => {
+      const x = Math.round(u * w), y = Math.round(yP(v));
+      q.fillStyle = 'rgba(20,40,10,0.35)'; q.fillRect(x - t, y, t * 2 + 1, Math.max(1, Math.round(t / 3)));
+      q.fillStyle = '#6f6a62'; q.fillRect(x - t + 1, y - t, t * 2 - 1, t);
+      q.fillStyle = '#9b958a'; q.fillRect(x - t + 2, y - t, t, Math.max(1, Math.round(t / 2)));
+      q.fillStyle = '#4c4842'; q.fillRect(x - t + 1, y - 1, t * 2 - 1, 1);
+    });
+    // névoa no horizonte
+    const nv = q.createLinearGradient(0, hzP - 6, 0, hzP + 30);
+    nv.addColorStop(0, 'rgba(225,245,255,0.55)'); nv.addColorStop(1, 'rgba(225,245,255,0)');
+    q.fillStyle = nv; q.fillRect(0, hzP - 6, w, 36);
+    // escurece um pouco a frente (dá profundidade)
+    const fr = q.createLinearGradient(0, yP(0.75), 0, h);
+    fr.addColorStop(0, 'rgba(0,30,0,0)'); fr.addColorStop(1, 'rgba(0,30,0,0.22)');
+    q.fillStyle = fr; q.fillRect(0, yP(0.75), w, h);
+    g.drawImage(d, 0, 0, w * PX, h * PX);
+    return c;
+  }
+
   drawStage(ctx) {
+    if (this.persp) return this.drawStagePersp(ctx);
     const set = this.stageSprite;
     const st = this.stage;
     const ceu = set.anim(st.ceu).frames[0];

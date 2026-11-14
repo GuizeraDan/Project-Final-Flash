@@ -676,10 +676,12 @@ window.addEventListener('load', () => {
       document.getElementById('vol-voz').value = Math.round(v.voz * 100);
       document.getElementById('opt-turno').value = FF.Save.get().modoTurno || 'classico';
       document.getElementById('opt-menu').value = FF.Save.get().estiloMenu || 'lista';
+      document.getElementById('opt-persp').value = FF.Save.get().perspectiva || 'lateral';
       return mostrar('opcoes');
     }
   }));
   document.getElementById('opt-turno').addEventListener('change', (e) => { FF.Save.set({ modoTurno: e.target.value }); FF.Audio.play('tap_sound'); });
+  document.getElementById('opt-persp').addEventListener('change', (e) => { FF.Save.set({ perspectiva: e.target.value }); FF.Audio.play('tap_sound'); });
   document.getElementById('opt-menu').addEventListener('change', (e) => { FF.Save.set({ estiloMenu: e.target.value }); FF.Audio.play('tap_sound'); });
   ['vol-musica', 'vol-sfx', 'vol-voz'].forEach(id => document.getElementById(id).addEventListener('input', () => {
     FF.Save.set({ volumes: {

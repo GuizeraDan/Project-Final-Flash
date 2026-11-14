@@ -2,7 +2,7 @@
 // - Código e dados (html, js, css, json): rede primeiro → sempre a versão mais nova quando há internet;
 //   sem internet, usa a cópia guardada.
 // - Imagens e sons: cache primeiro (rápido) e atualiza a cópia em segundo plano.
-const CACHE = 'finalflash-v11';
+const CACHE = 'finalflash-v12';
 const ESSENCIAIS = [
   './', 'index.html', 'estudio.html', 'manifest.webmanifest', 'versao.json',
   'css/style.css', 'css/estudio.css', 'css/estudio_sprites.css', 'css/estudio_personagens.css', 'data/bundle.js', 'data/acervo/indice.js',
