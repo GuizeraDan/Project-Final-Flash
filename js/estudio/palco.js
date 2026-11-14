@@ -16,10 +16,10 @@ FF.EstudioPalco = class {
   }
 
   // ---------- montagem ----------
-  // cfg: { atacante, forma, alvo, alvoForma, lado: 'heroi'|'inimigo', parceiros: [ids] }
+  // cfg: { atacante, forma, alvo, alvoForma, lado: 'heroi'|'inimigo', parceiros: [ids], aliadosAlvo: [ids] } (até 3 por lado)
   async montar(cfg) {
     this.cfg = cfg;
-    const ids = [cfg.atacante, cfg.alvo, ...(cfg.parceiros || [])].filter(Boolean);
+    const ids = [cfg.atacante, cfg.alvo, ...(cfg.parceiros || []), ...(cfg.aliadosAlvo || [])].filter(Boolean);
     this.defs = {};
     for (const id of new Set(ids)) {
       const d = await FF.Assets.loadCharacter(id);
@@ -44,8 +44,10 @@ FF.EstudioPalco = class {
   novaBatalha() {
     const cfg = this.cfg;
     const heroiAtaca = cfg.lado !== 'inimigo';
-    const herois = heroiAtaca ? [cfg.atacante, ...(cfg.parceiros || [])] : [cfg.alvo];
-    const inimigos = heroiAtaca ? [cfg.alvo] : [cfg.atacante, ...(cfg.parceiros || [])];
+    const timeAtk = [cfg.atacante, ...(cfg.parceiros || [])].filter(Boolean).slice(0, 3);
+    const timeAlvo = [cfg.alvo, ...(cfg.aliadosAlvo || [])].filter(Boolean).slice(0, 3);
+    const herois = heroiAtaca ? timeAtk : timeAlvo;
+    const inimigos = heroiAtaca ? timeAlvo : timeAtk;
     const pos = { 1: [170], 2: [250, 150], 3: [250, 150, 350] };
     const posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] };
     const def = { id: 'estudio', titulo: 'Estúdio', cenario: 'campo', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2,

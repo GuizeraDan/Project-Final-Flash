@@ -45,7 +45,7 @@ window.FF = window.FF || {};
       this.montarBarra();
       this.ligarPalco();
       this.montarRodape();
-      this.cfg = Object.assign({ atacante: 'goku', forma: 'base', alvo: 'raditz', lado: 'heroi', parceiros: [] }, E.rascunho.ler('golpe_cfg') || {});
+      this.cfg = Object.assign({ atacante: 'goku', forma: 'base', alvo: 'raditz', lado: 'heroi', parceiros: [], aliadosAlvo: [] }, E.rascunho.ler('golpe_cfg') || {});
       if (!FF.Assets.listaPersonagens().includes(this.cfg.atacante)) this.cfg.atacante = 'goku';
       await this.carregarDefs();
       this.montarLado();
@@ -161,7 +161,18 @@ window.FF = window.FF || {};
       const dA = this.defs[cfg.alvo];
       if (dA && Object.keys(dA.formas).length > 1) pb.appendChild(E.campo('select', 'Forma do alvo', cfg.alvoForma || dA.formaInicial, (v) => this.aplicarCfg(Object.assign({}, cfg, { alvoForma: v }), true), { lista: Object.entries(dA.formas).map(([k, f]) => [k, f.nome || k]) }));
       pb.appendChild(E.campo('select', 'Quem solta é', cfg.lado, (v) => this.aplicarCfg(Object.assign({}, cfg, { lado: v }), true), { lista: [['heroi', 'herói (esquerda)'], ['inimigo', 'inimigo (direita)']] }));
-      pb.appendChild(E.campo('select', 'Parceiro', (cfg.parceiros || [])[0] || '', (v) => this.aplicarCfg(Object.assign({}, cfg, { parceiros: v ? [v] : [] }), true), { lista: [['', 'nenhum']].concat(nomes.filter(n => n[0] !== cfg.atacante)), dica: 'Sparking Combo: o parceiro entra no time e ganha uma trilha própria' }));
+      const lista1 = (excluir) => [['', 'nenhum']].concat(nomes.filter(n => n[0] !== excluir));
+      const mudarLista = (campo, i, v) => {
+        const arr = (cfg[campo] || []).slice(); arr[i] = v;
+        this.aplicarCfg(Object.assign({}, cfg, { [campo]: arr.filter(Boolean) }), true);
+      };
+      const par = cfg.parceiros || [], ali = cfg.aliadosAlvo || [];
+      const ladoAtk = cfg.lado === 'inimigo' ? 'direita' : 'esquerda', ladoAlvo = cfg.lado === 'inimigo' ? 'esquerda' : 'direita';
+      pb.appendChild(E.el('div', 'es-dica', 'Até 3 lutadores de cada lado.'));
+      pb.appendChild(E.campo('select', 'Parceiro 1 (' + ladoAtk + ')', par[0] || '', (v) => mudarLista('parceiros', 0, v), { lista: lista1(cfg.atacante), dica: 'Entra no time de quem solta (Sparking Combo: o parceiro ganha uma trilha própria)' }));
+      if (par[0]) pb.appendChild(E.campo('select', 'Parceiro 2 (' + ladoAtk + ')', par[1] || '', (v) => mudarLista('parceiros', 1, v), { lista: lista1(cfg.atacante), dica: 'Terceiro lutador do time de quem solta' }));
+      pb.appendChild(E.campo('select', 'Aliado do alvo 1 (' + ladoAlvo + ')', ali[0] || '', (v) => mudarLista('aliadosAlvo', 0, v), { lista: lista1(''), dica: 'Entra no time do alvo (para golpes em área ou para ver como fica 3 contra 3)' }));
+      if (ali[0]) pb.appendChild(E.campo('select', 'Aliado do alvo 2 (' + ladoAlvo + ')', ali[1] || '', (v) => mudarLista('aliadosAlvo', 1, v), { lista: lista1(''), dica: 'Terceiro lutador do time do alvo' }));
       L.appendChild(pb);
     },
 
@@ -271,7 +282,7 @@ window.FF = window.FF || {};
     },
     spriteDe(quem) { const f = this.formaDe(quem); return f && FF.Assets.sprites[f.sprite]; },
     animsDe(quem) { const s = this.spriteDe(quem); return s ? Object.keys(s.def.anims) : []; },
-    personagens() { return Object.keys(this.defs).filter(id => id !== this.cfg.atacante); },
+    personagens() { return [...new Set([...(this.cfg.parceiros || []), ...(this.cfg.aliadosAlvo || [])])].filter(id => id !== this.cfg.atacante && id !== this.cfg.alvo); },
     prefixoVoz() { const d = this.defs[this.cfg.atacante]; const v = (d && d.vozes && d.vozes.dano) || []; const s = Array.isArray(v) ? v[0] : v; return s ? String(s).replace(/\d+$/, '').slice(0, 4) : ''; },
     animDoClipe(c, tr) {
       if (c.tipo === 'anim' && c.sprite && FF.Assets.sprites[c.sprite]) { const so = FF.Assets.sprites[c.sprite]; return so.anim(FF.Linha.trecho(so, c.anim, c.de, c.ate)); }
@@ -706,7 +717,7 @@ window.FF = window.FF || {};
         if (!r) return;
         if (r === 'salvar') this.salvar();
       }
-      const h = [this.cfg.atacante, ...(this.cfg.parceiros || [])], i = [this.cfg.alvo];
+      const h = [this.cfg.atacante, ...(this.cfg.parceiros || [])].slice(0, 3), i = [this.cfg.alvo, ...(this.cfg.aliadosAlvo || [])].slice(0, 3);
       const herois = this.cfg.lado === 'inimigo' ? i : h, inimigos = this.cfg.lado === 'inimigo' ? h : i;
       const posH = { 1: [170], 2: [250, 150], 3: [250, 150, 350] }[herois.length], posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] }[inimigos.length];
       const def = { id: 'livre', saga: 'livre', titulo: 'Teste do Estúdio', cenario: 'campo', musica: 'tournament_theme', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois, inimigos, ajustes: {} };

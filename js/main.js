@@ -172,6 +172,11 @@ FF.UI = {
     const tem = (c) => (!c.buff || hero.buffs[c.buff]) && (!c.forma || hero.formId === c.forma);
     if (m.mostrar && !tem(m.mostrar)) return false;
     if (m.esconder && tem(m.esconder)) return false;
+    // Sparking Combo só aparece se o parceiro está no mesmo time (caído ou sem ki = aparece bloqueado)
+    if (m.requer && m.requer.parceiro && FF.battle && FF.battle.all) {
+      const time = hero.side || hero.lado;
+      if (!FF.battle.all.some(f => f !== hero && f.id === m.requer.parceiro.id && (f.side || f.lado) === time)) return false;
+    }
     return true;
   },
   meets(hero, req) {

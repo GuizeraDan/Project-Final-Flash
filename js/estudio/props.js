@@ -297,7 +297,7 @@ FF.EstudioProps = {
     const g = E.grupo('Trilha: ' + (tr.nome || tr.tipo));
     g.appendChild(txt(tr, 'nome', 'Nome'));
     if (tr.tipo === 'lutador') {
-      const lista = [['atacante', 'quem solta'], ['alvo', 'alvo']].concat(host.personagens().map(p => [p, 'parceiro: ' + p]));
+      const lista = [['atacante', 'quem solta'], ['alvo', 'alvo']].concat(host.personagens().map(p => [p, ((host.cfg && (host.cfg.aliadosAlvo || []).includes(p)) ? 'aliado do alvo: ' : 'parceiro: ') + p]));
       g.appendChild(E.campo('select', 'Lutador', tr.quem || 'atacante', (v) => { tr.quem = v; host.mudou('Lutador da trilha'); }, { lista, dica: 'Parceiro = Sparking Combo (o parceiro precisa estar no time; escolha em "Parceiro" no painel da esquerda)' }));
     }
     g.appendChild(E.campo('check', 'Desligada', tr.oculta, (v) => { if (v) tr.oculta = true; else delete tr.oculta; host.mudou('Desligar trilha'); }));
