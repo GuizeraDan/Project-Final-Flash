@@ -454,7 +454,13 @@ window.FF = window.FF || {};
           return E.escolherSom(Array.isArray(c.voz) ? c.voz[0] : c.voz, (v) => { c.voz = v; pronto('Voz'); }, this.prefixoVoz());
         case 'efeito': return efeito('fx', 'sprite', 'Efeito');
         case 'projetil': return efeito('fx', 'sprite', 'Projétil');
-        case 'acerto': return efeito('fx', 'sprite', 'Explosão');
+        case 'acerto':   // acerto: troca a explosão ou o som do impacto
+          return E.escolha('✸ Acerto', 'O que você quer trocar neste acerto?', [
+            { txt: '✺ Efeito (explosão)', valor: 'fx', cls: 'es-bt-ouro' }, { txt: '♪ Som do acerto', valor: 'som', cls: 'es-bt-ouro' }, { txt: 'Cancelar', valor: null }])
+            .then(v => {
+              if (v === 'fx') efeito('fx', 'sprite', 'Explosão');
+              else if (v === 'som') E.escolherSom(Array.isArray(c.som) ? c.som[0] : (c.som || ''), (s) => { c.som = s; pronto('Som do acerto'); });
+            });
         case 'anim': {
           const prop = this.spriteDe(quem), pid = prop && (prop.def.id || Object.keys(FF.Assets.sprites).find(k => FF.Assets.sprites[k] === prop));
           return E.escolherSprite({ titulo: '🎬 Animação (de qualquer sprite)', atual: { anim: c.anim, sprite: c.sprite || pid }, inicio: c.sprite || pid,

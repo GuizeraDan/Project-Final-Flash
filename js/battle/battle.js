@@ -665,7 +665,8 @@ FF.Battle = class {
       // posição da explosão do acerto: dx/dy a partir do peito do alvo (dx positivo = para longe de quem bateu)
       const ex = p.x + (spec.dx || 0) * att.dir, ey = p.y + (spec.dy || 0);
       this.spawnFx(fxName, ex, ey, att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1), spec.sprite ? { sprite: spec.sprite } : undefined);
-      FF.Audio.play({ leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
+      // som do acerto: o escolhido no Estúdio ("som" do acerto) ou o automático pela força
+      FF.Audio.play(spec.som ? FF.Script.pick(spec.som) : { leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
       if (spec.lanca || def.hp <= 0) {
         // golpe final: impacto extra (corpo a corpo) ou explosão no alvo (energia)
         if (forca === 'forte') this.spawnFx('Extreme', ex, ey, att.dir < 0, 0.7);

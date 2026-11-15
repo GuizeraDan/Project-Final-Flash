@@ -180,7 +180,7 @@ FF.EstudioLinha = class {
       case 'camada': return '▣ ' + (c.anim || '?');
       case 'som': return '♪ ' + v(c.som);
       case 'voz': return '🗣 ' + (c.vozTipo ? 'voz de ' + c.vozTipo + (c.quem === 'alvo' ? ' (alvo)' : '') : v(c.voz));
-      case 'acerto': return '✸ ' + (c.forca || 'leve') + ' ' + (c.fracao != null ? c.fracao : 1) + (c.lanca ? ' ⇠' : '') + (c.anel ? ' ◎' : '');
+      case 'acerto': return '✸ ' + (c.forca || 'leve') + ' ' + (c.fracao != null ? c.fracao : 1) + (c.lanca ? ' ⇠' : '') + (c.anel ? ' ◎' : '') + (c.som ? ' ♪' : '');
       case 'tremer': return '〰 ' + (c.forca || 6);
       case 'flash': return '✦ ' + (c.forca || 0.5);
       case 'mensagem': return '💬 ' + (c.texto || '');

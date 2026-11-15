@@ -282,6 +282,7 @@ FF.EstudioProps = {
     g.appendChild(chk(c, 'lanca', 'Lança o alvo'));
     g.appendChild(num(c, 'empurrao', 'Empurrão', 'Força do empurrão (ex.: 300)'));
     g.appendChild(this.campoEfeito(c, 'fx', 'Explosão', host, true));
+    g.appendChild(E.campo('som', 'Som do acerto', c.som, (v) => { if (v) c.som = v; else delete c.som; host.mudou('Som do acerto'); }, { dica: 'Vazio = som automático pela força. Vários separados por vírgula = sorteia um.' }));
     g.appendChild(num(c, 'dx', 'Explosão X', 'A partir do peito do alvo; + = para longe de quem bate'));
     g.appendChild(num(c, 'dy', 'Explosão Y'));
     g.appendChild(num(c, 'fxEscala', 'Tamanho explosão', null, { passo: 0.05 }));
