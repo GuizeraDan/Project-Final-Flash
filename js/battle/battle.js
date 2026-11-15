@@ -424,10 +424,18 @@ FF.Battle = class {
     if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
     // golpe que avança até o alvo: o próprio avanço já vai na diagonal até a fileira dele (sem passo para o lado)
     if (FF.Battle.vaiAteAlvo(move)) return false;
+    // sai da formação: passo à frente de todos os companheiros (o poder não passa por dentro de ninguém) e,
+    // ao mesmo tempo, vai para a fileira do alvo
+    const dir = actor.dir, time = (actor.isHero ? this.heroes : this.enemies).filter(f => !f.ko);
+    const frente = dir > 0 ? Math.max(...time.map(f => f.homeX)) : Math.min(...time.map(f => f.homeX));
+    let destX = frente + dir * 45 * actor.homeS / this.scale * 2.2;
+    if (dir * (destX - actor.x) < 40) destX = actor.x + dir * 40;
+    const limite = target.x - dir * 170;   // não chega colado no alvo
+    if (dir * (destX - limite) > 0) destX = limite;
     actor.faixa = { alvo: target, de: 0, para: 1, t0: FF.Clock.t, d: 0.3 };
     if (actor.sprite.has(actor.animName('avancar'))) actor.play('avancar', { loop: true });
     this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);
-    await FF.Clock.wait(0.3);
+    await this.tween(actor, destX, 0.3);
     if (!actor.ko) actor.idle();
     return true;
   }
