@@ -530,6 +530,7 @@ FF.Nota = {
     if (!st.danoRecebido) { pts += 25; bon.push('Sem levar dano'); } else pts += Math.max(0, 25 - 50 * st.danoRecebido / vidaHerois);
     if (st.guardasPerfeitas >= 5) { pts += 10; bon.push(st.guardasPerfeitas + ' guardas perfeitas'); } else if (st.guardasPerfeitas >= 2) pts += 5;
     if (st.criticos >= 3) { pts += 5; bon.push(st.criticos + ' críticos'); }
+    if (st.maiorCombo >= 8) { pts += 5; bon.push('combo de ' + st.maiorCombo + ' hits'); }
     if (st.quebras) { pts += Math.min(15, 5 * st.quebras); bon.push('Quebra de guarda ×' + st.quebras); }
     if (st.supremoFinal) { pts += 10; bon.push('Venceu com supremo'); }
     if (st.ataqueZ) { pts += 5; bon.push('Ataque Z'); }

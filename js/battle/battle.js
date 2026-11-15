@@ -133,7 +133,7 @@ FF.Battle = class {
   async run() {
     if (this.persp) this.montarPerspectiva();
     // estatísticas para a nota do fim da luta
-    this.stats = { danoRecebido: 0, guardasPerfeitas: 0, criticos: 0, quebras: 0, contra: 0, embates: 0, supremoFinal: false, ataqueZ: false, rodadas: 0 };
+    this.stats = { maiorCombo: 0, danoRecebido: 0, guardasPerfeitas: 0, criticos: 0, quebras: 0, contra: 0, embates: 0, supremoFinal: false, ataqueZ: false, rodadas: 0 };
     // Radar do Dragão: revela as fraquezas de todos os inimigos
     if (this.heroes.some(h => (h.capsulas || []).includes('radar'))) this.enemies.forEach(e => e.fraquezas && e.fraquezas.forEach(t => e.fraqVistas.add(t)));
     FF.Audio.music(this.def.musica);
@@ -358,6 +358,7 @@ FF.Battle = class {
     }
     actor.busy = true;
     this.acaoAtual = { actor, target };
+    this.combo = null;   // cada ação começa um combo novo
     if (move.supremo) await this.dramaSupremo(actor, move);
     this._escudoMarcado = new Set();   // escudos: cada golpe tira escudo uma vez por alvo
     this._contraFeito = false;
@@ -638,6 +639,7 @@ FF.Battle = class {
     dmg = guard && res === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
     const hpAntes = def.hp;
     def.hp = Math.max(0, def.hp - dmg);
+    if (dmg > 0 && att.lado !== def.lado) this.contarHit(att, dmg);
     const st = this.stats;
     if (st) {
       if (def.isHero) st.danoRecebido += dmg;
@@ -695,6 +697,7 @@ FF.Battle = class {
   // acerta todos os inimigos de pé (que estão quebrados = +60% de dano)
   async ataqueZ(herois) {
     if (this.stats) this.stats.ataqueZ = true;
+    this.combo = null;
     const foes = () => this.enemies.filter(f => !f.ko);
     this.banner('ATAQUE Z!', 1.4);
     this.flash(0.6); this.shake(8);
@@ -716,6 +719,7 @@ FF.Battle = class {
         this.spawnFx(r ? 'hit_grande' : 'hit3', p.x, p.y, h.dir < 0, r ? 0.5 : 1);
         FF.Audio.play(['hit_small-a', 'hit_midle-a', 'hit_large-a'][r + (Math.random() < 0.5 ? 0 : 1)]);
         alvo.reagir('dano', 0.2);
+        this.contarHit(h, 0);
         this.shake(4);
         await FF.Clock.wait(0.16);
       }
@@ -852,6 +856,40 @@ FF.Battle = class {
     }
     ctx.restore();
   }
+  // CONTADOR DE HITS: cada acerto que causa dano soma no combo do lado de quem bate (o time inteiro, no Ataque Z);
+  // aparece a partir de 2 hits, embaixo do HUD de quem bate, e some 1,6 s depois do último acerto
+  contarHit(att, dmg) {
+    const lado = att.isHero ? 'heroi' : 'inimigo';
+    const agora = FF.Clock.t;
+    if (!this.combo || this.combo.lado !== lado || agora - this.combo.t > 2.5) this.combo = { lado, n: 0, dano: 0, t: agora, t0: agora };
+    this.combo.n++; this.combo.dano += dmg || 0; this.combo.t = agora;
+    if (this.stats && att.isHero) this.stats.maiorCombo = Math.max(this.stats.maiorCombo || 0, this.combo.n);
+  }
+  desenharCombo(ctx) {
+    const c = this.combo;
+    if (!c || c.n < 2) return;
+    const u = FF.Clock.t - c.t, VIDA = 1.6;
+    if (u > VIDA + 0.35) return;
+    const alpha = u < VIDA ? 1 : 1 - (u - VIDA) / 0.35;
+    const esq = c.lado === 'heroi';
+    const x = esq ? 46 : FF.W - 46, y = FF.H * 0.36;
+    const pop = 1 + 0.35 * Math.max(0, 1 - u / 0.12);   // o número "pula" a cada hit
+    const al = esq ? 'left' : 'right';
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, alpha);
+    const n = String(c.n);
+    const tam = Math.round((c.n >= 10 ? 76 : 70) * pop);
+    const g = ctx.createLinearGradient(0, y - tam / 2, 0, y + tam / 2);
+    if (c.n >= 10) { g.addColorStop(0, '#fff3f0'); g.addColorStop(0.5, '#ff6a3a'); g.addColorStop(1, '#c4001a'); }
+    else { g.addColorStop(0, '#fffbb0'); g.addColorStop(0.5, '#ffd21a'); g.addColorStop(1, '#ff7a00'); }
+    FF.HUD.textoHud(ctx, n, x, y, tam, g, al);
+    ctx.font = 'italic 900 ' + tam + 'px "Trebuchet MS", "Arial Black", sans-serif';
+    const wn = ctx.measureText(n).width;
+    FF.HUD.textoHud(ctx, 'HITS', esq ? x + wn + 10 : x - wn - 10, y + tam * 0.18, 30, '#fff', al);
+    if (c.dano > 0) FF.HUD.textoHud(ctx, c.dano + ' de dano', x, y + tam * 0.62, 18, '#ffe9a8', al);
+    ctx.restore();
+  }
+
   desenharFala(ctx) {
     const fl = this.fala;
     if (!fl) return;
@@ -1317,6 +1355,7 @@ FF.Battle = class {
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);
     this.desenharDesafio(ctx);
+    this.desenharCombo(ctx);
     this.desenharDrama(ctx);
     this.desenharFala(ctx);
     if (this.flashAmt > 0) {

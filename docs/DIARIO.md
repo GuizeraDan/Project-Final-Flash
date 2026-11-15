@@ -358,3 +358,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-15 — Seleção por caixa na linha do tempo
 - Arrastar num espaço vazio das trilhas desenha uma caixa (ciano tracejado) e seleciona todos os clipes que ela toca (`LinhaUI.selecionarCaixa`, usa `host.multi`); Shift soma à seleção; rola sozinho na borda. Clique simples no vazio continua levando o cursor. Os selecionados se movem juntos arrastando um deles e Del apaga todos (já existia).
+
+## 2026-11-15 — Contador de hits
+- `Battle.contarHit(att, dmg)` em todo acerto com dano (applyHit) e nos golpes visuais do Ataque Z; combo por lado (time), zera a cada ação (`execute`/`ataqueZ`) ou 2,5 s sem acertar. `desenharCombo`: "N HITS" + "X de dano" embaixo do HUD de quem bate (esquerda = heróis, direita = inimigos), a partir de 2 hits, número pula a cada hit, vermelho a partir de 10, some 1,6 s depois. Vale para golpes do jogo, editados e habilidades (e no palco do Estúdio). `stats.maiorCombo` (heróis): combo ≥ 8 dá +5 na nota.
