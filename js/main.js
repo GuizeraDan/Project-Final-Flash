@@ -462,6 +462,23 @@ FF.Treino = {
         row.appendChild(bt);
         box.appendChild(row);
       }
+      // cápsulas (2 por herói)
+      const capBox = document.createElement('div'); capBox.className = 'treino-tec';
+      capBox.innerHTML = '<h5>🎒 Cápsulas</h5>';
+      const eq = FF.Capsulas.equipadas(id);
+      for (let sl = 0; sl < 2; sl++) {
+        const sel = document.createElement('select'); sel.className = 'treino-cap';
+        sel.innerHTML = '<option value="">— vazio —</option>' + Object.entries(FF.Capsulas.LISTA).map(([k, c]) => '<option value="' + k + '">' + c.ic + ' ' + c.nome + '</option>').join('');
+        sel.value = eq[sl] || '';
+        sel.title = eq[sl] ? FF.Capsulas.LISTA[eq[sl]].desc : 'Escolha uma cápsula';
+        sel.onclick = (e) => e.stopPropagation();
+        sel.onchange = (e) => { e.stopPropagation(); FF.Capsulas.equipar(id, sl, sel.value); FF.Audio.play('tap_sound'); this.render(); };
+        capBox.appendChild(sel);
+      }
+      const dsc = document.createElement('small'); dsc.className = 'treino-cap-desc';
+      dsc.textContent = eq.map(c => FF.Capsulas.LISTA[c].ic + ' ' + FF.Capsulas.LISTA[c].desc).join('  ') || 'Cápsulas dão vantagens na luta.';
+      capBox.appendChild(dsc);
+      box.appendChild(capBox);
       // técnicas (pergaminhos)
       const tecBox = document.createElement('div'); tecBox.className = 'treino-tec';
       tecBox.innerHTML = '<h5>📜 Técnicas</h5>';
@@ -482,6 +499,45 @@ FF.Treino = {
       }).catch(() => {});
       lista.appendChild(box);
     }
+  },
+};
+
+// ---------- cápsulas: 2 por herói, equipadas no Treinamento ----------
+FF.Capsulas = {
+  LISTA: {
+    senzu: { ic: '🌱', nome: 'Semente dos Deuses', desc: '1 vez por luta: com menos de 30% de vida, recupera tudo no fim do turno.' },
+    radar: { ic: '📡', nome: 'Radar do Dragão', desc: 'Mostra as fraquezas de todos os inimigos desde o começo.' },
+    peso: { ic: '🏋', nome: 'Peso de Treino', desc: '−10% de velocidade, mas +30% de AP ao vencer.' },
+    armadura: { ic: '🛡', nome: 'Armadura Saiyajin', desc: 'Recebe 10% menos dano.' },
+    kiplus: { ic: '🔋', nome: 'Cápsula de Ki', desc: 'Começa a luta com +30 de ki.' },
+    faixa: { ic: '🎗', nome: 'Faixa do Senhor Kaio', desc: 'Começa a luta com 2 Pontos de Impulso.' },
+  },
+  equipadas(heroi) { return (((FF.Save.get().capsulas || {})[heroi]) || []).filter(c => this.LISTA[c]).slice(0, 2); },
+  equipar(heroi, slot, cap) {
+    const caps = FF.Save.get().capsulas || {};
+    const l = (caps[heroi] || []).slice(0, 2); while (l.length < 2) l.push('');
+    l[slot] = cap; if (cap && l[1 - slot] === cap) l[1 - slot] = '';
+    caps[heroi] = l; FF.Save.set({ capsulas: caps });
+  },
+};
+
+// ---------- nota do fim da luta (S a D) e bônus ----------
+FF.Nota = {
+  calcular(b) {
+    const st = b.stats || {}, bon = [];
+    let pts = 40;
+    const vidaHerois = b.heroes.reduce((s, h) => s + h.hpMax, 0) || 1;
+    if (!st.danoRecebido) { pts += 25; bon.push('Sem levar dano'); } else pts += Math.max(0, 25 - 50 * st.danoRecebido / vidaHerois);
+    if (st.guardasPerfeitas >= 5) { pts += 10; bon.push(st.guardasPerfeitas + ' guardas perfeitas'); } else if (st.guardasPerfeitas >= 2) pts += 5;
+    if (st.criticos >= 3) { pts += 5; bon.push(st.criticos + ' críticos'); }
+    if (st.quebras) { pts += Math.min(15, 5 * st.quebras); bon.push('Quebra de guarda ×' + st.quebras); }
+    if (st.supremoFinal) { pts += 10; bon.push('Venceu com supremo'); }
+    if (st.ataqueZ) { pts += 5; bon.push('Ataque Z'); }
+    if (st.embates) { pts += Math.min(10, 5 * st.embates); bon.push('Venceu ' + st.embates + ' embate(s) de raios'); }
+    if (st.contra) bon.push(st.contra + ' contra-ataque(s)');
+    if (st.rodadas && st.rodadas <= 3) { pts += 10; bon.push('Vitória rápida'); } else if (st.rodadas && st.rodadas <= 6) pts += 5;
+    const nota = pts >= 90 ? 'S' : pts >= 75 ? 'A' : pts >= 60 ? 'B' : pts >= 45 ? 'C' : 'D';
+    return { nota, pts: Math.round(pts), bonus: bon, multAP: { S: 1.5, A: 1.3, B: 1.15, C: 1, D: 1 }[nota] };
   },
 };
 
@@ -565,11 +621,20 @@ FF.UI.showEnd = async function (win) {
   const mh = FF.modoHistoria;
   const apEl = document.getElementById('ap-ganho');
   if (win) {
-    const ganho = FF.Treino.premio(FF.battle) * (mh ? 2 : 1);   // modo história vale o dobro
-    const perg = FF.Treino.premioPergaminhos(FF.battle, !!mh);
+    const nt = FF.Nota.calcular(FF.battle);
+    const peso = FF.battle.heroes.some(h => (h.capsulas || []).includes('peso')) ? 1.3 : 1;
+    const ganho = Math.round(FF.Treino.premio(FF.battle) * (mh ? 2 : 1) * nt.multAP * peso);   // modo história vale o dobro
+    const perg = FF.Treino.premioPergaminhos(FF.battle, !!mh) + (nt.nota === 'S' ? 1 : 0);
+    const nEl = document.getElementById('nota');
+    if (nEl) {
+      nEl.innerHTML = '<b class="nota-' + nt.nota + '">' + nt.nota + '</b><div></div>';
+      const lst = nEl.querySelector('div');
+      nt.bonus.forEach(t => { const i = document.createElement('i'); i.textContent = '★ ' + t; lst.appendChild(i); });
+      if (nt.multAP > 1) { const i = document.createElement('i'); i.className = 'ap'; i.textContent = 'AP ×' + String(nt.multAP).replace('.', ','); lst.appendChild(i); }
+    }
     FF.Save.set({ ap: (FF.Save.get().ap || 0) + ganho, pergaminhos: (FF.Save.get().pergaminhos || 0) + perg });
     apEl.textContent = '+' + ganho + ' AP · +' + perg + ' 📜 (gaste em Treinamento)';
-  } else apEl.textContent = '';
+  } else { apEl.textContent = ''; const nEl = document.getElementById('nota'); if (nEl) nEl.innerHTML = ''; }
   if (!mh) return _showEnd(win);
   const el = document.getElementById('fim');
   const prox = mh.hist.capitulos.find(c => c.id === mh.cap.id + 1);

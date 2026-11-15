@@ -604,3 +604,15 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .treino-tec { border-top: 0.12cqw solid rgba(255,216,74,0.35); margin-top: 0.3cqw; padding-top: 0.3cqw; display: flex; flex-direction: column; gap: 0.3cqw; }
 .treino-tec h5 { margin: 0; font-size: 1.15cqw; color: #ffd84a; text-align: center; }
 .treino-tec .treino-attr { font-size: 1.1cqw; }
+
+/* nota do fim da luta */
+#nota { display: flex; align-items: center; gap: 1.2cqw; justify-content: center; margin: -0.6cqw 0 0.6cqw; }
+#nota:empty { display: none; }
+#nota b { font-size: 6cqw; font-weight: 900; font-style: italic; line-height: 1; -webkit-text-stroke: 0.15cqw #2a0e00; text-shadow: 0 0.3cqw 0 #2a0e00; }
+#nota .nota-S { color: #ffe14a; filter: drop-shadow(0 0 0.8cqw #ffb800); } #nota .nota-A { color: #ff9a2a; } #nota .nota-B { color: #6fe0ff; } #nota .nota-C { color: #b8b8d8; } #nota .nota-D { color: #8a8aa0; }
+#nota div { display: flex; flex-direction: column; gap: 0.2cqw; text-align: left; }
+#nota i { font-style: normal; font-size: 1.3cqw; font-weight: 800; color: #fff3c0; }
+#nota i.ap { color: #7fe0ff; }
+/* Treinamento: cápsulas */
+.treino-cap { font: inherit; font-size: 1.05cqw; background: #1a1240; color: #fff; border: 0.12cqw solid #c9952c; border-radius: 0.3cqw; padding: 0.15cqw; }
+.treino-cap-desc { font-size: 0.9cqw; color: #d8d0ff; line-height: 1.25; }

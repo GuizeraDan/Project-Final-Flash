@@ -54,6 +54,9 @@ FF.Battle = class {
     if (lado === 'heroi' && FF.Treino && FF.Treino.aplicarTec) charDef = Object.assign({}, charDef, { golpes: FF.Treino.aplicarTec(charDef.id, charDef.golpes) });
     // posições do JSON são para a tela base de 1084 px; em telas mais largas, centraliza
     const offX = (FF.W - 1084) / 2;
+    // cápsula Peso de Treino: −10% de velocidade (e +30% de AP no fim)
+    const caps = lado === 'heroi' && FF.Capsulas ? FF.Capsulas.equipadas(charDef.id) : [];
+    if (caps.includes('peso')) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, { velocidade: Math.round((charDef.atributos.velocidade || 10) * 0.9) }) });
     const f = new FF.Fighter(charDef, lado, (pos[idx] != null ? pos[idx] : pos[0]) + offX, this.groundY, this.scale);
     const lista = lado === 'heroi' ? this.heroes : this.enemies;
     const iguais = lista.filter(x => x.id === f.id);
@@ -63,6 +66,10 @@ FF.Battle = class {
     }
     // Pontos de Impulso: todo mundo começa com 1 (ganha 1 por turno, até 5)
     f.impulso = 1; f.boost = 0;
+    // cápsulas equipadas no Treinamento (só heróis)
+    f.capsulas = caps;
+    if (f.capsulas.includes('kiplus')) f.ki = Math.min(f.kiMax, f.ki + 30);
+    if (f.capsulas.includes('faixa')) f.impulso = 2;
     // escudos (Quebra de Guarda): só no time inimigo; fraquezas = tipos de golpe ("corpo", "energia")
     if (lado === 'inimigo') {
       const e = charDef.escudos || { n: 3, fraquezas: ['corpo'] };
@@ -125,6 +132,10 @@ FF.Battle = class {
   // ---------- fluxo ----------
   async run() {
     if (this.persp) this.montarPerspectiva();
+    // estatísticas para a nota do fim da luta
+    this.stats = { danoRecebido: 0, guardasPerfeitas: 0, criticos: 0, quebras: 0, contra: 0, embates: 0, supremoFinal: false, ataqueZ: false, rodadas: 0 };
+    // Radar do Dragão: revela as fraquezas de todos os inimigos
+    if (this.heroes.some(h => (h.capsulas || []).includes('radar'))) this.enemies.forEach(e => e.fraquezas && e.fraquezas.forEach(t => e.fraqVistas.add(t)));
     FF.Audio.music(this.def.musica);
     await this.intro();
     while (!this.over) {
@@ -135,6 +146,7 @@ FF.Battle = class {
       const ordem = this.all.slice().sort((a, b) => (ini(b) - ini(a)) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
       this.ordem = ordem;   // mostrada no HUD (linha do tempo)
       this.rodada = (this.rodada || 0) + 1;
+      if (this.stats) this.stats.rodadas = this.rodada;
       this.jaAgiu = new Set();
       // Opções → Modo de turno "Planejamento": escolhe as ações de todos primeiro, depois tudo acontece
       // modo Planejamento é o padrão do jogo (o clássico fica só com def.turnoClassico)
@@ -345,6 +357,7 @@ FF.Battle = class {
     }
     actor.busy = true;
     this.acaoAtual = { actor, target };
+    if (move.supremo) await this.dramaSupremo(actor, move);
     this._escudoMarcado = new Set();   // escudos: cada golpe tira escudo uma vez por alvo
     this._contraFeito = false;
     const n = actor.boost || 0;
@@ -367,6 +380,14 @@ FF.Battle = class {
     await Promise.all(this.projectiles.map(p => p.done));
     await Promise.all(this.cenasKO || []);   // espera a cena de KO de quem caiu terminar
     this.cenasKO = [];
+    // falas dos chefes (metade da vida)
+    for (const f of (this.falasPendentes || []).splice(0)) {
+      if (f.ko) continue;
+      this.fala = { quem: f, texto: f.def.falas.metade, t0: FF.Clock.t, dur: 2.6 };
+      if (f.voz) f.voz('dano');
+      await FF.Clock.wait(2.6);
+      this.fala = null;
+    }
     await FF.Clock.wait(0.25);
     actor.busy = false;
     actor.desafioMult = 1;
@@ -464,6 +485,14 @@ FF.Battle = class {
 
   async endTurn(f) {
     f.addKi(f.def.atributos.kiPorTurno || 0);
+    // cápsula Semente dos Deuses: uma vez por luta, com menos de 30% de vida recupera tudo
+    if (!f.ko && (f.capsulas || []).includes('senzu') && !f._usouSenzu && f.hp < f.hpMax * 0.3) {
+      f._usouSenzu = true; f.hp = f.hpMax; f.addKi(50);
+      this.popup(f, '🌱 SEMENTE DOS DEUSES!', '#7dff9a', -60);
+      this.spawnFx('genkidama_efeito', f.peito().x, f.peito().y, false, 2);
+      FF.Audio.play('decide_charasel', 0.7);
+      await FF.Clock.wait(0.8);
+    }
     if (!f._impulsou && !f.ko) f.impulso = Math.min(5, (f.impulso || 0) + 1);
     f._impulsou = false;
     // buffs (ex.: Kaioken)
@@ -590,6 +619,7 @@ FF.Battle = class {
       }
     }
     if (def.quebrado) dmg *= 1.6;   // sem guarda: leva bem mais dano
+    if ((def.capsulas || []).includes('armadura')) dmg *= 0.9;   // cápsula Armadura Saiyajin
 
     if (mode === 'guarda' && res) {
       guard = true;
@@ -605,7 +635,17 @@ FF.Battle = class {
     }
 
     dmg = guard && res === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
+    const hpAntes = def.hp;
     def.hp = Math.max(0, def.hp - dmg);
+    const st = this.stats;
+    if (st) {
+      if (def.isHero) st.danoRecebido += dmg;
+      if (guard && res === 'perfeito' && !qte._contou) { st.guardasPerfeitas++; qte._contou = true; }
+      if (mode === 'critico' && res && !qte._contouC) { st.criticos++; qte._contouC = true; }
+      if (def.hp <= 0 && !def.isHero && move.supremo) st.supremoFinal = true;
+    }
+    // fala do chefe quando a vida passa da metade (mostrada no fim do golpe)
+    if (!def.isHero && def.def.falas && def.def.falas.metade && !def._falouMetade && hpAntes > def.hpMax / 2 && def.hp <= def.hpMax / 2 && def.hp > 0) { def._falouMetade = true; (this.falasPendentes = this.falasPendentes || []).push(def); }
     // Rage Gauge: enche ao causar e (mais) ao receber dano; guarda perfeita também enche
     const fr = dmg / def.hpMax;
     if (!move.supremo) att.addRage(fr * (FF.RAGE_CAUSAR || 90));
@@ -652,6 +692,7 @@ FF.Battle = class {
   // ATAQUE Z (como o "All-Out Attack" de Persona): cada herói avança e golpeia, todos voltam, explosão final
   // acerta todos os inimigos de pé (que estão quebrados = +60% de dano)
   async ataqueZ(herois) {
+    if (this.stats) this.stats.ataqueZ = true;
     const foes = () => this.enemies.filter(f => !f.ko);
     this.banner('ATAQUE Z!', 1.4);
     this.flash(0.6); this.shake(8);
@@ -724,6 +765,7 @@ FF.Battle = class {
       };
       const acabar = async (heroiVenceu) => {
         em.fim = true; em.venceu = heroiVenceu;
+        if (heroiVenceu && this.stats) this.stats.embates++;
         window.removeEventListener('keydown', kd, true); tela.removeEventListener('pointerdown', pd);
         const [v, p, mv] = heroiVenceu ? [h, e, mh] : [e, h, me];
         this.banner((v.nome || '') + ' venceu o embate!', 1.2);
@@ -775,9 +817,60 @@ FF.Battle = class {
     }
   }
 
+  // CÂMERA DRAMÁTICA DO SUPREMO: tela escurece (só quem solta fica aceso), zoom nele, nome do golpe enorme
+  async dramaSupremo(actor, move) {
+    this.drama = { actor, nome: (move.nome || '').toUpperCase(), t0: FF.Clock.t, dur: 1.5 };
+    const pa = actor.peito();
+    this.cam = this.cam || { zoom: 1, x: 0, y: 0 };
+    this.camAlvo = { zoom: 1.35, x: pa.x - FF.W / 2, y: pa.y - FF.H / 2, d: 0.3, t: 0, de: Object.assign({}, this.cam) };
+    FF.Audio.play('sprkngbrst_expl', 0.6);
+    await FF.Clock.wait(1.5);
+    this.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, this.cam) };
+    this.drama = null;
+    await FF.Clock.wait(0.2);
+  }
+  desenharDrama(ctx) {
+    const d = this.drama;
+    if (!d) return;
+    const k = Math.min(1, (FF.Clock.t - d.t0) / 0.2), t = FF.Clock.t;
+    ctx.save();
+    // linhas de velocidade saindo do centro
+    ctx.globalAlpha = 0.5 * k; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+    for (let i = 0; i < 26; i++) {
+      const a = i * 0.2417 * Math.PI * 2 + t * 0.6, r0 = 260 + ((i * 37 + t * 900) % 120);
+      ctx.beginPath(); ctx.moveTo(FF.W / 2 + Math.cos(a) * r0, FF.H / 2 + Math.sin(a) * r0); ctx.lineTo(FF.W / 2 + Math.cos(a) * 900, FF.H / 2 + Math.sin(a) * 900); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    // faixa com o nome
+    const y = FF.H * 0.72;
+    ctx.fillStyle = 'rgba(0,0,0,' + 0.65 * k + ')'; ctx.fillRect(0, y - 40, FF.W, 80);
+    ctx.fillStyle = 'rgba(255,180,0,' + 0.9 * k + ')'; ctx.fillRect(0, y - 42, FF.W, 3); ctx.fillRect(0, y + 39, FF.W, 3);
+    const g = ctx.createLinearGradient(0, y - 30, 0, y + 30); g.addColorStop(0, '#fffbb0'); g.addColorStop(0.5, '#ffd21a'); g.addColorStop(1, '#ff7a00');
+    FF.HUD.textoHud ? FF.HUD.textoHud(ctx, d.nome, FF.W / 2 + (1 - k) * 200, y, 52, g, 'center') : FF.HUD.text(ctx, d.nome, FF.W / 2, y, 48, '#ffd84a', 'center');
+    ctx.restore();
+  }
+  desenharFala(ctx) {
+    const fl = this.fala;
+    if (!fl) return;
+    const w = Math.min(760, FF.W - 80), x = FF.W / 2 - w / 2, y = FF.H - 150, h = 74;
+    ctx.save();
+    ctx.fillStyle = 'rgba(14,10,40,0.92)'; ctx.strokeStyle = '#ffd84a'; ctx.lineWidth = 3;
+    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, 12); else ctx.rect(x, y, w, h); ctx.fill(); ctx.stroke();
+    FF.Retrato.desenhar(ctx, fl.quem.def, fl.quem.formId, 'retrato', x + 10, y + 8, 42, 58, { espelhar: true });
+    FF.HUD.text(ctx, fl.quem.nome, x + 64, y + 18, 16, '#ffd84a', 'left');
+    // quebra o texto em até 2 linhas
+    ctx.font = 'bold 15px sans-serif';
+    const pal = fl.texto.split(' '), linhas = ['']; for (const p of pal) { const t = (linhas[linhas.length - 1] + ' ' + p).trim(); if (ctx.measureText(t).width > w - 80 && linhas[linhas.length - 1]) linhas.push(p); else linhas[linhas.length - 1] = t; }
+    const n = Math.floor(((FF.Clock.t - fl.t0) / 0.025));   // efeito de máquina de escrever
+    let resto = n;
+    linhas.slice(0, 2).forEach((l, i) => { const parte = l.slice(0, Math.max(0, resto)); resto -= l.length; FF.HUD.text(ctx, parte, x + 64, y + 42 + i * 20, 15, '#fff', 'left'); });
+    ctx.restore();
+  }
+
   // QUEBRA DE GUARDA (escudos zerados): perde a próxima vez e leva +60% de dano até ela passar
   quebrar(def) {
     def.quebrado = true;
+    if (this.stats) this.stats.quebras++;
     def.atordoado = Math.max(def.atordoado || 0, 1);
     const p = def.peito();
     this.spawnFx('Explosao14', p.x, p.y, false, 0.9);
@@ -789,6 +882,7 @@ FF.Battle = class {
 
   // contra-ataque depois de uma guarda perfeita: quem defendeu golpeia de volta
   async contraAtaque(quem, alvo) {
+    if (this.stats) this.stats.contra++;
     this.popup(quem, 'CONTRA-ATAQUE!', '#7dffb0', -70);
     await FF.Clock.wait(0.1);
     if (quem.ko || alvo.ko) return;
@@ -1204,6 +1298,8 @@ FF.Battle = class {
         else f.draw(ctx, this.fx);
       });
     } else order.forEach(f => f.draw(ctx, this.fx));
+    // supremo: escurece tudo e redesenha só quem solta, aceso
+    if (this.drama) { ctx.fillStyle = 'rgba(0,0,10,' + 0.65 * Math.min(1, (FF.Clock.t - this.drama.t0) / 0.2) + ')'; ctx.fillRect(-FF.W, -FF.H, FF.W * 3, FF.H * 3); this.drama.actor.draw(ctx, this.fx); }
     this.desenharEmbate(ctx);
     this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
@@ -1214,6 +1310,8 @@ FF.Battle = class {
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);
     this.desenharDesafio(ctx);
+    this.desenharDrama(ctx);
+    this.desenharFala(ctx);
     if (this.flashAmt > 0) {
       ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, this.flashAmt) + ')';
       ctx.fillRect(0, 0, FF.W, FF.H);
