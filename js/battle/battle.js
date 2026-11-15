@@ -71,6 +71,19 @@ FF.Battle = class {
     return f;
   }
 
+  // efeito do golpe na ordem da próxima rodada (linha do tempo, como no FFX): "velocidade" no golpe (número) ou padrão
+  static velGolpe(m) {
+    if (!m) return 0;
+    if (typeof m.velocidade === 'number') return m.velocidade;
+    if (m.velocidade === 'rapido') return 25;
+    if (m.velocidade === 'lento') return -25;
+    if (m.supremo) return -40;
+    if (m.tipo === 'transformacao' || /"transformar"/.test(JSON.stringify(m.roteiro || []))) return -25;
+    if (/carregar/i.test(m.nome || '')) return -15;
+    if (m.tipo === 'corpo') return 10;
+    return 0;
+  }
+
   // tipo de golpe para as fraquezas: "corpo" | "energia" | null (suporte)
   static tipoGolpe(m) {
     if (!m) return null;
@@ -85,6 +98,7 @@ FF.Battle = class {
   // perdeu a vez: atordoado (Taiyoken) ou guarda quebrada; ao fim da quebra os escudos voltam
   async perderVez(actor) {
     actor.atordoado--;
+    if (this.jaAgiu) this.jaAgiu.add(actor);
     if (actor.quebrado) {
       this.popup(actor, 'QUEBRADO!', '#ff9a6a');
       this.banner(actor.nome + ' está sem guarda!', 1.2);
@@ -105,8 +119,13 @@ FF.Battle = class {
     await this.intro();
     while (!this.over) {
       // ordem de turno pela velocidade (empate: heróis primeiro)
-      const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
-      this.ordem = ordem;   // mostrada no HUD
+      // iniciativa = velocidade + efeito do golpe da rodada anterior (rápido adianta, supremo atrasa); atordoado vai para o fim
+      this.all.forEach(f => { f.iniciativa = f.iniciativaProx || 0; f.iniciativaProx = 0; });
+      const ini = (f) => f.stat('velocidade') + (f.iniciativa || 0) - (f.atordoado > 0 ? 1000 : 0);
+      const ordem = this.all.slice().sort((a, b) => (ini(b) - ini(a)) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
+      this.ordem = ordem;   // mostrada no HUD (linha do tempo)
+      this.rodada = (this.rodada || 0) + 1;
+      this.jaAgiu = new Set();
       // Opções → Modo de turno "Planejamento": escolhe as ações de todos primeiro, depois tudo acontece
       // modo Planejamento é o padrão do jogo (o clássico fica só com def.turnoClassico)
       if (!this.def.turnoClassico) { await this.rodadaPlanejada(ordem); continue; }
@@ -200,6 +219,8 @@ FF.Battle = class {
     if (imp > 0) { actor.impulso -= imp; actor.boost = imp; actor._impulsou = true; }
     await this.execute(actor, alvo, mv);
     actor.boost = 0;
+    actor.iniciativaProx = FF.Battle.velGolpe(mv);
+    if (this.jaAgiu) this.jaAgiu.add(actor);
     this.atual = null;
     if (this.checkEnd()) return;
     await this.endTurn(actor);

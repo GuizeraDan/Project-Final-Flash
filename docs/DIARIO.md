@@ -316,3 +316,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Teste do Estúdio atualizado para o menu Minimalista e o modo Planejamento.
 - Sparking no HUD refeito pela arte do usuário: contorno da moldura (traçado da imagem do HUD) em dourado grosso com brilho, raios curtos dourados/ciano estalando nas bordas, "RAGE" vira "SPARKING!" amarelo→laranja, gomos da Fúria dourados com eletricidade por dentro, ícone com halo e raios girando, aura dourada no retrato, faíscas.
 - Menu Minimalista por mouse: a lista de golpes começa fechada e abre ao passar o mouse na esfera (classe mg-aberto); fecha 0,22 s depois de o mouse sair da esfera e da lista (o espaço entre elas faz parte da lista, para subir sem fechar). Esfera Ki continua botão de ação. Toque/clique na esfera abre/fecha (celular); setas/Enter abrem pelo teclado.
+
+## 2026-11-15 (madrugada, tarefa agendada pelo usuário) — resto do Bloco 5 + tutorial
+- a) **Linha do tempo de turnos**: iniciativa = velocidade + efeito do golpe da rodada anterior (`FF.Battle.velGolpe`: campo "velocidade" do golpe — número, "rapido" +25, "lento" −25; padrões: supremo −40, transformação −25, carregar ki −15, corpo +10). Atordoado/quebrado vai para o fim. Barra do topo (`FF.HUD.ordemTurno`): "R<n>", quem já agiu apagado com ✓, quem age em dourado, 💫 atordoado, ▲/▼ = muda de posição na próxima rodada.

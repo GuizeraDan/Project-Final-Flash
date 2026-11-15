@@ -397,19 +397,29 @@ FF.HUD = {
     ctx.restore();
   },
 
-  // faixa com os retratos na ordem dos turnos (quem age agora fica destacado em dourado)
+  // linha do tempo da rodada (FFX): retratos na ordem; quem já agiu fica apagado com ✓, quem age agora em dourado,
+  // atordoado/quebrado com 💫 (vai para o fim); ▲/▼ = vai jogar antes/depois na próxima rodada (velocidade do golpe)
   ordemTurno(ctx, b) {
     const lista = (b.ordem || []).filter(f => !f.ko);
     if (!lista.length || b.over) return;
-    const w = 22, h = 30, gap = 4;
+    const w = 22, h = 30, gap = 5;
     const total = lista.length * (w + gap) - gap;
     let x = FF.W / 2 - total / 2;
     const y = 36;
+    if (b.rodada) this.text(ctx, 'R' + b.rodada, x - 18, y + h / 2, 12, '#ffe9a8', 'center');
     for (const f of lista) {
-      const atual = f === b.atual;
+      const atual = f === b.atual, foi = b.jaAgiu && b.jaAgiu.has(f) && !atual;
+      ctx.save();
+      if (foi) ctx.globalAlpha = 0.4;
       ctx.fillStyle = atual ? '#ffd84a' : (f.isHero ? '#3a6ad0' : '#c03030');
-      ctx.fillRect(x - 2, y - 2, w + 4, h + 4);
-      FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', x, y, w, h, { espelhar: !f.isHero });
+      const yy = atual ? y - 3 : y;
+      ctx.fillRect(x - 2, yy - 2, w + 4, h + 4);
+      FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', x, yy, w, h, { espelhar: !f.isHero });
+      ctx.restore();
+      if (foi) this.text(ctx, '✓', x + w / 2, y + h / 2, 16, '#9dff9d', 'center');
+      if (f.atordoado > 0) this.text(ctx, '💫', x + w / 2, y - 6, 11, '#fff', 'center');
+      const prox = f.iniciativaProx || 0;
+      if (prox) this.text(ctx, prox > 0 ? '▲' : '▼', x + w / 2, y + h + 8, 11, prox > 0 ? '#7dff9a' : '#ff8a7a', 'center');
       x += w + gap;
     }
   },

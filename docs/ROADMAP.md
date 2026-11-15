@@ -40,7 +40,7 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [x] Escudos e Quebra de Guarda (Octopath Traveler).
 - [x] Contra-ataque na guarda perfeita (Mario & Luigi).
 - [x] Pontos de Impulso (Boost do Octopath).
-- [ ] Linha do tempo de turnos mostrando o efeito dos golpes na ordem (FFX).
+- [x] Linha do tempo de turnos mostrando o efeito dos golpes na ordem (FFX).
 - [ ] Ataque Total quando todos os inimigos estão quebrados (Persona).
 - [ ] Golpes com desafios diferentes de botão (Super Mario RPG / Paper Mario).
 - [ ] Intenção do inimigo no Planejamento (Slay the Spire).
