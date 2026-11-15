@@ -368,3 +368,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-15 — Escolha do alvo clicando no inimigo
 - `FF.UI.chooseTarget` não mostra mais os cartões: o jogador clica/toca no próprio lutador (caixa do corpo pelo quadro da animação; sobrepostos = o da frente). Passar o mouse marca (anel vermelho no chão + nome e vida + seta); os outros escolhíveis ganham anel amarelo (`battle.escolhendoAlvo`, desenhado em `FF.HUD`). Teclado continua (setas/números + Enter), "↩ Trocar golpe"/Esc/Backspace voltam ao menu.
+
+## 2026-11-15 — Mudança de fileira antes do golpe (perspectiva)
+- Raios/rajadas saíam retos na fileira de quem ataca e não chegavam em alvo de outra fileira. `Battle.alinharFileira`: antes de todo golpe ofensivo num alvo de outra fileira (diferença ≥ 10 px), quem ataca desliza 0,3 s até a fileira do alvo (`f.faixa = {alvo, de, para, t0, d}`, poeira + "avancar"); `voltarFileira` devolve junto com o `resetPositions`. `atualizarPerspectiva` usa o maior entre o avanço horizontal e a `faixa`. Vale para heróis e inimigos.

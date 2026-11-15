@@ -378,6 +378,9 @@ FF.Battle = class {
       this.flash(0.12 * n);
       await FF.Clock.wait(0.35);
     }
+    // perspectiva: antes de golpear alguém de outra fileira, quem ataca desliza até a fileira do alvo
+    // (raios, rajadas e projéteis saem alinhados com ele; no fim volta para a sua)
+    const alinhou = await this.alinharFileira(actor, target, move);
     // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
     actor.desafioMult = 1;
     if (actor.isHero && move.desafio && target && target !== actor && !this.semDesafios) actor.desafioMult = await this.desafio(actor, move.desafio);
@@ -399,7 +402,26 @@ FF.Battle = class {
     actor.busy = false;
     actor.desafioMult = 1;
     actor.idle();
-    await this.resetPositions();
+    await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null]);
+  }
+
+  // ---------- mudança de fileira (perspectiva) ----------
+  async alinharFileira(actor, target, move) {
+    if (!this.persp || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
+    if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
+    actor.faixa = { alvo: target, de: 0, para: 1, t0: FF.Clock.t, d: 0.3 };
+    if (actor.sprite.has(actor.animName('avancar'))) actor.play('avancar', { loop: true });
+    this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);
+    await FF.Clock.wait(0.3);
+    if (!actor.ko) actor.idle();
+    return true;
+  }
+  async voltarFileira(actor) {
+    const fx = actor.faixa;
+    if (!fx) return;
+    actor.faixa = { alvo: fx.alvo, de: 1, para: 0, t0: FF.Clock.t, d: 0.3 };
+    await FF.Clock.wait(0.3);
+    if (actor.faixa && actor.faixa.para === 0) actor.faixa = null;
   }
 
   // ---------- desafios de botão (como no Super Mario RPG / Paper Mario) ----------
@@ -1154,13 +1176,21 @@ FF.Battle = class {
     for (const f of this.all) {
       if (f.homeG == null) continue;
       let g = f.homeG, s = f.homeS;
-      const t = at && at.target;
+      let t = at && at.target, e = 0;
       if (t && t.homeG != null && at.actor && f.lado === at.actor.lado && f !== t) {
         const longe = Math.max(40, Math.abs(t.homeX - f.homeX) - 60);
         const k = Math.max(0, Math.min(1, Math.abs(f.x - f.homeX) / longe));
-        const e = k * k * (3 - 2 * k);
+        e = k * k * (3 - 2 * k);
+      } else t = null;
+      // mudança de fileira antes do golpe (alinharFileira / voltarFileira)
+      if (f.faixa && f.faixa.alvo && f.faixa.alvo.homeG != null) {
+        const fx = f.faixa, u = Math.max(0, Math.min(1, (FF.Clock.t - fx.t0) / fx.d)), uu = u * u * (3 - 2 * u);
+        const kf = fx.de + (fx.para - fx.de) * uu;
+        if (kf >= e) { e = kf; t = fx.alvo; }
+      }
+      if (t && e > 0) {
         g = f.homeG + (t.homeG + 4 - f.homeG) * e;
-        s = f.homeS + (f.homeS * (t.homeS / this.scale) / (f.homeS / this.scale) - f.homeS) * e;
+        s = f.homeS + (t.homeS - f.homeS) * e;
       }
       const dy = g - f.groundY;
       if (Math.abs(dy) > 0.01) { f.groundY = g; f.y += dy; }
