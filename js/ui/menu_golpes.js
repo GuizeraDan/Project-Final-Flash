@@ -52,6 +52,12 @@ FF.MenuGolpes = {
       const todos = document.createElement('div'); todos.className = 'mg-todos'; todos.hidden = true;
       info.forEach(x => { const b = document.createElement('button'); b.dataset.golpe = x.id; if (!x.pode) b.classList.add('bloq'); b.onclick = () => (x.pode ? done(x.id) : null); todos.appendChild(b); });
       box.append(topo, cats, lista, desc, todos);
+      // Ataque Z (todos os inimigos quebrados): botão dourado à direita das esferas (tecla Z)
+      if (mini && opts.ataqueZ) {
+        const bz = document.createElement('button'); bz.className = 'mg-ataquez'; bz.innerHTML = '⚡ ATAQUE Z <small>todos atacam juntos</small>';
+        bz.onclick = () => done('__ataquez');
+        box.appendChild(bz);
+      }
       const imp = document.createElement('div'); imp.className = 'mg-imp';
       if (mini) box.appendChild(imp);
       const desenharImp = () => {
@@ -167,11 +173,12 @@ FF.MenuGolpes = {
         else if (e.code === 'Enter') { e.preventDefault(); const x = l[sel]; if (x && x.pode) done(x.id); }
         else if (mini && (e.code === 'KeyE' || e.code === 'NumpadAdd' || e.code === 'Equal')) { e.preventDefault(); mudarBoost(1); }
         else if (mini && (e.code === 'KeyQ' || e.code === 'NumpadSubtract' || e.code === 'Minus')) { e.preventDefault(); mudarBoost(-1); }
+        else if (mini && opts.ataqueZ && e.code === 'KeyZ') { e.preventDefault(); done('__ataquez'); }
         else if (e.code === 'Escape' && opts.voltar) { e.preventDefault(); done('__voltar'); }
         else if (/^Digit[1-9]$/.test(e.code)) { const x = info[+e.code.slice(5) - 1]; if (x && x.pode) done(x.id); }
       };
       const done = (id) => {
-        hero.impulsoPlan = id === '__voltar' ? 0 : boost;
+        hero.impulsoPlan = id === '__voltar' || id === '__ataquez' ? 0 : boost;
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open');
         FF.Audio.play('decide_charasel', 0.6);

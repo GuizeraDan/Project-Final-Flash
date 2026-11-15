@@ -150,7 +150,22 @@ FF.Battle = class {
       if (!foes.length) break;
       this.turnLabel = 'Planejando ' + (i + 1) + '/' + herois.length + ': ' + h.nome;
       this.atual = h;
-      const moveId = await this.ui.chooseMove(h, this, { voltar: i > 0, plano: true });
+      // Ataque Z: todos os inimigos de pé quebrados → o time inteiro ataca junto (só antes de planejar alguém)
+      const todosQuebrados = foes.every(f => f.quebrado);
+      const moveId = await this.ui.chooseMove(h, this, { voltar: i > 0, plano: true, ataqueZ: todosQuebrados && i === 0 && herois.length > 0 });
+      if (moveId === '__ataquez') {
+        this.planejando = false; this.turnLabel = '';
+        await this.ataqueZ(herois.filter(x => !x.ko));
+        // os inimigos estavam quebrados: perdem a vez (e os escudos voltam)
+        for (const f of ordem) {
+          if (this.over || f.ko || f.isHero) continue;
+          if (f.atordoado > 0) await this.perderVez(f);
+          if (this.checkEnd()) return;
+        }
+        herois.forEach(x => { x.impulsoReservado = 0; x.planoIcone = null; });
+        if (!this.over) for (const x of herois) if (!x.ko) await this.endTurn(x);
+        return;
+      }
       if (moveId === '__voltar') { i--; plano.delete(herois[i]); herois[i].impulsoReservado = 0; continue; }
       const mv = h.def.golpes[moveId];
       let alvo = foes[0];
@@ -499,6 +514,54 @@ FF.Battle = class {
     FF.Clock.hitstop(forca === 'forte' || forca === 'energia' ? 0.08 : 0.045);
     this.shake({ leve: 3, media: 5, forte: 9, energia: 7 }[forca] || 3);
     return dmg;
+  }
+
+  // ATAQUE Z (como o "All-Out Attack" de Persona): cada herói avança e golpeia, todos voltam, explosão final
+  // acerta todos os inimigos de pé (que estão quebrados = +60% de dano)
+  async ataqueZ(herois) {
+    const foes = () => this.enemies.filter(f => !f.ko);
+    this.banner('ATAQUE Z!', 1.4);
+    this.flash(0.6); this.shake(8);
+    FF.Audio.play('sprkngbrst_expl', 0.8);
+    herois.forEach(h => h.voz && h.voz('ataque'));
+    await FF.Clock.wait(0.6);
+    const anims = ['Attack_Light_1', 'Attack_Light_2', 'Attack_Light_3', 'Attack_Medium', 'Attack_Heavy'];
+    for (let r = 0; r < 2; r++) {
+      for (const h of herois) {
+        const alvos = foes(); if (!alvos.length || h.ko) break;
+        const alvo = alvos[Math.floor(Math.random() * alvos.length)];
+        h.busy = true;
+        h.x = alvo.x - h.dir * 40 * h.scale;   // aparece colado (teletransporte rápido)
+        this.spawnFx('poeira', h.x, h.groundY, h.dir < 0, 0.8);
+        const a = anims.filter(n => h.sprite.has(n));
+        if (a.length) h.anim.play(a[(r * 2 + herois.indexOf(h)) % a.length]);
+        await FF.Clock.wait(0.12);
+        const p = alvo.peito();
+        this.spawnFx(r ? 'hit_grande' : 'hit3', p.x, p.y, h.dir < 0, r ? 0.5 : 1);
+        FF.Audio.play(['hit_small-a', 'hit_midle-a', 'hit_large-a'][r + (Math.random() < 0.5 ? 0 : 1)]);
+        alvo.reagir('dano', 0.2);
+        this.shake(4);
+        await FF.Clock.wait(0.16);
+      }
+    }
+    // todos de volta e a explosão final
+    herois.forEach(h => { h.x = h.homeX; h.idle(); });
+    await FF.Clock.wait(0.3);
+    const al = foes();
+    if (al.length) {
+      const cx = al.reduce((s, f) => s + f.x, 0) / al.length, cy = al.reduce((s, f) => s + f.peito().y, 0) / al.length;
+      this.spawnFx('Explosao15', cx, cy, false, 1.1);
+      this.flash(0.7); this.shake(14);
+      FF.Audio.play('genkidama_explosao', 0.9);
+      await FF.Clock.wait(0.25);
+      this.cenasKO = [];
+      for (const f of al) for (const h of herois) if (!h.ko && !f.ko) this.applyHit(h, f, { nome: 'Ataque Z', tipo: 'suporte', poder: 1.3 }, { fracao: 1, forca: 'forte', lanca: h === herois[herois.length - 1] }, null);
+      await Promise.all(this.cenasKO || []); this.cenasKO = [];
+    }
+    await FF.Clock.wait(0.6);
+    herois.forEach(h => { h.busy = false; if (!h.ko) h.idle(); });
+    await this.resetPositions();
+    this.checkEnd();
   }
 
   // QUEBRA DE GUARDA (escudos zerados): perde a próxima vez e leva +60% de dano até ela passar

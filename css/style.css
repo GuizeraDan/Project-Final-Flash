@@ -592,3 +592,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.mg-mini .mg-golpes { margin-bottom: 0; padding-bottom: 0.9cqw; }
 #menu.mg-mini .mg-golpes::after { top: auto; bottom: 0.45cqw; }
 #menu.mg-mini .mg-cat:hover { transform: scale(1.1); }
+
+/* Ataque Z: botão dourado pulsando à direita das esferas */
+#menu.mg-mini .mg-ataquez { position: absolute; left: 100%; bottom: 2.1cqw; margin-left: 1.4cqw; white-space: nowrap; cursor: pointer; z-index: 3;
+  font: inherit; font-size: 1.25cqw; font-weight: 900; font-style: italic; color: #2a0e00; padding: 0.45cqw 1.2cqw; border-radius: 0.4cqw; transform: skewX(-12deg);
+  border: 0.18cqw solid #fff3a0; background: linear-gradient(180deg, #fff27a, #ffb800 55%, #ff6a00); box-shadow: 0 0 1cqw #ffb800; animation: mgZ 0.6s ease-in-out infinite alternate; }
+#menu.mg-mini .mg-ataquez small { display: block; font-size: 0.7cqw; font-weight: 800; color: #5a2400; }
+@keyframes mgZ { from { box-shadow: 0 0 0.6cqw #ffb800; } to { box-shadow: 0 0 1.8cqw #ffe14a, 0 0 0.4cqw #fff; } }
