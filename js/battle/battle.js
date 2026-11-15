@@ -102,6 +102,19 @@ FF.Battle = class {
   }
 
   // tipo de golpe para as fraquezas: "corpo" | "energia" | null (suporte)
+  // o golpe leva quem ataca até o alvo? (passo "irAte" ou clipe mover/teleporte "até o alvo" na trilha de quem solta)
+  static vaiAteAlvo(m) {
+    for (const p of (m && m.roteiro) || []) {
+      if (p.irAte === 'alvo') return true;
+      const L = p.linha;
+      if (!L) continue;
+      for (const tr of L.trilhas || []) {
+        if (tr.quem !== 'atacante') continue;
+        if ((tr.clipes || []).some(c => (c.tipo === 'mover' || c.tipo === 'teleporte') && (!c.para || c.para === 'alvo'))) return true;
+      }
+    }
+    return false;
+  }
   static tipoGolpe(m) {
     if (!m) return null;
     if (m.tipo === 'corpo' || m.tipo === 'energia') return m.tipo;
@@ -409,6 +422,8 @@ FF.Battle = class {
   async alinharFileira(actor, target, move) {
     if (!this.persp || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
     if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
+    // golpe que avança até o alvo: o próprio avanço já vai na diagonal até a fileira dele (sem passo para o lado)
+    if (FF.Battle.vaiAteAlvo(move)) return false;
     actor.faixa = { alvo: target, de: 0, para: 1, t0: FF.Clock.t, d: 0.3 };
     if (actor.sprite.has(actor.animName('avancar'))) actor.play('avancar', { loop: true });
     this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);

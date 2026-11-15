@@ -371,3 +371,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-15 — Mudança de fileira antes do golpe (perspectiva)
 - Raios/rajadas saíam retos na fileira de quem ataca e não chegavam em alvo de outra fileira. `Battle.alinharFileira`: antes de todo golpe ofensivo num alvo de outra fileira (diferença ≥ 10 px), quem ataca desliza 0,3 s até a fileira do alvo (`f.faixa = {alvo, de, para, t0, d}`, poeira + "avancar"); `voltarFileira` devolve junto com o `resetPositions`. `atualizarPerspectiva` usa o maior entre o avanço horizontal e a `faixa`. Vale para heróis e inimigos.
+- Ajuste (pedido do usuário): o passo para o lado só vale para golpe que é solto parado (energia). Golpe que vai até o alvo (`FF.Battle.vaiAteAlvo`: passo `irAte: "alvo"` ou clipe mover/teleporte "até o alvo" na trilha de quem solta) não dá passo: o avanço vai na diagonal direto até a fileira do alvo (e volta na diagonal).
