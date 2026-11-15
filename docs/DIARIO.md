@@ -355,3 +355,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 ## 2026-11-15 — Volume dos sons + animação que ficava na tela
 - Volume por clipe (campo "Volume", deslizante 0–200 %, 100 = normal, ▶ ouve no volume): clipe de som e de voz (`vol`), som do acerto (`volSom`), projétil (`vol` ao soltar, `volImpacto`), lançar objeto (`volSom`). `FF.Audio.play(nome, vol, mult)` / `voice(nome, mult)` / `FF.Audio.pct(%)`; `Fighter.voz(tipo, mult)`. A linha do tempo mostra 🔉NN% no clipe.
 - Bug: clipe de animação com duração repete (loop) e ficava na tela até o fim da cena se nada viesse depois (ex.: Final Galick Cannon do Vegeta, pose com o raio). Agora o ÚLTIMO clipe de animação de quem não é o alvo volta ao normal quando acaba (devolve sprite emprestado e deslocamentos); opção "Segurar a pose (se for o último)" (`segurarFim`) e "Voltar ao normal no fim" visíveis para todos.
+
+## 2026-11-15 — Seleção por caixa na linha do tempo
+- Arrastar num espaço vazio das trilhas desenha uma caixa (ciano tracejado) e seleciona todos os clipes que ela toca (`LinhaUI.selecionarCaixa`, usa `host.multi`); Shift soma à seleção; rola sozinho na borda. Clique simples no vazio continua levando o cursor. Os selecionados se movem juntos arrastando um deles e Del apaga todos (já existia).

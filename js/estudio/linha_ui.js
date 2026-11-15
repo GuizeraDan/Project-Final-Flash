@@ -66,7 +66,7 @@ FF.EstudioLinha = class {
     b.appendChild(E.el('span', 'sep'));
     this.info = E.el('span', 'es-tl-info');
     b.appendChild(this.info);
-    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · duplo clique no clipe: trocar efeito/som/animação · Shift+clique: seleciona vários (arrastam juntos) · borda direita: esticar · Del apaga · Ctrl+D duplica'));
+    b.appendChild(E.el('span', 'es-dica', 'Duplo clique numa trilha: novo clipe · arraste para mover · duplo clique no clipe: trocar efeito/som/animação · arraste no vazio: caixa de seleção · Shift+clique: seleciona vários (arrastam juntos) · borda direita: esticar · Del apaga · Ctrl+D duplica'));
   }
 
   zoom(f, tAncora, xTela) {
@@ -305,6 +305,15 @@ FF.EstudioLinha = class {
       ctx.fillStyle = '#36c8d8'; ctx.font = '10px sans-serif'; ctx.textBaseline = 'middle';
       ctx.fillText('🔗', xe - 13, ye);
     }
+    // caixa de seleção (arrastar no espaço vazio)
+    if (this.caixa) {
+      const k = this.caixa, xa = Math.min(k.x0, k.x1), ya = Math.min(k.y0, k.y1);
+      ctx.save();
+      ctx.fillStyle = 'rgba(60,240,255,0.12)'; ctx.fillRect(xa, ya, Math.abs(k.x1 - k.x0), Math.abs(k.y1 - k.y0));
+      ctx.strokeStyle = '#3cf0ff'; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+      ctx.strokeRect(Math.round(xa) + 0.5, Math.round(ya) + 0.5, Math.round(Math.abs(k.x1 - k.x0)), Math.round(Math.abs(k.y1 - k.y0)));
+      ctx.restore();
+    }
     // guias de alinhamento (ao arrastar um clipe): linha ciano onde o início/fim bate com outros clipes, quadros ou o cursor
     for (const g of (this.guias || [])) {
       const x = Math.round(g.t * pxs) + 0.5;
@@ -421,11 +430,11 @@ FF.EstudioLinha = class {
         const grupo = multi.size > 1 ? [...multi].map(id => this.host.achar(id)).filter(Boolean).map(a => ({ c: a.c, t0: a.c.t })) : null;
         this._ignorar = grupo ? new Set(grupo.map(g => g.c)) : null;
         arr = { modo: h.borda && !grupo ? 'esticar' : 'mover', c: h.c, tr: h.tr, x0: p.x, t0: h.c.t, d0: this.host.dur(h.c, h.tr), mexeu: false, grupo };
-      } else if (h.tr) {
-        multi.clear();
-        this.host.selecionar(null, h.tr.id);
-        this.host.irPara(this.encaixar(t, null, e.altKey), true);
-        arr = { modo: 'cursor' };
+      } else {
+        // espaço vazio: arrastar desenha uma caixa e seleciona todos os clipes dentro dela (Shift = soma à seleção);
+        // só clicar (sem arrastar) continua levando o cursor até ali
+        const antes = e.shiftKey ? new Set(multi.size ? multi : (this.host.sel ? [this.host.sel] : [])) : new Set();
+        arr = { modo: 'caixa', x0: p.x, y0: p.y, x1: p.x, y1: p.y, t, tr: h.tr, alt: e.altKey, antes, mexeu: false };
       }
     });
     this.cv.addEventListener('pointermove', (e) => {
@@ -436,6 +445,18 @@ FF.EstudioLinha = class {
         return;
       }
       const t = Math.max(0, p.x / this.pxs);
+      if (arr.modo === 'caixa') {
+        if (!arr.mexeu && Math.hypot(p.x - arr.x0, p.y - arr.y0) < 5) return;
+        arr.mexeu = true;
+        arr.x1 = p.x; arr.y1 = Math.max(this.RG, p.y);
+        this.caixa = arr;
+        this.selecionarCaixa(arr);
+        // rola sozinho quando a caixa chega na borda
+        const ar = this.area, r = ar.getBoundingClientRect();
+        if (e.clientX > r.right - 20) ar.scrollLeft += 12; else if (e.clientX < r.left + 20) ar.scrollLeft -= 12;
+        if (e.clientY > r.bottom - 14) ar.scrollTop += 8; else if (e.clientY < r.top + 14) ar.scrollTop -= 8;
+        return;
+      }
       if (arr.modo === 'cursor') { this.host.irPara(this.encaixar(t, null, e.altKey), true); return; }
       if (arr.modo === 'loop') { const a = Math.min(arr.t0, t), b = Math.max(arr.t0, t); if (b - a > 0.02) this.host.loop = { a, b }; this.render(); return; }
       if (Math.abs(p.x - arr.x0) < 3 && !arr.mexeu) return;
@@ -461,6 +482,18 @@ FF.EstudioLinha = class {
       this.host.mudou(arr.modo === 'mover' ? (arr.grupo ? 'Mover clipes' : 'Mover clipe') : 'Esticar clipe', true, true);
     });
     const fim = () => {
+      if (arr && arr.modo === 'caixa') {
+        this.caixa = null;
+        if (!arr.mexeu) {   // foi só um clique: comportamento antigo (cursor até ali)
+          const multi = this.host.multi || (this.host.multi = new Set());
+          multi.clear();
+          this.host.selecionar(null, arr.tr ? arr.tr.id : null);
+          this.host.irPara(this.encaixar(arr.t, null, arr.alt), false);
+        } else this.selecionarCaixa(arr, true);
+        arr = null;
+        this.render();
+        return;
+      }
       if (arr && arr.mexeu) this.host.mudou(arr.modo === 'mover' ? 'Mover clipe' : 'Esticar clipe', true);
       if (arr && arr.modo === 'cursor') this.host.irPara(this.host.t, false);
       if (arr && arr.modo === 'loop') this.host.aoMudarLoop && this.host.aoMudarLoop();
@@ -476,6 +509,29 @@ FF.EstudioLinha = class {
       if (h.tr && !h.c) this.host.adicionar(h.tr.id, this.encaixar(p.x / this.pxs, null, e.altKey));
       else if (h.c && this.host.trocarConteudo) this.host.trocarConteudo(h.c, h.tr);   // duplo clique no clipe: trocar efeito/som/voz/animação
     });
+  }
+
+  // seleção por caixa: clipes que encostam no retângulo entram na seleção múltipla
+  selecionarCaixa(cx, final) {
+    const xa = Math.min(cx.x0, cx.x1), xb = Math.max(cx.x0, cx.x1), ya = Math.min(cx.y0, cx.y1), yb = Math.max(cx.y0, cx.y1);
+    const LH = this.LH, pxs = this.pxs;
+    const multi = this.host.multi || (this.host.multi = new Set());
+    multi.clear();
+    cx.antes.forEach(id => multi.add(id));
+    let ultimo = null;
+    for (const { c, tr } of this.todos()) {
+      if (tr.oculta) continue;
+      const y = this.yDe(c, tr) + 3, x = c.t * pxs, w = Math.max(this.host.dur(c, tr) * pxs, 12);
+      if (x <= xb && x + w >= xa && y <= yb && y + LH - 7 >= ya) { multi.add(c.id); ultimo = { c, tr }; }
+    }
+    if (final) {
+      const ids = [...multi];
+      if (!ids.length) { this.host.selecionar(null); return; }
+      const ult = ultimo || this.host.achar(ids[ids.length - 1]);
+      this.host.selecionar(ult.c.id, ult.tr.id, true);
+      if (ids.length > 1) FF.Estudio.aviso(ids.length + ' clipes selecionados · arraste um deles para mover todos · Del apaga');
+    }
+    this.desenhar();
   }
 
   // garante que o cursor apareça na tela
