@@ -361,3 +361,7 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-15 — Contador de hits
 - `Battle.contarHit(att, dmg)` em todo acerto com dano (applyHit) e nos golpes visuais do Ataque Z; combo por lado (time), zera a cada ação (`execute`/`ataqueZ`) ou 2,5 s sem acertar. `desenharCombo`: "N HITS" + "X de dano" embaixo do HUD de quem bate (esquerda = heróis, direita = inimigos), a partir de 2 hits, número pula a cada hit, vermelho a partir de 10, some 1,6 s depois. Vale para golpes do jogo, editados e habilidades (e no palco do Estúdio). `stats.maiorCombo` (heróis): combo ≥ 8 dá +5 na nota.
+
+## 2026-11-15 — Perspectiva: atacante na fileira do alvo + "↩ Trocar golpe"
+- Bug: o clipe "mover" (e o teleporte) guardava a altura de tela do começo (`y0`/`destY`) e sobrescrevia `f.y` a cada quadro; na perspectiva o `groundY` ia para a fileira do alvo, mas o desenho ficava na fileira de origem (Vegeta atacando o Bills "em cima" do Raditz; Bills batendo no Vegeta por baixo). Agora mover/teleporte trabalham com a altura relativa ao chão (`alt0`/`altDest`, `f.y = f.groundY - alt`), então acompanham a fileira (vale para heróis e inimigos; sem perspectiva nada muda).
+- Escolha do alvo: botão "↩ Trocar golpe" (e Esc/Backspace) devolve `null` → volta ao menu de golpes do mesmo lutador (modo Planejamento e turno clássico). A pausa não pega o Esc com a escolha de alvo aberta.

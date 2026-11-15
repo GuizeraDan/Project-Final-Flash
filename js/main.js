@@ -115,7 +115,8 @@ FF.UI = {
       box.classList.add('open');
     });
   },
-  // escolha do alvo quando há vários inimigos de pé (setas/números/clique)
+  // escolha do alvo quando há vários inimigos de pé (setas/números/clique). "↩ Trocar golpe" / Esc / Backspace
+  // devolve null: quem chamou volta para o menu de golpes do mesmo lutador
   chooseTarget(foes, battle) {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
@@ -151,19 +152,26 @@ FF.UI = {
         grade.appendChild(b);
         return b;
       });
+      const bv = document.createElement('button');
+      bv.className = 'cmd-voltar alvo-voltar';
+      bv.textContent = '↩ Trocar golpe';
+      bv.title = 'Voltar e escolher outro golpe (Esc)';
+      bv.onclick = () => done(-1);
+      box.appendChild(bv);
       const focus = (i) => { sel = i; battle.alvoMarcado = foes[i]; btns.forEach((b, k) => b.classList.toggle('sel', k === i)); };
       focus(0);
       const key = (e) => {
         if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.code)) { e.preventDefault(); focus((sel + (e.code === 'ArrowDown' || e.code === 'ArrowRight' ? 1 : -1) + btns.length) % btns.length); FF.Audio.play('tap_sound', 0.5); }
         else if (e.code === 'Enter') { e.preventDefault(); done(sel); }
         else if (/^Digit[1-9]$/.test(e.code)) { const i = +e.code.slice(5) - 1; if (btns[i]) done(i); }
+        else if (e.code === 'Escape' || e.code === 'Backspace') { e.preventDefault(); e.stopPropagation(); done(-1); }
       };
       const done = (i) => {
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open', 'alvos');
         battle.alvoMarcado = null;
-        FF.Audio.play('decide_charasel', 0.6);
-        resolve(foes[i]);
+        FF.Audio.play(i < 0 ? 'tap_sound' : 'decide_charasel', 0.6);
+        resolve(i < 0 ? null : foes[i]);
       };
       window.addEventListener('keydown', key, true);
       box.classList.add('open');

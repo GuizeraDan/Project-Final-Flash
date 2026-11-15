@@ -234,10 +234,11 @@ FF.Linha = {
         this.devolverSprite(f);
         let dest = this.destino(b, f, outro, c);
         if (b.persp && c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
-        // ponto da tela: também muda a altura (sem "y" = volta ao chão)
-        const destY = c.para === 'x' ? f.groundY + (c.y || 0) : f.y;
+        // ponto da tela: também muda a altura (sem "y" = volta ao chão). Altura medida a partir do chão do lutador:
+        // na perspectiva o chão muda de fileira durante o movimento (vai para a fileira do alvo e volta)
+        const alt0 = f.groundY - f.y, altDest = c.para === 'x' ? -(c.y || 0) : alt0;
         if (c.tipo === 'mover') {
-          const x0 = f.x, y0 = f.y, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
+          const x0 = f.x, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
           // tamanho e giro no destino (alças no palco): vão mudando durante o movimento
           const e0 = f.escExtra || 1, e1 = c.escala != null ? c.escala : e0;
           const r0 = f.rotExtra || 0, r1 = c.rot != null ? c.rot * f.dir : r0;
@@ -247,7 +248,7 @@ FF.Linha = {
             const e = c.suave === false ? k : 1 - Math.pow(1 - k, 2);
             f.x = x0 + (dest - x0) * e;
             // arco: sobe (ou desce, se negativo) no meio do caminho, como algo arremessado
-            f.y = y0 + (destY - y0) * e - (c.arco || 0) * Math.sin(Math.PI * e);
+            f.y = f.groundY - (alt0 + (altDest - alt0) * e) - (c.arco || 0) * Math.sin(Math.PI * e);
             // girar: voltas durante o movimento (ex.: inimigo arremessado rodando)
             f.escExtra = e0 + (e1 - e0) * e;
             f.rotExtra = r0 + (r1 - r0) * e + (c.girar ? c.girar * 360 * e * f.dir : 0);
@@ -261,7 +262,7 @@ FF.Linha = {
         // o teleporte desfaz giro/tamanho que vieram de um movimento anterior: some e reaparece "em pé"
         // (Tamanho/Giro na chegada do próprio teleporte valem ao reaparecer)
         f.rotExtra = 0; f.escExtra = 1; f.offX = 0; f.offY = 0;
-        const chegar = () => { f.x = dest; f.y = destY; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; };
+        const chegar = () => { f.x = dest; f.y = f.groundY - altDest; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; };
         if (!a) { chegar(); return; }
         const meio = Math.floor(a.frames.length / 2);
         // ao terminar, volta à pose parada (se nada mais trocou a animação nesse meio tempo)

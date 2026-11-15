@@ -675,3 +675,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #inicio.menu .titulo-rodape { bottom: 1.2cqw; }
 #titulo-menu > button { white-space: nowrap; }
 .sel-rodape button[hidden], .pausa-botoes button[hidden] { display: none !important; }
+
+/* escolha do alvo: voltar para trocar o golpe */
+#menu.alvos .alvo-voltar { display: block; margin: 0.5cqw auto 0; font-size: 1cqw; border-radius: 99px; padding: 0.25cqw 1cqw; }
+#menu.alvos .alvo-voltar:hover { background: #3c2a6a; border-color: #ffd21a; }

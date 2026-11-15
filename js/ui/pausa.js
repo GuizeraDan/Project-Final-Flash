@@ -28,6 +28,8 @@ FF.Pausa = {
     if (sv.velocidade) FF.Clock.velocidade = sv.velocidade;
     if (sv.janela) FF.janela = sv.janela;
     window.addEventListener('keydown', (e) => {
+      const mn = document.getElementById('menu');
+      if (e.code === 'Escape' && mn && mn.classList.contains('open') && mn.classList.contains('alvos')) return;   // Esc na escolha do alvo = trocar golpe
       if ((e.code === 'Escape' || e.code === 'KeyP') && this.disponivel()) { e.preventDefault(); e.stopImmediatePropagation(); this.alternar(); }
     }, true);
   },

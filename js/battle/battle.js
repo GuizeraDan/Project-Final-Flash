@@ -206,6 +206,7 @@ FF.Battle = class {
       const mv = h.def.golpes[moveId];
       let alvo = foes[0];
       if (foes.length > 1 && FF.Battle.ofensivo(mv)) alvo = await this.ui.chooseTarget(foes, this);
+      if (!alvo) { h.impulsoPlan = 0; continue; }   // "↩ Trocar golpe": volta ao menu do mesmo herói
       plano.set(h, { moveId, alvo, impulso: Math.min(h.impulsoPlan || 0, h.impulso) });
       h.planoIcone = (FF.UI && FF.UI.icone ? FF.UI.icone(mv) : '✔') + (h.impulsoPlan ? ' ×' + (h.impulsoPlan + 1) : '');
       h.impulsoReservado = h.impulsoPlan || 0;
@@ -325,10 +326,14 @@ FF.Battle = class {
     this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
     if (isHero) {
-      moveId = await this.ui.chooseMove(actor, this);
-      // vários inimigos de pé: o jogador escolhe o alvo (golpes que acertam alguém)
-      const mv = actor.def.golpes[moveId];
-      if (foes.length > 1 && FF.Battle.ofensivo(mv)) target = await this.ui.chooseTarget(foes, this);
+      for (;;) {
+        moveId = await this.ui.chooseMove(actor, this);
+        // vários inimigos de pé: o jogador escolhe o alvo (golpes que acertam alguém); "↩ Trocar golpe" volta ao menu
+        const mv = actor.def.golpes[moveId];
+        if (!(foes.length > 1 && FF.Battle.ofensivo(mv))) break;
+        const t = await this.ui.chooseTarget(foes, this);
+        if (t) { target = t; break; }
+      }
     }
     else {
       await FF.Clock.wait(0.6);
