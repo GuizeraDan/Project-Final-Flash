@@ -23,6 +23,7 @@
 //           anel: true = abre um anel de guarda/crítico novo; false = usa o anel do acerto anterior;
 //           sem o campo: anel novo quando o acerto anterior foi há mais de 0,6 s.
 //  tela     {tipo:"tremer", forca} | {tipo:"flash", forca} | {tipo:"mensagem", texto, d?}
+//           {tipo:"escurecer", d, forca} | {tipo:"linhas", d} | {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
 //           {tipo:"camera", d, zoom, foco: "centro"|"atacante"|"alvo"|"entre", dx?, dy?}
 //  acoes    {tipo:"acao", passo: {qualquer passo de roteiro: transformar, aplicar, ki, curar, atordoar, objeto,
 //           lancarObjeto, autoNocaute, removerBuff, vozTipo...}}
@@ -297,6 +298,14 @@ FF.Linha = {
         FF.Audio.voice(FF.Script.pick(c.voz)); return;
       }
       case 'acerto': if (target && actor) b.applyHit(actor, target, move, c, c._g && c._g.qte); return;
+      // abertura do Supremo (e qualquer golpe): tela escura com quem solta aceso, linhas de velocidade, faixa com texto
+      case 'escurecer': (b.efTela = b.efTela || {}).escuro = { t0: FF.Clock.t, d: c.d || 1.5, forca: c.forca != null ? c.forca : 0.65, actor }; return;
+      case 'linhas': (b.efTela = b.efTela || {}).linhas = { t0: FF.Clock.t, d: c.d || 1.5 }; return;
+      case 'faixa': {
+        const nomeG = (move.nomeFaixa || move.nome || '');
+        (b.efTela = b.efTela || {}).faixa = { t0: FF.Clock.t, d: c.d || 1.5, texto: String(c.texto != null ? c.texto : '{golpe}').replace(/\{golpe\}/g, nomeG).toUpperCase() };
+        return;
+      }
       case 'tremer': b.shake(c.forca || 6); return;
       case 'flash': b.flash(c.forca || 0.5); return;
       case 'mensagem': b.banner(c.texto || '', c.d || 1.3); return;

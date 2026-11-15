@@ -152,6 +152,20 @@ window.FF = window.FF || {};
       itemKO('padrao', '💀 Padrão (todos)', koSalvo.padrao ? '✎' : '', 'Vale para todo personagem que não tem cena de KO própria');
       itemKO('supremo', '💥 Vaporizado (golpe supremo)', koSalvo.supremo ? '✎' : '', 'Toca quando o golpe final é um Supremo (vale para todos): o derrotado se desfaz em faíscas');
       const nAlvo = (this.defs[cfg.alvo] || {}).nome || cfg.alvo;
+      // abertura do Supremo (antes de todo golpe Supremo): padrão + própria de quem solta
+      lista.appendChild(E.el('div', 'es-sub', '⚡ Abertura do Supremo'));
+      const abSalvo = FF.Edicoes.dados().abertura || {};
+      const itemAb = (id, nome, tag, dica) => {
+        const it = E.el('div', 'es-item' + (this.doc && this.doc.origem.tipo === 'abertura' && this.doc.origem.id === id ? ' sel' : ''));
+        const n = E.el('span'); n.textContent = nome; it.appendChild(n);
+        if (tag) it.appendChild(E.el('span', 'tag' + (tag === '✎' ? ' alt' : ''), tag));
+        it.title = dica;
+        it.onclick = () => this.confirmarTroca(() => this.abrirAbertura(id));
+        lista.appendChild(it);
+      };
+      const nAtk = (this.defs[cfg.atacante] || {}).nome || cfg.atacante;
+      itemAb('padrao', '⚡ Padrão (todos)', abSalvo.padrao ? '✎' : '', 'Toca antes de todo golpe Supremo de quem não tem abertura própria');
+      itemAb(cfg.atacante, '⚡ Quando ' + nAtk + ' solta', abSalvo[cfg.atacante] ? '✎' : 'usa a padrão', 'Abertura própria do ' + nAtk + ' (troque "Quem solta" para editar a de outro)');
       itemKO(cfg.alvo, '💀 Quando ' + nAlvo + ' cai', koSalvo[cfg.alvo] ? '✎' : 'usa a padrão', 'Cena própria do ' + nAlvo + ' (troque o Alvo do palco para editar a de outro personagem)');
       L.appendChild(lista);
       // alvo e parceiro
@@ -217,6 +231,13 @@ window.FF = window.FF || {};
       const nome = id === 'padrao' ? 'Cena de KO (padrão)' : id === 'supremo' ? 'KO por Supremo (vaporizado)' : 'KO de ' + ((this.defs[id] || {}).nome || id);
       this.abrirDoc({ origem: { tipo: 'ko', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome }, linha: FF.KO.linhaDe(id) });
       if (id !== 'padrao' && id !== 'supremo' && !FF.KO.temPropria(id)) E.aviso('💀 ' + nome + ': começa pela cena padrão. Ao salvar, vira a cena própria dele.');
+    },
+    abrirAbertura(id) {
+      const d = this.defs[this.cfg.atacante] || {};
+      const sup = Object.values(d.golpes || {}).find(g => g.supremo);
+      const nome = id === 'padrao' ? 'Abertura do Supremo (padrão)' : 'Abertura do Supremo de ' + (d.nome || id);
+      this.abrirDoc({ origem: { tipo: 'abertura', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome, nomeFaixa: sup ? sup.nome : 'Golpe Supremo' }, linha: FF.Abertura.linhaDe(id) });
+      if (id !== 'padrao' && !FF.Abertura.temPropria(id)) E.aviso('⚡ ' + nome + ': começa pela padrão. Ao salvar, vira a abertura própria dele.');
     },
     meta(g) { const m = E.copia(g); delete m.roteiro; delete m.habId; return m; },
     linhaDe(g) {
@@ -293,13 +314,14 @@ window.FF = window.FF || {};
       const real = ((f && f.anims) || {})[nome] || nome;
       return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
-    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar'].includes(c.tipo); },
+    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
         case 'teleporte': { const a = this.animDoClipe(c, tr); return a ? FF.Linha.duracaoAnim(a) : 0.25; }
         case 'mover': return c.d || 0.22;
         case 'vaporizar': return c.d || 1.2;
+        case 'escurecer': case 'linhas': case 'faixa': return c.d || 1.5;
         case 'efeito': { if (c.d) return c.d; const s = c.sprite ? FF.Assets.sprites[c.sprite] : (FF.Assets.sprites.fx.has(c.fx) ? FF.Assets.sprites.fx : FF.Assets.sprites.fx_extra); const a = s && s.anim(c.fx); return a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3; }
         case 'camada': return c.d != null ? c.d : 1;
         case 'projetil': { const b = this.palco._b; const dist = b ? Math.abs(b.alvo.x - b.atk.x) * 0.9 : 600; return Math.max(0.05, dist / (c.velocidade || 650)); }
@@ -425,7 +447,7 @@ window.FF = window.FF || {};
       const opcoes = {
         lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })], ['💨 Vaporizar', () => criar({ tipo: 'vaporizar', d: 1.2 })]],
         sons: [['♪ Som', () => criar({ tipo: 'som', som: 'hit_small-a' })], ['🗣 Voz', () => criar({ tipo: 'voz', voz: ((this.defs[this.cfg.atacante].vozes || {}).dano || ['vgkn100'])[0] })]],
-        tela: [['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash', () => criar({ tipo: 'flash', forca: 0.5 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
+        tela: [['🌑 Escurecer', () => criar({ tipo: 'escurecer', d: 1.5, forca: 0.65 })], ['💨 Linhas de velocidade', () => criar({ tipo: 'linhas', d: 1.5 })], ['🎌 Faixa com o nome', () => criar({ tipo: 'faixa', d: 1.5, texto: '{golpe}' })], ['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash', () => criar({ tipo: 'flash', forca: 0.5 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
       }[tr.tipo];
       if (opcoes) {
         const c = E.el('div', 'es-menu-clipes');
@@ -650,11 +672,12 @@ window.FF = window.FF || {};
       r.appendChild(salvar);
       if (o.tipo === 'golpe' && FF.Edicoes.golpeAlterado(o.personagem, o.id)) r.appendChild(E.botao('↺ Original', () => this.original(), 'Volta este golpe ao original do jogo'));
       if (o.tipo === 'ko' && (FF.Edicoes.dados().ko || {})[o.id]) r.appendChild(E.botao('↺ Original', () => this.original(), o.id === 'padrao' ? 'Volta a cena de KO padrão à do jogo' : 'Apaga a cena própria (volta a usar a padrão)'));
-      if (o.tipo !== 'ko') r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
+      if (o.tipo === 'abertura' && (FF.Edicoes.dados().abertura || {})[o.id]) r.appendChild(E.botao('↺ Original', () => this.original(), o.id === 'padrao' ? 'Volta a abertura padrão à do jogo' : 'Apaga a abertura própria (volta a usar a padrão)'));
+      if (o.tipo !== 'ko' && o.tipo !== 'abertura') r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
       if (o.tipo === 'habilidade') r.appendChild(E.botao('🗑', () => this.apagarHab(), 'Apagar esta habilidade', 'es-bt-perigo'));
       r.appendChild(E.botao('🎮', () => this.testarNoJogo(), 'Abrir uma Batalha Livre com este personagem para testar (salve antes)'));
       r.appendChild(E.botao('{ }', () => this.verJson(), 'Ver/colar o JSON do golpe'));
-      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)', ko: '💀 cena de KO' }[o.tipo];
+      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)', ko: '💀 cena de KO', abertura: '⚡ abertura do Supremo' }[o.tipo];
       this.titProps.innerHTML = '';
       const t = E.el('span'); t.textContent = (this.doc.golpe.nome || '') + ' · ' + tipo; this.titProps.appendChild(t);
     },
@@ -681,7 +704,11 @@ window.FF = window.FF || {};
       const o = this.doc.origem;
       const g = this.montarGolpe();
       if (!g.nome) g.nome = 'Sem nome';
-      if (o.tipo === 'ko') {
+      if (o.tipo === 'abertura') {
+        const linha = E.copia(this.doc.linha);
+        if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
+        E.salvarNoJogo(['abertura', o.id], linha, '⚡ ' + g.nome + ' salva no jogo.');
+      } else if (o.tipo === 'ko') {
         const linha = E.copia(this.doc.linha);
         if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
         E.salvarNoJogo(['ko', o.id], linha, '💀 ' + g.nome + ' salva no jogo.');
@@ -702,6 +729,13 @@ window.FF = window.FF || {};
     },
     async original() {
       const o = this.doc.origem;
+      if (o.tipo === 'abertura') {
+        const txt = o.id === 'padrao' ? 'Voltar a abertura padrão à original do jogo?' : 'Apagar a abertura própria? Ele volta a usar a padrão.';
+        if (!(await E.confirmar('Voltar ao original', txt + ' (em todos os aparelhos)', '↺ Voltar', true))) return;
+        E.salvarNoJogo(['abertura', o.id], null, '↺ Abertura voltou ao original.');
+        this.sujo = false;
+        return this.abrirAbertura(o.id);
+      }
       if (o.tipo === 'ko') {
         const txt = o.id === 'padrao' ? 'Voltar a cena de KO padrão à original do jogo?' : 'Apagar a cena de KO própria? Ele volta a usar a padrão.';
         if (!(await E.confirmar('Voltar ao original', txt + ' (em todos os aparelhos)', '↺ Voltar', true))) return;

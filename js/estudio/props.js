@@ -247,6 +247,9 @@ FF.EstudioProps = {
         else g.appendChild(E.campo('som', 'Voz', c.voz, set(c, 'voz', 'Voz'), { dica: 'Vários separados por vírgula = sorteia um', vozes: host.prefixoVoz() }));
         break;
       case 'acerto': this.camposAcerto(g, c, num, chk, sel, host, true); break;
+      case 'escurecer': g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); g.appendChild(num(c, 'forca', 'Escuridão', '0 = nada, 1 = preto (quem solta continua aceso)', { passo: 0.05, min: 0, max: 1 })); break;
+      case 'linhas': g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); break;
+      case 'faixa': g.appendChild(txt(c, 'texto', 'Texto', '{golpe} = nome do golpe')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); break;
       case 'tremer': case 'flash': g.appendChild(num(c, 'forca', 'Força', c.tipo === 'tremer' ? 'Ex.: 6 (fraco) a 20 (forte)' : '0 a 1', { passo: c.tipo === 'flash' ? 0.05 : 1 })); break;
       case 'mensagem': g.appendChild(txt(c, 'texto', 'Texto')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1 })); break;
       case 'camera': {
@@ -291,7 +294,7 @@ FF.EstudioProps = {
   },
 
   titulo(c) {
-    return { anim: '🎬 Animação', mover: '➡ Movimento', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
+    return { anim: '🎬 Animação', mover: '➡ Movimento', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
   },
 
   trilha(tr, host, txt) {
@@ -311,7 +314,12 @@ FF.EstudioProps = {
     const E = FF.Estudio;
     const g = host.doc.golpe;
     const box = E.el('div');
-    if (host.doc.origem.tipo === 'ko') {   // cena de KO: não tem nome, custo nem poder
+    if (host.doc.origem.tipo === 'abertura') {   // abertura do Supremo
+      const k = E.grupo('⚡ Abertura do Supremo');
+      k.appendChild(E.el('p', 'es-dica', 'Toca antes de todo golpe <b>Supremo</b>, antes do golpe em si. Trilha <b>Tela</b>: 🌑 Escurecer (só quem solta fica aceso), 💨 Linhas de velocidade, 🎌 Faixa com o nome (<b>{golpe}</b> vira o nome do golpe) e 🎥 Câmera. Dá para pôr sons, vozes, efeitos e animações em quem solta. ' +
+        (host.doc.origem.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm abertura própria.' : 'Esta é a abertura própria deste personagem.') + ' A câmera volta ao normal sozinha no fim. Sem nenhum clipe = sem abertura.'));
+      box.appendChild(k);
+    } else if (host.doc.origem.tipo === 'ko') {   // cena de KO: não tem nome, custo nem poder
       const k = E.grupo('💀 Cena de KO');
       k.appendChild(E.el('p', 'es-dica', 'Toca quando a vida de alguém chega a zero, junto com o golpe que derrubou. Trilha <b>Alvo</b> = quem caiu (use as animações "lancado" e "caido", empurrão, efeitos "peito/pés do alvo"); trilha <b>Quem solta</b> = quem deu o golpe final. ' +
         (host.doc.origem.id === 'padrao' ? 'Esta é a padrão: vale para todo mundo que não tem cena própria.' : 'Esta é a cena própria deste personagem; os outros continuam com a padrão.') +
@@ -335,7 +343,7 @@ FF.EstudioProps = {
     d.appendChild(E.campo('check', 'Automática', !L.duracaoManual, (v) => { if (v) { delete L.duracaoManual; host.autoDuracao(); } else L.duracaoManual = true; host.mudou('Duração automática'); }, { dica: 'Termina 0,1 s depois do último clipe' }));
     box.appendChild(d);
     const r = E.grupo('🔒 Regras', false);
-    if (host.doc.origem.tipo === 'ko') r.style.display = 'none';
+    if (host.doc.origem.tipo === 'ko' || host.doc.origem.tipo === 'abertura') r.style.display = 'none';
     r.appendChild(E.el('p', 'es-dica', 'mostrar/esconder: {"buff": "kaioken"} ou {"forma": "ssj"}. requer: {"parceiro": {"id": "piccolo", "ki": 30}} para Sparking Combo, {"semBuff": "kaioken"}.'));
     ['mostrar', 'esconder', 'requer'].forEach(k => r.appendChild(E.campo('json', k, g[k], (v) => { if (v === undefined) delete g[k]; else g[k] = v; host.mudou('Regra ' + k); }, { linhas: 2 })));
     box.appendChild(r);

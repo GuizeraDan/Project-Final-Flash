@@ -175,6 +175,9 @@ FF.EstudioLinha = class {
       case 'teleporte': return '⚡ ' + ({ alvo: 'até o alvo', casa: 'para casa', frente: 'frente', tras: 'trás', x: 'x' }[c.para] || c.para);
       case 'visivel': return (c.alpha ? '👁 aparece' : '🙈 some');
       case 'vaporizar': return '💨 vaporiza';
+      case 'escurecer': return '🌑 escurece ' + (c.forca != null ? c.forca : 0.65);
+      case 'linhas': return '💨 linhas';
+      case 'faixa': return '🎌 ' + (c.texto || '{golpe}');
       case 'efeito': return '✺ ' + (c.fx || '?');
       case 'projetil': return '➶ ' + (c.fx || 'kiblast_amarelo');
       case 'camada': return '▣ ' + (c.anim || '?');

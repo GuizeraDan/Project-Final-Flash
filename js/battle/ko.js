@@ -79,3 +79,41 @@ FF.KO = {
     return FF.Linha.preparar(linha).then(comecar);
   },
 };
+
+// ABERTURA DO SUPREMO: cena que toca antes de todo golpe Supremo (tela escurece, zoom em quem solta, linhas de
+// velocidade, faixa com o nome do golpe). Também é uma linha do tempo comum, editável no Estúdio:
+//   data/edicoes.js → abertura[<id de quem solta>] → abertura.padrao → FF.Abertura.PADRAO
+// Clipes de tela próprios: {tipo:"escurecer", d, forca} · {tipo:"linhas", d} · {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
+FF.Abertura = {
+  PADRAO: {
+    duracao: 1.7,
+    trilhas: [
+      { id: 'atacante', tipo: 'lutador', quem: 'atacante', nome: 'Quem solta', clipes: [] },
+      { id: 'alvo', tipo: 'lutador', quem: 'alvo', nome: 'Alvo', clipes: [] },
+      { id: 'efeitos', tipo: 'efeitos', nome: 'Efeitos', clipes: [] },
+      { id: 'sons', tipo: 'sons', nome: 'Sons e vozes', clipes: [
+        { id: 'ab1', tipo: 'som', t: 0, som: 'sprkngbrst_expl' },
+      ] },
+      { id: 'tela', tipo: 'tela', nome: 'Tela (escurecer, linhas, faixa, câmera)', clipes: [
+        { id: 'ab2', tipo: 'escurecer', t: 0, d: 1.5, forca: 0.65 },
+        { id: 'ab3', tipo: 'camera', t: 0, d: 0.3, zoom: 1.35, foco: 'atacante' },
+        { id: 'ab4', tipo: 'linhas', t: 0, d: 1.5 },
+        { id: 'ab5', tipo: 'faixa', t: 0, d: 1.5, texto: '{golpe}' },
+      ] },
+    ],
+  },
+  linhaSalva(id) {
+    const ab = (FF.Edicoes && FF.Edicoes.dados().abertura) || {};
+    return (id && id !== 'padrao' && ab[id]) || ab.padrao || null;
+  },
+  temPropria(id) { const ab = (FF.Edicoes && FF.Edicoes.dados().abertura) || {}; return !!(id && ab[id]); },
+  linhaDe(id) { return JSON.parse(JSON.stringify(this.linhaSalva(id) || this.PADRAO)); },
+  // toca a cena e espera terminar (devolve a câmera ao normal no fim)
+  async tocar(b, actor, target, move) {
+    const linha = this.linhaDe(actor.def && actor.def.id || actor.id);
+    if (linha.desligada || !(linha.trilhas || []).some(t => (t.clipes || []).length)) return;
+    if (!FF.Linha.pronta(linha)) await FF.Linha.preparar(linha);
+    const viva = FF.Linha.iniciar(b, actor, target, Object.assign({}, move, { roteiro: [] }), linha);
+    await viva.fim;
+  },
+};

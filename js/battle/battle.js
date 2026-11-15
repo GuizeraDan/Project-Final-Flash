@@ -819,36 +819,37 @@ FF.Battle = class {
     }
   }
 
-  // CÂMERA DRAMÁTICA DO SUPREMO: tela escurece (só quem solta fica aceso), zoom nele, nome do golpe enorme
+  // ABERTURA DO SUPREMO: cena editável no Estúdio (FF.Abertura, js/battle/ko.js)
   async dramaSupremo(actor, move) {
-    this.drama = { actor, nome: (move.nome || '').toUpperCase(), t0: FF.Clock.t, dur: 1.5 };
-    const pa = actor.peito();
-    this.cam = this.cam || { zoom: 1, x: 0, y: 0 };
-    this.camAlvo = { zoom: 1.35, x: pa.x - FF.W / 2, y: pa.y - FF.H / 2, d: 0.3, t: 0, de: Object.assign({}, this.cam) };
-    FF.Audio.play('sprkngbrst_expl', 0.6);
-    await FF.Clock.wait(1.5);
-    this.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, this.cam) };
-    this.drama = null;
-    await FF.Clock.wait(0.2);
+    const alvo = this.acaoAtual && this.acaoAtual.target;
+    try { await FF.Abertura.tocar(this, actor, alvo, move); } catch (e) { /* sem abertura */ }
+    await FF.Clock.wait(0.15);
   }
+  // clipes "linhas" e "faixa" (o "escurecer" é desenhado antes, junto dos lutadores)
   desenharDrama(ctx) {
-    const d = this.drama;
-    if (!d) return;
-    const k = Math.min(1, (FF.Clock.t - d.t0) / 0.2), t = FF.Clock.t;
+    const ef = this.efTela;
+    if (!ef) return;
+    const t = FF.Clock.t;
+    const fase = (o) => { if (!o) return 0; const u = t - o.t0; if (u < 0 || u > o.d) return 0; return Math.min(1, u / 0.2, (o.d - u) / 0.2); };
     ctx.save();
-    // linhas de velocidade saindo do centro
-    ctx.globalAlpha = 0.5 * k; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
-    for (let i = 0; i < 26; i++) {
-      const a = i * 0.2417 * Math.PI * 2 + t * 0.6, r0 = 260 + ((i * 37 + t * 900) % 120);
-      ctx.beginPath(); ctx.moveTo(FF.W / 2 + Math.cos(a) * r0, FF.H / 2 + Math.sin(a) * r0); ctx.lineTo(FF.W / 2 + Math.cos(a) * 900, FF.H / 2 + Math.sin(a) * 900); ctx.stroke();
+    const kl = fase(ef.linhas);
+    if (kl > 0) {
+      ctx.globalAlpha = 0.5 * kl; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      for (let i = 0; i < 26; i++) {
+        const a = i * 0.2417 * Math.PI * 2 + t * 0.6, r0 = 260 + ((i * 37 + t * 900) % 120);
+        ctx.beginPath(); ctx.moveTo(FF.W / 2 + Math.cos(a) * r0, FF.H / 2 + Math.sin(a) * r0); ctx.lineTo(FF.W / 2 + Math.cos(a) * 900, FF.H / 2 + Math.sin(a) * 900); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
     }
-    ctx.globalAlpha = 1;
-    // faixa com o nome
-    const y = FF.H * 0.72;
-    ctx.fillStyle = 'rgba(0,0,0,' + 0.65 * k + ')'; ctx.fillRect(0, y - 40, FF.W, 80);
-    ctx.fillStyle = 'rgba(255,180,0,' + 0.9 * k + ')'; ctx.fillRect(0, y - 42, FF.W, 3); ctx.fillRect(0, y + 39, FF.W, 3);
-    const g = ctx.createLinearGradient(0, y - 30, 0, y + 30); g.addColorStop(0, '#fffbb0'); g.addColorStop(0.5, '#ffd21a'); g.addColorStop(1, '#ff7a00');
-    FF.HUD.textoHud ? FF.HUD.textoHud(ctx, d.nome, FF.W / 2 + (1 - k) * 200, y, 52, g, 'center') : FF.HUD.text(ctx, d.nome, FF.W / 2, y, 48, '#ffd84a', 'center');
+    const kf = fase(ef.faixa);
+    if (kf > 0 && ef.faixa.texto) {
+      const y = FF.H * 0.72, entra = Math.min(1, (t - ef.faixa.t0) / 0.2);
+      ctx.fillStyle = 'rgba(0,0,0,' + 0.65 * kf + ')'; ctx.fillRect(0, y - 40, FF.W, 80);
+      ctx.fillStyle = 'rgba(255,180,0,' + 0.9 * kf + ')'; ctx.fillRect(0, y - 42, FF.W, 3); ctx.fillRect(0, y + 39, FF.W, 3);
+      const g = ctx.createLinearGradient(0, y - 30, 0, y + 30); g.addColorStop(0, '#fffbb0'); g.addColorStop(0.5, '#ffd21a'); g.addColorStop(1, '#ff7a00');
+      ctx.globalAlpha = kf;
+      FF.HUD.textoHud(ctx, ef.faixa.texto, FF.W / 2 + (1 - entra) * 200, y, 52, g, 'center', FF.W - 60);
+    }
     ctx.restore();
   }
   desenharFala(ctx) {
@@ -1301,7 +1302,11 @@ FF.Battle = class {
       });
     } else order.forEach(f => f.draw(ctx, this.fx));
     // supremo: escurece tudo e redesenha só quem solta, aceso
-    if (this.drama) { ctx.fillStyle = 'rgba(0,0,10,' + 0.65 * Math.min(1, (FF.Clock.t - this.drama.t0) / 0.2) + ')'; ctx.fillRect(-FF.W, -FF.H, FF.W * 3, FF.H * 3); this.drama.actor.draw(ctx, this.fx); }
+    const esc = this.efTela && this.efTela.escuro;
+    if (esc) {
+      const u = FF.Clock.t - esc.t0, k = u < 0 || u > esc.d ? 0 : Math.min(1, u / 0.2, (esc.d - u) / 0.2);
+      if (k > 0) { ctx.fillStyle = 'rgba(0,0,10,' + (esc.forca * k).toFixed(3) + ')'; ctx.fillRect(-FF.W, -FF.H, FF.W * 3, FF.H * 3); if (esc.actor) esc.actor.draw(ctx, this.fx); }
+    }
     this.desenharEmbate(ctx);
     this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
