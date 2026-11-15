@@ -603,8 +603,8 @@ window.FF = window.FF || {};
       b.appendChild(op('grade', '▦', 'Grade de 50 px e linha do chão'));
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
-      // perspectiva: começa igual às Opções do jogo (Perspectiva: Diagonal) até você trocar aqui
-      if (this.palco.opts.persp == null) { try { this.palco.opts.persp = (JSON.parse(localStorage.getItem('finalflash_save_v1') || '{}').perspectiva === 'diagonal'); } catch (e) { this.palco.opts.persp = false; } }
+      // perspectiva: começa na diagonal (como o jogo) até você trocar aqui
+      if (this.palco.opts.persp == null) this.palco.opts.persp = true;   // o jogo é sempre na diagonal
       const btP = E.botao('', () => {
         this.palco.opts.persp = !this.palco.opts.persp;
         E.rascunho.gravar('palco_opts', this.palco.opts);

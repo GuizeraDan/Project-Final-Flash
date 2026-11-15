@@ -335,5 +335,11 @@
         }
       ]
     }
+  },
+  "escudos": {
+    "n": 4,
+    "fraquezas": [
+      "energia"
+    ]
   }
 }

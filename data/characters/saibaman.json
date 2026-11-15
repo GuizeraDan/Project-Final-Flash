@@ -223,5 +223,12 @@
         }
       ]
     }
+  },
+  "escudos": {
+    "n": 2,
+    "fraquezas": [
+      "corpo",
+      "energia"
+    ]
   }
 }

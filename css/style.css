@@ -569,3 +569,18 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.mg-mini .mg-desc:has(em) { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 0.15cqw; z-index: 2; pointer-events: none; }
 #menu.mg-mini .mg-desc:has(em) { left: 100%; top: 0.9cqw; transform: none; margin: 0 0 0 1.2cqw; }
 #menu.mg-mini .mg-desc:has(em) { top: auto; bottom: 2.6cqw; }
+
+/* Pontos de Impulso (menu Minimalista): à esquerda das esferas */
+#menu.mg-mini .mg-imp { position: absolute; right: 100%; bottom: 2.35cqw; margin-right: 1.4cqw; display: flex; align-items: center; gap: 0.35cqw; white-space: nowrap;
+  padding: 0.25cqw 0.5cqw; transform: skewX(-12deg); background: rgba(16,20,48,0.92); border: 0.14cqw solid rgba(255,190,60,0.6); border-radius: 0.35cqw; }
+#menu.mg-mini .mg-imp > * { transform: skewX(12deg); }
+.mg-imp-txt { font-size: 0.85cqw; font-weight: 900; font-style: italic; color: #ffcf3a; text-shadow: 0 0.1cqw 0 #000; min-width: 6.4cqw; }
+.mg-imp-bt { font: inherit; font-size: 1cqw; font-weight: 900; width: 1.5cqw; height: 1.5cqw; line-height: 1; padding: 0; border-radius: 50%; cursor: pointer;
+  border: 0.12cqw solid #ffb21a; background: #2a1a06; color: #ffd84a; }
+.mg-imp-bt:disabled { opacity: 0.3; cursor: default; }
+.mg-imp-orbs { display: flex; gap: 0.25cqw; }
+.mg-imp-orbs i { width: 0.95cqw; height: 0.95cqw; border-radius: 50%; border: 0.1cqw solid rgba(255,170,60,0.45); background: rgba(5,10,20,0.8); }
+.mg-imp-orbs i.tem { border-color: #5a2400; background: radial-gradient(circle at 34% 30%, #fffbe0 0 12%, #ffd257 30%, #d85a00 100%); }
+.mg-imp-orbs i.usar { border-color: #fff; background: radial-gradient(circle at 34% 30%, #fff 0 25%, #ffe14a 45%, #ff8a00 100%); box-shadow: 0 0 0.5cqw #ffd84a; animation: mgImpPulso 0.5s ease-in-out infinite alternate; }
+@keyframes mgImpPulso { from { transform: scale(1); } to { transform: scale(1.25); } }
+.mg-slot[hidden] { display: none; }

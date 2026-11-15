@@ -401,5 +401,11 @@
         }
       ]
     }
+  },
+  "escudos": {
+    "n": 5,
+    "fraquezas": [
+      "corpo"
+    ]
   }
 }

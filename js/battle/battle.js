@@ -13,7 +13,7 @@ FF.Battle = class {
     this.scale = def.escala || 2.5;
     this.groundY = stage.chaoY || 470;
     // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
-    this.persp = def.perspectiva === true || !!(FF.Save && FF.Save.get && FF.Save.get().perspectiva === 'diagonal' && !def.semPerspectiva && def.perspectiva !== false);
+    this.persp = def.perspectiva !== false && !def.semPerspectiva;   // diagonal é o padrão do jogo (o palco do Estúdio escolhe)
     this.heroes = [];
     this.enemies = [];
     this.fxList = [];
@@ -59,8 +59,43 @@ FF.Battle = class {
       if (iguais.length === 1) iguais[0].sufixo = ' A';
       f.sufixo = ' ' + String.fromCharCode(65 + iguais.length);
     }
+    // Pontos de Impulso: todo mundo começa com 1 (ganha 1 por turno, até 5)
+    f.impulso = 1; f.boost = 0;
+    // escudos (Quebra de Guarda): só no time inimigo; fraquezas = tipos de golpe ("corpo", "energia")
+    if (lado === 'inimigo') {
+      const e = charDef.escudos || { n: 3, fraquezas: ['corpo'] };
+      f.escudosMax = Math.max(1, e.n || 3); f.escudos = f.escudosMax;
+      f.fraquezas = (e.fraquezas || ['corpo']).slice(); f.fraqVistas = new Set();
+    }
     lista.push(f);
     return f;
+  }
+
+  // tipo de golpe para as fraquezas: "corpo" | "energia" | null (suporte)
+  static tipoGolpe(m) {
+    if (!m) return null;
+    if (m.tipo === 'corpo' || m.tipo === 'energia') return m.tipo;
+    if (m.tipo === 'suporte' || m.tipo === 'transformacao') return null;
+    const j = JSON.stringify(m.roteiro || []);
+    if (/"irAte"|"tipo":"mover"/.test(j)) return 'corpo';
+    if (/"projetil"|"acerto"/.test(j)) return 'energia';
+    return null;
+  }
+
+  // perdeu a vez: atordoado (Taiyoken) ou guarda quebrada; ao fim da quebra os escudos voltam
+  async perderVez(actor) {
+    actor.atordoado--;
+    if (actor.quebrado) {
+      this.popup(actor, 'QUEBRADO!', '#ff9a6a');
+      this.banner(actor.nome + ' está sem guarda!', 1.2);
+      await FF.Clock.wait(1.2);
+      if (actor.atordoado <= 0) { actor.quebrado = false; actor.escudos = actor.escudosMax; this.popup(actor, '🛡 ESCUDOS DE VOLTA', '#9fd8ff', -40); }
+    } else {
+      this.popup(actor, 'ATORDOADO!', '#fff27a');
+      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
+      await FF.Clock.wait(1.2);
+    }
+    await this.endTurn(actor);
   }
 
   // ---------- fluxo ----------
@@ -73,7 +108,8 @@ FF.Battle = class {
       const ordem = this.all.slice().sort((a, b) => (b.stat('velocidade') - a.stat('velocidade')) || ((b.isHero ? 1 : 0) - (a.isHero ? 1 : 0)));
       this.ordem = ordem;   // mostrada no HUD
       // Opções → Modo de turno "Planejamento": escolhe as ações de todos primeiro, depois tudo acontece
-      if (FF.Save && FF.Save.get().modoTurno === 'planejamento') { await this.rodadaPlanejada(ordem); continue; }
+      // modo Planejamento é o padrão do jogo (o clássico fica só com def.turnoClassico)
+      if (!this.def.turnoClassico) { await this.rodadaPlanejada(ordem); continue; }
       for (const f of ordem) {
         if (this.over || f.ko) continue;
         await this.turn(f, f.isHero);
@@ -96,12 +132,14 @@ FF.Battle = class {
       this.turnLabel = 'Planejando ' + (i + 1) + '/' + herois.length + ': ' + h.nome;
       this.atual = h;
       const moveId = await this.ui.chooseMove(h, this, { voltar: i > 0, plano: true });
-      if (moveId === '__voltar') { i--; plano.delete(herois[i]); continue; }
+      if (moveId === '__voltar') { i--; plano.delete(herois[i]); herois[i].impulsoReservado = 0; continue; }
       const mv = h.def.golpes[moveId];
       let alvo = foes[0];
       if (foes.length > 1 && FF.Battle.ofensivo(mv)) alvo = await this.ui.chooseTarget(foes, this);
-      plano.set(h, { moveId, alvo });
-      h.planoIcone = FF.UI && FF.UI.icone ? FF.UI.icone(mv) : '✔';
+      plano.set(h, { moveId, alvo, impulso: Math.min(h.impulsoPlan || 0, h.impulso) });
+      h.planoIcone = (FF.UI && FF.UI.icone ? FF.UI.icone(mv) : '✔') + (h.impulsoPlan ? ' ×' + (h.impulsoPlan + 1) : '');
+      h.impulsoReservado = h.impulsoPlan || 0;
+      h.impulsoPlan = 0;
       i++;
     }
     this.planejando = false;
@@ -110,7 +148,11 @@ FF.Battle = class {
       const alvo = this.alvoInimigo(e);
       if (!alvo) continue;
       const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
-      plano.set(e, { moveId: sup || FF.AI.choose(e, alvo, this), alvo });
+      const mid = sup || FF.AI.choose(e, alvo, this);
+      // inimigo também usa Impulso: guarda pontos e solta num golpe de ataque
+      const ofens = FF.Battle.ofensivo(e.def.golpes[mid] || {});
+      const imp = ofens && e.impulso >= 3 ? (e.impulso >= 5 ? 2 : 1) : 0;
+      plano.set(e, { moveId: mid, alvo, impulso: imp });
     }
     this.turnLabel = '';
     this.banner('AÇÃO!', 0.8);
@@ -133,14 +175,7 @@ FF.Battle = class {
   }
 
   async turnoPlanejado(actor, p) {
-    if (actor.atordoado > 0) {
-      actor.atordoado--;
-      this.popup(actor, 'ATORDOADO!', '#fff27a');
-      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
-      await FF.Clock.wait(1.2);
-      await this.endTurn(actor);
-      return;
-    }
+    if (actor.atordoado > 0) { await this.perderVez(actor); return; }
     if (!p) { await this.endTurn(actor); return; }
     const foes = (actor.isHero ? this.enemies : this.heroes).filter(f => !f.ko);
     if (!foes.length) return;
@@ -159,7 +194,12 @@ FF.Battle = class {
     this.turnLabel = 'Vez de ' + actor.nome;
     this.atual = actor;
     await FF.Clock.wait(actor.isHero ? 0.15 : 0.35);
+    // Impulso: gasta os pontos escolhidos (não ganha ponto no fim deste turno)
+    const imp = Math.min(p.impulso || 0, actor.impulso || 0);
+    actor.impulsoReservado = 0;
+    if (imp > 0) { actor.impulso -= imp; actor.boost = imp; actor._impulsou = true; }
     await this.execute(actor, alvo, mv);
+    actor.boost = 0;
     this.atual = null;
     if (this.checkEnd()) return;
     await this.endTurn(actor);
@@ -191,14 +231,7 @@ FF.Battle = class {
       target = foes.find((f, i) => (x -= pesos[i]) <= 0) || foes[0];
     }
     // atordoado (ex.: Taiyoken do Kuririn): perde a vez
-    if (actor.atordoado > 0) {
-      actor.atordoado--;
-      this.popup(actor, 'ATORDOADO!', '#fff27a');
-      this.banner(actor.nome + ' não consegue enxergar!', 1.2);
-      await FF.Clock.wait(1.2);
-      await this.endTurn(actor);
-      return;
-    }
+    if (actor.atordoado > 0) { await this.perderVez(actor); return; }
     this.turnLabel = 'Vez de ' + actor.nome;
     this.atual = actor;               // destacado no HUD (moldura no painel + seta sobre o lutador)
     let moveId;
@@ -236,7 +269,19 @@ FF.Battle = class {
     }
     actor.busy = true;
     this.acaoAtual = { actor, target };
-    if (move.anuncio !== false) this.banner(move.nome, move.supremo ? 2.0 : 1.2);
+    this._escudoMarcado = new Set();   // escudos: cada golpe tira escudo uma vez por alvo
+    this._contraFeito = false;
+    const n = actor.boost || 0;
+    if (move.anuncio !== false) this.banner(move.nome + (n ? '  ×' + (n + 1) : ''), move.supremo ? 2.0 : 1.2);
+    if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
+      const p = actor.peito();
+      this.spawnFx('genkidama_efeito', p.x, p.y, false, 1.6 + 0.5 * n);
+      this.popup(actor, 'IMPULSO ×' + (n + 1) + '!', '#ffcf3a', -50);
+      FF.Audio.play('carregamentodeki_start', 0.8);
+      this.shake(2 + 2 * n);
+      this.flash(0.12 * n);
+      await FF.Clock.wait(0.35);
+    }
     await FF.Script.run(this, actor, target, move);
     await Promise.all(this.paralelos);
     this.paralelos = [];
@@ -251,6 +296,8 @@ FF.Battle = class {
 
   async endTurn(f) {
     f.addKi(f.def.atributos.kiPorTurno || 0);
+    if (!f._impulsou && !f.ko) f.impulso = Math.min(5, (f.impulso || 0) + 1);
+    f._impulsou = false;
     // buffs (ex.: Kaioken)
     for (const [id, bf] of Object.entries(f.buffs)) {
       if (bf.hpPorTurno) {
@@ -354,11 +401,32 @@ FF.Battle = class {
     const forca = spec.forca || 'leve';
     let dmg = (move.poder || 1) * (spec.fracao || 1) * att.stat('ataque') * 100 / (100 + def.stat('defesa'));
     dmg *= 0.9 + Math.random() * 0.2;
+    if (att.boost) dmg *= 1 + 0.4 * att.boost;   // Impulso: +40% por nível
     let guard = false;
+    // escudos: o golpe da fraqueza tira escudo (1 por golpe, +1 por nível de Impulso, +1 no supremo); zerou = QUEBRA
+    if (def.escudosMax && att.lado !== def.lado && !def.ko) {
+      const tipo = FF.Battle.tipoGolpe(move);
+      if (tipo && def.fraquezas.includes(tipo)) {
+        dmg *= 1.15;
+        if (!this._escudoMarcado || !this._escudoMarcado.has(def)) {
+          if (this._escudoMarcado) this._escudoMarcado.add(def);
+          def.fraqVistas.add(tipo);
+          if (!def.quebrado) {
+            const tira = 1 + (att.boost || 0) + (move.supremo ? 1 : 0);
+            def.escudos = Math.max(0, def.escudos - tira);
+            this.popup(def, '🛡 -' + tira, '#9fd8ff', -62);
+            if (def.escudos <= 0) this.quebrar(def);
+          }
+        }
+      }
+    }
+    if (def.quebrado) dmg *= 1.6;   // sem guarda: leva bem mais dano
 
     if (mode === 'guarda' && res) {
       guard = true;
-      dmg *= res === 'perfeito' ? 0.1 : 0.4;
+      dmg *= res === 'perfeito' ? 0 : 0.4;
+      // guarda perfeita contra golpe de corpo a corpo: contra-ataque (uma vez por golpe)
+      if (res === 'perfeito' && !this._contraFeito && FF.Battle.tipoGolpe(move) === 'corpo' && !att.ko) { this._contraFeito = true; this.paralelos.push(this.contraAtaque(def, att)); }
       if (!qte._shown) { this.popup(def, res === 'perfeito' ? 'GUARDA PERFEITA!' : 'GUARDA!', res === 'perfeito' ? '#7dffb0' : '#a0e0ff', -46); qte._shown = true; }
       if (res === 'perfeito') def.addKi(3);
     }
@@ -367,7 +435,7 @@ FF.Battle = class {
       if (!qte._shown) { this.popup(def, res === 'perfeito' ? 'CRÍTICO!!' : 'CRÍTICO!', '#ffd84a', -46); qte._shown = true; }
     }
 
-    dmg = Math.max(1, Math.round(dmg));
+    dmg = guard && res === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
     def.hp = Math.max(0, def.hp - dmg);
     // Rage Gauge: enche ao causar e (mais) ao receber dano; guarda perfeita também enche
     const fr = dmg / def.hpMax;
@@ -410,6 +478,31 @@ FF.Battle = class {
     FF.Clock.hitstop(forca === 'forte' || forca === 'energia' ? 0.08 : 0.045);
     this.shake({ leve: 3, media: 5, forte: 9, energia: 7 }[forca] || 3);
     return dmg;
+  }
+
+  // QUEBRA DE GUARDA (escudos zerados): perde a próxima vez e leva +60% de dano até ela passar
+  quebrar(def) {
+    def.quebrado = true;
+    def.atordoado = Math.max(def.atordoado || 0, 1);
+    const p = def.peito();
+    this.spawnFx('Explosao14', p.x, p.y, false, 0.9);
+    this.popup(def, 'QUEBRA!', '#ff6a3a', -80);
+    this.banner('QUEBRA DE GUARDA!', 1.0);
+    FF.Audio.play('guard_large'); FF.Audio.play('hit_large-a', 0.7);
+    this.flash(0.35); this.shake(10);
+  }
+
+  // contra-ataque depois de uma guarda perfeita: quem defendeu golpeia de volta
+  async contraAtaque(quem, alvo) {
+    this.popup(quem, 'CONTRA-ATAQUE!', '#7dffb0', -70);
+    await FF.Clock.wait(0.1);
+    if (quem.ko || alvo.ko) return;
+    const anim = ['Attack_Heavy', 'Attack_Medium', 'Attack_Light_3', 'Attack_Light_1'].find(a => quem.sprite.has(a));
+    if (anim) quem.anim.play(anim);
+    await FF.Clock.wait(0.12);
+    if (!alvo.ko && !quem.ko) this.applyHit(quem, alvo, { nome: 'Contra-ataque', poder: 0.9 }, { fracao: 1, forca: 'media' }, null);
+    await FF.Clock.wait(0.3);
+    if (!quem.ko) quem.idle();
   }
 
   // sprite: id de um sprite qualquer (ex.: importado no Estúdio) que tenha a animação "name"
@@ -503,7 +596,7 @@ FF.Battle = class {
     if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6, spec.disparoSprite ? { sprite: spec.disparoSprite } : undefined);
     let res;
     const p = {
-      a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1),
+      a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)),
       x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel,
       vx: (to.x - from.x) / travel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
@@ -639,6 +732,34 @@ FF.Battle = class {
       f.scale = s;
     }
   }
+  // escudos sobre cada inimigo: número + fraquezas (👊 corpo, 🔥 energia; "?" até descobrir acertando)
+  desenharEscudos(ctx) {
+    for (const f of this.enemies) {
+      if (!f.escudosMax || f.ko || !(f.alpha > 0.1)) continue;
+      const fr = f.anim.frame(), alto = fr ? fr[6] * f.scale * (f.escExtra || 1) : 60 * f.scale;
+      const x = f.x + (f.offX || 0), y = f.y + (f.offY || 0) - alto - 16;
+      ctx.save();
+      const s = 12;
+      ctx.beginPath();
+      ctx.moveTo(x - 30, y - s); ctx.lineTo(x - 30 + s * 1.6, y - s); ctx.lineTo(x - 30 + s * 1.6, y + 1); ctx.quadraticCurveTo(x - 30 + s * 1.6, y + s * 0.8, x - 30 + s * 0.8, y + s * 1.15); ctx.quadraticCurveTo(x - 30, y + s * 0.8, x - 30, y + 1); ctx.closePath();
+      const q = f.quebrado;
+      ctx.fillStyle = q ? (Math.sin(FF.Clock.t * 14) > 0 ? '#c0281a' : '#7a1208') : '#1f5fd0';
+      ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = q ? '#ffb08a' : '#cfe8ff'; ctx.stroke();
+      if (q) { ctx.strokeStyle = '#2a0400'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x - 24, y - s + 2); ctx.lineTo(x - 21, y - 2); ctx.lineTo(x - 25, y + 3); ctx.lineTo(x - 22, y + s); ctx.stroke(); }
+      FF.HUD.text(ctx, q ? '✕' : String(f.escudos), x - 30 + s * 0.8, y + 2, 14, '#fff', 'center');
+      // fraquezas
+      f.fraquezas.forEach((t, i) => {
+        const cx = x - 2 + i * 22, cy = y + 1;
+        ctx.beginPath(); ctx.arc(cx, cy, 9.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(10,12,24,0.8)'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = t === 'corpo' ? '#ffb24a' : '#6fe0ff'; ctx.stroke();
+        const vista = f.fraqVistas.has(t);
+        ctx.font = (vista ? '11px' : 'bold 12px') + ' sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#fff';
+        ctx.fillText(vista ? (t === 'corpo' ? '👊' : '🔥') : '?', cx, cy + 1);
+      });
+      ctx.restore();
+    }
+  }
+
   desenharSombras(ctx) {
     for (const f of this.all) {
       if (!(f.alpha > 0.05)) continue;
@@ -777,6 +898,7 @@ FF.Battle = class {
         else f.draw(ctx, this.fx);
       });
     } else order.forEach(f => f.draw(ctx, this.fx));
+    this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
     this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));

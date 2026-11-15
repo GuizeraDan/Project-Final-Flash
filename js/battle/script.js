@@ -78,12 +78,12 @@ FF.Script = {
 
     if (s.aplicar) {
       const def = (actor.def.buffs || {})[s.aplicar];
-      if (def) { actor.buffs[s.aplicar] = Object.assign({ id: s.aplicar }, def, { turnos: def.turnos }); actor.idle(); }
+      if (def) { actor.buffs[s.aplicar] = Object.assign({ id: s.aplicar }, def, { turnos: def.turnos + (actor.boost || 0) }); actor.idle(); }   // Impulso: +1 turno por nível
       return;
     }
 
     if (s.removerBuff) { delete actor.buffs[s.removerBuff]; return; }
-    if (s.ki) { actor.addKi(s.ki); b.popup(actor, (s.ki > 0 ? '+' : '') + s.ki + ' KI', '#7fd0ff'); return; }
+    if (s.ki) { if (s.ki > 0 && actor.boost) s = Object.assign({}, s, { ki: Math.round(s.ki * (1 + 0.5 * actor.boost)) }); actor.addKi(s.ki); b.popup(actor, (s.ki > 0 ? '+' : '') + s.ki + ' KI', '#7fd0ff'); return; }
     if (s.atordoar) {   // o alvo perde as próximas N vezes (não acumula)
       if (target && !target.ko) { target.atordoado = Math.max(target.atordoado || 0, s.atordoar); b.popup(target, 'ATORDOADO!', '#fff27a'); }
       return;

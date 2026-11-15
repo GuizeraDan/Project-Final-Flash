@@ -233,10 +233,62 @@ FF.HUD = {
     if (!cheia) { ctx.fillStyle = 'rgba(10,10,20,0.6)'; ctx.fill(); }
     else { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = 'rgba(255,200,60,' + (0.25 + 0.35 * pulso) + ')'; ctx.fill(); ctx.restore(); }
 
-    // abaixo do painel: supremo pronto e buffs
+    // Pontos de Impulso: 5 bolinhas entre o nome e o KI (douradas = tem; piscando = reservadas no plano)
+    const reserv = f.impulsoReservado || 0;
+    for (let i = 0; i < 5; i++) {
+      const cx = px(1120 + i * 78), cy = py(L.nome[1]), r = 23 * k;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      const tem = i < (f.impulso || 0), res = tem && i >= (f.impulso || 0) - reserv;
+      if (tem) {
+        const g = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.35, r * 0.1, cx, cy, r);
+        g.addColorStop(0, '#fffbe0'); g.addColorStop(0.35, res ? '#ffffff' : '#ffd257'); g.addColorStop(1, res ? '#ff9a1e' : '#d85a00');
+        ctx.fillStyle = g; ctx.globalAlpha = res ? 0.55 + 0.45 * pulso : 1; ctx.fill(); ctx.globalAlpha = 1;
+      } else { ctx.fillStyle = 'rgba(5,10,20,0.75)'; ctx.fill(); }
+      ctx.lineWidth = Math.max(1, 3 * k); ctx.strokeStyle = tem ? '#5a2400' : 'rgba(255,170,60,0.45)'; ctx.stroke();
+    }
+
+    // SPARKING (Fúria cheia): painel com aura dourada, raios correndo na barra, faíscas subindo e o ícone em explosão
+    if (cheia) {
+      const t = FF.Clock.t;
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      // aura em volta do painel
+      ctx.shadowColor = 'rgba(255,190,40,0.9)'; ctx.shadowBlur = 18 * Math.max(0.6, W / 400) * (0.6 + 0.4 * pulso);
+      ctx.strokeStyle = 'rgba(255,' + Math.round(170 + 60 * pulso) + ',60,' + (0.45 + 0.35 * pulso) + ')'; ctx.lineWidth = Math.max(1.5, 7 * k);
+      poly([[60, 30], [1985, 30], [2105, 150], [1890, 525], [70, 525], [30, 470], [30, 80]]); ctx.stroke();
+      ctx.shadowBlur = 0;
+      // raios elétricos ao longo da barra de Fúria (mudam de forma várias vezes por segundo)
+      let sem = Math.floor(t * 18) * 7919;
+      const rnd = () => { sem = (sem * 16807) % 2147483647; return sem / 2147483647; };
+      const yb = (R.y0 + R.y1) / 2, xEnd = R.x0 + R.passo * R.n;
+      for (let r = 0; r < 2; r++) {
+        ctx.beginPath(); ctx.moveTo(px(R.x0), py(yb));
+        for (let x = R.x0; x < xEnd; x += 60) ctx.lineTo(px(x + 60), py(yb + (rnd() - 0.5) * (R.y1 - R.y0) * 1.6));
+        ctx.strokeStyle = r ? 'rgba(255,255,255,0.85)' : 'rgba(120,220,255,0.75)'; ctx.lineWidth = Math.max(1, (r ? 3 : 6) * k); ctx.stroke();
+      }
+      // faíscas subindo
+      for (let i = 0; i < 14; i++) {
+        const fase = (t * 0.9 + i * 0.137) % 1;
+        const x = R.x0 + ((i * 271) % (R.passo * R.n)), y = R.y0 - fase * 260;
+        ctx.globalAlpha = 1 - fase; ctx.fillStyle = i % 3 ? '#ffd84a' : '#ffffff';
+        const sz = (10 + (i % 3) * 5) * k;
+        ctx.fillRect(px(x) - sz / 2, py(y) - sz / 2, sz, sz);
+      }
+      ctx.globalAlpha = 1;
+      // raios girando em volta do ícone
+      const ic = px(L.icone[0]), jc = py(L.icone[1]), ri = L.icone[2] * k;
+      for (let i = 0; i < 10; i++) {
+        const a = t * 2.5 + i * Math.PI / 5, l = ri * (1.5 + 0.5 * Math.sin(t * 9 + i));
+        ctx.beginPath(); ctx.moveTo(ic + Math.cos(a) * ri * 0.9, jc + Math.sin(a) * ri * 0.9); ctx.lineTo(ic + Math.cos(a) * l, jc + Math.sin(a) * l);
+        ctx.strokeStyle = 'rgba(255,220,90,0.8)'; ctx.lineWidth = Math.max(1, 5 * k); ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // abaixo do painel: sparking e buffs
     const by = Y + H + 9 * Math.max(0.7, W / 400);
     const ts = Math.round(12 * Math.max(0.75, W / 400));
-    if (cheia) this.textoHud(ctx, 'SUPREMO PRONTO!', px(R.x0), by, ts, '#ffe25a', rtl ? 'right' : 'left');
+    if (cheia) this.textoHud(ctx, 'SPARKING!', px(R.x0), by, ts, pulso > 0.5 ? '#fff27a' : '#ffb21a', rtl ? 'right' : 'left');
     const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
     if (tags.length) this.textoHud(ctx, tags.join('  '), px(R.x0 + R.passo * R.n), by, ts, '#ff9c9c', rtl ? 'left' : 'right');
     ctx.restore();

@@ -110,14 +110,16 @@ const ok = (c, m) => { if (!c) { console.log('FALHOU:', m); process.exitCode = 1
   await g.goto(raiz + '/index.html?livre=1');
   await g.waitForFunction(() => document.querySelector('#menu').classList.contains('open'), null, { timeout: 40000 });
   ok(await g.evaluate(() => FF.battle.heroes[0].def.golpes.kamehameha.poder === 9 && !!FF.battle.heroes[0].def.golpes.kamehameha.roteiro[0].linha), 'jogo usa o Kamehameha editado');
-  const nomes = await g.evaluate(() => [...document.querySelectorAll('#menu .cmd-golpes button .nome')].map(x => x.textContent));
+  // menu Minimalista: botões escondidos com data-golpe na ordem dos golpes (os nomes vêm do personagem)
+  const nomes = await g.evaluate(() => [...document.querySelectorAll('#menu [data-golpe]')].map(x => FF.battle.heroes[0].def.golpes[x.dataset.golpe].nome));
   const i = nomes.findIndex(n => n.includes('Rajada Teste'));
   ok(i >= 0, 'habilidade ⭐ aparece no menu de golpes');
   const hp0 = await g.evaluate(() => FF.battle.enemies[0].hp);
-  await g.click('#menu .cmd-golpes button >> nth=' + i);
+  await g.evaluate((k) => document.querySelectorAll('#menu [data-golpe]')[k].click(), i);
   await g.waitForTimeout(800);
   await foto(g, '3_jogo_habilidade');
-  await g.waitForFunction(() => !FF.battle.heroes[0].busy, null, { timeout: 15000 });
+  // modo Planejamento: a ação acontece depois do "AÇÃO!" (e o inimigo pode agir antes)
+  await g.waitForFunction((h) => FF.battle.enemies[0].hp < h, hp0, { timeout: 25000 }).catch(() => null);
   const hp1 = await g.evaluate(() => FF.battle.enemies[0].hp);
   ok(hp1 < hp0, 'habilidade causou dano na batalha (' + hp0 + ' → ' + hp1 + ')');
 

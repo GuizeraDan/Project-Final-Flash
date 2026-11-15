@@ -10,7 +10,7 @@ FF.MenuGolpes = {
     { id: 'formas', nome: 'Formas', ic: '⚡' },
     { id: 'buffs', nome: 'Buffs', ic: '🔥' },
   ],
-  estilo() { return (FF.Save && FF.Save.get().estiloMenu) || 'lista'; },
+  estilo() { return 'mini'; },   // o jogo usa só o Minimalista (os outros estilos ficam no código)
 
   // categoria de um golpe: transformação → Formas; ofensivo → Ataques; o resto (ki, buff, cura…) → Buffs
   categoria(m) {
@@ -34,6 +34,9 @@ FF.MenuGolpes = {
         // minimalista: "Carregar Ki" tem um círculo só dele
         return { id, i, m, cat: mini && /carregar/i.test(id) ? 'ki' : this.categoria(m), pode: !UI.motivo(hero, m) && !(m.requer && !UI.meets(hero, m.requer)) };
       });
+      // Pontos de Impulso (Minimalista): Q/E ou os botões −/+ concentram 0 a 3 níveis antes de soltar o golpe
+      let boost = 0;
+      const maxB = () => Math.min(3, hero.impulso || 0);
       let cat = (info.find(x => x.pode && x.cat === 'ataques') || info.find(x => x.pode) || info[0] || {}).cat || 'ataques';
       let sel = 0;
 
@@ -49,6 +52,25 @@ FF.MenuGolpes = {
       const todos = document.createElement('div'); todos.className = 'mg-todos'; todos.hidden = true;
       info.forEach(x => { const b = document.createElement('button'); b.dataset.golpe = x.id; if (!x.pode) b.classList.add('bloq'); b.onclick = () => (x.pode ? done(x.id) : null); todos.appendChild(b); });
       box.append(topo, cats, lista, desc, todos);
+      const imp = document.createElement('div'); imp.className = 'mg-imp';
+      if (mini) box.appendChild(imp);
+      const desenharImp = () => {
+        imp.innerHTML = '';
+        const menos = document.createElement('button'); menos.className = 'mg-imp-bt'; menos.textContent = '−'; menos.title = 'Menos impulso (Q)';
+        const mais = document.createElement('button'); mais.className = 'mg-imp-bt'; mais.textContent = '+'; mais.title = 'Mais impulso (E)';
+        menos.onclick = () => mudarBoost(-1); mais.onclick = () => mudarBoost(1);
+        const orbs = document.createElement('div'); orbs.className = 'mg-imp-orbs';
+        for (let i = 0; i < 5; i++) { const o = document.createElement('i'); o.className = i < boost ? 'usar' : i < (hero.impulso || 0) ? 'tem' : ''; orbs.appendChild(o); }
+        const t = document.createElement('span'); t.className = 'mg-imp-txt'; t.textContent = boost ? 'IMPULSO ×' + (boost + 1) : 'IMPULSO';
+        imp.append(t, menos, orbs, mais);
+        menos.disabled = boost <= 0; mais.disabled = boost >= maxB();
+      };
+      const mudarBoost = (d) => {
+        const n = Math.max(0, Math.min(maxB(), boost + d));
+        if (n === boost) return;
+        boost = n; FF.Audio.play(d > 0 ? 'carregamentodeki_start' : 'tap_sound', d > 0 ? 0.35 : 0.5);
+        desenharImp(); render();
+      };
       if (opts.voltar) {
         const bv = document.createElement('button'); bv.className = 'cmd-voltar mg-voltar'; bv.textContent = '↩ Voltar (herói anterior)';
         bv.onclick = () => done('__voltar');
@@ -98,7 +120,7 @@ FF.MenuGolpes = {
           const b = document.createElement('button');
           b.className = 'mg-golpe' + (x.pode ? '' : ' bloq') + (x.m.supremo ? ' supremo' : '') + (x.m.requer && x.m.requer.parceiro ? ' sparking' : '') + (k === sel ? ' sel' : '');
           b.innerHTML = '<span class="mg-ic">' + UI.icone(x.m) + '</span><span class="mg-nome"></span>' + (x.m.custoKi ? '<span class="mg-ki">' + x.m.custoKi + '</span>' : '');
-          b.querySelector('.mg-nome').textContent = (x.m.habId ? '⭐ ' : '') + x.m.nome;
+          b.querySelector('.mg-nome').textContent = (x.m.habId ? '⭐ ' : '') + x.m.nome + (mini && boost && k === sel ? ' ×' + (boost + 1) : '');
           b.onmouseenter = () => { sel = k; marcar(); };
           b.onclick = () => { sel = k; marcar(); if (x.pode) done(x.id); else FF.Audio.play('tap_sound', 0.3); };
           lista.appendChild(b);
@@ -108,6 +130,9 @@ FF.MenuGolpes = {
         marcar();
       };
       const marcar = () => {
+        if (mini && boost) {   // o "×N" acompanha o golpe selecionado
+          [...lista.querySelectorAll('.mg-golpe')].forEach((b, k) => { const x = doCat()[k]; if (x) b.querySelector('.mg-nome').textContent = (x.m.habId ? '⭐ ' : '') + x.m.nome + (k === sel ? ' ×' + (boost + 1) : ''); });
+        }
         [...lista.children].forEach((b, k) => b.classList.toggle('sel', k === sel));
         mostrarDesc(doCat()[sel]);
       };
@@ -127,16 +152,20 @@ FF.MenuGolpes = {
         if (mvG && l.length) { e.preventDefault(); sel = (sel + mvG + l.length) % l.length; marcar(); FF.Audio.play('tap_sound', 0.5); }
         else if (mvC) { e.preventDefault(); trocarCat(mvC); }
         else if (e.code === 'Enter') { e.preventDefault(); const x = l[sel]; if (x && x.pode) done(x.id); }
+        else if (mini && (e.code === 'KeyE' || e.code === 'NumpadAdd' || e.code === 'Equal')) { e.preventDefault(); mudarBoost(1); }
+        else if (mini && (e.code === 'KeyQ' || e.code === 'NumpadSubtract' || e.code === 'Minus')) { e.preventDefault(); mudarBoost(-1); }
         else if (e.code === 'Escape' && opts.voltar) { e.preventDefault(); done('__voltar'); }
         else if (/^Digit[1-9]$/.test(e.code)) { const x = info[+e.code.slice(5) - 1]; if (x && x.pode) done(x.id); }
       };
       const done = (id) => {
+        hero.impulsoPlan = id === '__voltar' ? 0 : boost;
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open');
         FF.Audio.play('decide_charasel', 0.6);
         resolve(id);
       };
       window.addEventListener('keydown', key, true);
+      if (mini) desenharImp();
       render();
       box.classList.add('open');
     });
