@@ -518,3 +518,49 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.mg-mini .mg-golpe.bloq { opacity: 0.6; }
 #menu.mg-mini .mg-desc:has(em) { display: block; background: rgba(14,16,26,0.82); border: 0; border-radius: 99px; padding: 0.15cqw 0.8cqw; font-size: 0.8cqw; white-space: nowrap; }
 #menu.mg-mini .mg-desc b, #menu.mg-mini .mg-desc span { display: none; }
+
+/* ===== Minimalista com cara de Dragon Ball Z: círculos = Esferas do Dragão, aura no escolhido, letras do logo ===== */
+@keyframes mgAura { 0%, 100% { box-shadow: 0 0 0 0.18cqw var(--aura), 0 0 0.9cqw 0.15cqw var(--aura), 0 0 2cqw 0.3cqw var(--aura2); } 50% { box-shadow: 0 0 0 0.24cqw var(--aura), 0 0 1.4cqw 0.35cqw var(--aura), 0 0 2.8cqw 0.6cqw var(--aura2); } }
+@keyframes mgBrilho { from { transform: translate(-60%, -60%) rotate(0deg); } to { transform: translate(-60%, -60%) rotate(360deg); } }
+#menu.mg-mini .mg-cat { --aura: #6fe9ff; --aura2: rgba(111,233,255,0.45);
+  width: 3.7cqw; height: 3.7cqw;
+  border: 0.2cqw solid #5a2400;
+  background: radial-gradient(circle at 34% 28%, #fffbe0 0 7%, #ffd257 16%, #ff9a1e 42%, #e46a06 70%, #8a3300 100%);
+  box-shadow: 0 0 0 0.16cqw var(--aura), 0 0.35cqw 0.6cqw rgba(0,0,0,0.55), inset 0 -0.35cqw 0.6cqw rgba(120,30,0,0.55); }
+#menu.mg-mini .mg-cat-ataques { --aura: #4fe3ff; --aura2: rgba(79,227,255,0.5); }
+#menu.mg-mini .mg-cat-formas { --aura: #ffe14a; --aura2: rgba(255,225,74,0.55); border-color: #5a2400; background: radial-gradient(circle at 34% 28%, #fffbe0 0 7%, #ffd257 16%, #ff9a1e 42%, #e46a06 70%, #8a3300 100%); }
+#menu.mg-mini .mg-cat-buffs { --aura: #ff4a3a; --aura2: rgba(255,74,58,0.5); border-color: #5a2400; background: radial-gradient(circle at 34% 28%, #fffbe0 0 7%, #ffd257 16%, #ff9a1e 42%, #e46a06 70%, #8a3300 100%); }
+#menu.mg-mini .mg-cat-ki { --aura: #b07aff; --aura2: rgba(176,122,255,0.55); }
+/* ícone como as estrelas da esfera: vermelho escuro */
+#menu.mg-mini .mg-cat-ic { font-size: 1.7cqw; filter: brightness(0) saturate(100%) invert(14%) sepia(96%) saturate(5200%) hue-rotate(352deg) brightness(0.95) drop-shadow(0 0.06cqw 0 rgba(255,230,160,0.6)); }
+#menu.mg-mini .mg-cat:hover { background: radial-gradient(circle at 34% 28%, #fffbe0 0 8%, #ffe07a 18%, #ffad35 44%, #f07a10 70%, #8a3300 100%); }
+#menu.mg-mini .mg-cat.sel { transform: scale(1.16); animation: mgAura 0.9s ease-in-out infinite; background: radial-gradient(circle at 34% 28%, #fffbe0 0 8%, #ffe07a 18%, #ffad35 44%, #f07a10 70%, #8a3300 100%); }
+/* chamas da aura atrás da esfera escolhida */
+#menu.mg-mini .mg-cat.sel::before { content: ''; position: absolute; left: 50%; top: 50%; width: 5.6cqw; height: 5.6cqw; z-index: -1; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 8%, var(--aura2) 12%, transparent 18% 33%, var(--aura2) 38%, transparent 44% 58%, var(--aura2) 63%, transparent 69% 83%, var(--aura2) 88%, transparent 94%);
+  filter: blur(0.25cqw); animation: mgBrilho 2.4s linear infinite; pointer-events: none; }
+#menu.mg-mini .mg-cat.sel::after { display: none; }
+/* rótulos com a cara do logo: amarelo → laranja, contorno escuro */
+#menu.mg-mini .mg-cat-nome { font-size: 0.95cqw; font-weight: 900; font-style: italic; letter-spacing: 0.08cqw; text-transform: uppercase;
+  color: #ffcf2a; background: linear-gradient(180deg, #fff27a 10%, #ffc21a 45%, #ff7a00 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.1cqw #3a1400; paint-order: stroke fill; text-shadow: none; filter: drop-shadow(0 0.12cqw 0 #1a0800) drop-shadow(0 0 0.3cqw rgba(0,0,0,0.7)); }
+#menu.mg-mini .mg-cat.sel + .mg-cat-nome, #menu.mg-mini .mg-cat.sel .mg-cat-nome { font-size: 1.05cqw; }
+/* pílulas: placa inclinada azul-noite com faixa laranja, como as telas de golpe do DBZ */
+#menu.mg-mini .mg-golpe { position: relative; transform: skewX(-12deg); border-radius: 0.35cqw; padding: 0.3cqw 1.1cqw 0.3cqw 0.5cqw;
+  background: linear-gradient(90deg, #ff8a00 0 0.35cqw, rgba(16,20,48,0.92) 0.35cqw); border: 0.14cqw solid rgba(255,190,60,0.55); box-shadow: 0 0.2cqw 0.4cqw rgba(0,0,0,0.5); }
+#menu.mg-mini .mg-golpe > * { transform: skewX(12deg); }
+#menu.mg-mini .mg-ic { border-color: rgba(255,200,90,0.8); background: radial-gradient(circle at 34% 30%, #ffd257, #e46a06 70%, #8a3300); filter: none; }
+#menu.mg-mini .mg-golpe .mg-ic { font-size: 0.95cqw; }
+#menu.mg-mini .mg-nome { font-weight: 900; font-style: italic; letter-spacing: 0.05cqw; color: #fff; text-shadow: 0 0.1cqw 0 #000; }
+#menu.mg-mini .mg-ki { color: #7fe0ff; font-weight: 900; font-style: italic; }
+#menu.mg-mini .mg-golpe.sel { border-color: #ffe14a; background: linear-gradient(90deg, #ffd21a 0 0.35cqw, rgba(40,26,8,0.95) 0.35cqw, rgba(90,40,4,0.95));
+  box-shadow: 0 0 0.6cqw rgba(255,200,40,0.75), 0 0 1.4cqw rgba(255,120,0,0.45); }
+#menu.mg-mini .mg-golpe.sel .mg-nome { color: #ffe14a; background: linear-gradient(180deg, #fff27a 15%, #ffc21a 55%, #ff8a00 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; filter: drop-shadow(0 0.1cqw 0 #2a0e00); }
+#menu.mg-mini .mg-golpe.sel::after { color: #ffe14a; transform: skewX(12deg); }
+#menu.mg-mini .mg-golpe.supremo { background: linear-gradient(90deg, #ff3a1a 0 0.35cqw, rgba(70,14,4,0.94) 0.35cqw); border-color: #ff7a3a; }
+#menu.mg-mini .mg-golpe.sparking { background: linear-gradient(90deg, #3fc8ff 0 0.35cqw, rgba(10,30,60,0.94) 0.35cqw); }
+#menu.mg-mini .mg-golpe.bloq { filter: grayscale(0.6); }
+#menu.mg-mini .mg-golpes::after { border-top-color: #ff9a1e; }
+#menu.mg-mini .mg-desc:has(em) { background: rgba(16,20,48,0.92); border: 0.12cqw solid rgba(255,190,60,0.55); }
+#menu.mg-mini .mg-cat-nome { background: linear-gradient(180deg, #fffcc0 5%, #ffe23a 45%, #ffa000 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 0.06cqw #2a0e00;
+  filter: drop-shadow(0.08cqw 0.1cqw 0 #1a0600) drop-shadow(0 0 0.25cqw rgba(0,0,0,0.85)); }
