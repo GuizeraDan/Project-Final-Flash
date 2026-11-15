@@ -42,7 +42,7 @@ window.FF = window.FF || {};
     const NM = nomes();
 
     let fonte = o.inicio || (o.atual && o.atual.sprite) || E.rascunho.ler('seletor_fonte') || 'efeitos';
-    if (fonte !== 'efeitos' && fonte !== 'todos' && !/^(cat|fav)(:|$)/.test(fonte) && fonte !== 'lixeira' && !ids.includes(fonte)) fonte = 'efeitos';
+    if (fonte !== 'efeitos' && fonte !== 'todos' && !/^(cat|fav|pasta)(:|$)/.test(fonte) && fonte !== 'lixeira' && !ids.includes(fonte)) fonte = 'efeitos';
 
     const c = E.el('div', 'es-seletor');
     const lado = E.el('div', 'es-seletor-fontes');
@@ -120,12 +120,16 @@ window.FF = window.FF || {};
       if (!FF.Favoritos) return;
       favBox.innerHTML = '';
       const l = FF.Favoritos.lista();
-      if (!l.length) { favBox.appendChild(E.el('div', 'es-sub', '⭐ Meus favoritos (0)')); favBox.appendChild(E.el('p', 'es-dica', 'Clique na ☆ de um cartão (animação) ou de um sprite na lista para favoritar e dizer o que ele é.')); return; }
-      bt('fav', '⭐ Meus favoritos (todos)', String(l.length), favBox);
-      FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
-        const n = l.filter(x => x.tipo === t).length;
-        if (n) bt('fav:' + t, ic + ' ' + FF.Favoritos.plural[t], String(n), favBox);
-      });
+      if (!l.length) { favBox.appendChild(E.el('div', 'es-sub', '⭐ Meus favoritos (0)')); favBox.appendChild(E.el('p', 'es-dica', 'Clique na ☆ de um cartão (animação) ou de um sprite na lista para favoritar e dizer o que ele é.')); }
+      else {
+        bt('fav', '⭐ Meus favoritos (todos)', String(l.length), favBox);
+        FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
+          const n = l.filter(x => x.tipo === t).length;
+          if (n) bt('fav:' + t, ic + ' ' + FF.Favoritos.plural[t], String(n), favBox);
+        });
+      }
+      // 📁 pastas criadas pelo usuário (ex.: "Goku" com as animações e efeitos dele)
+      FF.listaPastas(FF.Favoritos, favBox, bt, (nova) => { if (nova) { fonte = nova; E.rascunho.gravar('seletor_fonte', nova); } contarFav(); render(); }, () => fonte, () => { fonte = 'efeitos'; });
       marcar();
     };
     bt('todos', '★ Tudo', null);
@@ -180,8 +184,8 @@ window.FF = window.FF || {};
       const g = ++geracao;
       const f = busca.value.trim().toLowerCase();
       let lista, favs = null;
-      if (/^fav(:|$)/.test(fonte) && !f) {   // favoritos: sprites inteiros + animações marcadas
-        favs = FF.Favoritos.lista(fonte.slice(4) || null).filter(x => ids.includes(x.sprite));
+      if (/^(fav|pasta)(:|$)/.test(fonte) && !f) {   // favoritos / pasta: sprites inteiros + animações marcadas
+        favs = (/^pasta:/.test(fonte) ? FF.Favoritos.itensPasta(fonte.slice(6)) : FF.Favoritos.lista(fonte.slice(4) || null)).filter(x => ids.includes(x.sprite));
         lista = [...new Set(favs.map(x => x.sprite))];
       } else if (fonte === 'todos' || f) lista = ids;                       // buscar procura em tudo
       else if (fonte === 'efeitos') {

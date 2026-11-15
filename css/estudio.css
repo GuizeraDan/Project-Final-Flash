@@ -225,3 +225,16 @@ a { color: var(--ouro); }
 /* campo de volume dos sons */
 .es-campo-volume input[type=range] { flex: 1; accent-color: #ffb400; }
 .es-vol-v { width: 40px; text-align: right; font-size: 12px; cursor: pointer; color: #ffd21a; }
+
+/* 📁 pastas dos favoritos */
+.es-fav-menu .es-fav-tit-pastas { border-top: 1px solid #3a2a66; margin-top: 4px; padding-top: 6px; }
+.es-fav-pastas { display: flex; flex-direction: column; gap: 3px; max-height: 220px; overflow-y: auto; }
+.es-fav-menu button.nova { color: #9fe3ff; border-style: dashed; }
+.es-fav-nova { background: #120a24; color: #fff; border: 1px solid var(--ouro, #ffd84a); border-radius: 4px; padding: 5px 8px; font-size: 13px; }
+.es-pasta-acoes button { font-size: 11px; }
+.es-pasta-nova { color: #9fe3ff; font-size: 12px; opacity: 0.85; }
+.es-pasta-nova:hover { opacity: 1; }
+.es-favs-pasta { display: flex; align-items: center; gap: 6px; }
+.es-favs-pasta button { font-size: 11px; padding: 1px 6px; opacity: 0.6; }
+.es-favs-pasta:hover button { opacity: 1; }
+.es-favs-pastas-barra { margin: 4px 0 2px; display: flex; gap: 6px; }
