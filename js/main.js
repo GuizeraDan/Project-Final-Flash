@@ -781,6 +781,7 @@ window.addEventListener('load', () => {
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
     if (ac === 'treino') return mostrar('treino');
+    if (ac === 'tutorial') { intro.className = 'tutorial-aberto'; return FF.Tutorial.abrir(); }
     if (ac === 'voltar' && intro.className === 'novojogo' && FF.NovoJogo.saga) return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'voltar') return mostrar('menu');
     if (ac === 'apagar') {

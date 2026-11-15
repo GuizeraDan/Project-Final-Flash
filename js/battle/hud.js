@@ -447,5 +447,6 @@ FF.HUD = {
       ctx.restore();
       this.text(ctx, bn.text, FF.W / 2, 155, 34 * (0.7 + 0.3 * k), '#ffe25a', 'center');
     }
+    if (FF.Tutorial && b.def && b.def.tutorial) FF.Tutorial.desenharDica(ctx, b);   // luta de treino: dicas
   },
 };

@@ -616,3 +616,52 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* Treinamento: cápsulas */
 .treino-cap { font: inherit; font-size: 1.05cqw; background: #1a1240; color: #fff; border: 0.12cqw solid #c9952c; border-radius: 0.3cqw; padding: 0.15cqw; }
 .treino-cap-desc { font-size: 0.9cqw; color: #d8d0ff; line-height: 1.25; }
+
+/* ===== Tutorial (menu inicial → 📖 Tutorial) ===== */
+#tutorial { position: absolute; inset: 0; z-index: 40; display: none; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 35%, rgba(70,40,140,0.75), rgba(5,3,15,0.95) 75%); }
+#tutorial.open { display: flex; }
+.tut-caixa { width: 86cqw; max-height: 94%; display: flex; flex-direction: column; background: linear-gradient(180deg, rgba(40,20,90,0.97), rgba(16,8,36,0.97)); border: 0.25cqw solid #c9952c; border-radius: 0.8cqw; box-shadow: 0 0 2cqw rgba(0,0,0,0.7), 0 0 1.2cqw rgba(255,180,40,0.25); overflow: hidden; }
+.tut-topo { display: flex; align-items: center; gap: 1cqw; padding: 0.7cqw 1.2cqw; background: linear-gradient(90deg, #ffb800, #ff7a00 60%, #b84a00); }
+.tut-topo h2 { flex: 1; margin: 0; font-size: 2.2cqw; font-weight: 900; font-style: italic; color: #2a0e00; text-transform: uppercase; letter-spacing: 0.08cqw; }
+.tut-ic { font-size: 2.4cqw; }
+.tut-x { font: inherit; font-size: 1.6cqw; font-weight: 900; width: 3cqw; height: 3cqw; border-radius: 50%; border: 0.15cqw solid #2a0e00; background: rgba(255,255,255,0.35); color: #2a0e00; cursor: pointer; }
+.tut-corpo { display: flex; gap: 1.6cqw; padding: 1.2cqw 1.6cqw; overflow: auto; align-items: flex-start; }
+.tut-ilu { flex: 0 0 42cqw; display: flex; flex-direction: column; gap: 0.6cqw; }
+.tut-ilu canvas { width: 100%; border-radius: 0.5cqw; border: 0.15cqw solid #6a5ab0; background: #10142a; }
+.tut-txt { flex: 1; font-size: 1.45cqw; line-height: 1.45; color: #f4f0ff; }
+.tut-txt p { margin: 0 0 0.8cqw; } .tut-txt ul, .tut-txt ol { margin: 0 0 0.8cqw; padding-left: 2cqw; } .tut-txt li { margin-bottom: 0.35cqw; }
+.tut-txt b { color: #ffd84a; }
+.tut-dica { font-size: 1.25cqw; color: #bfe9ff; background: rgba(40,120,200,0.18); border-left: 0.3cqw solid #3fb0ff; padding: 0.4cqw 0.8cqw; border-radius: 0.3cqw; }
+.tut-nav { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; padding: 0.7cqw 1.2cqw; border-top: 0.15cqw solid rgba(201,149,44,0.5); }
+.tut-nav button, .tut-bts-fim button { font: inherit; font-size: 1.4cqw; font-weight: 900; font-style: italic; padding: 0.5cqw 1.6cqw; border-radius: 0.4cqw; cursor: pointer; border: 0.18cqw solid #ffd84a; background: #2b1d5c; color: #fff; transform: skewX(-10deg); min-height: 36px; }
+.tut-nav button:disabled { opacity: 0.3; cursor: default; }
+.tut-nav button:not(:disabled):hover, .tut-bts-fim button:hover { background: #5a3fa8; }
+.tut-pontos { display: flex; gap: 0.5cqw; flex-wrap: wrap; justify-content: center; }
+.tut-pontos i { width: 1cqw; height: 1cqw; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; }
+.tut-pontos i.sel { background: #ffd84a; box-shadow: 0 0 0.5cqw #ffd84a; }
+.tut-bts-fim { display: flex; gap: 1.2cqw; margin-top: 1cqw; }
+.tut-bts-fim button:first-child { background: linear-gradient(180deg, #fff27a, #ffb800 55%, #ff6a00); color: #2a0e00; border-color: #fff3a0; }
+/* ilustração do menu de esferas */
+.tut-menu { position: relative; height: 18cqw; background: linear-gradient(180deg, #8fc8ff, #cfe9ff 55%, #6fbf3a 56%, #3f8a24); border-radius: 0.5cqw; border: 0.15cqw solid #6a5ab0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 1.2cqw; gap: 0.8cqw; }
+.tut-esferas { display: flex; gap: 1.6cqw; }
+.tut-esferas span { position: relative; width: 3.6cqw; height: 3.6cqw; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5cqw; border: 0.2cqw solid #5a2400;
+  background: radial-gradient(circle at 34% 28%, #fffbe0 0 7%, #ffd257 16%, #ff9a1e 42%, #e46a06 70%, #8a3300 100%); box-shadow: 0 0 0 0.16cqw var(--c); }
+.tut-esferas b { position: absolute; top: 100%; font-size: 0.8cqw; font-style: italic; color: #ffe23a; -webkit-text-stroke: 0.05cqw #2a0e00; margin-top: 0.15cqw; }
+.tut-esferas .e1 { --c: #4fe3ff; } .tut-esferas .e2 { --c: #ffe14a; } .tut-esferas .e3 { --c: #ff4a3a; } .tut-esferas .e4 { --c: #b07aff; }
+.tut-menu.aberto .tut-esferas .sel { transform: scale(1.15); box-shadow: 0 0 0 0.2cqw var(--c), 0 0 1.2cqw var(--c); }
+.tut-pills { display: flex; flex-direction: column; gap: 0.3cqw; align-items: center; margin-bottom: 0.4cqw; }
+.tut-menu:not(.aberto) .tut-pills { visibility: hidden; }
+.tut-menu .tut-pills { visibility: visible; }
+.tut-menu:has(.tut-esferas):not(.aberto) .tut-pills { visibility: hidden; }
+.tut-pills i { font-style: italic; font-weight: 900; font-size: 1cqw; color: #fff; padding: 0.25cqw 1cqw; transform: skewX(-12deg); background: linear-gradient(90deg, #ff8a00 0 0.35cqw, rgba(16,20,48,0.92) 0.35cqw); border: 0.14cqw solid rgba(255,190,60,0.55); border-radius: 0.3cqw; }
+.tut-pills i.sel { color: #ffe14a; border-color: #ffe14a; background: linear-gradient(90deg, #ffd21a 0 0.35cqw, rgba(60,30,6,0.95) 0.35cqw); box-shadow: 0 0 0.6cqw rgba(255,200,40,0.7); }
+.tut-pills i.bloq { opacity: 0.55; }
+.tut-imp { display: flex; align-items: center; gap: 0.4cqw; padding: 0.3cqw 0.7cqw; transform: skewX(-12deg); background: rgba(16,20,48,0.92); border: 0.14cqw solid rgba(255,190,60,0.6); border-radius: 0.35cqw; }
+.tut-imp span { font-size: 1cqw; font-weight: 900; font-style: italic; color: #ffcf3a; margin-right: 0.4cqw; }
+.tut-imp b { width: 1.6cqw; height: 1.6cqw; border-radius: 50%; border: 0.12cqw solid #ffb21a; background: #2a1a06; color: #ffd84a; display: flex; align-items: center; justify-content: center; font-size: 1cqw; }
+.tut-imp i { width: 1.1cqw; height: 1.1cqw; border-radius: 50%; border: 0.1cqw solid rgba(255,170,60,0.45); background: rgba(5,10,20,0.8); }
+.tut-imp i.t { border-color: #5a2400; background: radial-gradient(circle at 34% 30%, #fffbe0 0 12%, #ffd257 30%, #d85a00 100%); }
+.tut-imp i.u { border-color: #fff; background: radial-gradient(circle at 34% 30%, #fff 0 25%, #ffe14a 45%, #ff8a00 100%); box-shadow: 0 0 0.5cqw #ffd84a; }
+.tut-legenda { margin: 0; font-size: 1cqw; color: #1a0e2e; background: rgba(255,255,255,0.75); padding: 0.3cqw 0.7cqw; border-radius: 0.3cqw; text-align: center; }
+@media (max-aspect-ratio: 1/1) { .tut-corpo { flex-direction: column; } .tut-ilu { flex-basis: auto; width: 100%; } }
+#inicio.tutorial-aberto .menu-titulo, #inicio.tutorial-aberto .titulo-ferramentas, #inicio.tutorial-aberto .titulo-rodape { display: none !important; }

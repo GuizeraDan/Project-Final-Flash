@@ -726,7 +726,7 @@ FF.Battle = class {
       const cx = al.reduce((s, f) => s + f.x, 0) / al.length, cy = al.reduce((s, f) => s + f.peito().y, 0) / al.length;
       this.spawnFx('Explosao15', cx, cy, false, 1.1);
       this.flash(0.7); this.shake(14);
-      FF.Audio.play('genkidama_explosao', 0.9);
+      FF.Audio.play('goku_s_gnkdm_expl', 0.9);
       await FF.Clock.wait(0.25);
       this.cenasKO = [];
       for (const f of al) for (const h of herois) if (!h.ko && !f.ko) this.applyHit(h, f, { nome: 'Ataque Z', tipo: 'suporte', poder: 1.3 }, { fracao: 1, forca: 'forte', lanca: h === herois[herois.length - 1] }, null);
@@ -772,7 +772,7 @@ FF.Battle = class {
         this.flash(0.6); this.shake(14);
         const pp = p.peito();
         this.spawnFx('Explosao15', pp.x, pp.y, false, 0.8);
-        FF.Audio.play('genkidama_explosao', 0.8);
+        FF.Audio.play('goku_s_gnkdm_expl', 0.8);
         await FF.Clock.wait(0.15);
         this.cenasKO = [];
         this.applyHit(v, p, Object.assign({}, mv, { poder: (mv.poder || 1) * 1.4 }), { fracao: 1, forca: 'energia', lanca: true, empurrao: 600 }, null);

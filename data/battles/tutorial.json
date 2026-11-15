@@ -1,0 +1,14 @@
+{
+  "id": "tutorial",
+  "saga": "livre",
+  "titulo": "Luta de treino",
+  "tutorial": true,
+  "cenario": "campo",
+  "musica": "tournament_theme",
+  "escala": 2.5,
+  "posicoes": { "herois": [170], "inimigos": [915] },
+  "herois": ["goku"],
+  "inimigos": ["saibaman"],
+  "ajustes": { "saibaman": { "hp": 520 } },
+  "ap": 20
+}
