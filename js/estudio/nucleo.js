@@ -272,7 +272,22 @@ FF.Estudio = {
     if (opts.dica) row.title = opts.dica;
     row.appendChild(r);
     let inp;
-    if (tipo === 'check') {
+    if (tipo === 'volume') {   // volume em %: 100 = normal (grava undefined), opts.ouvir() = som para o ▶
+      inp = document.createElement('input'); inp.type = 'range'; inp.min = 0; inp.max = 200; inp.step = 5;
+      inp.value = valor == null ? 100 : valor;
+      const vv = document.createElement('span'); vv.className = 'es-vol-v';
+      const mostra = () => { vv.textContent = inp.value + '%'; };
+      mostra();
+      inp.oninput = () => { mostra(); aoMudar(+inp.value === 100 ? undefined : +inp.value, true); };
+      inp.onchange = () => aoMudar(+inp.value === 100 ? undefined : +inp.value);
+      vv.title = 'Clique para voltar a 100%';
+      vv.onclick = (e) => { e.preventDefault(); inp.value = 100; mostra(); aoMudar(undefined); };
+      row.appendChild(inp); row.appendChild(vv);
+      if (opts.ouvir) row.appendChild(this.botao('▶', (e) => { e.preventDefault(); let s = opts.ouvir(); if (Array.isArray(s)) s = s[0]; if (s) FF.Audio.play(String(s).split(',')[0].trim(), opts.voz ? FF.Audio.volVoz : null, +inp.value / 100); }, 'Ouvir neste volume'));
+      if (opts.dica) row.title = opts.dica;
+      row._inp = inp;
+      return row;
+    } else if (tipo === 'check') {
       inp = document.createElement('input'); inp.type = 'checkbox'; inp.checked = !!valor;
       inp.onchange = () => aoMudar(inp.checked);
     } else if (tipo === 'select') {

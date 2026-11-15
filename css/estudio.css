@@ -221,3 +221,7 @@ a { color: var(--ouro); }
 .es-cartao:hover .es-cartao-ren { opacity: 1; }
 .es-cartao span.renomeado { color: #ffe9a8; }
 .es-cartao .es-som-renomear { width: 100%; font-size: 11px; }
+
+/* campo de volume dos sons */
+.es-campo-volume input[type=range] { flex: 1; accent-color: #ffb400; }
+.es-vol-v { width: 40px; text-align: right; font-size: 12px; cursor: pointer; color: #ffd21a; }

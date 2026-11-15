@@ -42,17 +42,20 @@ FF.Audio = {
     names.forEach(n => { if (!this.pool[n]) this._get(n); });
   },
 
-  play(name, vol) {
+  // mult: volume do clipe (1 = normal; vem do campo "Volume" em % do Estúdio), multiplica o volume do jogo
+  play(name, vol, mult) {
     if (!name) return null;
     if (Array.isArray(name)) name = name[Math.floor(Math.random() * name.length)];
     const a = this._get(name);
-    a.volume = Math.max(0, Math.min(1, vol == null ? this.volSfx : vol));
+    a.volume = Math.max(0, Math.min(1, (vol == null ? this.volSfx : vol) * (mult == null ? 1 : mult)));
     a.currentTime = 0;
     a.play().catch(() => {});
     return a;
   },
 
-  voice(name) { return this.play(name, this.volVoz); },
+  voice(name, mult) { return this.play(name, this.volVoz, mult); },
+  // volume em % (campo dos clipes) → multiplicador
+  pct(v) { return v == null || v === '' || isNaN(+v) ? 1 : Math.max(0, +v) / 100; },
 
   // Loop contínuo (ex.: carregar ki). Retorna função para parar.
   loop(name, vol) {

@@ -221,10 +221,13 @@ FF.Linha = {
           const loop = c.loop != null ? !!c.loop : !!c.d;
           f.anim.play(this.trecho(f.sprite, emprestado ? c.anim : f.animName(c.anim), c.de, c.ate), { fps: c.fps || undefined, loop, hold: (c.segurar || 0) + (segurar || 0) });
           if (c.empurrao) { f.vx = -f.dir * c.empurrao; f.voando = true; }
-          if (c.voltarNormal) {
-            const nm = this.trecho(f.sprite, f.animName(c.anim), c.de, c.ate);
+          // volta ao normal no fim do clipe: marcado no clipe, ou automático no ÚLTIMO clipe de animação de quem
+          // não é o alvo (senão uma animação com duração fica repetindo até o fim da cena — ex.: pose com raio)
+          const ultimo = tr.quem !== 'alvo' && !(tr.clipes || []).some(o => o !== c && (o.tipo === 'anim' || o.tipo === 'mover' || o.tipo === 'teleporte') && o.t > c.t);
+          if (c.voltarNormal || (ultimo && !c.segurarFim)) {
+            const nm = f.anim.name, an = f.anim;
             const fimT = c.t + (c.d != null ? c.d : this.duracaoAnim(f.sprite.anim(nm), c.fps || undefined) + (c.segurar || 0));
-            viva.ativos.push((dt, t) => { if (t >= fimT) { if (!f.ko && f.anim.name === nm) f.idle(); return false; } });
+            viva.ativos.push((dt, t) => { if (t >= fimT) { if (!f.ko && f.anim === an && an.name === nm) { this.devolverSprite(f); f.offX = 0; f.offY = 0; f.escExtra = 1; f.rotExtra = 0; f.flipExtra = false; f.idle(); } return false; } });
           }
           return;
         }
@@ -291,11 +294,11 @@ FF.Linha = {
         return;
       }
       case 'projetil': if (target && actor) b.spawnProjectile(actor, target, move, c); return;
-      case 'som': FF.Audio.play(FF.Script.pick(c.som)); return;
+      case 'som': FF.Audio.play(FF.Script.pick(c.som), null, FF.Audio.pct(c.vol)); return;
       case 'voz': {
         // vozTipo: a voz do próprio personagem (dano, lancado, ...) de quem está na trilha "quem"
-        if (c.vozTipo) { const f = this.lutadorDe(b, actor, target, c.quem); if (f) f.voz(c.vozTipo); return; }
-        FF.Audio.voice(FF.Script.pick(c.voz)); return;
+        if (c.vozTipo) { const f = this.lutadorDe(b, actor, target, c.quem); if (f) f.voz(c.vozTipo, FF.Audio.pct(c.vol)); return; }
+        FF.Audio.voice(FF.Script.pick(c.voz), FF.Audio.pct(c.vol)); return;
       }
       case 'acerto': if (target && actor) b.applyHit(actor, target, move, c, c._g && c._g.qte); return;
       // abertura do Supremo (e qualquer golpe): tela escura com quem solta aceso, linhas de velocidade, faixa com texto

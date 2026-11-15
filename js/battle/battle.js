@@ -666,7 +666,7 @@ FF.Battle = class {
       const ex = p.x + (spec.dx || 0) * att.dir, ey = p.y + (spec.dy || 0);
       this.spawnFx(fxName, ex, ey, att.dir < 0, spec.fxEscala || (forca === 'forte' ? 0.5 : 1), spec.sprite ? { sprite: spec.sprite } : undefined);
       // som do acerto: o escolhido no Estúdio ("som" do acerto) ou o automático pela força
-      FF.Audio.play(spec.som ? FF.Script.pick(spec.som) : { leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca]);
+      FF.Audio.play(spec.som ? FF.Script.pick(spec.som) : { leve: ['hit_small-a', 'hit_small-b'], media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[forca], null, FF.Audio.pct(spec.volSom));
       if (spec.lanca || def.hp <= 0) {
         // golpe final: impacto extra (corpo a corpo) ou explosão no alvo (energia)
         if (forca === 'forte') this.spawnFx('Extreme', ex, ey, att.dir < 0, 0.7);
@@ -939,7 +939,7 @@ FF.Battle = class {
     const travel = o.tempo || 1;
     const qteMode = this.qteMode(att, def);
     const qte = qteMode && !def.ko ? this.addQte(qteMode, def, travel) : null;
-    if (o.som) FF.Audio.play(o.som);
+    if (o.som) FF.Audio.play(o.som, null, FF.Audio.pct(o.volSom));
     let res;
     const sc = ob.s1 * this.scale;
     const p = { a: ob.a, set: ob.set, scale: sc, x: ob.x, y: ob.y, vx: (to.x - ob.x) / travel, vy: (to.y + (o.alvoDy || 0) - ob.y) / travel,
@@ -984,7 +984,7 @@ FF.Battle = class {
     const set = this.fxSet(fxName, spec.sprite) || this.fx;
     const a = new FF.Animator(set);
     a.play(fxName, { loop: true });
-    if (spec.som) FF.Audio.play(spec.som);
+    if (spec.som) FF.Audio.play(spec.som, null, FF.Audio.pct(spec.vol));
     if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6, spec.disparoSprite ? { sprite: spec.disparoSprite } : undefined);
     let res;
     const p = {
@@ -1000,7 +1000,7 @@ FF.Battle = class {
     };
     p.hit = () => {
       if (spec.impacto) this.spawnFx(spec.impacto, to.x + (spec.impactoDx || 0) * att.dir, to.y + (spec.impactoDy || 0), att.dir < 0, spec.impactoEscala || 1, spec.impactoSprite ? { sprite: spec.impactoSprite } : undefined);
-      if (spec.somImpacto) FF.Audio.play(spec.somImpacto);
+      if (spec.somImpacto) FF.Audio.play(spec.somImpacto, null, FF.Audio.pct(spec.volImpacto));
       if (spec.tremerImpacto) this.shake(spec.tremerImpacto);
       if (!spec.semAcerto) this.applyHit(att, def, move, spec.acerto || { fracao: 0.3, forca: 'energia' }, qte);
       res();

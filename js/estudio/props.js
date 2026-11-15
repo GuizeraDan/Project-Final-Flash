@@ -46,6 +46,7 @@ FF.EstudioProps = {
       g.appendChild(n(o, 'tremer', 'Tremor no impacto', { passo: 1, min: 0 }));
       g.appendChild(n(o, 'flash', 'Flash no impacto', { passo: 0.1, min: 0 }));
       g.appendChild(E.campo('som', 'Som ao lançar', o.som, (v) => { if (v) o.som = v; else delete o.som; host.mudou('Lançar: som'); }));
+      g.appendChild(E.campo('volume', 'Volume ao lançar', o.volSom, (v) => { if (v == null) delete o.volSom; else o.volSom = v; host.mudou('Lançar: volume', true); }, { ouvir: () => o.som }));
       const ac = o.acertos || [];
       g.appendChild(E.el('p', 'es-dica', ac.length + ' acerto(s) no impacto · dano total ' + ac.reduce((s, a) => s + (a.fracao || 0), 0).toFixed(2).replace('.', ',') + ' do poder (edite no JSON abaixo).'));
       // explosões do impacto: clipes na trilha Efeitos presos a este lançamento
@@ -73,6 +74,7 @@ FF.EstudioProps = {
       if (v === undefined || v === '' || (typeof v === 'number' && isNaN(v))) delete obj[k]; else obj[k] = v;
       host.mudou(rot || ('Mudar ' + k), juntar);
     };
+    const vol = (obj, k, rot, ouvir, voz) => E.campo('volume', rot, obj[k], set(obj, k, rot), { ouvir, voz, dica: '100% = normal · 0% = mudo · até 200%. Clique no número para voltar a 100%.' });
     const num = (obj, k, rot, dica, o = {}) => E.campo('numero', rot, obj[k], set(obj, k, rot), Object.assign({ dica, passo: o.passo || 'any' }, o));
     const chk = (obj, k, rot, dica) => E.campo('check', rot, obj[k], (v) => { if (v) obj[k] = true; else delete obj[k]; host.mudou(rot); }, { dica });
     const txt = (obj, k, rot, dica, o = {}) => E.campo('texto', rot, obj[k], set(obj, k, rot), Object.assign({ dica }, o));
@@ -116,7 +118,13 @@ FF.EstudioProps = {
         p.appendChild(chk(c, 'flip', 'Espelhar'));
         p.appendChild(sel(c, 'camada', 'Camada', [['', 'normal'], ['frente', 'na frente dos outros lutadores'], ['atras', 'atrás dos outros lutadores']], 'Quem fica por cima quando os lutadores se cruzam', ''));
         box.appendChild(p);
-        if (quem === 'alvo' || c.empurrao || c.voltarNormal) {
+        if (quem !== 'alvo') {
+          const fim = E.grupo('No fim do clipe', true);
+          fim.appendChild(chk(c, 'voltarNormal', 'Voltar ao normal no fim', 'Quando o clipe acaba, o lutador volta para a pose parada'));
+          fim.appendChild(chk(c, 'segurarFim', 'Segurar a pose (se for o último)', 'O último clipe de animação volta ao normal sozinho quando acaba; marque para ele continuar na tela até o fim da cena'));
+          box.appendChild(fim);
+        }
+        if (quem === 'alvo' || c.empurrao) {
           const a = E.grupo('Reação do alvo', true);
           a.appendChild(num(c, 'empurrao', 'Empurrão', 'Desliza para trás com essa força (ex.: 400)', { min: 0 }));
           a.appendChild(chk(c, 'voltarNormal', 'Voltar ao normal no fim'));
@@ -201,6 +209,7 @@ FF.EstudioProps = {
         box.appendChild(pos);
         const ef = E.grupo('Efeitos e sons', false);
         ef.appendChild(E.campo('som', 'Som ao soltar', c.som, set(c, 'som', 'Som')));
+        ef.appendChild(vol(c, 'vol', 'Volume ao soltar', () => c.som));
         ef.appendChild(this.campoEfeito(c, 'disparo', 'Efeito na mão', host, true));
         ef.appendChild(num(c, 'disparoEscala', 'Tamanho na mão', null, { passo: 0.05 }));
         ef.appendChild(this.campoEfeito(c, 'impacto', 'Explosão', host, true));
@@ -208,6 +217,7 @@ FF.EstudioProps = {
         ef.appendChild(num(c, 'impactoDx', 'Explosão X'));
         ef.appendChild(num(c, 'impactoDy', 'Explosão Y'));
         ef.appendChild(E.campo('som', 'Som do impacto', c.somImpacto, set(c, 'somImpacto', 'Som do impacto')));
+        ef.appendChild(vol(c, 'volImpacto', 'Volume do impacto', () => c.somImpacto));
         ef.appendChild(num(c, 'tremerImpacto', 'Tremor no impacto'));
         box.appendChild(ef);
         c.acerto = c.acerto || { fracao: 0.3, forca: 'energia' };
@@ -239,12 +249,14 @@ FF.EstudioProps = {
         box.appendChild(k);
         break;
       }
-      case 'som': g.appendChild(E.campo('som', 'Som', c.som, set(c, 'som', 'Som'), { dica: 'Vários separados por vírgula = sorteia um' })); break;
+      case 'som': g.appendChild(E.campo('som', 'Som', c.som, set(c, 'som', 'Som'), { dica: 'Vários separados por vírgula = sorteia um' }));
+        g.appendChild(vol(c, 'vol', 'Volume', () => c.som)); break;
       case 'voz':
         g.appendChild(E.campo('select', 'Voz do personagem', c.vozTipo || '', (v) => { if (v) c.vozTipo = v; else delete c.vozTipo; host.mudou('Voz do personagem'); },
           { lista: [['', '— arquivo escolhido abaixo —'], ['dano', 'dano'], ['lancado', 'lançado']], dica: 'Usa a voz cadastrada no personagem (aba Personagens), seja ele quem for' }));
         if (c.vozTipo) g.appendChild(E.campo('select', 'De quem', c.quem || 'atacante', (v) => { c.quem = v; host.mudou('De quem'); }, { lista: [['atacante', 'quem solta'], ['alvo', 'alvo']] }));
         else g.appendChild(E.campo('som', 'Voz', c.voz, set(c, 'voz', 'Voz'), { dica: 'Vários separados por vírgula = sorteia um', vozes: host.prefixoVoz() }));
+        g.appendChild(vol(c, 'vol', 'Volume', () => c.vozTipo ? null : c.voz, true));
         break;
       case 'acerto': this.camposAcerto(g, c, num, chk, sel, host, true); break;
       case 'escurecer': g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); g.appendChild(num(c, 'forca', 'Escuridão', '0 = nada, 1 = preto (quem solta continua aceso)', { passo: 0.05, min: 0, max: 1 })); break;
@@ -286,6 +298,7 @@ FF.EstudioProps = {
     g.appendChild(num(c, 'empurrao', 'Empurrão', 'Força do empurrão (ex.: 300)'));
     g.appendChild(this.campoEfeito(c, 'fx', 'Explosão', host, true));
     g.appendChild(E.campo('som', 'Som do acerto', c.som, (v) => { if (v) c.som = v; else delete c.som; host.mudou('Som do acerto'); }, { dica: 'Vazio = som automático pela força. Vários separados por vírgula = sorteia um.' }));
+    g.appendChild(E.campo('volume', 'Volume do acerto', c.volSom, (v) => { if (v == null) delete c.volSom; else c.volSom = v; host.mudou('Volume do acerto', true); }, { ouvir: () => c.som || { leve: 'hit_small-a', media: 'hit_midle-a', forte: 'hit_large-a', energia: 'hit_kidan' }[c.forca || 'leve'], dica: '100% = normal · 0% = mudo · até 200%' }));
     g.appendChild(num(c, 'dx', 'Explosão X', 'A partir do peito do alvo; + = para longe de quem bate'));
     g.appendChild(num(c, 'dy', 'Explosão Y'));
     g.appendChild(num(c, 'fxEscala', 'Tamanho explosão', null, { passo: 0.05 }));

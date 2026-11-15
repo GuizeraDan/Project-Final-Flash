@@ -88,9 +88,9 @@ FF.Fighter = class {
       this.scale * (au.escala || 1) * (this._aura.set.def.escala || 1), this.dir < 0, { alpha: (au.alpha != null ? au.alpha : 1) * this.alpha });
   }
 
-  voz(tipo) {
+  voz(tipo, mult) {
     const v = (this.form.vozes || {})[tipo] || (this.def.vozes || {})[tipo];
-    if (v) FF.Audio.voice(v);
+    if (v) FF.Audio.voice(v, mult);
   }
 
   addKi(n) { this.ki = Math.max(0, Math.min(this.kiMax, this.ki + n)); }
