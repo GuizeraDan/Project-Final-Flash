@@ -387,6 +387,37 @@ FF.Treino = {
     FF.Save.set({ ap: save.ap - c, treino });
     return true;
   },
+  // ---------- pergaminhos de técnica: golpes sobem de nível (I → II → III) ----------
+  NIVEL_MAX: 3,
+  custoTec(nivel) { return nivel === 1 ? 2 : 4; },   // pergaminhos para ir do nível atual ao próximo
+  nivelTec(heroi, golpe) { return ((FF.Save.get().tecnicas || {})[heroi] || {})[golpe] || 1; },
+  subirTec(heroi, golpe) {
+    const save = FF.Save.get(), n = this.nivelTec(heroi, golpe), c = this.custoTec(n);
+    if (n >= this.NIVEL_MAX || (save.pergaminhos || 0) < c) return false;
+    const tec = save.tecnicas || {};
+    tec[heroi] = Object.assign({}, tec[heroi], { [golpe]: n + 1 });
+    FF.Save.set({ pergaminhos: save.pergaminhos - c, tecnicas: tec });
+    return true;
+  },
+  // golpes que podem subir: os de ataque das formas do herói
+  golpesTec(def) {
+    const ids = new Set(); Object.values(def.formas).forEach(f => (f.golpes || []).forEach(g => ids.add(g)));
+    return [...ids].filter(g => def.golpes[g] && !g.startsWith('hab_') && FF.Battle.ofensivo(def.golpes[g]) && !(def.golpes[g].requer && def.golpes[g].requer.parceiro));
+  },
+  // aplica os níveis nos golpes (cópia: o personagem carregado não muda). +15% de dano por nível, efeito maior
+  aplicarTec(id, golpes) {
+    if (!this.herois[id] || !golpes) return golpes;
+    const tec = (FF.Save.get().tecnicas || {})[id] || {};
+    if (!Object.keys(tec).length) return golpes;
+    const g2 = Object.assign({}, golpes);
+    for (const [k, n] of Object.entries(tec)) {
+      if (!g2[k] || n <= 1) continue;
+      g2[k] = Object.assign({}, g2[k], { poder: (g2[k].poder || 1) * (1 + 0.15 * (n - 1)), nivelTec: n, nome: g2[k].nome + (n === 2 ? ' II' : ' III') });
+    }
+    return g2;
+  },
+  premioPergaminhos(battle, historia) { return (historia ? 2 : 1) + (battle && battle.enemies.some(e => e.hpMax >= 2500) ? 1 : 0); },
+
   // atributos com as melhorias aplicadas (usado em Battle.addFighter para heróis)
   aplicar(id, atributos) {
     if (!this.herois[id]) return atributos;
@@ -407,6 +438,7 @@ FF.Treino = {
   render() {
     const save = FF.Save.get();
     document.getElementById('ap-valor').textContent = save.ap || 0;
+    const pv = document.getElementById('perg-valor'); if (pv) pv.textContent = save.pergaminhos || 0;
     const lista = document.getElementById('treino-lista');
     lista.innerHTML = '';
     for (const [id, nome] of Object.entries(this.herois)) {
@@ -430,6 +462,24 @@ FF.Treino = {
         row.appendChild(bt);
         box.appendChild(row);
       }
+      // técnicas (pergaminhos)
+      const tecBox = document.createElement('div'); tecBox.className = 'treino-tec';
+      tecBox.innerHTML = '<h5>📜 Técnicas</h5>';
+      box.appendChild(tecBox);
+      FF.Assets.loadCharacter(id).then(def => {
+        for (const g of this.golpesTec(def)) {
+          const n = this.nivelTec(id, g), c = this.custoTec(n);
+          const row = document.createElement('div'); row.className = 'treino-attr';
+          row.innerHTML = '<span></span>';
+          row.querySelector('span').textContent = def.golpes[g].nome + ' ' + ['I', 'II', 'III'][n - 1];
+          const bt = document.createElement('button');
+          bt.textContent = n >= this.NIVEL_MAX ? 'Máx.' : c + ' 📜';
+          bt.disabled = n >= this.NIVEL_MAX || (FF.Save.get().pergaminhos || 0) < c;
+          bt.title = '+15% de dano e efeito maior por nível';
+          bt.onclick = (e) => { e.stopPropagation(); if (this.subirTec(id, g)) { FF.Audio.play('decide_charasel', 0.6); this.render(); } };
+          row.appendChild(bt); tecBox.appendChild(row);
+        }
+      }).catch(() => {});
       lista.appendChild(box);
     }
   },
@@ -516,8 +566,9 @@ FF.UI.showEnd = async function (win) {
   const apEl = document.getElementById('ap-ganho');
   if (win) {
     const ganho = FF.Treino.premio(FF.battle) * (mh ? 2 : 1);   // modo história vale o dobro
-    FF.Save.set({ ap: (FF.Save.get().ap || 0) + ganho });
-    apEl.textContent = '+' + ganho + ' AP (gaste em Treinamento)';
+    const perg = FF.Treino.premioPergaminhos(FF.battle, !!mh);
+    FF.Save.set({ ap: (FF.Save.get().ap || 0) + ganho, pergaminhos: (FF.Save.get().pergaminhos || 0) + perg });
+    apEl.textContent = '+' + ganho + ' AP · +' + perg + ' 📜 (gaste em Treinamento)';
   } else apEl.textContent = '';
   if (!mh) return _showEnd(win);
   const el = document.getElementById('fim');

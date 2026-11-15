@@ -50,6 +50,8 @@ FF.Battle = class {
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
     // melhorias compradas com AP (só heróis)
     if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
+    // pergaminhos de técnica: golpes de nível II/III (cópia dos golpes, o personagem carregado não muda)
+    if (lado === 'heroi' && FF.Treino && FF.Treino.aplicarTec) charDef = Object.assign({}, charDef, { golpes: FF.Treino.aplicarTec(charDef.id, charDef.golpes) });
     // posições do JSON são para a tela base de 1084 px; em telas mais largas, centraliza
     const offX = (FF.W - 1084) / 2;
     const f = new FF.Fighter(charDef, lado, (pos[idx] != null ? pos[idx] : pos[0]) + offX, this.groundY, this.scale);
@@ -889,7 +891,7 @@ FF.Battle = class {
     if (spec.disparo) this.spawnFx(spec.disparo, from.x, from.y, att.dir < 0, spec.disparoEscala || 0.6, spec.disparoSprite ? { sprite: spec.disparoSprite } : undefined);
     let res;
     const p = {
-      a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)),
+      a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)) * (1 + 0.12 * ((move.nivelTec || 1) - 1)), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)) * (1 + 0.12 * ((move.nivelTec || 1) - 1)),
       x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel,
       vx: (to.x - from.x) / travel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],

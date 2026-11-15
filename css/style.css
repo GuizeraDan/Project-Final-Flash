@@ -599,3 +599,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   border: 0.18cqw solid #fff3a0; background: linear-gradient(180deg, #fff27a, #ffb800 55%, #ff6a00); box-shadow: 0 0 1cqw #ffb800; animation: mgZ 0.6s ease-in-out infinite alternate; }
 #menu.mg-mini .mg-ataquez small { display: block; font-size: 0.7cqw; font-weight: 800; color: #5a2400; }
 @keyframes mgZ { from { box-shadow: 0 0 0.6cqw #ffb800; } to { box-shadow: 0 0 1.8cqw #ffe14a, 0 0 0.4cqw #fff; } }
+
+/* Treinamento: técnicas (pergaminhos) */
+.treino-tec { border-top: 0.12cqw solid rgba(255,216,74,0.35); margin-top: 0.3cqw; padding-top: 0.3cqw; display: flex; flex-direction: column; gap: 0.3cqw; }
+.treino-tec h5 { margin: 0; font-size: 1.15cqw; color: #ffd84a; text-align: center; }
+.treino-tec .treino-attr { font-size: 1.1cqw; }
