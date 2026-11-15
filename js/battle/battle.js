@@ -199,6 +199,16 @@ FF.Battle = class {
       i++;
     }
     this.planejando = false;
+    // embate de raios: herói e inimigo planejaram golpes de energia um no outro
+    for (const [h, ph] of plano) {
+      if (!h.isHero || ph.embate) continue;
+      const mh = h.def.golpes[ph.moveId], e = ph.alvo, pe = e && plano.get(e);
+      if (!pe || pe.alvo !== h || pe.embate) continue;
+      const me = e.def.golpes[pe.moveId];
+      if (FF.Battle.tipoGolpe(mh) === 'energia' && FF.Battle.tipoGolpe(me) === 'energia' && !mh.supremo && !me.supremo && FF.Battle.ofensivo(mh) && FF.Battle.ofensivo(me)) {
+        ph.embate = { heroi: h, inimigo: e, mh, me }; pe.embate = ph.embate;
+      }
+    }
     this.turnLabel = '';
     this.banner('AÇÃO!', 0.8);
     await FF.Clock.wait(0.6);
@@ -221,6 +231,23 @@ FF.Battle = class {
 
   async turnoPlanejado(actor, p) {
     if (actor.atordoado > 0) { await this.perderVez(actor); return; }
+    // embate de raios: acontece na vez do primeiro dos dois; o outro perde a ação (já foi gasta no embate)
+    if (p && p.embate) {
+      const em = p.embate;
+      if (em.feito) { await this.endTurn(actor); return; }
+      em.feito = true;
+      const { heroi, inimigo, mh, me } = em;
+      if (!heroi.ko && !inimigo.ko && (mh.custoKi || 0) <= heroi.ki && (me.custoKi || 0) <= inimigo.ki) {
+        this.atual = actor; this.turnLabel = 'Embate de raios!';
+        await this.embateRaios(heroi, inimigo, mh, me);
+        if (this.jaAgiu) { this.jaAgiu.add(heroi); this.jaAgiu.add(inimigo); }
+        this.atual = null;
+        if (this.checkEnd()) return;
+        await this.endTurn(actor);
+        return;
+      }
+      p.embate = null;   // não deu (sem ki ou alguém caiu): segue o golpe normal
+    }
     if (!p) { await this.endTurn(actor); return; }
     const foes = (actor.isHero ? this.enemies : this.heroes).filter(f => !f.ko);
     if (!foes.length) return;
@@ -668,6 +695,84 @@ FF.Battle = class {
     this.checkEnd();
   }
 
+  // EMBATE DE RAIOS: os dois raios se chocam no meio; aperte rápido (Espaço/Z/J/Enter, clique/toque) para empurrar o
+  // choque até o inimigo. Quem vence acerta o próprio golpe com +40%; quem perde não acerta nada.
+  embateRaios(h, e, mh, me) {
+    return new Promise(res => {
+      h.addKi(-(mh.custoKi || 0)); e.addKi(-(me.custoKi || 0));
+      h.busy = e.busy = true;
+      const pose = (f) => { const a = ['Special_Kamehameha_Chao_Frente', 'Special_GalickGun_Final', 'Special_Final', 'Special'].find(n => f.sprite.has(n)); if (a) f.anim.play(a, { hold: 99 }); };
+      pose(h); pose(e);
+      this.banner('EMBATE DE RAIOS!', 1.2);
+      FF.Audio.play('kamehameha_charge', 0.8);
+      const forca = (f) => f.stat('ataque') * ((f === h ? mh : me).poder || 1);
+      const ritmoInimigo = 0.55 * forca(e) / Math.max(1, forca(h));   // quanto o inimigo empurra por segundo
+      const em = { h, e, k: 0, t0: FF.Clock.t, dur: 3.2, fim: false };
+      this.embateAtual = em;
+      const tela = document.getElementById('tela') || window;
+      const apertou = () => { if (em.fim) return; em.k = Math.min(1, em.k + 0.075); FF.Audio.play('tap_sound', 0.3); this.shake(2); };
+      const kd = (ev) => { if (ev.repeat) return; if (['Space', 'KeyZ', 'KeyJ', 'Enter'].includes(ev.code)) { ev.preventDefault(); apertou(); } };
+      const pd = (ev) => { ev.preventDefault(); apertou(); };
+      window.addEventListener('keydown', kd, true); tela.addEventListener('pointerdown', pd);
+      em.tick = (dt) => {
+        if (em.fim) return;
+        em.k = Math.max(-1, em.k - ritmoInimigo * dt);
+        const t = FF.Clock.t - em.t0;
+        if (em.k >= 1 || em.k <= -1 || t >= em.dur) acabar(em.k > 0);
+      };
+      const acabar = async (heroiVenceu) => {
+        em.fim = true; em.venceu = heroiVenceu;
+        window.removeEventListener('keydown', kd, true); tela.removeEventListener('pointerdown', pd);
+        const [v, p, mv] = heroiVenceu ? [h, e, mh] : [e, h, me];
+        this.banner((v.nome || '') + ' venceu o embate!', 1.2);
+        this.flash(0.6); this.shake(14);
+        const pp = p.peito();
+        this.spawnFx('Explosao15', pp.x, pp.y, false, 0.8);
+        FF.Audio.play('genkidama_explosao', 0.8);
+        await FF.Clock.wait(0.15);
+        this.cenasKO = [];
+        this.applyHit(v, p, Object.assign({}, mv, { poder: (mv.poder || 1) * 1.4 }), { fracao: 1, forca: 'energia', lanca: true, empurrao: 600 }, null);
+        await Promise.all(this.cenasKO || []); this.cenasKO = [];
+        await FF.Clock.wait(0.8);
+        this.embateAtual = null;
+        h.busy = e.busy = false;
+        if (!h.ko) h.idle(); if (!e.ko) e.idle();
+        await this.resetPositions();
+        res();
+      };
+    });
+  }
+  desenharEmbate(ctx) {
+    const em = this.embateAtual;
+    if (!em) return;
+    const a = em.h.pontoDisparo ? em.h.pontoDisparo() : em.h.peito(), b = em.e.pontoDisparo ? em.e.pontoDisparo() : em.e.peito();
+    const u = 0.5 + 0.45 * em.k, cx = a.x + (b.x - a.x) * u, cy = a.y + (b.y - a.y) * u, t = FF.Clock.t;
+    const raio = (p0, cor1, cor2) => {
+      const larg = 16 + 3 * Math.sin(t * 30);
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
+      ctx.strokeStyle = cor1; ctx.lineWidth = larg; ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(cx, cy); ctx.stroke();
+      ctx.strokeStyle = cor2; ctx.lineWidth = larg * 0.45; ctx.stroke();
+      ctx.restore();
+    };
+    raio(a, 'rgba(60,170,255,0.8)', 'rgba(230,250,255,0.95)');
+    raio(b, 'rgba(255,120,40,0.8)', 'rgba(255,240,200,0.95)');
+    // choque no meio
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    const r = 26 + 8 * Math.sin(t * 25);
+    const g = ctx.createRadialGradient(cx, cy, 2, cx, cy, r * 1.8);
+    g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.4, 'rgba(255,230,120,0.9)'); g.addColorStop(1, 'rgba(255,120,0,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r * 1.8, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    if (!em.fim) {
+      const w = 220, x = FF.W / 2 - w / 2, y = FF.H - 130;
+      ctx.fillStyle = 'rgba(8,10,28,0.85)'; ctx.fillRect(x - 4, y - 4, w + 8, 22);
+      ctx.fillStyle = '#ff7a2a'; ctx.fillRect(x, y, w, 14);
+      ctx.fillStyle = '#3fb0ff'; ctx.fillRect(x, y, w * (0.5 + 0.5 * em.k), 14);
+      ctx.fillStyle = '#fff'; ctx.fillRect(x + w / 2 - 1, y - 2, 2, 18);
+      FF.HUD.text(ctx, 'APERTE RÁPIDO!', FF.W / 2, y - 16, 20, '#fff27a', 'center');
+    }
+  }
+
   // QUEBRA DE GUARDA (escudos zerados): perde a próxima vez e leva +60% de dano até ela passar
   quebrar(def) {
     def.quebrado = true;
@@ -1002,6 +1107,7 @@ FF.Battle = class {
     this.all.forEach(f => f.update(dt));
     if (this.persp) this.atualizarPerspectiva();
     this.atualizarDesafio();
+    if (this.embateAtual && this.embateAtual.tick) this.embateAtual.tick(dt);
     this.fxList.forEach(e => {
       e.a.update(dt);
       if (e.segue) { const s = e.segue; e.x = s.ex + (s.f.x - s.x0); e.y = s.ey + (s.f.y - s.y0); }
@@ -1096,6 +1202,7 @@ FF.Battle = class {
         else f.draw(ctx, this.fx);
       });
     } else order.forEach(f => f.draw(ctx, this.fx));
+    this.desenharEmbate(ctx);
     this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
     this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
