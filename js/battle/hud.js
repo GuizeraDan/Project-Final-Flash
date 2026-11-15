@@ -165,6 +165,14 @@ FF.HUD = {
     ctx.save();
     ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(rx, ry, rw, rh, 9 * k * 2); else ctx.rect(rx, ry, rw, rh); ctx.clip();
     FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', rx, ry, rw, rh, { espelhar: rtl, fundo: !(f.def.formas[f.formId] || {}).retrato, cor1: trans ? '#7a5a10' : '#0e4a58', cor2: '#06222a', escurecer: f.ko ? 'rgba(60,0,0,0.6)' : null });
+    if (f.rageCheia) {   // Sparking: aura dourada pulsando no retrato
+      ctx.globalCompositeOperation = 'lighter';
+      const pu = 0.5 + 0.5 * Math.sin(FF.Clock.t * 6);
+      const ga = ctx.createRadialGradient(rx + rw / 2, ry + rh * 0.45, rw * 0.15, rx + rw / 2, ry + rh * 0.45, rw * 0.75);
+      ga.addColorStop(0, 'rgba(255,200,60,0)'); ga.addColorStop(0.5, 'rgba(255,190,40,' + (0.2 + 0.15 * pu) + ')'); ga.addColorStop(1, 'rgba(255,150,0,' + (0.6 + 0.25 * pu) + ')');
+      ctx.fillStyle = ga; ctx.fillRect(rx, ry, rw, rh);
+      ctx.globalCompositeOperation = 'source-over';
+    }
     ctx.restore();
     camada(hm + 1);   // cantos ciano por cima do retrato
 
@@ -215,7 +223,11 @@ FF.HUD = {
 
     // RAGE: 5 gomos laranja + ícone (apagado até encher; pulsa cheio)
     const R = L.rage, cheia = f.rageCheia, pulso = 0.5 + 0.5 * Math.sin(FF.Clock.t * 12);
-    this.textoHud(ctx, 'RAGE', px(L.rageTxt[0]), py(L.rageTxt[1]), Math.round(58 * k), cheia ? '#ffe25a' : '#fff', 'center');
+    if (cheia) {   // "SPARKING!" no lugar de RAGE, amarelo → laranja
+      const g = ctx.createLinearGradient(0, py(L.rageTxt[1] - 30), 0, py(L.rageTxt[1] + 30));
+      g.addColorStop(0, '#fffbb0'); g.addColorStop(0.5, '#ffd21a'); g.addColorStop(1, '#ff8a00');
+      this.textoHud(ctx, 'SPARKING!', px(L.rageTxt[0]), py(L.rageTxt[1]), Math.round(56 * k), g, 'center', 250 * k);
+    } else this.textoHud(ctx, 'RAGE', px(L.rageTxt[0]), py(L.rageTxt[1]), Math.round(58 * k), '#fff', 'center');
     for (let i = 0; i < R.n; i++) {
       const a = R.x0 + i * R.passo, fracG = Math.max(0, Math.min(1, (f.rage - i * (100 / R.n)) / (100 / R.n)));
       poly([[a + R.incl, R.y0], [a + R.incl + R.larg, R.y0], [a + R.larg, R.y1], [a, R.y1]]);
@@ -247,48 +259,80 @@ FF.HUD = {
       ctx.lineWidth = Math.max(1, 3 * k); ctx.strokeStyle = tem ? '#5a2400' : 'rgba(255,170,60,0.45)'; ctx.stroke();
     }
 
-    // SPARKING (Fúria cheia): painel com aura dourada, raios correndo na barra, faíscas subindo e o ícone em explosão
+    // SPARKING (Fúria cheia), como a arte do usuário: contorno da moldura em dourado brilhante com raios curtos
+    // estalando nas bordas (dourados e ciano), gomos da Fúria cheios de eletricidade, ícone em explosão
     if (cheia) {
       const t = FF.Clock.t;
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      // aura em volta do painel
-      ctx.shadowColor = 'rgba(255,190,40,0.9)'; ctx.shadowBlur = 18 * Math.max(0.6, W / 400) * (0.6 + 0.4 * pulso);
-      ctx.strokeStyle = 'rgba(255,' + Math.round(170 + 60 * pulso) + ',60,' + (0.45 + 0.35 * pulso) + ')'; ctx.lineWidth = Math.max(1.5, 7 * k);
-      poly([[60, 30], [1985, 30], [2105, 150], [1890, 525], [70, 525], [30, 470], [30, 80]]); ctx.stroke();
-      ctx.shadowBlur = 0;
-      // raios elétricos ao longo da barra de Fúria (mudam de forma várias vezes por segundo)
-      let sem = Math.floor(t * 18) * 7919;
+      let sem = Math.floor(t * 14) * 7919 + (rtl ? 101 : 0);
       const rnd = () => { sem = (sem * 16807) % 2147483647; return sem / 2147483647; };
-      const yb = (R.y0 + R.y1) / 2, xEnd = R.x0 + R.passo * R.n;
-      for (let r = 0; r < 2; r++) {
-        ctx.beginPath(); ctx.moveTo(px(R.x0), py(yb));
-        for (let x = R.x0; x < xEnd; x += 60) ctx.lineTo(px(x + 60), py(yb + (rnd() - 0.5) * (R.y1 - R.y0) * 1.6));
-        ctx.strokeStyle = r ? 'rgba(255,255,255,0.85)' : 'rgba(120,220,255,0.75)'; ctx.lineWidth = Math.max(1, (r ? 3 : 6) * k); ctx.stroke();
+      const raio = (x0, y0, x1, y1, passos, amp, cor, lw) => {   // linha em zigue-zague (coordenadas da arte)
+        ctx.beginPath(); ctx.moveTo(px(x0), py(y0));
+        for (let n = 1; n <= passos; n++) {
+          const f2 = n / passos, j2 = n === passos ? 0 : (rnd() - 0.5) * amp;
+          const dx = x1 - x0, dy = y1 - y0, L2 = Math.hypot(dx, dy) || 1;
+          ctx.lineTo(px(x0 + dx * f2 - dy / L2 * j2), py(y0 + dy * f2 + dx / L2 * j2));
+        }
+        ctx.save(); ctx.shadowColor = cor; ctx.shadowBlur = 8 * k * 3;
+        ctx.strokeStyle = cor; ctx.lineWidth = Math.max(1.5, lw * k * 1.8); ctx.stroke();
+        ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(255,255,245,0.95)'; ctx.lineWidth = Math.max(1, lw * k * 0.7); ctx.stroke();
+        ctx.restore();
+      };
+      ctx.save();
+      // contorno da moldura (traçado da imagem do HUD)
+      const BORDA = [[25, 140], [50, 60], [100, 12], [525, 11], [650, 19], [700, 56], [1500, 48], [1650, 56], [1675, 48], [1700, 18], [2050, 8], [2100, 62], [2100, 112], [1975, 328], [1950, 334], [1925, 326], [1900, 331], [1850, 400], [1800, 520], [1750, 532], [1700, 531], [525, 522], [75, 532], [25, 485]];
+      ctx.lineJoin = 'round';
+      ctx.shadowColor = '#ff9a00'; ctx.shadowBlur = 22 * Math.max(0.6, W / 400) * (0.7 + 0.3 * pulso);
+      poly(BORDA); ctx.strokeStyle = 'rgb(255,' + Math.round(150 + 50 * pulso) + ',20)'; ctx.lineWidth = Math.max(2.5, 16 * k); ctx.stroke();
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      poly(BORDA); ctx.strokeStyle = 'rgb(255,' + Math.round(225 + 25 * pulso) + ',120)'; ctx.lineWidth = Math.max(1.5, 7 * k); ctx.stroke();
+      poly(BORDA); ctx.strokeStyle = 'rgba(255,255,235,0.95)'; ctx.lineWidth = Math.max(1, 2.5 * k); ctx.stroke();
+      // raios curtos estalando para fora da borda (uns 5 por vez, trocam várias vezes por segundo)
+      for (let n = 0; n < 9; n++) {
+        const e = Math.floor(rnd() * BORDA.length), a = BORDA[e], b = BORDA[(e + 1) % BORDA.length], u = rnd();
+        const x0 = a[0] + (b[0] - a[0]) * u, y0 = a[1] + (b[1] - a[1]) * u;
+        // para fora: afasta do centro do painel
+        const cx = 1060, cy = 270, dx = x0 - cx, dy = y0 - cy, L2 = Math.hypot(dx, dy) || 1, comp = 50 + rnd() * 70;
+        const x1 = x0 + dx / L2 * comp + (rnd() - 0.5) * 60, y1 = y0 + dy / L2 * comp;
+        raio(x0, y0, x1, y1, 4, 34, n % 3 ? '#ffb000' : '#3fd0ff', 4);
       }
-      // faíscas subindo
-      for (let i = 0; i < 14; i++) {
-        const fase = (t * 0.9 + i * 0.137) % 1;
-        const x = R.x0 + ((i * 271) % (R.passo * R.n)), y = R.y0 - fase * 260;
-        ctx.globalAlpha = 1 - fase; ctx.fillStyle = i % 3 ? '#ffd84a' : '#ffffff';
-        const sz = (10 + (i % 3) * 5) * k;
-        ctx.fillRect(px(x) - sz / 2, py(y) - sz / 2, sz, sz);
+      // gomos da Fúria: brilho branco por dentro + eletricidade em cada gomo
+      for (let n = 0; n < R.n; n++) {
+        const a = R.x0 + n * R.passo, ym = (R.y0 + R.y1) / 2;
+        poly([[a + R.incl, R.y0], [a + R.incl + R.larg, R.y0], [a + R.larg, R.y1], [a, R.y1]]);
+        const gg = ctx.createLinearGradient(0, py(R.y0), 0, py(R.y1));
+        gg.addColorStop(0, '#fff3a0'); gg.addColorStop(0.45, '#ffb800'); gg.addColorStop(1, '#ff6a00');
+        ctx.fillStyle = gg; ctx.fill();
+        ctx.save(); poly([[a + R.incl, R.y0], [a + R.incl + R.larg, R.y0], [a + R.larg, R.y1], [a, R.y1]]); ctx.clip();
+        raio(a + 6, ym, a + R.larg + R.incl - 6, ym, 6, (R.y1 - R.y0) * 0.9, '#ff7a00', 3.5);
+        raio(a + 6, ym - 6, a + R.larg + R.incl - 6, ym + 6, 5, (R.y1 - R.y0) * 0.7, '#ffd000', 2.5);
+        ctx.restore();
+      }
+      ctx.globalCompositeOperation = 'lighter';
+      // ícone: halo e raios em estrela girando
+      const ic = px(L.icone[0]), jc = py(L.icone[1]), ri = L.icone[2] * k;
+      const gh = ctx.createRadialGradient(ic, jc, ri * 0.3, ic, jc, ri * 2.4);
+      gh.addColorStop(0, 'rgba(255,230,120,' + (0.55 + 0.3 * pulso) + ')'); gh.addColorStop(1, 'rgba(255,140,0,0)');
+      ctx.fillStyle = gh; ctx.beginPath(); ctx.arc(ic, jc, ri * 2.4, 0, Math.PI * 2); ctx.fill();
+      for (let n = 0; n < 12; n++) {
+        const a = t * 1.8 + n * Math.PI / 6, l = ri * (1.45 + 0.45 * Math.sin(t * 11 + n * 1.7));
+        ctx.beginPath(); ctx.moveTo(ic + Math.cos(a) * ri, jc + Math.sin(a) * ri); ctx.lineTo(ic + Math.cos(a) * l, jc + Math.sin(a) * l);
+        ctx.strokeStyle = 'rgba(255,225,110,0.9)'; ctx.lineWidth = Math.max(1, 5 * k); ctx.stroke();
+      }
+      // faíscas douradas soltas em volta
+      for (let n = 0; n < 10; n++) {
+        const fase = (t * 0.7 + n * 0.173) % 1, e = BORDA[(n * 5) % BORDA.length];
+        const x = e[0] + Math.sin(n * 3.1 + t) * 40, y = e[1] - fase * 90 * (e[1] < 270 ? 1 : -1);
+        ctx.globalAlpha = (1 - fase) * 0.9; ctx.fillStyle = n % 2 ? '#ffe27a' : '#fff';
+        const sz = (6 + (n % 3) * 4) * k; ctx.fillRect(px(x) - sz / 2, py(y) - sz / 2, sz, sz);
       }
       ctx.globalAlpha = 1;
-      // raios girando em volta do ícone
-      const ic = px(L.icone[0]), jc = py(L.icone[1]), ri = L.icone[2] * k;
-      for (let i = 0; i < 10; i++) {
-        const a = t * 2.5 + i * Math.PI / 5, l = ri * (1.5 + 0.5 * Math.sin(t * 9 + i));
-        ctx.beginPath(); ctx.moveTo(ic + Math.cos(a) * ri * 0.9, jc + Math.sin(a) * ri * 0.9); ctx.lineTo(ic + Math.cos(a) * l, jc + Math.sin(a) * l);
-        ctx.strokeStyle = 'rgba(255,220,90,0.8)'; ctx.lineWidth = Math.max(1, 5 * k); ctx.stroke();
-      }
       ctx.restore();
     }
 
     // abaixo do painel: sparking e buffs
     const by = Y + H + 9 * Math.max(0.7, W / 400);
     const ts = Math.round(12 * Math.max(0.75, W / 400));
-    if (cheia) this.textoHud(ctx, 'SPARKING!', px(R.x0), by, ts, pulso > 0.5 ? '#fff27a' : '#ffb21a', rtl ? 'right' : 'left');
     const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
     if (tags.length) this.textoHud(ctx, tags.join('  '), px(R.x0 + R.passo * R.n), by, ts, '#ff9c9c', rtl ? 'left' : 'right');
     ctx.restore();
