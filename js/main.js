@@ -115,64 +115,65 @@ FF.UI = {
       box.classList.add('open');
     });
   },
-  // escolha do alvo quando há vários inimigos de pé (setas/números/clique). "↩ Trocar golpe" / Esc / Backspace
-  // devolve null: quem chamou volta para o menu de golpes do mesmo lutador
+  // escolha do alvo quando há vários inimigos de pé: clique (ou toque) no próprio inimigo na tela; teclado: setas/números + Enter.
+  // "↩ Trocar golpe" / Esc / Backspace devolve null: quem chamou volta para o menu de golpes do mesmo lutador
   chooseTarget(foes, battle) {
     return new Promise(resolve => {
       const box = document.getElementById('menu');
+      const canvas = document.getElementById('tela');
       box.innerHTML = '';
       box.classList.remove('cmd-compacto');
       box.classList.add('alvos');
       const tit = document.createElement('div');
       tit.className = 'cmd-titulo';
-      tit.textContent = '🎯 Escolha o alvo';
+      tit.textContent = '🎯 Clique no inimigo que vai atacar';
       box.appendChild(tit);
-      const grade = document.createElement('div');
-      grade.className = 'cmd-golpes';
-      box.appendChild(grade);
-      let sel = 0;
-      const btns = foes.map((f, i) => {
-        const b = document.createElement('button');
-        b.className = 'alvo';
-        const cv = document.createElement('canvas');
-        cv.width = 40; cv.height = 56;
-        b.appendChild(cv);
-        const t = document.createElement('span');
-        t.className = 'nome';
-        t.innerHTML = '';
-        t.textContent = f.nome;
-        const v = document.createElement('small');
-        v.textContent = 'Vida ' + Math.ceil(f.hp) + '/' + f.hpMax;
-        t.appendChild(document.createElement('br'));
-        t.appendChild(v);
-        b.appendChild(t);
-        FF.Retrato.noCanvas(cv, f.def, f.formId, 'retrato', { espelhar: true });
-        b.onclick = () => done(i);
-        b.onmouseenter = () => focus(i);
-        grade.appendChild(b);
-        return b;
-      });
       const bv = document.createElement('button');
       bv.className = 'cmd-voltar alvo-voltar';
       bv.textContent = '↩ Trocar golpe';
       bv.title = 'Voltar e escolher outro golpe (Esc)';
       bv.onclick = () => done(-1);
       box.appendChild(bv);
-      const focus = (i) => { sel = i; battle.alvoMarcado = foes[i]; btns.forEach((b, k) => b.classList.toggle('sel', k === i)); };
-      focus(0);
+      let sel = -1;
+      const focus = (i) => {
+        if (i === sel) return;
+        sel = i; battle.alvoMarcado = i >= 0 ? foes[i] : null;
+        if (i >= 0) FF.Audio.play('tap_sound', 0.35);
+      };
+      // ponto da tela → lutador (caixa do corpo; sobrepostos: ganha o que está mais na frente)
+      const naTela = (e) => {
+        const r = canvas.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width * FF.W, y = (e.clientY - r.top) / r.height * FF.H;
+        let melhor = -1, frente = -Infinity;
+        foes.forEach((f, i) => {
+          const fr = f.anim.frame();
+          const alto = (fr ? fr[6] : 60) * f.scale * (f.escExtra || 1), larg = Math.max(34 * f.scale, (fr ? fr[5] : 40) * f.scale * 0.6);
+          const fx = f.x + (f.offX || 0), fy = f.y + (f.offY || 0);
+          if (x >= fx - larg / 2 - 8 && x <= fx + larg / 2 + 8 && y >= fy - alto - 14 && y <= fy + 10 && f.groundY > frente) { frente = f.groundY; melhor = i; }
+        });
+        return melhor;
+      };
+      const mover = (e) => { const i = naTela(e); canvas.style.cursor = i >= 0 ? 'pointer' : ''; if (i >= 0) focus(i); };
+      const clicar = (e) => { const i = naTela(e); if (i >= 0) { e.preventDefault(); e.stopPropagation(); done(i); } };
+      canvas.addEventListener('pointermove', mover);
+      canvas.addEventListener('pointerdown', clicar, true);
       const key = (e) => {
-        if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.code)) { e.preventDefault(); focus((sel + (e.code === 'ArrowDown' || e.code === 'ArrowRight' ? 1 : -1) + btns.length) % btns.length); FF.Audio.play('tap_sound', 0.5); }
-        else if (e.code === 'Enter') { e.preventDefault(); done(sel); }
-        else if (/^Digit[1-9]$/.test(e.code)) { const i = +e.code.slice(5) - 1; if (btns[i]) done(i); }
+        if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.code)) { e.preventDefault(); focus(((sel < 0 ? 0 : sel) + (e.code === 'ArrowDown' || e.code === 'ArrowRight' ? 1 : -1) + foes.length) % foes.length); }
+        else if (e.code === 'Enter') { e.preventDefault(); done(sel < 0 ? 0 : sel); }
+        else if (/^Digit[1-9]$/.test(e.code)) { const i = +e.code.slice(5) - 1; if (foes[i]) done(i); }
         else if (e.code === 'Escape' || e.code === 'Backspace') { e.preventDefault(); e.stopPropagation(); done(-1); }
       };
       const done = (i) => {
         window.removeEventListener('keydown', key, true);
+        canvas.removeEventListener('pointermove', mover);
+        canvas.removeEventListener('pointerdown', clicar, true);
+        canvas.style.cursor = '';
         box.classList.remove('open', 'alvos');
-        battle.alvoMarcado = null;
+        battle.alvoMarcado = null; battle.escolhendoAlvo = null;
         FF.Audio.play(i < 0 ? 'tap_sound' : 'decide_charasel', 0.6);
         resolve(i < 0 ? null : foes[i]);
       };
+      battle.escolhendoAlvo = foes;   // o HUD marca todos os que podem ser escolhidos
       window.addEventListener('keydown', key, true);
       box.classList.add('open');
     });

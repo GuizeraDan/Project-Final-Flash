@@ -365,3 +365,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 ## 2026-11-15 — Perspectiva: atacante na fileira do alvo + "↩ Trocar golpe"
 - Bug: o clipe "mover" (e o teleporte) guardava a altura de tela do começo (`y0`/`destY`) e sobrescrevia `f.y` a cada quadro; na perspectiva o `groundY` ia para a fileira do alvo, mas o desenho ficava na fileira de origem (Vegeta atacando o Bills "em cima" do Raditz; Bills batendo no Vegeta por baixo). Agora mover/teleporte trabalham com a altura relativa ao chão (`alt0`/`altDest`, `f.y = f.groundY - alt`), então acompanham a fileira (vale para heróis e inimigos; sem perspectiva nada muda).
 - Escolha do alvo: botão "↩ Trocar golpe" (e Esc/Backspace) devolve `null` → volta ao menu de golpes do mesmo lutador (modo Planejamento e turno clássico). A pausa não pega o Esc com a escolha de alvo aberta.
+
+## 2026-11-15 — Escolha do alvo clicando no inimigo
+- `FF.UI.chooseTarget` não mostra mais os cartões: o jogador clica/toca no próprio lutador (caixa do corpo pelo quadro da animação; sobrepostos = o da frente). Passar o mouse marca (anel vermelho no chão + nome e vida + seta); os outros escolhíveis ganham anel amarelo (`battle.escolhendoAlvo`, desenhado em `FF.HUD`). Teclado continua (setas/números + Enter), "↩ Trocar golpe"/Esc/Backspace voltam ao menu.

@@ -386,6 +386,23 @@ FF.HUD = {
       ctx.beginPath(); ctx.moveTo(p.x - 10, y - 14); ctx.lineTo(p.x + 10, y - 14); ctx.lineTo(p.x, y); ctx.closePath();
       ctx.stroke(); ctx.fill();
     }
+    // escolha do alvo: círculo no chão de quem pode ser escolhido; o que está sob o mouse ganha anel forte + nome e vida
+    for (const f of (b.escolhendoAlvo || [])) {
+      if (f.ko) continue;
+      const on = f === b.alvoMarcado, pul = 0.5 + 0.5 * Math.sin(FF.Clock.t * 6);
+      const rx = 30 * f.scale * (on ? 1.15 : 1), ry = rx * 0.32;
+      ctx.save();
+      ctx.lineWidth = on ? 3.5 : 2;
+      ctx.strokeStyle = on ? 'rgba(255,74,58,' + (0.75 + 0.25 * pul) + ')' : 'rgba(255,226,90,' + (0.35 + 0.3 * pul) + ')';
+      ctx.fillStyle = on ? 'rgba(255,60,40,0.18)' : 'rgba(255,226,90,0.06)';
+      ctx.beginPath(); ctx.ellipse(f.x, f.groundY + 2, rx, ry, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.restore();
+      if (on) {
+        const p = f.peito(), yt = p.y - 62 * (f.scale || 1) - 50;
+        this.text(ctx, f.nome, f.x, yt, 15, '#fff', 'center');
+        this.text(ctx, 'Vida ' + Math.ceil(f.hp) + '/' + f.hpMax, f.x, yt + 15, 11, '#ffb0b0', 'center');
+      }
+    }
     const m = b.alvoMarcado;   // alvo sendo escolhido no menu
     if (m && !m.ko) {
       const p = m.peito();
