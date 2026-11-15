@@ -337,3 +337,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-15 — Embate de raios desligado
 - A pedido do usuário ("veremos depois"): a detecção do embate em `rodadaPlanejada` só roda com `FF.EMBATE_RAIOS = true` (código de `embateRaios`/`desenharEmbate` mantido). Página do tutorial sobre intenção sem o embate; dica da luta de treino removida.
+- Menu principal reformulado: painel de 2 colunas × 3 linhas (Continuar/Novo Jogo, Batalha Livre/Treinamento, Tutorial/Opções), faixas iguais de 25cqw numa linha só ("Continuar (Cap. N)"); o escolhido cresce um pouco (scale) em vez de alargar. Antes as 6 faixas empilhadas não cabiam em telas largas e a última caía em cima do rodapé. Setas: ←→ coluna, ↑↓ linha (pula os desativados). Rodapé "↑↓←→ Selecionar".

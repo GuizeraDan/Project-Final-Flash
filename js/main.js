@@ -740,7 +740,7 @@ window.addEventListener('load', () => {
     const save = FF.Save.get();
     const cont = intro.querySelector('[data-acao="continuar"]');
     cont.disabled = !save.capitulo;
-    if (save.capitulo) (cont.querySelector('span') || cont).textContent = 'Continuar (Capítulo ' + save.capitulo + ')';
+    if (save.capitulo) (cont.querySelector('span') || cont).textContent = 'Continuar (Cap. ' + save.capitulo + ')';
     mostrar('menu');
   };
   intro.addEventListener('click', abrir);
@@ -753,13 +753,18 @@ window.addEventListener('load', () => {
   // setas para navegar entre os botões do menu visível
   window.addEventListener('keydown', (e) => {
     if (!intro.className || intro.classList.contains('hide')) return;
-    if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp') return;
+    const grade = intro.className === 'menu';   // menu principal em 2 colunas: ←→ trocam de coluna, ↑↓ de linha
+    if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp' && !(grade && (e.code === 'ArrowLeft' || e.code === 'ArrowRight'))) return;
     const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
     if (!vis) return;
-    const bts = [...intro.querySelectorAll(vis + ' button:not([disabled])')];
+    const todos = [...intro.querySelectorAll(vis + ' > button')].filter(b => !b.hidden);
+    const bts = grade ? todos : todos.filter(b => !b.disabled);
     if (!bts.length) return;
-    const i = bts.indexOf(document.activeElement);
-    const j = (i + (e.code === 'ArrowDown' ? 1 : -1) + bts.length) % bts.length;
+    let i = bts.indexOf(document.activeElement), j;
+    const passo = grade && (e.code === 'ArrowDown' || e.code === 'ArrowUp') ? 2 : 1;
+    const dir = e.code === 'ArrowDown' || e.code === 'ArrowRight' ? 1 : -1;
+    j = i < 0 ? 0 : i;
+    for (let n = 0; n < bts.length; n++) { j = (j + dir * passo + bts.length) % bts.length; if (!bts[j].disabled) break; }
     bts[j].focus(); e.preventDefault();
     FF.Audio.play('tap_sound', 0.4);
   });

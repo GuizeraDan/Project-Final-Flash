@@ -665,3 +665,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .tut-legenda { margin: 0; font-size: 1cqw; color: #1a0e2e; background: rgba(255,255,255,0.75); padding: 0.3cqw 0.7cqw; border-radius: 0.3cqw; text-align: center; }
 @media (max-aspect-ratio: 1/1) { .tut-corpo { flex-direction: column; } .tut-ilu { flex-basis: auto; width: 100%; } }
 #inicio.tutorial-aberto .menu-titulo, #inicio.tutorial-aberto .titulo-ferramentas, #inicio.tutorial-aberto .titulo-rodape { display: none !important; }
+
+/* ===== menu principal em painel de 2 colunas (cabe em qualquer proporção de tela; antes a 6ª faixa caía em cima do rodapé) ===== */
+#inicio.menu #titulo-menu { display: grid !important; grid-template-columns: repeat(2, 25cqw); gap: 1.2cqw 2cqw; width: auto; justify-content: center; align-items: center; margin-top: 1.2cqw; }
+#titulo-menu > button { width: 25cqw !important; padding: 0.75cqw 1.4cqw !important; font-size: 1.55cqw; transition: transform 0.1s, box-shadow 0.1s; }
+#titulo-menu > button:focus, #titulo-menu > button:focus-visible { width: 25cqw !important; padding-left: 2.8cqw !important; padding-right: 1.4cqw !important; transform: skewX(-20deg) scale(1.07); z-index: 1; }
+#titulo-menu > button:focus::before { left: 1.3cqw; font-size: 1.3cqw; }
+#titulo-menu > button:disabled:focus { width: 25cqw !important; transform: skewX(-20deg); }
+#inicio.menu .titulo-rodape { bottom: 1.2cqw; }
+#titulo-menu > button { white-space: nowrap; }
