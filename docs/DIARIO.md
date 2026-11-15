@@ -300,3 +300,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Habilidade ⭐ `galaxy_breaker_filme` em `data/edicoes.js` (habilidades, `temporaria: true`; apagar no Estúdio → Golpes → Habilidades quando quiser): 70 ki, poder 4,2. Linha do tempo: UltimateAttack_GalaxyBreaker (aura) → Pt2 (coluna de energia) → Final (explode a aura, flash) → Special_Pt1 com a esfera (camada `fx_extra/genkidama` crescendo acima da mão + `genkidama_efeito`) → Special_Final arremessa (projétil genkidama 0,24, 380 px/s, impacto `genkidama_explosao`, lança). Vozes vvgn210/vvgn211, zoom de câmera no começo.
 - Correção: zoom da câmera não sai mais do cenário (`battle.draw` limita cam.x/y; zoom < 1 pinta o fundo de preto) — antes sobravam faixas "fantasma" na borda.
 - O supremo original "Galaxy Breaker" (JSON do Vegeta) continua igual.
+- 2026-11-14: habilidade temporária Galaxy Breaker (filme) removida a pedido do usuário (a correção do zoom da câmera ficou).
