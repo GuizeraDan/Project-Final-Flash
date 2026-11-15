@@ -84,6 +84,14 @@ FF.Battle = class {
     return 0;
   }
 
+  // ícone da intenção do inimigo: 💥 supremo · ⚡ carregar ki · 👊 corpo a corpo · 🔥 energia · ✨ suporte/forma
+  static iconeIntencao(m) {
+    if (m.supremo) return '💥';
+    if (/carregar/i.test(m.nome || '')) return '⚡';
+    const t = FF.Battle.tipoGolpe(m);
+    return t === 'corpo' ? '👊' : t === 'energia' ? '🔥' : '✨';
+  }
+
   // tipo de golpe para as fraquezas: "corpo" | "energia" | null (suporte)
   static tipoGolpe(m) {
     if (!m) return null;
@@ -143,6 +151,20 @@ FF.Battle = class {
   async rodadaPlanejada(ordem) {
     const plano = new Map();
     const herois = ordem.filter(f => f.isHero && !f.ko && !(f.atordoado > 0));
+    // inimigos decidem ANTES dos heróis e mostram a intenção (ícone e alvo sobre cada um)
+    for (const e of ordem.filter(f => !f.isHero && !f.ko)) {
+      if (e.atordoado > 0) { e.intencao = { icone: '💫', alvo: null }; continue; }
+      const alvo = this.alvoInimigo(e);
+      if (!alvo) continue;
+      const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
+      const mid = sup || FF.AI.choose(e, alvo, this);
+      // inimigo também usa Impulso: guarda pontos e solta num golpe de ataque
+      const mv = e.def.golpes[mid] || {};
+      const ofens = FF.Battle.ofensivo(mv);
+      const imp = ofens && e.impulso >= 3 ? (e.impulso >= 5 ? 2 : 1) : 0;
+      plano.set(e, { moveId: mid, alvo, impulso: imp });
+      e.intencao = { icone: FF.Battle.iconeIntencao(mv) + (imp ? '×' + (imp + 1) : ''), alvo: ofens ? alvo : null };
+    }
     this.planejando = true;
     for (let i = 0; i < herois.length;) {
       const h = herois[i];
@@ -177,27 +199,16 @@ FF.Battle = class {
       i++;
     }
     this.planejando = false;
-    // inimigos decidem agora (sem mostrar)
-    for (const e of ordem.filter(f => !f.isHero && !f.ko)) {
-      const alvo = this.alvoInimigo(e);
-      if (!alvo) continue;
-      const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
-      const mid = sup || FF.AI.choose(e, alvo, this);
-      // inimigo também usa Impulso: guarda pontos e solta num golpe de ataque
-      const ofens = FF.Battle.ofensivo(e.def.golpes[mid] || {});
-      const imp = ofens && e.impulso >= 3 ? (e.impulso >= 5 ? 2 : 1) : 0;
-      plano.set(e, { moveId: mid, alvo, impulso: imp });
-    }
     this.turnLabel = '';
     this.banner('AÇÃO!', 0.8);
     await FF.Clock.wait(0.6);
     for (const f of ordem) {
       if (this.over || f.ko) continue;
       await this.turnoPlanejado(f, plano.get(f));
-      f.planoIcone = null;
+      f.planoIcone = null; f.intencao = null;
       if (this.checkEnd()) return;
     }
-    this.all.forEach(f => (f.planoIcone = null));
+    this.all.forEach(f => { f.planoIcone = null; f.intencao = null; });
   }
 
   alvoInimigo(actor) {
@@ -924,6 +935,15 @@ FF.Battle = class {
       ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = q ? '#ffb08a' : '#cfe8ff'; ctx.stroke();
       if (q) { ctx.strokeStyle = '#2a0400'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x - 24, y - s + 2); ctx.lineTo(x - 21, y - 2); ctx.lineTo(x - 25, y + 3); ctx.lineTo(x - 22, y + s); ctx.stroke(); }
       FF.HUD.text(ctx, q ? '✕' : String(f.escudos), x - 30 + s * 0.8, y + 2, 14, '#fff', 'center');
+      // intenção (Planejamento): o que vai fazer e em quem
+      if (f.intencao) {
+        const it = f.intencao, txt = it.icone + (it.alvo ? ' → ' + it.alvo.nome + (it.alvo.sufixo || '') : '');
+        ctx.font = 'bold 13px sans-serif';
+        const tw = ctx.measureText(txt).width + 14, iy = y - s - 16;
+        ctx.fillStyle = 'rgba(10,8,24,0.82)'; ctx.strokeStyle = it.icone.startsWith('💥') ? '#ff7a3a' : '#ffcf3a'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x - tw / 2, iy - 10, tw, 20, 10); else ctx.rect(x - tw / 2, iy - 10, tw, 20); ctx.fill(); ctx.stroke();
+        FF.HUD.text(ctx, txt, x, iy + 1, 13, '#fff', 'center');
+      }
       // fraquezas
       f.fraquezas.forEach((t, i) => {
         const cx = x - 2 + i * 22, cy = y + 1;

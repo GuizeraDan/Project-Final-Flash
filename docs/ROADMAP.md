@@ -43,7 +43,7 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [x] Linha do tempo de turnos mostrando o efeito dos golpes na ordem (FFX).
 - [x] Ataque Total quando todos os inimigos estão quebrados (Persona) — "ATAQUE Z".
 - [x] Golpes com desafios diferentes de botão (Super Mario RPG / Paper Mario).
-- [ ] Intenção do inimigo no Planejamento (Slay the Spire).
+- [x] Intenção do inimigo no Planejamento (Slay the Spire).
 - [ ] Embate de raios (beam struggle).
 - [ ] Pergaminhos de técnica: golpes sobem de nível (Attack of the Saiyans).
 - [ ] Cápsulas equipáveis; notas/bônus no fim da luta; falas no meio da luta; câmera dramática no supremo.
