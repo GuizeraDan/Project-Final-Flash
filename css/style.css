@@ -564,3 +564,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.mg-mini .mg-desc:has(em) { background: rgba(16,20,48,0.92); border: 0.12cqw solid rgba(255,190,60,0.55); }
 #menu.mg-mini .mg-cat-nome { background: linear-gradient(180deg, #fffcc0 5%, #ffe23a 45%, #ffa000 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: 0.06cqw #2a0e00;
   filter: drop-shadow(0.08cqw 0.1cqw 0 #1a0600) drop-shadow(0 0 0.25cqw rgba(0,0,0,0.85)); }
+/* a linha do motivo (golpe bloqueado) não ocupa espaço: antes ela empurrava o menu inteiro para cima ao passar o mouse */
+#menu.mg-mini { position: absolute; }
+#menu.mg-mini .mg-desc:has(em) { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 0.15cqw; z-index: 2; pointer-events: none; }
+#menu.mg-mini .mg-desc:has(em) { left: 100%; top: 0.9cqw; transform: none; margin: 0 0 0 1.2cqw; }
+#menu.mg-mini .mg-desc:has(em) { top: auto; bottom: 2.6cqw; }
