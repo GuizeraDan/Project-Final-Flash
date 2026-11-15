@@ -338,3 +338,9 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 ## 2026-11-15 — Embate de raios desligado
 - A pedido do usuário ("veremos depois"): a detecção do embate em `rodadaPlanejada` só roda com `FF.EMBATE_RAIOS = true` (código de `embateRaios`/`desenharEmbate` mantido). Página do tutorial sobre intenção sem o embate; dica da luta de treino removida.
 - Menu principal reformulado: painel de 2 colunas × 3 linhas (Continuar/Novo Jogo, Batalha Livre/Treinamento, Tutorial/Opções), faixas iguais de 25cqw numa linha só ("Continuar (Cap. N)"); o escolhido cresce um pouco (scale) em vez de alargar. Antes as 6 faixas empilhadas não cabiam em telas largas e a última caía em cima do rodapé. Setas: ←→ coluna, ↑↓ linha (pula os desativados). Rodapé "↑↓←→ Selecionar".
+
+## 2026-11-15 — KO por Supremo: vaporizado
+- Quando o golpe final é **Supremo**, a cena de KO é `edicoes.ko.supremo` ou `FF.KO.SUPREMO` (`FF.KO.tocar(b, att, def, move)`): derrotado fica de pé cambaleando (dano1), explosão Explosao15 + flash/tremor; em 1,0 s começa o clipe novo **"vaporizar"** (1,5 s) com genkidama_efeito e laser_expl.
+- Clipe de lutador `{tipo:"vaporizar", d}` (linha.js): marca `f.vapor`/`f.vaporizado`; `Fighter.desenharVapor` desenha o corpo clareando e "comido" de cima para baixo por uma linha de luz, soltando 120 faíscas (branco/dourado/laranja) que sobem e se apagam — tudo calculado pelo tempo (determinístico, funciona no palco). Fica sumido até o fim da luta (sem sombra).
+- Estúdio: lista "💀 Cena de KO" ganhou "💥 Vaporizado (golpe supremo)" (salva em ko.supremo, ↺ Original volta ao padrão); trilha de lutador ganhou "💨 Vaporizar" (duração editável/esticável).
+- Decisão: a vaporização começa depois da explosão para não ficar escondida atrás de supremos grandes como a Genki Dama.

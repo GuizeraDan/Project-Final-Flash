@@ -141,6 +141,7 @@ FF.Fighter = class {
   }
 
   draw(ctx, fx) {
+    if (this.vaporizado) return this.desenharVapor(ctx);
     // sombra
     const sombra = fx && fx.anim('sombra');
     if (sombra && !this.semSombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
@@ -155,6 +156,48 @@ FF.Fighter = class {
       ctx.restore();
     } else FF.drawFrame(ctx, this.sprite, this.anim.frame(), x, y, sc, flip, { tint: this.tint(), alpha: this.alpha });
     this.desenharAura(ctx, true);
+  }
+
+  // vaporizar: o desenho brilha e é "comido" de cima para baixo por uma linha de luz que solta faíscas;
+  // tudo calculado pelo tempo (determinístico, funciona no palco do Estúdio)
+  desenharVapor(ctx) {
+    const v = this.vapor;
+    if (!v) return;
+    const p = Math.min(1, (FF.Clock.t - v.t0) / v.d);
+    const fr = this.anim.frame();
+    const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
+    const larg = fr ? fr[3] * sc : 60 * sc, alt = fr ? fr[4] * sc : 70 * sc;
+    const x0 = fr ? x - (flip ? fr[3] - fr[5] : fr[5]) * sc : x - larg / 2, y0 = fr ? y - fr[6] * sc : y - alt;
+    const yl = y0 + alt * p;   // linha de luz
+    if (p < 1 && fr) {
+      ctx.save();
+      ctx.beginPath(); ctx.rect(x0 - 20, yl, larg + 40, alt + 20); ctx.clip();
+      ctx.filter = 'brightness(' + (1 + 2.2 * Math.min(1, p * 2)).toFixed(2) + ') saturate(' + (1 - 0.6 * p).toFixed(2) + ')';
+      FF.drawFrame(ctx, this.sprite, fr, x, y, sc, flip, { alpha: this.alpha });
+      ctx.restore();
+      // a linha brilhando
+      ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      const g = ctx.createLinearGradient(0, yl - 6, 0, yl + 6); g.addColorStop(0, 'rgba(255,240,180,0)'); g.addColorStop(0.5, 'rgba(255,250,220,0.95)'); g.addColorStop(1, 'rgba(255,200,80,0)');
+      ctx.fillStyle = g; ctx.fillRect(x0 - 6, yl - 6, larg + 12, 12);
+      ctx.restore();
+    }
+    // faíscas: cada uma nasce quando a linha passa pela altura dela e sobe se apagando
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    let s = v.semente * 9973;
+    const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    const N = 120;
+    for (let i = 0; i < N; i++) {
+      const nasce = i / N, rx = rnd(), vx = (rnd() - 0.5) * 60, vy = 60 + rnd() * 110, vida = 0.4 + rnd() * 0.5, tam = 3 + rnd() * 5, cor = rnd();
+      const tv = (p - nasce) * v.d;
+      if (tv < 0 || tv > vida) continue;
+      const k = tv / vida;
+      const px = x0 + rx * larg + vx * tv, py = y0 + alt * nasce - vy * tv;
+      ctx.globalAlpha = (1 - k) * 0.95;
+      ctx.fillStyle = cor < 0.35 ? '#ffffff' : cor < 0.75 ? '#ffe27a' : '#ff9a2a';
+      const t2 = tam * (1 - 0.5 * k);
+      ctx.fillRect(px - t2 / 2, py - t2 / 2, t2, t2);
+    }
+    ctx.restore();
   }
 
   // Ponto do corpo usado para efeitos/projéteis (mais ou menos o peito).

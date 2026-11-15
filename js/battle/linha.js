@@ -196,6 +196,13 @@ FF.Linha = {
     const move = viva.move || {};
     const tr = c._tr;
     switch (c.tipo) {
+      case 'vaporizar': {   // o lutador se desfaz em faíscas de cima para baixo e some (cena de KO do supremo)
+        const f = this.lutadorDe(b, actor, target, tr.quem);
+        if (!f) return;
+        f.vapor = { t0: FF.Clock.t, d: Math.max(0.2, c.d || 1.2), semente: 7 + Math.floor((f.x || 0) % 97) };
+        f.vaporizado = true;
+        return;
+      }
       case 'anim': case 'mover': case 'teleporte': case 'visivel': {
         const f = this.lutadorDe(b, actor, target, tr.quem);
         if (!f || (f.ko && tr.quem !== 'atacante' && !(viva.ko && f === target))) return;

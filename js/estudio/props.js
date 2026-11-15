@@ -149,6 +149,7 @@ FF.EstudioProps = {
         break;
       }
       case 'visivel': g.appendChild(num(c, 'alpha', 'Opacidade', '0 = some, 1 = aparece', { passo: 0.1, min: 0, max: 1 })); break;
+      case 'vaporizar': g.appendChild(num(c, 'd', 'Duração (s)', 'Tempo para se desfazer em faíscas (depois fica sumido até o fim da luta)', { passo: 0.1, min: 0.2, max: 5 })); break;
       case 'efeito': {
         if (c.prende) {
           const base = host.baseDoPreso ? host.baseDoPreso(c) : null;
@@ -289,7 +290,7 @@ FF.EstudioProps = {
   },
 
   titulo(c) {
-    return { anim: '🎬 Animação', mover: '➡ Movimento', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
+    return { anim: '🎬 Animação', mover: '➡ Movimento', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
   },
 
   trilha(tr, host, txt) {

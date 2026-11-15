@@ -150,6 +150,7 @@ window.FF = window.FF || {};
       };
       const koSalvo = FF.Edicoes.dados().ko || {};
       itemKO('padrao', '💀 Padrão (todos)', koSalvo.padrao ? '✎' : '', 'Vale para todo personagem que não tem cena de KO própria');
+      itemKO('supremo', '💥 Vaporizado (golpe supremo)', koSalvo.supremo ? '✎' : '', 'Toca quando o golpe final é um Supremo (vale para todos): o derrotado se desfaz em faíscas');
       const nAlvo = (this.defs[cfg.alvo] || {}).nome || cfg.alvo;
       itemKO(cfg.alvo, '💀 Quando ' + nAlvo + ' cai', koSalvo[cfg.alvo] ? '✎' : 'usa a padrão', 'Cena própria do ' + nAlvo + ' (troque o Alvo do palco para editar a de outro personagem)');
       L.appendChild(lista);
@@ -212,10 +213,10 @@ window.FF = window.FF || {};
     },
     // cena de KO (js/battle/ko.js): id = 'padrao' ou o personagem derrotado (fica como Alvo no palco)
     async abrirKO(id) {
-      if (id !== 'padrao' && id !== this.cfg.alvo) await this.aplicarCfg(Object.assign({}, this.cfg, { alvo: id, alvoForma: null }));
-      const nome = id === 'padrao' ? 'Cena de KO (padrão)' : 'KO de ' + ((this.defs[id] || {}).nome || id);
+      if (id !== 'padrao' && id !== 'supremo' && id !== this.cfg.alvo) await this.aplicarCfg(Object.assign({}, this.cfg, { alvo: id, alvoForma: null }));
+      const nome = id === 'padrao' ? 'Cena de KO (padrão)' : id === 'supremo' ? 'KO por Supremo (vaporizado)' : 'KO de ' + ((this.defs[id] || {}).nome || id);
       this.abrirDoc({ origem: { tipo: 'ko', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome }, linha: FF.KO.linhaDe(id) });
-      if (id !== 'padrao' && !FF.KO.temPropria(id)) E.aviso('💀 ' + nome + ': começa pela cena padrão. Ao salvar, vira a cena própria dele.');
+      if (id !== 'padrao' && id !== 'supremo' && !FF.KO.temPropria(id)) E.aviso('💀 ' + nome + ': começa pela cena padrão. Ao salvar, vira a cena própria dele.');
     },
     meta(g) { const m = E.copia(g); delete m.roteiro; delete m.habId; return m; },
     linhaDe(g) {
@@ -292,12 +293,13 @@ window.FF = window.FF || {};
       const real = ((f && f.anims) || {})[nome] || nome;
       return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
-    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera'].includes(c.tipo); },
+    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
         case 'teleporte': { const a = this.animDoClipe(c, tr); return a ? FF.Linha.duracaoAnim(a) : 0.25; }
         case 'mover': return c.d || 0.22;
+        case 'vaporizar': return c.d || 1.2;
         case 'efeito': { if (c.d) return c.d; const s = c.sprite ? FF.Assets.sprites[c.sprite] : (FF.Assets.sprites.fx.has(c.fx) ? FF.Assets.sprites.fx : FF.Assets.sprites.fx_extra); const a = s && s.anim(c.fx); return a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3; }
         case 'camada': return c.d != null ? c.d : 1;
         case 'projetil': { const b = this.palco._b; const dist = b ? Math.abs(b.alvo.x - b.atk.x) * 0.9 : 600; return Math.max(0.05, dist / (c.velocidade || 650)); }
@@ -421,7 +423,7 @@ window.FF = window.FF || {};
       };
       const s = this.spriteDe(tr.quem);
       const opcoes = {
-        lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })]],
+        lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })], ['💨 Vaporizar', () => criar({ tipo: 'vaporizar', d: 1.2 })]],
         sons: [['♪ Som', () => criar({ tipo: 'som', som: 'hit_small-a' })], ['🗣 Voz', () => criar({ tipo: 'voz', voz: ((this.defs[this.cfg.atacante].vozes || {}).dano || ['vgkn100'])[0] })]],
         tela: [['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash', () => criar({ tipo: 'flash', forca: 0.5 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
       }[tr.tipo];

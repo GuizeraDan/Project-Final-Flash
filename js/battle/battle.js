@@ -659,7 +659,7 @@ FF.Battle = class {
       FF.Audio.play(forca === 'forte' || forca === 'energia' ? 'guard_large' : ['guard_small-a', 'guard_small-b']);
       def.reagir('guarda', 0.25);
       // a defesa não salva quem já está sem vida: cai mesmo defendendo
-      if (def.hp <= 0) { def.ko = true; FF.Clock.hitstop(0.35); (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def)); }
+      if (def.hp <= 0) { def.ko = true; FF.Clock.hitstop(0.35); (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def, move)); }
     } else {
       const fxName = spec.fx || { leve: 'hit1', media: 'hit3', forte: 'hit_grande', energia: 'kiblast_hit' }[forca] || 'hit1';
       // posição da explosão do acerto: dx/dy a partir do peito do alvo (dx positivo = para longe de quem bateu)
@@ -675,7 +675,7 @@ FF.Battle = class {
         def.ko = true;
         FF.Clock.hitstop(0.35);
         // cena de KO (js/battle/ko.js; editável no Estúdio): animação, efeitos, sons, tela
-        (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def));
+        (this.cenasKO = this.cenasKO || []).push(FF.KO.tocar(this, att, def, move));
       } else if (spec.lanca) {
         def.lancar(spec.empurrao || 520);
         def.voz('lancado');
@@ -1161,7 +1161,7 @@ FF.Battle = class {
 
   desenharSombras(ctx) {
     for (const f of this.all) {
-      if (!(f.alpha > 0.05)) continue;
+      if (!(f.alpha > 0.05) || f.vaporizado) continue;
       const alto = Math.max(0, f.groundY - (f.y + (f.offY || 0)));
       const k = Math.max(0.35, 1 - alto / 160);
       const rx = 21 * f.scale * k, ry = 5.5 * f.scale * k;
