@@ -167,7 +167,8 @@
           "voltar": true,
           "som": "teletransporte"
         }
-      ]
+      ],
+      "desafio": "aneis"
     },
     "makankosappo": {
       "nome": "Makankosappo",
@@ -259,7 +260,8 @@
         {
           "esperar": 0.3
         }
-      ]
+      ],
+      "desafio": "segurar"
     },
     "rajada_teleguiada": {
       "nome": "Rajada Teleguiada",

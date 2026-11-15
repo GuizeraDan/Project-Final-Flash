@@ -191,7 +191,8 @@
           "voltar": true,
           "som": "teletransporte"
         }
-      ]
+      ],
+      "desafio": "aneis"
     },
     "rajada": {
       "nome": "Rajada Contínua",
@@ -409,7 +410,8 @@
         {
           "anim": "Special_GalickGun_Final"
         }
-      ]
+      ],
+      "desafio": "apertar"
     },
     "carregar_ki": {
       "nome": "Carregar Ki",

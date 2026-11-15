@@ -168,7 +168,8 @@
           "voltar": true,
           "som": "teletransporte"
         }
-      ]
+      ],
+      "desafio": "aneis"
     },
     "kienzan": {
       "nome": "Kienzan",
@@ -228,7 +229,8 @@
             }
           ]
         }
-      ]
+      ],
+      "desafio": "segurar"
     },
     "senzu": {
       "nome": "Semente dos Deuses",
@@ -1161,7 +1163,8 @@
             ]
           }
         }
-      ]
+      ],
+      "desafio": "apertar"
     }
   },
   "escudos": {

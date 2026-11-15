@@ -64,6 +64,7 @@ FF.EstudioPalco = class {
     if (cfg.alvoForma && alvo.def.formas[cfg.alvoForma]) alvo.setForm(cfg.alvoForma);
     if (cfg.buff && atk.def.buffs && atk.def.buffs[cfg.buff]) { atk.buffs[cfg.buff] = Object.assign({ id: cfg.buff }, atk.def.buffs[cfg.buff]); atk.idle(); }
     if (b.persp) { b.montarPerspectiva(); b.acaoAtual = { actor: atk, target: alvo }; }
+    b.semDesafios = true;   // os desafios de botão ficam para o jogo
     b.atk = atk; b.alvo = alvo;
     FF.battle = b;
     return b;

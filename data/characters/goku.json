@@ -274,7 +274,8 @@
       ],
       "esconder": {
         "buff": "kaioken"
-      }
+      },
+      "desafio": "aneis"
     },
     "combo_kaioken": {
       "nome": "Combo Kaioken",
@@ -451,7 +452,8 @@
       ],
       "esconder": {
         "buff": "kaioken"
-      }
+      },
+      "desafio": "apertar"
     },
     "kamehameha_kaioken": {
       "nome": "Kamehameha Kaioken",
@@ -543,7 +545,8 @@
         {
           "anim": "Special_20xKaiokenKamehameha_Final"
         }
-      ]
+      ],
+      "desafio": "apertar"
     },
     "kaioken": {
       "nome": "Kaioken",
@@ -753,7 +756,8 @@
           "voltar": true,
           "som": "teletransporte"
         }
-      ]
+      ],
+      "desafio": "aneis"
     },
     "kamehameha_ssj": {
       "nome": "Kamehameha",
@@ -809,7 +813,8 @@
             }
           ]
         }
-      ]
+      ],
+      "desafio": "apertar"
     },
     "super_kamehameha": {
       "nome": "Super Kamehameha",
@@ -877,7 +882,8 @@
             }
           ]
         }
-      ]
+      ],
+      "desafio": "apertar"
     },
     "genkidama": {
       "nome": "Genki Dama",

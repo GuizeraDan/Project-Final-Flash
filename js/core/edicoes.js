@@ -220,7 +220,7 @@ FF.Edicoes = {
       const novo = JSON.parse(JSON.stringify(g));
       // regras que o Estúdio não mostra (quando o golpe aparece/precisa de algo): vêm do original
       const orig = def._golpesOrig[k] || {};
-      for (const meta of ['mostrar', 'esconder', 'requer', 'supremo']) if (orig[meta] !== undefined && novo[meta] === undefined) novo[meta] = orig[meta];
+      for (const meta of ['mostrar', 'esconder', 'requer', 'supremo', 'desafio', 'escudos', 'velocidade']) if (orig[meta] !== undefined && novo[meta] === undefined) novo[meta] = orig[meta];
       def.golpes[k] = novo;
     }
     return def;

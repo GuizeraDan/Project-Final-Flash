@@ -318,6 +318,9 @@ FF.Battle = class {
       this.flash(0.12 * n);
       await FF.Clock.wait(0.35);
     }
+    // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
+    actor.desafioMult = 1;
+    if (actor.isHero && move.desafio && target && target !== actor && !this.semDesafios) actor.desafioMult = await this.desafio(actor, move.desafio);
     await FF.Script.run(this, actor, target, move);
     await Promise.all(this.paralelos);
     this.paralelos = [];
@@ -326,8 +329,97 @@ FF.Battle = class {
     this.cenasKO = [];
     await FF.Clock.wait(0.25);
     actor.busy = false;
+    actor.desafioMult = 1;
     actor.idle();
     await this.resetPositions();
+  }
+
+  // ---------- desafios de botão (como no Super Mario RPG / Paper Mario) ----------
+  // "apertar": aperte rápido para encher a barra (1,6 s) · "aneis": 3 anéis seguidos, aperte quando cada um fechar
+  // "segurar": segure o botão, a barra sobe e desce; solte na faixa verde. Botão = Espaço/Z/J/Enter, clique ou toque.
+  // Devolve o multiplicador de dano (0,85 a 1,45).
+  desafio(actor, tipo) {
+    return new Promise(res => {
+      const d = { tipo, actor, t0: FF.Clock.t, valor: 0, acertos: 0, anel: 0, segurando: false, fim: null, txt: '' };
+      this.desafioAtual = d;
+      const tela = document.getElementById('tela') || window;
+      const apertou = () => {
+        if (d.fim) return;
+        const t = FF.Clock.t - d.t0;
+        if (tipo === 'apertar') { d.valor = Math.min(1, d.valor + 0.085); FF.Audio.play('tap_sound', 0.35); }
+        else if (tipo === 'aneis') {
+          const alvoT = 0.55 + d.anel * 0.55, dif = Math.abs(t - alvoT);
+          if (dif <= 0.13 && !d['ok' + d.anel]) { d['ok' + d.anel] = true; d.acertos++; this.popup(actor, 'BOA!', '#ffd84a', -60); FF.Audio.play('hit_small-a', 0.6); }
+        } else if (tipo === 'segurar' && !d.segurando) { d.segurando = true; d.tSeg = FF.Clock.t; FF.Audio.play('carregamentodeki_start', 0.5); }
+      };
+      const soltou = () => {
+        if (d.fim || tipo !== 'segurar' || !d.segurando) return;
+        terminar();
+      };
+      const kd = (e) => { if (e.repeat) return; if (['Space', 'KeyZ', 'KeyJ', 'Enter'].includes(e.code)) { e.preventDefault(); apertou(); } };
+      const ku = (e) => { if (['Space', 'KeyZ', 'KeyJ', 'Enter'].includes(e.code)) soltou(); };
+      const pd = (e) => { e.preventDefault(); apertou(); };
+      const pu = () => soltou();
+      window.addEventListener('keydown', kd, true); window.addEventListener('keyup', ku, true);
+      tela.addEventListener('pointerdown', pd); window.addEventListener('pointerup', pu);
+      const terminar = () => {
+        if (d.fim) return;
+        let m;
+        if (tipo === 'apertar') m = 0.85 + 0.6 * d.valor;
+        else if (tipo === 'aneis') m = 0.85 + 0.2 * d.acertos;
+        else {
+          const v = d.segurando ? this.valorSegurar(d) : 0;
+          m = v >= 0.74 && v <= 0.92 ? 1.45 : v >= 0.6 && v <= 0.97 ? 1.15 : 0.85;
+        }
+        d.fim = FF.Clock.t; d.mult = m;
+        d.txt = m >= 1.4 ? 'PERFEITO!' : m >= 1.1 ? 'BOM!' : 'FRACO...';
+        this.popup(actor, d.txt + ' ×' + m.toFixed(2).replace('.', ','), m >= 1.4 ? '#ffd84a' : m >= 1.1 ? '#a0e0ff' : '#bbbbbb', -70);
+        if (m >= 1.4) { this.flash(0.2); FF.Audio.play('decide_charasel', 0.6); }
+        window.removeEventListener('keydown', kd, true); window.removeEventListener('keyup', ku, true);
+        tela.removeEventListener('pointerdown', pd); window.removeEventListener('pointerup', pu);
+        FF.Clock.wait(0.45).then(() => { this.desafioAtual = null; res(m); });
+      };
+      d.terminar = terminar;
+      // fim por tempo (vigiado a cada quadro em atualizarDesafio)
+      d.limite = tipo === 'apertar' ? 1.6 : tipo === 'aneis' ? 0.55 + 2 * 0.55 + 0.25 : 3.0;
+    });
+  }
+  valorSegurar(d) { const t = FF.Clock.t - d.tSeg; return 1 - Math.abs(((t * 0.9) % 2) - 1); }   // sobe e desce (0 → 1 → 0)
+  atualizarDesafio() {
+    const d = this.desafioAtual;
+    if (!d || d.fim) return;
+    const t = FF.Clock.t - d.t0;
+    if (d.tipo === 'apertar') d.valor = Math.max(0, d.valor - 0.0035);
+    if (d.tipo === 'aneis') d.anel = Math.min(2, Math.floor(Math.max(0, t - 0.28) / 0.55));
+    if (t >= d.limite) d.terminar();
+  }
+  desenharDesafio(ctx) {
+    const d = this.desafioAtual;
+    if (!d) return;
+    const a = d.actor, p = a.peito(), t = FF.Clock.t - d.t0;
+    const H = FF.HUD;
+    ctx.save();
+    if (d.tipo === 'apertar' || d.tipo === 'segurar') {
+      const w = 170, h = 16, x = p.x - w / 2, y = p.y - 95;
+      ctx.fillStyle = 'rgba(8,10,28,0.85)'; ctx.fillRect(x - 4, y - 4, w + 8, h + 8);
+      if (d.tipo === 'segurar') { ctx.fillStyle = 'rgba(80,255,120,0.45)'; ctx.fillRect(x + w * 0.74, y, w * 0.18, h); }
+      const v = d.tipo === 'apertar' ? d.valor : (d.segurando && !d.fim ? this.valorSegurar(d) : 0);
+      const g = ctx.createLinearGradient(x, 0, x + w, 0); g.addColorStop(0, '#ffd84a'); g.addColorStop(1, '#ff6a00');
+      ctx.fillStyle = g; ctx.fillRect(x, y, w * v, h);
+      ctx.strokeStyle = '#fff3a0'; ctx.lineWidth = 2; ctx.strokeRect(x, y, w, h);
+      if (!d.fim) H.text(ctx, d.tipo === 'apertar' ? 'APERTE RÁPIDO!' : (d.segurando ? 'SOLTE NO VERDE!' : 'SEGURE O BOTÃO!'), p.x, y - 14, 16, '#fff27a', 'center');
+    } else if (d.tipo === 'aneis') {
+      for (let i = 0; i < 3; i++) {
+        const alvoT = 0.55 + i * 0.55, k = (alvoT - t) / 0.55;
+        const cx = p.x - 40 + i * 40, cy = p.y - 85;
+        ctx.lineWidth = 3; ctx.strokeStyle = d['ok' + i] ? '#7dff9a' : '#ffd84a';
+        ctx.beginPath(); ctx.arc(cx, cy, 13, 0, Math.PI * 2); ctx.stroke();
+        if (!d['ok' + i] && k > -0.25 && k < 1) { ctx.globalAlpha = 0.9; ctx.strokeStyle = Math.abs(t - alvoT) <= 0.13 ? '#fff' : '#ffb24a'; ctx.beginPath(); ctx.arc(cx, cy, 13 + Math.max(0, k) * 30, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
+        if (d['ok' + i]) H.text(ctx, '✓', cx, cy, 14, '#7dff9a', 'center');
+      }
+      if (!d.fim) H.text(ctx, 'APERTE QUANDO CADA ANEL FECHAR!', p.x, p.y - 118, 14, '#fff27a', 'center');
+    }
+    ctx.restore();
   }
 
   async endTurn(f) {
@@ -438,6 +530,7 @@ FF.Battle = class {
     let dmg = (move.poder || 1) * (spec.fracao || 1) * att.stat('ataque') * 100 / (100 + def.stat('defesa'));
     dmg *= 0.9 + Math.random() * 0.2;
     if (att.boost) dmg *= 1 + 0.4 * att.boost;   // Impulso: +40% por nível
+    if (att.desafioMult) dmg *= att.desafioMult;   // desafio de botão do golpe
     let guard = false;
     // escudos: o golpe da fraqueza tira escudo (1 por golpe, +1 por nível de Impulso, +1 no supremo); zerou = QUEBRA
     if (def.escudosMax && att.lado !== def.lado && !def.ko) {
@@ -888,6 +981,7 @@ FF.Battle = class {
   update(dt) {
     this.all.forEach(f => f.update(dt));
     if (this.persp) this.atualizarPerspectiva();
+    this.atualizarDesafio();
     this.fxList.forEach(e => {
       e.a.update(dt);
       if (e.segue) { const s = e.segue; e.x = s.ex + (s.f.x - s.x0); e.y = s.ey + (s.f.y - s.y0); }
@@ -990,6 +1084,7 @@ FF.Battle = class {
     ctx.restore();
     this.drawQtes(ctx);
     FF.HUD.draw(ctx, this);
+    this.desenharDesafio(ctx);
     if (this.flashAmt > 0) {
       ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, this.flashAmt) + ')';
       ctx.fillRect(0, 0, FF.W, FF.H);
