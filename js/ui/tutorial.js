@@ -60,9 +60,9 @@ FF.Tutorial = {
       <p>Cada golpe da fraqueza tira <b>1 escudo</b> (+15% de dano). Zerou: <b style="color:#ff7a3a">QUEBRA DE GUARDA!</b> O inimigo <b>perde a próxima vez</b> e leva <b>+60% de dano</b> até ela passar. Depois os escudos voltam.</p>
       <p><b>Todos os inimigos quebrados?</b> Aparece o botão <b style="color:#ffb800">⚡ ATAQUE Z</b> (tecla Z): o time inteiro ataca junto, com uma explosão final em todos.</p>` },
 
-    { t: 'Leia o inimigo: intenção e embate', ic: '👁️', ilu: 'intencao', h: `
+    { t: 'Leia o inimigo: a intenção', ic: '👁️', ilu: 'intencao', h: `
       <p>No planejamento, cada inimigo mostra o que <b>vai fazer</b> e <b>em quem</b>: 👊 corpo a corpo · 🔥 energia · ✨ suporte · ⚡ carregar ki · 💥 supremo. Use isso: prepare a guarda de quem vai apanhar, carregue ki quando ele só vai se preparar…</p>
-      <p><b>Embate de raios!</b> Se o seu herói solta um golpe de energia num inimigo que também vai soltar energia nele, os raios se chocam no meio. <b>Aperte rápido</b> para empurrar o choque até o inimigo — quem vencer acerta o golpe com +40%.</p>` },
+      <p class="tut-dica">A intenção some quando o inimigo age. Se o alvo dele cair antes, ele escolhe outro.</p>` },
 
     { t: 'Fúria, Sparking e Supremo', ic: '💥', ilu: 'sparking', h: `
       <p>A barra de <b>Fúria</b> enche ao causar e receber dano (e nas guardas perfeitas). Cheia: <b>SPARKING!</b> — o painel brilha em dourado e o <b>Supremo</b> (💥) aparece liberado em Ataques: Genki Dama, Double Sunday, Granada de Luz…</p>
@@ -344,7 +344,6 @@ FF.Tutorial = {
   dica(b) {
     if (!b || !b.def || !b.def.tutorial || b.over) return null;
     const h = b.heroes[0], e = b.enemies[0];
-    if (b.embateAtual) return 'Embate! Aperte o botão rápido para empurrar o choque!';
     if (b.desafioAtual) return { apertar: 'Desafio: aperte o botão várias vezes para encher a barra!', aneis: 'Desafio: aperte quando cada anel fechar!', segurar: 'Desafio: segure o botão e solte na faixa verde!' }[b.desafioAtual.tipo];
     const q = b.qtes.find(x => x.result === undefined);
     if (q) return q.mode === 'guarda' ? 'O inimigo vai atacar! Aperte ESPAÇO (ou clique) quando o anel AZUL fechar.' : 'Aperte ESPAÇO (ou clique) quando o anel DOURADO fechar: CRÍTICO!';

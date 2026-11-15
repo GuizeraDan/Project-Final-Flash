@@ -214,7 +214,8 @@ FF.Battle = class {
     }
     this.planejando = false;
     // embate de raios: herói e inimigo planejaram golpes de energia um no outro
-    for (const [h, ph] of plano) {
+    // DESLIGADO a pedido do usuário (2026-11-15) — para religar: FF.EMBATE_RAIOS = true
+    if (FF.EMBATE_RAIOS) for (const [h, ph] of plano) {
       if (!h.isHero || ph.embate) continue;
       const mh = h.def.golpes[ph.moveId], e = ph.alvo, pe = e && plano.get(e);
       if (!pe || pe.alvo !== h || pe.embate) continue;

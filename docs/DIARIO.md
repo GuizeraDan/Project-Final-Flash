@@ -334,3 +334,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Testes no fim da madrugada: batalha 1v1 (saiyajin_01) e 3v3 (saiyajin_03) terminam sem erros; Trio vs Vegeta (saiyajin_05) sem erros mas não termina em 4 min no teste automático (luta longa, já anotada no ROADMAP); testes do Estúdio (estudio.js, estudio_sprites.js) passam.
 - Para testar de manhã: tutorial (menu → 📖 Tutorial → ▶ Luta de treino), desafios de botão (Kamehameha/Sequência/Makankosappo), Impulso + Quebra + Ataque Z no Trio vs Saibamen, embate de raios (Kamehameha num inimigo que vai usar raio em você), cápsulas e pergaminhos no Treinamento, nota no fim, fala do Raditz na metade da vida, Genki Dama com Fúria cheia.
 - Decisões tomadas sozinho (revisar): todas as cápsulas liberadas desde o começo; custo dos pergaminhos 2/4; nota S–D com os pesos acima; desafios só para heróis; embate só quando os dois golpes de energia são um no outro na mesma rodada; Ataque Z gasta a rodada do time.
+
+## 2026-11-15 — Embate de raios desligado
+- A pedido do usuário ("veremos depois"): a detecção do embate em `rodadaPlanejada` só roda com `FF.EMBATE_RAIOS = true` (código de `embateRaios`/`desenharEmbate` mantido). Página do tutorial sobre intenção sem o embate; dica da luta de treino removida.
