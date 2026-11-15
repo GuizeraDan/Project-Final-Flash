@@ -1,6 +1,6 @@
 // Menu de golpes novo (Opções → Menu de golpes): categorias em círculos (Ataques / Formas / Buffs) e os golpes
-// da categoria escolhida em três estilos — "radial" (leque em arco), "trilho" (painel ao lado) e "dock"
-// (barra embaixo). O menu clássico continua em FF.UI.chooseMove (estilo "lista").
+// da categoria escolhida em quatro estilos — "radial" (leque em arco), "trilho" (painel ao lado), "dock"
+// (barra embaixo) e "mini" (minimalista: só círculos embaixo, um deles o Carregar Ki, e pílulas em cima do escolhido). O menu clássico continua em FF.UI.chooseMove (estilo "lista").
 // Teclado: ↑↓ golpes · ←→ categorias (no dock é ao contrário) · Enter escolhe · 1-9 atalho · Esc volta (Planejamento).
 window.FF = window.FF || {};
 
@@ -28,9 +28,11 @@ FF.MenuGolpes = {
       box.innerHTML = '';
       box.className = 'mg mg-' + estilo;
       const ids = hero.form.golpes.filter(id => hero.def.golpes[id] && UI.visivel(hero, hero.def.golpes[id]));
+      const mini = estilo === 'mini';
       const info = ids.map((id, i) => {
         const m = hero.def.golpes[id];
-        return { id, i, m, cat: this.categoria(m), pode: !UI.motivo(hero, m) && !(m.requer && !UI.meets(hero, m.requer)) };
+        // minimalista: "Carregar Ki" tem um círculo só dele
+        return { id, i, m, cat: mini && /carregar/i.test(id) ? 'ki' : this.categoria(m), pode: !UI.motivo(hero, m) && !(m.requer && !UI.meets(hero, m.requer)) };
       });
       let cat = (info.find(x => x.pode && x.cat === 'ataques') || info.find(x => x.pode) || info[0] || {}).cat || 'ataques';
       let sel = 0;
@@ -54,13 +56,25 @@ FF.MenuGolpes = {
       }
 
       const doCat = () => info.filter(x => x.cat === cat);
-      const botoesCat = this.CATS.map(c => {
+      const CATS = mini ? this.CATS.concat([{ id: 'ki', nome: 'Ki', ic: '✦' }]) : this.CATS;
+      const botoesCat = CATS.map(c => {
         const b = document.createElement('button');
         b.className = 'mg-cat mg-cat-' + c.id;
         b.innerHTML = '<span class="mg-cat-ic">' + c.ic + '</span><span class="mg-cat-nome">' + c.nome + '</span>';
         const n = info.filter(x => x.cat === c.id).length;
         if (!n) b.classList.add('vazio');
-        b.onclick = () => { if (!n) return; cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.5); render(); };
+        b.onclick = () => {
+          if (!n) return;
+          // círculo do Ki: um toque já carrega
+          if (c.id === 'ki') { const x = info.find(y => y.cat === 'ki'); if (x.pode) return done(x.id); }
+          cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.5); render();
+        };
+        if (mini) {   // cada círculo num "encaixe": as pílulas dos golpes abrem em cima do escolhido
+          const slot = document.createElement('div'); slot.className = 'mg-slot'; slot.appendChild(b);
+          if (!n) slot.hidden = true;
+          cats.appendChild(slot);
+          return { c, b, slot };
+        }
         cats.appendChild(b);
         return { c, b };
       });
@@ -89,6 +103,7 @@ FF.MenuGolpes = {
           b.onclick = () => { sel = k; marcar(); if (x.pode) done(x.id); else FF.Audio.play('tap_sound', 0.3); };
           lista.appendChild(b);
         });
+        if (mini) { const o = botoesCat.find(o => o.c.id === cat); if (o) o.slot.appendChild(lista); }
         if (estilo === 'radial') this.posicionarLeque(lista, cats, botoesCat.find(o => o.c.id === cat).b);
         marcar();
       };
@@ -98,7 +113,7 @@ FF.MenuGolpes = {
       };
 
       const trocarCat = (d) => {
-        const comGolpes = this.CATS.filter(c => info.some(x => x.cat === c.id));
+        const comGolpes = CATS.filter(c => info.some(x => x.cat === c.id));
         if (comGolpes.length < 2) return;
         const i = comGolpes.findIndex(c => c.id === cat);
         cat = comGolpes[(i + d + comGolpes.length) % comGolpes.length].id; sel = 0;
@@ -106,9 +121,9 @@ FF.MenuGolpes = {
       };
       const key = (e) => {
         const l = doCat();
-        const vert = estilo !== 'dock';
-        const mvG = { [vert ? 'ArrowDown' : 'ArrowRight']: 1, [vert ? 'ArrowUp' : 'ArrowLeft']: -1 }[e.code];
-        const mvC = { [vert ? 'ArrowRight' : 'ArrowDown']: 1, [vert ? 'ArrowLeft' : 'ArrowUp']: -1 }[e.code];
+        const vert = estilo !== 'dock' && !mini;
+        const mvG = mini ? { ArrowDown: 1, ArrowUp: -1 }[e.code] : { [vert ? 'ArrowDown' : 'ArrowRight']: 1, [vert ? 'ArrowUp' : 'ArrowLeft']: -1 }[e.code];
+        const mvC = mini ? { ArrowRight: 1, ArrowLeft: -1 }[e.code] : { [vert ? 'ArrowRight' : 'ArrowDown']: 1, [vert ? 'ArrowLeft' : 'ArrowUp']: -1 }[e.code];
         if (mvG && l.length) { e.preventDefault(); sel = (sel + mvG + l.length) % l.length; marcar(); FF.Audio.play('tap_sound', 0.5); }
         else if (mvC) { e.preventDefault(); trocarCat(mvC); }
         else if (e.code === 'Enter') { e.preventDefault(); const x = l[sel]; if (x && x.pode) done(x.id); }

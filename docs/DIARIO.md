@@ -301,3 +301,6 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Correção: zoom da câmera não sai mais do cenário (`battle.draw` limita cam.x/y; zoom < 1 pinta o fundo de preto) — antes sobravam faixas "fantasma" na borda.
 - O supremo original "Galaxy Breaker" (JSON do Vegeta) continua igual.
 - 2026-11-14: habilidade temporária Galaxy Breaker (filme) removida a pedido do usuário (a correção do zoom da câmera ficou).
+
+## 2026-11-14 — Menu de golpes "Minimalista"
+- Opções → Menu de golpes → Minimalista (`estiloMenu: 'mini'`, `menu_golpes.js` + `.mg-mini` no CSS): só círculos finos embaixo no meio (Ataques ciano, Formas dourado, Buffs vermelho, Ki roxo), ícones brancos, rótulo embaixo; golpes em pílulas escuras acima do círculo escolhido (nome · KI, ✓ no selecionado; motivo do bloqueio numa linha pequena). O círculo Ki é o "Carregar Ki" (id com "carregar"): um toque já carrega. Categoria vazia some. Teclado: ←→ círculos, ↑↓ golpes, Enter, 1-9. Pedido do usuário a partir do desenho dele.
