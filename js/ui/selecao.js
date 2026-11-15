@@ -110,7 +110,6 @@ FF.Selecao = {
     s.textContent = ' · Vida ' + a.hp + ' · Ataque ' + a.ataque + ' · Defesa ' + a.defesa +
       (sup ? ' · Supremo: ' + sup.nome : '') + (formas.length > 1 ? ' · Formas: ' + formas.join(', ') : '');
     const habs = FF.Habilidades ? FF.Habilidades.listar(id).filter(h => h.equipada) : [];
-    if (habs.length) s.textContent += ' · ⭐ ' + habs.map(h => h.nome).join(', ');
     el.appendChild(s);
   },
 

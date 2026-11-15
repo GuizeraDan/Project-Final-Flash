@@ -137,7 +137,7 @@ FF.MenuGolpes = {
           const b = document.createElement('button');
           b.className = 'mg-golpe' + (x.pode ? '' : ' bloq') + (x.m.supremo ? ' supremo' : '') + (x.m.requer && x.m.requer.parceiro ? ' sparking' : '') + (k === sel ? ' sel' : '');
           b.innerHTML = '<span class="mg-ic">' + UI.icone(x.m) + '</span><span class="mg-nome"></span>' + (x.m.custoKi ? '<span class="mg-ki">' + x.m.custoKi + '</span>' : '');
-          b.querySelector('.mg-nome').textContent = (x.m.habId ? '⭐ ' : '') + x.m.nome + (mini && boost && k === sel ? ' ×' + (boost + 1) : '');
+          b.querySelector('.mg-nome').textContent = x.m.nome + (mini && boost && k === sel ? ' ×' + (boost + 1) : '');
           b.onmouseenter = () => { sel = k; marcar(); };
           b.onclick = () => { sel = k; marcar(); if (x.pode) done(x.id); else FF.Audio.play('tap_sound', 0.3); };
           lista.appendChild(b);
@@ -148,7 +148,7 @@ FF.MenuGolpes = {
       };
       const marcar = () => {
         if (mini && boost) {   // o "×N" acompanha o golpe selecionado
-          [...lista.querySelectorAll('.mg-golpe')].forEach((b, k) => { const x = doCat()[k]; if (x) b.querySelector('.mg-nome').textContent = (x.m.habId ? '⭐ ' : '') + x.m.nome + (k === sel ? ' ×' + (boost + 1) : ''); });
+          [...lista.querySelectorAll('.mg-golpe')].forEach((b, k) => { const x = doCat()[k]; if (x) b.querySelector('.mg-nome').textContent = x.m.nome + (k === sel ? ' ×' + (boost + 1) : ''); });
         }
         [...lista.children].forEach((b, k) => b.classList.toggle('sel', k === sel));
         mostrarDesc(doCat()[sel]);

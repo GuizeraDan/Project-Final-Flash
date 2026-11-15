@@ -674,3 +674,4 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #titulo-menu > button:disabled:focus { width: 25cqw !important; transform: skewX(-20deg); }
 #inicio.menu .titulo-rodape { bottom: 1.2cqw; }
 #titulo-menu > button { white-space: nowrap; }
+.sel-rodape button[hidden], .pausa-botoes button[hidden] { display: none !important; }

@@ -61,7 +61,7 @@ FF.UI = {
         const b = document.createElement('button');
         b.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="ic">' + this.icone(m) + '</span><span class="nome"></span>' +
           (m.custoKi ? '<span class="ki">' + m.custoKi + '</span>' : '');
-        b.querySelector('.nome').textContent = (m.habId ? '⭐ ' : '') + m.nome;
+        b.querySelector('.nome').textContent = m.nome;
         const can = !this.motivo(hero, m) && !(m.requer && !this.meets(hero, m.requer));
         if (m.supremo) b.classList.add('supremo');
         if (m.requer && m.requer.parceiro) b.classList.add('sparking');

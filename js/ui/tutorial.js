@@ -73,7 +73,7 @@ FF.Tutorial = {
       <ul><li><b>Kaioken</b> (Buffs) — mais força por alguns turnos, mas gasta um pouco de vida a cada turno.</li>
       <li><b>Super Saiyajin</b> (Formas) — transforma no meio da luta: golpes novos e atributos maiores. "Destransformar" volta.</li>
       <li><b>Semente dos Deuses</b> e curas — recuperam vida.</li>
-      <li><b>⭐ Habilidades</b> — golpes que você mesmo cria no <b>Estúdio</b> entram no menu com uma estrela.</li></ul>
+      <li><b>Golpes novos</b> — os golpes criados no <b>Estúdio</b> entram no menu do personagem como qualquer outro golpe.</li></ul>
       <p class="tut-dica">Os chefes falam quando a vida deles passa da metade — e costumam ficar mais perigosos!</p>` },
 
     { t: 'Ficando mais forte', ic: '📜', ilu: 'progresso', h: `

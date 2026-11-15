@@ -18,7 +18,7 @@ FF.Habilidades = {
     const g = JSON.parse(JSON.stringify(golpe));
     g.nome = nome;
     g.habId = id;
-    if (!g.descricao) g.descricao = '⭐ Habilidade criada por você no Estúdio.';
+    // no jogo a habilidade aparece como um golpe normal do personagem (sem ⭐ nem "criada no Estúdio")
     const ant = t[id];
     const h = { id, nome, personagem, forma: forma || null, golpe: g, equipada: ant ? ant.equipada : true, criada: ant ? ant.criada : Date.now(), editada: Date.now() };
     FF.Edicoes.set(['habilidades', id], h);
@@ -35,7 +35,9 @@ FF.Habilidades = {
     for (const h of this.listar(def.id)) {
       if (!h.equipada) continue;
       const k = 'hab_' + h.id;
-      def.golpes[k] = JSON.parse(JSON.stringify(h.golpe));
+      const g = JSON.parse(JSON.stringify(h.golpe));
+      if (/^⭐\s*Habilidade criada/i.test(g.descricao || '')) g.descricao = '';   // texto padrão antigo: não aparece no jogo
+      def.golpes[k] = g;
       // golpe com animações do próprio lutador só entra na forma em que foi criado (outra forma pode não ter a animação)
       const usaAnim = (h.golpe.roteiro || []).some(p => p.anim);
       const formas = usaAnim && h.forma && def.formas[h.forma] ? [h.forma] : Object.keys(def.formas);

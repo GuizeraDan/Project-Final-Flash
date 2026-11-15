@@ -233,7 +233,7 @@ window.FF = window.FF || {};
         const linha = { duracao: 1.2, trilhas: this.trilhasPadrao() };
         linha.trilhas[0].clipes.push({ id: novoId(), tipo: 'anim', t: 0, anim: at });
         linha.trilhas.find(t => t.id === 'acertos').clipes.push({ id: novoId(), tipo: 'acerto', t: 0.6, fracao: 1, forca: 'media' });
-        this.abrirDoc({ origem: { tipo: 'novo', personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome: 'Golpe novo', descricao: '⭐ Habilidade criada no Estúdio.', tipo: 'energia', custoKi: 20, poder: 2 }, linha });
+        this.abrirDoc({ origem: { tipo: 'novo', personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome: 'Golpe novo', descricao: '', tipo: 'energia', custoKi: 20, poder: 2 }, linha });
         this.sujo = true;
       });
     },
