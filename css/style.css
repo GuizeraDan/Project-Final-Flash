@@ -584,3 +584,11 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .mg-imp-orbs i.usar { border-color: #fff; background: radial-gradient(circle at 34% 30%, #fff 0 25%, #ffe14a 45%, #ff8a00 100%); box-shadow: 0 0 0.5cqw #ffd84a; animation: mgImpPulso 0.5s ease-in-out infinite alternate; }
 @keyframes mgImpPulso { from { transform: scale(1); } to { transform: scale(1.25); } }
 .mg-slot[hidden] { display: none; }
+
+/* Minimalista: golpes só com o mouse na esfera (classe mg-aberto); o espaço entre a lista e a esfera é da lista, para o mouse subir sem fechar */
+#menu.mg-mini:not(.mg-aberto) .mg-golpes { display: none; }
+#menu.mg-mini:not(.mg-aberto) .mg-cat.sel { animation: none; transform: none; box-shadow: 0 0 0 0.16cqw var(--aura), 0 0.35cqw 0.6cqw rgba(0,0,0,0.55), inset 0 -0.35cqw 0.6cqw rgba(120,30,0,0.55); }
+#menu.mg-mini:not(.mg-aberto) .mg-cat.sel::before { display: none; }
+#menu.mg-mini .mg-golpes { margin-bottom: 0; padding-bottom: 0.9cqw; }
+#menu.mg-mini .mg-golpes::after { top: auto; bottom: 0.45cqw; }
+#menu.mg-mini .mg-cat:hover { transform: scale(1.1); }

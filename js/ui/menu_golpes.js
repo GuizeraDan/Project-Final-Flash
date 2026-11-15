@@ -78,6 +78,10 @@ FF.MenuGolpes = {
       }
 
       const doCat = () => info.filter(x => x.cat === cat);
+      // Minimalista: a lista de golpes só aparece com o mouse na esfera (ou pelo teclado)
+      let fecharT = null;
+      const abrir = () => { if (!box.classList.contains('mg-aberto')) { box.classList.add('mg-aberto'); } render(); };
+      const fechar = () => { box.classList.remove('mg-aberto'); desc.innerHTML = ''; };
       const CATS = mini ? this.CATS.concat([{ id: 'ki', nome: 'Ki', ic: '✦' }]) : this.CATS;
       const botoesCat = CATS.map(c => {
         const b = document.createElement('button');
@@ -89,11 +93,18 @@ FF.MenuGolpes = {
           if (!n) return;
           // círculo do Ki: um toque já carrega
           if (c.id === 'ki') { const x = info.find(y => y.cat === 'ki'); if (x.pode) return done(x.id); }
-          cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.5); render();
+          // toque (celular) ou clique: abre / fecha a lista da esfera
+          if (mini && cat === c.id && box.classList.contains('mg-aberto')) { fechar(); return; }
+          cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.5); if (mini) abrir(); render();
         };
         if (mini) {   // cada círculo num "encaixe": as pílulas dos golpes abrem em cima do escolhido
           const slot = document.createElement('div'); slot.className = 'mg-slot'; slot.appendChild(b);
           if (!n) slot.hidden = true;
+          // passar o mouse abre os golpes da esfera; tirar o mouse (da esfera e da lista) minimiza
+          if (c.id !== 'ki') {
+            slot.addEventListener('mouseenter', () => { if (!n) return; clearTimeout(fecharT); if (cat !== c.id) { cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.35); } abrir(); });
+            slot.addEventListener('mouseleave', () => { clearTimeout(fecharT); fecharT = setTimeout(fechar, 220); });
+          }
           cats.appendChild(slot);
           return { c, b, slot };
         }
@@ -103,7 +114,7 @@ FF.MenuGolpes = {
 
       const mostrarDesc = (x) => {
         desc.innerHTML = '';
-        if (!x) return;
+        if (!x || (mini && !box.classList.contains('mg-aberto'))) return;
         const t = document.createElement('b'); t.textContent = x.m.nome + (x.m.custoKi ? ' · ' + x.m.custoKi + ' KI' : '');
         const d = document.createElement('span'); d.textContent = ' ' + (x.m.descricao || '');
         desc.append(t, d);
@@ -147,10 +158,12 @@ FF.MenuGolpes = {
       const key = (e) => {
         const l = doCat();
         const vert = estilo !== 'dock' && !mini;
+        if (mini && /^Arrow/.test(e.code) && !box.classList.contains('mg-aberto')) { e.preventDefault(); abrir(); return; }
         const mvG = mini ? { ArrowDown: 1, ArrowUp: -1 }[e.code] : { [vert ? 'ArrowDown' : 'ArrowRight']: 1, [vert ? 'ArrowUp' : 'ArrowLeft']: -1 }[e.code];
         const mvC = mini ? { ArrowRight: 1, ArrowLeft: -1 }[e.code] : { [vert ? 'ArrowRight' : 'ArrowDown']: 1, [vert ? 'ArrowLeft' : 'ArrowUp']: -1 }[e.code];
         if (mvG && l.length) { e.preventDefault(); sel = (sel + mvG + l.length) % l.length; marcar(); FF.Audio.play('tap_sound', 0.5); }
         else if (mvC) { e.preventDefault(); trocarCat(mvC); }
+        else if (e.code === 'Enter' && mini && !box.classList.contains('mg-aberto')) { e.preventDefault(); abrir(); }
         else if (e.code === 'Enter') { e.preventDefault(); const x = l[sel]; if (x && x.pode) done(x.id); }
         else if (mini && (e.code === 'KeyE' || e.code === 'NumpadAdd' || e.code === 'Equal')) { e.preventDefault(); mudarBoost(1); }
         else if (mini && (e.code === 'KeyQ' || e.code === 'NumpadSubtract' || e.code === 'Minus')) { e.preventDefault(); mudarBoost(-1); }
