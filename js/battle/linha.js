@@ -284,7 +284,7 @@ FF.Linha = {
         if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
           ({ x: ex, y: ey } = this.mapaPersp(b, actor, target, ex, ey, c.em === 'tela'));
           // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
-          if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null && Math.abs(target.homeX - actor.homeX) > 20) inclina = Math.atan2(target.homeG - actor.homeG, Math.abs(target.homeX - actor.homeX)) * 180 / Math.PI;
+          if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null) { const bx = actor.base ? actor.base.x : actor.homeX, bg = actor.base ? actor.base.g - 4 : actor.homeG; if (Math.abs(target.homeX - bx) > 20) inclina = Math.atan2(target.homeG - bg, Math.abs(target.homeX - bx)) * 180 / Math.PI; }
         }
         const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, c.escala || 1,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras });
@@ -345,7 +345,7 @@ FF.Linha = {
   // explode "no meio do campo" ou "em cima do inimigo" continua indo para lá. absoluto = x/y já são da visão lateral.
   mapaPersp(b, actor, target, x, y, absoluto) {
     if (!b || !b.persp || !actor || !target || actor === target || actor.latX == null || target.latX == null) return { x, y };
-    const Al = { x: actor.latX, y: actor.latG }, Ap = { x: actor.homeX, y: actor.homeG };
+    const Al = { x: actor.latX, y: actor.latG }, Ap = actor.base ? { x: actor.base.x, y: actor.base.g } : { x: actor.homeX, y: actor.homeG };
     const Tl = { x: target.latX, y: target.latG }, Tp = { x: target.homeX, y: target.homeG };
     const lx = absoluto ? x : x - (Ap.x - Al.x), ly = absoluto ? y : y - (Ap.y - Al.y);
     const den = Tl.x - Al.x;

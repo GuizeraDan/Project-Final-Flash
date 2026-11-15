@@ -29,7 +29,7 @@ FF.Cena = {
   ancora(b, actor, target, c) {
     if (c.ancora === 'tela') return { x: 0, y: 0, dir: 1 };
     if (c.ancora === 'alvo' && target) { const p = target.peito(); return { x: p.x, y: p.y, dir: actor ? actor.dir : 1 }; }
-    if (actor) return { x: actor.homeX, y: actor.groundY, dir: actor.dir };
+    if (actor) return { x: actor.base ? actor.base.x : actor.homeX, y: actor.groundY, dir: actor.dir };
     return { x: FF.W / 2, y: b.groundY, dir: 1 };
   },
 

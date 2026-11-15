@@ -437,10 +437,13 @@ FF.Battle = class {
     this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);
     await this.tween(actor, destX, 0.3);
     if (!actor.ko) actor.idle();
+    // nova "casa" durante o golpe: camadas e efeitos presos em quem solta partem daqui (FF.Cena.ancora, FF.Linha.mapaPersp)
+    actor.base = { x: actor.x, g: target.homeG + 4 };
     return true;
   }
   async voltarFileira(actor) {
     const fx = actor.faixa;
+    actor.base = null;
     if (!fx) return;
     actor.faixa = { alvo: fx.alvo, de: 1, para: 0, t0: FF.Clock.t, d: 0.3 };
     await FF.Clock.wait(0.3);
