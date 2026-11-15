@@ -49,11 +49,15 @@ FF.Cena = {
     const f = a.frames[Math.max(0, i)];
     const flip = !!c.flip !== (an.dir < 0);
     // px: 'sprite' → x/y em pixels do sprite (acompanham a escala da batalha); padrão: pixels da tela
-    const k = c.px === 'sprite' ? b.scale : 1;
+    // perspectiva: camada presa em alguém segue o tamanho dele (fileira de trás = menor), senão o raio "quebra"
+    // na emenda com a parte que é desenhada no próprio lutador
+    const dono = c.ancora === 'tela' ? null : c.ancora === 'alvo' ? target : actor;
+    const sc = b && b.persp && dono && dono.scale ? dono.scale : b.scale;
+    const k = c.px === 'sprite' ? sc : 1;
     let px = an.x + e.x * k * an.dir, py = an.y + e.y * k;
     // perspectiva diagonal: camadas presas em quem solta / na tela acompanham a linha até o alvo (FF.Linha.mapaPersp)
     if (b && b.persp && c.ancora !== 'alvo' && FF.Linha && !(c.ancora === 'tela' && py < 140)) ({ x: px, y: py } = FF.Linha.mapaPersp(b, actor, target, px, py, c.ancora === 'tela'));
-    return { set, f, x: px, y: py, escala: e.escala * b.scale * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
+    return { set, f, x: px, y: py, escala: e.escala * sc * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
   },
 
   desenharCamada(ctx, p) {

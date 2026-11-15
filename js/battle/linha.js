@@ -286,7 +286,10 @@ FF.Linha = {
           // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
           if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null) { const bx = actor.base ? actor.base.x : actor.homeX, bg = actor.base ? actor.base.g - 4 : actor.homeG; if (Math.abs(target.homeX - bx) > 20) inclina = Math.atan2(target.homeG - bg, Math.abs(target.homeX - bx)) * 180 / Math.PI; }
         }
-        const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, c.escala || 1,
+        // perspectiva: efeito preso em alguém acompanha o tamanho dele (fileira de trás = menor)
+        const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? target : actor;
+        const kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
+        const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, (c.escala || 1) * kp,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras });
         if (e && (c.rot || inclina)) e.rot = ((c.rot || 0) + inclina) * dir;
         // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
