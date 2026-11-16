@@ -3,6 +3,27 @@
 window.FF = window.FF || {};
 
 FF.W = 1084;
+// DIFICULDADE (Opções / pausa → Dificuldade; FF.Save "dificuldade"): quanto o inimigo defende, janela da guarda/crítico
+// perfeitos e força dos inimigos. guarda = chance de defender um golpe; perfeita = parte das defesas que é perfeita
+// (dano 0 + contra-ataque no corpo a corpo); contraPerf = chance de defender perfeito o SEU contra-ataque (→ PERCEPÇÃO)
+FF.Dificuldade = {
+  NIVEIS: {
+    facil: { nome: 'Fácil', guarda: 0.10, perfeita: 0.25, contraPerf: 0.10, janelaPerf: 0.13, vida: 0.9, ataque: 0.85 },
+    normal: { nome: 'Normal', guarda: 0.28, perfeita: 0.35, contraPerf: 0.25, janelaPerf: 0.10, vida: 1, ataque: 1 },
+    dificil: { nome: 'Difícil', guarda: 0.42, perfeita: 0.45, contraPerf: 0.40, janelaPerf: 0.075, vida: 1.2, ataque: 1.15 },
+  },
+  id() { const v = FF.Save && FF.Save.get && FF.Save.get().dificuldade; return this.NIVEIS[v] ? v : 'normal'; },
+  atual() { return this.NIVEIS[this.id()]; },
+  mudar(v) { if (this.NIVEIS[v] && FF.Save) FF.Save.set({ dificuldade: v }); },
+  // liga os <select> de dificuldade (Opções do título e da pausa)
+  ligar() {
+    document.querySelectorAll('#dificuldade, [data-p="dificuldade"]').forEach(sel => {
+      sel.value = this.id();
+      sel.onchange = () => { this.mudar(sel.value); document.querySelectorAll('#dificuldade, [data-p="dificuldade"]').forEach(o => (o.value = sel.value)); };
+    });
+  },
+};
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.Dificuldade.ligar());
 FF.H = 580;
 
 FF.Battle = class {
@@ -48,6 +69,11 @@ FF.Battle = class {
     // ajustes valem para o lado inimigo (na Batalha Livre o mesmo personagem pode estar nos dois lados)
     const aj = lado === 'inimigo' ? (this.def.ajustes || {})[charDef.id] : (this.def.ajustesHerois || {})[charDef.id];
     if (aj) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, aj) });
+    // dificuldade: vida e ataque dos inimigos
+    if (lado === 'inimigo' && !this.semDesafios) {
+      const D = FF.Dificuldade.atual(), at = charDef.atributos || {};
+      if (D.vida !== 1 || D.ataque !== 1) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, at, { hp: Math.round((at.hp || 1000) * D.vida), ataque: Math.round((at.ataque || 100) * D.ataque) }) });
+    }
     // melhorias compradas com AP (só heróis)
     if (lado === 'heroi' && FF.Treino) charDef = Object.assign({}, charDef, { atributos: FF.Treino.aplicar(charDef.id, charDef.atributos) });
     // pergaminhos de técnica: golpes de nível II/III (cópia dos golpes, o personagem carregado não muda)
@@ -379,7 +405,10 @@ FF.Battle = class {
     this.combo = null;   // cada ação começa um combo novo
     if (move.supremo) await this.dramaSupremo(actor, move);
     this._escudoMarcado = new Set();   // escudos: cada golpe tira escudo uma vez por alvo
+    this._guardaIA = new Map();        // inimigo decide se defende uma vez por golpe (vale para todos os acertos)
+    this.posGolpe = [];                // contra-ataques / Percepção que acontecem depois do golpe
     this._contraFeito = false;
+    this._furou = false; this._guardaIAVista = new Set();
     const n = actor.boost || 0;
     if (move.anuncio !== false) this.banner(move.nome + (n ? '  ×' + (n + 1) : ''), move.supremo ? 2.0 : 1.2);
     if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
@@ -400,6 +429,7 @@ FF.Battle = class {
     await FF.Script.run(this, actor, target, move);
     await Promise.all(this.paralelos);
     this.paralelos = [];
+    for (const fn of (this.posGolpe || []).splice(0)) { if (!actor.ko && !target.ko) await fn(); }
     await Promise.all(this.projectiles.map(p => p.done));
     await Promise.all(this.cenasKO || []);   // espera a cena de KO de quem caiu terminar
     this.cenasKO = [];
@@ -624,7 +654,7 @@ FF.Battle = class {
   resolveQte(q) {
     if (!q) return null;
     if (q.result === undefined) {
-      q.result = !q.press ? null : (q.at - q.press <= 0.10 ? 'perfeito' : 'bom');
+      q.result = !q.press ? null : (q.at - q.press <= FF.Dificuldade.atual().janelaPerf ? 'perfeito' : 'bom');
       q.doneAt = FF.Clock.t;
       if (!q.result && q.mode === 'guarda') this.popup(q.alvo, 'Sem guarda', '#bbbbbb', -40);
     }
@@ -676,11 +706,17 @@ FF.Battle = class {
     if (def.quebrado) dmg *= 1.6;   // sem guarda: leva bem mais dano
     if ((def.capsulas || []).includes('armadura')) dmg *= 0.9;   // cápsula Armadura Saiyajin
 
+    let guardaRes = null;   // resultado da defesa de quem leva o golpe (herói pelo botão, inimigo pela IA)
     if (mode === 'guarda' && res) {
-      guard = true;
+      guard = true; guardaRes = res;
       dmg *= res === 'perfeito' ? 0 : 0.4;
-      // guarda perfeita contra golpe de corpo a corpo: contra-ataque (uma vez por golpe)
-      if (res === 'perfeito' && !this._contraFeito && FF.Battle.tipoGolpe(move) === 'corpo' && !att.ko) { this._contraFeito = true; this.paralelos.push(this.contraAtaque(def, att)); }
+      // guarda perfeita contra golpe de corpo a corpo: contra-ataque (uma vez por golpe). Se o inimigo também defender
+      // perfeito o contra-ataque, os dois "se percebem": PERCEPÇÃO (depois do golpe dele)
+      if (res === 'perfeito' && !this._contraFeito && FF.Battle.tipoGolpe(move) === 'corpo' && !att.ko) {
+        this._contraFeito = true;
+        if (this.iaDefendePerfeito(att)) (this.posGolpe = this.posGolpe || []).push(() => this.percepcao(def, att));
+        else this.paralelos.push(this.contraAtaque(def, att));
+      }
       if (!qte._shown) { this.popup(def, res === 'perfeito' ? 'GUARDA PERFEITA!' : 'GUARDA!', res === 'perfeito' ? '#7dffb0' : '#a0e0ff', -46); qte._shown = true; }
       if (res === 'perfeito') def.addKi(3);
     }
@@ -688,15 +724,35 @@ FF.Battle = class {
       dmg *= res === 'perfeito' ? 1.8 : 1.4;
       if (!qte._shown) { this.popup(def, res === 'perfeito' ? 'CRÍTICO!!' : 'CRÍTICO!', '#ffd84a', -46); qte._shown = true; }
     }
+    // INIMIGO DEFENDE (dificuldade): decide uma vez por golpe; o crítico perfeito fura a guarda; guarda perfeita no
+    // corpo a corpo → contra-ataque dele, que você pode defender perfeito para entrar na PERCEPÇÃO
+    if (att.isHero && !def.isHero && !guard) {
+      const g = this.guardaDaIA(def, move);
+      if (g && mode === 'critico' && res === 'perfeito') {
+        if (!this._furou) { this._furou = true; this.popup(def, 'FUROU A GUARDA!', '#ffb24a', -64); }
+      } else if (g) {
+        guard = true; guardaRes = g;
+        dmg *= g === 'perfeito' ? 0 : 0.4;
+        if (!this._guardaIAVista || !this._guardaIAVista.has(def)) {
+          (this._guardaIAVista = this._guardaIAVista || new Set()).add(def);
+          this.popup(def, g === 'perfeito' ? 'GUARDA PERFEITA!' : 'GUARDA!', g === 'perfeito' ? '#7dffb0' : '#a0e0ff', -46);
+          if (this.stats) this.stats.guardasIA = (this.stats.guardasIA || 0) + 1;
+        }
+        if (g === 'perfeito' && !this._contraFeito && FF.Battle.tipoGolpe(move) === 'corpo' && !att.ko) {
+          this._contraFeito = true;
+          (this.posGolpe = this.posGolpe || []).push(() => this.contraIA(def, att));
+        }
+      }
+    }
 
-    dmg = guard && res === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
+    dmg = guard && guardaRes === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
     const hpAntes = def.hp;
     def.hp = Math.max(0, def.hp - dmg);
     if (dmg > 0 && att.lado !== def.lado) this.contarHit(att, dmg);
     const st = this.stats;
     if (st) {
       if (def.isHero) st.danoRecebido += dmg;
-      if (guard && res === 'perfeito' && !qte._contou) { st.guardasPerfeitas++; qte._contou = true; }
+      if (guard && def.isHero && res === 'perfeito' && qte && !qte._contou) { st.guardasPerfeitas++; qte._contou = true; }
       if (mode === 'critico' && res && !qte._contouC) { st.criticos++; qte._contouC = true; }
       if (def.hp <= 0 && !def.isHero && move.supremo) st.supremoFinal = true;
     }
@@ -705,7 +761,7 @@ FF.Battle = class {
     // Rage Gauge: enche ao causar e (mais) ao receber dano; guarda perfeita também enche
     const fr = dmg / def.hpMax;
     if (!move.supremo) att.addRage(fr * (FF.RAGE_CAUSAR || 90));
-    def.addRage(fr * (FF.RAGE_RECEBER || 120) * (move.supremo ? 0.4 : 1) + (guard && res === 'perfeito' ? 8 : 0));
+    def.addRage(fr * (FF.RAGE_RECEBER || 120) * (move.supremo ? 0.4 : 1) + (guard && guardaRes === 'perfeito' ? 8 : 0));
     this.popup(def, String(dmg), guard ? '#cfe8ff' : '#ffffff');
 
     const p = def.peito();
@@ -975,6 +1031,129 @@ FF.Battle = class {
   }
 
   // contra-ataque depois de uma guarda perfeita: quem defendeu golpeia de volta
+  // ---------- defesa da IA (dificuldade) ----------
+  // null | 'bom' | 'perfeito' para este golpe neste alvo (sorteado no 1º acerto)
+  guardaDaIA(def, move) {
+    if (this.semDesafios || !this._guardaIA) return null;
+    if (this._guardaIA.has(def)) return this._guardaIA.get(def);
+    let g = null;
+    const pode = !def.ko && !def.quebrado && !(def.atordoado > 0) && !move.supremo && move.tipo !== 'suporte' && !move.contra;
+    if (pode) {
+      const D = FF.Dificuldade.atual(), jeito = def.def.guardaIA != null ? def.def.guardaIA : 1;   // "guardaIA" no JSON: 1,5 = defende mais
+      if (Math.random() < D.guarda * jeito) g = Math.random() < D.perfeita ? 'perfeito' : 'bom';
+    }
+    this._guardaIA.set(def, g);
+    return g;
+  }
+  iaDefendePerfeito(f) {
+    if (this.semDesafios || !f || f.isHero || f.ko || f.quebrado || f.atordoado > 0) return false;
+    const jeito = f.def.guardaIA != null ? f.def.guardaIA : 1;
+    return Math.random() < FF.Dificuldade.atual().contraPerf * jeito;
+  }
+  // contra-ataque do inimigo depois de defender perfeito o seu golpe: aparece o anel azul — defenda perfeito = PERCEPÇÃO
+  async contraIA(quem, alvo) {
+    if (quem.ko || alvo.ko) return;
+    this.popup(quem, 'CONTRA-ATAQUE!', '#ff8a6a', -70);
+    const q = this.addQte('guarda', alvo, 0.55);
+    const anim = ['Attack_Heavy', 'Attack_Medium', 'Attack_Light_3', 'Attack_Light_1'].find(a => quem.sprite.has(a));
+    const x0 = quem.x;
+    quem.x = alvo.x + alvo.dir * 46 * alvo.scale;   // aparece colado (teletransporte)
+    this.spawnFx('poeira', quem.x, quem.groundY, quem.dir < 0, 0.6);
+    if (anim) quem.anim.play(anim);
+    await FF.Clock.wait(0.55);
+    const r = this.resolveQte(q);
+    if (r === 'perfeito') { await this.percepcao(alvo, quem); return; }
+    if (!alvo.ko && !quem.ko) this.applyHit(quem, alvo, { nome: 'Contra-ataque', poder: 0.9, contra: true }, { fracao: 1, forca: 'media' }, q);
+    await FF.Clock.wait(0.35);
+    if (!quem.ko) { quem.x = x0; quem.idle(); }
+  }
+
+  // ---------- PERCEPÇÃO (como no Sparking Zero) ----------
+  // os dois defendem perfeito ao mesmo tempo: somem e reaparecem trocando golpes em alta velocidade pelo campo,
+  // ninguém leva dano; herói ganha +15 de Fúria e os dois +10 de ki
+  async percepcao(heroi, inimigo) {
+    if (heroi.ko || inimigo.ko) return;
+    if (this.stats) this.stats.percepcoes = (this.stats.percepcoes || 0) + 1;
+    const lut = [heroi, inimigo];
+    const guarda = lut.map(f => ({ f, x: f.x, y: f.y, busy: f.busy, offY: f.offY || 0 }));
+    lut.forEach(f => { f.busy = true; });
+    this.percep = { t0: FF.Clock.t, dur: 2.4, ondas: [] };
+    FF.Audio.play('sprkngbrst_expl', 0.7);
+    this.flash(0.6); this.shake(6);
+    this.cam = this.cam || { zoom: 1, x: 0, y: 0 };
+    const mx = (heroi.x + inimigo.x) / 2, my = (heroi.groundY + inimigo.groundY) / 2 - 60;
+    this.camAlvo = { zoom: 1.18, x: mx - FF.W / 2, y: my - FF.H / 2 + 20, d: 0.25, t: 0, de: Object.assign({}, this.cam) };
+    await FF.Clock.wait(0.35);
+    const animsAtq = ['Attack_Light_1', 'Attack_Light_2', 'Attack_Medium', 'Attack_Heavy', 'Attack_Light_3'];
+    const defesa = (f) => ['Defesa_Ar', 'Defesa_Chao', 'Defesa', 'Guarda'].find(a => f.sprite.has(a));
+    for (let i = 0; i < 5; i++) {
+      // somem...
+      lut.forEach(f => { f.alpha = 0; });
+      FF.Audio.play('movimento_basa', 0.4);
+      await FF.Clock.wait(0.07);
+      // ...e reaparecem num ponto qualquer, um de frente para o outro (no ar)
+      const px = mx + (Math.random() * 2 - 1) * 150, alto = 30 + Math.random() * 70, gap = 34 * heroi.scale;
+      const quemBate = i % 2 ? inimigo : heroi, quemDefende = quemBate === heroi ? inimigo : heroi;
+      heroi.x = px - gap; inimigo.x = px + gap;
+      lut.forEach(f => { f.alpha = 1; f.offY = -alto; });
+      const a = animsAtq.filter(n => quemBate.sprite.has(n));
+      if (a.length) quemBate.anim.play(a[i % a.length]);
+      const dfs = defesa(quemDefende);
+      if (dfs) quemDefende.anim.play(dfs);
+      const pc = { x: px, y: (heroi.groundY + inimigo.groundY) / 2 - alto - 40 * heroi.scale };
+      this.spawnFx('guarda', pc.x, pc.y, quemBate.dir < 0, 0.45);
+      this.spawnFx(i === 4 ? 'hit_grande' : 'hit3', pc.x, pc.y, quemBate.dir < 0, i === 4 ? 0.5 : 0.8);
+      this.percep.ondas.push({ x: pc.x, y: pc.y, t0: FF.Clock.t });
+      FF.Audio.play(i === 4 ? 'guard_large' : ['guard_small-a', 'guard_small-b']);
+      this.shake(i === 4 ? 10 : 5); this.flash(i === 4 ? 0.35 : 0.12);
+      FF.Clock.hitstop(0.05);
+      await FF.Clock.wait(i === 4 ? 0.4 : 0.26);
+    }
+    // empurrados para trás, cada um de volta para o seu lugar
+    lut.forEach(f => { f.alpha = 0; });
+    await FF.Clock.wait(0.08);
+    guarda.forEach(g => { g.f.x = g.x; g.f.y = g.y; g.f.offY = g.offY; g.f.alpha = 1; g.f.busy = g.busy; if (!g.f.ko) g.f.idle(); });
+    this.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, this.cam) };
+    heroi.addRage(15); heroi.addKi(10); inimigo.addKi(10);
+    this.popup(heroi, '+15 FÚRIA', '#ffcf3a', -60);
+    await FF.Clock.wait(0.35);
+    this.percep = null;
+  }
+  desenharPercepcao(ctx) {
+    const P = this.percep;
+    if (!P) return;
+    const u = FF.Clock.t - P.t0, k = Math.max(0, Math.min(1, u / 0.15, (P.dur - u) / 0.25));
+    if (k <= 0) return;
+    ctx.save();
+    // tela azulada com linhas de velocidade
+    ctx.fillStyle = 'rgba(10,30,80,' + (0.35 * k).toFixed(3) + ')'; ctx.fillRect(0, 0, FF.W, FF.H);
+    ctx.globalAlpha = 0.45 * k; ctx.strokeStyle = '#bfe8ff'; ctx.lineWidth = 2;
+    for (let i = 0; i < 30; i++) {
+      const a = i * 0.2094 + FF.Clock.t * 0.9, r0 = 230 + ((i * 53 + FF.Clock.t * 1100) % 140);
+      ctx.beginPath(); ctx.moveTo(FF.W / 2 + Math.cos(a) * r0, FF.H / 2 + Math.sin(a) * r0); ctx.lineTo(FF.W / 2 + Math.cos(a) * 900, FF.H / 2 + Math.sin(a) * 900); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    // título
+    const entra = Math.min(1, u / 0.18), y = FF.H * 0.2;
+    const g = ctx.createLinearGradient(0, y - 30, 0, y + 30); g.addColorStop(0, '#ffffff'); g.addColorStop(0.5, '#9fe3ff'); g.addColorStop(1, '#2a8cff');
+    ctx.globalAlpha = k;
+    FF.HUD.textoHud(ctx, 'PERCEPÇÃO!', FF.W / 2, y, Math.round(64 * (1.4 - 0.4 * entra)), g, 'center');
+    ctx.restore();
+  }
+  // ondas de choque dos golpes da Percepção (no espaço do mundo, junto dos lutadores)
+  desenharOndas(ctx) {
+    const P = this.percep;
+    if (!P) return;
+    for (const o of P.ondas) {
+      const u = FF.Clock.t - o.t0;
+      if (u > 0.4) continue;
+      ctx.save();
+      ctx.globalAlpha = 1 - u / 0.4; ctx.strokeStyle = '#e8f8ff'; ctx.lineWidth = 4 * (1 - u / 0.4) + 1;
+      ctx.beginPath(); ctx.ellipse(o.x, o.y, 20 + u * 260, (20 + u * 260) * 0.55, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+    }
+  }
+
   async contraAtaque(quem, alvo) {
     if (this.stats) this.stats.contra++;
     this.popup(quem, 'CONTRA-ATAQUE!', '#7dffb0', -70);
@@ -983,7 +1162,7 @@ FF.Battle = class {
     const anim = ['Attack_Heavy', 'Attack_Medium', 'Attack_Light_3', 'Attack_Light_1'].find(a => quem.sprite.has(a));
     if (anim) quem.anim.play(anim);
     await FF.Clock.wait(0.12);
-    if (!alvo.ko && !quem.ko) this.applyHit(quem, alvo, { nome: 'Contra-ataque', poder: 0.9 }, { fracao: 1, forca: 'media' }, null);
+    if (!alvo.ko && !quem.ko) this.applyHit(quem, alvo, { nome: 'Contra-ataque', poder: 0.9, contra: true }, { fracao: 1, forca: 'media' }, null);
     await FF.Clock.wait(0.3);
     if (!quem.ko) quem.idle();
   }
@@ -1407,6 +1586,7 @@ FF.Battle = class {
       if (k > 0) { ctx.fillStyle = 'rgba(0,0,10,' + (esc.forca * k).toFixed(3) + ')'; ctx.fillRect(-FF.W, -FF.H, FF.W * 3, FF.H * 3); if (esc.actor) esc.actor.draw(ctx, this.fx); }
     }
     this.desenharEmbate(ctx);
+    this.desenharOndas(ctx);
     this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
     this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
@@ -1417,6 +1597,7 @@ FF.Battle = class {
     FF.HUD.draw(ctx, this);
     this.desenharDesafio(ctx);
     this.desenharCombo(ctx);
+    this.desenharPercepcao(ctx);
     this.desenharDrama(ctx);
     this.desenharFala(ctx);
     if (this.flashAmt > 0) {

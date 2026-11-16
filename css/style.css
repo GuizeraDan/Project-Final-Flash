@@ -683,3 +683,5 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* escolha do alvo na tela: só o aviso e o voltar */
 #menu.alvos { display: flex; flex-direction: column; align-items: center; gap: 0.3cqw; }
 #menu.alvos .alvo-voltar { margin: 0; }
+/* dificuldade nas Opções do título */
+#opcoes select { font: inherit; font-size: 1.4cqw; color: #fff; background: #2b1d5c; border: 0.15cqw solid #5b4bb0; border-radius: 0.6cqw; padding: 0.2cqw 0.6cqw; }
