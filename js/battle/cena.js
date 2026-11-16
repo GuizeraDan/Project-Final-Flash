@@ -53,7 +53,7 @@ FF.Cena = {
     // na emenda com a parte que é desenhada no próprio lutador
     const dono = c.ancora === 'tela' ? null : c.ancora === 'alvo' ? target : actor;
     const sc = b && b.persp && dono && dono.scale ? dono.scale : b.scale;
-    const k = c.px === 'sprite' ? sc : 1;
+    const k = c.px === 'sprite' ? sc : (c.ancora === 'tela' ? 1 : (b && b.fov) || 1);
     let px = an.x + e.x * k * an.dir, py = an.y + e.y * k;
     // perspectiva diagonal: camadas presas em quem solta / na tela acompanham a linha até o alvo (FF.Linha.mapaPersp)
     if (b && b.persp && c.ancora !== 'alvo' && FF.Linha && !(c.ancora === 'tela' && py < 140)) ({ x: px, y: py } = FF.Linha.mapaPersp(b, actor, target, px, py, c.ancora === 'tela'));

@@ -87,26 +87,32 @@ FF.Fighter = class {
     const sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
     const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), t = FF.Clock.t;
     const pulso = 0.5 + 0.5 * Math.sin(t * 8);
-    const temFiltro = 'filter' in ctx;
     const sil = (dx, dy, c, a, esc) => FF.drawFrame(ctx, this.sprite, fr, x + dx, y + dy, sc * (esc || 1), flip, { tint: cor(c, 1), alpha: a * this.alpha });
+    // silhueta borrada pronta (guardada por quadro): desenhada com o mesmo encaixe do quadro, só com a borda extra
+    const aura = (c, raio, borrao, dx, dy, a, esc) => {
+      const A = FF.CacheQuadros.aura(this.sprite, fr, cor(c, 1), raio, borrao), e = sc * (esc || 1);
+      const w = fr[3], h = fr[4], ox = fr[5], oy = fr[6];
+      const X = x + dx + (flip ? -(w - ox) * e : -ox * e) - A.pad * e, Y = y + dy - oy * e - A.pad * e;
+      ctx.globalAlpha = a * this.alpha;
+      if (flip) { ctx.save(); ctx.translate(X + A.c.width * e, Y); ctx.scale(-1, 1); ctx.drawImage(A.c, 0, 0, A.c.width * e, A.c.height * e); ctx.restore(); }
+      else ctx.drawImage(A.c, X, Y, A.c.width * e, A.c.height * e);
+      ctx.globalAlpha = 1;
+    };
     ctx.save();
     if (!frente) {
       ctx.globalCompositeOperation = 'lighter';
-      // 1) névoa de energia: silhueta borrada e um pouco maior, pulsando
-      const r = (2.2 + 0.9 * n) * sc * (0.85 + 0.3 * pulso);
-      if (temFiltro) ctx.filter = 'blur(' + (2 + 1.5 * n) + 'px)';
-      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; sil(Math.cos(a) * r, Math.sin(a) * r - r * 0.4, COR, 0.32 + 0.06 * n); }
+      // 1) névoa de energia: silhueta borrada e um pouco maior, pulsando (raio em pixels do sprite)
+      const r = 2 + n;
+      aura(COR, r, 1.5 + 0.6 * n, 0, -r * sc * 0.3, (0.55 + 0.12 * n) * (0.8 + 0.3 * pulso));
       // 2) labaredas: cópias esticadas para cima que tremulam (a energia "sobe" do corpo)
       for (let k = 0; k < 2 + n; k++) {
         const f = (t * (2.2 + 0.4 * n) + k / (2 + n)) % 1;
         const sway = Math.sin(t * 6 + k * 2.1) * (1.5 + n) * sc;
-        sil(sway, -f * (6 + 4 * n) * sc, k % 2 ? CLARO : COR, (1 - f) * (0.35 + 0.08 * n), 1 + f * (0.05 + 0.03 * n));
+        aura(k % 2 ? CLARO : COR, 1.5, 1.2 + 0.4 * n, sway, -f * (6 + 4 * n) * sc, (1 - f) * (0.4 + 0.1 * n), 1 + f * (0.05 + 0.03 * n));
       }
-      if (temFiltro) ctx.filter = 'none';
       // 3) contorno nítido colado no corpo (cor cheia, sem clarear: o vermelho continua vermelho na grama)
       ctx.globalCompositeOperation = 'source-over';
-      const c1 = (0.9 + 0.35 * n) * sc * 0.55 + 1;
-      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; sil(Math.cos(a) * c1, Math.sin(a) * c1, CLARO, 0.7 + 0.2 * pulso); }
+      aura(CLARO, 0.9 + 0.35 * n, 0, 0, 0, 0.7 + 0.2 * pulso);
     } else {
       // 4) por cima do corpo: brilho leve da cor da energia (o personagem fica "aceso")
       ctx.globalCompositeOperation = 'lighter';
@@ -165,6 +171,7 @@ FF.Fighter = class {
       const pulse = 0.5 + 0.5 * Math.sin(FF.Clock.t * 10);
       return b.tint.replace('$a', (0.18 + 0.2 * pulse).toFixed(3));
     }
+    if (this.nevoa) return 'rgba(214,228,238,' + (0.22 * this.nevoa).toFixed(3) + ')';   // névoa da perspectiva (fileira de trás)
     return null;
   }
 
@@ -228,7 +235,9 @@ FF.Fighter = class {
   desenharVapor(ctx) {
     const v = this.vapor;
     if (!v) return;
-    const p = Math.min(1, (FF.Clock.t - v.t0) / v.d);
+    const dt0 = FF.Clock.t - v.t0;
+    if (dt0 > v.d + 1.2) return;   // terminou: não sobra nada na tela
+    const p = Math.min(1, dt0 / v.d);
     const fr = this.anim.frame();
     const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
     const larg = fr ? fr[3] * sc : 60 * sc, alt = fr ? fr[4] * sc : 70 * sc;
@@ -237,8 +246,8 @@ FF.Fighter = class {
     if (p < 1 && fr) {
       ctx.save();
       ctx.beginPath(); ctx.rect(x0 - 20, yl, larg + 40, alt + 20); ctx.clip();
-      ctx.filter = 'brightness(' + (1 + 2.2 * Math.min(1, p * 2)).toFixed(2) + ') saturate(' + (1 - 0.6 * p).toFixed(2) + ')';
-      FF.drawFrame(ctx, this.sprite, fr, x, y, sc, flip, { alpha: this.alpha });
+      // a parte que ainda não sumiu vai ficando branca (tint no quadro; ctx.filter na tela era caro)
+      FF.drawFrame(ctx, this.sprite, fr, x, y, sc, flip, { alpha: this.alpha, tint: 'rgba(255,248,215,' + (0.85 * Math.min(1, p * 2)).toFixed(3) + ')' });
       ctx.restore();
       // a linha brilhando
       ctx.save(); ctx.globalCompositeOperation = 'lighter';
@@ -253,7 +262,7 @@ FF.Fighter = class {
     const N = 120;
     for (let i = 0; i < N; i++) {
       const nasce = i / N, rx = rnd(), vx = (rnd() - 0.5) * 60, vy = 60 + rnd() * 110, vida = 0.4 + rnd() * 0.5, tam = 3 + rnd() * 5, cor = rnd();
-      const tv = (p - nasce) * v.d;
+      const tv = dt0 - nasce * v.d;   // tempo real (as últimas faíscas também sobem e somem)
       if (tv < 0 || tv > vida) continue;
       const k = tv / vida;
       const px = x0 + rx * larg + vx * tv, py = y0 + alt * nasce - vy * tv;

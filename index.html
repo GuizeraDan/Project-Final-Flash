@@ -54,37 +54,6 @@
       <button data-batalha="saiyajin_05">Trio vs Vegeta</button>
       <button data-acao="voltar">Voltar</button>
     </div>
-    <div id="treinar" class="menu-titulo">
-      <div class="sub-titulo"><span>Treinamento</span></div>
-      <div class="sub-dica">Monte o treino: escolha os lutadores e como a CPU se comporta</div>
-      <div class="treinar-grade">
-        <label>Seu lutador <select data-t="heroi"></select></label>
-        <label>Forma <select data-t="heroiForma"></select></label>
-        <label>Oponente <select data-t="cpu"></select></label>
-        <label>Forma <select data-t="cpuForma"></select></label>
-        <label>Dificuldade <select data-t="dificuldade"><option value="facil">Fácil</option><option value="normal">Normal</option><option value="dificil">Difícil</option></select></label>
-        <label>CPU ataca <select data-t="cpuAcao">
-          <option value="normal">Normal (golpes variados)</option>
-          <option value="agressivo">Agressivo (só ataques)</option>
-          <option value="carregar">Só carrega ki</option>
-          <option value="parado">Parado (saco de pancada)</option>
-        </select></label>
-        <label>CPU defende <select data-t="cpuGuarda">
-          <option value="dificuldade">Conforme a dificuldade</option>
-          <option value="nunca">Nunca</option>
-          <option value="sempre">Sempre</option>
-        </select></label>
-        <label>Vida infinita <select data-t="vida">
-          <option value="cpu">Só da CPU</option>
-          <option value="ambos">Dos dois</option>
-          <option value="nenhum">Nenhum (luta de verdade)</option>
-        </select></label>
-        <label class="tchk"><input type="checkbox" data-t="kiInf"> Ki infinito (seu)</label>
-        <label class="tchk"><input type="checkbox" data-t="furia"> Fúria sempre cheia (seu)</label>
-      </div>
-      <button data-acao="comecar-treino">Começar treino</button>
-      <button data-acao="voltar">Voltar</button>
-    </div>
     <div id="treino" class="menu-titulo">
       <div class="sub-titulo"><span>Personalização</span></div>
       <div class="sub-dica">Modo história: gaste AP em atributos, equipe cápsulas e use pergaminhos</div>
@@ -97,6 +66,7 @@
       <label>Música <input type="range" id="vol-musica" min="0" max="100"></label>
       <label>Efeitos <input type="range" id="vol-sfx" min="0" max="100"></label>
       <label>Vozes <input type="range" id="vol-voz" min="0" max="100"></label>
+      <label>Campo de visão <select id="fov"><option value="perto">Perto</option><option value="normal">Normal</option><option value="longe">Longe</option><option value="bemlonge">Bem longe</option></select></label>
       <label>Dificuldade <select id="dificuldade"><option value="facil">Fácil</option><option value="normal">Normal</option><option value="dificil">Difícil</option></select></label>
       <button data-acao="apagar">Apagar progresso</button>
       <button data-acao="voltar">Voltar</button>
@@ -147,6 +117,7 @@
       <div class="pausa-botoes" data-tela="principal">
         <button data-p="continuar">▶ Continuar</button>
         <button data-p="habilidades" hidden>⭐ Habilidades</button>
+        <button data-p="treino" hidden>🥋 Opções do treino</button>
         <button data-p="opcoes">🔊 Som e velocidade</button>
         <button data-p="reiniciar">↻ Reiniciar luta</button>
         <button data-p="salvar">💾 Salvar e sair</button>
@@ -159,12 +130,38 @@
         <label>Velocidade da batalha
           <select data-p="velocidade"><option value="1">Normal</option><option value="1.5">Rápida (1,5×)</option><option value="2">Muito rápida (2×)</option></select>
         </label>
+        <label>Campo de visão (próxima luta)
+          <select data-p="fov"><option value="perto">Perto</option><option value="normal">Normal</option><option value="longe">Longe</option><option value="bemlonge">Bem longe</option></select>
+        </label>
         <label>Dificuldade
           <select data-p="dificuldade"><option value="facil">Fácil</option><option value="normal">Normal</option><option value="dificil">Difícil</option></select>
         </label>
         <label>Tempo da guarda/crítico
           <select data-p="janela"><option value="0.3">Normal</option><option value="0.42">Mais fácil</option><option value="0.2">Mais difícil</option></select>
         </label>
+        <button data-p="voltar">← Voltar</button>
+      </div>
+      <div class="pausa-opcoes pausa-treino" data-tela="treino" hidden>
+        <label>CPU ataca <select data-t="cpuAcao">
+          <option value="normal">Normal (golpes variados)</option>
+          <option value="agressivo">Agressivo (só ataques)</option>
+          <option value="carregar">Só carrega ki</option>
+          <option value="parado">Parado (saco de pancada)</option>
+        </select></label>
+        <label>CPU defende <select data-t="cpuGuarda">
+          <option value="dificuldade">Conforme a dificuldade</option>
+          <option value="nunca">Nunca</option>
+          <option value="sempre">Sempre</option>
+        </select></label>
+        <label>Vida infinita <select data-t="vida">
+          <option value="cpu">Só da CPU</option>
+          <option value="ambos">Dos dois times</option>
+          <option value="nenhum">Nenhum (luta de verdade)</option>
+        </select></label>
+        <label>Dificuldade <select data-t="dificuldade"><option value="facil">Fácil</option><option value="normal">Normal</option><option value="dificil">Difícil</option></select></label>
+        <label>Ki infinito (seu time) <input type="checkbox" data-t="kiInf"></label>
+        <label>Fúria sempre cheia (seu time) <input type="checkbox" data-t="furia"></label>
+        <p class="hab-dica">Muda na hora, sem reiniciar o treino.</p>
         <button data-p="voltar">← Voltar</button>
       </div>
       <div class="pausa-hab" data-tela="habilidades" hidden>

@@ -58,6 +58,7 @@ FF.Pausa = {
     this.tela('principal');
     const mh = FF.modoHistoria;
     el.querySelector('[data-p="salvar"]').hidden = !mh;
+    el.querySelector('[data-p="treino"]').hidden = !(FF.battle.def && FF.battle.def.treino);
     el.querySelector('.pausa-aviso').textContent = mh ? 'Capítulo ' + mh.cap.id + ': ' + (mh.cap.titulo || '') : (FF.battle.def.titulo || '');
     el.hidden = false;
     document.getElementById('jogo').classList.add('pausado');
@@ -85,6 +86,7 @@ FF.Pausa = {
         aoMudar: () => FF.Habilidades.atualizarBatalha(b),
       });
     }
+    if (nome === 'treino' && FF.Treinar) FF.Treinar.painel(el.querySelector('.pausa-treino'));
     if (nome === 'opcoes') {
       const v = FF.Save.get().volumes || { musica: FF.Audio.volMusica, sfx: FF.Audio.volSfx, voz: FF.Audio.volVoz };
       el.querySelectorAll('[data-vol]').forEach(r => (r.value = Math.round(v[r.dataset.vol] * 100)));
@@ -110,6 +112,7 @@ FF.Pausa = {
     if (a === 'continuar') return this.fechar();
     if (a === 'opcoes') return this.tela('opcoes');
     if (a === 'habilidades') return this.tela('habilidades');
+    if (a === 'treino') return this.tela('treino');
     if (a === 'voltar') return this.tela('principal');
     if (a === 'reiniciar') { if (confirm('Reiniciar esta luta do começo?')) location.reload(); return; }
     if (a === 'salvar') {

@@ -215,7 +215,7 @@ FF.Linha = {
           const emprestado = c.sprite && FF.Assets.sprites[c.sprite];
           if (emprestado && emprestado !== f.sprite) { if (!f._spriteOrig) f._spriteOrig = { sprite: f.sprite, anim: f.anim }; f.sprite = emprestado; f.anim = new FF.Animator(emprestado); }
           else if (!emprestado) this.devolverSprite(f);
-          f.offX = (c.dx || 0) * f.dir; f.offY = c.dy || 0; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip; f.rotExtra = (c.rot || 0) * f.dir;
+          const kf = b.fov || 1; f.offX = (c.dx || 0) * f.dir * kf; f.offY = (c.dy || 0) * kf; f.escExtra = c.escala || 1; f.flipExtra = !!c.flip; f.rotExtra = (c.rot || 0) * f.dir;
           f.camadaExtra = c.camada === 'frente' ? 1 : c.camada === 'atras' ? -1 : 0;   // na frente / atrás dos outros lutadores
           if (c.alpha != null) { guardar(f); f.alpha = c.alpha; }
           const loop = c.loop != null ? !!c.loop : !!c.d;
@@ -277,7 +277,8 @@ FF.Linha = {
       case 'efeito': {
         const p = this.ponto(b, actor, target, c.em);
         const dir = actor ? actor.dir : 1;
-        let ex = p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir), ey = p.y + (c.dy || 0);
+        const kf = c.em === 'tela' ? 1 : (b.fov || 1);
+        let ex = p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir) * kf, ey = p.y + (c.dy || 0) * kf;
         // perspectiva: efeitos presos em quem solta ou na tela vão para o lugar certo entre ele e o alvo
         // (os de tela bem no alto, como faixas e brilhos de tela cheia, ficam onde estão)
         let inclina = 0;

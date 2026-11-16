@@ -445,7 +445,8 @@ FF.HUD = {
   versao(ctx) {
     if (!FF.VERSAO) return;
     ctx.save(); ctx.globalAlpha = 0.55;
-    this.text(ctx, FF.VERSAO.fase + ' · build ' + FF.VERSAO.build, 8, FF.H - 8, 10, '#ffffff', 'left');
+    // canto inferior direito, ao lado do botão de pausa (que ocupa ~6% da largura)
+    this.text(ctx, FF.VERSAO.fase + ' · build ' + FF.VERSAO.build, FF.W * 0.935, FF.H - 8, 10, '#ffffff', 'right');
     ctx.restore();
   },
   draw(ctx, b) {

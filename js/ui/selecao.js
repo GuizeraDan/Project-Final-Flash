@@ -8,21 +8,31 @@ FF.Selecao = {
   lado: 'herois',
   defs: {},
 
-  async abrir() {
+  // modo: 'livre' (Batalha Livre) ou 'treino' (Treinamento: mesma tela, a batalha leva def.treino)
+  async abrir(modo) {
+    this.modo = modo === 'treino' ? 'treino' : 'livre';
     FF.Audio.musicaSelecao();   // música própria da escolha de lutadores
     const el = document.getElementById('selecao');
+    el.querySelector('.sel-topo h2').textContent = this.modo === 'treino' ? 'Treinamento' : 'Batalha Livre';
+    el.querySelector('.sel-topo span').textContent = this.modo === 'treino'
+      ? 'Monte o treino como na Batalha Livre · as opções da CPU (parada, defende, vida infinita…) ficam no menu de pausa ⏸'
+      : 'Toque nos lutadores para montar os times · toque num retrato do time para tirar';
+    const btL = el.querySelector('[data-sel="lutar"]'); (btL.querySelector('span') || btL).textContent = this.modo === 'treino' ? 'TREINAR!' : 'LUTAR!';
+    this.times = { herois: ['goku'], inimigos: ['raditz'] }; this.formas = { herois: [], inimigos: [] };
     const ids = (FF.Assets.listaPersonagens && FF.Assets.listaPersonagens().slice()) || ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     // ordem: heróis da saga primeiro, depois os vilões
     const ordem = ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     ids.sort((a, b) => ((ordem.indexOf(a) + 1) || 99) - ((ordem.indexOf(b) + 1) || 99));
     for (const id of ids) this.defs[id] = await FF.Assets.loadCharacter(id);
-    try { const s = JSON.parse(sessionStorage.getItem('ff_livre_times') || 'null'); if (s && s.herois && s.inimigos) { this.times = { herois: s.herois, inimigos: s.inimigos }; this.formas = s.formas || { herois: [], inimigos: [] }; } } catch (e) { /* sem sessionStorage */ }
+    try { const s = JSON.parse(sessionStorage.getItem(this.chaveTimes()) || 'null'); if (s && s.herois && s.inimigos) { this.times = { herois: s.herois, inimigos: s.inimigos }; this.formas = s.formas || { herois: [], inimigos: [] }; } } catch (e) { /* sem sessionStorage */ }
     this.ids = ids;
     this.montarGrade();
     this.ligar(el);
     this.render();
     el.classList.add('open');
   },
+
+  chaveTimes() { return this.modo === 'treino' ? 'ff_treino_times' : 'ff_livre_times'; },
 
   fechar() {
     const el = document.getElementById('selecao');
@@ -189,7 +199,7 @@ FF.Selecao = {
     });
     const ok = this.times.herois.length && this.times.inimigos.length;
     el.querySelector('[data-sel="lutar"]').disabled = !ok;
-    try { sessionStorage.setItem('ff_livre_times', JSON.stringify(Object.assign({}, this.times, { formas: this.formas }))); } catch (e) { /* nada */ }
+    try { sessionStorage.setItem(this.chaveTimes(), JSON.stringify(Object.assign({}, this.times, { formas: this.formas }))); } catch (e) { /* nada */ }
   },
 
   // monta a definição da batalha a partir dos times escolhidos
@@ -216,6 +226,7 @@ FF.Selecao = {
 
   lutar() {
     const def = this.montarBatalha(this.times);
+    if (this.modo === 'treino') Object.assign(def, { id: 'treino', saga: 'treino', titulo: 'Treinamento', treino: FF.Treinar.cfg() });
     try { sessionStorage.setItem('ff_livre_def', JSON.stringify(def)); } catch (e) { /* nada */ }
     FF.Audio.play('battlecall_start01', 0.8);
     this.fechar();

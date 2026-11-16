@@ -87,7 +87,8 @@ FF.MenuGolpes = {
       const doCat = () => info.filter(x => x.cat === cat);
       // Minimalista: a lista de golpes só aparece com o mouse na esfera (ou pelo teclado)
       let fecharT = null;
-      const abrir = () => { if (!box.classList.contains('mg-aberto')) { box.classList.add('mg-aberto'); } render(); };
+      let renderCat = null;
+      const abrir = () => { const ja = box.classList.contains('mg-aberto'); if (!ja) box.classList.add('mg-aberto'); if (!ja || renderCat !== cat) render(); };
       const fechar = () => { box.classList.remove('mg-aberto'); desc.innerHTML = ''; };
       const CATS = mini ? this.CATS.concat([{ id: 'ki', nome: 'Ki', ic: '✦' }]) : this.CATS;
       const botoesCat = CATS.map(c => {
@@ -110,7 +111,7 @@ FF.MenuGolpes = {
           // passar o mouse abre os golpes da esfera; tirar o mouse (da esfera e da lista) minimiza
           if (c.id !== 'ki') {
             slot.addEventListener('mouseenter', () => { if (!n) return; clearTimeout(fecharT); if (cat !== c.id) { cat = c.id; sel = 0; FF.Audio.play('tap_sound', 0.35); } abrir(); });
-            slot.addEventListener('mouseleave', () => { clearTimeout(fecharT); fecharT = setTimeout(fechar, 220); });
+            slot.addEventListener('mouseleave', () => { clearTimeout(fecharT); fecharT = setTimeout(fechar, 280); });
           }
           cats.appendChild(slot);
           return { c, b, slot };
@@ -144,6 +145,7 @@ FF.MenuGolpes = {
           lista.appendChild(b);
         });
         if (mini) { const o = botoesCat.find(o => o.c.id === cat); if (o) o.slot.appendChild(lista); }
+        renderCat = cat;
         if (estilo === 'radial') this.posicionarLeque(lista, cats, botoesCat.find(o => o.c.id === cat).b);
         marcar();
       };
@@ -181,6 +183,7 @@ FF.MenuGolpes = {
       const done = (id) => {
         hero.impulsoPlan = id === '__voltar' || id === '__ataquez' ? 0 : boost;
         hero.impulsoMostra = 0;
+        clearTimeout(fecharT);
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open');
         FF.Audio.play('decide_charasel', 0.6);
@@ -190,6 +193,7 @@ FF.MenuGolpes = {
       if (mini) desenharImp();
       render();
       box.classList.add('open');
+      if (mini) requestAnimationFrame(() => { const h = cats.querySelector('.mg-slot:hover'); if (h) h.dispatchEvent(new Event('mouseenter')); });
     });
   },
 

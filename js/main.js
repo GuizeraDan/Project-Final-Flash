@@ -218,7 +218,7 @@ FF.ajustarTela = function () {
   // tem N× mais pixels, então o HUD, os textos e a arte em alta não ficam borrados ao ampliar
   const dpr = window.devicePixelRatio || 1;
   let R = Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / 580));
-  R = Math.max(1, Math.min(3, R));
+  R = Math.max(1, Math.min(2, R));   // 3× pesava demais em telas grandes (2560×1440 = 5 milhões de pixels por quadro)
   while (R > 1 && FF.W * R * 580 * R > 9e6) R--;   // limite de pixels (aparelhos fracos)
   FF.RES = R;
   canvas.width = FF.W * R;
@@ -744,7 +744,7 @@ window.addEventListener('load', () => {
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', treinar: '#treinar', ferramentas: '#ferramentas', novojogo: '#novojogo' }[modo];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[modo];
     const bt = vis && (modo === 'opcoes' ? intro.querySelector('#opcoes [data-acao="voltar"]') : intro.querySelector(vis + ' button:not([disabled])'));
     if (bt) bt.focus(); else if (primeiro) primeiro.focus();
   };
@@ -766,7 +766,7 @@ window.addEventListener('load', () => {
   window.addEventListener('keydown', abrir);
   FF._mostrarTitulo = mostrar;
   // volta direto para a montagem do treino (botão "Mudar treino" no fim de um treino)
-  if (params.get('treinar')) { history.replaceState(null, '', location.pathname); window.removeEventListener('keydown', abrir); intro.removeEventListener('click', abrir); FF.Treinar.abrir(mostrar); }
+  if (params.get('treinar')) { history.replaceState(null, '', location.pathname); window.removeEventListener('keydown', abrir); intro.removeEventListener('click', abrir); intro.className = 'selecao'; FF.Selecao.abrir('treino'); FF.Voltar.armar(); }
   // música já na tela "Toque ou aperte Enter" (se o navegador bloquear o som antes de um toque,
   // ela começa no primeiro toque/tecla)
   FF.Audio.musicaMenu();
@@ -776,7 +776,7 @@ window.addEventListener('load', () => {
     if (!intro.className || intro.classList.contains('hide')) return;
     const grade = intro.className === 'menu';   // menu principal em 2 colunas: ←→ trocam de coluna, ↑↓ de linha
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp' && !(grade && (e.code === 'ArrowLeft' || e.code === 'ArrowRight'))) return;
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', treinar: '#treinar', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
     if (!vis) return;
     const todos = [...intro.querySelectorAll(vis + ' > button')].filter(b => !b.hidden);
     const bts = grade ? todos : todos.filter(b => !b.disabled);
@@ -806,8 +806,7 @@ window.addEventListener('load', () => {
     if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
-    if (ac === 'treino') { FF.Treinar.abrir(mostrar); return; }   // modo de treino (montar o treino)
-    if (ac === 'comecar-treino') { FF.Treinar.comecar(); return; }
+    if (ac === 'treino') { intro.className = 'selecao'; FF.Selecao.abrir('treino'); FF.Voltar.armar(); return; }   // Treinamento: mesma tela da Batalha Livre
     if (ac === 'personalizar') { FF._persDe = 'novojogo'; return mostrar('treino'); }   // personalização do modo história
     if (ac === 'voltar' && intro.className === 'treino' && FF._persDe === 'novojogo') { FF._persDe = null; return FF.NovoJogo.abrir(mostrar, ir); }
     if (ac === 'tutorial') { intro.className = 'tutorial-aberto'; return FF.Tutorial.abrir(); }

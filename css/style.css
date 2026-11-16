@@ -704,5 +704,17 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #treinar > button { align-self: center; }
 
 /* aviso de pré-alpha na tela de título */
-.pre-alpha { position: absolute; left: 1.2cqw; bottom: 1.2cqw; z-index: 5; font-size: 1.15cqw; font-weight: 900; letter-spacing: 0.1cqw; color: #ffe25a; background: rgba(20,10,40,0.85); border: 0.15cqw solid #ffcf3a; border-radius: 99px; padding: 0.25cqw 1cqw; text-shadow: 0.1cqw 0.1cqw 0 #000; pointer-events: auto; }
+.pre-alpha { position: absolute; right: 1.2cqw; bottom: 1.2cqw; z-index: 5; font-size: 1.15cqw; font-weight: 900; letter-spacing: 0.1cqw; color: #ffe25a; background: rgba(20,10,40,0.85); border: 0.15cqw solid #ffcf3a; border-radius: 99px; padding: 0.25cqw 1cqw; text-shadow: 0.1cqw 0.1cqw 0 #000; pointer-events: auto; }
 #inicio.hide .pre-alpha { display: none; }
+/* desempenho do menu de golpes: sem filtros animados (blur/drop-shadow) por cima do jogo, que redesenha 60×/s */
+#menu.mg-mini .mg-cat.sel::before { filter: none; opacity: 0.8; }
+#menu.mg-mini .mg-cat-nome { filter: none; }
+#menu.mg-mini .mg-golpe.sel .mg-nome { filter: none; }
+#menu.mg-mini .mg-golpe.bloq { filter: none; opacity: 0.55; }
+#menu.mg-mini .mg-cat-ic { filter: brightness(0) saturate(100%) invert(14%) sepia(96%) saturate(5200%) hue-rotate(352deg) brightness(0.95); }
+#menu.mg-mini .mg-cat, #menu.mg-mini .mg-golpe { will-change: transform; }
+/* a lista de golpes aparece rápido, com um deslize curto */
+#menu.mg-mini.mg-aberto .mg-golpes { animation: mgAbre 0.09s ease-out; }
+@keyframes mgAbre { from { opacity: 0; transform: translateX(-50%) translateY(0.5cqw); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+.pausa-treino input[type=checkbox] { width: 1.8cqw; height: 1.8cqw; accent-color: #ffd84a; }

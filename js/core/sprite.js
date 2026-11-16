@@ -127,6 +127,47 @@ FF.Recolor = {
   },
 };
 
+// quadros prontos guardados (filtro de cor, silhueta borrada da aura...): ctx.filter direto na tela é muito caro
+// (o navegador processa uma camada do tamanho da tela inteira); aqui o filtro roda uma vez num canvas pequeno
+FF.CacheQuadros = {
+  mapa: new Map(), max: 1500,
+  obter(chave, criar) {
+    let c = this.mapa.get(chave);
+    if (c) return c;
+    if (this.mapa.size > this.max) this.mapa.delete(this.mapa.keys().next().value);
+    c = criar();
+    this.mapa.set(chave, c);
+    return c;
+  },
+  // quadro com filtro CSS (hue-rotate etc.)
+  filtrado(set, f, filtro) {
+    return this.obter('F|' + (set.def && set.def.id) + '|' + f.slice(0, 5).join(',') + '|' + filtro, () => {
+      const [ai, sx, sy, w, h] = f;
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d');
+      if ('filter' in x) x.filter = filtro;
+      x.drawImage(set.images[ai], sx, sy, w, h, 0, 0, w, h);
+      return c;
+    });
+  },
+  // silhueta da cor pedida, borrada e engordada (aura do Impulso); devolve {c, pad}
+  aura(set, f, cor, raio, borrao) {
+    return this.obter('A|' + (set.def && set.def.id) + '|' + f.slice(0, 5).join(',') + '|' + cor + '|' + raio + '|' + borrao, () => {
+      const [ai, sx, sy, w, h] = f, pad = Math.ceil(raio + borrao * 2 + 2);
+      const sil = document.createElement('canvas'); sil.width = w; sil.height = h;
+      const sx2 = sil.getContext('2d');
+      sx2.drawImage(set.images[ai], sx, sy, w, h, 0, 0, w, h);
+      sx2.globalCompositeOperation = 'source-in'; sx2.fillStyle = cor; sx2.fillRect(0, 0, w, h);
+      const c = document.createElement('canvas'); c.width = w + pad * 2; c.height = h + pad * 2;
+      const x = c.getContext('2d');
+      if (borrao && 'filter' in x) x.filter = 'blur(' + borrao + 'px)';
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; x.drawImage(sil, pad + Math.cos(a) * raio, pad + Math.sin(a) * raio); }
+      if (!borrao) x.drawImage(sil, pad, pad);
+      return { c, pad };
+    });
+  },
+};
+
 FF.drawFrame = (function () {
   const tmp = document.createElement('canvas');
   const tctx = tmp.getContext('2d');
@@ -135,6 +176,7 @@ FF.drawFrame = (function () {
     const [ai, sx, sy, w, h, ox, oy] = f;
     let src = set.images[ai], srcX = sx, srcY = sy;
     if (opts.recolor) { src = FF.Recolor.quadro(set, f, opts.recolor); srcX = 0; srcY = 0; }
+    else if (opts.filtro) { src = FF.CacheQuadros.filtrado(set, f, opts.filtro); srcX = 0; srcY = 0; }
     if (opts.tint) {
       if (tmp.width < w) tmp.width = w;
       if (tmp.height < h) tmp.height = h;

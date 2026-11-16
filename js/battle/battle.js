@@ -5,6 +5,20 @@ window.FF = window.FF || {};
 FF.W = 1084;
 // versão mostrada no título e na batalha (aviso de pré-alpha)
 FF.VERSAO = { fase: 'PRÉ-ALPHA', build: '0.0.1' };
+// CAMPO DE VISÃO (Opções / pausa; FF.Save "fov"): multiplica o tamanho de tudo na batalha (lutadores, efeitos, raios,
+// deslocamentos dos golpes) — menor = câmera mais longe. Vale a partir da próxima luta.
+FF.FOV = {
+  NIVEIS: { perto: 1, normal: 0.88, longe: 0.78, bemlonge: 0.7 },
+  id() { const v = FF.Save && FF.Save.get && FF.Save.get().fov; return this.NIVEIS[v] ? v : 'normal'; },
+  valor() { return this.NIVEIS[this.id()]; },
+  ligar() {
+    document.querySelectorAll('#fov, [data-p="fov"]').forEach(sel => {
+      sel.value = this.id();
+      sel.onchange = () => { if (FF.Save) FF.Save.set({ fov: sel.value }); document.querySelectorAll('#fov, [data-p="fov"]').forEach(o => (o.value = sel.value)); };
+    });
+  },
+};
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.FOV.ligar());
 // DIFICULDADE (Opções / pausa → Dificuldade; FF.Save "dificuldade"): quanto o inimigo defende, janela da guarda/crítico
 // perfeitos e força dos inimigos. guarda = chance de defender um golpe; perfeita = parte das defesas que é perfeita
 // (dano 0 + contra-ataque no corpo a corpo); contraPerf = chance de defender perfeito o SEU contra-ataque (→ PERCEPÇÃO)
@@ -33,7 +47,9 @@ FF.Battle = class {
     this.def = def;
     this.stage = stage;
     this.ui = ui;
-    this.scale = def.escala || 2.5;
+    // campo de visão (não vale no palco do Estúdio, que monta os golpes no tamanho original)
+    this.fov = def.id === 'estudio' ? 1 : FF.FOV.valor();
+    this.scale = (def.escala || 2.5) * this.fov;
     this.groundY = stage.chaoY || 470;
     // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
     this.persp = def.perspectiva !== false && !def.semPerspectiva;   // diagonal é o padrão do jogo (o palco do Estúdio escolhe)
@@ -436,8 +452,7 @@ FF.Battle = class {
     const n = actor.boost || 0;
     if (move.anuncio !== false) this.banner(move.nome + (n ? '  ×' + (n + 1) : ''), move.supremo ? 2.0 : 1.2);
     if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
-      const p = actor.peito();
-      this.spawnFx('genkidama_efeito', p.x, p.y, false, 1.6 + 0.5 * n);
+      // (a explosão azul que saía aqui foi tirada: a aura do Impulso já mostra a força)
       this.popup(actor, 'IMPULSO ×' + (n + 1) + '!', '#ffcf3a', -50);
       FF.Audio.play('carregamentodeki_start', 0.8);
       this.shake(2 + 2 * n);
@@ -1372,9 +1387,8 @@ FF.Battle = class {
   desenharProjetil(ctx, p) {
     const draw = (f, x, y, sc, ang, alpha) => {
       if (!f) return;
-      const d = this.desvioProjetil(p, f, sc), o = alpha != null ? { alpha } : undefined;
+      const d = this.desvioProjetil(p, f, sc), o = Object.assign(alpha != null ? { alpha } : {}, p.filtro ? { filtro: p.filtro } : {});   // filtro = cor escolhida no Estúdio (círculo cromático), pelo cache
       ctx.save();
-      if (p.filtro) ctx.filter = p.filtro;            // cor escolhida no Estúdio (círculo cromático)
       ctx.translate(x, y);
       if (ang) ctx.rotate(ang);
       if (p.rot) {   // giro fixo do desenho (Estúdio), em volta do meio do quadro
@@ -1622,8 +1636,9 @@ FF.Battle = class {
       order.forEach(f => {
         // névoa: o fundo fica um pouco mais claro e menos saturado (some quando ele vem para a frente)
         const d = f.homeG != null ? Math.max(0, Math.min(1, (this.PERSP.frente - f.groundY) / (this.PERSP.frente - this.PERSP.fundo))) : 0;
-        if (d > 0.05 && !f.busy) { ctx.save(); ctx.filter = 'saturate(' + (1 - 0.22 * d).toFixed(2) + ') brightness(' + (1 + 0.06 * d).toFixed(2) + ') contrast(' + (1 - 0.12 * d).toFixed(2) + ')'; f.draw(ctx, this.fx); ctx.restore(); }
-        else f.draw(ctx, this.fx);
+        // (um véu claro por cima do desenho, pelo tint do quadro: ctx.filter na tela era o que mais pesava)
+        f.nevoa = d > 0.05 && !f.busy ? d : 0;
+        f.draw(ctx, this.fx);
       });
     } else order.forEach(f => f.draw(ctx, this.fx));
     // supremo: escurece tudo e redesenha só quem solta, aceso
