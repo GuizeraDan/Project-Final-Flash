@@ -6,7 +6,7 @@ FF.W = 1084;
 // versão mostrada no título e na batalha (aviso de pré-alpha)
 FF.VERSAO = { fase: 'PRÉ-ALPHA', build: '0.0.1' };
 // CAMPO DE VISÃO (Opções / pausa; FF.Save "fov"): multiplica o tamanho de tudo na batalha (lutadores, efeitos, raios,
-// deslocamentos dos golpes) — menor = câmera mais longe. Vale a partir da próxima luta.
+// deslocamentos dos golpes) — menor = câmera mais longe. Muda na hora (Battle.mudarFov).
 FF.FOV = {
   NIVEIS: { perto: 1, normal: 0.88, longe: 0.78, bemlonge: 0.7 },
   id() { const v = FF.Save && FF.Save.get && FF.Save.get().fov; return this.NIVEIS[v] ? v : 'normal'; },
@@ -14,7 +14,11 @@ FF.FOV = {
   ligar() {
     document.querySelectorAll('#fov, [data-p="fov"]').forEach(sel => {
       sel.value = this.id();
-      sel.onchange = () => { if (FF.Save) FF.Save.set({ fov: sel.value }); document.querySelectorAll('#fov, [data-p="fov"]').forEach(o => (o.value = sel.value)); };
+      sel.onchange = () => {
+        if (FF.Save) FF.Save.set({ fov: sel.value });
+        document.querySelectorAll('#fov, [data-p="fov"]').forEach(o => (o.value = sel.value));
+        if (FF.battle && FF.battle.mudarFov) FF.battle.mudarFov(this.valor());   // luta em andamento: muda na hora
+      };
     });
   },
 };
@@ -296,6 +300,17 @@ FF.Battle = class {
       if (this.checkEnd()) return;
     }
     this.all.forEach(f => { f.planoIcone = null; f.intencao = null; });
+  }
+
+  // campo de visão em tempo real: tudo o que tem tamanho na batalha é multiplicado pela razão nova/antiga
+  mudarFov(v) {
+    if (this.def.id === 'estudio' || !v || v === this.fov) return;
+    const k = v / this.fov;
+    this.fov = v;
+    this.scale *= k;
+    for (const f of this.all) { f.scale *= k; if (f.homeS != null) f.homeS *= k; f.offX = (f.offX || 0) * k; f.offY = (f.offY || 0) * k; }
+    for (const e of this.fxList) e.scale *= k;
+    for (const p of this.projectiles) { if (p.scale) p.scale *= k; if (p.base) p.base *= k; }
   }
 
   // ---------- treino (def.treino, montado em js/ui/treinar.js) ----------
