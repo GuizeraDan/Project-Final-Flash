@@ -27,6 +27,13 @@ FF.Tutorial = {
       <li><b>Fúria (RAGE)</b> — enche ao bater e ao apanhar. Cheia, o painel pega fogo: <b>SPARKING!</b> e o Supremo fica liberado.</li></ol>
       <p class="tut-dica">Os inimigos têm o mesmo painel, espelhado, do lado direito.</p>` },
 
+    { t: 'Ki: apanhar também carrega', ic: '🔋', ilu: 'ki', h: `
+      <p>O ki não vem só do botão <b style="color:#b07aff">KI</b>. Como nos jogos de luta em 3D da série, <b>levar golpe esquenta o lutador</b>:</p>
+      <ul><li><b>Levou um golpe</b> — ganha ki; quanto maior o pedaço da vida que o golpe tirou, mais ki.</li>
+      <li><b>Defendeu</b> — ganha um pouquinho (guarda perfeita rende mais que a comum).</li>
+      <li>No fim de cada golpe aparece um aviso <b style="color:#c9a6ff">+N KI</b> em cima de quem ganhou.</li></ul>
+      <p class="tut-dica">Vale para os inimigos também: bater sem parar num chefe pode deixar ele com ki para o golpe mais forte!</p>` },
+
     { t: 'Escolhendo golpes: as Esferas', ic: '🟠', ilu: 'menu', h: `
       <p>Na sua vez aparecem quatro esferas embaixo da tela:</p>
       <ul><li><b style="color:#4fe3ff">ATAQUES</b> — socos, raios, Supremo e Sparking Combo.</li>
@@ -49,6 +56,20 @@ FF.Tutorial = {
       <p><b>Guarda perfeita</b> (bem no último instante): <b>dano zero</b> — e se o golpe era de corpo a corpo, seu herói dá um <b>CONTRA-ATAQUE</b>!</p>
       <p class="tut-dica">Apertar cedo demais trava o botão por um instante ("Cedo demais!").</p>` },
 
+    { t: 'O inimigo também defende!', ic: '🛡️', ilu: 'guardaIA', h: `
+      <p>Os inimigos não ficam parados apanhando: às vezes eles <b>defendem</b> o seu golpe. Aparece <b style="color:#78dcff">GUARDA!</b> e o dano cai bastante — ou <b>GUARDA PERFEITA!</b>, sem dano nenhum.</p>
+      <ul><li><b>Crítico perfeito fura a guarda</b>: acertando o anel dourado no instante certo, o golpe entra inteiro mesmo se ele defender.</li>
+      <li>Ninguém defende quando está <b>quebrado</b>, <b>atordoado</b> ou contra um <b>Supremo</b>.</li>
+      <li>Se ele fizer guarda perfeita num golpe de <b>corpo a corpo</b>, ele <b>contra-ataca</b> logo depois: fique de olho no <b style="color:#78dcff">anel azul</b>!</li></ul>
+      <p class="tut-dica">A dificuldade muda o quanto eles defendem (Fácil quase nunca, Difícil bastante).</p>` },
+
+    { t: 'PERCEPÇÃO!', ic: '⚡', ilu: 'percepcao', h: `
+      <p>Quando os dois lados se leem ao mesmo tempo, a luta vira um duelo de velocidade: a tela fica azul e aparece <b style="color:#9fe6ff">PERCEPÇÃO!</b></p>
+      <ul><li>Acontece quando você faz <b>guarda perfeita</b> num contra-ataque do inimigo — ou quando o inimigo faz guarda perfeita no <b>seu</b> contra-ataque.</li>
+      <li>Os dois somem e reaparecem pelo céu trocando golpes, mas <b>ninguém leva dano</b>.</li>
+      <li>No fim, seu herói ganha <b>+15 de Fúria</b> e os dois ganham <b>+10 de ki</b>.</li></ul>
+      <p class="tut-dica">É um empate de reflexos: sinal de que você está lendo bem o tempo dos anéis.</p>` },
+
     { t: 'Desafios dos golpes especiais', ic: '🎮', ilu: 'desafios', h: `
       <p>Alguns golpes têm um mini-desafio antes de sair. Quanto melhor, mais forte (de ×0,85 a <b>×1,45</b>):</p>
       <ul><li><b>Aperte rápido!</b> — Kamehameha, Galick Ho: aperte várias vezes para encher a barra.</li>
@@ -70,7 +91,7 @@ FF.Tutorial = {
       <p><b>🤝 Sparking Combo</b>: ataque em dupla (ex.: Kamehameha + Makankosappo). Só aparece se o parceiro estiver no seu time, e precisa dele de pé e com ki.</p>` },
 
     { t: 'Formas e reforços', ic: '⚡', ilu: 'formas', h: `
-      <ul><li><b>Kaioken</b> (Buffs) — mais força por alguns turnos, mas gasta um pouco de vida a cada turno.</li>
+      <ul><li><b>Kaioken</b> (Buffs) — custa <b>30 de ki</b> e dá mais força por alguns turnos, mas gasta um pouco de vida e <b>5 de ki</b> a cada turno (sem ki, ele acaba).</li>
       <li><b>Super Saiyajin</b> (Formas) — transforma no meio da luta: golpes novos e atributos maiores. "Destransformar" volta.</li>
       <li><b>Semente dos Deuses</b> e curas — recuperam vida.</li>
       <li><b>Golpes novos</b> — os golpes criados no <b>Estúdio</b> entram no menu do personagem como qualquer outro golpe.</li></ul>
@@ -81,6 +102,20 @@ FF.Tutorial = {
       <li><b>📜 Pergaminhos</b> — também vêm das vitórias. No Treinamento sobem os golpes de nível <b>I → II → III</b> (+15% de dano e efeito maior por nível).</li>
       <li><b>🎒 Cápsulas</b> — 2 por herói, escolhidas na Personalização: 🌱 Semente dos Deuses, 📡 Radar do Dragão, 🏋 Peso de Treino, 🛡 Armadura, 🔋 Ki extra, 🎗 Faixa do Senhor Kaio.</li>
       <li><b>Nota S a D</b> no fim da luta — sem dano, guardas perfeitas, quebras, Supremo final, vitória rápida… Nota alta dá mais AP (S: ×1,5 e um pergaminho extra).</li></ul>` },
+
+    { t: 'Treinamento', ic: '🥋', ilu: 'treino', h: `
+      <p>No menu principal, <b>Treinamento</b> abre a mesma tela da Batalha Livre: monte o seu time e o dos adversários (o botão <b>⚡</b> no retrato troca a forma inicial) e aperte <b>TREINAR!</b></p>
+      <p>Durante o treino, abra a <b>pausa</b> (⏸ ou Esc) → <b>🥋 Opções do treino</b>. Tudo muda na hora, sem reiniciar:</p>
+      <ul><li><b>CPU ataca</b> — normal, agressivo, só carrega ki ou parado;</li>
+      <li><b>CPU defende</b> — conforme a dificuldade, nunca ou sempre (ótimo para treinar o crítico perfeito);</li>
+      <li><b>Vida infinita</b>, <b>ki infinito</b> e <b>Fúria cheia</b> para testar Supremos à vontade.</li></ul>
+      <p class="tut-dica">Treino não dá nota nem AP — é só para praticar.</p>` },
+
+    { t: 'Dificuldade e campo de visão', ic: '⚙️', ilu: 'opcoes', h: `
+      <p>Em <b>Opções</b> (no menu principal ou na pausa):</p>
+      <ul><li><b>Dificuldade</b> — <b>Fácil</b>: inimigos mais fracos, quase não defendem e o tempo da guarda perfeita é mais largo. <b>Normal</b>: o jogo como foi pensado. <b>Difícil</b>: inimigos com mais vida e força, defendem bastante e a janela perfeita é curtinha.</li>
+      <li><b>Campo de visão</b> — Perto, Normal, Longe ou Bem longe: afasta ou aproxima a câmera da luta. Muda na hora, até no meio da batalha.</li>
+      <li><b>Velocidade da batalha</b> — 1×, 1,5× ou 2× para lutas mais rápidas.</li></ul>` },
 
     { t: 'Pronto para lutar!', ic: '🔥', ilu: 'fim', h: `
       <p>Que tal praticar? A <b>luta de treino</b> coloca o Goku contra um Saibaman e mostra dicas na hora certa.</p>
@@ -198,6 +233,7 @@ FF.Tutorial = {
     const W = 520, H = 230;
     if (tipo === 'menu') return this.iluMenu(box);
     if (tipo === 'impulso') return this.iluImpulso(box);
+    if (tipo === 'treino') return this.iluTreino(box);
     const g = this.canvas(box, W, H);
     const textoN = (n, x, y) => { g.fillStyle = '#ffd84a'; g.strokeStyle = '#2a0e00'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 10, 0, Math.PI * 2); g.fill(); g.stroke(); FF.HUD.text(g, String(n), x, y + 1, 12, '#2a0e00', 'center'); };
     if (tipo === 'hud') {
@@ -312,6 +348,72 @@ FF.Tutorial = {
       });
       return;
     }
+
+    if (tipo === 'ki') {
+      this.loop(() => {
+        this.fundo(g, W, H);
+        const t = (performance.now() / 1000) % 3, lado = t < 1.5, k = (t % 1.5) / 1.5;
+        this.lutador(g, defs.goku, 150, 200, 2.4, false); this.lutador(g, defs.raditz, 380, 200, 2.4, true);
+        // barra de ki do Goku
+        const kv = lado ? 30 + 18 * Math.min(1, k * 2) : 48 + 2 * Math.min(1, k * 2);
+        g.fillStyle = 'rgba(0,0,0,0.55)'; g.fillRect(90, 28, 140, 14); g.fillStyle = '#b07aff'; g.fillRect(92, 30, 136 * kv / 100, 10);
+        FF.HUD.text(g, 'KI ' + Math.round(kv), 160, 54, 13, '#e6d6ff', 'center');
+        if (k > 0.1 && k < 0.35) { g.fillStyle = 'rgba(255,255,255,' + (0.6 - k) + ')'; g.beginPath(); g.arc(150, 140, 30 + 60 * k, 0, Math.PI * 2); g.fill(); }
+        FF.HUD.text(g, lado ? 'APANHOU!' : 'GUARDA!', 150, 78, 18, lado ? '#ff8a7a' : '#78dcff', 'center');
+        if (k > 0.4) FF.HUD.text(g, lado ? '+18 KI' : '+2 KI', 235, 130 - 30 * (k - 0.4), 20, '#c9a6ff', 'center');
+        FF.HUD.text(g, lado ? 'levar golpe dá mais ki' : 'defender dá um pouco', W / 2, 218, 14, '#fff3c0', 'center');
+      });
+      return;
+    }
+    if (tipo === 'guardaIA') {
+      this.loop(() => {
+        this.fundo(g, W, H);
+        const t = (performance.now() / 1000) % 6, fase = Math.floor(t / 2), k = (t % 2) / 2;
+        const gx = 150 + (fase < 2 && k < 0.6 ? 150 * Math.sin(Math.min(1, k / 0.3) * Math.PI / 2) : 0);
+        this.lutador(g, defs.goku, gx, 200, 2.4, false); this.lutador(g, defs.raditz, 390, 200, 2.4, true);
+        const msg = [['GUARDA!', '#78dcff', 'dano bem menor'], ['CRÍTICO PERFEITO!', '#ffd84a', 'fura a guarda: dano inteiro'], ['CONTRA-ATAQUE!', '#ff8a7a', 'guarda perfeita dele no corpo a corpo']][fase];
+        if (fase === 0 && k > 0.25) { g.strokeStyle = 'rgba(120,220,255,0.9)'; g.lineWidth = 4; g.beginPath(); g.arc(370, 150, 50, -1.2, 1.2); g.stroke(); }
+        if (fase === 1 && k > 0.25 && k < 0.5) { g.fillStyle = 'rgba(255,240,150,0.7)'; g.beginPath(); g.arc(380, 150, 40 + 80 * (k - 0.25), 0, Math.PI * 2); g.fill(); }
+        if (fase === 2) { const kk = Math.max(0, 1 - k / 0.8); g.lineWidth = 4; g.strokeStyle = 'rgba(120,220,255,0.9)'; g.beginPath(); g.arc(150, 130, 22, 0, Math.PI * 2); g.stroke(); g.lineWidth = 3; g.beginPath(); g.arc(150, 130, 22 + 60 * kk, 0, Math.PI * 2); g.stroke(); }
+        if (k > 0.2) { FF.HUD.text(g, msg[0], fase === 2 ? 150 : 390, 70, 20, msg[1], 'center'); FF.HUD.text(g, msg[2], W / 2, 218, 14, '#fff3c0', 'center'); }
+      });
+      return;
+    }
+    if (tipo === 'percepcao') {
+      const pts = [[120, 90], [360, 70], [250, 120], [420, 130], [180, 60]];
+      this.loop(() => {
+        const t = performance.now() / 1000, i = Math.floor(t / 0.7) % pts.length, k = (t % 0.7) / 0.7;
+        this.fundo(g, W, H);
+        g.fillStyle = 'rgba(30,80,200,0.45)'; g.fillRect(0, 0, W, H);
+        g.strokeStyle = 'rgba(200,240,255,0.5)'; g.lineWidth = 1;
+        for (let n = 0; n < 24; n++) { const a = n / 24 * Math.PI * 2 + t * 0.3; g.beginPath(); g.moveTo(W / 2 + Math.cos(a) * 140, H / 2 + Math.sin(a) * 90); g.lineTo(W / 2 + Math.cos(a) * 400, H / 2 + Math.sin(a) * 300); g.stroke(); }
+        const [x, y] = pts[i];
+        if (k > 0.15) { g.globalAlpha = Math.min(1, (k - 0.15) * 5); this.lutador(g, defs.goku, x - 40, y + 90, 2, false); this.lutador(g, defs.raditz, x + 40, y + 90, 2, true); g.globalAlpha = 1; }
+        if (k > 0.45 && k < 0.7) { g.strokeStyle = 'rgba(255,255,255,0.85)'; g.lineWidth = 3; g.beginPath(); g.arc(x, y + 50, 10 + 70 * (k - 0.45), 0, Math.PI * 2); g.stroke(); }
+        FF.HUD.text(g, 'PERCEPÇÃO!', W / 2, 30, 28, '#cff3ff', 'center');
+        FF.HUD.text(g, 'sem dano · +15 Fúria · +10 ki', W / 2, 215, 14, '#fff3c0', 'center');
+      });
+      return;
+    }
+    if (tipo === 'opcoes') {
+      this.loop(() => {
+        g.fillStyle = '#10142a'; g.fillRect(0, 0, W, H);
+        const t = performance.now() / 1000, sel = Math.floor(t / 1.6) % 3;
+        [['FÁCIL', '#7dff9a', 'defende pouco'], ['NORMAL', '#ffd84a', 'equilibrado'], ['DIFÍCIL', '#ff6a5a', 'defende muito']].forEach(([n, c, d], i) => {
+          const x = 30 + i * 85; g.fillStyle = i === sel ? c : 'rgba(255,255,255,0.08)'; g.fillRect(x, 40, 78, 34);
+          FF.HUD.text(g, n, x + 39, 57, 13, '#fff', 'center'); FF.HUD.text(g, d, x + 39, 88, 11, '#d8d0ff', 'center');
+        });
+        FF.HUD.text(g, 'Dificuldade', 157, 22, 14, '#ffe9a8', 'center');
+        // campo de visão: a mesma cena com o zoom mudando
+        const fov = [1, 0.88, 0.78, 0.7][Math.floor(t / 1.2) % 4], nomes = { 1: 'Perto', 0.88: 'Normal', 0.78: 'Longe', 0.7: 'Bem longe' };
+        g.save(); g.beginPath(); g.rect(290, 30, 210, 170); g.clip(); this.fundo(g, W, H);
+        this.lutador(g, defs.goku, 395 - 55 * fov, 190, 2.4 * fov, false); this.lutador(g, defs.raditz, 395 + 55 * fov, 190, 2.4 * fov, true); g.restore();
+        g.strokeStyle = '#ffd84a'; g.lineWidth = 2; g.strokeRect(290, 30, 210, 170);
+        FF.HUD.text(g, 'Campo de visão: ' + nomes[fov], 395, 18, 14, '#ffe9a8', 'center');
+        FF.HUD.text(g, 'Velocidade 1× · 1,5× · 2×', 157, 150, 13, '#d8d0ff', 'center');
+      });
+      return;
+    }
     if (tipo === 'progresso') {
       this.loop(() => {
         g.fillStyle = '#10142a'; g.fillRect(0, 0, W, H);
@@ -332,6 +434,13 @@ FF.Tutorial = {
     const tick = () => { n++; d.classList.toggle('aberto', (n % 6) < 4); };
     this._iv && clearInterval(this._iv); this._iv = setInterval(() => { if (!document.body.contains(d)) return clearInterval(this._iv); tick(); }, 600);
     tick();
+  },
+  iluTreino(box) {
+    const d = document.createElement('div'); d.className = 'tut-menu tut-treino';
+    d.innerHTML = '<div class="tut-pausa"><b>PAUSA · 🥋 Opções do treino</b>' +
+      [['CPU ataca', 'Normal · Agressivo · Só ki · Parado'], ['CPU defende', 'Dificuldade · Nunca · Sempre'], ['Vida infinita', 'Só da CPU · Dos dois · Nenhum'], ['Ki infinito', '☑'], ['Fúria sempre cheia', '☑']].map(([a, v]) => '<div><span>' + a + '</span><i>' + v + '</i></div>').join('') +
+      '<p>Muda na hora, sem reiniciar o treino.</p></div>';
+    box.appendChild(d);
   },
   iluImpulso(box) {
     const d = document.createElement('div'); d.className = 'tut-menu';

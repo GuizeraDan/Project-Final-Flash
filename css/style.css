@@ -661,6 +661,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .tut-imp b { width: 1.6cqw; height: 1.6cqw; border-radius: 50%; border: 0.12cqw solid #ffb21a; background: #2a1a06; color: #ffd84a; display: flex; align-items: center; justify-content: center; font-size: 1cqw; }
 .tut-imp i { width: 1.1cqw; height: 1.1cqw; border-radius: 50%; border: 0.1cqw solid rgba(255,170,60,0.45); background: rgba(5,10,20,0.8); }
 .tut-imp i.t { border-color: #5a2400; background: radial-gradient(circle at 34% 30%, #fffbe0 0 12%, #ffd257 30%, #d85a00 100%); }
+.tut-treino { justify-content: center; padding: 0.8cqw; background: linear-gradient(180deg, rgba(40,30,90,0.55), rgba(20,14,50,0.75)), linear-gradient(180deg, #8fc8ff, #cfe9ff 55%, #6fbf3a 56%, #3f8a24); }
+.tut-pausa { width: 72%; background: rgba(20,14,50,0.95); border: 0.15cqw solid #ffb800; border-radius: 0.5cqw; padding: 0.7cqw 1cqw; display: flex; flex-direction: column; gap: 0.35cqw; font-size: 0.95cqw; color: #fff; }
+.tut-pausa > b { color: #ffd84a; text-align: center; font-style: italic; font-size: 1.05cqw; margin-bottom: 0.2cqw; }
+.tut-pausa div { display: flex; justify-content: space-between; gap: 1cqw; }
+.tut-pausa div i { font-style: normal; color: #bfe6ff; background: rgba(255,255,255,0.08); border-radius: 0.3cqw; padding: 0 0.5cqw; }
+.tut-pausa p { margin: 0.2cqw 0 0; text-align: center; color: #d8d0ff; font-size: 0.85cqw; }
 .tut-imp i.u { border-color: #fff; background: radial-gradient(circle at 34% 30%, #fff 0 25%, #ffe14a 45%, #ff8a00 100%); box-shadow: 0 0 0.5cqw #ffd84a; }
 .tut-legenda { margin: 0; font-size: 1cqw; color: #1a0e2e; background: rgba(255,255,255,0.75); padding: 0.3cqw 0.7cqw; border-radius: 0.3cqw; text-align: center; }
 @media (max-aspect-ratio: 1/1) { .tut-corpo { flex-direction: column; } .tut-ilu { flex-basis: auto; width: 100%; } }
