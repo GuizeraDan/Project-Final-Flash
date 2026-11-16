@@ -380,3 +380,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - `FF.criarFavoritos` ganhou pastas do usuário: `edicoes.favoritosPastas[nome]` / `edicoes.favSonsPastas[nome]` = lista de chaves (`sprite`, `sprite#anim` ou id do som); um item pode estar em várias. API: `pastas/nomesPastas/itensPasta/naPasta/pastasDe/alternarPasta/criarPasta/renomearPasta/apagarPasta`. Seções novas em `FF.Edicoes.SECOES`.
 - Menu da ☆: seção "📁 Colocar na pasta" (☑/☐ por pasta + "＋ Nova pasta…" que cria e já coloca). O botão mostra 📁 quando o item está em alguma pasta.
 - `FF.listaPastas(F, pai, bt, aoMudar, chaveAtual, aoApagarAtual)`: lista "📁 Minhas pastas" (✏ renomear, 🗑 apagar, ＋ Nova pasta) na coluna do seletor de sons (fonte `pasta:<nome>`) e do seletor de sprites. Aba ⭐ Favoritos: "＋ Nova pasta" e uma seção por pasta antes das categorias (sprites e sons).
+- Contador de hits agora aparece desde o 1º acerto ("1 HIT", depois "N HITS") — pedido do usuário.

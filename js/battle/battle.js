@@ -910,7 +910,7 @@ FF.Battle = class {
     ctx.restore();
   }
   // CONTADOR DE HITS: cada acerto que causa dano soma no combo do lado de quem bate (o time inteiro, no Ataque Z);
-  // aparece a partir de 2 hits, embaixo do HUD de quem bate, e some 1,6 s depois do último acerto
+  // aparece desde o 1º hit, embaixo do HUD de quem bate, e some 1,6 s depois do último acerto
   contarHit(att, dmg) {
     const lado = att.isHero ? 'heroi' : 'inimigo';
     const agora = FF.Clock.t;
@@ -920,7 +920,7 @@ FF.Battle = class {
   }
   desenharCombo(ctx) {
     const c = this.combo;
-    if (!c || c.n < 2) return;
+    if (!c || c.n < 1) return;
     const u = FF.Clock.t - c.t, VIDA = 1.6;
     if (u > VIDA + 0.35) return;
     const alpha = u < VIDA ? 1 : 1 - (u - VIDA) / 0.35;
@@ -938,7 +938,7 @@ FF.Battle = class {
     FF.HUD.textoHud(ctx, n, x, y, tam, g, al);
     ctx.font = 'italic 900 ' + tam + 'px "Trebuchet MS", "Arial Black", sans-serif';
     const wn = ctx.measureText(n).width;
-    FF.HUD.textoHud(ctx, 'HITS', esq ? x + wn + 10 : x - wn - 10, y + tam * 0.18, 30, '#fff', al);
+    FF.HUD.textoHud(ctx, c.n === 1 ? 'HIT' : 'HITS', esq ? x + wn + 10 : x - wn - 10, y + tam * 0.18, 30, '#fff', al);
     if (c.dano > 0) FF.HUD.textoHud(ctx, c.dano + ' de dano', x, y + tam * 0.62, 18, '#ffe9a8', al);
     ctx.restore();
   }
