@@ -73,42 +73,54 @@ FF.Fighter = class {
     for (const b of Object.values(this.buffs)) if (b.aura && b.aura.fx) return b.aura;
     return null;
   }
-  // AURA DO IMPULSO (como o brilho do Boost no Octopath): aparece enquanto você escolhe os pontos, fica enquanto o
-  // golpe está planejado e durante o golpe. 1 ponto = azul, 2 = dourado, 3 = vermelho-alaranjado (mais forte).
+  // AURA DO IMPULSO: energia colada no corpo (contorno brilhante que segue a silhueta do quadro atual, labaredas
+  // subindo da silhueta e um brilho leve por cima do corpo). Aparece enquanto você escolhe os pontos (impulsoMostra),
+  // enquanto o golpe está planejado (impulsoReservado) e durante o golpe (boost). 1 = azul, 2 = dourado, 3 = vermelho.
   desenharImpulso(ctx, frente) {
     const n = Math.min(3, this.busy ? (this.boost || 0) : Math.max(this.impulsoMostra || 0, this.impulsoReservado || 0));
     if (!n || this.ko || !(this.alpha > 0.05)) return;
-    const COR = [null, [90, 200, 255], [255, 210, 40], [255, 70, 30]][n];
-    const fr = this.anim.frame(), sc = this.scale * (this.escExtra || 1);
-    const h = (fr ? fr[6] : 60) * sc, w = Math.max(26 * sc, (fr ? fr[5] : 30) * sc * 0.9);
+    const fr = this.anim.frame();
+    if (!fr) return;
+    const COR = [null, [80, 200, 255], [255, 205, 40], [255, 60, 40]][n];
+    const CLARO = [null, [150, 230, 255], [255, 236, 120], [255, 110, 80]][n];
+    const cor = (c, a) => 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+    const sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
     const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), t = FF.Clock.t;
-    const rgba = (a, k = 1) => 'rgba(' + Math.round(COR[0] + (255 - COR[0]) * (1 - k)) + ',' + Math.round(COR[1] + (255 - COR[1]) * (1 - k)) + ',' + Math.round(COR[2] + (255 - COR[2]) * (1 - k)) + ',' + a.toFixed(3) + ')';
+    const pulso = 0.5 + 0.5 * Math.sin(t * 8);
+    const temFiltro = 'filter' in ctx;
+    const sil = (dx, dy, c, a, esc) => FF.drawFrame(ctx, this.sprite, fr, x + dx, y + dy, sc * (esc || 1), flip, { tint: cor(c, 1), alpha: a * this.alpha });
     ctx.save();
     if (!frente) {
-      // brilho em volta do corpo
-      const cy = y - h * 0.45, r = h * (0.6 + 0.08 * n) * (1 + 0.05 * Math.sin(t * 9));
-      const g = ctx.createRadialGradient(x, cy, r * 0.2, x, cy, r);
-      g.addColorStop(0, rgba(0.32 + 0.08 * n, 0.5)); g.addColorStop(0.55, rgba(0.2 + 0.06 * n)); g.addColorStop(1, rgba(0));
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.ellipse(x, cy, r * 0.6, r, 0, 0, Math.PI * 2); ctx.fill();
-      // anel no chão
-      ctx.strokeStyle = rgba(0.6 + 0.3 * Math.sin(t * 7)); ctx.lineWidth = 1.5 + n;
-      ctx.beginPath(); ctx.ellipse(x, this.groundY + 1, w * (0.75 + 0.1 * n), w * 0.22, 0, 0, Math.PI * 2); ctx.stroke();
-    }
-    // labaredas subindo (atrás do corpo e algumas na frente)
-    const qt = 8 + 5 * n;
-    for (let k = frente ? 1 : 0; k < qt; k += frente ? 3 : 1) {
-      const p = (t * (1.2 + 0.25 * n) + k * 0.6180339) % 1;
-      const lado = Math.sin(k * 2.39 + t * 2.2);
-      const px = x + lado * w * (0.62 - p * 0.25);
-      const py = y - h * 0.05 - p * h * (1.0 + 0.14 * n);
-      const tam = (1 - p * 0.7) * (3.2 + 1.3 * n) * sc;
-      const a = (1 - p) * (frente ? 0.45 : 0.85);
-      ctx.fillStyle = rgba(a, p < 0.3 ? 0.55 : 1);
-      ctx.beginPath(); ctx.moveTo(px, py - tam * 2.6);
-      ctx.quadraticCurveTo(px + tam, py - tam * 0.4, px, py + tam * 0.8);
-      ctx.quadraticCurveTo(px - tam, py - tam * 0.4, px, py - tam * 2.6);
-      ctx.fill();
+      ctx.globalCompositeOperation = 'lighter';
+      // 1) névoa de energia: silhueta borrada e um pouco maior, pulsando
+      const r = (2.2 + 0.9 * n) * sc * (0.85 + 0.3 * pulso);
+      if (temFiltro) ctx.filter = 'blur(' + (2 + 1.5 * n) + 'px)';
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; sil(Math.cos(a) * r, Math.sin(a) * r - r * 0.4, COR, 0.32 + 0.06 * n); }
+      // 2) labaredas: cópias esticadas para cima que tremulam (a energia "sobe" do corpo)
+      for (let k = 0; k < 2 + n; k++) {
+        const f = (t * (2.2 + 0.4 * n) + k / (2 + n)) % 1;
+        const sway = Math.sin(t * 6 + k * 2.1) * (1.5 + n) * sc;
+        sil(sway, -f * (6 + 4 * n) * sc, k % 2 ? CLARO : COR, (1 - f) * (0.35 + 0.08 * n), 1 + f * (0.05 + 0.03 * n));
+      }
+      if (temFiltro) ctx.filter = 'none';
+      // 3) contorno nítido colado no corpo (cor cheia, sem clarear: o vermelho continua vermelho na grama)
+      ctx.globalCompositeOperation = 'source-over';
+      const c1 = (0.9 + 0.35 * n) * sc * 0.55 + 1;
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; sil(Math.cos(a) * c1, Math.sin(a) * c1, CLARO, 0.7 + 0.2 * pulso); }
+    } else {
+      // 4) por cima do corpo: brilho leve da cor da energia (o personagem fica "aceso")
+      ctx.globalCompositeOperation = 'lighter';
+      sil(0, 0, COR, 0.10 + 0.05 * n + 0.05 * pulso);
+      // faíscas subindo em volta (nível 3 tem mais)
+      const h = fr[6] * sc, w = Math.max(24 * sc, fr[5] * sc * 0.8);
+      ctx.fillStyle = cor(CLARO, 0.9);
+      for (let k = 0; k < 3 * n; k++) {
+        const f = (t * 1.6 + k * 0.618) % 1;
+        const px = x + Math.sin(k * 2.39 + t * 3) * w * 0.6, py = y - h * (0.1 + f * 1.05);
+        const tam = (1 - f) * (1 + 0.4 * n) * sc * 0.6 + 0.6;
+        ctx.globalAlpha = (1 - f) * this.alpha;
+        ctx.fillRect(px - tam / 2, py - tam * 1.5, tam, tam * 3);
+      }
     }
     ctx.restore();
   }

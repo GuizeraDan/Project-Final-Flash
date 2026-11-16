@@ -399,3 +399,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Kaioken: custo 30 de ki (era 20; também em edicoes.js) e gasta 5 de ki por turno (`kiPorTurno` no buff; sem ki o buff acaba).
 - Ki estilo Budokai Tenkaichi: levar golpe dá 2 + 60×(dano/vida máx.) de ki; defender dá 1 (perfeita 2,5); um aviso "+N KI" por lutador no fim do golpe.
 - Aviso "⚠ PRÉ-ALPHA · build 0.0.1" no título e discreto no canto da batalha (`FF.VERSAO`).
+- Aura do Impulso redesenhada (o usuário achou feia a de chamas/oval): agora é energia colada no corpo, feita da silhueta do quadro atual (`FF.drawFrame` com tint sólido): névoa borrada pulsando em 8 direções, labaredas = cópias esticadas para cima que tremulam, contorno nítido na cor da energia e, por cima do corpo, um brilho leve + faíscas. Azul/dourado/vermelho.
