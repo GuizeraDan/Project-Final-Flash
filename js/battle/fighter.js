@@ -97,6 +97,17 @@ FF.Fighter = class {
   addRage(n) { this.rage = Math.max(0, Math.min(100, this.rage + n)); }
   get rageCheia() { return this.rage >= 100; }
 
+  // buff que recolore a aura de certas animações (ex.: Kaioken deixa o carregar ki vermelho)
+  recolor() {
+    const nome = this.anim && this.anim.name;
+    if (!nome) return null;
+    for (const b of Object.values(this.buffs)) {
+      const r = b.recolorir;
+      if (r && (!r.anims || r.anims.includes(nome))) return r.cor || 'vermelho';
+    }
+    return null;
+  }
+
   tint() {
     for (const b of Object.values(this.buffs)) if (b.tint) {
       const pulse = 0.5 + 0.5 * Math.sin(FF.Clock.t * 10);
@@ -152,9 +163,9 @@ FF.Fighter = class {
       const fr = this.anim.frame();
       const cx = fr ? (flip ? -1 : 1) * (fr[3] / 2 - fr[5]) * sc : 0, cy = fr ? (fr[4] / 2 - fr[6]) * sc : -30 * sc;
       ctx.save(); ctx.translate(x + cx, y + cy); ctx.rotate(this.rotExtra * Math.PI / 180);
-      FF.drawFrame(ctx, this.sprite, fr, -cx, -cy, sc, flip, { tint: this.tint(), alpha: this.alpha });
+      FF.drawFrame(ctx, this.sprite, fr, -cx, -cy, sc, flip, { tint: this.tint(), alpha: this.alpha, recolor: this.recolor() });
       ctx.restore();
-    } else FF.drawFrame(ctx, this.sprite, this.anim.frame(), x, y, sc, flip, { tint: this.tint(), alpha: this.alpha });
+    } else FF.drawFrame(ctx, this.sprite, this.anim.frame(), x, y, sc, flip, { tint: this.tint(), alpha: this.alpha, recolor: this.recolor() });
     this.desenharAura(ctx, true);
   }
 
