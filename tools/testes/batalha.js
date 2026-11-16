@@ -21,6 +21,8 @@ const historia = opt('historia', null);
 const hpInimigos = opt('hpInimigos', null);
 const modoTurno = opt('turno', null);
 const persp = opt('persp', null);   // --persp diagonal: testa a perspectiva diagonal   // --turno planejamento: testa o modo Planejamento
+const dific = opt('dificuldade', null);   // --dificuldade facil|normal|dificil
+const veloc = opt('velocidade', null);    // --velocidade 3: acelera o relógio do jogo (testes de balanceamento)
 const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os estilos do menu de golpes   // --hpInimigos 100: inimigos começam com essa vida (testar golpes de vida baixa)   // --historia N: joga o capítulo N do modo história (pula os diálogos)   // --rage 100: começa com a Rage cheia (testar o supremo)
 
 (async () => {
@@ -31,7 +33,7 @@ const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os e
   p.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') erros.push(m.type() + ': ' + m.text()); });
   p.on('pageerror', e => erros.push('PAGEERROR: ' + e.message));
   const raiz = path.resolve(__dirname, '..', '..');
-  if (modoTurno || estiloMenu || persp) await p.addInitScript(([t, m, pp]) => { const k = 'finalflash_save_v1'; const s = JSON.parse(localStorage.getItem(k) || '{}'); if (t) s.modoTurno = t; if (m) s.estiloMenu = m; if (pp) s.perspectiva = pp; localStorage.setItem(k, JSON.stringify(s)); }, [modoTurno, estiloMenu, persp]);
+  if (modoTurno || estiloMenu || persp || dific || veloc) await p.addInitScript(([t, m, pp, df, v]) => { const k = 'finalflash_save_v1'; const s = JSON.parse(localStorage.getItem(k) || '{}'); if (t) s.modoTurno = t; if (m) s.estiloMenu = m; if (pp) s.perspectiva = pp; if (df) s.dificuldade = df; if (v) s.velocidade = +v; localStorage.setItem(k, JSON.stringify(s)); }, [modoTurno, estiloMenu, persp, dific, veloc]);
   await p.goto('file://' + raiz + '/index.html' + (historia ? '?historia=' + historia : '?batalha=' + (batalha || 'saiyajin_01')));
   if (!historia) await p.click('#inicio');
   else {   // avança os diálogos até a batalha começar
@@ -61,8 +63,8 @@ const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os e
     if (fim) break;
     const aberto = await p.evaluate(() => document.querySelector('#menu').classList.contains('open'));
     const alvos = aberto && await p.evaluate(() => document.querySelector('#menu').classList.contains('alvos'));
-    if (alvos) {   // escolha de alvo: pega o primeiro (não consome o plano)
-      await p.evaluate(() => document.querySelector('#menu button').click());
+    if (alvos) {   // escolha de alvo: Enter = primeiro inimigo (o único botão agora é "↩ Trocar golpe"; não consome o plano)
+      await p.keyboard.press('Enter');
       console.log('  alvo escolhido');
     } else if (aberto) {
       const mv = plano[Math.min(k, plano.length - 1)]; k++;
@@ -81,6 +83,8 @@ const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os e
   }
   const st = await p.evaluate(() => FF.battle ? FF.battle.all.map(f => `${f.id}:${f.formId} hp${Math.round(f.hp)} ko=${f.ko}`).join(' | ') : 'sem batalha');
   console.log('RESULTADO', fim ? 'luta terminou' : 'NÃO terminou no tempo', '->', st);
+  const res = await p.evaluate(() => { const b = FF.battle; if (!b) return null; const h = b.heroes; return { rodadas: b.rodada || 0, venceu: h.some(f => !f.ko) && b.enemies.every(f => f.ko), vidaHerois: Math.round(100 * h.reduce((a, f) => a + Math.max(0, f.hp), 0) / h.reduce((a, f) => a + f.hpMax, 0)), vidaInimigos: Math.round(100 * b.enemies.reduce((a, f) => a + Math.max(0, f.hp), 0) / b.enemies.reduce((a, f) => a + f.hpMax, 0)), dificuldade: FF.Dificuldade && FF.Dificuldade.id(), segundos: Math.round(FF.Clock.t) }; }).catch(() => null);
+  if (res) console.log('RESUMO ' + JSON.stringify(res));
   if (erros.length) console.log('ERROS:\n' + erros.slice(0, 30).join('\n'));
   await b.close();
   process.exit(erros.some(e => e.startsWith('PAGEERROR') || e.startsWith('error')) || !fim ? 1 : 0);
