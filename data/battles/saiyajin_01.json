@@ -8,6 +8,7 @@
   "posicoes": { "herois": [170], "inimigos": [915] },
   "herois": ["goku"],
   "inimigos": ["raditz"],
+  "ajustes": { "raditz": { "ataque": 95 } },
   "intro": [
     { "quem": "raditz", "voz": "raditz_intro_voice", "esperar": 4.6 },
     { "quem": "goku", "voz": "vgkn400", "esperar": 1.8 }

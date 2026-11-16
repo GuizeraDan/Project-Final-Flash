@@ -142,7 +142,12 @@ FF.Script = {
   async playAnim(b, actor, target, move, s) {
     let name = actor.animName(s.anim);
     let anim = actor.sprite.anim(name);
-    if (!anim) { console.warn('[FF] animação inexistente em', actor.formId, name); return; }
+    if (!anim) {
+      // animação apagada pelo usuário no Estúdio (ex.: Pose_De_Vitoria do Raditz): pula sem aviso
+      const ed = window.FF_EDICOES && FF_EDICOES.sprites && FF_EDICOES.sprites[actor.form.sprite];
+      if (!(ed && ed[name] && ed[name].apagada)) console.warn('[FF] animação inexistente em', actor.formId, name);
+      return;
+    }
     // só um trecho da animação: "de"/"ate" (índices dos quadros, inclusive). Os eventos contam a partir de "de".
     if (s.de != null || s.ate != null) {
       const n = anim.frames.length, de = Math.max(0, Math.min(n - 1, s.de || 0)), ate = Math.max(de, Math.min(n - 1, s.ate != null ? s.ate : n - 1));

@@ -27,6 +27,11 @@
   "saibaman",
   "saibaman"
  ],
+ "ajustes": {
+  "saibaman": {
+   "hp": 1300
+  }
+ },
  "intro": [
   {
    "quem": "piccolo",

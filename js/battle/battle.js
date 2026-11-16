@@ -30,7 +30,7 @@ FF.Dificuldade = {
   NIVEIS: {
     facil: { nome: 'Fácil', guarda: 0.10, perfeita: 0.25, contraPerf: 0.10, janelaPerf: 0.13, vida: 0.9, ataque: 0.85 },
     normal: { nome: 'Normal', guarda: 0.28, perfeita: 0.35, contraPerf: 0.25, janelaPerf: 0.10, vida: 1, ataque: 1 },
-    dificil: { nome: 'Difícil', guarda: 0.42, perfeita: 0.45, contraPerf: 0.40, janelaPerf: 0.075, vida: 1.2, ataque: 1.15 },
+    dificil: { nome: 'Difícil', guarda: 0.36, perfeita: 0.40, contraPerf: 0.40, janelaPerf: 0.075, vida: 1.1, ataque: 1.1 },
   },
   id() { const v = FF.Save && FF.Save.get && FF.Save.get().dificuldade; return this.NIVEIS[v] ? v : 'normal'; },
   atual() { return this.NIVEIS[this.id()]; },
