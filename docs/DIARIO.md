@@ -390,3 +390,12 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 
 ## 2026-11-16 — Carregar ki vermelho no Kaioken
 - `FF.Recolor` (js/core/sprite.js): recolore na hora os pixels claros e pouco coloridos (aura branca/lilás) de um quadro para uma paleta (vermelho, dourado, azul, roxo, verde), com cache por quadro; `FF.drawFrame(..., {recolor})`. Buff pode ter `"recolorir": {"anims": [...], "cor": "vermelho"}` (`Fighter.recolor()`); o Kaioken do Goku recolore `CarregandoKi_Stage1..3`. Abrindo por file:// sem permissão de ler pixels, fica a cor original.
+
+## 2026-11-16 — Formas na seleção, modo Treino, Personalização, Impulso, ki, pré-alpha
+- Batalha Livre: botão "⚡ <forma>" no slot de quem tem mais de uma forma (troca a forma inicial); `def.formas = {herois, inimigos}` (aplicado em `addFighter` com `setForm`). Guardado com os times no sessionStorage.
+- Título "Treinamento" agora abre o modo Treino (`js/ui/treinar.js`, `FF.Treinar`, tela `#treinar`): lutador/forma, oponente/forma, dificuldade, CPU ataca (normal/agressivo/só carrega ki/parado), CPU defende (dificuldade/nunca/sempre), vida infinita (CPU/ambos/nenhum), ki infinito, fúria cheia (FF.Save "treinoCfg"). Batalha com `def.treino`: `escolhaCPU`, `vidaInfinita`, enche vida no fim do golpe, ki/fúria no `update`; sem nota/AP; "Mudar treino" volta para a montagem (`?treinar=1`).
+- A antiga tela de Treinamento (AP, cápsulas, pergaminhos) virou "Personalização", aberta pelo botão na tela Novo Jogo.
+- Impulso: começa com 0 pontos (Faixa do Senhor Kaio: 1), +25% de dano por nível (era +40%). Aura do Impulso (`Fighter.desenharImpulso`, azul/dourada/vermelha) enquanto escolhe (`impulsoMostra`, setado no menu), enquanto planejado (`impulsoReservado`, inimigos também) e durante o golpe (`boost`).
+- Kaioken: custo 30 de ki (era 20; também em edicoes.js) e gasta 5 de ki por turno (`kiPorTurno` no buff; sem ki o buff acaba).
+- Ki estilo Budokai Tenkaichi: levar golpe dá 2 + 60×(dano/vida máx.) de ki; defender dá 1 (perfeita 2,5); um aviso "+N KI" por lutador no fim do golpe.
+- Aviso "⚠ PRÉ-ALPHA · build 0.0.1" no título e discreto no canto da batalha (`FF.VERSAO`).

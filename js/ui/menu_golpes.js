@@ -75,6 +75,7 @@ FF.MenuGolpes = {
         const n = Math.max(0, Math.min(maxB(), boost + d));
         if (n === boost) return;
         boost = n; FF.Audio.play(d > 0 ? 'carregamentodeki_start' : 'tap_sound', d > 0 ? 0.35 : 0.5);
+        hero.impulsoMostra = boost;   // aura no lutador enquanto escolhe (Fighter.desenharImpulso)
         desenharImp(); render();
       };
       if (opts.voltar) {
@@ -179,6 +180,7 @@ FF.MenuGolpes = {
       };
       const done = (id) => {
         hero.impulsoPlan = id === '__voltar' || id === '__ataquez' ? 0 : boost;
+        hero.impulsoMostra = 0;
         window.removeEventListener('keydown', key, true);
         box.classList.remove('open');
         FF.Audio.play('decide_charasel', 0.6);

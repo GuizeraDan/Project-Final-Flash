@@ -519,7 +519,7 @@ FF.Capsulas = {
     peso: { ic: '🏋', nome: 'Peso de Treino', desc: '−10% de velocidade, mas +30% de AP ao vencer.' },
     armadura: { ic: '🛡', nome: 'Armadura Saiyajin', desc: 'Recebe 10% menos dano.' },
     kiplus: { ic: '🔋', nome: 'Cápsula de Ki', desc: 'Começa a luta com +30 de ki.' },
-    faixa: { ic: '🎗', nome: 'Faixa do Senhor Kaio', desc: 'Começa a luta com 2 Pontos de Impulso.' },
+    faixa: { ic: '🎗', nome: 'Faixa do Senhor Kaio', desc: 'Começa a luta com 1 Ponto de Impulso.' },
   },
   equipadas(heroi) { return (((FF.Save.get().capsulas || {})[heroi]) || []).filter(c => this.LISTA[c]).slice(0, 2); },
   equipar(heroi, slot, cap) {
@@ -630,6 +630,11 @@ FF.UI.showEnd = async function (win) {
   document.getElementById('bt-pausa').hidden = true;
   const mh = FF.modoHistoria;
   const apEl = document.getElementById('ap-ganho');
+  if (FF.battle && FF.battle.def && FF.battle.def.treino) {   // treino: sem nota nem prêmio
+    apEl.textContent = 'Treino concluído (treino não dá AP)';
+    const nEl = document.getElementById('nota'); if (nEl) nEl.innerHTML = '';
+    return _showEnd(win);
+  }
   if (win) {
     const nt = FF.Nota.calcular(FF.battle);
     const peso = FF.battle.heroes.some(h => (h.capsulas || []).includes('peso')) ? 1.3 : 1;
@@ -643,7 +648,7 @@ FF.UI.showEnd = async function (win) {
       if (nt.multAP > 1) { const i = document.createElement('i'); i.className = 'ap'; i.textContent = 'AP ×' + String(nt.multAP).replace('.', ','); lst.appendChild(i); }
     }
     FF.Save.set({ ap: (FF.Save.get().ap || 0) + ganho, pergaminhos: (FF.Save.get().pergaminhos || 0) + perg });
-    apEl.textContent = '+' + ganho + ' AP · +' + perg + ' 📜 (gaste em Treinamento)';
+    apEl.textContent = '+' + ganho + ' AP · +' + perg + ' 📜 (gaste em Personalização)';
   } else { apEl.textContent = ''; const nEl = document.getElementById('nota'); if (nEl) nEl.innerHTML = ''; }
   if (!mh) return _showEnd(win);
   const el = document.getElementById('fim');
@@ -679,7 +684,7 @@ window.addEventListener('load', () => {
   const ir = (q) => { location.href = location.pathname + q; };
   document.getElementById('denovo').onclick = () => location.reload();
   document.getElementById('titulo').onclick = () => ir('');
-  document.getElementById('trocar').onclick = () => ir('?selecao=1');
+  document.getElementById('trocar').onclick = () => ir(FF.battle && FF.battle.def && FF.battle.def.treino ? '?treinar=1' : '?selecao=1');
   document.querySelectorAll('#fim button').forEach(bt => { if (!bt.querySelector('span')) { const sp = document.createElement('span'); sp.textContent = bt.textContent; bt.textContent = ''; bt.appendChild(sp); } });
   document.getElementById('proximo').onclick = () => ir('?historia=' + (FF.modoHistoria.cap.id + 1));
 
@@ -717,7 +722,11 @@ window.addEventListener('load', () => {
   if (params.get('livre')) {
     let def = null;
     try { def = JSON.parse(sessionStorage.getItem('ff_livre_def') || 'null'); } catch (e) { /* nada */ }
-    if (def) { document.getElementById('fim').classList.add('livre'); batalhaLivre(def); return; }
+    if (def) {
+      document.getElementById('fim').classList.add('livre');
+      if (def.treino) (document.querySelector('#trocar span') || document.getElementById('trocar')).textContent = 'Mudar treino';
+      batalhaLivre(def); return;
+    }
   }
   // batalha pela URL (?batalha=id): toque para começar, como antes (usado pelo teste automático)
   if (params.get('batalha')) {
@@ -735,7 +744,7 @@ window.addEventListener('load', () => {
     intro.className = modo;
     const primeiro = intro.querySelector('.menu-titulo button:not([disabled])');
     if (modo === 'treino') FF.Treino.render();
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[modo];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', treinar: '#treinar', ferramentas: '#ferramentas', novojogo: '#novojogo' }[modo];
     const bt = vis && (modo === 'opcoes' ? intro.querySelector('#opcoes [data-acao="voltar"]') : intro.querySelector(vis + ' button:not([disabled])'));
     if (bt) bt.focus(); else if (primeiro) primeiro.focus();
   };
@@ -756,6 +765,8 @@ window.addEventListener('load', () => {
   intro.addEventListener('click', abrir);
   window.addEventListener('keydown', abrir);
   FF._mostrarTitulo = mostrar;
+  // volta direto para a montagem do treino (botão "Mudar treino" no fim de um treino)
+  if (params.get('treinar')) { history.replaceState(null, '', location.pathname); window.removeEventListener('keydown', abrir); intro.removeEventListener('click', abrir); FF.Treinar.abrir(mostrar); }
   // música já na tela "Toque ou aperte Enter" (se o navegador bloquear o som antes de um toque,
   // ela começa no primeiro toque/tecla)
   FF.Audio.musicaMenu();
@@ -765,7 +776,7 @@ window.addEventListener('load', () => {
     if (!intro.className || intro.classList.contains('hide')) return;
     const grade = intro.className === 'menu';   // menu principal em 2 colunas: ←→ trocam de coluna, ↑↓ de linha
     if (e.code !== 'ArrowDown' && e.code !== 'ArrowUp' && !(grade && (e.code === 'ArrowLeft' || e.code === 'ArrowRight'))) return;
-    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
+    const vis = { menu: '#titulo-menu', livre: '#escolha', opcoes: '#opcoes', treino: '#treino', treinar: '#treinar', ferramentas: '#ferramentas', novojogo: '#novojogo' }[intro.className];
     if (!vis) return;
     const todos = [...intro.querySelectorAll(vis + ' > button')].filter(b => !b.hidden);
     const bts = grade ? todos : todos.filter(b => !b.disabled);
@@ -795,7 +806,10 @@ window.addEventListener('load', () => {
     if (ac === 'novo') return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'continuar') return ir('?historia=' + (FF.Save.get().capitulo || 1));
     if (ac === 'livre') { intro.className = 'selecao'; FF.Selecao.abrir(); FF.Voltar.armar(); return; }
-    if (ac === 'treino') return mostrar('treino');
+    if (ac === 'treino') { FF.Treinar.abrir(mostrar); return; }   // modo de treino (montar o treino)
+    if (ac === 'comecar-treino') { FF.Treinar.comecar(); return; }
+    if (ac === 'personalizar') { FF._persDe = 'novojogo'; return mostrar('treino'); }   // personalização do modo história
+    if (ac === 'voltar' && intro.className === 'treino' && FF._persDe === 'novojogo') { FF._persDe = null; return FF.NovoJogo.abrir(mostrar, ir); }
     if (ac === 'tutorial') { intro.className = 'tutorial-aberto'; return FF.Tutorial.abrir(); }
     if (ac === 'voltar' && intro.className === 'novojogo' && FF.NovoJogo.saga) return FF.NovoJogo.abrir(mostrar, ir);
     if (ac === 'voltar') return mostrar('menu');

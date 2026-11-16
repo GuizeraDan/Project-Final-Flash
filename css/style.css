@@ -32,8 +32,8 @@ body { display: flex; align-items: center; justify-content: center; font-family:
 /* tela de título e menus */
 #inicio { cursor: default; }
 .menu-titulo { display: none; flex-direction: column; gap: 0.9cqw; align-items: stretch; min-width: 26cqw; }
-#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.opcoes #opcoes, #inicio.treino #treino { display: flex; }
-#inicio.menu #carregando, #inicio.livre #carregando, #inicio.opcoes #carregando, #inicio.treino #carregando { display: none; }
+#inicio.menu #titulo-menu, #inicio.livre #escolha, #inicio.opcoes #opcoes, #inicio.treino #treino, #inicio.treinar #treinar { display: flex; }
+#inicio.menu #carregando, #inicio.livre #carregando, #inicio.opcoes #carregando, #inicio.treino #carregando, #inicio.treinar #carregando { display: none; }
 #escolha { position: static; }
 .menu-titulo button { font: inherit; font-size: 1.8cqw; padding: 0.8cqw 2cqw; border-radius: 1cqw; border: 0.25cqw solid #ffd84a; background: rgba(43,29,92,0.9); color: #fff; cursor: pointer; }
 .menu-titulo button:hover, .menu-titulo button:focus { background: rgba(90,60,150,0.95); outline: none; }
@@ -685,3 +685,24 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 #menu.alvos .alvo-voltar { margin: 0; }
 /* dificuldade nas Opções do título */
 #opcoes select { font: inherit; font-size: 1.4cqw; color: #fff; background: #2b1d5c; border: 0.15cqw solid #5b4bb0; border-radius: 0.6cqw; padding: 0.2cqw 0.6cqw; }
+
+/* seleção: trocar a forma inicial do lutador */
+.slot .slot-forma { position: absolute; right: 0.4cqw; top: 0.35cqw; font: inherit; font-size: 1cqw; font-weight: 900; color: #ffe25a; background: rgba(10,8,30,0.82); border: 0.12cqw solid #ffcf3a; border-radius: 99px; padding: 0.1cqw 0.6cqw; cursor: pointer; z-index: 2; }
+.slot .slot-forma:hover { background: #ffcf3a; color: #1a1020; }
+
+/* Treinamento (modo de treino) */
+#inicio.treinar #treinar { display: flex; flex-direction: column; align-items: center; gap: 0.9cqw; }
+#treinar { display: none; }
+.treinar-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6cqw 1.2cqw; width: 66cqw; }
+.treinar-grade label { display: flex; justify-content: space-between; align-items: center; gap: 1cqw; transform: skewX(-15deg); padding: 0.45cqw 1.6cqw; box-sizing: border-box;
+  background: linear-gradient(90deg, rgba(36,18,82,0.9), rgba(60,30,120,0.9)); border: 0.18cqw solid #8a6a2a; border-radius: 0.3cqw;
+  font-size: 1.3cqw; font-weight: 900; text-transform: uppercase; text-shadow: 0.1cqw 0.1cqw 0 #000; }
+.treinar-grade label > * { transform: skewX(15deg); }
+.treinar-grade select { font: inherit; font-size: 1.2cqw; text-transform: none; color: #fff; background: #2b1d5c; border: 0.15cqw solid #5b4bb0; border-radius: 0.5cqw; padding: 0.15cqw 0.5cqw; max-width: 20cqw; }
+.treinar-grade .tchk { justify-content: flex-start; }
+.treinar-grade .tchk input { width: 1.6cqw; height: 1.6cqw; accent-color: #ffd84a; }
+#treinar > button { align-self: center; }
+
+/* aviso de pré-alpha na tela de título */
+.pre-alpha { position: absolute; left: 1.2cqw; bottom: 1.2cqw; z-index: 5; font-size: 1.15cqw; font-weight: 900; letter-spacing: 0.1cqw; color: #ffe25a; background: rgba(20,10,40,0.85); border: 0.15cqw solid #ffcf3a; border-radius: 99px; padding: 0.25cqw 1cqw; text-shadow: 0.1cqw 0.1cqw 0 #000; pointer-events: auto; }
+#inicio.hide .pre-alpha { display: none; }

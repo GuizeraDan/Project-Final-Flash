@@ -32,6 +32,7 @@
         "defesa": 0.9
       },
       "hpPorTurno": 0.03,
+      "kiPorTurno": 5,
       "tint": "rgba(255,30,30,$a)",
       "aura": {
         "fx": "Efeito3_Loop",
@@ -551,9 +552,9 @@
     },
     "kaioken": {
       "nome": "Kaioken",
-      "descricao": "Ataque x1,5 por 3 turnos. Gasta 3% da vida por turno.",
+      "descricao": "Ataque x1,5 por 3 turnos. Gasta 3% da vida e 5 de ki por turno.",
       "tipo": "suporte",
-      "custoKi": 20,
+      "custoKi": 30,
       "requer": {
         "semBuff": "kaioken"
       },

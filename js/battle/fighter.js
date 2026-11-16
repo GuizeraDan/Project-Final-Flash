@@ -73,6 +73,46 @@ FF.Fighter = class {
     for (const b of Object.values(this.buffs)) if (b.aura && b.aura.fx) return b.aura;
     return null;
   }
+  // AURA DO IMPULSO (como o brilho do Boost no Octopath): aparece enquanto você escolhe os pontos, fica enquanto o
+  // golpe está planejado e durante o golpe. 1 ponto = azul, 2 = dourado, 3 = vermelho-alaranjado (mais forte).
+  desenharImpulso(ctx, frente) {
+    const n = Math.min(3, this.busy ? (this.boost || 0) : Math.max(this.impulsoMostra || 0, this.impulsoReservado || 0));
+    if (!n || this.ko || !(this.alpha > 0.05)) return;
+    const COR = [null, [90, 200, 255], [255, 210, 40], [255, 70, 30]][n];
+    const fr = this.anim.frame(), sc = this.scale * (this.escExtra || 1);
+    const h = (fr ? fr[6] : 60) * sc, w = Math.max(26 * sc, (fr ? fr[5] : 30) * sc * 0.9);
+    const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), t = FF.Clock.t;
+    const rgba = (a, k = 1) => 'rgba(' + Math.round(COR[0] + (255 - COR[0]) * (1 - k)) + ',' + Math.round(COR[1] + (255 - COR[1]) * (1 - k)) + ',' + Math.round(COR[2] + (255 - COR[2]) * (1 - k)) + ',' + a.toFixed(3) + ')';
+    ctx.save();
+    if (!frente) {
+      // brilho em volta do corpo
+      const cy = y - h * 0.45, r = h * (0.6 + 0.08 * n) * (1 + 0.05 * Math.sin(t * 9));
+      const g = ctx.createRadialGradient(x, cy, r * 0.2, x, cy, r);
+      g.addColorStop(0, rgba(0.32 + 0.08 * n, 0.5)); g.addColorStop(0.55, rgba(0.2 + 0.06 * n)); g.addColorStop(1, rgba(0));
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.ellipse(x, cy, r * 0.6, r, 0, 0, Math.PI * 2); ctx.fill();
+      // anel no chão
+      ctx.strokeStyle = rgba(0.6 + 0.3 * Math.sin(t * 7)); ctx.lineWidth = 1.5 + n;
+      ctx.beginPath(); ctx.ellipse(x, this.groundY + 1, w * (0.75 + 0.1 * n), w * 0.22, 0, 0, Math.PI * 2); ctx.stroke();
+    }
+    // labaredas subindo (atrás do corpo e algumas na frente)
+    const qt = 8 + 5 * n;
+    for (let k = frente ? 1 : 0; k < qt; k += frente ? 3 : 1) {
+      const p = (t * (1.2 + 0.25 * n) + k * 0.6180339) % 1;
+      const lado = Math.sin(k * 2.39 + t * 2.2);
+      const px = x + lado * w * (0.62 - p * 0.25);
+      const py = y - h * 0.05 - p * h * (1.0 + 0.14 * n);
+      const tam = (1 - p * 0.7) * (3.2 + 1.3 * n) * sc;
+      const a = (1 - p) * (frente ? 0.45 : 0.85);
+      ctx.fillStyle = rgba(a, p < 0.3 ? 0.55 : 1);
+      ctx.beginPath(); ctx.moveTo(px, py - tam * 2.6);
+      ctx.quadraticCurveTo(px + tam, py - tam * 0.4, px, py + tam * 0.8);
+      ctx.quadraticCurveTo(px - tam, py - tam * 0.4, px, py - tam * 2.6);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
   desenharAura(ctx, frente) {
     const au = this.auraAtual();
     if (!au || !!au.frente !== frente || this.ko || !FF.battle) { if (!au) this._aura = null; return; }
@@ -156,6 +196,7 @@ FF.Fighter = class {
     // sombra
     const sombra = fx && fx.anim('sombra');
     if (sombra && !this.semSombra) FF.drawFrame(ctx, fx, sombra.frames[1], this.x, this.groundY + 2, this.scale, false, { alpha: 0.45 * this.alpha });
+    this.desenharImpulso(ctx, false);
     this.desenharAura(ctx, false);
     // offX/offY/escExtra/flipExtra: posição e tamanho por passo (linha do tempo do Estúdio); padrão sem efeito
     const x = this.x + (this.offX || 0), y = this.y + (this.offY || 0), sc = this.scale * (this.escExtra || 1), flip = (this.dir < 0) !== !!this.flipExtra;
@@ -167,6 +208,7 @@ FF.Fighter = class {
       ctx.restore();
     } else FF.drawFrame(ctx, this.sprite, this.anim.frame(), x, y, sc, flip, { tint: this.tint(), alpha: this.alpha, recolor: this.recolor() });
     this.desenharAura(ctx, true);
+    this.desenharImpulso(ctx, true);
   }
 
   // vaporizar: o desenho brilha e é "comido" de cima para baixo por uma linha de luz que solta faíscas;

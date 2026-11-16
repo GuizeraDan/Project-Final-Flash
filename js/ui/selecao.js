@@ -4,6 +4,7 @@ window.FF = window.FF || {};
 
 FF.Selecao = {
   times: { herois: ['goku'], inimigos: ['raditz'] },
+  formas: { herois: [], inimigos: [] },   // forma escolhida de cada lutador (null = a inicial)
   lado: 'herois',
   defs: {},
 
@@ -15,7 +16,7 @@ FF.Selecao = {
     const ordem = ['goku', 'piccolo', 'krillin', 'raditz', 'saibaman', 'nappa', 'vegeta'];
     ids.sort((a, b) => ((ordem.indexOf(a) + 1) || 99) - ((ordem.indexOf(b) + 1) || 99));
     for (const id of ids) this.defs[id] = await FF.Assets.loadCharacter(id);
-    try { const s = JSON.parse(sessionStorage.getItem('ff_livre_times') || 'null'); if (s && s.herois && s.inimigos) this.times = s; } catch (e) { /* sem sessionStorage */ }
+    try { const s = JSON.parse(sessionStorage.getItem('ff_livre_times') || 'null'); if (s && s.herois && s.inimigos) { this.times = { herois: s.herois, inimigos: s.inimigos }; this.formas = s.formas || { herois: [], inimigos: [] }; } } catch (e) { /* sem sessionStorage */ }
     this.ids = ids;
     this.montarGrade();
     this.ligar(el);
@@ -57,11 +58,12 @@ FF.Selecao = {
     el.querySelectorAll('.sel-abas button').forEach(b => b.onclick = () => { this.lado = b.dataset.lado; this.render(); FF.Audio.play('tap_sound', 0.5); });
     el.querySelectorAll('.sel-time').forEach(t => t.onclick = () => { this.lado = t.dataset.lado; this.render(); });
     el.querySelector('[data-sel="voltar"]').onclick = () => { FF.Audio.play('decide_charasel', 0.5); this.fechar(); FF._mostrarTitulo && FF._mostrarTitulo('menu'); };
-    el.querySelector('[data-sel="limpar"]').onclick = () => { this.times = { herois: [], inimigos: [] }; this.lado = 'herois'; this.render(); };
+    el.querySelector('[data-sel="limpar"]').onclick = () => { this.times = { herois: [], inimigos: [] }; this.formas = { herois: [], inimigos: [] }; this.lado = 'herois'; this.render(); };
     el.querySelector('[data-sel="aleatorio"]').onclick = () => {
       const pick = () => this.ids[Math.floor(Math.random() * this.ids.length)];
       const nh = 1 + Math.floor(Math.random() * 3), ni = 1 + Math.floor(Math.random() * 3);
       this.times = { herois: Array.from({ length: nh }, pick), inimigos: Array.from({ length: ni }, pick) };
+      this.formas = { herois: [], inimigos: [] };
       FF.Audio.play('decide_charasel', 0.6);
       this.render();
     };
@@ -85,6 +87,7 @@ FF.Selecao = {
       return;
     }
     t.push(id);
+    (this.formas[this.lado] = this.formas[this.lado] || [])[t.length - 1] = null;
     FF.Audio.play('decide_charasel', 0.6);
     if (this.lado === 'herois' && t.length === 3 && this.times.inimigos.length < 3) this.lado = 'inimigos';
     this.info(id);
@@ -93,8 +96,24 @@ FF.Selecao = {
 
   remover(lado, i) {
     this.times[lado].splice(i, 1);
+    (this.formas[lado] = this.formas[lado] || []).splice(i, 1);
     this.lado = lado;
     FF.Audio.play('tap_sound', 0.5);
+    this.render();
+  },
+
+  // forma do lutador num slot (a escolhida ou a inicial do personagem)
+  formaDe(lado, i) {
+    const id = this.times[lado][i], d = this.defs[id];
+    const f = (this.formas[lado] || [])[i];
+    return f && d.formas[f] ? f : (d.formaInicial || Object.keys(d.formas)[0]);
+  },
+  trocarForma(lado, i) {
+    const d = this.defs[this.times[lado][i]], ks = Object.keys(d.formas);
+    if (ks.length < 2) return;
+    const atual = this.formaDe(lado, i), prox = ks[(ks.indexOf(atual) + 1) % ks.length];
+    (this.formas[lado] = this.formas[lado] || [])[i] = prox;
+    FF.Audio.play('carregamentodeki_start', 0.4);
     this.render();
   },
 
@@ -147,11 +166,21 @@ FF.Selecao = {
           cv.width = 134; cv.height = 70;
           s.appendChild(cv);
           const n = document.createElement('span');
-          n.textContent = this.defs[id].nome;
+          const d = this.defs[id], fId = this.formaDe(lado, i), fm = d.formas[fId] || {};
+          n.textContent = fId !== (d.formaInicial || 'base') && fm.nome ? (fm.nome.includes(d.nome) ? fm.nome : d.nome + ' · ' + fm.nome) : d.nome;
           s.appendChild(n);
-          FF.Retrato.noCanvas(cv, this.defs[id], this.defs[id].formaInicial, 'banner', { espelhar: lado === 'inimigos', cor1: lado === 'herois' ? '#1d3a7a' : '#6a1414', cor2: '#0c0f22' });
+          FF.Retrato.noCanvas(cv, d, fId, 'banner', { espelhar: lado === 'inimigos', cor1: lado === 'herois' ? '#1d3a7a' : '#6a1414', cor2: '#0c0f22' });
           s.onclick = (e) => { e.stopPropagation(); this.remover(lado, i); };
           s.title = 'Tocar para tirar';
+          // personagem com mais de uma forma (ex.: Goku / Super Saiyajin): botão para trocar a forma inicial
+          if (Object.keys(d.formas).length > 1) {
+            const bf = document.createElement('button');
+            bf.className = 'slot-forma';
+            bf.textContent = '⚡ ' + (fm.nome || fId);
+            bf.title = 'Trocar a forma com que ele começa a luta';
+            bf.onclick = (e) => { e.stopPropagation(); this.trocarForma(lado, i); };
+            s.appendChild(bf);
+          }
         } else {
           s.textContent = '+';
         }
@@ -160,7 +189,7 @@ FF.Selecao = {
     });
     const ok = this.times.herois.length && this.times.inimigos.length;
     el.querySelector('[data-sel="lutar"]').disabled = !ok;
-    try { sessionStorage.setItem('ff_livre_times', JSON.stringify(this.times)); } catch (e) { /* nada */ }
+    try { sessionStorage.setItem('ff_livre_times', JSON.stringify(Object.assign({}, this.times, { formas: this.formas }))); } catch (e) { /* nada */ }
   },
 
   // monta a definição da batalha a partir dos times escolhidos
@@ -173,6 +202,7 @@ FF.Selecao = {
       escala: nh === 1 && ni === 1 ? 2.5 : 2.2,
       posicoes: { herois: posH, inimigos: posI },
       herois: times.herois.slice(), inimigos: times.inimigos.slice(), ajustes: {},
+      formas: { herois: times.herois.map((_, i) => this.formaDe('herois', i)), inimigos: times.inimigos.map((_, i) => this.formaDe('inimigos', i)) },
     };
     // times desiguais: o lado menor ganha vida e um pouco de ataque (como nas lutas 3 contra 1 da história)
     if (nh > ni) {

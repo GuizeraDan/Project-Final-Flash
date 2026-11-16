@@ -36,11 +36,13 @@
       <button data-acao="opcoes">Opções</button>
     </div>
     <button class="titulo-ferramentas" data-acao="estudio">⚙ Estúdio</button>
+    <div class="pre-alpha" title="Jogo em desenvolvimento: pode ter erros e coisas inacabadas">⚠ PRÉ-ALPHA · build 0.0.1</div>
     <div class="titulo-rodape"><span>↑↓←→ Selecionar</span><span><b>Enter</b> Confirmar</span></div>
     <div id="novojogo" class="menu-titulo">
       <div class="sub-titulo"><span>Novo Jogo</span></div>
       <div class="sub-dica">Escolha a saga</div>
       <div id="capitulos"></div>
+      <button data-acao="personalizar">🛠 Personalização (AP, cápsulas, pergaminhos)</button>
       <button data-acao="voltar">Voltar</button>
     </div>
     <div id="escolha" class="menu-titulo">
@@ -52,8 +54,40 @@
       <button data-batalha="saiyajin_05">Trio vs Vegeta</button>
       <button data-acao="voltar">Voltar</button>
     </div>
-    <div id="treino" class="menu-titulo">
+    <div id="treinar" class="menu-titulo">
       <div class="sub-titulo"><span>Treinamento</span></div>
+      <div class="sub-dica">Monte o treino: escolha os lutadores e como a CPU se comporta</div>
+      <div class="treinar-grade">
+        <label>Seu lutador <select data-t="heroi"></select></label>
+        <label>Forma <select data-t="heroiForma"></select></label>
+        <label>Oponente <select data-t="cpu"></select></label>
+        <label>Forma <select data-t="cpuForma"></select></label>
+        <label>Dificuldade <select data-t="dificuldade"><option value="facil">Fácil</option><option value="normal">Normal</option><option value="dificil">Difícil</option></select></label>
+        <label>CPU ataca <select data-t="cpuAcao">
+          <option value="normal">Normal (golpes variados)</option>
+          <option value="agressivo">Agressivo (só ataques)</option>
+          <option value="carregar">Só carrega ki</option>
+          <option value="parado">Parado (saco de pancada)</option>
+        </select></label>
+        <label>CPU defende <select data-t="cpuGuarda">
+          <option value="dificuldade">Conforme a dificuldade</option>
+          <option value="nunca">Nunca</option>
+          <option value="sempre">Sempre</option>
+        </select></label>
+        <label>Vida infinita <select data-t="vida">
+          <option value="cpu">Só da CPU</option>
+          <option value="ambos">Dos dois</option>
+          <option value="nenhum">Nenhum (luta de verdade)</option>
+        </select></label>
+        <label class="tchk"><input type="checkbox" data-t="kiInf"> Ki infinito (seu)</label>
+        <label class="tchk"><input type="checkbox" data-t="furia"> Fúria sempre cheia (seu)</label>
+      </div>
+      <button data-acao="comecar-treino">Começar treino</button>
+      <button data-acao="voltar">Voltar</button>
+    </div>
+    <div id="treino" class="menu-titulo">
+      <div class="sub-titulo"><span>Personalização</span></div>
+      <div class="sub-dica">Modo história: gaste AP em atributos, equipe cápsulas e use pergaminhos</div>
       <div class="ap-total">AP: <b id="ap-valor">0</b> · 📜 Pergaminhos: <b id="perg-valor">0</b></div>
       <div id="treino-lista"></div>
       <button data-acao="voltar">Voltar</button>
@@ -176,6 +210,7 @@
 <script src="js/ui/selecao.js"></script>
 <script src="js/ui/menu_golpes.js"></script>
 <script src="js/ui/tutorial.js"></script>
+<script src="js/ui/treinar.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/ui/pausa.js"></script>
 <script src="js/main.js"></script>

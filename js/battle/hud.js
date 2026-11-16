@@ -441,7 +441,15 @@ FF.HUD = {
     }
   },
 
+  // aviso de pré-alpha no canto da batalha
+  versao(ctx) {
+    if (!FF.VERSAO) return;
+    ctx.save(); ctx.globalAlpha = 0.55;
+    this.text(ctx, FF.VERSAO.fase + ' · build ' + FF.VERSAO.build, 8, FF.H - 8, 10, '#ffffff', 'left');
+    ctx.restore();
+  },
   draw(ctx, b) {
+    this.versao(ctx);
     const n = b.heroes.length;
     b.heroes.forEach((h, i) => n > 1 ? this.panel(ctx, h, false, 1.05, 2 + i * 76) : this.panel(ctx, h, false));
     const ne = b.enemies.length;

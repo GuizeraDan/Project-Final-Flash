@@ -21,7 +21,7 @@ FF.Tutorial = {
     { t: 'O painel (HUD)', ic: '📟', ilu: 'hud', h: `
       <ol class="tut-leg"><li><b>Retrato</b> do lutador.</li>
       <li><b>Vida</b> — chegou a zero, caiu.</li>
-      <li><b>Ki</b> — energia para os golpes especiais (o custo aparece no golpe: "· 30 KI").</li>
+      <li><b>Ki</b> — energia para os golpes especiais (o custo aparece no golpe: "· 30 KI"). Ganha carregando ki, um pouco a cada turno e <b>apanhando</b> (levar golpe dá mais ki, defender dá menos).</li>
       <li><b>Nome</b> e o <b>KI</b> em número.</li>
       <li><b>Pontos de Impulso</b> — as bolinhas douradas (veja a página do Impulso).</li>
       <li><b>Fúria (RAGE)</b> — enche ao bater e ao apanhar. Cheia, o painel pega fogo: <b>SPARKING!</b> e o Supremo fica liberado.</li></ol>
@@ -37,9 +37,9 @@ FF.Tutorial = {
       <p class="tut-dica">Teclado: ← → esferas · ↑ ↓ golpes · Enter escolhe · 1–9 atalhos. Celular: toque na esfera e depois no golpe.</p>` },
 
     { t: 'Pontos de Impulso', ic: '✦', ilu: 'impulso', h: `
-      <p>Todo lutador começa com <b>1 ponto</b> e ganha mais <b>1 a cada turno em que não usar</b> (até 5).</p>
+      <p>Todo lutador começa com <b>0 pontos</b> e ganha <b>1 a cada turno em que não usar</b> (até 5). Enquanto você escolhe, aparece uma <b>aura</b> nele: azul, dourada e vermelha.</p>
       <p>Antes de escolher o golpe, aperte <b>E</b> (ou <b>+</b>) para concentrar até <b>3 níveis</b> — <b>Q</b> (ou <b>−</b>) tira. O golpe ganha um "<b>×2</b>", "<b>×3</b>" ou "<b>×4</b>":</p>
-      <ul><li><b>+40% de dano</b> por nível e raios maiores;</li><li>buffs duram <b>+1 turno</b> por nível (Kaioken mais longo!);</li><li>Carregar Ki rende mais;</li><li>tira <b>1 escudo a mais</b> por nível.</li></ul>
+      <ul><li><b>+25% de dano</b> por nível e raios maiores;</li><li>buffs duram <b>+1 turno</b> por nível (Kaioken mais longo!);</li><li>Carregar Ki rende mais;</li><li>tira <b>1 escudo a mais</b> por nível.</li></ul>
       <p class="tut-dica">Guardar pontos para um golpe forte na hora certa costuma vencer lutas difíceis. Os inimigos também fazem isso!</p>` },
 
     { t: 'Os anéis: crítico e guarda', ic: '⭕', ilu: 'aneis', h: `
@@ -77,9 +77,9 @@ FF.Tutorial = {
       <p class="tut-dica">Os chefes falam quando a vida deles passa da metade — e costumam ficar mais perigosos!</p>` },
 
     { t: 'Ficando mais forte', ic: '📜', ilu: 'progresso', h: `
-      <ul><li><b>AP</b> — ganho a cada vitória. No <b>Treinamento</b> compra níveis de Vida, Ataque, Defesa e Ki por turno.</li>
+      <ul><li><b>AP</b> — ganho a cada vitória. Na <b>Personalização</b> (tela Novo Jogo) compra níveis de Vida, Ataque, Defesa e Ki por turno.</li>
       <li><b>📜 Pergaminhos</b> — também vêm das vitórias. No Treinamento sobem os golpes de nível <b>I → II → III</b> (+15% de dano e efeito maior por nível).</li>
-      <li><b>🎒 Cápsulas</b> — 2 por herói, escolhidas no Treinamento: 🌱 Semente dos Deuses, 📡 Radar do Dragão, 🏋 Peso de Treino, 🛡 Armadura, 🔋 Ki extra, 🎗 Faixa do Senhor Kaio.</li>
+      <li><b>🎒 Cápsulas</b> — 2 por herói, escolhidas na Personalização: 🌱 Semente dos Deuses, 📡 Radar do Dragão, 🏋 Peso de Treino, 🛡 Armadura, 🔋 Ki extra, 🎗 Faixa do Senhor Kaio.</li>
       <li><b>Nota S a D</b> no fim da luta — sem dano, guardas perfeitas, quebras, Supremo final, vitória rápida… Nota alta dá mais AP (S: ×1,5 e um pergaminho extra).</li></ul>` },
 
     { t: 'Pronto para lutar!', ic: '🔥', ilu: 'fim', h: `

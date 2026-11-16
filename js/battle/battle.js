@@ -3,6 +3,8 @@
 window.FF = window.FF || {};
 
 FF.W = 1084;
+// versão mostrada no título e na batalha (aviso de pré-alpha)
+FF.VERSAO = { fase: 'PRÉ-ALPHA', build: '0.0.1' };
 // DIFICULDADE (Opções / pausa → Dificuldade; FF.Save "dificuldade"): quanto o inimigo defende, janela da guarda/crítico
 // perfeitos e força dos inimigos. guarda = chance de defender um golpe; perfeita = parte das defesas que é perfeita
 // (dano 0 + contra-ataque no corpo a corpo); contraPerf = chance de defender perfeito o SEU contra-ataque (→ PERCEPÇÃO)
@@ -85,17 +87,20 @@ FF.Battle = class {
     if (caps.includes('peso')) charDef = Object.assign({}, charDef, { atributos: Object.assign({}, charDef.atributos, { velocidade: Math.round((charDef.atributos.velocidade || 10) * 0.9) }) });
     const f = new FF.Fighter(charDef, lado, (pos[idx] != null ? pos[idx] : pos[0]) + offX, this.groundY, this.scale);
     const lista = lado === 'heroi' ? this.heroes : this.enemies;
+    // forma escolhida na seleção (Batalha Livre / Treino): def.formas = {herois: [..], inimigos: [..]}
+    const fEsc = ((this.def.formas || {})[lado === 'heroi' ? 'herois' : 'inimigos'] || [])[lista.length];
+    if (fEsc && charDef.formas && charDef.formas[fEsc] && fEsc !== f.formId) f.setForm(fEsc);
     const iguais = lista.filter(x => x.id === f.id);
     if (iguais.length) {   // vários do mesmo (ex.: Saibamen): A, B, C...
       if (iguais.length === 1) iguais[0].sufixo = ' A';
       f.sufixo = ' ' + String.fromCharCode(65 + iguais.length);
     }
-    // Pontos de Impulso: todo mundo começa com 1 (ganha 1 por turno, até 5)
-    f.impulso = 1; f.boost = 0;
+    // Pontos de Impulso: todo mundo começa com 0 (ganha 1 por turno, até 5; gasta até 3 num golpe)
+    f.impulso = 0; f.boost = 0;
     // cápsulas equipadas no Treinamento (só heróis)
     f.capsulas = caps;
     if (f.capsulas.includes('kiplus')) f.ki = Math.min(f.kiMax, f.ki + 30);
-    if (f.capsulas.includes('faixa')) f.impulso = 2;
+    if (f.capsulas.includes('faixa')) f.impulso = 1;
     // escudos (Quebra de Guarda): só no time inimigo; fraquezas = tipos de golpe ("corpo", "energia")
     if (lado === 'inimigo') {
       const e = charDef.escudos || { n: 3, fraquezas: ['corpo'] };
@@ -209,13 +214,14 @@ FF.Battle = class {
       if (e.atordoado > 0) { e.intencao = { icone: '💫', alvo: null }; continue; }
       const alvo = this.alvoInimigo(e);
       if (!alvo) continue;
-      const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
-      const mid = sup || FF.AI.choose(e, alvo, this);
+      const mid = this.escolhaCPU(e, alvo);
+      if (!mid) { e.intencao = { icone: '💤', alvo: null }; continue; }   // treino: CPU parada
       // inimigo também usa Impulso: guarda pontos e solta num golpe de ataque
       const mv = e.def.golpes[mid] || {};
       const ofens = FF.Battle.ofensivo(mv);
       const imp = ofens && e.impulso >= 3 ? (e.impulso >= 5 ? 2 : 1) : 0;
       plano.set(e, { moveId: mid, alvo, impulso: imp });
+      e.impulsoReservado = imp;   // a aura do Impulso aparece nele também (dá para ver que vem golpe forte)
       e.intencao = { icone: FF.Battle.iconeIntencao(mv) + (imp ? '×' + (imp + 1) : ''), alvo: ofens ? alvo : null };
     }
     this.planejando = true;
@@ -274,6 +280,24 @@ FF.Battle = class {
       if (this.checkEnd()) return;
     }
     this.all.forEach(f => { f.planoIcone = null; f.intencao = null; });
+  }
+
+  // ---------- treino (def.treino, montado em js/ui/treinar.js) ----------
+  get treino() { return this.def && this.def.treino; }
+  vidaInfinita(f) { const t = this.treino; return !!t && (t.vida === 'ambos' || (t.vida === 'cpu' && !f.isHero)); }
+  // golpe da CPU: supremo com a Fúria cheia, senão a IA; no treino: parada (null), só carrega ki, ou só ataques
+  escolhaCPU(e, alvo) {
+    const t = this.treino, acao = t ? t.cpuAcao : 'normal';
+    if (acao === 'parado') return null;
+    if (acao === 'carregar') {
+      const c = (e.form.golpes || []).find(id => /carregar/i.test(id) && e.def.golpes[id]);
+      if (c) return c;
+    }
+    const sup = e.rageCheia && e.form.golpes.find(id => (e.def.golpes[id] || {}).supremo);
+    if (sup && acao !== 'carregar') return sup;
+    let mid = FF.AI.choose(e, alvo, this);
+    if (acao === 'agressivo') for (let i = 0; i < 10 && !FF.Battle.ofensivo(e.def.golpes[mid] || {}); i++) mid = FF.AI.choose(e, alvo, this);
+    return mid;
   }
 
   alvoInimigo(actor) {
@@ -376,8 +400,8 @@ FF.Battle = class {
     }
     else {
       await FF.Clock.wait(0.6);
-      const sup = actor.rageCheia && actor.form.golpes.find(id => (actor.def.golpes[id] || {}).supremo);
-      moveId = sup || FF.AI.choose(actor, target, this);
+      moveId = this.escolhaCPU(actor, target);
+      if (!moveId) { this.atual = null; await this.endTurn(actor); return; }   // treino: CPU parada
     }
     const move = actor.def.golpes[moveId];
     await this.execute(actor, target, move);
@@ -442,6 +466,9 @@ FF.Battle = class {
       this.fala = null;
     }
     await FF.Clock.wait(0.25);
+    if (this.treino) this.all.forEach(f => { if (this.vidaInfinita(f) && !f.ko) f.hp = f.hpMax; });
+    // ki ganho apanhando/defendendo neste golpe (um aviso só por lutador)
+    this.all.forEach(f => { if (f._kiAcum >= 1 && !f.ko) this.popup(f, '+' + Math.round(f._kiAcum) + ' KI', '#7fd0ff', -20); f._kiAcum = 0; });
     actor.busy = false;
     actor.desafioMult = 1;
     actor.idle();
@@ -587,6 +614,12 @@ FF.Battle = class {
         f.hp = Math.max(1, f.hp - d);
         this.popup(f, '-' + d, '#ff8080');
       }
+      // buff que gasta ki por turno (ex.: Kaioken); sem ki, o buff acaba
+      if (bf.kiPorTurno) {
+        f.addKi(-bf.kiPorTurno);
+        this.popup(f, '-' + bf.kiPorTurno + ' KI', '#7fd0ff', -18);
+        if (f.ki <= 0) bf.turnos = 0;
+      }
       bf.turnos -= 1;
       if (bf.turnos <= 0) {
         delete f.buffs[id];
@@ -683,7 +716,7 @@ FF.Battle = class {
     const forca = spec.forca || 'leve';
     let dmg = (move.poder || 1) * (spec.fracao || 1) * att.stat('ataque') * 100 / (100 + def.stat('defesa'));
     dmg *= 0.9 + Math.random() * 0.2;
-    if (att.boost) dmg *= 1 + 0.4 * att.boost;   // Impulso: +40% por nível
+    if (att.boost) dmg *= 1 + 0.25 * att.boost;   // Impulso: +25% por nível (×1,75 com 3)
     if (att.desafioMult) dmg *= att.desafioMult;   // desafio de botão do golpe
     let guard = false;
     // escudos: o golpe da fraqueza tira escudo (1 por golpe, +1 por nível de Impulso, +1 no supremo); zerou = QUEBRA
@@ -718,7 +751,6 @@ FF.Battle = class {
         else this.paralelos.push(this.contraAtaque(def, att));
       }
       if (!qte._shown) { this.popup(def, res === 'perfeito' ? 'GUARDA PERFEITA!' : 'GUARDA!', res === 'perfeito' ? '#7dffb0' : '#a0e0ff', -46); qte._shown = true; }
-      if (res === 'perfeito') def.addKi(3);
     }
     if (mode === 'critico' && res) {
       dmg *= res === 'perfeito' ? 1.8 : 1.4;
@@ -748,6 +780,13 @@ FF.Battle = class {
     dmg = guard && guardaRes === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
     const hpAntes = def.hp;
     def.hp = Math.max(0, def.hp - dmg);
+    if (def.hp <= 0 && this.vidaInfinita(def)) def.hp = 1;   // treino: vida infinita (enche de novo no fim do golpe)
+    // KI ao apanhar (como no Budokai Tenkaichi): levar golpe dá mais ki, defender dá menos, guarda perfeita um pouco mais
+    if (!def.ko && att.lado !== def.lado) {
+      const kg = guard ? (guardaRes === 'perfeito' ? 2.5 : 1) : 2 + 60 * dmg / def.hpMax;
+      def.addKi(kg);
+      def._kiAcum = (def._kiAcum || 0) + kg;
+    }
     if (dmg > 0 && att.lado !== def.lado) this.contarHit(att, dmg);
     const st = this.stats;
     if (st) {
@@ -1038,15 +1077,17 @@ FF.Battle = class {
     if (this._guardaIA.has(def)) return this._guardaIA.get(def);
     let g = null;
     const pode = !def.ko && !def.quebrado && !(def.atordoado > 0) && !move.supremo && move.tipo !== 'suporte' && !move.contra;
-    if (pode) {
+    const tg = this.treino && this.treino.cpuGuarda;
+    if (pode && tg !== 'nunca') {
       const D = FF.Dificuldade.atual(), jeito = def.def.guardaIA != null ? def.def.guardaIA : 1;   // "guardaIA" no JSON: 1,5 = defende mais
-      if (Math.random() < D.guarda * jeito) g = Math.random() < D.perfeita ? 'perfeito' : 'bom';
+      if (tg === 'sempre' || Math.random() < D.guarda * jeito) g = Math.random() < D.perfeita ? 'perfeito' : 'bom';
     }
     this._guardaIA.set(def, g);
     return g;
   }
   iaDefendePerfeito(f) {
     if (this.semDesafios || !f || f.isHero || f.ko || f.quebrado || f.atordoado > 0) return false;
+    if (this.treino && this.treino.cpuGuarda === 'nunca') return false;
     const jeito = f.def.guardaIA != null ? f.def.guardaIA : 1;
     return Math.random() < FF.Dificuldade.atual().contraPerf * jeito;
   }
@@ -1482,6 +1523,12 @@ FF.Battle = class {
   // ---------- loop ----------
   update(dt) {
     this.all.forEach(f => f.update(dt));
+    const tr = this.treino;
+    if (tr) for (const f of this.heroes) {   // treino: ki infinito / fúria sempre cheia (seu lutador); vida infinita não deixa cair
+      if (tr.kiInf) f.ki = f.kiMax;
+      if (tr.furia) f.rage = 100;
+      if (this.vidaInfinita(f) && f.hp <= 0) f.hp = 1;
+    }
     if (this.persp) this.atualizarPerspectiva();
     this.atualizarDesafio();
     if (this.embateAtual && this.embateAtual.tick) this.embateAtual.tick(dt);
