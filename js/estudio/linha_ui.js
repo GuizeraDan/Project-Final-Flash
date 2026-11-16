@@ -135,6 +135,12 @@ FF.EstudioLinha = class {
     if (!L) return;
     const E = FF.Estudio;
     const lay = this.calcularLayout(L);
+    // a coluna dos nomes só é refeita quando muda algo nela (arrastar um clipe chamava render() a cada movimento
+    // e recriava todos os botões); mesmas trilhas (os mesmos objetos), alturas, nomes e seleção = mantém o DOM
+    const chave = JSON.stringify([this.LH, this.host.trSel, L.trilhas.map((tr, i) => [tr.id, this.nomeTrilha(tr), !!tr.oculta, tr.tipo, lay.rows[i].h, lay.rows[i].n])]);
+    const mesmos = this._trNomes && this._trNomes.length === L.trilhas.length && L.trilhas.every((tr, i) => tr === this._trNomes[i]);
+    if (chave === this._chaveNomes && mesmos && this.nomes.childElementCount) return this.renderCanvas(L, lay);
+    this._chaveNomes = chave; this._trNomes = L.trilhas.slice();
     this.nomes.innerHTML = '';
     const rg = E.el('div', 'es-tl-regua-n', '<small>tempo (s) · quadros</small>');
     this.nomes.appendChild(rg);
@@ -150,6 +156,9 @@ FF.EstudioLinha = class {
       n.onclick = (e) => { if (e.target.tagName !== 'BUTTON') this.host.selecionar(null, tr.id); };
       this.nomes.appendChild(n);
     });
+    this.renderCanvas(L, lay);
+  }
+  renderCanvas(L, lay) {
     const dur = Math.max(L.duracao || 1, ...this.todos().map(x => x.c.t + this.host.dur(x.c, x.tr)));
     const w = Math.max(this.area.clientWidth, Math.ceil((dur + 1.5) * this.pxs));
     const h = lay.altura;

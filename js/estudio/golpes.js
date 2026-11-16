@@ -361,7 +361,7 @@ window.FF = window.FF || {};
       this.autoDuracao();
       this.sujo = true;
       if (!arrastando) { this.historico.marcar(rot, juntar); this.salvarRascunho(); }
-      this.irPara(this.t);
+      this.irPara(this.t, arrastando);
       this.tl.render();
       if (RERENDER.has(rot) || (!juntar && !arrastando && this._deCanvas)) this.renderProps();
       this.renderRodape();
@@ -560,7 +560,8 @@ window.FF = window.FF || {};
       this.t = Math.max(0, t);
       if (this.palco.modo === 'batalha') return;
       this.palco.irPara(this.golpeAtual(), this.doc.linha, this.t);
-      this.redesenhar();
+      // no meio de um arraste o laço de quadros (quadro()) já redesenha o palco a cada quadro: não desenha duas vezes
+      if (!arrastando) this.redesenhar();
       if (!arrastando) this.tl.seguir();
       this.tl.desenhar();
     },
