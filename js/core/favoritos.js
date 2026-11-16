@@ -111,6 +111,66 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
     setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
   },
+  // menu para VÁRIOS itens de uma vez (seleção múltipla): categoria, pasta (colocar todos) ou tirar dos favoritos
+  // itens = [{sprite, anim}]
+  menuVarios(ancora, itens, aoMudar) {
+    document.querySelectorAll('.es-fav-menu').forEach(x => x.remove());
+    const m = document.createElement('div');
+    m.className = 'es-fav-menu';
+    const tit = document.createElement('div'); tit.className = 'es-fav-tit';
+    tit.textContent = '⭐ Favoritar os ' + itens.length + ' selecionados como:';
+    m.appendChild(tit);
+    const fim = () => { m.remove(); aoMudar && aoMudar(); };
+    this.TIPOS.forEach(([t, ic, nm]) => {
+      const b = document.createElement('button');
+      const ja = itens.every(v => this.de(v.sprite, v.anim) === t);
+      b.textContent = ic + ' ' + nm + (ja ? '  ✓' : '');
+      if (ja) b.className = 'on';
+      b.onclick = (e) => { e.stopPropagation(); itens.forEach(v => this.marcar(v.sprite, v.anim, t)); fim(); };
+      m.appendChild(b);
+    });
+    if (itens.some(v => this.de(v.sprite, v.anim))) {
+      const b = document.createElement('button'); b.textContent = '✕ Tirar todos dos favoritos'; b.className = 'tirar';
+      b.onclick = (e) => { e.stopPropagation(); itens.forEach(v => this.marcar(v.sprite, v.anim, null)); fim(); };
+      m.appendChild(b);
+    }
+    const tp = document.createElement('div'); tp.className = 'es-fav-tit es-fav-tit-pastas'; tp.textContent = '📁 Colocar todos na pasta:';
+    m.appendChild(tp);
+    const caixa = document.createElement('div'); caixa.className = 'es-fav-pastas';
+    m.appendChild(caixa);
+    const colocar = (nome) => { itens.forEach(v => { if (!this.naPasta(nome, v.sprite, v.anim)) this.alternarPasta(nome, v.sprite, v.anim); }); };
+    const tirar = (nome) => { itens.forEach(v => { if (this.naPasta(nome, v.sprite, v.anim)) this.alternarPasta(nome, v.sprite, v.anim); }); };
+    const pintar = () => {
+      caixa.innerHTML = '';
+      this.nomesPastas().forEach(nome => {
+        const todos = itens.every(v => this.naPasta(nome, v.sprite, v.anim));
+        const b = document.createElement('button');
+        b.textContent = (todos ? '☑ ' : '☐ ') + nome;
+        if (todos) b.className = 'on';
+        b.title = todos ? 'Tirar todos desta pasta' : 'Colocar todos nesta pasta';
+        b.onclick = (e) => { e.stopPropagation(); if (todos) tirar(nome); else colocar(nome); pintar(); aoMudar && aoMudar(); };
+        caixa.appendChild(b);
+      });
+      const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
+      nova.onclick = (e) => {
+        e.stopPropagation();
+        const inp = document.createElement('input'); inp.placeholder = 'Nome da pasta'; inp.className = 'es-fav-nova';
+        nova.replaceWith(inp); inp.focus();
+        const ok = (sim) => { if (sim && inp.value.trim()) { const n = this.criarPasta(inp.value); if (n) colocar(n); aoMudar && aoMudar(); } pintar(); };
+        inp.onkeydown = (ev) => { ev.stopPropagation(); if (ev.key === 'Enter') ok(true); if (ev.key === 'Escape') ok(false); };
+        inp.onblur = () => ok(true);
+        inp.onpointerdown = (ev) => ev.stopPropagation();
+      };
+      caixa.appendChild(nova);
+    };
+    pintar();
+    document.body.appendChild(m);
+    const r = ancora.getBoundingClientRect();
+    m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
+    m.style.top = Math.max(4, Math.min(innerHeight - m.offsetHeight - 4, r.top - m.offsetHeight - 4)) + 'px';
+    const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
+    setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
+  },
   // botão ☆/⭐ que abre o menu (para cartões e listas)
   botao(sprite, anim, aoMudar) {
     const b = document.createElement('button');

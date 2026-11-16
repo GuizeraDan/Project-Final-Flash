@@ -397,11 +397,15 @@ FF.Estudio = {
     const txtSel = this.el('span');
     const btLimpar = this.botao('Limpar', () => { marcados.clear(); render(); pintarSel(); }, 'Desmarcar todos');
     const btUsarSel = this.botao('Usar selecionados', () => { const l = [...marcados]; if (!l.length) return; aoEscolher(l.length === 1 ? l[0] : l); m.fechar(); }, 'Usa todos os marcados: cada vez que tocar, o jogo sorteia um', 'es-bt-ouro');
-    barraSel.append(txtSel, btLimpar, btUsarSel);
+    const btFavSel = this.botao('⭐ Favoritar selecionados', () => {
+      if (!marcados.size || !FS) return;
+      FS.menuVarios(btFavSel, [...marcados].map(id => ({ sprite: id, anim: null })), () => { montarFav(); render(); });
+    }, 'Favoritar ou pôr numa pasta todos os sons marcados de uma vez');
+    barraSel.append(txtSel, btLimpar, btFavSel, btUsarSel);
     const pintarSel = () => {
       const n = marcados.size;
       txtSel.textContent = n ? '☑ ' + n + ' selecionado(s) · o jogo sorteia um a cada vez' : '☐ Marque um ou mais sons (caixinha ou clique na linha) para sortear entre eles';
-      btUsarSel.disabled = !n; btLimpar.disabled = !n;
+      btUsarSel.disabled = !n; btLimpar.disabled = !n; btFavSel.disabled = !n;
       btUsarSel.textContent = n > 1 ? 'Usar os ' + n + ' (sorteio)' : 'Usar selecionado';
     };
     dir.append(topo, chips, lista, barraSel);
