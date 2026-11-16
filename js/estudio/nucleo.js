@@ -389,7 +389,22 @@ FF.Estudio = {
     topo.append(busca, info, btImp, arq);
     const chips = this.el('div', 'es-sons-chips');
     const lista = this.el('div', 'es-sons-lista');
-    dir.append(topo, chips, lista);
+    // ☑ vários sons de uma vez: marque (caixinha ou clique na linha) e use todos — o jogo sorteia um a cada vez
+    const listaAtual = (Array.isArray(atual) ? atual : String(atual || '').split(',')).map(x => String(x).trim()).filter(Boolean);
+    atual = listaAtual[0] || '';
+    const marcados = new Set(listaAtual.length > 1 ? listaAtual : []);
+    const barraSel = this.el('div', 'es-sons-sel');
+    const txtSel = this.el('span');
+    const btLimpar = this.botao('Limpar', () => { marcados.clear(); render(); pintarSel(); }, 'Desmarcar todos');
+    const btUsarSel = this.botao('Usar selecionados', () => { const l = [...marcados]; if (!l.length) return; aoEscolher(l.length === 1 ? l[0] : l); m.fechar(); }, 'Usa todos os marcados: cada vez que tocar, o jogo sorteia um', 'es-bt-ouro');
+    barraSel.append(txtSel, btLimpar, btUsarSel);
+    const pintarSel = () => {
+      const n = marcados.size;
+      txtSel.textContent = n ? '☑ ' + n + ' selecionado(s) · o jogo sorteia um a cada vez' : '☐ Marque um ou mais sons (caixinha ou clique na linha) para sortear entre eles';
+      btUsarSel.disabled = !n; btLimpar.disabled = !n;
+      btUsarSel.textContent = n > 1 ? 'Usar os ' + n + ' (sorteio)' : 'Usar selecionado';
+    };
+    dir.append(topo, chips, lista, barraSel);
     c.append(lado, dir);
     const fontesBt = [];
     const bt = (chave, texto, n, pai) => {
@@ -461,7 +476,17 @@ FF.Estudio = {
       lista.innerHTML = '';
       info.textContent = l.length + ' som(ns)' + (l.length > 400 ? ' · mostrando 400, use o filtro' : '');
       l.slice(0, 400).forEach(x => {
-        const r = this.el('div', 'es-som' + (x.id === atual ? ' sel' : ''));
+        const r = this.el('div', 'es-som' + (x.id === atual ? ' sel' : '') + (marcados.has(x.id) ? ' marcado' : ''));
+        if (!lix) {
+          const chk = document.createElement('input'); chk.type = 'checkbox'; chk.className = 'es-som-chk'; chk.checked = marcados.has(x.id);
+          chk.title = 'Marcar para sortear entre vários sons';
+          const alternar = () => { if (marcados.has(x.id)) marcados.delete(x.id); else marcados.add(x.id); chk.checked = marcados.has(x.id); r.classList.toggle('marcado', chk.checked); pintarSel(); };
+          chk.onclick = (e) => e.stopPropagation();
+          chk.onchange = () => { if (chk.checked) marcados.add(x.id); else marcados.delete(x.id); r.classList.toggle('marcado', chk.checked); pintarSel(); };
+          r.appendChild(chk);
+          // clique na linha (fora dos botões) também marca
+          r.addEventListener('click', (e) => { if (e.target.closest('button, input:not(.es-som-chk)')) return; alternar(); });
+        }
         const play = this.botao('▶', () => ouvir(x.id, play), 'Ouvir (clique de novo para parar)');
         r.appendChild(play);
         const ren = SU && SU.nome(x.id) && SU.nome(x.id) !== x.nome;
@@ -492,6 +517,7 @@ FF.Estudio = {
     };
     busca.oninput = render;
     render();
+    pintarSel();
     setTimeout(() => busca.focus(), 30);
     return m;
   },

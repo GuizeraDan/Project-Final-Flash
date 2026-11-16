@@ -470,10 +470,10 @@ window.FF = window.FF || {};
       const pronto = (rot) => { this.mudou(rot); this.renderProps(); };
       const efeito = (k, ks, rot) => P.escolherEfeito(c[k], (fx, spr) => { c[k] = fx; if (spr) c[ks] = spr; else delete c[ks]; pronto(rot); }, null, this, c[ks]);
       switch (c.tipo) {
-        case 'som': return E.escolherSom(Array.isArray(c.som) ? c.som[0] : c.som, (v) => { c.som = v; pronto('Som'); });
+        case 'som': return E.escolherSom(c.som, (v) => { c.som = v; pronto('Som'); });
         case 'voz':
           if (c.vozTipo) { delete c.vozTipo; delete c.quem; }   // escolher um arquivo troca a "voz do personagem" por um som fixo
-          return E.escolherSom(Array.isArray(c.voz) ? c.voz[0] : c.voz, (v) => { c.voz = v; pronto('Voz'); }, this.prefixoVoz());
+          return E.escolherSom(c.voz, (v) => { c.voz = v; pronto('Voz'); }, this.prefixoVoz());
         case 'efeito': return efeito('fx', 'sprite', 'Efeito');
         case 'projetil': return efeito('fx', 'sprite', 'Projétil');
         case 'acerto':   // acerto: troca a explosão ou o som do impacto
@@ -481,7 +481,7 @@ window.FF = window.FF || {};
             { txt: '✺ Efeito (explosão)', valor: 'fx', cls: 'es-bt-ouro' }, { txt: '♪ Som do acerto', valor: 'som', cls: 'es-bt-ouro' }, { txt: 'Cancelar', valor: null }])
             .then(v => {
               if (v === 'fx') efeito('fx', 'sprite', 'Explosão');
-              else if (v === 'som') E.escolherSom(Array.isArray(c.som) ? c.som[0] : (c.som || ''), (s) => { c.som = s; pronto('Som do acerto'); });
+              else if (v === 'som') E.escolherSom(c.som || '', (s) => { c.som = s; pronto('Som do acerto'); });
             });
         case 'anim': {
           const prop = this.spriteDe(quem), pid = prop && (prop.def.id || Object.keys(FF.Assets.sprites).find(k => FF.Assets.sprites[k] === prop));

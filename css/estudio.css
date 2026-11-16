@@ -238,3 +238,10 @@ a { color: var(--ouro); }
 .es-favs-pasta button { font-size: 11px; padding: 1px 6px; opacity: 0.6; }
 .es-favs-pasta:hover button { opacity: 1; }
 .es-favs-pastas-barra { margin: 4px 0 2px; display: flex; gap: 6px; }
+
+/* seletor de sons: marcar vários para sortear */
+.es-som { cursor: pointer; }
+.es-som .es-som-chk { width: 16px !important; min-width: 16px; max-width: 16px; height: 16px; flex: 0 0 16px !important; padding: 0; accent-color: #ffd84a; cursor: pointer; margin: 0 2px; }
+.es-som.marcado { background: rgba(255,216,74,0.12); box-shadow: inset 3px 0 0 #ffd84a; }
+.es-sons-sel { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-top: 1px solid var(--linha, #3a2a66); background: rgba(20,12,40,0.95); font-size: 12px; color: #e8deff; }
+.es-sons-sel span { flex: 1; }
