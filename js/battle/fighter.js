@@ -51,7 +51,12 @@ FF.Fighter = class {
 
   animName(key) {
     const a = this.form.anims || {};
-    return a[key] || key;
+    if (a[key] || !this.sprite || this.sprite.has(key)) return a[key] || key;
+    // nome de animação de OUTRO personagem (ex.: "SendoLancado_LADO" num golpe editado no Estúdio usado contra o
+    // Saibaman): procura a chave equivalente (lancado) nos lutadores da luta e usa a deste lutador
+    const outros = (FF.battle && FF.battle.all) || [];
+    for (const f of outros) for (const fm of Object.values((f.def && f.def.formas) || {})) for (const [k, v] of Object.entries(fm.anims || {})) if (v === key && a[k]) return a[k];
+    return key;
   }
 
   play(name, opts) { return this.anim.play(this.animName(name), opts); }
