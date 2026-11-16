@@ -32,7 +32,7 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [x] **AP**: ganhar AP ao vencer; gastar em melhorias de atributos (Treinamento, 5 níveis por atributo por herói). Salvo.
 - [ ] AP para desbloquear golpes (árvore por personagem) — aguardando decisão do usuário sobre quais golpes ficam bloqueados.
 - [x] Balanceamento por simulação (erro 0 / 0.3 / 1 nas batalhas 02 e 04): bom vence com folga, ruim perde. Sparking Goku+Piccolo subiu para 3.4.
-- [ ] Lutas 04/05 longas (~30 turnos, ~4 min). Considerar inimigos mais agressivos em vez de menos vida.
+- [x] Lutas 04/05 longas: medidas e ajustadas na tarefa agendada de 2026-11-16 (Normal: Nappa ~10, Vegeta ~13 rodadas; tabela no DIARIO).
 - [x] Responsividade no celular (aviso para girar em pé, botões ≥ 40px no toque, menu sem descrição, 100dvh). Não testado em aparelho real.
 - [x] Atualizar README.
 
@@ -47,3 +47,11 @@ Prioridade de cima para baixo. Marque `[x]` ao concluir e anote detalhes no DIAR
 - [ ] Embate de raios (beam struggle) — feito, mas DESLIGADO a pedido do usuário (`FF.EMBATE_RAIOS = true` religa); rever depois.
 - [x] Pergaminhos de técnica: golpes sobem de nível (Attack of the Saiyans).
 - [x] Cápsulas equipáveis; notas/bônus no fim da luta; falas no meio da luta; câmera dramática no supremo.
+
+## Bloco 6 — Pendências da tarefa agendada (2026-11-16)
+- [ ] `tools/testes/estudio_melhorias.js`: 8 verificações falham desde antes de 2026-11-16 (dados do usuário mudaram: efeitos do Bills renomeados, golpes editados). Atualizar o teste para os dados atuais.
+- [ ] `tools/testes/estudio_seletor.js` procura o menu clássico (`#menu .cmd-golpes`), que não existe mais no menu Minimalista.
+- [ ] Capítulo 2 (Saibamen) ainda curto (~6 rodadas no Normal mesmo com 1300 de vida cada): pensar em Saibamen que explodem/agarram em vez de mais vida.
+- [ ] Capítulo 1 no Difícil é cara ou coroa para o jogador automático (Goku sozinho): talvez uma Semente dos Deuses só no Difícil, ou o Raditz defender menos (`guardaIA`).
+- [ ] Medir o desenho da Genki Dama/supremos grandes (o medidor desta vez cobriu batalha 3x3, Kaioken, aura, Percepção e vaporizar).
+- [ ] Palco do Estúdio redesenha a cada quadro mesmo parado (~1 ms): desenhar só quando algo muda.

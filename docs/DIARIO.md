@@ -412,3 +412,36 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Menu de golpes centralizado com o Impulso junto (antes só as esferas ficavam no centro e o painel do Impulso pendurado à esquerda): `#menu.mg-mini { transform: translateX(calc(-50% + 9.5cqw)) }`.
 - Seletor de sons (🎧): caixinha em cada linha + clique na linha (fora dos botões) marca; barra embaixo "☑ N selecionado(s)" com Limpar e "Usar os N (sorteio)" → devolve uma lista (o jogo sorteia um a cada vez com `FF.Script.pick`). Abrindo com uma lista (campo "a, b" ou array), os sons já vêm marcados. Os 🎧 da linha do tempo (trocar som/voz/som do acerto) passam a lista inteira.
 - Seletor de sons: botão "⭐ Favoritar selecionados" na barra da seleção múltipla → `FF.criarFavoritos(...).menuVarios(ancora, itens)` (categoria para todos, tirar todos dos favoritos, colocar/tirar todos numa pasta, nova pasta já com todos).
+
+## 2026-11-16 (tarefa agendada) — caça a bugs, balanceamento, tutorial, desempenho parte 2
+Sessão automática (18h26–19h20 de Brasília), sem o usuário olhando.
+
+**1) Caça a bugs**
+- Rodados: teste padrão, capítulos 1–4 da história, `saiyajin_02` e `saiyajin_05` (perspectiva diagonal, Planejamento), `estudio.js`, `estudio_sprites.js`, `estudio_melhorias.js`, `acervo.js`, `codecs.js`, `codecs_navegador.js`, `estudio_corte.js`. Playwright no título, Opções, Tutorial, Batalha Livre (aleatório + luta), Treinamento (pausa → 🥋 Opções do treino, mexendo em todas as opções), Campo de visão na pausa e seletor de sons (marcar vários): **nenhum erro no console**.
+- Bug do teste: na escolha do alvo o teste clicava no primeiro botão do `#menu`, que agora é "↩ Trocar golpe" → luta em loop infinito com 3 inimigos (Saibamen). Agora aperta Enter (primeiro inimigo). O teste ganhou `--dificuldade facil|normal|dificil`, `--velocidade N` (acelera o relógio, usado no balanceamento) e uma linha `RESUMO {rodadas, venceu, vidaHerois %, vidaInimigos %}`.
+- Bug: golpes editados no Estúdio com animação de outro personagem (ex.: `animMov: "SendoLancado_LADO"` no Combo Kaioken e no Galaxy Breaker) davam "animação inexistente" no Saibaman. `Fighter.animName` agora procura a chave equivalente (lancado) nos lutadores da luta e usa a deste.
+- Animação apagada pelo usuário no Estúdio (`{"apagada": true}`, ex.: Pose_De_Vitoria do Raditz) não gera mais aviso no `playAnim`; o passo só é pulado.
+- Achados que NÃO são desta sessão: `estudio_melhorias.js` tem 8 falhas que já existiam no commit de 2026-11-15 (testado numa cópia antiga do repositório) — dados do usuário mudaram; `estudio_seletor.js` procura o menu clássico. Anotado no ROADMAP.
+
+**2) Balanceamento** (jogador automático com `--erro 0.2`, plano variado de golpes, relógio 3×; 1 luta por linha, então há variação)
+
+| Luta | Fácil antes | Normal antes | Difícil antes | Fácil depois | Normal depois | Difícil depois |
+|---|---|---|---|---|---|---|
+| 01 Goku × Raditz | 8 rod., 55% | 12 rod., 3% | **derrota** (15 rod.) | 11 rod., 65% | 12 rod., 36% | 1 vitória (14 rod., 4%) e 1 derrota (Raditz com 1%) |
+| 02 Trio × Raditz | 7 rod., 92% | 8 rod., 74% | 13 rod., 43% | — | (igual) | — |
+| 03 Saibamen | 4 rod., 89% | 5 rod., 91% | 5 rod., 84% | 5 rod., 93%* | 6 rod., 80% | 8 rod., 77% |
+| 04 Nappa | 8 rod., 73% | 10 rod., 80% | 14 rod., 48% | (igual) | (igual) | — |
+| 05 Vegeta | 10 rod., 74% | 14 rod., 59% (17 com o plano padrão) | **derrota** (23 rod.) | 9 rod., 83% | 13 rod., 61% | 16 rod., 31% |
+(% = vida restante do time; * com 1000 de vida, antes do ajuste final para 1300.)
+- Mudanças: Vegeta (cap. 4) vida 4200 → **3700**; Saibamen (cap. 2) 650 → **1300** cada (`ajustes`); Raditz do cap. 1 ataque 105 → **95**; `FF.Dificuldade.dificil`: guarda 0,42 → **0,36**, perfeita 0,45 → **0,40**, vida ×1,2 → **×1,1**, ataque ×1,15 → **×1,1** (janela perfeita e contra-ataque iguais). Fácil, Normal e o ki ao apanhar ficaram como estavam (já batiam com a meta).
+- Ficou: Saibamen ainda curtos (6 rodadas no Normal); cap. 1 no Difícil é apertado para o Goku sozinho.
+
+**3) Tutorial** — 6 páginas novas (18 no total), com desenhos animados no estilo das outras: "Ki: apanhar também carrega" (apanhou +18 / defendeu +2), "O inimigo também defende!" (GUARDA! → crítico perfeito fura → contra-ataque com anel azul), "PERCEPÇÃO!" (tela azul, trocas pelo céu, sem dano, +15 Fúria/+10 ki), "Treinamento" (mini-painel da pausa com as opções), "Dificuldade e campo de visão" (Fácil/Normal/Difícil + cena com zoom mudando). Texto do Kaioken corrigido (30 de ki + 5 por turno).
+
+**4) Desempenho parte 2** (Chrome sem GPU, ms por quadro: média / p95)
+- Jogo: título e seleção a 60 qps sem tarefas longas; batalha 3x3 0,9/1,7; com Kaioken 0,8/1,2; aura do Impulso em todos 1,5/3,0 (pico 10 ms no 1º quadro, montando o cache); Percepção 2,3/3,8 (pico 17 ms no 1º quadro); vaporizar 0,9/1,5. Não achei mais `ctx.filter` na tela nem `getImageData` por quadro (os que restam são do importador/mesclar, sob demanda).
+- Estúdio: palco da aba Golpes com perspectiva 1,0/2,0; aba Sprites 0,07 ms (926 elementos, 148 canvas, abre em ~60 ms).
+- Arrastar um clipe na linha do tempo (60 movimentos): o palco era redesenhado 148 vezes (irPara + laço de quadros) e a coluna de nomes das trilhas era recriada a cada movimento. Agora `irPara(t, arrastando)` não redesenha (o laço de quadros já faz) e `LinhaUI.render` só refaz os nomes quando muda algo neles (`renderCanvas` separado): **148 → 73 redesenhos**, `render` 99 → 72 ms no total.
+- Medidores em scratchpad (não versionados): `perf.js` (envolve `FF.Battle.prototype.draw` e `aba.quadro`) e `perf2.js` (linha do tempo).
+
+Cache do app: `finalflash-v47`.
