@@ -718,3 +718,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @keyframes mgAbre { from { opacity: 0; transform: translateX(-50%) translateY(0.5cqw); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
 .pausa-treino input[type=checkbox] { width: 1.8cqw; height: 1.8cqw; accent-color: #ffd84a; }
+/* menu de golpes centralizado com o Impulso junto: o painel do Impulso (~17cqw) fica à esquerda das esferas,
+   então o conjunto anda metade disso para a direita */
+#menu.mg-mini { transform: translateX(calc(-50% + 9.5cqw)); }

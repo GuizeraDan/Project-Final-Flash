@@ -409,3 +409,4 @@ Jogo estável no início (1v1 e todas as batalhas novas terminaram sem ERROS). F
 - Vaporizar: as últimas faíscas ficavam congeladas na tela (o tempo delas usava o progresso limitado a 1); agora usam o tempo real e o desenho para 1,2 s depois do fim. Tirada a explosão azul (`genkidama_efeito`) do começo do golpe com Impulso.
 - Aviso de build no canto inferior direito (título e batalha, ao lado do ⏸).
 - Campo de visão em tempo real (pedido do usuário): `Battle.mudarFov(v)` multiplica pela razão nova/antiga a escala da batalha, dos lutadores (`scale`, `homeS`, `offX/offY`), dos efeitos e dos projéteis; o select do FOV (título e pausa) chama na hora se houver luta.
+- Menu de golpes centralizado com o Impulso junto (antes só as esferas ficavam no centro e o painel do Impulso pendurado à esquerda): `#menu.mg-mini { transform: translateX(calc(-50% + 9.5cqw)) }`.
