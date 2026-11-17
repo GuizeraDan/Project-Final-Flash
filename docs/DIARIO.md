@@ -456,3 +456,6 @@ Cache do app: `finalflash-v47`.
 ## 2026-11-17 — Lançado não "reseta" no meio do voo
 - Bug (pergunta do usuário, Combo Kaioken): o clipe "mover" com animação (SendoLancado_LADO) no alvo voltava para a pose parada no meio do movimento. Causa: um acerto anterior tinha deixado uma reação de dano agendada (`f.react`, "volta ao normal em X s"), que vencia durante o voo e chamava `idle()`; acertos depois do movimento também trocavam para Dano_Chao2.
 - Agora o "mover"/"teleporte" com animação cancela a reação pendente e, depois de um mover com animação, acertos não trocam a animação (`f.semReagirAte`) até o próximo clipe de animação desse lutador (ou `idle()`, ou 3 s depois do fim do movimento, por segurança). A animação fica ativa até a próxima, como esperado.
+
+## 2026-11-17 — Kaioken sem poeira
+- A pedido do usuário: tirada a aura `Efeito3_Loop` (onda de poeira/pedras no chão) do buff Kaioken (`goku.json`) — ela ficava presa nos pés do Goku e aparecia flutuando no ar quando ele voava/era lançado — e o efeito igual que saía na pose do golpe Kaioken (`edicoes.golpes.goku.kaioken`). Continuam o tom vermelho, o carregar ki vermelho e o resto do buff.
