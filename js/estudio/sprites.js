@@ -230,7 +230,7 @@
     const lista = FF.Assets.listaSprites().filter(bate);
     const jogo = lista.filter(s => !FF.Assets.doAcervo(s));
     const acervo = lista.filter(s => FF.Assets.doAcervo(s));
-    if (!acervo.length) { jogo.forEach(s => item(s, ui.sprites)); return; }
+    if (!acervo.length && !(FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length)) { jogo.forEach(s => item(s, ui.sprites)); return; }
     // agrupado: sprites do jogo, depois o acervo por categoria/jogo (abre/fecha); dentro de cada jogo, por tipo
     const NOMES = FF.Assets.categoriasAcervo();
     const TIPOS_ACERVO = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
@@ -259,6 +259,11 @@
     if (FF.Favoritos) FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
       const ids = FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite);
       grupo('fav:' + t, '⭐ ' + ic + ' ' + FF.Favoritos.plural[t] + ' (favoritos)', ids);
+    });
+    // 📁 pastas do usuário (as mesmas do seletor de sprites e da aba Favoritos), com os sprites inteiros que estão nelas
+    if (FF.Favoritos && FF.Favoritos.nomesPastas) FF.Favoritos.nomesPastas().forEach(nome => {
+      const ids = [...new Set(FF.Favoritos.itensPasta(nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))];
+      grupo('fav:pasta:' + nome, '📁 ' + nome, ids);
     });
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
