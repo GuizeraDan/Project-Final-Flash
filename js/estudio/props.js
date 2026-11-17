@@ -262,7 +262,10 @@ FF.EstudioProps = {
       case 'escurecer': g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); g.appendChild(num(c, 'forca', 'Escuridão', '0 = nada, 1 = preto (quem solta continua aceso)', { passo: 0.05, min: 0, max: 1 })); break;
       case 'linhas': g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); break;
       case 'faixa': g.appendChild(txt(c, 'texto', 'Texto', '{golpe} = nome do golpe')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.1 })); break;
-      case 'tremer': case 'flash': g.appendChild(num(c, 'forca', 'Força', c.tipo === 'tremer' ? 'Ex.: 6 (fraco) a 20 (forte)' : '0 a 1', { passo: c.tipo === 'flash' ? 0.05 : 1 })); break;
+      case 'tremer': case 'flash':
+        g.appendChild(num(c, 'forca', 'Força', c.tipo === 'tremer' ? 'Ex.: 6 (fraco) a 20 (forte)' : '0 a 1', { passo: c.tipo === 'flash' ? 0.05 : 1 }));
+        g.appendChild(num(c, 'd', 'Duração (s)', 'Vazio = só o impacto (some sozinho). Com duração, segura a força até o fim (dá para esticar a borda do clipe)', { passo: 0.05, min: 0.05 }));
+        break;
       case 'mensagem': g.appendChild(txt(c, 'texto', 'Texto')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1 })); break;
       case 'camera': {
         g.appendChild(num(c, 'd', 'Tempo até chegar (s)', '0 = corte seco', { min: 0, passo: 0.05 }));

@@ -22,7 +22,7 @@
 //  acertos  {tipo:"acerto", fracao, forca, lanca?, empurrao?, fx?, dx?, dy?, fxEscala?, anel?}
 //           anel: true = abre um anel de guarda/crítico novo; false = usa o anel do acerto anterior;
 //           sem o campo: anel novo quando o acerto anterior foi há mais de 0,6 s.
-//  tela     {tipo:"tremer", forca} | {tipo:"flash", forca} | {tipo:"mensagem", texto, d?}
+//  tela     {tipo:"tremer", forca, d?} | {tipo:"flash", forca, d?} | {tipo:"mensagem", texto, d?}   (d = duração: segura a força até o fim; sem d = só o impacto)
 //           {tipo:"escurecer", d, forca} | {tipo:"linhas", d} | {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
 //           {tipo:"camera", d, zoom, foco: "centro"|"atacante"|"alvo"|"entre", dx?, dy?}
 //  acoes    {tipo:"acao", passo: {qualquer passo de roteiro: transformar, aplicar, ki, curar, atordoar, objeto,
@@ -322,8 +322,8 @@ FF.Linha = {
         (b.efTela = b.efTela || {}).faixa = { t0: FF.Clock.t, d: c.d || 1.5, texto: String(c.texto != null ? c.texto : '{golpe}').replace(/\{golpe\}/g, nomeG).toUpperCase() };
         return;
       }
-      case 'tremer': b.shake(c.forca || 6); return;
-      case 'flash': b.flash(c.forca || 0.5); return;
+      case 'tremer': b.shake(c.forca || 6, c.d); return;
+      case 'flash': b.flash(c.forca || 0.5, c.d); return;
       case 'mensagem': b.banner(c.texto || '', c.d || 1.3); return;
       case 'camera': {
         b.cam = b.cam || { zoom: 1, x: 0, y: 0 };

@@ -314,7 +314,7 @@ window.FF = window.FF || {};
       const real = ((f && f.anims) || {})[nome] || nome;
       return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
-    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa'].includes(c.tipo); },
+    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
@@ -327,6 +327,9 @@ window.FF = window.FF || {};
         case 'projetil': { const b = this.palco._b; const dist = b ? Math.abs(b.alvo.x - b.atk.x) * 0.9 : 600; return Math.max(0.05, dist / (c.velocidade || 650)); }
         case 'mensagem': return c.d || 1.3;
         case 'camera': return c.d || 0;
+        // sem duração: o tempo que o impacto leva para sumir sozinho (tremor cai até ~0,3; flash perde 2,5 por segundo)
+        case 'tremer': return c.d || Math.max(0.1, Math.log(0.3 / (c.forca || 6)) / Math.log(0.001));
+        case 'flash': return c.d || Math.max(0.05, (c.forca || 0.5) / 2.5);
       }
       return 0;
     },

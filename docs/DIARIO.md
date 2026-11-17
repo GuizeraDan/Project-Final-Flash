@@ -459,3 +459,7 @@ Cache do app: `finalflash-v47`.
 
 ## 2026-11-17 — Kaioken sem poeira
 - A pedido do usuário: tirada a aura `Efeito3_Loop` (onda de poeira/pedras no chão) do buff Kaioken (`goku.json`) — ela ficava presa nos pés do Goku e aparecia flutuando no ar quando ele voava/era lançado — e o efeito igual que saía na pose do golpe Kaioken (`edicoes.golpes.goku.kaioken`). Continuam o tom vermelho, o carregar ki vermelho e o resto do buff.
+
+## 2026-11-17 — Tremor e flash com duração
+- Pedido do usuário: clipes 〰 Tremor e ✦ Flash da trilha Tela agora têm duração como os outros: borda direita estica (`redimensionavel`), campo "Duração (s)" nas propriedades (vazio = só o impacto, como antes) e o rótulo mostra "· N s". Sem duração, o clipe aparece com o tempo que o impacto leva para sumir (tremor ~0,48 s com força 8; flash = força/2,5 s).
+- Motor: `{tipo:"tremer"|"flash", forca, d}` → `Battle.shake(n, d)` / `flash(n, d)` guardam em `b.telaDur`; o update segura a força até o fim, some nos últimos 0,15 s (flash 0,2 s) e corta o rabo quando acaba. Golpes antigos (sem d) não mudam.

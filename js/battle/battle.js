@@ -1546,8 +1546,9 @@ FF.Battle = class {
     this.texts.push({ text, color: color || '#fff', x: p.x + (Math.random() * 16 - 8), y: p.y - 40 + (dy || 0), t: 0, life: 1.0 });
   }
   banner(text, dur) { this.bannerTxt = { text, until: FF.Clock.t + (dur || 1.2), start: FF.Clock.t }; }
-  shake(n) { this.shakeAmt = Math.max(this.shakeAmt, n); }
-  flash(n) { this.flashAmt = Math.max(this.flashAmt, n); }
+  // d (s): tremor/flash com duração (clipe esticado no Estúdio) — segura a força até o fim e some nos últimos instantes
+  shake(n, d) { this.shakeAmt = Math.max(this.shakeAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'shakeAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.15, d / 2) }); }
+  flash(n, d) { this.flashAmt = Math.max(this.flashAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'flashAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.2, d / 2) }); }
 
   // ---------- loop ----------
   update(dt) {
@@ -1611,6 +1612,11 @@ FF.Battle = class {
     }
     this.shakeAmt *= Math.pow(0.001, dt);
     this.flashAmt = Math.max(0, this.flashAmt - dt * 2.5);
+    if (this.telaDur && this.telaDur.length) {
+      const t = FF.Clock.t;
+      this.telaDur = this.telaDur.filter(e => { if (t < e.ate) return true; this[e.k] = Math.min(this[e.k], e.n * 0.04); return false; });   // acabou: não fica rabo
+      for (const e of this.telaDur) this[e.k] = Math.max(this[e.k], e.n * Math.min(1, (e.ate - t) / e.sai));
+    }
   }
 
   draw(ctx) {
