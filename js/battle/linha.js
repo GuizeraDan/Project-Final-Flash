@@ -210,7 +210,7 @@ FF.Linha = {
         const outro = f === actor ? target : actor;
         if (c.tipo === 'visivel') { guardar(f); f.alpha = c.alpha != null ? c.alpha : 1; return; }
         if (c.tipo === 'anim') {
-          f.react = null;
+          f.react = null; f.semReagirAte = 0;
           // animação emprestada de outro sprite (ex.: Kuririn com uma pose do Bills): troca o desenho até o próximo clipe
           const emprestado = c.sprite && FF.Assets.sprites[c.sprite];
           if (emprestado && emprestado !== f.sprite) { if (!f._spriteOrig) f._spriteOrig = { sprite: f.sprite, anim: f.anim }; f.sprite = emprestado; f.anim = new FF.Animator(emprestado); }
@@ -242,7 +242,14 @@ FF.Linha = {
           // tamanho e giro no destino (alças no palco): vão mudando durante o movimento
           const e0 = f.escExtra || 1, e1 = c.escala != null ? c.escala : e0;
           const r0 = f.rotExtra || 0, r1 = c.rot != null ? c.rot * f.dir : r0;
-          if (c.animMov !== '') f.play(c.animMov || (dest * f.dir >= x0 * f.dir ? 'avancar' : 'recuar'), { loop: true });
+          if (c.animMov !== '') {
+            f.play(c.animMov || (dest * f.dir >= x0 * f.dir ? 'avancar' : 'recuar'), { loop: true });
+            // a animação do movimento manda até o próximo clipe de animação/movimento desse lutador: cancela a
+            // reação de um acerto anterior (senão o "volta ao normal" do dano trocava para a pose parada no meio do
+            // voo) e acertos depois disso não trocam a animação (continua na pose de lançado). Segurança: 3 s depois
+            // do fim do movimento as reações voltam (e idle() também libera)
+            f.react = null; f.semReagirAte = FF.Clock.t + d + 3;
+          }
           viva.ativos.push((dt, t) => {
             const k = Math.min(1, (t - t0) / d);
             const e = c.suave === false ? k : 1 - Math.pow(1 - k, 2);
@@ -266,6 +273,7 @@ FF.Linha = {
         if (!a) { chegar(); return; }
         const meio = Math.floor(a.frames.length / 2);
         // ao terminar, volta à pose parada (se nada mais trocou a animação nesse meio tempo)
+        f.react = null;
         f.anim.play(nome, { onFrame: (i) => { if (i === meio) chegar(); } });
         const animTp = f.anim;
         viva.ativos.push(() => {

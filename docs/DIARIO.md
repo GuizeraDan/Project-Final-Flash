@@ -452,3 +452,7 @@ Cache do app: `finalflash-v47`.
 - A marca d'água do autor NÃO foi removida (decisão: não tiro proteção de arte de terceiros); os traços claros aparecem nos quadros e efeitos translúcidos ficam rosados. Com a versão limpa do autor dá para refazer com `tools/folha/achar_quadros.py` + `tools/folha/montar_receita.py`.
 - Pasta "Sheet 1": `edicoes.favoritosPastas["Sheet 1"] = ["sheet1_goku_ssj"]`; a lista da aba Sprites agora mostra as pastas do usuário (📁) antes de "Do jogo".
 - Pendências: alguns quadros juntaram dois desenhos (traços da marca d'água ligando) e a linha 20 (Especial) e a última (Vitoria) misturam quadros de duas fileiras; ajustar no Estúdio (✂ Editar quadros).
+
+## 2026-11-17 — Lançado não "reseta" no meio do voo
+- Bug (pergunta do usuário, Combo Kaioken): o clipe "mover" com animação (SendoLancado_LADO) no alvo voltava para a pose parada no meio do movimento. Causa: um acerto anterior tinha deixado uma reação de dano agendada (`f.react`, "volta ao normal em X s"), que vencia durante o voo e chamava `idle()`; acertos depois do movimento também trocavam para Dano_Chao2.
+- Agora o "mover"/"teleporte" com animação cancela a reação pendente e, depois de um mover com animação, acertos não trocam a animação (`f.semReagirAte`) até o próximo clipe de animação desse lutador (ou `idle()`, ou 3 s depois do fim do movimento, por segurança). A animação fica ativa até a próxima, como esperado.

@@ -62,7 +62,7 @@ FF.Fighter = class {
   play(name, opts) { return this.anim.play(this.animName(name), opts); }
 
   idle(name) {
-    this.react = null;
+    this.react = null; this.semReagirAte = 0;
     if (this.ko) { this.anim.play(this.animName('caido')); return; }
     this.anim.play(name || this.paradoBuff() || this.animName('parado'), { loop: true });
   }
@@ -183,6 +183,7 @@ FF.Fighter = class {
   // Reação a golpe recebido: anima por "dur" segundos e volta ao normal.
   reagir(tipo, dur) {
     if (this.busy) return;
+    if (this.semReagirAte && FF.Clock.t < this.semReagirAte) return;   // depois de um "mover" com animação própria (ex.: arremessado), até o próximo clipe de animação
     const nomes = {
       dano: [this.animName('dano1'), this.animName('dano2')],
       guarda: [this.animName('guarda')],
