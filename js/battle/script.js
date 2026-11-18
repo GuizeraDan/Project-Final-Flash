@@ -53,7 +53,7 @@ FF.Script = {
       const a = actor.sprite.anim(name);
       const meio = a ? Math.floor(a.frames.length / 2) : 0;
       if (!a) { await b.tween(actor, actor.homeX, 0.25); return; }
-      await actor.anim.play(name, { onFrame: (i) => { if (i === meio) actor.x = actor.homeX; } });
+      await actor.anim.play(name, { loop: false, onFrame: (i) => { if (i === meio) actor.x = actor.homeX; } });   // sem repetir (anim de teleporte emprestada que repete travava o turno)
       actor.x = actor.homeX;
       return;
     }

@@ -35,6 +35,12 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - O Estúdio ("💾 Salvar no jogo", "↺ Original") grava via `FF.Edicoes.set(caminho, valor)`: vale na hora no aparelho e, se ele estiver conectado (chave fine-grained do GitHub com Contents: Read and write, guardada em localStorage `ff_github_token`, painel "☁"), faz um commit em `data/edicoes.js` pela API (autor GuizeraDan noreply). Sem chave, fica em `ff_edicoes_pendentes` e é enviado depois.
 - Para tornar uma edição parte "de verdade" dos JSON (ex.: limpar o arquivo), copie de `data/edicoes.js` para `data/characters`/`data/sprites`, remova de lá e rode o build.
 
+## Elenco da Batalha Livre (personagens do acervo)
+- `tools/gerar_elenco.py [pacote]` lê os sprites de personagens do acervo e gera `data/elenco/<pacote>.js` (fichas: quais animações são parado/dano/guarda/combo/rajada/especiais/supremo, quadro do acerto, escala, pé, espelhar), `assets/img/elenco/<pacote>.png` (retratos recortados do quadro parado ou da animação "face"/"Retrato") e `data/elenco/indice.js`. Pacotes: zl3, swz, uh, twiss, spw, ast, mc. Os de tira única sem nomes (dw, dlz, lw, pw) ficam de fora até ganharem receitas.
+- `js/core/elenco.js` (`FF.Elenco`): carrega o pacote por `<script>`, monta o personagem com o kit (combo, Rajada de Ki, até 3 especiais, Carregar Ki, Supremo, escudos, vitória). Id = `el_<id do sprite>`; `FF.Assets.loadCharacter` entende esses ids (edições do Estúdio valem). `FF.Elenco.ajustes[sprite]` (escala/dy/espelhar) é aplicado em `loadSprite`; `def.espelhar` inverte o desenho em `FF.drawFrame`. Retrato com `{img, x, y, w, h}` em `FF.Retrato`.
+- Batalha Livre/Treinamento: abas por pacote (`.sel-pacotes`) + busca (`.sel-busca`); personagens só no modo batalha (não na história).
+- Teste: `node tools/testes/batalha.js --livre el_zl3_freeza,goku:el_swz_goku_player --velocidade 3`.
+
 ## Cena de KO
 - Quando a vida de alguém chega a zero, o motor toca uma linha do tempo de KO (`js/battle/ko.js`, `FF.KO.tocar`) junto com o golpe (trilha Alvo = quem caiu; o hitstop continua fixo). Ordem: `edicoes.ko[<personagem>]` → `edicoes.ko.padrao` → `FF.KO.PADRAO` (o original). `execute()` espera as cenas (`b.cenasKO`) antes de seguir. No Estúdio: aba Golpes, seção "💀 Cena de KO" (padrão + "Quando <Alvo> cai"). `FF.Linha.iniciar(..., {ko: true})` deixa o alvo nocauteado animar e, no fim, só devolve ele. Clipe de voz aceita `vozTipo` + `quem` (voz cadastrada do personagem).
 

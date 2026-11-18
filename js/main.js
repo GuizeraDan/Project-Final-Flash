@@ -260,7 +260,9 @@ FF.start = async function (escolhida) {
     (j.match(/"sprite":"[^"]+"/g) || []).forEach(m => spriteIds.add(m.slice(10, -1)));
   }));
   if (FF.Habilidades) FF.Habilidades.listar().forEach(h => (h.golpe.spritesUsados || []).forEach(id => spriteIds.add(id)));
-  await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)).concat(FF.Assets.loadImage('assets/img/hud_moderno.png').catch(() => null)));   // HUD novo (arte do usuário)
+  // rostos recortados do elenco (acervo) usados no HUD
+  const imgsRet = new Set(); heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => { if (f.retrato && f.retrato.img) imgsRet.add(f.retrato.img); }));
+  await Promise.all([...spriteIds].map(id => FF.Assets.loadSprite(id)).concat(FF.Assets.loadImage('assets/img/hud_moderno.png').catch(() => null), [...imgsRet].map(p => FF.Assets.loadImage(p).catch(() => null))));   // HUD novo (arte do usuário)
   // animações derivadas: sprites incompletos (ex.: Saibaman só tem ataques) ganham parado/dano/caído
   // montados a partir de quadros de outras animações ({"Parado": {"de": "Ataque_1", "quadros": [0, 1], "fps": 4, "loop": true}})
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => {

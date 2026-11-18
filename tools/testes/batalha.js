@@ -21,6 +21,7 @@ const historia = opt('historia', null);
 const hpInimigos = opt('hpInimigos', null);
 const modoTurno = opt('turno', null);
 const persp = opt('persp', null);   // --persp diagonal: testa a perspectiva diagonal   // --turno planejamento: testa o modo Planejamento
+const livre = opt('livre', null);       // --livre el_zl3_freeza,goku:el_swz_goku_player  (Batalha Livre com esses times)
 const dific = opt('dificuldade', null);   // --dificuldade facil|normal|dificil
 const veloc = opt('velocidade', null);    // --velocidade 3: acelera o relógio do jogo (testes de balanceamento)
 const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os estilos do menu de golpes   // --hpInimigos 100: inimigos começam com essa vida (testar golpes de vida baixa)   // --historia N: joga o capítulo N do modo história (pula os diálogos)   // --rage 100: começa com a Rage cheia (testar o supremo)
@@ -34,8 +35,13 @@ const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os e
   p.on('pageerror', e => erros.push('PAGEERROR: ' + e.message));
   const raiz = path.resolve(__dirname, '..', '..');
   if (modoTurno || estiloMenu || persp || dific || veloc) await p.addInitScript(([t, m, pp, df, v]) => { const k = 'finalflash_save_v1'; const s = JSON.parse(localStorage.getItem(k) || '{}'); if (t) s.modoTurno = t; if (m) s.estiloMenu = m; if (pp) s.perspectiva = pp; if (df) s.dificuldade = df; if (v) s.velocidade = +v; localStorage.setItem(k, JSON.stringify(s)); }, [modoTurno, estiloMenu, persp, dific, veloc]);
-  await p.goto('file://' + raiz + '/index.html' + (historia ? '?historia=' + historia : '?batalha=' + (batalha || 'saiyajin_01')));
-  if (!historia) await p.click('#inicio');
+  if (livre) await p.addInitScript((lv) => {
+    const [h, i] = lv.split(':').map(x => x.split(',').filter(Boolean));
+    const posH = { 1: [170], 2: [250, 150], 3: [250, 150, 350] }[h.length], posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] }[i.length];
+    sessionStorage.setItem('ff_livre_def', JSON.stringify({ id: 'livre', saga: 'livre', titulo: 'Batalha Livre', cenario: 'campo', musica: 'tournament_theme', escala: h.length === 1 && i.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois: h, inimigos: i, ajustes: {} }));
+  }, livre);
+  await p.goto('file://' + raiz + '/index.html' + (livre ? '?livre=1' : historia ? '?historia=' + historia : '?batalha=' + (batalha || 'saiyajin_01')));
+  if (!historia && !livre) await p.click('#inicio', { timeout: 60000 });
   else {   // avança os diálogos até a batalha começar
     while (!(await p.evaluate(() => !!(FF.battle && FF.battle.heroes.length)))) {
       await p.evaluate(() => { const d = document.querySelector('#dialogo'); if (d.classList.contains('open')) d.click(); });

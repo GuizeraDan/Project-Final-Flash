@@ -22,7 +22,16 @@ FF.Retrato = {
     }
     const idx = r ? (tipo === 'banner' ? r.banner : r.quadro) : null;
     const a = set && set.anim(tipo === 'banner' ? 'banner' : 'retrato');
-    if (a && idx != null && a.frames[idx]) {
+    // elenco: o banner (caixa larga dos times) usa o corpo do sprite de batalha quando ele já está carregado
+    const im = r && r.img && !(tipo === 'banner' && FF.Assets.sprites[forma.sprite]) && FF.Assets.images[r.img];
+    if (im) {
+      // retrato recortado (elenco do acervo): um pedaço de uma imagem com vários rostos
+      const s = Math.max(w / r.w, h / r.h), dw = r.w * s, dh = r.h * s;
+      const dx = x + (w - dw) / 2, dy = y + (h - dh) / 2;
+      ctx.imageSmoothingEnabled = false;
+      if (opts.espelhar) { ctx.translate(dx + dw, dy); ctx.scale(-1, 1); ctx.drawImage(im, r.x, r.y, r.w, r.h, 0, 0, dw, dh); }
+      else ctx.drawImage(im, r.x, r.y, r.w, r.h, dx, dy, dw, dh);
+    } else if (a && idx != null && a.frames[idx]) {
       const f = a.frames[idx];
       const s = Math.max(w / f[3], h / f[4]);
       const dw = f[3] * s, dh = f[4] * s;
@@ -50,8 +59,10 @@ FF.Retrato = {
 
   // versão para <canvas> do DOM (menus): carrega o que faltar e desenha
   async noCanvas(canvas, def, formId, tipo, opts) {
-    const { forma } = this.info(def, formId);
-    await Promise.all([FF.Assets.loadSprite('retratos').catch(() => null), FF.Assets.loadSprite(forma.sprite).catch(() => null)]);
+    const { forma, r } = this.info(def, formId);
+    if (r && r.img && tipo !== 'banner') await FF.Assets.loadImage(r.img).catch(() => null);   // só a imagem dos rostos (não baixa o sprite)
+    else if (r && r.img) await Promise.all([FF.Assets.loadImage(r.img).catch(() => null), FF.Assets.loadSprite(forma.sprite).catch(() => null)]);
+    else await Promise.all([FF.Assets.loadSprite('retratos').catch(() => null), FF.Assets.loadSprite(forma.sprite).catch(() => null)]);
     const ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);

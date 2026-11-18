@@ -173,6 +173,7 @@ FF.drawFrame = (function () {
   const tctx = tmp.getContext('2d');
   return function (ctx, set, f, x, y, scale, flip, opts = {}) {
     if (!f) return;
+    if (set.def && set.def.espelhar) flip = !flip;   // sprite desenhado olhando para a esquerda (alguns pacotes do acervo)
     const [ai, sx, sy, w, h, ox, oy] = f;
     let src = set.images[ai], srcX = sx, srcY = sy;
     if (opts.recolor) { src = FF.Recolor.quadro(set, f, opts.recolor); srcX = 0; srcY = 0; }

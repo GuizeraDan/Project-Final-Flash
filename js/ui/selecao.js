@@ -26,10 +26,22 @@ FF.Selecao = {
     for (const id of ids) this.defs[id] = await FF.Assets.loadCharacter(id);
     try { const s = JSON.parse(sessionStorage.getItem(this.chaveTimes()) || 'null'); if (s && s.herois && s.inimigos) { this.times = { herois: s.herois, inimigos: s.inimigos }; this.formas = s.formas || { herois: [], inimigos: [] }; } } catch (e) { /* sem sessionStorage */ }
     this.ids = ids;
+    // times guardados com lutadores do elenco: carrega os pacotes deles (some quem não existir mais)
+    for (const lado of ['herois', 'inimigos']) {
+      for (const id of this.times[lado]) if (FF.Elenco && FF.Elenco.eh(id)) await FF.Elenco.garantir(id).catch(() => null);
+      this.times[lado] = this.times[lado].filter(id => this.d(id));
+    }
+    await this.montarAbas();
     this.montarGrade();
     this.ligar(el);
     this.render();
     el.classList.add('open');
+  },
+
+  // definição do personagem (os do elenco do acervo são montados na hora, quando o pacote já está carregado)
+  d(id) {
+    if (!this.defs[id] && FF.Elenco && FF.Elenco.eh(id)) this.defs[id] = FF.Elenco.def(id);
+    return this.defs[id];
   },
 
   chaveTimes() { return this.modo === 'treino' ? 'ff_treino_times' : 'ff_livre_times'; },
@@ -40,11 +52,47 @@ FF.Selecao = {
     el.classList.remove('open');
   },
 
-  montarGrade() {
+  // abas: personagens do jogo + um por pacote do elenco (acervo), com busca
+  async montarAbas() {
+    const box = document.querySelector('#selecao .sel-pacotes');
+    if (!box) return;
+    const ind = FF.Elenco ? await FF.Elenco.indice() : [];
+    this.pacotes = [{ id: 'ff', nome: 'Final Flash', n: this.ids.length }].concat(ind);
+    if (!this.pacote || !this.pacotes.some(p => p.id === this.pacote)) this.pacote = 'ff';
+    box.innerHTML = '';
+    this.pacotes.forEach(p => {
+      const b = document.createElement('button');
+      b.dataset.pac = p.id;
+      b.textContent = p.nome + ' (' + p.n + ')';
+      b.onclick = () => { this.pacote = p.id; FF.Audio.play('tap_sound', 0.5); this.montarGrade(); };
+      box.appendChild(b);
+    });
+    const busca = document.querySelector('#selecao .sel-busca');
+    if (busca && !busca._ligada) { busca._ligada = true; busca.onkeydown = (e) => e.stopPropagation(); busca.oninput = () => { clearTimeout(this._tBusca); this._tBusca = setTimeout(() => this.montarGrade(), 150); }; }
+  },
+
+  async idsDaAba() {
+    if (this.pacote === 'ff' || !FF.Elenco) return this.ids;
+    await FF.Elenco.carregar(this.pacote).catch(() => null);
+    return FF.Elenco.lista(this.pacote).map(f => f.id);
+  },
+
+  async montarGrade() {
     const grade = document.querySelector('#selecao .sel-grade');
+    const pac = this.pacote || 'ff';
+    document.querySelectorAll('#selecao .sel-pacotes button').forEach(b => b.classList.toggle('sel', b.dataset.pac === pac));
+    const vez = this._vezGrade = (this._vezGrade || 0) + 1;
+    let ids = await this.idsDaAba();
+    if (vez !== this._vezGrade) return;   // trocou de aba enquanto carregava
+    const busca = document.querySelector('#selecao .sel-busca');
+    const q = busca && busca.value.trim().toLowerCase();
+    const nome = (id) => FF.Elenco && FF.Elenco.eh(id) ? (FF.Elenco.ficha(id) || {}).nome || id : (this.defs[id] || {}).nome || id;
+    if (q) ids = ids.filter(id => nome(id).toLowerCase().includes(q));
+    this.idsVisiveis = ids;
     grade.innerHTML = '';
-    for (const id of this.ids) {
-      const d = this.defs[id];
+    grade.classList.toggle('sel-grade-muitos', pac !== 'ff');
+    if (!ids.length) { grade.innerHTML = '<p class="sel-vazio">Nenhum lutador com esse nome.</p>'; return; }
+    for (const id of ids) {
       const b = document.createElement('button');
       b.className = 'sel-card';
       b.dataset.id = id;
@@ -52,13 +100,14 @@ FF.Selecao = {
       cv.width = 40; cv.height = 56;
       b.appendChild(cv);
       const n = document.createElement('span');
-      n.textContent = d.nome;
+      n.textContent = nome(id);
       b.appendChild(n);
-      FF.Retrato.noCanvas(cv, d, d.formaInicial, 'retrato');
       b.onclick = () => this.adicionar(id);
       b.onmouseenter = () => this.info(id);
       b.onfocus = () => this.info(id);
       grade.appendChild(b);
+      const d = this.d(id);
+      if (d) FF.Retrato.noCanvas(cv, d, d.formaInicial, 'retrato');
     }
   },
 
@@ -70,7 +119,8 @@ FF.Selecao = {
     el.querySelector('[data-sel="voltar"]').onclick = () => { FF.Audio.play('decide_charasel', 0.5); this.fechar(); FF._mostrarTitulo && FF._mostrarTitulo('menu'); };
     el.querySelector('[data-sel="limpar"]').onclick = () => { this.times = { herois: [], inimigos: [] }; this.formas = { herois: [], inimigos: [] }; this.lado = 'herois'; this.render(); };
     el.querySelector('[data-sel="aleatorio"]').onclick = () => {
-      const pick = () => this.ids[Math.floor(Math.random() * this.ids.length)];
+      const l = this.idsVisiveis && this.idsVisiveis.length ? this.idsVisiveis : this.ids;
+      const pick = () => l[Math.floor(Math.random() * l.length)];
       const nh = 1 + Math.floor(Math.random() * 3), ni = 1 + Math.floor(Math.random() * 3);
       this.times = { herois: Array.from({ length: nh }, pick), inimigos: Array.from({ length: ni }, pick) };
       this.formas = { herois: [], inimigos: [] };
@@ -114,12 +164,12 @@ FF.Selecao = {
 
   // forma do lutador num slot (a escolhida ou a inicial do personagem)
   formaDe(lado, i) {
-    const id = this.times[lado][i], d = this.defs[id];
+    const id = this.times[lado][i], d = this.d(id);
     const f = (this.formas[lado] || [])[i];
     return f && d.formas[f] ? f : (d.formaInicial || Object.keys(d.formas)[0]);
   },
   trocarForma(lado, i) {
-    const d = this.defs[this.times[lado][i]], ks = Object.keys(d.formas);
+    const d = this.d(this.times[lado][i]), ks = Object.keys(d.formas);
     if (ks.length < 2) return;
     const atual = this.formaDe(lado, i), prox = ks[(ks.indexOf(atual) + 1) % ks.length];
     (this.formas[lado] = this.formas[lado] || [])[i] = prox;
@@ -128,7 +178,7 @@ FF.Selecao = {
   },
 
   info(id) {
-    const d = this.defs[id], a = d.atributos || {};
+    const d = this.d(id), a = d.atributos || {};
     const golpes = Object.values(d.golpes || {});
     const sup = golpes.find(g => g.supremo);
     const formas = Object.values(d.formas).map(f => f.nome).filter(Boolean);
@@ -176,7 +226,7 @@ FF.Selecao = {
           cv.width = 134; cv.height = 70;
           s.appendChild(cv);
           const n = document.createElement('span');
-          const d = this.defs[id], fId = this.formaDe(lado, i), fm = d.formas[fId] || {};
+          const d = this.d(id), fId = this.formaDe(lado, i), fm = d.formas[fId] || {};
           n.textContent = fId !== (d.formaInicial || 'base') && fm.nome ? (fm.nome.includes(d.nome) ? fm.nome : d.nome + ' · ' + fm.nome) : d.nome;
           s.appendChild(n);
           FF.Retrato.noCanvas(cv, d, fId, 'banner', { espelhar: lado === 'inimigos', cor1: lado === 'herois' ? '#1d3a7a' : '#6a1414', cor2: '#0c0f22' });
@@ -217,7 +267,7 @@ FF.Selecao = {
     // times desiguais: o lado menor ganha vida e um pouco de ataque (como nas lutas 3 contra 1 da história)
     if (nh > ni) {
       for (const id of new Set(times.inimigos)) {
-        const a = this.defs[id].atributos;
+        const a = this.d(id).atributos;
         def.ajustes[id] = { hp: Math.round(a.hp * (0.8 * nh / ni + 0.2)), ataque: Math.round(a.ataque * (1 + 0.12 * (nh - ni))) };
       }
     }

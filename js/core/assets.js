@@ -115,6 +115,13 @@ FF.Assets = {
     if (!fonte) fonte = await this.loadJSON('data/sprites/' + id + '.json');
     const def = JSON.parse(JSON.stringify(fonte));
     const info = FF.Edicoes && (FF.Edicoes.dados().spritesInfo || {})[id];
+    // lutador do elenco (acervo): escala para o tamanho dos outros, pé na base do desenho, sprite que olha para a esquerda
+    const aj = FF.Elenco && FF.Elenco.ajustes[id];
+    if (aj) {
+      if (aj.escala && !def.escala) def.escala = aj.escala;
+      if (aj.dy) Object.values(def.anims || {}).forEach(a => a.frames.forEach(f => { f[6] += aj.dy; }));
+      if (aj.espelhar) def.espelhar = true;
+    }
     if (info && info.escala) { def._escalaOrig = def.escala; def.escala = info.escala; }
     // imagens extras (quadros trazidos do computador para um sprite do jogo, no Estúdio)
     if (info && Array.isArray(info.atlas) && info.atlas.length) { def._atlasBase = def.atlases.length; def.atlases = def.atlases.concat(info.atlas); }
@@ -132,7 +139,8 @@ FF.Assets = {
   async loadCharacter(id) {
     let def = null;
     const ed = FF.Edicoes && (FF.Edicoes.dados().personagens || {})[id];
-    if (!(ed && ed.novo)) def = JSON.parse(JSON.stringify(await this.loadJSON('data/characters/' + id + '.json')));
+    if (FF.Elenco && FF.Elenco.eh(id)) { await FF.Elenco.garantir(id); def = FF.Elenco.def(id); }   // elenco da Batalha Livre (acervo)
+    else if (!(ed && ed.novo)) def = JSON.parse(JSON.stringify(await this.loadJSON('data/characters/' + id + '.json')));
     if (FF.Edicoes) def = FF.Edicoes.aplicarPersonagem(id, def);     // atributos/formas/buffs/IA do Estúdio
     return FF.Edicoes ? FF.Edicoes.aplicarGolpes(def) : def;         // golpes alterados no Estúdio
   },
