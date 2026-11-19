@@ -98,12 +98,16 @@ window.FF = window.FF || {};
       l.forEach(v => { FF.Edicoes.setDepois(['sprites', v.id, v.a], { apagada: true }); const set = FF.Assets.sprites[v.id]; if (set) FF.Mods.aplicar(v.id, set); });
       marcados.clear(); E.aviso('🗑 ' + l.length + ' animações excluídas (Lixeira, no fim da coluna, para restaurar).'); render();
     }, 'Excluir todas as marcadas (vão para a Lixeira)', 'es-bt-perigo');
-    const btUsarSel = o.aoEscolherVarios ? E.botao('➕ Pôr na trilha', async () => {
-      const l = [...marcados.values()];
+    // clicar num cartão só MARCA (pedido do usuário); quem usa é este botão (ou duplo clique no cartão)
+    const usar = async (l) => {
       if (!l.length) return;
-      for (const v of l) await FF.Assets.loadSprite(v.id).catch(() => null);
-      o.aoEscolherVarios(l.map(v => [v.a, v.id])); m.fechar();
-    }, 'Coloca todas as marcadas na trilha, uma depois da outra (na ordem em que foram marcadas)', 'es-bt-ouro') : null;
+      for (const v of l) await FF.Assets.loadSprite(v.id).catch(() => null);   // quem escolhe já recebe o sprite pronto
+      if (o.aoEscolherVarios && l.length > 1) o.aoEscolherVarios(l.map(v => [v.a, v.id]));
+      else o.aoEscolher(l[0].a, l[0].id);
+      m.fechar();
+    };
+    const btUsarSel = E.botao(o.aoEscolherVarios ? '➕ Pôr na trilha' : '✔ Usar', () => usar([...marcados.values()]),
+      o.aoEscolherVarios ? 'Coloca as marcadas na trilha, uma depois da outra (na ordem em que foram marcadas)' : 'Usa a animação marcada', 'es-bt-ouro');
     // ✂ atalho para a aba Sprites (editar os quadros da animação); fecha o seletor
     const editar = async (id, a) => { m.fechar(); await E.editarSprite(id, a); };
     const btEdSel = E.botao('✂ Editar na aba Sprites', () => { const v = [...marcados.values()][0]; if (v) editar(v.id, v.a); }, 'Abre a animação marcada na aba Sprites (editar quadros, origem, velocidade…). Marque só uma.');
@@ -112,10 +116,11 @@ window.FF = window.FF || {};
     const pintarMarcas = () => {
       grade.querySelectorAll('.es-cartao[data-k]').forEach(k => { const on = marcados.has(k.dataset.k); k.classList.toggle('marcado', on); const ch = k.querySelector('.es-cartao-chk'); if (ch) ch.checked = on; });
       const n = marcados.size;
-      txtSel.textContent = n ? '☑ ' + n + ' marcada(s)' : '☐ Marque vários (caixinha, Ctrl/Shift+clique ou arraste uma caixa no espaço vazio)';
+      txtSel.textContent = n ? '☑ ' + n + ' marcada(s)' : '☐ Clique para marcar (Shift = intervalo, ou arraste uma caixa no espaço vazio) · duplo clique usa na hora';
       [btLimpar, btFavSel, btDelSel, btUsarSel].forEach(b => { if (b) b.disabled = !n; });
       btEdSel.disabled = n !== 1;
-      if (btUsarSel) btUsarSel.textContent = n > 1 ? '➕ Pôr os ' + n + ' na trilha' : '➕ Pôr na trilha';
+      if (o.aoEscolherVarios) btUsarSel.textContent = n > 1 ? '➕ Pôr os ' + n + ' na trilha' : '➕ Pôr na trilha';
+      else { btUsarSel.textContent = '✔ Usar'; btUsarSel.disabled = n !== 1; btUsarSel.title = n > 1 ? 'Aqui só dá para usar uma: deixe só uma marcada' : 'Usa a animação marcada'; }
       barraSel.classList.toggle('ativa', n > 0);
     };
     const alternar = (x, idx, ev) => {
@@ -382,11 +387,8 @@ window.FF = window.FF || {};
           if (FF.EstudioProps && FF.EstudioProps.animarNoMouse) FF.EstudioProps.animarNoMouse(k, cv, s, x.a);
         };
         if (x.s) desenhar(x.s); else desenharQuando(k, x.id, desenhar);
-        k.onclick = async (ev) => {
-          if (ev.ctrlKey || ev.metaKey || ev.shiftKey || marcados.size) { alternar(x, idx, ev); return; }   // marcando vários: clique marca
-          if (!x.s) await FF.Assets.loadSprite(x.id).catch(() => null);   // quem escolhe já recebe o sprite pronto
-          o.aoEscolher(x.a, x.id); m.fechar();
-        };
+        k.onclick = (ev) => alternar(x, idx, ev);   // clique marca/desmarca; Shift = intervalo
+        k.addEventListener('dblclick', (ev) => { ev.preventDefault(); usar([{ id: x.id, a: x.a }]); });   // atalho: usa este na hora
         grade.appendChild(k);
       });
       if (!itens.length) grade.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';

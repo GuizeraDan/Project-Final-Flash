@@ -103,7 +103,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.some(t => /zl3_cenario_namek · porunga/.test(t)), 'busca "porunga" acha o cenário de Namek (' + s.length + ')');
   await p.fill('.es-seletor input[type=search]', 'Special_DeathSlash');
   await p.waitForFunction(() => [...document.querySelectorAll('.es-seletor .es-cartao')].some(k => /zl3_freeza/.test(k.title)), null, { timeout: 15000 });
-  await p.click('.es-seletor .es-cartao[title^="zl3_freeza"]');
+  await p.dblclick('.es-seletor .es-cartao[title^="zl3_freeza"]');   // clique marca; duplo clique usa
   await p.waitForTimeout(300);
   ok(escolhido && escolhido[1] === 'zl3_freeza' && escolhido[0] === 'Special_DeathSlash', 'escolher cartão do acervo devolve sprite + animação (' + escolhido + ')');
   ok(await p.evaluate(() => !!FF.Assets.sprites.zl3_freeza), 'sprite escolhido já fica carregado para o golpe');

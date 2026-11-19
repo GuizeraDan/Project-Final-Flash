@@ -19,7 +19,7 @@ const { chromium } = require('playwright');
   await p.fill('.es-seletor input[type=search]', 'Bills_Esfera');
   await p.waitForTimeout(800);
   await p.screenshot({ path: require('os').tmpdir() + '/ff_sel2.png' });
-  await p.locator('.es-seletor .es-cartao', { hasText: 'Bills_Esfera' }).first().click();
+  await p.locator('.es-seletor .es-cartao', { hasText: 'Bills_Esfera' }).first().dblclick();   // clique só marca; duplo clique usa
   const ef = await p.evaluate(() => FF.Estudio.Golpes.clipe());
   ok(ef.fx.startsWith('Bills_Esfera') && ef.sprite === 'bills', 'efeito do Bills no golpe do Kuririn: ' + ef.fx + ' / ' + ef.sprite);
   // animação emprestada: Kuririn com uma animação do Bills
@@ -30,7 +30,7 @@ const { chromium } = require('playwright');
   await p.click('.es-seletor .es-seletor-fonte[data-fonte="bills"]');
   await p.waitForTimeout(800);
   await p.screenshot({ path: require('os').tmpdir() + '/ff_sel3.png' });
-  await p.locator('.es-seletor .es-cartao').nth(2).click();
+  await p.locator('.es-seletor .es-cartao').nth(2).dblclick();
   const an = await p.evaluate(() => FF.Estudio.Golpes.clipe());
   ok(an.sprite === 'bills', 'animação emprestada do Bills: ' + an.anim);
   await p.evaluate(() => FF.Estudio.Golpes.irPara(0.2));
