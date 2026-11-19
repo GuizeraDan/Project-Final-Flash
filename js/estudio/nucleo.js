@@ -78,11 +78,16 @@ FF.Estudio = {
     aside.classList.add('es-lado-red', lado === 'dir' ? 'red-dir' : 'red-esq');
     const alca = this.el('div', 'es-lado-alca');
     alca.title = 'Arraste para mudar a largura (duplo clique: largura normal)';
+    // botão » / « no título da coluna (1º .es-titulo), longe das barras de rolagem
     const bt = this.el('button', 'es-lado-bt');
-    alca.appendChild(bt);
     aside.appendChild(alca);
-    // quem redesenha a coluna com innerHTML = '' apaga a alça: põe de volta
-    new MutationObserver(() => { if (alca.parentNode !== aside) aside.appendChild(alca); }).observe(aside, { childList: true });
+    const colocar = () => {
+      if (alca.parentNode !== aside) aside.appendChild(alca);   // quem redesenha a coluna com innerHTML = '' apaga a alça
+      const tit = aside.querySelector(':scope > .es-titulo');
+      if (tit && bt.parentNode !== tit) tit.appendChild(bt);
+    };
+    colocar();
+    new MutationObserver(colocar).observe(aside, { childList: true, subtree: true });   // título reescrito (textContent) também perde o botão
     const normal = () => { aside.style.width = ''; return aside.getBoundingClientRect().width; };
     const max = () => Math.max(260, Math.round(innerWidth * 0.6));
     let base = 0;
