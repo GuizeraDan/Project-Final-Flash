@@ -2,7 +2,7 @@
 // acervo completo do Z Legends 3), para qualquer personagem. À esquerda escolhe a fonte (Efeitos, Tudo, um sprite
 // ou uma categoria do acervo), à direita a grade com busca.
 //   FF.Estudio.escolherSprite({ titulo, atual: {sprite, anim}, inicio: 'efeitos'|'todos'|'cat:<categoria>'|<id do sprite>,
-//                               aoEscolher(anim, spriteId), limpar?() })
+//                               aoEscolher(anim, spriteId), limpar?(), aoEscolherVarios?([[anim, spriteId], ...]) })
 // Os sprites do acervo só são baixados quando o cartão aparece na tela (a lista de animações vem do índice).
 window.FF = window.FF || {};
 
@@ -65,7 +65,83 @@ window.FF = window.FF || {};
     topo.append(busca, info, selTam, btCheia);
     if (o.limpar) topo.appendChild(E.botao('Nenhum', () => { o.limpar(); m.fechar(); }));
     const grade = E.el('div', 'es-grade');
-    dir.append(topo, grade);
+    // ☑ seleção de vários: caixinha no cartão, Ctrl/Shift+clique ou arrastar uma caixa no espaço vazio da grade
+    const marcados = new Map();   // 'sprite|anim' → {id, a}
+    const chave = (x) => x.id + '|' + x.a;
+    let visiveis = [], ultimoMarcado = -1;
+    const barraSel = E.el('div', 'es-sons-sel es-seletor-sel');
+    const txtSel = E.el('span');
+    const btTodos = E.botao('Marcar todos', () => { visiveis.forEach(x => marcados.set(chave(x), { id: x.id, a: x.a })); pintarMarcas(); }, 'Marca todas as animações mostradas agora');
+    const btLimpar = E.botao('Limpar', () => { marcados.clear(); pintarMarcas(); }, 'Desmarcar todos');
+    const btFavSel = E.botao('⭐ Favoritar / pasta', () => {
+      if (!marcados.size || !FF.Favoritos) return;
+      FF.Favoritos.menuVarios(btFavSel, [...marcados.values()].map(v => ({ sprite: v.id, anim: v.a })), () => { contarFav(); render(); });
+    }, 'Favoritar ou pôr numa pasta todas as marcadas de uma vez');
+    const btDelSel = E.botao('🗑 Excluir', async () => {
+      if (!marcados.size || !FF.Mods) return;
+      const l = [...marcados.values()];
+      const ok = await E.escolha('🗑 Excluir animações', 'Excluir as ' + l.length + ' animações marcadas? Elas vão para a Lixeira (fim da coluna da esquerda), de onde dá para restaurar.',
+        [{ txt: '🗑 Excluir ' + l.length, valor: true, cls: 'es-bt-perigo' }, { txt: 'Cancelar', valor: false }]);
+      if (!ok) return;
+      l.forEach(v => { FF.Edicoes.setDepois(['sprites', v.id, v.a], { apagada: true }); const set = FF.Assets.sprites[v.id]; if (set) FF.Mods.aplicar(v.id, set); });
+      marcados.clear(); E.aviso('🗑 ' + l.length + ' animações excluídas (Lixeira, no fim da coluna, para restaurar).'); render();
+    }, 'Excluir todas as marcadas (vão para a Lixeira)', 'es-bt-perigo');
+    const btUsarSel = o.aoEscolherVarios ? E.botao('➕ Pôr na trilha', async () => {
+      const l = [...marcados.values()];
+      if (!l.length) return;
+      for (const v of l) await FF.Assets.loadSprite(v.id).catch(() => null);
+      o.aoEscolherVarios(l.map(v => [v.a, v.id])); m.fechar();
+    }, 'Coloca todas as marcadas na trilha, uma depois da outra (na ordem em que foram marcadas)', 'es-bt-ouro') : null;
+    // ✂ atalho para a aba Sprites (editar os quadros da animação); fecha o seletor
+    const editar = async (id, a) => { m.fechar(); await E.editarSprite(id, a); };
+    const btEdSel = E.botao('✂ Editar na aba Sprites', () => { const v = [...marcados.values()][0]; if (v) editar(v.id, v.a); }, 'Abre a animação marcada na aba Sprites (editar quadros, origem, velocidade…). Marque só uma.');
+    barraSel.append(txtSel, btTodos, btLimpar, btFavSel, btEdSel, btDelSel);
+    if (btUsarSel) barraSel.appendChild(btUsarSel);
+    const pintarMarcas = () => {
+      grade.querySelectorAll('.es-cartao[data-k]').forEach(k => { const on = marcados.has(k.dataset.k); k.classList.toggle('marcado', on); const ch = k.querySelector('.es-cartao-chk'); if (ch) ch.checked = on; });
+      const n = marcados.size;
+      txtSel.textContent = n ? '☑ ' + n + ' marcada(s)' : '☐ Marque vários (caixinha, Ctrl/Shift+clique ou arraste uma caixa no espaço vazio)';
+      [btLimpar, btFavSel, btDelSel, btUsarSel].forEach(b => { if (b) b.disabled = !n; });
+      btEdSel.disabled = n !== 1;
+      if (btUsarSel) btUsarSel.textContent = n > 1 ? '➕ Pôr os ' + n + ' na trilha' : '➕ Pôr na trilha';
+      barraSel.classList.toggle('ativa', n > 0);
+    };
+    const alternar = (x, idx, ev) => {
+      if (ev && ev.shiftKey && ultimoMarcado >= 0) {   // Shift: marca o intervalo
+        const [a, b] = idx < ultimoMarcado ? [idx, ultimoMarcado] : [ultimoMarcado, idx];
+        visiveis.slice(a, b + 1).forEach(y => marcados.set(chave(y), { id: y.id, a: y.a }));
+      } else if (marcados.has(chave(x))) marcados.delete(chave(x));
+      else marcados.set(chave(x), { id: x.id, a: x.a });
+      ultimoMarcado = idx; pintarMarcas();
+    };
+    // caixa de seleção arrastando no espaço vazio da grade
+    grade.addEventListener('pointerdown', (ev) => {
+      if (ev.button !== 0 || ev.target.closest('.es-cartao')) return;
+      const r0 = grade.getBoundingClientRect();
+      const x0 = ev.clientX - r0.left + grade.scrollLeft, y0 = ev.clientY - r0.top + grade.scrollTop;
+      const caixaSel = E.el('div', 'es-caixa-sel'); grade.appendChild(caixaSel);
+      const base = new Map(ev.ctrlKey || ev.metaKey || ev.shiftKey ? marcados : []);
+      let moveu = false;
+      const mover = (e) => {
+        const r = grade.getBoundingClientRect();
+        const x1 = e.clientX - r.left + grade.scrollLeft, y1 = e.clientY - r.top + grade.scrollTop;
+        if (!moveu && Math.abs(x1 - x0) + Math.abs(y1 - y0) < 6) return;
+        moveu = true;
+        const L = Math.min(x0, x1), T = Math.min(y0, y1), W = Math.abs(x1 - x0), H = Math.abs(y1 - y0);
+        Object.assign(caixaSel.style, { left: L + 'px', top: T + 'px', width: W + 'px', height: H + 'px' });
+        marcados.clear(); base.forEach((v, k) => marcados.set(k, v));
+        grade.querySelectorAll('.es-cartao[data-k]').forEach(k => {
+          const kx = k.offsetLeft, ky = k.offsetTop;
+          if (kx < L + W && kx + k.offsetWidth > L && ky < T + H && ky + k.offsetHeight > T) { const [id, ...a] = k.dataset.k.split('|'); marcados.set(k.dataset.k, { id, a: a.join('|') }); }
+        });
+        pintarMarcas();
+        if (e.clientY > r.bottom - 20) grade.scrollTop += 16; else if (e.clientY < r.top + 20) grade.scrollTop -= 16;
+      };
+      const soltar = () => { caixaSel.remove(); removeEventListener('pointermove', mover); removeEventListener('pointerup', soltar); };
+      addEventListener('pointermove', mover); addEventListener('pointerup', soltar);
+      ev.preventDefault();
+    });
+    dir.append(topo, grade, barraSel);
     c.append(lado, dir);
     const m = E.modal(o.titulo || '🖼 Escolher sprite', c, { larga: true });
     const caixa = m.el.querySelector('.es-modal-caixa');
@@ -159,8 +235,17 @@ window.FF = window.FF || {};
     bt('todos', '★ Tudo', null);
     lado.appendChild(favBox); contarFav();
     { const b = E.el('div', 'es-item es-seletor-fonte' + (fonte === 'lixeira' ? ' sel' : '')); b.dataset.fonte = 'lixeira'; b.appendChild(E.el('span', null, '🗑 Lixeira (excluídos)')); b.onclick = () => { fonte = 'lixeira'; marcar(); render(); }; lado.appendChild(b); }
-    lado.appendChild(E.el('div', 'es-sub', 'Do jogo (' + jogo.length + ')'));
-    jogo.forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null), id));
+    {   // "Do jogo": abre/fecha como as categorias do acervo (fechado fica lembrado)
+      const cab = E.el('div', 'es-seletor-cat'), corpo = E.el('div', 'es-seletor-cat-corpo');
+      let fechado = !!E.rascunho.ler('seletor_jogo_fechado'), montado = false;
+      const ap = () => {
+        cab.textContent = (fechado ? '▸ ' : '▾ ') + '🎮 Do jogo (' + jogo.length + ')';
+        corpo.style.display = fechado ? 'none' : '';
+        if (!fechado && !montado) { montado = true; jogo.forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null, corpo), id)); marcar(); }
+      };
+      cab.onclick = () => { fechado = !fechado; E.rascunho.gravar('seletor_jogo_fechado', fechado || null); ap(); };
+      lado.append(cab, corpo); ap();
+    }
 
     if (acervo.length) {
       lado.appendChild(E.el('div', 'es-sub', 'Acervo (' + acervo.length + ')'));
@@ -236,9 +321,14 @@ window.FF = window.FF || {};
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
       info.textContent = itens.length + ' animação(ões)' + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
-      itens.slice(0, 400).forEach(x => {
+      visiveis = itens.slice(0, 400); ultimoMarcado = -1;
+      visiveis.forEach((x, idx) => {
         const sel = o.atual && x.a === o.atual.anim && (!o.atual.sprite || o.atual.sprite === x.id);
         const k = E.el('div', 'es-cartao' + (sel ? ' sel' : ''));
+        k.dataset.k = chave(x);
+        const chk = document.createElement('input'); chk.type = 'checkbox'; chk.className = 'es-cartao-chk'; chk.title = 'Marcar (para favoritar, excluir ou pôr na trilha vários de uma vez)';
+        chk.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); alternar(x, idx, e); });
+        chk.addEventListener('pointerdown', (e) => e.stopPropagation());
         const cv = document.createElement('canvas'); cv.width = TAMS[tam][0]; cv.height = TAMS[tam][1];
         const inf = E.el('small', 'es-cartao-info'); inf.textContent = x.n + ' quadro' + (x.n === 1 ? '' : 's');
         const sp = E.el('span'); sp.textContent = FF.Assets.nomeAnim(x.id, x.a);
@@ -247,9 +337,10 @@ window.FF = window.FF || {};
         sb.title = 'Duplo clique para renomear o sprite';
         sb.addEventListener('dblclick', (e) => { e.stopPropagation(); E.editarNoLugar(sb, sb.textContent, (v) => E.mudarInfoSprite(x.id, { nome: v.trim() && v.trim() !== (FF.Assets.acervo()[x.id] || [])[1] ? v.trim() : null })); });
         k.title = x.id + ' · ' + x.a + (FF.Assets.nomeAnim(x.id, x.a) !== x.a ? ' (renomeada: ' + FF.Assets.nomeAnim(x.id, x.a) + ')' : '') + ' (' + x.n + ' quadros)';
-        k.append(cv, sp, sb, inf);
+        k.append(cv, sp, sb, inf, chk);
         if (FF.Favoritos) k.appendChild(FF.Favoritos.botao(x.id, x.a, () => { contarFav(); if (favs) render(); }));
         { const ren = E.botao('✏', (e) => { e.stopPropagation(); e.preventDefault(); E.editarNoLugar(sp, FF.Assets.nomeAnim(x.id, x.a), (v) => { E.renomearAnim(x.id, x.a, v); sp.classList.toggle('renomeado', !!v.trim() && v.trim() !== x.a); }); }, 'Renomear esta animação (só o nome que aparece; o golpe continua igual)', 'es-fav-bt es-cartao-ren'); ren.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(ren); }
+        { const ed = E.botao('✂', (e) => { e.stopPropagation(); e.preventDefault(); editar(x.id, x.a); }, 'Editar esta animação na aba Sprites (quadros, origem, velocidade…)', 'es-fav-bt es-cartao-ed'); ed.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(ed); }
         if (FF.Mods) { const del = E.botao('🗑', (e) => { e.stopPropagation(); e.preventDefault(); FF.Mods.apagar(x.id, x.a); k.remove(); E.aviso('🗑 Animação "' + x.a + '" excluída (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir esta animação (vai para a Lixeira)', 'es-fav-bt es-cartao-del'); del.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(del); }
         const desenhar = (s) => {
           if (!s.has(x.a)) return;
@@ -259,19 +350,22 @@ window.FF = window.FF || {};
           if (FF.EstudioProps && FF.EstudioProps.animarNoMouse) FF.EstudioProps.animarNoMouse(k, cv, s, x.a);
         };
         if (x.s) desenhar(x.s); else desenharQuando(k, x.id, desenhar);
-        k.onclick = async () => {
+        k.onclick = async (ev) => {
+          if (ev.ctrlKey || ev.metaKey || ev.shiftKey || marcados.size) { alternar(x, idx, ev); return; }   // marcando vários: clique marca
           if (!x.s) await FF.Assets.loadSprite(x.id).catch(() => null);   // quem escolhe já recebe o sprite pronto
           o.aoEscolher(x.a, x.id); m.fechar();
         };
         grade.appendChild(k);
       });
       if (!itens.length) grade.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';
+      pintarMarcas();
       if (sel0) { const s = grade.querySelector('.es-cartao.sel'); if (s) s.scrollIntoView({ block: 'center' }); sel0 = false; }
     };
     let sel0 = true;
     // 🗑 Lixeira: sprites e animações excluídos, com "Restaurar"
     function renderLixeira() {
       grade.innerHTML = '';
+      visiveis = [];
       const spr = FF.Assets.listaSprites(true).filter(id => FF.Assets.spriteOculto(id));
       const anims = [];
       Object.entries((FF.Mods && FF.Mods.ler()) || {}).forEach(([id, m]) => Object.entries(m || {}).forEach(([a, v]) => { if (v && v.apagada) anims.push({ id, a }); }));

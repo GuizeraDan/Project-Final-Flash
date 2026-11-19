@@ -2,7 +2,7 @@
 
 Sprites extraídos dos jogos da pasta `Project Final Flash Sprites` (`tools/extrair_acervo.py` para o Z Legends 3, `tools/extrair_jogos.py` para os outros). Cada sprite fica em `data/acervo/<id>.js` + `assets/img/acervo/<id>_<n>.png` e aparece no Estúdio (aba Sprites e seletor de sprites). Nomes de animação são os do jogo de origem.
 
-**11154 sprites · 89962 animações · 339447 quadros.**
+**11154 sprites · 89962 animações · 341639 quadros.**
 
 ## Z Legends 3 (326 sprites)
 
@@ -1462,55 +1462,55 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | Sprite | Nome | Tipo | Animações | Quadros | Origem |
 |---|---|---|---|---|---|
 | `kaw_android_17` | Androide 17 | Personagens | 117 | 331 | Android_17 |
-| `kaw_android_18` | Androide 18 | Personagens | 153 | 468 | Android_18 |
+| `kaw_android_18` | Androide 18 | Personagens | 153 | 528 | Android_18 |
 | `kaw_baby_vegeta` | Baby Vegeta | Personagens | 143 | 335 | Baby Vegeta |
-| `kaw_babyvegeta` | Baby Vegeta (versão 2) | Personagens | 185 | 696 | BabyVegeta |
-| `kaw_bardock_ui` | Bardock Instinto Superior | Personagens | 167 | 858 | Bardock UI |
+| `kaw_babyvegeta` | Baby Vegeta (versão 2) | Personagens | 185 | 698 | BabyVegeta |
+| `kaw_bardock_ui` | Bardock Instinto Superior | Personagens | 167 | 905 | Bardock UI |
 | `kaw_beerus` | Bills | Personagens | 217 | 620 | Beerus |
 | `kaw_black_frieza` | Black Freeza | Personagens | 236 | 570 | Black Frieza |
 | `kaw_black_frieza_v2` | Black Freeza (versão 2) | Personagens | 184 | 687 | Black Frieza V2 |
 | `kaw_broly_2019` | Broly (filme 2018) | Personagens | 333 | 366 | Broly 2019 |
 | `kaw_broly_dbs` | Broly (Super) | Personagens | 178 | 562 | Broly (DBS) |
 | `kaw_broly` | Broly (Z) | Personagens | 189 | 870 | Broly |
-| `kaw_ssj4blory_kn_edit` | Broly SSJ4 | Personagens | 216 | 1806 | SSJ4Blory_KN.edit |
+| `kaw_ssj4blory_kn_edit` | Broly SSJ4 | Personagens | 216 | 1888 | SSJ4Blory_KN.edit |
 | `kaw_txr_broly_ss4` | Broly SSJ4 (TXR) | Personagens | 218 | 812 | TXR-Broly_SS4 |
-| `kaw_semi_perfect_cell` | Cell Semiperfeito | Personagens | 192 | 693 | Semi Perfect Cell |
-| `kaw_cellbuuzer` | Cell-Boo-Freeza (fusão) | Personagens | 148 | 684 | Cellbuuzer |
+| `kaw_semi_perfect_cell` | Cell Semiperfeito | Personagens | 192 | 742 | Semi Perfect Cell |
+| `kaw_cellbuuzer` | Cell-Boo-Freeza (fusão) | Personagens | 148 | 683 | Cellbuuzer |
 | `kaw_golden_cooler` | Cooler Dourado | Personagens | 307 | 959 | Golden Cooler |
-| `kaw_frieza` | Freeza | Personagens | 247 | 526 | Frieza |
+| `kaw_frieza` | Freeza | Personagens | 247 | 540 | Frieza |
 | `kaw_frost_golden` | Frost Dourado | Personagens | 132 | 225 | Frost Golden |
-| `kaw_gas_heata_by_charmarher` | Gas (Heeters) | Personagens | 129 | 387 | Gas Heata By Charmarher |
+| `kaw_gas_heata_by_charmarher` | Gas (Heeters) | Personagens | 129 | 379 | Gas Heata By Charmarher |
 | `kaw_ginyu` | Ginyu (corpo do Goku) | Personagens | 132 | 501 | Ginyu |
 | `kaw_gogeto` | Gogeta | Personagens | 128 | 1088 | Gogeto |
 | `kaw_gogeta_migatte` | Gogeta Instinto Superior | Personagens | 163 | 631 | Gogeta_Migatte |
 | `kaw_gohan` | Gohan | Personagens | 209 | 518 | Gohan |
-| `kaw_gohan_beast` | Gohan Besta | Personagens | 154 | 475 | Gohan Beast |
-| `kaw_black_gohan` | Gohan Black | Personagens | 155 | 604 | Black Gohan |
+| `kaw_gohan_beast` | Gohan Besta | Personagens | 154 | 510 | Gohan Beast |
+| `kaw_black_gohan` | Gohan Black | Personagens | 155 | 670 | Black Gohan |
 | `kaw_future_gohan` | Gohan do Futuro | Personagens | 263 | 657 | Future_Gohan |
-| `kaw_gohan_ssjblue` | Gohan SSJ Blue | Personagens | 171 | 1152 | Gohan SSJBlue |
-| `kaw_gohan_teen_ssj2` | Gohan SSJ2 (adolescente) | Personagens | 137 | 395 | Gohan Teen SSJ2 |
+| `kaw_gohan_ssjblue` | Gohan SSJ Blue | Personagens | 171 | 1201 | Gohan SSJBlue |
+| `kaw_gohan_teen_ssj2` | Gohan SSJ2 (adolescente) | Personagens | 137 | 409 | Gohan Teen SSJ2 |
 | `kaw_black_gokhan` | Gokhan Black (fusão Goku+Gohan) | Personagens | 232 | 767 | Black Gokhan |
 | `kaw_goku_1000_tp_v1` | Goku (1000 TP) | Personagens | 233 | 942 | Goku 1000_TP V1 |
 | `kaw_goku_dr` | Goku (DR) | Personagens | 163 | 705 | Goku DR |
-| `kaw_goku_jus3x` | Goku (JUS 3) | Personagens | 543 | 1400 | Goku_JUS3X |
+| `kaw_goku_jus3x` | Goku (JUS 3) | Personagens | 543 | 1470 | Goku_JUS3X |
 | `kaw_goku_jus4` | Goku (JUS 4) | Personagens | 1209 | 6285 | Goku_JUS4 |
 | `kaw_tta_goku_jus_v2` | Goku (JUS, pequeno) | Personagens | 233 | 304 | TTA'Goku JUS_V2 |
 | `kaw_goku_monkey_king` | Goku (Rei Macaco) | Personagens | 1174 | 2554 | Goku (Monkey King) |
-| `kaw_goku` | Goku (todas as formas) | Personagens | 934 | 2255 | Goku |
+| `kaw_goku` | Goku (todas as formas) | Personagens | 934 | 2386 | Goku |
 | `kaw_goku10` | Goku (versão 10) | Personagens | 1108 | 2451 | Goku10 |
-| `kaw_goku_beyond_ssb` | Goku Além do SSJ Blue | Personagens | 159 | 641 | Goku Beyond SSB |
+| `kaw_goku_beyond_ssb` | Goku Além do SSJ Blue | Personagens | 159 | 686 | Goku Beyond SSB |
 | `kaw_goku_black_ssr` | Goku Black Rosé | Personagens | 197 | 682 | Goku Black (SSR) |
 | `kaw_black` | Goku Black Rosé (InSeph) | Personagens | 172 | 602 | Black |
 | `kaw_blackssr` | Goku Black Rosé (SSR) | Personagens | 186 | 525 | BlackSSR |
 | `kaw_goku_mui` | Goku Instinto Superior | Personagens | 304 | 804 | Goku MUI |
 | `kaw_dripstinct_goku` | Goku Instinto Superior (roupa casual) | Personagens | 125 | 287 | Dripstinct Goku |
 | `kaw_goku_mui_v2` | Goku Instinto Superior (versão 2) | Personagens | 228 | 778 | Goku (MUI) |
-| `kaw_goku_oozaru_brm` | Goku Oozaru | Personagens | 137 | 927 | Goku Oozaru BRM |
+| `kaw_goku_oozaru_brm` | Goku Oozaru | Personagens | 137 | 938 | Goku Oozaru BRM |
 | `kaw_goku_ssj` | Goku SSJ | Personagens | 192 | 707 | Goku (SSJ) |
 | `kaw_gokussgss` | Goku SSJ Blue | Personagens | 169 | 464 | GokuSSGSS |
 | `kaw_goku_ssgss_team_shonen` | Goku SSJ Blue (Team Shonen) | Personagens | 223 | 946 | Goku SSGSS (Team Shonen) |
 | `kaw_goku_perfect_ssb` | Goku SSJ Blue Perfeito | Personagens | 149 | 570 | Goku_Perfect SSB |
-| `kaw_ssj3_gokuz2i` | Goku SSJ3 | Personagens | 729 | 2041 | SSJ3_GokuZ2i |
+| `kaw_ssj3_gokuz2i` | Goku SSJ3 | Personagens | 729 | 2039 | SSJ3_GokuZ2i |
 | `kaw_gokuss6` | Goku SSJ6 (fã) | Personagens | 123 | 370 | GokuSS6 |
 | `kaw_gokuterror` | Goku Terror (fã) | Personagens | 291 | 1414 | GokuTerror |
 | `kaw_granola` | Granola | Personagens | 138 | 590 | Granola |
@@ -1518,7 +1518,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_janemba` | Janemba | Personagens | 210 | 1042 | Janemba |
 | `kaw_jiren` | Jiren | Personagens | 208 | 746 | Jiren |
 | `kaw_mecha_frieza` | Mecha Freeza | Personagens | 113 | 144 | mecha_frieza |
-| `kaw_metal_cooler` | Metal Cooler | Personagens | 142 | 510 | Metal Cooler |
+| `kaw_metal_cooler` | Metal Cooler | Personagens | 142 | 552 | Metal Cooler |
 | `kaw_nappa` | Nappa | Personagens | 126 | 434 | Nappa |
 | `kaw_nuova_shenron` | Nuova Shenron | Personagens | 139 | 761 | Nuova Shenron |
 | `kaw_omega_shenron` | Omega Shenron | Personagens | 149 | 420 | Omega Shenron |
@@ -1532,16 +1532,16 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_tnd_vegeta_ultra_ego` | Vegeta Ego Superior | Personagens | 281 | 1512 | TND-Vegeta_Ultra_ego |
 | `kaw_vegeta_ssj7` | Vegeta SSJ3 | Personagens | 136 | 638 | Vegeta ssj7 |
 | `kaw_vegeta_ss6` | Vegeta SSJ4 Xeno | Personagens | 299 | 577 | Vegeta SS6 |
-| `kaw_super_vegetto` | Vegetto SSJ | Personagens | 164 | 706 | Super Vegetto |
+| `kaw_super_vegetto` | Vegetto SSJ | Personagens | 164 | 737 | Super Vegetto |
 | `kaw_vegito_ssb` | Vegetto SSJ Blue | Personagens | 199 | 700 | Vegito (SSB) |
-| `kaw_vegetto_jus3` | Vegetto SSJ Blue (JUS) | Personagens | 185 | 628 | Vegetto JUS3 |
+| `kaw_vegetto_jus3` | Vegetto SSJ Blue (JUS) | Personagens | 185 | 630 | Vegetto JUS3 |
 | `kaw_vegitoblue` | Vegetto SSJ Blue (versão 2) | Personagens | 270 | 857 | VegitoBlue |
 | `kaw_zamasufused` | Zamasu Fundido | Personagens | 164 | 675 | ZamasuFused |
 | `kaw_android_17_efeitos` | Androide 17 · efeitos | Efeitos | 32 | 418 | Android_17 |
-| `kaw_android_18_efeitos` | Androide 18 · efeitos | Efeitos | 31 | 345 | Android_18 |
+| `kaw_android_18_efeitos` | Androide 18 · efeitos | Efeitos | 31 | 428 | Android_18 |
 | `kaw_babyvegeta_efeitos` | Baby Vegeta (versão 2) · efeitos | Efeitos | 19 | 548 | BabyVegeta |
 | `kaw_baby_vegeta_efeitos` | Baby Vegeta · efeitos | Efeitos | 51 | 599 | Baby Vegeta |
-| `kaw_bardock_ui_efeitos` | Bardock Instinto Superior · efeitos | Efeitos | 53 | 1038 | Bardock UI |
+| `kaw_bardock_ui_efeitos` | Bardock Instinto Superior · efeitos | Efeitos | 53 | 1116 | Bardock UI |
 | `kaw_beerus_efeitos` | Bills · efeitos | Efeitos | 72 | 987 | Beerus |
 | `kaw_black_frieza_v2_efeitos` | Black Freeza (versão 2) · efeitos | Efeitos | 97 | 1707 | Black Frieza V2 |
 | `kaw_black_frieza_efeitos` | Black Freeza · efeitos | Efeitos | 33 | 553 | Black Frieza |
@@ -1550,20 +1550,20 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_broly_efeitos` | Broly (Z) · efeitos | Efeitos | 24 | 142 | Broly |
 | `kaw_txr_broly_ss4_efeitos` | Broly SSJ4 (TXR) · efeitos | Efeitos | 93 | 661 | TXR-Broly_SS4 |
 | `kaw_ssj4blory_kn_edit_efeitos` | Broly SSJ4 · efeitos | Efeitos | 2 | 12 | SSJ4Blory_KN.edit |
-| `kaw_semi_perfect_cell_efeitos` | Cell Semiperfeito · efeitos | Efeitos | 54 | 692 | Semi Perfect Cell |
-| `kaw_cellbuuzer_efeitos` | Cell-Boo-Freeza (fusão) · efeitos | Efeitos | 45 | 857 | Cellbuuzer |
+| `kaw_semi_perfect_cell_efeitos` | Cell Semiperfeito · efeitos | Efeitos | 54 | 804 | Semi Perfect Cell |
+| `kaw_cellbuuzer_efeitos` | Cell-Boo-Freeza (fusão) · efeitos | Efeitos | 45 | 886 | Cellbuuzer |
 | `kaw_golden_cooler_efeitos` | Cooler Dourado · efeitos | Efeitos | 88 | 1076 | Golden Cooler |
-| `kaw_frieza_efeitos` | Freeza · efeitos | Efeitos | 90 | 1226 | Frieza |
+| `kaw_frieza_efeitos` | Freeza · efeitos | Efeitos | 90 | 1472 | Frieza |
 | `kaw_frost_golden_efeitos` | Frost Dourado · efeitos | Efeitos | 28 | 619 | Frost Golden |
 | `kaw_gas_heata_by_charmarher_efeitos` | Gas (Heeters) · efeitos | Efeitos | 27 | 564 | Gas Heata By Charmarher |
 | `kaw_ginyu_efeitos` | Ginyu (corpo do Goku) · efeitos | Efeitos | 31 | 675 | Ginyu |
 | `kaw_gogeta_migatte_efeitos` | Gogeta Instinto Superior · efeitos | Efeitos | 33 | 673 | Gogeta_Migatte |
 | `kaw_gogeto_efeitos` | Gogeta · efeitos | Efeitos | 45 | 1695 | Gogeto |
-| `kaw_gohan_beast_efeitos` | Gohan Besta · efeitos | Efeitos | 62 | 1070 | Gohan Beast |
-| `kaw_black_gohan_efeitos` | Gohan Black · efeitos | Efeitos | 38 | 568 | Black Gohan |
+| `kaw_gohan_beast_efeitos` | Gohan Besta · efeitos | Efeitos | 62 | 1214 | Gohan Beast |
+| `kaw_black_gohan_efeitos` | Gohan Black · efeitos | Efeitos | 38 | 624 | Black Gohan |
 | `kaw_future_gohan_efeitos` | Gohan do Futuro · efeitos | Efeitos | 52 | 686 | Future_Gohan |
-| `kaw_gohan_ssjblue_efeitos` | Gohan SSJ Blue · efeitos | Efeitos | 30 | 556 | Gohan SSJBlue |
-| `kaw_gohan_teen_ssj2_efeitos` | Gohan SSJ2 (adolescente) · efeitos | Efeitos | 53 | 742 | Gohan Teen SSJ2 |
+| `kaw_gohan_ssjblue_efeitos` | Gohan SSJ Blue · efeitos | Efeitos | 30 | 563 | Gohan SSJBlue |
+| `kaw_gohan_teen_ssj2_efeitos` | Gohan SSJ2 (adolescente) · efeitos | Efeitos | 53 | 802 | Gohan Teen SSJ2 |
 | `kaw_gohan_efeitos` | Gohan · efeitos | Efeitos | 46 | 325 | Gohan |
 | `kaw_black_gokhan_efeitos` | Gokhan Black (fusão Goku+Gohan) · efeitos | Efeitos | 55 | 764 | Black Gokhan |
 | `kaw_goku_1000_tp_v1_efeitos` | Goku (1000 TP) · efeitos | Efeitos | 114 | 3176 | Goku 1000_TP V1 |
@@ -1572,9 +1572,9 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_goku_jus4_efeitos` | Goku (JUS 4) · efeitos | Efeitos | 200 | 3364 | Goku_JUS4 |
 | `kaw_tta_goku_jus_v2_efeitos` | Goku (JUS, pequeno) · efeitos | Efeitos | 20 | 70 | TTA'Goku JUS_V2 |
 | `kaw_goku_monkey_king_efeitos` | Goku (Rei Macaco) · efeitos | Efeitos | 261 | 3915 | Goku (Monkey King) |
-| `kaw_goku_efeitos` | Goku (todas as formas) · efeitos | Efeitos | 182 | 1756 | Goku |
+| `kaw_goku_efeitos` | Goku (todas as formas) · efeitos | Efeitos | 182 | 2177 | Goku |
 | `kaw_goku10_efeitos` | Goku (versão 10) · efeitos | Efeitos | 207 | 3026 | Goku10 |
-| `kaw_goku_beyond_ssb_efeitos` | Goku Além do SSJ Blue · efeitos | Efeitos | 39 | 586 | Goku Beyond SSB |
+| `kaw_goku_beyond_ssb_efeitos` | Goku Além do SSJ Blue · efeitos | Efeitos | 39 | 630 | Goku Beyond SSB |
 | `kaw_black_efeitos` | Goku Black Rosé (InSeph) · efeitos | Efeitos | 44 | 531 | Black |
 | `kaw_blackssr_efeitos` | Goku Black Rosé (SSR) · efeitos | Efeitos | 44 | 527 | BlackSSR |
 | `kaw_goku_black_ssr_efeitos` | Goku Black Rosé · efeitos | Efeitos | 71 | 595 | Goku Black (SSR) |
@@ -1594,8 +1594,8 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_janemba_efeitos` | Janemba · efeitos | Efeitos | 109 | 1357 | Janemba |
 | `kaw_jiren_efeitos` | Jiren · efeitos | Efeitos | 55 | 1292 | Jiren |
 | `kaw_mecha_frieza_efeitos` | Mecha Freeza · efeitos | Efeitos | 21 | 438 | mecha_frieza |
-| `kaw_metal_cooler_efeitos` | Metal Cooler · efeitos | Efeitos | 50 | 913 | Metal Cooler |
-| `kaw_nappa_efeitos` | Nappa · efeitos | Efeitos | 22 | 250 | Nappa |
+| `kaw_metal_cooler_efeitos` | Metal Cooler · efeitos | Efeitos | 50 | 975 | Metal Cooler |
+| `kaw_nappa_efeitos` | Nappa · efeitos | Efeitos | 22 | 273 | Nappa |
 | `kaw_nuova_shenron_efeitos` | Nuova Shenron · efeitos | Efeitos | 42 | 994 | Nuova Shenron |
 | `kaw_omega_shenron_efeitos` | Omega Shenron · efeitos | Efeitos | 28 | 474 | Omega Shenron |
 | `kaw_orange_piccolo_efeitos` | Piccolo Laranja · efeitos | Efeitos | 47 | 891 | Orange Piccolo |
@@ -1611,7 +1611,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `kaw_vegetto_jus3_efeitos` | Vegetto SSJ Blue (JUS) · efeitos | Efeitos | 27 | 429 | Vegetto JUS3 |
 | `kaw_vegitoblue_efeitos` | Vegetto SSJ Blue (versão 2) · efeitos | Efeitos | 117 | 1108 | VegitoBlue |
 | `kaw_vegito_ssb_efeitos` | Vegetto SSJ Blue · efeitos | Efeitos | 80 | 584 | Vegito (SSB) |
-| `kaw_super_vegetto_efeitos` | Vegetto SSJ · efeitos | Efeitos | 50 | 777 | Super Vegetto |
+| `kaw_super_vegetto_efeitos` | Vegetto SSJ · efeitos | Efeitos | 50 | 865 | Super Vegetto |
 | `kaw_zamasufused_efeitos` | Zamasu Fundido · efeitos | Efeitos | 61 | 738 | ZamasuFused |
 
 Deixados de fora (invisíveis/vazios): blacksperm (personagem-piada), Goku_Xeno_SS4 e Jiren (ToP) (sprites criptografados)

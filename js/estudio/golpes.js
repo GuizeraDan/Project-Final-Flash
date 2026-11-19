@@ -471,14 +471,26 @@ window.FF = window.FF || {};
     trocarConteudo(c, tr) {
       const P = FF.EstudioProps, quem = tr.quem || 'atacante';
       const pronto = (rot) => { this.mudou(rot); this.renderProps(); };
-      const efeito = (k, ks, rot) => P.escolherEfeito(c[k], (fx, spr) => { c[k] = fx; if (spr) c[ks] = spr; else delete c[ks]; pronto(rot); }, null, this, c[ks]);
+      // vários marcados: o 1º entra no lugar deste clipe e os outros vêm em seguida na mesma trilha, um depois do outro
+      const emSeguida = (k, ks, rot) => (l) => {
+        let t = c.t;
+        l.forEach(([fx, spr], i) => {
+          const n = i ? Object.assign(JSON.parse(JSON.stringify(c)), { id: novoId() }) : c;
+          n[k] = fx; if (spr) n[ks] = spr; else delete n[ks];
+          n.t = Math.round(t * 1000) / 1000;
+          if (i) tr.clipes.push(n);
+          t += Math.max(this.dur(n, tr), 0.05);
+        });
+        pronto(l.length > 1 ? rot + ' (' + l.length + ' em seguida)' : rot);
+      };
+      const efeito = (k, ks, rot, varios) => P.escolherEfeito(c[k], (fx, spr) => { c[k] = fx; if (spr) c[ks] = spr; else delete c[ks]; pronto(rot); }, null, this, c[ks], varios ? emSeguida(k, ks, rot) : null);
       switch (c.tipo) {
         case 'som': return E.escolherSom(c.som, (v) => { c.som = v; pronto('Som'); });
         case 'voz':
           if (c.vozTipo) { delete c.vozTipo; delete c.quem; }   // escolher um arquivo troca a "voz do personagem" por um som fixo
           return E.escolherSom(c.voz, (v) => { c.voz = v; pronto('Voz'); }, this.prefixoVoz());
-        case 'efeito': return efeito('fx', 'sprite', 'Efeito');
-        case 'projetil': return efeito('fx', 'sprite', 'Projétil');
+        case 'efeito': return efeito('fx', 'sprite', 'Efeito', true);
+        case 'projetil': return efeito('fx', 'sprite', 'Projétil', true);
         case 'acerto':   // acerto: troca a explosão ou o som do impacto
           return E.escolha('✸ Acerto', 'O que você quer trocar neste acerto?', [
             { txt: '✺ Efeito (explosão)', valor: 'fx', cls: 'es-bt-ouro' }, { txt: '♪ Som do acerto', valor: 'som', cls: 'es-bt-ouro' }, { txt: 'Cancelar', valor: null }])

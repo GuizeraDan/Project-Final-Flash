@@ -80,7 +80,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'cat:cenarios', aoEscolher: (a, id) => window.__escolheu(a, id) }));
   await p.waitForSelector('.es-seletor .es-cartao', { timeout: 20000 });
   s = await p.evaluate(() => ({
-    cats: [...document.querySelectorAll('.es-seletor-cat')].map(c => c.textContent),
+    cats: [...document.querySelectorAll('.es-seletor-cat')].map(c => c.textContent).filter(t => !/Minhas pastas|Do jogo/.test(t)),
     cartoes: document.querySelectorAll('.es-seletor .es-cartao').length,
     info: document.querySelector('.es-seletor .es-dica').textContent,
   }));

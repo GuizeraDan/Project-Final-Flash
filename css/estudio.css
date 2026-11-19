@@ -224,11 +224,13 @@ a { color: var(--ouro); }
 .es-seletor-acoes { margin-left: auto; display: flex; gap: 2px; flex: none; }
 .es-seletor-acoes button { opacity: 0.35; padding: 1px 4px; font-size: 11px; }
 .es-seletor-fonte:hover .es-seletor-acoes button, .es-seletor-acoes .es-fav-bt.on { opacity: 1; }
-.es-cartao .es-cartao-del { position: absolute; top: 3px; left: 3px; right: auto; opacity: 0; }
+.es-cartao .es-cartao-del { position: absolute; top: 3px; left: 26px; right: auto; opacity: 0; }
 .es-cartao:hover .es-cartao-del { opacity: 1; }
 
-.es-cartao .es-cartao-ren { position: absolute; top: 3px; left: 30px; right: auto; opacity: 0; }
+.es-cartao .es-cartao-ren { position: absolute; top: 3px; left: 52px; right: auto; opacity: 0; }
 .es-cartao:hover .es-cartao-ren { opacity: 1; }
+.es-cartao .es-cartao-ed { position: absolute; top: 3px; left: 78px; right: auto; opacity: 0; }
+.es-cartao:hover .es-cartao-ed { opacity: 1; }
 .es-cartao span.renomeado { color: #ffe9a8; }
 .es-cartao .es-som-renomear { width: 100%; font-size: 11px; }
 
@@ -255,3 +257,12 @@ a { color: var(--ouro); }
 .es-som.marcado { background: rgba(255,216,74,0.12); box-shadow: inset 3px 0 0 #ffd84a; }
 .es-sons-sel { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-top: 1px solid var(--linha, #3a2a66); background: rgba(20,12,40,0.95); font-size: 12px; color: #e8deff; }
 .es-sons-sel span { flex: 1; }
+
+/* seletor de sprites: marcar vários (caixinha, Ctrl/Shift+clique, caixa arrastada) */
+.es-cartao .es-cartao-chk { position: absolute; top: 4px; left: 4px; width: 16px; height: 16px; margin: 0; accent-color: #ffd84a; cursor: pointer; opacity: 0.35; z-index: 2; }
+.es-cartao:hover .es-cartao-chk, .es-cartao.marcado .es-cartao-chk, .es-seletor-sel.ativa ~ * .es-cartao-chk { opacity: 1; }
+.es-cartao.marcado { border-color: #ffd84a; box-shadow: 0 0 0 2px rgba(255, 216, 74, 0.55) inset; background: #2c2350; }
+.es-seletor .es-grade { position: relative; user-select: none; }
+.es-caixa-sel { position: absolute; border: 1px dashed #ffd84a; background: rgba(255, 216, 74, 0.12); pointer-events: none; z-index: 5; }
+.es-seletor-sel { flex-wrap: wrap; }
+.es-seletor-sel.ativa span { color: #ffe9a8; }

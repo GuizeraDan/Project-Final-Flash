@@ -17023,7 +17023,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 153,
-"quadros": 468,
+"quadros": 528,
 "atlas": 3,
 "objs": [
 "Android_18"
@@ -17047,7 +17047,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 185,
-"quadros": 696,
+"quadros": 698,
 "atlas": 3,
 "objs": [
 "BabyVegeta"
@@ -17059,8 +17059,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 167,
-"quadros": 858,
-"atlas": 2,
+"quadros": 905,
+"atlas": 3,
 "objs": [
 "Bardock UI"
 ]
@@ -17143,8 +17143,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 216,
-"quadros": 1806,
-"atlas": 2,
+"quadros": 1888,
+"atlas": 3,
 "objs": [
 "SSJ4Blory_KN.edit"
 ]
@@ -17167,7 +17167,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 192,
-"quadros": 693,
+"quadros": 742,
 "atlas": 3,
 "objs": [
 "Semi Perfect Cell"
@@ -17179,7 +17179,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 148,
-"quadros": 684,
+"quadros": 683,
 "atlas": 6,
 "objs": [
 "Cellbuuzer"
@@ -17203,8 +17203,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 247,
-"quadros": 526,
-"atlas": 1,
+"quadros": 540,
+"atlas": 2,
 "objs": [
 "Frieza"
 ]
@@ -17227,8 +17227,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 129,
-"quadros": 387,
-"atlas": 1,
+"quadros": 379,
+"atlas": 2,
 "objs": [
 "Gas Heata By Charmarher"
 ]
@@ -17287,8 +17287,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 154,
-"quadros": 475,
-"atlas": 2,
+"quadros": 510,
+"atlas": 3,
 "objs": [
 "Gohan Beast"
 ]
@@ -17299,7 +17299,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 155,
-"quadros": 604,
+"quadros": 670,
 "atlas": 4,
 "objs": [
 "Black Gohan"
@@ -17323,7 +17323,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 171,
-"quadros": 1152,
+"quadros": 1201,
 "atlas": 4,
 "objs": [
 "Gohan SSJBlue"
@@ -17335,7 +17335,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 137,
-"quadros": 395,
+"quadros": 409,
 "atlas": 3,
 "objs": [
 "Gohan Teen SSJ2"
@@ -17383,8 +17383,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 543,
-"quadros": 1400,
-"atlas": 6,
+"quadros": 1470,
+"atlas": 7,
 "objs": [
 "Goku_JUS3X"
 ]
@@ -17431,8 +17431,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 934,
-"quadros": 2255,
-"atlas": 4,
+"quadros": 2386,
+"atlas": 6,
 "objs": [
 "Goku"
 ]
@@ -17455,8 +17455,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 159,
-"quadros": 641,
-"atlas": 6,
+"quadros": 686,
+"atlas": 5,
 "objs": [
 "Goku Beyond SSB"
 ]
@@ -17539,7 +17539,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 137,
-"quadros": 927,
+"quadros": 938,
 "atlas": 2,
 "objs": [
 "Goku Oozaru BRM"
@@ -17599,7 +17599,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 729,
-"quadros": 2041,
+"quadros": 2039,
 "atlas": 2,
 "objs": [
 "SSJ3_GokuZ2i"
@@ -17695,8 +17695,8 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 142,
-"quadros": 510,
-"atlas": 3,
+"quadros": 552,
+"atlas": 4,
 "objs": [
 "Metal Cooler"
 ]
@@ -17708,7 +17708,7 @@
 "fonte": "kaw",
 "anims": 126,
 "quadros": 434,
-"atlas": 2,
+"atlas": 3,
 "objs": [
 "Nappa"
 ]
@@ -17863,7 +17863,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 164,
-"quadros": 706,
+"quadros": 737,
 "atlas": 6,
 "objs": [
 "Super Vegetto"
@@ -17887,7 +17887,7 @@
 "tipo": "personagens",
 "fonte": "kaw",
 "anims": 185,
-"quadros": 628,
+"quadros": 630,
 "atlas": 5,
 "objs": [
 "Vegetto JUS3"
@@ -17935,7 +17935,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 31,
-"quadros": 345,
+"quadros": 428,
 "atlas": 4,
 "objs": [
 "Android_18"
@@ -17971,8 +17971,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 53,
-"quadros": 1038,
-"atlas": 9,
+"quadros": 1116,
+"atlas": 10,
 "objs": [
 "Bardock UI"
 ]
@@ -18079,7 +18079,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 54,
-"quadros": 692,
+"quadros": 804,
 "atlas": 4,
 "objs": [
 "Semi Perfect Cell"
@@ -18091,7 +18091,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 45,
-"quadros": 857,
+"quadros": 886,
 "atlas": 8,
 "objs": [
 "Cellbuuzer"
@@ -18115,8 +18115,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 90,
-"quadros": 1226,
-"atlas": 14,
+"quadros": 1472,
+"atlas": 31,
 "objs": [
 "Frieza"
 ]
@@ -18140,7 +18140,7 @@
 "fonte": "kaw",
 "anims": 27,
 "quadros": 564,
-"atlas": 3,
+"atlas": 5,
 "objs": [
 "Gas Heata By Charmarher"
 ]
@@ -18187,7 +18187,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 62,
-"quadros": 1070,
+"quadros": 1214,
 "atlas": 10,
 "objs": [
 "Gohan Beast"
@@ -18199,7 +18199,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 38,
-"quadros": 568,
+"quadros": 624,
 "atlas": 5,
 "objs": [
 "Black Gohan"
@@ -18223,7 +18223,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 30,
-"quadros": 556,
+"quadros": 563,
 "atlas": 3,
 "objs": [
 "Gohan SSJBlue"
@@ -18235,8 +18235,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 53,
-"quadros": 742,
-"atlas": 10,
+"quadros": 802,
+"atlas": 9,
 "objs": [
 "Gohan Teen SSJ2"
 ]
@@ -18343,8 +18343,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 182,
-"quadros": 1756,
-"atlas": 18,
+"quadros": 2177,
+"atlas": 28,
 "objs": [
 "Goku"
 ]
@@ -18367,7 +18367,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 39,
-"quadros": 586,
+"quadros": 630,
 "atlas": 6,
 "objs": [
 "Goku Beyond SSB"
@@ -18607,8 +18607,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 50,
-"quadros": 913,
-"atlas": 8,
+"quadros": 975,
+"atlas": 10,
 "objs": [
 "Metal Cooler"
 ]
@@ -18619,8 +18619,8 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 22,
-"quadros": 250,
-"atlas": 3,
+"quadros": 273,
+"atlas": 4,
 "objs": [
 "Nappa"
 ]
@@ -18811,7 +18811,7 @@
 "tipo": "efeitos",
 "fonte": "kaw",
 "anims": 50,
-"quadros": 777,
+"quadros": 865,
 "atlas": 10,
 "objs": [
 "Super Vegetto"

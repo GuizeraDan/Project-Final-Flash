@@ -480,9 +480,12 @@ FF.EstudioProps = {
   },
 
   // efeito: seletor com TODOS os sprites (fx, fx_extra, lutadores, importados); devolve (anim, sprite|null)
-  escolherEfeito(atual, cb, limpar, host, spriteAtual) {
+  // varios (opcional): recebe [[anim, sprite|null], ...] quando o usuário marca vários e usa "Pôr na trilha"
+  escolherEfeito(atual, cb, limpar, host, spriteAtual, varios) {
+    const spr = (id) => (id === 'fx' || id === 'fx_extra' ? null : id);
     FF.Estudio.escolherSprite({ titulo: '✺ Escolher efeito', atual: { anim: atual, sprite: spriteAtual }, inicio: spriteAtual || undefined,
-      aoEscolher: (a, id) => cb(a, id === 'fx' || id === 'fx_extra' ? null : id), limpar });
+      aoEscolher: (a, id) => cb(a, spr(id)), limpar,
+      aoEscolherVarios: varios ? (l) => varios(l.map(([a, id]) => [a, spr(id)])) : null });
   },
 
   // cartão dos seletores: anima enquanto o mouse está em cima (todos animando ao mesmo tempo pesaria)

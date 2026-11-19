@@ -215,7 +215,9 @@ def extract_v1(b, outdir, act=None):
             img, prev_pal = decode_pcx(pcx, prev_pal, same)
             if base_pal is None: base_pal = prev_pal
             # paleta compartilhada: sprites "mesma paleta" e os que repetem a 1ª paleta usam o .act
-            if same: usa_base = True
+            # "mesma paleta" = a do sprite anterior: herda o .act só se o anterior usava a paleta base
+            # (efeitos com paleta própria seguida de quadros "mesma paleta" — ex.: chama azul do Bardock — ficam com a deles)
+            if same: usa_base = prev_base
             else: usa_base = (prev_pal == base_pal)
             prev_base = usa_base
             if act and usa_base and img.mode == 'P':

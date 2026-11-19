@@ -182,7 +182,7 @@
 "nome": "Androide 18",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 468,
+"quadros": 528,
 "atlas": 3,
 "objs": [
 "Android_18"
@@ -347,7 +347,7 @@
 "nome": "Androide 18 · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 345,
+"quadros": 428,
 "atlas": 4,
 "objs": [
 "Android_18"
@@ -608,7 +608,7 @@
 "nome": "Baby Vegeta (versão 2)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 696,
+"quadros": 698,
 "atlas": 3,
 "objs": [
 "BabyVegeta"
@@ -798,7 +798,7 @@
 "Acao_40550": 5,
 "Acao_40580": 1,
 "Retrato": 2,
-"Outros": 435
+"Outros": 437
 }
 },
 "kaw_babyvegeta_efeitos": {
@@ -836,8 +836,8 @@
 "nome": "Bardock Instinto Superior",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 858,
-"atlas": 2,
+"quadros": 905,
+"atlas": 3,
 "objs": [
 "Bardock UI"
 ],
@@ -1015,8 +1015,8 @@
 "nome": "Bardock Instinto Superior · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 1038,
-"atlas": 9,
+"quadros": 1116,
+"atlas": 10,
 "objs": [
 "Bardock UI"
 ],
@@ -1073,7 +1073,7 @@
 "Acao_9023": 21,
 "Acao_10000": 1,
 "Retrato_Grande": 3,
-"Outros": 218
+"Outros": 232
 }
 },
 "kaw_beerus": {
@@ -2231,7 +2231,7 @@
 "nome": "Gohan Black",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 604,
+"quadros": 670,
 "atlas": 4,
 "objs": [
 "Black Gohan"
@@ -2391,14 +2391,14 @@
 "Acao_9955": 10,
 "Acao_10011": 1,
 "Retrato": 2,
-"Outros": 240
+"Outros": 255
 }
 },
 "kaw_black_gohan_efeitos": {
 "nome": "Gohan Black · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 568,
+"quadros": 624,
 "atlas": 5,
 "objs": [
 "Black Gohan"
@@ -2441,7 +2441,7 @@
 "Acao_10010": 1,
 "Acao_10020": 45,
 "Acao_10025": 43,
-"Outros": 179
+"Outros": 230
 }
 },
 "kaw_black_gokhan": {
@@ -3865,7 +3865,7 @@
 "nome": "Cell-Boo-Freeza (fusão)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 684,
+"quadros": 683,
 "atlas": 6,
 "objs": [
 "Cellbuuzer"
@@ -4025,7 +4025,7 @@
 "nome": "Cell-Boo-Freeza (fusão) · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 857,
+"quadros": 886,
 "atlas": 8,
 "objs": [
 "Cellbuuzer"
@@ -4245,8 +4245,8 @@
 "nome": "Freeza",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 526,
-"atlas": 1,
+"quadros": 540,
+"atlas": 2,
 "objs": [
 "Frieza"
 ],
@@ -4504,8 +4504,8 @@
 "nome": "Freeza · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 1226,
-"atlas": 14,
+"quadros": 1472,
+"atlas": 31,
 "objs": [
 "Frieza"
 ],
@@ -4599,7 +4599,7 @@
 "Acao_33085": 45,
 "Acao_33090": 43,
 "Retrato_Grande": 2,
-"Outros": 65
+"Outros": 68
 }
 },
 "kaw_frost_golden": {
@@ -5129,8 +5129,8 @@
 "nome": "Gas (Heeters)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 387,
-"atlas": 1,
+"quadros": 379,
+"atlas": 2,
 "objs": [
 "Gas Heata By Charmarher"
 ],
@@ -5271,7 +5271,7 @@
 "cat": "kaw",
 "tipo": "efeitos",
 "quadros": 564,
-"atlas": 3,
+"atlas": 5,
 "objs": [
 "Gas Heata By Charmarher"
 ],
@@ -6192,8 +6192,8 @@
 "nome": "Gohan Besta",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 475,
-"atlas": 2,
+"quadros": 510,
+"atlas": 3,
 "objs": [
 "Gohan Beast"
 ],
@@ -6351,14 +6351,14 @@
 "Acao_9955": 10,
 "Acao_10011": 1,
 "Retrato": 2,
-"Outros": 172
+"Outros": 179
 }
 },
 "kaw_gohan_beast_efeitos": {
 "nome": "Gohan Besta · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 1070,
+"quadros": 1214,
 "atlas": 10,
 "objs": [
 "Gohan Beast"
@@ -6425,14 +6425,14 @@
 "Acao_10010": 1,
 "Acao_10020": 45,
 "Acao_10025": 43,
-"Outros": 378
+"Outros": 391
 }
 },
 "kaw_gohan_ssjblue": {
 "nome": "Gohan SSJ Blue",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 1152,
+"quadros": 1201,
 "atlas": 4,
 "objs": [
 "Gohan SSJBlue"
@@ -6608,14 +6608,14 @@
 "Acao_9955": 10,
 "Acao_10011": 1,
 "Retrato": 2,
-"Outros": 574
+"Outros": 589
 }
 },
 "kaw_gohan_ssjblue_efeitos": {
 "nome": "Gohan SSJ Blue · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 556,
+"quadros": 563,
 "atlas": 3,
 "objs": [
 "Gohan SSJBlue"
@@ -6657,7 +6657,7 @@
 "nome": "Gohan SSJ2 (adolescente)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 395,
+"quadros": 409,
 "atlas": 3,
 "objs": [
 "Gohan Teen SSJ2"
@@ -6799,15 +6799,15 @@
 "Acao_21501": 2,
 "Acao_21502": 10,
 "Retrato": 2,
-"Outros": 127
+"Outros": 141
 }
 },
 "kaw_gohan_teen_ssj2_efeitos": {
 "nome": "Gohan SSJ2 (adolescente) · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 742,
-"atlas": 10,
+"quadros": 802,
+"atlas": 9,
 "objs": [
 "Gohan Teen SSJ2"
 ],
@@ -6864,15 +6864,15 @@
 "Acao_21550": 15,
 "Acao_21565": 8,
 "Acao_21566": 8,
-"Outros": 251
+"Outros": 268
 }
 },
 "kaw_goku": {
 "nome": "Goku (todas as formas)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 2255,
-"atlas": 4,
+"quadros": 2386,
+"atlas": 6,
 "objs": [
 "Goku"
 ],
@@ -7817,8 +7817,8 @@
 "nome": "Goku (todas as formas) · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 1756,
-"atlas": 18,
+"quadros": 2177,
+"atlas": 28,
 "objs": [
 "Goku"
 ],
@@ -9721,8 +9721,8 @@
 "nome": "Goku Além do SSJ Blue",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 641,
-"atlas": 6,
+"quadros": 686,
+"atlas": 5,
 "objs": [
 "Goku Beyond SSB"
 ],
@@ -9885,14 +9885,14 @@
 "Acao_31160": 10,
 "Acao_31161": 10,
 "Retrato": 2,
-"Outros": 285
+"Outros": 292
 }
 },
 "kaw_goku_beyond_ssb_efeitos": {
 "nome": "Goku Além do SSJ Blue · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 586,
+"quadros": 630,
 "atlas": 6,
 "objs": [
 "Goku Beyond SSB"
@@ -9936,7 +9936,7 @@
 "Acao_25035": 8,
 "Acao_30560": 19,
 "Acao_30570": 7,
-"Outros": 165
+"Outros": 210
 }
 },
 "kaw_goku_black_ssr": {
@@ -10463,8 +10463,8 @@
 "nome": "Goku (JUS 3)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 1400,
-"atlas": 6,
+"quadros": 1470,
+"atlas": 7,
 "objs": [
 "Goku_JUS3X"
 ],
@@ -14702,7 +14702,7 @@
 "nome": "Goku Oozaru",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 927,
+"quadros": 938,
 "atlas": 2,
 "objs": [
 "Goku Oozaru BRM"
@@ -18352,8 +18352,8 @@
 "nome": "Metal Cooler",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 510,
-"atlas": 3,
+"quadros": 552,
+"atlas": 4,
 "objs": [
 "Metal Cooler"
 ],
@@ -18499,15 +18499,15 @@
 "Acao_9955": 10,
 "Acao_11600": 9,
 "Retrato": 2,
-"Outros": 221
+"Outros": 244
 }
 },
 "kaw_metal_cooler_efeitos": {
 "nome": "Metal Cooler · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 913,
-"atlas": 8,
+"quadros": 975,
+"atlas": 10,
 "objs": [
 "Metal Cooler"
 ],
@@ -18561,7 +18561,7 @@
 "Acao_10011": 1,
 "Acao_10020": 45,
 "Acao_10025": 43,
-"Outros": 329
+"Outros": 374
 }
 },
 "kaw_nappa": {
@@ -18569,7 +18569,7 @@
 "cat": "kaw",
 "tipo": "personagens",
 "quadros": 434,
-"atlas": 2,
+"atlas": 3,
 "objs": [
 "Nappa"
 ],
@@ -18699,15 +18699,15 @@
 "Acao_11010": 21,
 "Acao_11020": 7,
 "Retrato": 2,
-"Outros": 84
+"Outros": 85
 }
 },
 "kaw_nappa_efeitos": {
 "nome": "Nappa · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 250,
-"atlas": 3,
+"quadros": 273,
+"atlas": 4,
 "objs": [
 "Nappa"
 ],
@@ -19673,7 +19673,7 @@
 "nome": "Cell Semiperfeito",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 693,
+"quadros": 742,
 "atlas": 3,
 "objs": [
 "Semi Perfect Cell"
@@ -19870,14 +19870,14 @@
 "Acao_9032": 7,
 "Acao_9033": 5,
 "Retrato": 3,
-"Outros": 156
+"Outros": 163
 }
 },
 "kaw_semi_perfect_cell_efeitos": {
 "nome": "Cell Semiperfeito · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 692,
+"quadros": 804,
 "atlas": 4,
 "objs": [
 "Semi Perfect Cell"
@@ -21500,7 +21500,7 @@
 "nome": "Goku SSJ3",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 2041,
+"quadros": 2039,
 "atlas": 2,
 "objs": [
 "SSJ3_GokuZ2i"
@@ -22263,8 +22263,8 @@
 "nome": "Broly SSJ4",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 1806,
-"atlas": 2,
+"quadros": 1888,
+"atlas": 3,
 "objs": [
 "SSJ4Blory_KN.edit"
 ],
@@ -22694,7 +22694,7 @@
 "nome": "Vegetto SSJ",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 706,
+"quadros": 737,
 "atlas": 6,
 "objs": [
 "Super Vegetto"
@@ -22863,14 +22863,14 @@
 "Acao_9955": 10,
 "Acao_10011": 1,
 "Retrato": 2,
-"Outros": 298
+"Outros": 305
 }
 },
 "kaw_super_vegetto_efeitos": {
 "nome": "Vegetto SSJ · efeitos",
 "cat": "kaw",
 "tipo": "efeitos",
-"quadros": 777,
+"quadros": 865,
 "atlas": 10,
 "objs": [
 "Super Vegetto"
@@ -22925,7 +22925,7 @@
 "Acao_10025": 43,
 "Acao_70135": 4,
 "Retrato_Grande": 1,
-"Outros": 318
+"Outros": 363
 }
 },
 "kaw_tien": {
@@ -25301,7 +25301,7 @@
 "nome": "Vegetto SSJ Blue (JUS)",
 "cat": "kaw",
 "tipo": "personagens",
-"quadros": 628,
+"quadros": 630,
 "atlas": 5,
 "objs": [
 "Vegetto JUS3"

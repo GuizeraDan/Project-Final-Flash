@@ -192,8 +192,16 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
 // 🗑 apagar + "＋ Nova pasta". bt(chave, texto, n, pai) cria o item clicável e devolve o elemento; aoMudar() redesenha.
 FF.listaPastas = (F, pai, bt, aoMudar, chaveAtual, aoApagarAtual) => {
   const nomes = F.nomesPastas();
-  const sub = document.createElement('div'); sub.className = 'es-sub'; sub.textContent = '📁 Minhas pastas';
-  pai.appendChild(sub);
+  // título que abre/fecha (como as categorias do acervo); fechado fica lembrado no aparelho, por seção (sprites/sons)
+  const CH = 'ff_estudio_pastas_fechadas';
+  let fechadas = {}; try { fechadas = JSON.parse(localStorage.getItem(CH) || '{}') || {}; } catch (e) { fechadas = {}; }
+  const sub = document.createElement('div'); sub.className = 'es-seletor-cat es-pastas-cab';
+  const corpo = document.createElement('div'); corpo.className = 'es-seletor-cat-corpo es-pastas-corpo';
+  const pintarCab = () => { const f = !!fechadas[F.secao]; sub.textContent = (f ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + nomes.length + ')'; corpo.style.display = f ? 'none' : ''; };
+  sub.onclick = () => { fechadas[F.secao] = !fechadas[F.secao]; if (!fechadas[F.secao]) delete fechadas[F.secao]; try { localStorage.setItem(CH, JSON.stringify(fechadas)); } catch (e) { /* sem armazenamento */ } pintarCab(); };
+  pai.append(sub, corpo);
+  pintarCab();
+  pai = corpo;   // itens, "Nova pasta" e a dica vão dentro do corpo que abre/fecha
   nomes.forEach(nome => {
     const el = bt('pasta:' + nome, '📁 ' + nome, String((F.pastas()[nome] || []).length), pai);
     const item = el && el.closest ? (el.closest('.es-item') || el) : el;

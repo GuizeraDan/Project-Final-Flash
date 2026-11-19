@@ -71,6 +71,12 @@ FF.Estudio = {
     this.renderHist();
   },
 
+  // atalho: abre um sprite/animação na aba Sprites (de qualquer lugar, ex.: o seletor de sprites)
+  async editarSprite(id, anim) {
+    await this.abrir('sprites');
+    if (this.Sprites && this.Sprites.abrirSprite) await this.Sprites.abrirSprite(id, anim || null);
+  },
+
   // ---------- teclado ----------
   digitando(e) {
     const t = e.target;
