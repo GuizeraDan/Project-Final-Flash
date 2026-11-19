@@ -37,7 +37,7 @@
 .ess-tempo { margin-left: auto; font: 11px monospace; color: var(--apagado); }
 .ess-tira-barra { gap: 3px; background: var(--fundo2); flex-wrap: nowrap; overflow-x: auto; }
 
-.ess-tira { flex: none; height: 96px; display: flex; gap: 4px; padding: 6px; overflow-x: auto; overflow-y: hidden; background: #100a1e; position: relative; user-select: none; -webkit-user-select: none; }
+.ess-tira { flex: none; height: auto; display: flex; gap: 4px; padding: 6px 6px 4px; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: #5a3fa8 #100a1e; background: #100a1e; position: relative; user-select: none; -webkit-user-select: none; }
 .ess-q { flex: none; width: 70px; height: 82px; position: relative; border: 2px solid var(--linha); border-radius: 5px; background: #0c0718; cursor: pointer; display: flex; flex-direction: column; align-items: center; padding-top: 1px; touch-action: pan-x; }
 .ess-q canvas { width: 64px; height: 64px; image-rendering: pixelated; pointer-events: none; }
 .ess-q-rot { font-size: 11px; color: var(--apagado); pointer-events: none; }
@@ -84,7 +84,7 @@
 @media (max-height: 520px) {
   .ess-modos button { padding: 2px 5px; font-size: 11px; }
   .ess-barra, .ess-ctr, .ess-tira-barra { padding: 2px 4px; }
-  .ess-tira { height: 74px; padding: 4px; }
+  .ess-tira { padding: 4px 4px 2px; }
   .ess-q { width: 54px; height: 64px; }
   .ess-q canvas { width: 48px; height: 48px; }
   .ess-opcoes { padding: 1px 6px; }
@@ -129,3 +129,9 @@
 .ess .ess-busca-linha .es-ordem { flex: none; max-width: 110px; }
 .ess-sprites .es-item .ess-mover { opacity: 0.35; }
 .ess-sprites .es-item:hover .ess-mover, .ess-sprites .es-item .ess-mover.on { opacity: 1; }
+
+/* tira de quadros: a barra de rolagem fica embaixo dos quadros (antes cobria os números) */
+.ess-tira::-webkit-scrollbar { height: 8px; }
+.ess-tira::-webkit-scrollbar-track { background: #100a1e; }
+.ess-tira::-webkit-scrollbar-thumb { background: #5a3fa8; border-radius: 4px; }
+.ess-q { box-sizing: border-box; }
