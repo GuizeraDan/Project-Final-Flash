@@ -118,6 +118,7 @@
 .ess-cat-bt { margin-left: auto; padding: 0 5px; font-size: 10px; font-weight: normal; opacity: 0.5; background: transparent; border-color: transparent; }
 .ess-cat:hover .ess-cat-bt { opacity: 1; border-color: #a33; }
 .ess-na-lixeira .ess-spr-nome { opacity: 0.6; text-decoration: line-through; }
-.ess-restaurar { opacity: 0.8; }
-.ess-sprites .es-item:hover .ess-restaurar { border-color: #3a3; }
+.ess-sprites .ess-lixo { margin-right: 3px; }
+.ess-sprites .ess-lixo:hover { border-color: #e44; }
+.ess-sprites .ess-restaurar:hover { border-color: #3c3; }
 .ess-cat-sub { padding-left: 16px; border-top: none; color: var(--texto, #ddd); font-weight: normal; }

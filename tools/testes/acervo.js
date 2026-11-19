@@ -152,7 +152,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     const cab = [...document.querySelectorAll('.ess-cat')].find(c => /ZL3 · Personagens/.test(c.textContent));
     cab.click();   // reabre
     const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => i.dataset.sprite === 'zl3_nappa');
-    it.querySelector('.ess-anim-apagar').click();
+    it.querySelector('.ess-lixo').click();
     const n1 = FF.Assets.listaSprites().length, lix = !!document.querySelector('.ess-cat') && [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(1\)/.test(c.textContent));
     [...document.querySelectorAll('.ess-cat')].find(c => /Lixeira/.test(c.textContent)).querySelector('.ess-cat-bt').click();
     return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];

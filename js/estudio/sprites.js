@@ -222,8 +222,8 @@
       if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
       else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
-      else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'ess-anim-apagar ess-restaurar'));
-      else if (ac) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); lixeiraSprites([s]); }, 'Mandar para a Lixeira (some das listas; dá para restaurar no fim da lista)', 'ess-anim-apagar'));
+      else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'es-fav-bt ess-lixo ess-restaurar'));
+      else if (ac) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); lixeiraSprites([s]); }, 'Mandar para a Lixeira (some das listas; dá para restaurar no fim da lista)', 'es-fav-bt ess-lixo'));
       if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
