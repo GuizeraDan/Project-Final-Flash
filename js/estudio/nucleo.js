@@ -71,6 +71,45 @@ FF.Estudio = {
     this.renderHist();
   },
 
+  // coluna lateral que estica: arrastar a borda muda a largura; o botão » / « (setas duplas) alterna entre a largura
+  // normal e a larga. Lembrado no aparelho (rascunho 'lado_<chave>'). lado = 'esq' (borda à direita) | 'dir'.
+  ladoRedimensionavel(aside, chave, lado, larga) {
+    const ch = 'lado_' + chave;
+    aside.classList.add('es-lado-red', lado === 'dir' ? 'red-dir' : 'red-esq');
+    const alca = this.el('div', 'es-lado-alca');
+    alca.title = 'Arraste para mudar a largura (duplo clique: largura normal)';
+    const bt = this.el('button', 'es-lado-bt');
+    alca.appendChild(bt);
+    aside.appendChild(alca);
+    // quem redesenha a coluna com innerHTML = '' apaga a alça: põe de volta
+    new MutationObserver(() => { if (alca.parentNode !== aside) aside.appendChild(alca); }).observe(aside, { childList: true });
+    const normal = () => { aside.style.width = ''; return aside.getBoundingClientRect().width; };
+    const max = () => Math.max(260, Math.round(innerWidth * 0.6));
+    let base = 0;
+    const aplicar = (w) => {
+      if (!base) { const atual = aside.style.width; base = normal(); aside.style.width = atual; }
+      if (w) aside.style.width = Math.max(140, Math.min(max(), Math.round(w))) + 'px'; else aside.style.width = '';
+      const largo = aside.getBoundingClientRect().width > base + 20;
+      bt.textContent = largo ? (lado === 'dir' ? '»' : '«') : (lado === 'dir' ? '«' : '»');
+      bt.title = largo ? 'Voltar à largura normal' : 'Expandir esta coluna (para ler os nomes inteiros)';
+      this.rascunho.gravar(ch, w ? Math.round(w) : null);
+      window.dispatchEvent(new Event('resize'));   // palco e linha do tempo se reajustam
+    };
+    bt.onclick = (e) => { e.stopPropagation(); const largo = aside.getBoundingClientRect().width > base + 20; aplicar(largo ? 0 : (larga || 440)); };
+    bt.addEventListener('pointerdown', (e) => e.stopPropagation());
+    alca.addEventListener('dblclick', () => aplicar(0));
+    alca.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      const x0 = e.clientX, w0 = aside.getBoundingClientRect().width;
+      alca.setPointerCapture(e.pointerId); document.body.classList.add('es-redimensionando');
+      const mover = (ev) => aplicar(w0 + (lado === 'dir' ? x0 - ev.clientX : ev.clientX - x0));
+      const soltar = () => { alca.removeEventListener('pointermove', mover); alca.removeEventListener('pointerup', soltar); alca.removeEventListener('pointercancel', soltar); document.body.classList.remove('es-redimensionando'); };
+      alca.addEventListener('pointermove', mover); alca.addEventListener('pointerup', soltar); alca.addEventListener('pointercancel', soltar);
+    });
+    requestAnimationFrame(() => aplicar(this.rascunho.ler(ch) || 0));
+  },
+
   // ordenar listas (sprites, animações): <select> lembrado no aparelho + função que ordena uma cópia
   //   oQue = 'animações' | 'quadros' (texto das opções de quantidade)
   seletorOrdem(chave, oQue, aoMudar) {

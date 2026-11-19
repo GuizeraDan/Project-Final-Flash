@@ -182,6 +182,8 @@
     dir.appendChild(ui.props);
 
     raiz.append(esq, cen, dir);
+    E.ladoRedimensionavel(esq, 'sprites_esq', 'esq', 460);   // » expande a coluna para ler os nomes inteiros
+    E.ladoRedimensionavel(dir, 'sprites_dir', 'dir', 460);
     ligarPalco();
     ligarTira();
     new ResizeObserver(() => ajustarCanvas()).observe(ui.palcoWrap);

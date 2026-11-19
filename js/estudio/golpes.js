@@ -19,6 +19,7 @@ window.FF = window.FF || {};
       // esquerda
       this.lado = E.el('div', 'es-lado');
       el.appendChild(this.lado);
+      E.ladoRedimensionavel(this.lado, 'golpes_esq', 'esq', 400);
       // centro
       const centro = E.el('div', 'es-centro');
       this.barra = E.el('div', 'es-barra');
@@ -37,6 +38,7 @@ window.FF = window.FF || {};
       this.rodape = E.el('div', 'es-barra es-rodape');
       dir.append(this.titProps, this.props, this.rodape);
       el.appendChild(dir);
+      E.ladoRedimensionavel(dir, 'golpes_dir', 'dir', 460);
 
       FF.W = 1084;
       this.palco = new FF.EstudioPalco(this.cv);
