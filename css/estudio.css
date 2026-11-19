@@ -166,6 +166,16 @@ a { color: var(--ouro); }
 .es-seletor-dir { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
 .es-seletor-dir .es-barra input { flex: 1; min-width: 120px; }
 .es-seletor-dir .es-grade { overflow: auto; flex: 1; align-content: start; grid-auto-rows: max-content; }
+.es-seletor .es-grade { grid-template-columns: repeat(auto-fill, minmax(var(--cartao-w, 96px), 1fr)); }
+.es-seletor .es-cartao canvas { height: var(--cartao-h, 72px); }
+.es-cartao-info { display: block; color: #9fb6d8; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.es-seletor[data-tam="g"] .es-cartao { font-size: 12px; }
+.es-seletor[data-tam="g"] .es-cartao-info, .es-seletor[data-tam="g"] .es-cartao-fonte { font-size: 11px; }
+.es-seletor-dir .es-barra select { flex: none; }
+.es-seletor-cheia.on { border-color: var(--ouro); }
+.es-modal-caixa.larga.cheia { width: 100vw; max-height: 100vh; height: 100vh; border-radius: 0; border-width: 0 0 0 0; }
+.es-modal-caixa.cheia .es-seletor { height: calc(100vh - 46px); }
+.es-modal-caixa.cheia .es-seletor-fontes { width: 260px; }
 .es-cartao-fonte { display: block; color: var(--apagado); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 760px) { .es-seletor { flex-direction: column; } .es-seletor-fontes { width: auto; height: 90px; border-right: 0; border-bottom: 1px solid var(--linha); } }
 /* seletor de sprites: categorias do acervo */

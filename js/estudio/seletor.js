@@ -51,12 +51,27 @@ window.FF = window.FF || {};
     const busca = document.createElement('input');
     busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: explos, kame, Bills, hit, aura, namek)';
     const info = E.el('span', 'es-dica');
-    topo.append(busca, info);
+    // tamanho dos cartões (P/M/G) e janela em tela cheia: lembrados neste aparelho
+    const TAMS = { p: [96, 72], m: [150, 112], g: [220, 165] };
+    let tam = E.rascunho.ler('seletor_tam') || 'p';
+    if (!TAMS[tam]) tam = 'p';
+    const selTam = document.createElement('select');
+    selTam.title = 'Tamanho dos cartões';
+    [['p', 'Cartões pequenos'], ['m', 'Cartões médios'], ['g', 'Cartões grandes']].forEach(([v, t]) => { const op = document.createElement('option'); op.value = v; op.textContent = t; selTam.appendChild(op); });
+    selTam.value = tam;
+    selTam.onchange = () => { tam = selTam.value; E.rascunho.gravar('seletor_tam', tam); aplicarTam(); render(); };
+    let cheia = !!E.rascunho.ler('seletor_cheia');
+    const btCheia = E.botao('⛶', () => { cheia = !cheia; E.rascunho.gravar('seletor_cheia', cheia || null); aplicarCheia(); }, 'Expandir / reduzir a janela', 'es-seletor-cheia');
+    topo.append(busca, info, selTam, btCheia);
     if (o.limpar) topo.appendChild(E.botao('Nenhum', () => { o.limpar(); m.fechar(); }));
     const grade = E.el('div', 'es-grade');
     dir.append(topo, grade);
     c.append(lado, dir);
     const m = E.modal(o.titulo || '🖼 Escolher sprite', c, { larga: true });
+    const caixa = m.el.querySelector('.es-modal-caixa');
+    function aplicarTam() { const [w, h] = TAMS[tam]; c.style.setProperty('--cartao-w', w + 'px'); c.style.setProperty('--cartao-h', h + 'px'); c.dataset.tam = tam; }
+    function aplicarCheia() { caixa.classList.toggle('cheia', cheia); btCheia.classList.toggle('on', cheia); btCheia.textContent = cheia ? '🗗' : '⛶'; }
+    aplicarTam(); aplicarCheia();
 
     // ---- miniaturas preguiçosas: só desenha (e baixa o sprite) quando aparece na tela
     const pendentes = new Map();
@@ -73,6 +88,15 @@ window.FF = window.FF || {};
     const fecharOrig = m.fechar;
     m.fechar = function () { obs.disconnect(); return fecharOrig.apply(this, arguments); };
 
+    // "12 quadros · 0,8 s · 120×96" (duração pelo fps e pela duração de cada quadro; tamanho = maior quadro)
+    const infoAnim = (s, a) => {
+      const an = s.anim(a), fr = an.frames || [];
+      let w = 0, h = 0, t = 0;
+      fr.forEach(f => { w = Math.max(w, f[3] || 0); h = Math.max(h, f[4] || 0); t += f[7] || 1; });
+      const esc = s.def.escala || 1;
+      const dur = an.fps > 0 ? (t / an.fps).toFixed(t / an.fps < 10 ? 2 : 1).replace('.', ',') + ' s' + (an.loop ? ' 🔁' : '') : 'parado';
+      return fr.length + ' quadro' + (fr.length === 1 ? '' : 's') + ' · ' + dur + ' · ' + Math.round(w * esc) + '×' + Math.round(h * esc);
+    };
     const carregar = async (lista) => { for (const id of lista) await FF.Assets.loadSprite(id).catch(() => null); };
     const itensJogo = (id) => { const s = FF.Assets.sprites[id]; return s ? Object.keys(s.def.anims).filter(a => !a.includes('#')).map(a => ({ id, a, s, n: s.anim(a).frames.length })) : []; };
     const itensAcervo = (id, idx) => {
@@ -215,20 +239,23 @@ window.FF = window.FF || {};
       itens.slice(0, 400).forEach(x => {
         const sel = o.atual && x.a === o.atual.anim && (!o.atual.sprite || o.atual.sprite === x.id);
         const k = E.el('div', 'es-cartao' + (sel ? ' sel' : ''));
-        const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
+        const cv = document.createElement('canvas'); cv.width = TAMS[tam][0]; cv.height = TAMS[tam][1];
+        const inf = E.el('small', 'es-cartao-info'); inf.textContent = x.n + ' quadro' + (x.n === 1 ? '' : 's');
         const sp = E.el('span'); sp.textContent = FF.Assets.nomeAnim(x.id, x.a);
         if (sp.textContent !== x.a) sp.classList.add('renomeado');
         const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = FF.Assets.nomeSprite(x.id) !== x.id ? FF.Assets.nomeSprite(x.id) : (NM[x.id] || x.id);
         sb.title = 'Duplo clique para renomear o sprite';
         sb.addEventListener('dblclick', (e) => { e.stopPropagation(); E.editarNoLugar(sb, sb.textContent, (v) => E.mudarInfoSprite(x.id, { nome: v.trim() && v.trim() !== (FF.Assets.acervo()[x.id] || [])[1] ? v.trim() : null })); });
         k.title = x.id + ' · ' + x.a + (FF.Assets.nomeAnim(x.id, x.a) !== x.a ? ' (renomeada: ' + FF.Assets.nomeAnim(x.id, x.a) + ')' : '') + ' (' + x.n + ' quadros)';
-        k.append(cv, sp, sb);
+        k.append(cv, sp, sb, inf);
         if (FF.Favoritos) k.appendChild(FF.Favoritos.botao(x.id, x.a, () => { contarFav(); if (favs) render(); }));
         { const ren = E.botao('✏', (e) => { e.stopPropagation(); e.preventDefault(); E.editarNoLugar(sp, FF.Assets.nomeAnim(x.id, x.a), (v) => { E.renomearAnim(x.id, x.a, v); sp.classList.toggle('renomeado', !!v.trim() && v.trim() !== x.a); }); }, 'Renomear esta animação (só o nome que aparece; o golpe continua igual)', 'es-fav-bt es-cartao-ren'); ren.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(ren); }
         if (FF.Mods) { const del = E.botao('🗑', (e) => { e.stopPropagation(); e.preventDefault(); FF.Mods.apagar(x.id, x.a); k.remove(); E.aviso('🗑 Animação "' + x.a + '" excluída (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir esta animação (vai para a Lixeira)', 'es-fav-bt es-cartao-del'); del.addEventListener('pointerdown', (e) => e.stopPropagation()); k.appendChild(del); }
         const desenhar = (s) => {
           if (!s.has(x.a)) return;
           E.miniatura(cv, s, x.a, Math.floor(s.anim(x.a).frames.length / 2));
+          inf.textContent = infoAnim(s, x.a);
+          k.title = x.id + ' · ' + x.a + ' — ' + inf.textContent + (s.def.escala && s.def.escala !== 1 ? ' · escala ' + s.def.escala + '×' : '');
           if (FF.EstudioProps && FF.EstudioProps.animarNoMouse) FF.EstudioProps.animarNoMouse(k, cv, s, x.a);
         };
         if (x.s) desenhar(x.s); else desenharQuando(k, x.id, desenhar);
@@ -251,7 +278,8 @@ window.FF = window.FF || {};
       info.textContent = spr.length + ' sprite(s) e ' + anims.length + ' animação(ões) excluídos';
       const cartao = (txt, sub, id, anim, restaurar) => {
         const k = E.el('div', 'es-cartao');
-        const cv = document.createElement('canvas'); cv.width = 96; cv.height = 72;
+        const cv = document.createElement('canvas'); cv.width = TAMS[tam][0]; cv.height = TAMS[tam][1];
+        const inf = E.el('small', 'es-cartao-info'); inf.textContent = x.n + ' quadro' + (x.n === 1 ? '' : 's');
         const sp = E.el('span'); sp.textContent = txt;
         const sb = E.el('small', 'es-cartao-fonte'); sb.textContent = sub;
         k.append(cv, sp, sb, E.botao('↺ Restaurar', (e) => { e.stopPropagation(); restaurar(); renderLixeira(); }, 'Voltar para as listas'));
