@@ -334,13 +334,14 @@ def fazer_pastas(a):
 
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
-    extra_ficha = {}
+    extra_ficha, velhos = {}, {}
     if a.so_atlas:                                          # mantém os outros sprites da fonte como estão
         fp = os.path.join(a.out, 'data/acervo/fontes', a.chave + '.json')
         if os.path.exists(fp):
             with open(fp, encoding='utf-8') as fh:
                 velha = json.load(fh)
-            fonte.sprites.update(velha.get('sprites', {}))
+            velhos = dict(velha.get('sprites', {}))
+            fonte.sprites.update(velhos)
             extra_ficha = {k: v for k, v in velha.items() if k not in ('chave', 'nome', 'categorias', 'sprites')}
 
     def tipo_de(rel):
@@ -761,13 +762,14 @@ def fazer_unity(a):
             por_tex[k] = [dict(nome=t['nome'], rect=[0, 0, t['w'], t['h']], pivot=[0.5, 0.0], inteira=True)]
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
-    extra_ficha = {}
+    extra_ficha, velhos = {}, {}
     if a.so_atlas:                                          # mantém os outros sprites da fonte como estão
         fp = os.path.join(a.out, 'data/acervo/fontes', a.chave + '.json')
         if os.path.exists(fp):
             with open(fp, encoding='utf-8') as fh:
                 velha = json.load(fh)
-            fonte.sprites.update(velha.get('sprites', {}))
+            velhos = dict(velha.get('sprites', {}))
+            fonte.sprites.update(velhos)
             extra_ficha = {k: v for k, v in velha.items() if k not in ('chave', 'nome', 'categorias', 'sprites')}
     for k, lista in por_tex.items():
         t = texturas[k]
@@ -810,7 +812,10 @@ def fazer_unity(a):
         nome = t['nome']
         if k in nomes_atlas:                                # folha de Sprite Atlas: nome do atlas (ex.: KI_EX_BIG_PACK)
             nome = nomes_atlas[k].replace('_', ' ').strip().capitalize() + ' (atlas)'
-        fonte.gravar(sid, nome, classificar(t['nome'] + ' ' + nome, 10 if len(fr) >= 12 else 1, maior), anims, [t['arq']], cat=a.chave)
+        tipo = classificar(t['nome'] + ' ' + nome, 10 if len(fr) >= 12 else 1, maior)
+        if a.so_atlas and sid in velhos:                    # refazendo: mantém o tipo que a folha já tinha (efeitos, interface…)
+            tipo = velhos[sid].get('tipo', tipo)
+        fonte.gravar(sid, nome, tipo, anims, [t['arq']], cat=a.chave)
         del imgs[k]
     if sem_formato:
         print('texturas em formato comprimido não lido:', dict(sem_formato))

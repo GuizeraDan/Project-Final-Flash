@@ -2,7 +2,7 @@
 
 Sprites extraídos dos jogos da pasta `Project Final Flash Sprites` (`tools/extrair_acervo.py` para o Z Legends 3, `tools/extrair_jogos.py` para os outros). Cada sprite fica em `data/acervo/<id>.js` + `assets/img/acervo/<id>_<n>.png` e aparece no Estúdio (aba Sprites e seletor de sprites). Nomes de animação são os do jogo de origem.
 
-**11154 sprites · 89887 animações · 338944 quadros.**
+**11154 sprites · 89962 animações · 339447 quadros.**
 
 ## Z Legends 3 (326 sprites)
 
@@ -612,7 +612,13 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_vgta_sj5` | vgta_sj5 | Personagens | 3 | 57 | 4b4194041e5fc6c4c875e65c003e4d4f |
 | `dw_yacha` | yacha | Personagens | 4 | 61 | 75f0bbe36d9c86b43a1cb750940ab975 |
 | `dw_zoku_sj5` | zoku_sj5 | Personagens | 3 | 57 | 767151c24fac3c54585e3f13f692729f |
+| `dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df` | Aura fx pack (atlas) | Efeitos | 11 | 40 | 00000000000000000000000000000000 |
+| `dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba` | Aura transform pack (atlas) | Efeitos | 3 | 29 | 00000000000000000000000000000000 |
+| `dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214` | Ball charge pack (atlas) | Efeitos | 1 | 19 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2` | Bb charge pack (atlas) | Efeitos | 3 | 15 | 00000000000000000000000000000000 |
 | `dw_bb_atk` | BB_ATK | Efeitos | 1 | 1 | 6eb269cedbd460d4dab44b5b61520f83 |
+| `dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb` | Beam charge ball pack (atlas) | Efeitos | 1 | 6 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_beam_charge_pack_37b093fa` | Beam charge pack (atlas) | Efeitos | 1 | 26 | 00000000000000000000000000000000 |
 | `dw_beam_fight_00` | beam_fight_00 | Efeitos | 1 | 1 | 9cec64c73a5b47c40952371fa5d92472 |
 | `dw_beam_fight_01` | beam_fight_01 | Efeitos | 1 | 1 | a341b83df5e3e9a4f94cc455fc4ee27f |
 | `dw_beam_fight_02` | beam_fight_02 | Efeitos | 1 | 1 | 681a686a53234e2468c64471cf37f6ce |
@@ -622,9 +628,14 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_beam_fight_06` | beam_fight_06 | Efeitos | 1 | 1 | 0550cfc98ac297047aae2f2403cf1876 |
 | `dw_beam_fight_07` | beam_fight_07 | Efeitos | 1 | 1 | acf6f865aef451b4aa9e80dd46998e2f |
 | `dw_combat` | combat | Efeitos | 1 | 1 | 582fc439bf0d56549859a11dc2c77bc3 |
+| `dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb` | Dark ball pack (atlas) | Efeitos | 1 | 10 | 00000000000000000000000000000000 |
 | `dw_dash_pre` | dash_pre | Efeitos | 1 | 5 | 4aae8d9dba70f2849ac637a33f1f14c2 |
+| `dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958` | Dead ball pack (atlas) | Efeitos | 1 | 8 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4` | Dragon punch pack (atlas) | Efeitos | 1 | 3 | 00000000000000000000000000000000 |
+| `dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0` | Energy ball pack (atlas) | Efeitos | 1 | 5 | 00000000000000000000000000000000 |
 | `dw_finger_beam` | FINGER_BEAM | Efeitos | 4 | 6 | 8a98ac0b5f86f034c994e0157c610a5d |
 | `dw_finger_beam_body` | finger_beam_body | Efeitos | 1 | 1 | c0b0c2cff023995489c0b754803690d7 |
+| `dw_sactx_256x512_etc2_genki_pack_6f6bcfa0` | Genki pack (atlas) | Efeitos | 3 | 5 | 00000000000000000000000000000000 |
 | `dw_ground_smash_fx_00` | ground_smash_fx_00 | Efeitos | 1 | 1 | 33b5ec83022d0994ca6bb0fe00addb55 |
 | `dw_ground_smash_fx_01` | ground_smash_fx_01 | Efeitos | 1 | 1 | ba7678798c9b1f14da035dfc06c52d70 |
 | `dw_ground_smash_fx_02` | ground_smash_fx_02 | Efeitos | 1 | 1 | d037e055a520cec4b80196a3b0a14e7a |
@@ -635,41 +646,29 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_ground_smash_fx_07` | ground_smash_fx_07 | Efeitos | 1 | 1 | db2f6f15f5a00904fb80b598abce466e |
 | `dw_ground_smash_fx_08` | ground_smash_fx_08 | Efeitos | 1 | 1 | e54b7ab7dee08664fb254fba31c3c9ca |
 | `dw_ground_smash_fx_09` | ground_smash_fx_09 | Efeitos | 1 | 1 | 18b19c22d945ba549a0ee1efda9f278d |
+| `dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6` | Hit spark pack (atlas) | Efeitos | 8 | 59 | 00000000000000000000000000000000 |
 | `dw_kenzan` | kenzan | Efeitos | 3 | 7 | 7c9be6f5a3c6e1a4681066f50aba780a |
+| `dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e` | Ki ball ex pack (atlas) | Efeitos | 1 | 19 | 00000000000000000000000000000000 |
+| `dw_sactx_512x256_etc2_ki_beam_pack_742c5349` | Ki beam pack (atlas) | Efeitos | 5 | 15 | 00000000000000000000000000000000 |
+| `dw_sactx_256x256_etc2_ki_blast_pack_82f34169` | Ki blast pack (atlas) | Efeitos | 1 | 12 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73` | Ki ex big pack (atlas) | Efeitos | 1 | 24 | 00000000000000000000000000000000 |
 | `dw_ki_blast_big` | ki_blast_big | Efeitos | 1 | 10 | 865e32ab37b1f604190b9376808c8453 |
-| `dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73` | sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e` | sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df` | sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2` | sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb` | sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0` | sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba` | sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214` | sactx-256x128-Uncompressed-BALL_CHARGE_PACK-33e25214 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_256x256_etc2_ki_blast_pack_82f34169` | sactx-256x256-ETC2-KI_BLAST_PACK-82f34169 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_256x512_etc2_genki_pack_6f6bcfa0` | sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6` | sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x256_etc2_ki_beam_pack_742c5349` | sactx-512x256-ETC2-KI_BEAM_PACK-742c5349 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa` | sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb` | sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_beam_charge_pack_37b093fa` | sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958` | sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4` | sactx-512x512-ETC2-DRAGON_PUNCH_PACK-d930f2c4 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x512_etc2_normal_fx_pack_8fcda289` | sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289 | Efeitos | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_normal_fx_pack_8fcda289` | Normal fx pack (atlas) | Efeitos | 6 | 26 | 00000000000000000000000000000000 |
+| `dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa` | Self destruction pack (atlas) | Efeitos | 1 | 2 | 00000000000000000000000000000000 |
 | `dw_thun_f` | thun_f | Efeitos | 1 | 4 | d548d1e13764ab34382147eb457ab9ec |
+| `dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8` | Active skill bg pack (atlas) | Cenários | 1 | 10 | 00000000000000000000000000000000 |
+| `dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209` | Arena god pack (atlas) | Cenários | 5 | 5 | 00000000000000000000000000000000 |
 | `dw_arena_god_600_0` | arena_god_600-0 | Cenários | 1 | 1 | 8ef3f665a4224d240bd4f1ff8c72f831 |
 | `dw_arena_god_600_3` | arena_god_600-3 | Cenários | 1 | 1 | 88d47851f900330479fa5343677276bf |
-| `dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8` | sactx-1024x1024-ETC2-ACTIVE_SKILL_BG_PACK-1793eaa8 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff` | sactx-1024x1024-ETC2-CHIKARI_PACK-0e6ffdff | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_1024x1024_etc2_chiko_pack_d34853b7` | sactx-1024x1024-ETC2-CHIKO_PACK-d34853b7 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209` | sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x1024_etc2_c_g_stage_853da8c3` | sactx-2048x1024-ETC2-C_G_STAGE-853da8c3 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08` | sactx-2048x1024-ETC2-S_PLANET_PACK-9b8a5a08 | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd` | sactx-2048x2048-ETC2-D_PLANET_PACK-2addc9dd | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d` | sactx-2048x2048-ETC2-G_V_H-f2b2e61d | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_2048x512_etc2_univer_sky_d751abae` | sactx-2048x512-ETC2-UNIVER_SKY-d751abae | Cenários | 1 | 1 | 00000000000000000000000000000000 |
-| `dw_sactx_512x1024_etc2_end_fight_pack_b956320f` | sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f | Cenários | 1 | 1 | sharedassets3.assets |
-| `dw_sactx_512x256_uncompressed_menu_stage_f25645df` | sactx-512x256-Uncompressed-MENU_STAGE-f25645df | Cenários | 1 | 1 | sharedassets2.assets |
-| `dw_sactx_512x512_etc2_galic_pack_36ec096e` | sactx-512x512-ETC2-GALIC_PACK-36ec096e | Cenários | 1 | 1 | 00000000000000000000000000000000 |
+| `dw_sactx_2048x1024_etc2_c_g_stage_853da8c3` | C g stage (atlas) | Cenários | 4 | 13 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff` | Chikari pack (atlas) | Cenários | 3 | 10 | 00000000000000000000000000000000 |
+| `dw_sactx_1024x1024_etc2_chiko_pack_d34853b7` | Chiko pack (atlas) | Cenários | 1 | 2 | 00000000000000000000000000000000 |
+| `dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd` | D planet pack (atlas) | Cenários | 4 | 15 | 00000000000000000000000000000000 |
+| `dw_sactx_512x1024_etc2_end_fight_pack_b956320f` | End fight pack (atlas) | Cenários | 1 | 4 | sharedassets3.assets |
+| `dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d` | G v h (atlas) | Cenários | 4 | 4 | 00000000000000000000000000000000 |
+| `dw_sactx_512x512_etc2_galic_pack_36ec096e` | Galic pack (atlas) | Cenários | 3 | 18 | 00000000000000000000000000000000 |
+| `dw_sactx_512x256_uncompressed_menu_stage_f25645df` | Menu stage (atlas) | Cenários | 3 | 4 | sharedassets2.assets |
+| `dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08` | S planet pack (atlas) | Cenários | 5 | 12 | 00000000000000000000000000000000 |
 | `dw_thin01` | Thin01 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_thin02` | Thin02 | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `dw_unitysplash_cube` | UnitySplash-cube | Cenários | 1 | 1 | unity default resources |
@@ -681,8 +680,11 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_unitywatermark_trial` | UnityWatermark-trial | Cenários | 1 | 1 | unity default resources |
 | `dw_unitywatermark_trial_big` | UnityWatermark-trial-big | Cenários | 1 | 1 | unity default resources |
 | `dw_unitywatermarkplugin_beta` | UnityWatermarkPlugin-beta | Cenários | 1 | 1 | unity default resources |
+| `dw_sactx_2048x512_etc2_univer_sky_d751abae` | Univer sky (atlas) | Cenários | 1 | 4 | 00000000000000000000000000000000 |
+| `dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082` | A face pack (atlas) | Interface | 1 | 25 | sharedassets0.assets |
 | `dw_ads_icon` | ads_icon | Interface | 1 | 1 | sharedassets0.assets |
 | `dw_areatex` | AreaTex | Interface | 1 | 1 | globalgamemanagers.assets |
+| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0` | Avatar full pack (atlas) | Interface | 1 | 24 | sharedassets2.assets |
 | `dw_bly_ball_font` | bly_ball_font | Interface | 3 | 17 | 41a1770d52743a9469448e30c8fa3b0d |
 | `dw_box` | box | Interface | 1 | 1 | unity default resources |
 | `dw_button` | button | Interface | 1 | 1 | unity default resources |
@@ -690,10 +692,12 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_button_hover` | button hover | Interface | 1 | 1 | unity default resources |
 | `dw_button_on` | button on | Interface | 1 | 1 | unity default resources |
 | `dw_button_on_hover` | button on hover | Interface | 1 | 1 | unity default resources |
+| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c` | Control ui pack (atlas) | Interface | 1 | 11 | sharedassets0.assets |
 | `dw_esctoexit_back` | EscToExit_back | Interface | 1 | 1 | unity default resources |
 | `dw_esctoexit_text` | EscToExit_Text | Interface | 1 | 1 | unity default resources |
 | `dw_horizontal_scrollbar` | horizontal scrollbar | Interface | 1 | 1 | unity default resources |
 | `dw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
+| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca` | Ingame ui pack (atlas) | Interface | 1 | 10 | sharedassets0.assets |
 | `dw_large01` | Large01 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_large02` | Large02 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_large02_` | Large02 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
@@ -739,6 +743,7 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_ldr_lll1_8` | LDR_LLL1_8 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_ldr_lll1_9` | LDR_LLL1_9 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_ldr_lll1_9_` | LDR_LLL1_9 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
+| `dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a` | Main ui pack (atlas) | Interface | 21 | 31 | sharedassets0.assets |
 | `dw_medium01` | Medium01 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_medium01_` | Medium01 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
 | `dw_medium02` | Medium02 | Interface | 1 | 1 | globalgamemanagers.assets |
@@ -747,23 +752,18 @@ Deixados de fora (invisíveis/vazios): t383, t384, t385, t386, t392
 | `dw_medium05` | Medium05 | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_medium05_` | Medium05 | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
 | `dw_medium06` | Medium06 | Interface | 1 | 1 | globalgamemanagers.assets |
-| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Interface | 1 | 1 | sharedassets0.assets |
+| `dw_sactx_256x128_uncompressed_npc_pack_a988f2ae` | Npc pack (atlas) | Interface | 1 | 8 | sharedassets0.assets |
 | `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b_` | sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b | Interface | 1 | 1 | sharedassets0.assets.split0 |
-| `dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082` | sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082 | Interface | 1 | 1 | sharedassets0.assets |
-| `dw_sactx_256x128_uncompressed_npc_pack_a988f2ae` | sactx-256x128-Uncompressed-NPC_PACK-a988f2ae | Interface | 1 | 1 | sharedassets0.assets.split0 |
-| `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Interface | 1 | 1 | sharedassets2.assets |
 | `dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_` | sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0 | Interface | 1 | 1 | sharedassets2.assets.split0 |
-| `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Interface | 1 | 1 | sharedassets0.assets |
 | `dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_` | sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c | Interface | 1 | 1 | sharedassets0.assets.split0 |
-| `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Interface | 1 | 1 | sharedassets0.assets |
 | `dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_` | sactx-512x512-ETC2-INGAME_UI_PACK-30760fca | Interface | 1 | 1 | sharedassets0.assets.split0 |
-| `dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a` | sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a | Interface | 1 | 1 | sharedassets0.assets |
 | `dw_searchtex` | SearchTex | Interface | 1 | 1 | globalgamemanagers.assets |
 | `dw_searchtex_` | SearchTex | Interface | 1 | 1 | globalgamemanagers.assets.split0 |
 | `dw_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
 | `dw_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |
 | `dw_slidert_humb_hover` | slidert humb hover | Interface | 1 | 1 | unity default resources |
 | `dw_soft` | Soft | Interface | 1 | 1 | unity default resources |
+| `dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b` | Stages img pack (atlas) | Interface | 1 | 7 | sharedassets0.assets |
 | `dw_textfield` | textfield | Interface | 1 | 1 | unity default resources |
 | `dw_textfield_hover` | textfield hover | Interface | 1 | 1 | unity default resources |
 | `dw_textfield_on` | textfield on | Interface | 1 | 1 | unity default resources |

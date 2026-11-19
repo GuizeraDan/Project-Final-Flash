@@ -6985,6 +6985,54 @@
 "767151c24fac3c54585e3f13f692729f"
 ]
 },
+"dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
+"nome": "Aura fx pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 11,
+"quadros": 40,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
+"nome": "Aura transform pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 3,
+"quadros": 29,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214": {
+"nome": "Ball charge pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 19,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
+"nome": "Bb charge pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 3,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
 "dw_bb_atk": {
 "nome": "BB_ATK",
 "cat": "dw",
@@ -6995,6 +7043,30 @@
 "atlas": 1,
 "objs": [
 "6eb269cedbd460d4dab44b5b61520f83"
+]
+},
+"dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
+"nome": "Beam charge ball pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 6,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
+"nome": "Beam charge pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 26,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_beam_fight_00": {
@@ -7105,6 +7177,18 @@
 "582fc439bf0d56549859a11dc2c77bc3"
 ]
 },
+"dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
+"nome": "Dark ball pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
 "dw_dash_pre": {
 "nome": "dash_pre",
 "cat": "dw",
@@ -7115,6 +7199,42 @@
 "atlas": 1,
 "objs": [
 "4aae8d9dba70f2849ac637a33f1f14c2"
+]
+},
+"dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
+"nome": "Dead ball pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 8,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4": {
+"nome": "Dragon punch pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 3,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
+"nome": "Energy ball pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_finger_beam": {
@@ -7139,6 +7259,18 @@
 "atlas": 1,
 "objs": [
 "c0b0c2cff023995489c0b754803690d7"
+]
+},
+"dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
+"nome": "Genki pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 3,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_ground_smash_fx_00": {
@@ -7261,6 +7393,18 @@
 "18b19c22d945ba549a0ee1efda9f278d"
 ]
 },
+"dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
+"nome": "Hit spark pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 8,
+"quadros": 59,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
 "dw_kenzan": {
 "nome": "kenzan",
 "cat": "dw",
@@ -7271,6 +7415,54 @@
 "atlas": 1,
 "objs": [
 "7c9be6f5a3c6e1a4681066f50aba780a"
+]
+},
+"dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
+"nome": "Ki ball ex pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 19,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x256_etc2_ki_beam_pack_742c5349": {
+"nome": "Ki beam pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 5,
+"quadros": 15,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
+"nome": "Ki blast pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 12,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
+"nome": "Ki ex big pack (atlas)",
+"cat": "dw",
+"tipo": "efeitos",
+"fonte": "dw",
+"anims": 1,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_ki_blast_big": {
@@ -7285,217 +7477,25 @@
 "865e32ab37b1f604190b9376808c8453"
 ]
 },
-"dw_sactx_1024x1024_etc2_ki_ex_big_pack_ee318d73": {
-"nome": "sactx-1024x1024-ETC2-KI_EX_BIG_PACK-ee318d73",
+"dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
+"nome": "Normal fx pack (atlas)",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x2048_etc2_ki_ball_ex_pack_12f91b5e": {
-"nome": "sactx-1024x2048-ETC2-KI_BALL_EX_PACK-12f91b5e",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_aura_fx_pack_fa6298df": {
-"nome": "sactx-1024x512-ETC2-AURA_FX_PACK-fa6298df",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_bb_charge_pack_68bbfcb2": {
-"nome": "sactx-1024x512-ETC2-BB_CHARGE_PACK-68bbfcb2",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_1024x512_etc2_dark_ball_pack_447e5ffb": {
-"nome": "sactx-1024x512-ETC2-DARK_BALL_PACK-447e5ffb",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
-"nome": "sactx-128x128-Uncompressed-ENERGY_BALL_PACK-69ca47b0",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x1024_etc2_aura_transform_pack_03af6fba": {
-"nome": "sactx-2048x1024-ETC2-AURA_TRANSFORM_PACK-03af6fba",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_256x128_uncompressed_ball_charge_pack_33e25214": {
-"nome": "sactx-256x128-Uncompressed-BALL_CHARGE_PACK-33e25214",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_256x256_etc2_ki_blast_pack_82f34169": {
-"nome": "sactx-256x256-ETC2-KI_BLAST_PACK-82f34169",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_256x512_etc2_genki_pack_6f6bcfa0": {
-"nome": "sactx-256x512-ETC2-GENKI_PACK-6f6bcfa0",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x1024_etc2_hit_spark_pack_c1b22cb6": {
-"nome": "sactx-512x1024-ETC2-HIT_SPARK_PACK-c1b22cb6",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x256_etc2_ki_beam_pack_742c5349": {
-"nome": "sactx-512x256-ETC2-KI_BEAM_PACK-742c5349",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"anims": 6,
+"quadros": 26,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
 ]
 },
 "dw_sactx_512x256_uncompressed_self_destruction_pack_5b5e00aa": {
-"nome": "sactx-512x256-Uncompressed-SELF_DESTRUCTION_PACK-5b5e00aa",
+"nome": "Self destruction pack (atlas)",
 "cat": "dw",
 "tipo": "efeitos",
 "fonte": "dw",
 "anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_beam_charge_ball_pack_f91412fb": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_BALL_PACK-f91412fb",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_beam_charge_pack_37b093fa": {
-"nome": "sactx-512x512-ETC2-BEAM_CHARGE_PACK-37b093fa",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_dead_ball_pack_e9a0a958": {
-"nome": "sactx-512x512-ETC2-DEAD_BALL_PACK-e9a0a958",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_dragon_punch_pack_d930f2c4": {
-"nome": "sactx-512x512-ETC2-DRAGON_PUNCH_PACK-d930f2c4",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_512x512_etc2_normal_fx_pack_8fcda289": {
-"nome": "sactx-512x512-ETC2-NORMAL_FX_PACK-8fcda289",
-"cat": "dw",
-"tipo": "efeitos",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"quadros": 2,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
@@ -7511,6 +7511,30 @@
 "atlas": 1,
 "objs": [
 "d548d1e13764ab34382147eb457ab9ec"
+]
+},
+"dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8": {
+"nome": "Active skill bg pack (atlas)",
+"cat": "dw",
+"tipo": "cenarios",
+"fonte": "dw",
+"anims": 1,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209": {
+"nome": "Arena god pack (atlas)",
+"cat": "dw",
+"tipo": "cenarios",
+"fonte": "dw",
+"anims": 5,
+"quadros": 5,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
 ]
 },
 "dw_arena_god_600_0": {
@@ -7537,145 +7561,109 @@
 "88d47851f900330479fa5343677276bf"
 ]
 },
-"dw_sactx_1024x1024_etc2_active_skill_bg_pack_1793eaa8": {
-"nome": "sactx-1024x1024-ETC2-ACTIVE_SKILL_BG_PACK-1793eaa8",
+"dw_sactx_2048x1024_etc2_c_g_stage_853da8c3": {
+"nome": "C g stage (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"anims": 4,
+"quadros": 13,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
 ]
 },
 "dw_sactx_1024x1024_etc2_chikari_pack_0e6ffdff": {
-"nome": "sactx-1024x1024-ETC2-CHIKARI_PACK-0e6ffdff",
+"nome": "Chikari pack (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"anims": 3,
+"quadros": 10,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
 ]
 },
 "dw_sactx_1024x1024_etc2_chiko_pack_d34853b7": {
-"nome": "sactx-1024x1024-ETC2-CHIKO_PACK-d34853b7",
+"nome": "Chiko pack (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
 "anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x1024_etc2_arena_god_pack_a1ea7209": {
-"nome": "sactx-2048x1024-ETC2-ARENA_GOD_PACK-a1ea7209",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x1024_etc2_c_g_stage_853da8c3": {
-"nome": "sactx-2048x1024-ETC2-C_G_STAGE-853da8c3",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08": {
-"nome": "sactx-2048x1024-ETC2-S_PLANET_PACK-9b8a5a08",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"quadros": 2,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
 ]
 },
 "dw_sactx_2048x2048_etc2_d_planet_pack_2addc9dd": {
-"nome": "sactx-2048x2048-ETC2-D_PLANET_PACK-2addc9dd",
+"nome": "D planet pack (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d": {
-"nome": "sactx-2048x2048-ETC2-G_V_H-f2b2e61d",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"00000000000000000000000000000000"
-]
-},
-"dw_sactx_2048x512_etc2_univer_sky_d751abae": {
-"nome": "sactx-2048x512-ETC2-UNIVER_SKY-d751abae",
-"cat": "dw",
-"tipo": "cenarios",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
+"anims": 4,
+"quadros": 15,
+"atlas": 2,
 "objs": [
 "00000000000000000000000000000000"
 ]
 },
 "dw_sactx_512x1024_etc2_end_fight_pack_b956320f": {
-"nome": "sactx-512x1024-ETC2-END_FIGHT_PACK-b956320f",
+"nome": "End fight pack (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
 "anims": 1,
-"quadros": 1,
+"quadros": 4,
 "atlas": 1,
 "objs": [
 "sharedassets3.assets"
 ]
 },
-"dw_sactx_512x256_uncompressed_menu_stage_f25645df": {
-"nome": "sactx-512x256-Uncompressed-MENU_STAGE-f25645df",
+"dw_sactx_2048x2048_etc2_g_v_h_f2b2e61d": {
+"nome": "G v h (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"anims": 4,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x512_etc2_galic_pack_36ec096e": {
+"nome": "Galic pack (atlas)",
+"cat": "dw",
+"tipo": "cenarios",
+"fonte": "dw",
+"anims": 3,
+"quadros": 18,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_512x256_uncompressed_menu_stage_f25645df": {
+"nome": "Menu stage (atlas)",
+"cat": "dw",
+"tipo": "cenarios",
+"fonte": "dw",
+"anims": 3,
+"quadros": 4,
 "atlas": 1,
 "objs": [
 "sharedassets2.assets"
 ]
 },
-"dw_sactx_512x512_etc2_galic_pack_36ec096e": {
-"nome": "sactx-512x512-ETC2-GALIC_PACK-36ec096e",
+"dw_sactx_2048x1024_etc2_s_planet_pack_9b8a5a08": {
+"nome": "S planet pack (atlas)",
 "cat": "dw",
 "tipo": "cenarios",
 "fonte": "dw",
-"anims": 1,
-"quadros": 1,
+"anims": 5,
+"quadros": 12,
 "atlas": 1,
 "objs": [
 "00000000000000000000000000000000"
@@ -7813,6 +7801,30 @@
 "unity default resources"
 ]
 },
+"dw_sactx_2048x512_etc2_univer_sky_d751abae": {
+"nome": "Univer sky (atlas)",
+"cat": "dw",
+"tipo": "cenarios",
+"fonte": "dw",
+"anims": 1,
+"quadros": 4,
+"atlas": 1,
+"objs": [
+"00000000000000000000000000000000"
+]
+},
+"dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082": {
+"nome": "A face pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 25,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
 "dw_ads_icon": {
 "nome": "ads_icon",
 "cat": "dw",
@@ -7835,6 +7847,18 @@
 "atlas": 1,
 "objs": [
 "globalgamemanagers.assets"
+]
+},
+"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
+"nome": "Avatar full pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 24,
+"atlas": 1,
+"objs": [
+"sharedassets2.assets"
 ]
 },
 "dw_bly_ball_font": {
@@ -7921,6 +7945,18 @@
 "unity default resources"
 ]
 },
+"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
+"nome": "Control ui pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 11,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
 "dw_esctoexit_back": {
 "nome": "EscToExit_back",
 "cat": "dw",
@@ -7967,6 +8003,18 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
+"nome": "Ingame ui pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
 ]
 },
 "dw_large01": {
@@ -8509,6 +8557,18 @@
 "globalgamemanagers.assets.split0"
 ]
 },
+"dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
+"nome": "Main ui pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 21,
+"quadros": 31,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
+]
+},
 "dw_medium01": {
 "nome": "Medium01",
 "cat": "dw",
@@ -8605,13 +8665,13 @@
 "globalgamemanagers.assets"
 ]
 },
-"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
-"nome": "sactx-128x512-Uncompressed-STAGES_IMG_PACK-9e8f683b",
+"dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
+"nome": "Npc pack (atlas)",
 "cat": "dw",
 "tipo": "interface",
 "fonte": "dw",
 "anims": 1,
-"quadros": 1,
+"quadros": 8,
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
@@ -8629,42 +8689,6 @@
 "sharedassets0.assets.split0"
 ]
 },
-"dw_sactx_256x128_uncompressed_a_face_pack_cd9d8082": {
-"nome": "sactx-256x128-Uncompressed-A_FACE_PACK-cd9d8082",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
-"dw_sactx_256x128_uncompressed_npc_pack_a988f2ae": {
-"nome": "sactx-256x128-Uncompressed-NPC_PACK-a988f2ae",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets.split0"
-]
-},
-"dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0": {
-"nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets2.assets"
-]
-},
 "dw_sactx_512x256_uncompressed_avatar_full_pack_74aa48a0_": {
 "nome": "sactx-512x256-Uncompressed-AVATAR_FULL_PACK-74aa48a0",
 "cat": "dw",
@@ -8675,18 +8699,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets2.assets.split0"
-]
-},
-"dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c": {
-"nome": "sactx-512x512-ETC2-CONTROL_UI_PACK-14ae2d2c",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
 ]
 },
 "dw_sactx_512x512_etc2_control_ui_pack_14ae2d2c_": {
@@ -8701,18 +8713,6 @@
 "sharedassets0.assets.split0"
 ]
 },
-"dw_sactx_512x512_etc2_ingame_ui_pack_30760fca": {
-"nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
-]
-},
 "dw_sactx_512x512_etc2_ingame_ui_pack_30760fca_": {
 "nome": "sactx-512x512-ETC2-INGAME_UI_PACK-30760fca",
 "cat": "dw",
@@ -8723,18 +8723,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets.split0"
-]
-},
-"dw_sactx_512x512_uncompressed_main_ui_pack_ee0f056a": {
-"nome": "sactx-512x512-Uncompressed-MAIN_UI_PACK-ee0f056a",
-"cat": "dw",
-"tipo": "interface",
-"fonte": "dw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"sharedassets0.assets"
 ]
 },
 "dw_searchtex": {
@@ -8807,6 +8795,18 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"dw_sactx_128x512_uncompressed_stages_img_pack_9e8f683b": {
+"nome": "Stages img pack (atlas)",
+"cat": "dw",
+"tipo": "interface",
+"fonte": "dw",
+"anims": 1,
+"quadros": 7,
+"atlas": 1,
+"objs": [
+"sharedassets0.assets"
 ]
 },
 "dw_textfield": {
