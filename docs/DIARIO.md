@@ -505,3 +505,4 @@ Cache do app: `finalflash-v47`.
 
 ## 2026-11-19 — Seletor de sprites: tela cheia, tamanho dos cartões e informações
 - Pedido do usuário: poder expandir a janela "Escolher efeito/sprite" e ver mais informações. Na barra do seletor (`js/estudio/seletor.js`): botão ⛶/🗗 (janela em tela cheia, `.es-modal-caixa.cheia`) e "Cartões pequenos/médios/grandes" (96×72, 150×112, 220×165; variáveis CSS `--cartao-w/h`), lembrados no aparelho (`seletor_cheia`, `seletor_tam`). Cada cartão ganhou a linha "N quadros · duração (🔁 se repete) · L×A" (maior quadro, já com a escala do sprite) e a dica com o id do sprite e a escala.
+- Aba Sprites: ☆ em cada animação da lista (pedido do usuário) — o mesmo menu do seletor (`FF.Favoritos.botao(sprite, anim)`: tipo + pastas); a animação favoritada aparece em "⭐ Meus favoritos"/pastas no seletor do editor de cenas.

@@ -122,3 +122,5 @@
 .ess-sprites .ess-lixo:hover { border-color: #e44; }
 .ess-sprites .ess-restaurar:hover { border-color: #3c3; }
 .ess-cat-sub { padding-left: 16px; border-top: none; color: var(--texto, #ddd); font-weight: normal; }
+
+.ess-anims .es-item .es-fav-bt { margin-left: 3px; flex: none; }

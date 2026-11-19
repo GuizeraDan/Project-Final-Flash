@@ -357,6 +357,8 @@
       if (!novoAqui && podeRenomear(n)) it.appendChild(E.botao('Aa', (e) => { e.stopPropagation(); renomearAnim(n); }, 'Renomear esta animação', 'ess-anim-apagar ess-anim-ren'));
       const x = E.botao('🗑', (e) => { e.stopPropagation(); apagarAnim(n); }, 'Apagar esta animação do jogo', 'ess-anim-apagar');
       it.appendChild(x);
+      // ☆ favoritar a animação (o mesmo menu do seletor: tipo + pastas) → aparece em "⭐ Meus favoritos" no editor de cenas
+      if (!novoAqui && FF.Favoritos) it.appendChild(FF.Favoritos.botao(st.id, n));
       it.onclick = () => abrirAnim(n);
       ui.anims.appendChild(it);
     });
