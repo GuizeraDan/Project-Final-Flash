@@ -487,3 +487,8 @@ Cache do app: `finalflash-v47`.
 - Conferido: folha com o parado dos 76 (pés na linha), Estúdio abrindo corpo e efeitos (escala 2, atlas compartilhado), `acervo.js` OK, teste padrão de batalha OK.
 - Não entraram no Elenco da Batalha Livre (não foi pedido); dá para fazer depois com uma ficha `kaw` em `tools/gerar_elenco.py`.
 - Para refazer: copiar `.sff/.air/.def/.act` das pastas para cá, `python3 -I tools/mugen/kaw_lote.py manifest.tsv <saida>` e `python3 -I tools/extrair_mugen.py <saida> --defs defs.json`.
+
+## 2026-11-19 — Lista de sprites do Estúdio: categoria que não fechava + Lixeira
+- Bug relatado pelo usuário: na aba Sprites, com um sprite do acervo aberto (ex.: "Androide 17 · efeitos"), clicar para fechar a categoria dele ("KODAIKA…" ou "Efeitos (76)") não fazia nada — `renderSprites` forçava a categoria/tipo do sprite aberto a cada redesenho. Agora isso acontece só uma vez, quando o sprite é aberto (`st.catAbertaDe`).
+- Pedido do usuário: poder apagar sprites que não vai usar. Na aba Sprites: 🗑 em cada sprite do acervo e no cabeçalho de cada grupo do acervo (com confirmação; ex.: os 76 "Efeitos" do KODAIKA de uma vez) → vão para a "🗑 Lixeira", no fim da lista (riscados, ♻ por sprite e "♻ Restaurar todos"). Usa o mesmo `spritesInfo[id].oculto` da Lixeira do seletor de sprites (somem das duas listas, em todos os aparelhos; vários cliques viram um commit só via `setDepois`). Os arquivos continuam no repositório e golpes que já usam o sprite seguem funcionando.
+- `tools/testes/acervo.js`: confere os caminhos de atlas pelas definições (os KODAIKA usam `kaw_comum_*`), a categoria fechando e a Lixeira.

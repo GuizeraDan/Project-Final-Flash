@@ -211,8 +211,8 @@
   function renderSprites() {
     const f = st.buscaSprite.toLowerCase();
     ui.sprites.innerHTML = '';
-    const item = (s, pai) => {
-      const it = el('div', 'es-item' + (s === st.id ? ' sel' : ''));
+    const item = (s, pai, naLixeira) => {
+      const it = el('div', 'es-item' + (s === st.id ? ' sel' : '') + (naLixeira ? ' ess-na-lixeira' : ''));
       it.dataset.sprite = s;
       const imp = importado(s);
       if (imp) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; it.appendChild(t); }
@@ -222,6 +222,8 @@
       if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
       else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
+      else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'ess-anim-apagar ess-restaurar'));
+      else if (ac) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); lixeiraSprites([s]); }, 'Mandar para a Lixeira (some das listas; dá para restaurar no fim da lista)', 'ess-anim-apagar'));
       if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
@@ -237,7 +239,14 @@
     const ICONE_TIPO = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };
     const NOME_TIPO = { personagens: 'Personagens', efeitos: 'Efeitos', cenarios: 'Cenários', interface: 'Interface e outros', cutscenes: 'Cutscenes' };
     const abertas = new Set(E.rascunho.ler('sprites_cats_abertas') || []);
-    if (st.id && FF.Assets.doAcervo(st.id)) { abertas.add(FF.Assets.categoriaSprite(st.id)); abertas.add(FF.Assets.categoriaSprite(st.id) + ':' + FF.Assets.tipoSprite(st.id)); }
+    // abre a categoria do sprite aberto só uma vez (ao abrir o sprite); antes isso rodava a cada redesenho e
+    // impedia de fechar a categoria/tipo dele (o clique fechava e a lista reabria na hora)
+    if (st.id && st.catAbertaDe !== st.id && FF.Assets.doAcervo(st.id)) {
+      st.catAbertaDe = st.id;
+      const c = FF.Assets.categoriaSprite(st.id);
+      abertas.add(c); abertas.add(c + ':' + FF.Assets.tipoSprite(st.id));
+      E.rascunho.gravar('sprites_cats_abertas', [...abertas]);
+    }
     const grupo = (chave, titulo, ids, sub) => {
       if (!ids.length) return;
       const padraoAberto = chave === 'jogo' || chave.startsWith('fav:');   // do jogo e favoritos começam abertos
@@ -248,8 +257,15 @@
         else { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); }
         E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites();
       };
+      if (chave === 'lixeira') cab.appendChild(E.botao('♻ Restaurar todos', (e) => { e.stopPropagation(); restaurarSprites(ids); }, 'Tirar todos da Lixeira', 'ess-cat-bt'));
+      else if (chave !== 'jogo' && !chave.startsWith('fav:') && ids.every(i => FF.Assets.doAcervo(i) && !importado(i)))
+        cab.appendChild(E.botao('🗑', async (e) => {
+          e.stopPropagation();
+          if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar os ' + ids.length + ' sprites de "' + titulo.replace(/^\S+\s/, '') + '" para a Lixeira? Eles somem das listas do Estúdio (em todos os aparelhos). Dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) lixeiraSprites(ids);
+        }, 'Mandar todos os sprites deste grupo para a Lixeira', 'ess-cat-bt'));
       ui.sprites.appendChild(cab);
       if (!aberta) return;
+      if (chave === 'lixeira') { ids.forEach(s => item(s, ui.sprites, true)); return; }
       // jogo inteiro (ex.: Drag Warriors): separa por tipo (personagens, efeitos, cenários, interface)
       const tipos = sub ? [] : TIPOS_ACERVO.filter(t => ids.some(s => FF.Assets.tipoSprite(s) === t));
       if (chave === 'jogo' || tipos.length < 2) { ids.forEach(s => item(s, ui.sprites)); return; }
@@ -268,6 +284,20 @@
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
     cats.forEach(c => grupo(c, '📦 ' + (NOMES[c] || c), acervo.filter(s => FF.Assets.categoriaSprite(s) === c)));
+    grupo('lixeira', '🗑 Lixeira', FF.Assets.listaSprites(true).filter(s => FF.Assets.spriteOculto(s) && bate(s)));
+  }
+
+  // Lixeira: sprites do acervo que o usuário não quer usar somem das listas (spritesInfo[id].oculto; um commit só
+  // para vários cliques). Os arquivos continuam no repositório e golpes que já usam o sprite seguem funcionando.
+  function lixeiraSprites(ids) {
+    ids.forEach(id => E.mudarInfoSprite(id, { oculto: true }));
+    E.aviso('🗑 ' + (ids.length === 1 ? 'Sprite "' + FF.Assets.nomeSprite(ids[0]) + '" mandado' : ids.length + ' sprites mandados') + ' para a Lixeira (no fim da lista, para restaurar).');
+    renderSprites();
+  }
+  function restaurarSprites(ids) {
+    ids.forEach(id => E.mudarInfoSprite(id, { oculto: null }));
+    E.aviso('♻ ' + (ids.length === 1 ? 'Sprite "' + FF.Assets.nomeSprite(ids[0]) + '" restaurado.' : ids.length + ' sprites restaurados.'));
+    renderSprites();
   }
 
   // ao trocar com mudanças não salvas: salvar, descartar ou ficar

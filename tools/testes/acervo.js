@@ -66,7 +66,14 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   });
   ok(!s.length, 'todos os ' + nIdx + ' arquivos do acervo abrem' + (s.length ? ' — ' + s.slice(0, 5).join(', ') : ''));
   const faltando = [];
-  for (const id of Object.keys(indice.sprites)) for (let i = 0; i < indice.sprites[id].atlas; i++) if (!fs.existsSync(RAIZ + '/assets/img/acervo/' + id + '_' + i + '.png')) faltando.push(id + '_' + i);
+  // confere os caminhos que estão na definição (sprites do KODAIKA também usam atlas compartilhados kaw_comum_*)
+  for (const id of Object.keys(indice.sprites)) {
+    const txt = fs.readFileSync(RAIZ + '/data/acervo/' + id + '.js', 'utf8');
+    const m = txt.match(/"atlases":(\[[^\]]*\])/);
+    const caminhos = m ? JSON.parse(m[1]) : [];
+    if (caminhos.length !== indice.sprites[id].atlas) faltando.push(id + ':contagem');
+    for (const c of caminhos) if (!fs.existsSync(RAIZ + '/' + c)) faltando.push(c.split('/').pop());
+  }
   ok(!faltando.length, 'todas as imagens de atlas existem' + (faltando.length ? ' — ' + faltando.slice(0, 5) : ''));
   let escolhido = null;
   await p.exposeFunction('__escolheu', (a, id) => { escolhido = [a, id]; });
@@ -131,6 +138,26 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(s.id === 'zl3_cell' && s.anims === indice.sprites.zl3_cell.anims, 'aba Sprites abre zl3_cell (' + s.anims + ' animações)');
   ok(s.cats.filter(c => !/⭐/.test(c)).length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(s.cats[0]), 'lista agrupada: ' + s.cats.join(' | '));
   await p.screenshot({ path: OUT + '/3_aba_sprites.png' });
+  // a categoria do sprite aberto precisa fechar com um clique (antes reabria na hora a cada redesenho)
+  s = await p.evaluate(() => {
+    const cab = () => [...document.querySelectorAll('.ess-cat')].find(c => /ZL3 · Personagens/.test(c.textContent));
+    const antes = cab().textContent.trim()[0];
+    cab().click();
+    return antes + cab().textContent.trim()[0];
+  });
+  ok(s === '▾▸', 'categoria do sprite aberto fecha com um clique (' + s + ')');
+  // 🗑 Lixeira: mandar um sprite do acervo some das listas e ♻ restaura
+  s = await p.evaluate(async () => {
+    const n0 = FF.Assets.listaSprites().length;
+    const cab = [...document.querySelectorAll('.ess-cat')].find(c => /ZL3 · Personagens/.test(c.textContent));
+    cab.click();   // reabre
+    const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => i.dataset.sprite === 'zl3_nappa');
+    it.querySelector('.ess-anim-apagar').click();
+    const n1 = FF.Assets.listaSprites().length, lix = !!document.querySelector('.ess-cat') && [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(1\)/.test(c.textContent));
+    [...document.querySelectorAll('.ess-cat')].find(c => /Lixeira/.test(c.textContent)).querySelector('.ess-cat-bt').click();
+    return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];
+  });
+  ok(s[0] === 1 && s[1] && s[2], 'Lixeira: some das listas, aparece na Lixeira e volta com ♻ (' + s + ')');
   await p.fill('.ess-busca', 'goku');
   s = await p.evaluate(() => [...document.querySelectorAll('.ess-sprites .es-item')].map(i => i.dataset.sprite));
   ok(s.includes('gokubase') && s.includes('zl3_gokuui') && s.includes('zl3_cut_gokussjvsfreeza'), 'busca "goku" acha do jogo e do acervo (' + s.length + ')');
