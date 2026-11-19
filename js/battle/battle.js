@@ -1317,10 +1317,13 @@ FF.Battle = class {
     if (spec.deDx || spec.deDy) { from.x += (spec.deDx || 0) * att.dir; from.y += spec.deDy || 0; }
     const vel = spec.velocidade || 650;
     const dist = Math.hypot(to.x - from.x, to.y - from.y);
-    const travel = Math.max(0.05, dist / vel);
+    // espera: fica parado no ponto de saída (carregando no ar) antes de voar; d: tempo total do clipe (espera + voo),
+    // que manda no lugar da velocidade
+    const espera = Math.max(0, +spec.espera || 0);
+    const travel = spec.d > 0 ? Math.max(0.05, spec.d - espera) : Math.max(0.05, dist / vel);
     const qteMode = this.qteMode(att, def);
     // semAcerto: só visual (vai até o ponto, solta o impacto e some, sem dano nem anel)
-    const qte = qteMode && !def.ko && !spec.semAcerto ? this.addQte(qteMode, def, travel) : null;
+    const qte = qteMode && !def.ko && !spec.semAcerto ? this.addQte(qteMode, def, travel + espera) : null;
     const fxName = spec.fx || 'kiblast_amarelo';
     const set = this.fxSet(fxName, spec.sprite) || this.fx;
     const a = new FF.Animator(set);
@@ -1330,7 +1333,7 @@ FF.Battle = class {
     let res;
     const p = {
       a, set, base: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)) * (1 + 0.12 * ((move.nivelTec || 1) - 1)), scale: (spec.escala || 1) * this.scale * (set.def.escala || 1) * (1 + 0.18 * (att.boost || 0)) * (1 + 0.12 * ((move.nivelTec || 1) - 1)),
-      x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel,
+      x0: from.x, y0: from.y, x1: to.x, y1: to.y, x: from.x, y: from.y, t: 0, travel, espera, tEsp: 0,
       vx: (to.x - from.x) / travel, vy: (to.y - from.y) / travel,
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
@@ -1359,6 +1362,13 @@ FF.Battle = class {
       return;
     }
     p.a.update(dt);
+    if (p.espera && p.tEsp < p.espera) {   // carregando no ar: anima e cresce no ponto de saída, sem andar
+      p.tEsp += dt;
+      p.scale = p.base * (p.crescer ? Math.min(1, 0.55 + p.tEsp * 4) : 1);
+      p.ang += (p.girar * Math.PI / 180) * dt;
+      if (p.tEsp < p.espera) return;
+      dt = p.tEsp - p.espera;   // a sobra deste quadro já conta como voo
+    }
     p.t += dt;
     const k = p.t / p.travel;                       // 0 → 1 até o alvo; > 1 se atravessar
     let x = p.x0 + p.vx * p.t, y = p.y0 + p.vy * p.t;
@@ -1369,7 +1379,7 @@ FF.Battle = class {
     if (p.curva && !p.girar && (x !== p.x || y !== p.y)) p.ang = Math.atan2(y - p.y, Math.abs(x - p.x)) * p.dir;
     p.x = x; p.y = y;
     p.ang += (p.girar * Math.PI / 180) * dt;
-    p.scale = p.base * (p.crescer ? Math.min(1, 0.55 + p.t * 4) : 1);
+    p.scale = p.base * (p.crescer ? Math.min(1, 0.55 + (p.t + (p.espera || 0)) * 4) : 1);
     if (k >= 1 && !p.acertou) {
       p.acertou = true;
       p.hit();

@@ -184,7 +184,9 @@ FF.EstudioProps = {
       }
       case 'projetil': {
         g.appendChild(this.campoEfeito(c, 'fx', 'Projétil', host));
-        g.appendChild(num(c, 'velocidade', 'Velocidade', 'px/s (padrão 650)'));
+        g.appendChild(num(c, 'espera', 'Espera no ar (s)', 'Fica parado no ponto de saída (carregando) antes de ir para o alvo', { min: 0, passo: 0.05 }));
+        g.appendChild(num(c, 'd', 'Duração total (s)', 'Da hora que aparece até acertar (espera + voo). Vazio = a velocidade decide. Dá para esticar a borda do clipe.', { min: 0.05, passo: 0.05 }));
+        g.appendChild(num(c, 'velocidade', 'Velocidade', 'px/s (padrão 650; não vale se a duração total estiver preenchida)'));
         g.appendChild(num(c, 'escala', 'Tamanho (×)', null, { passo: 0.05 }));
         g.appendChild(num(c, 'rot', 'Giro do desenho (°)', 'Gira só a imagem (no palco: alça azul)'));
         g.appendChild(E.el('p', 'es-dica', 'No palco, com o projétil voando: alça branca = mover o desenho, amarela = tamanho, azul = giro (igual aos efeitos). Roda do mouse = tamanho.'));
@@ -198,7 +200,7 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'ondular', 'Ondular (px)'));
         g.appendChild(num(c, 'girar', 'Girar (°/s)'));
         const pos = E.grupo('Saída e chegada', true);
-        pos.appendChild(E.el('p', 'es-dica', 'No palco: arraste a alça verde (saída) e a vermelha (chegada); elas encaixam na mesma linha uma da outra e da mão/peito/pés dos lutadores (guia ciano). Shift = só para os lados ou só para cima/baixo; Alt = sem encaixe. Para mexer só no desenho, clique e arraste o próprio projétil enquanto ele voa (alça roxa).'));
+        pos.appendChild(E.el('p', 'es-dica', 'No palco: arraste a alça verde (saída) e a vermelha (chegada); elas encaixam na mesma linha uma da outra e da mão/peito/pés dos lutadores (guia ciano). Shift = só para os lados ou só para cima/baixo; Alt = sem encaixe. Para mexer só no desenho, clique e arraste o próprio projétil enquanto ele voa (alça roxa). Com "Espera no ar", pare o cursor na parte escura do clipe e arraste o projétil parado: muda o ponto onde ele carrega.'));
         pos.appendChild(chk(c, 'centro', 'Centralizar o desenho no caminho'));
         pos.appendChild(num(c, 'spriteDx', 'Desenho X', 'Desloca só a imagem (o caminho e o acerto continuam iguais)'));
         pos.appendChild(num(c, 'spriteDy', 'Desenho Y'));

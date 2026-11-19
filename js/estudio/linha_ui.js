@@ -266,6 +266,10 @@ FF.EstudioLinha = class {
         ctx.fillStyle = 'rgba(0,0,0,0.3)';
         ctx.fillRect(x, y, c.segurar * pxs, LH - 7);
       }
+      if (c.tipo === 'projetil' && c.espera > 0) {   // projétil carregando no ar antes de voar
+        ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        ctx.fillRect(x, y, Math.min(c.espera * pxs, w), LH - 7);
+      }
       // quadros das animações
       const qs = this.host.quadros(c, tr);
       if (qs && qs.length && d * pxs > qs.length * 3) {

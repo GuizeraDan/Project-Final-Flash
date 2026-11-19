@@ -314,7 +314,7 @@ window.FF = window.FF || {};
       const real = ((f && f.anims) || {})[nome] || nome;
       return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
-    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash'].includes(c.tipo); },
+    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'projetil', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
@@ -324,7 +324,11 @@ window.FF = window.FF || {};
         case 'escurecer': case 'linhas': case 'faixa': return c.d || 1.5;
         case 'efeito': { if (c.d) return c.d; const s = c.sprite ? FF.Assets.sprites[c.sprite] : (FF.Assets.sprites.fx.has(c.fx) ? FF.Assets.sprites.fx : FF.Assets.sprites.fx_extra); const a = s && s.anim(c.fx); return a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3; }
         case 'camada': return c.d != null ? c.d : 1;
-        case 'projetil': { const b = this.palco._b; const dist = b ? Math.abs(b.alvo.x - b.atk.x) * 0.9 : 600; return Math.max(0.05, dist / (c.velocidade || 650)); }
+        case 'projetil': {   // d = tempo total (espera no ar + voo); sem d, a velocidade decide o voo
+          const esp = Math.max(0, +c.espera || 0);
+          if (c.d > 0) return Math.max(c.d, esp + 0.05);
+          const b = this.palco._b; const dist = b ? Math.abs(b.alvo.x - b.atk.x) * 0.9 : 600; return esp + Math.max(0.05, dist / (c.velocidade || 650));
+        }
         case 'mensagem': return c.d || 1.3;
         case 'camera': return c.d || 0;
         // sem duração: o tempo que o impacto leva para sumir sozinho (tremor cai até ~0,3; flash perde 2,5 por segundo)
@@ -845,7 +849,9 @@ window.FF = window.FF || {};
         const pj = b.projectiles.find(x => x.clipe === c.id && !x.dead), cx = pj && b.caixaProjetil(pj);
         if (cx) {   // como nos efeitos: mover (branca), tamanho (amarela) e giro (azul)
           const raio = Math.max(18, Math.max(cx.w, cx.h) / 2);
-          L.push({ k: 'sprite', x: cx.cx, y: cx.cy, cor: '#fff', caixa: cx, raio },
+          // carregando no ar (espera): arrastar o desenho muda o ponto onde ele carrega (= a saída, alça verde)
+          const carregando = pj.espera && pj.tEsp < pj.espera;
+          L.push({ k: carregando ? 'de' : 'sprite', x: cx.cx, y: cx.cy, cor: '#fff', caixa: cx, raio },
             { k: 'escala', x: cx.cx + raio * 0.75, y: cx.cy + raio * 0.75, cor: '#ffd84a', cx: cx.cx, cy: cx.cy },
             { k: 'giro', x: cx.cx, y: cx.cy - raio - 16, cor: '#6cc8ff', cx: cx.cx, cy: cx.cy });
         }
@@ -879,7 +885,7 @@ window.FF = window.FF || {};
     desenharSelecao(ctx) {
       const L = this.alcas();
       ctx.save();
-      const proj = L.filter(h => h.k === 'de' || h.k === 'ate');
+      const proj = L.filter(h => (h.k === 'de' || h.k === 'ate') && !h.caixa);
       if (proj.length === 2) { ctx.strokeStyle = 'rgba(255,216,74,0.8)'; ctx.setLineDash([6, 4]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(proj[0].x, proj[0].y); ctx.lineTo(proj[1].x, proj[1].y); ctx.stroke(); ctx.setLineDash([]); }
       // guias de alinhamento ao arrastar (ciano) e trava de eixo com Shift (amarelo)
       for (const g of (this.guiasPalco || [])) {
