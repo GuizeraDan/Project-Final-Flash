@@ -474,3 +474,16 @@ Cache do app: `finalflash-v47`.
 - Bugs achados no caminho: "voltar" com animação de teleporte emprestada que repete travava o turno (agora sempre sem repetir); teste de batalha ganhou `--livre h1,h2:i1` (Batalha Livre) e não clica mais no "toque para começar" nela.
 - Ficaram de fora: Drag Warriors, Dragon Legend Z, Legend Warrior e Power Warrior (cada personagem é uma tira única sem nomes de animação — precisam de receitas como as do acervo). Atributos iguais para todos (1200 de vida, 100 de ataque) por enquanto.
 - Testes: 10 lutas mistas (1v1 a 3v3, todos os pacotes) terminaram sem erros; Estúdio OK.
+
+
+## 2026-11-19 — Acervo: personagens de Dragon Ball do KODAIKA Super Anime War 5 (M.U.G.E.N)
+- Pedido do usuário: extrair os sprites do jogo M.U.G.E.N da pasta `T:\Dragon Ball\KODAIKA Super Anime War 5 Mugen` e colocar no acervo — **só os de Dragon Ball** por enquanto (o jogo tem ~400 personagens de vários animes).
+- Extração (`tools/mugen/`): `sff_extract.py` lê SFF v1 (PCX; paleta do personagem = `pal1` do .def, aplicada aos sprites "mesma paleta"; retratos 9000 com paleta própria) e SFF v2 (RLE8, RLE5, LZ5, PNG8/24/32); `air_parse.py` lê as animações do .air; `kaw_lote.py` processa as pastas copiadas do PC; `kaw_folha.py` faz a folha de conferência. 76 personagens, 137.699 sprites, 0 falhas.
+- Ficaram de fora: `blacksperm` (personagem-piada), `Goku_Xeno_SS4` e `Jiren (ToP)` (sprites criptografados num WAV.dat), e os que não são de DB (`Omni` = Superman, `Zenon` = Black Clover, `Shadow GT` = Sonic). `saiyanwarlordxjus` é saiyajin original de fã (marcado no nome).
+- Tamanho: os PNG brutos davam 3,2 GB. O usuário escolheu "enxugar e subir todos". `tools/extrair_mugen.py`: bordas transparentes cortadas; personagens maiores que os do ZL3 reduzidos (parado ≈ 47 px; Oozaru 0,5); animações com quadros > 256 px (explosões, raios, telas de especial) num sprite separado `kaw_<id>_efeitos` em meia resolução com `escala: 2`; atlas em paleta de 256 cores; quadros iguais entre personagens em atlas `kaw_comum_*` (116 grupos, 8.603 quadros). Resultado: **412 MB** de atlas (871 arquivos, maior 1,4 MB) + 8 MB de definições, 152 sprites.
+- Efeitos feitos para mistura aditiva (fundo preto opaco) viram transparência pelo brilho (alfa = canal mais forte, critério: >35% dos pixels visíveis em preto puro) — senão apareceriam como quadrados pretos.
+- Animações: as do .air com nomes padrão do M.U.G.E.N em português (Parado, Andar_Frente, Pulo_*, Dash_*, Guarda_*, Dano_*, Lancado*, Caido*, Vitoria, Intro…; o resto `Acao_<número>`), `Retrato` (grupo 9000) e `Outros` (sprites que nenhuma animação usa). Tempo em ticks de 1/60 s → fps = 60/mdc. Espelhamento por quadro do .air não é representado.
+- Nomes em português na tabela `NOMES_PT` (os displayname dos .def eram inconsistentes — o Gohan Black se chamava "Krilin").
+- Conferido: folha com o parado dos 76 (pés na linha), Estúdio abrindo corpo e efeitos (escala 2, atlas compartilhado), `acervo.js` OK, teste padrão de batalha OK.
+- Não entraram no Elenco da Batalha Livre (não foi pedido); dá para fazer depois com uma ficha `kaw` em `tools/gerar_elenco.py`.
+- Para refazer: copiar `.sff/.air/.def/.act` das pastas para cá, `python3 -I tools/mugen/kaw_lote.py manifest.tsv <saida>` e `python3 -I tools/extrair_mugen.py <saida> --defs defs.json`.

@@ -8,6 +8,7 @@
 "ast": "Assets (sprites soltos)",
 "dw": "Drag Warriors",
 "dlz": "Dragon Legend Z",
+"kaw": "KODAIKA Super Anime War 5",
 "lw": "Legend Warrior",
 "mc": "Mini Champion",
 "pw": "Power Warrior",
@@ -21,6 +22,7 @@
 "ast": "Assets (sprites soltos)",
 "dw": "Drag Warriors",
 "dlz": "Dragon Legend Z",
+"kaw": "KODAIKA Super Anime War 5",
 "lw": "Legend Warrior",
 "mc": "Mini Champion",
 "pw": "Power Warrior",
@@ -17001,6 +17003,1830 @@
 "atlas": 1,
 "objs": [
 "unity default resources"
+]
+},
+"kaw_android_17": {
+"nome": "Androide 17",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 117,
+"quadros": 331,
+"atlas": 2,
+"objs": [
+"Android_17"
+]
+},
+"kaw_android_18": {
+"nome": "Androide 18",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 153,
+"quadros": 468,
+"atlas": 3,
+"objs": [
+"Android_18"
+]
+},
+"kaw_baby_vegeta": {
+"nome": "Baby Vegeta",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 143,
+"quadros": 335,
+"atlas": 5,
+"objs": [
+"Baby Vegeta"
+]
+},
+"kaw_babyvegeta": {
+"nome": "Baby Vegeta (versão 2)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 185,
+"quadros": 696,
+"atlas": 3,
+"objs": [
+"BabyVegeta"
+]
+},
+"kaw_bardock_ui": {
+"nome": "Bardock Instinto Superior",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 167,
+"quadros": 858,
+"atlas": 2,
+"objs": [
+"Bardock UI"
+]
+},
+"kaw_beerus": {
+"nome": "Bills",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 217,
+"quadros": 620,
+"atlas": 3,
+"objs": [
+"Beerus"
+]
+},
+"kaw_black_frieza": {
+"nome": "Black Freeza",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 236,
+"quadros": 570,
+"atlas": 5,
+"objs": [
+"Black Frieza"
+]
+},
+"kaw_black_frieza_v2": {
+"nome": "Black Freeza (versão 2)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 184,
+"quadros": 687,
+"atlas": 4,
+"objs": [
+"Black Frieza V2"
+]
+},
+"kaw_broly_2019": {
+"nome": "Broly (filme 2018)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 333,
+"quadros": 366,
+"atlas": 1,
+"objs": [
+"Broly 2019"
+]
+},
+"kaw_broly_dbs": {
+"nome": "Broly (Super)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 178,
+"quadros": 562,
+"atlas": 5,
+"objs": [
+"Broly (DBS)"
+]
+},
+"kaw_broly": {
+"nome": "Broly (Z)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 189,
+"quadros": 870,
+"atlas": 3,
+"objs": [
+"Broly"
+]
+},
+"kaw_ssj4blory_kn_edit": {
+"nome": "Broly SSJ4",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 216,
+"quadros": 1806,
+"atlas": 2,
+"objs": [
+"SSJ4Blory_KN.edit"
+]
+},
+"kaw_txr_broly_ss4": {
+"nome": "Broly SSJ4 (TXR)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 218,
+"quadros": 812,
+"atlas": 3,
+"objs": [
+"TXR-Broly_SS4"
+]
+},
+"kaw_semi_perfect_cell": {
+"nome": "Cell Semiperfeito",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 192,
+"quadros": 693,
+"atlas": 3,
+"objs": [
+"Semi Perfect Cell"
+]
+},
+"kaw_cellbuuzer": {
+"nome": "Cell-Boo-Freeza (fusão)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 148,
+"quadros": 684,
+"atlas": 6,
+"objs": [
+"Cellbuuzer"
+]
+},
+"kaw_golden_cooler": {
+"nome": "Cooler Dourado",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 307,
+"quadros": 959,
+"atlas": 4,
+"objs": [
+"Golden Cooler"
+]
+},
+"kaw_frieza": {
+"nome": "Freeza",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 247,
+"quadros": 526,
+"atlas": 1,
+"objs": [
+"Frieza"
+]
+},
+"kaw_frost_golden": {
+"nome": "Frost Dourado",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 132,
+"quadros": 225,
+"atlas": 3,
+"objs": [
+"Frost Golden"
+]
+},
+"kaw_gas_heata_by_charmarher": {
+"nome": "Gas (Heeters)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 129,
+"quadros": 387,
+"atlas": 1,
+"objs": [
+"Gas Heata By Charmarher"
+]
+},
+"kaw_ginyu": {
+"nome": "Ginyu (corpo do Goku)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 132,
+"quadros": 501,
+"atlas": 5,
+"objs": [
+"Ginyu"
+]
+},
+"kaw_gogeto": {
+"nome": "Gogeta",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 128,
+"quadros": 1088,
+"atlas": 14,
+"objs": [
+"Gogeto"
+]
+},
+"kaw_gogeta_migatte": {
+"nome": "Gogeta Instinto Superior",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 163,
+"quadros": 631,
+"atlas": 11,
+"objs": [
+"Gogeta_Migatte"
+]
+},
+"kaw_gohan": {
+"nome": "Gohan",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 209,
+"quadros": 518,
+"atlas": 2,
+"objs": [
+"Gohan"
+]
+},
+"kaw_gohan_beast": {
+"nome": "Gohan Besta",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 154,
+"quadros": 475,
+"atlas": 2,
+"objs": [
+"Gohan Beast"
+]
+},
+"kaw_black_gohan": {
+"nome": "Gohan Black",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 155,
+"quadros": 604,
+"atlas": 4,
+"objs": [
+"Black Gohan"
+]
+},
+"kaw_future_gohan": {
+"nome": "Gohan do Futuro",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 263,
+"quadros": 657,
+"atlas": 2,
+"objs": [
+"Future_Gohan"
+]
+},
+"kaw_gohan_ssjblue": {
+"nome": "Gohan SSJ Blue",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 171,
+"quadros": 1152,
+"atlas": 4,
+"objs": [
+"Gohan SSJBlue"
+]
+},
+"kaw_gohan_teen_ssj2": {
+"nome": "Gohan SSJ2 (adolescente)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 137,
+"quadros": 395,
+"atlas": 3,
+"objs": [
+"Gohan Teen SSJ2"
+]
+},
+"kaw_black_gokhan": {
+"nome": "Gokhan Black (fusão Goku+Gohan)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 232,
+"quadros": 767,
+"atlas": 16,
+"objs": [
+"Black Gokhan"
+]
+},
+"kaw_goku_1000_tp_v1": {
+"nome": "Goku (1000 TP)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 233,
+"quadros": 942,
+"atlas": 10,
+"objs": [
+"Goku 1000_TP V1"
+]
+},
+"kaw_goku_dr": {
+"nome": "Goku (DR)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 163,
+"quadros": 705,
+"atlas": 2,
+"objs": [
+"Goku DR"
+]
+},
+"kaw_goku_jus3x": {
+"nome": "Goku (JUS 3)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 543,
+"quadros": 1400,
+"atlas": 6,
+"objs": [
+"Goku_JUS3X"
+]
+},
+"kaw_goku_jus4": {
+"nome": "Goku (JUS 4)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 1209,
+"quadros": 6285,
+"atlas": 14,
+"objs": [
+"Goku_JUS4"
+]
+},
+"kaw_tta_goku_jus_v2": {
+"nome": "Goku (JUS, pequeno)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 233,
+"quadros": 304,
+"atlas": 4,
+"objs": [
+"TTA'Goku JUS_V2"
+]
+},
+"kaw_goku_monkey_king": {
+"nome": "Goku (Rei Macaco)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 1174,
+"quadros": 2554,
+"atlas": 10,
+"objs": [
+"Goku (Monkey King)"
+]
+},
+"kaw_goku": {
+"nome": "Goku (todas as formas)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 934,
+"quadros": 2255,
+"atlas": 4,
+"objs": [
+"Goku"
+]
+},
+"kaw_goku10": {
+"nome": "Goku (versão 10)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 1108,
+"quadros": 2451,
+"atlas": 9,
+"objs": [
+"Goku10"
+]
+},
+"kaw_goku_beyond_ssb": {
+"nome": "Goku Além do SSJ Blue",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 159,
+"quadros": 641,
+"atlas": 6,
+"objs": [
+"Goku Beyond SSB"
+]
+},
+"kaw_goku_black_ssr": {
+"nome": "Goku Black Rosé",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 197,
+"quadros": 682,
+"atlas": 3,
+"objs": [
+"Goku Black (SSR)"
+]
+},
+"kaw_black": {
+"nome": "Goku Black Rosé (InSeph)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 172,
+"quadros": 602,
+"atlas": 3,
+"objs": [
+"Black"
+]
+},
+"kaw_blackssr": {
+"nome": "Goku Black Rosé (SSR)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 186,
+"quadros": 525,
+"atlas": 3,
+"objs": [
+"BlackSSR"
+]
+},
+"kaw_goku_mui": {
+"nome": "Goku Instinto Superior",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 304,
+"quadros": 804,
+"atlas": 4,
+"objs": [
+"Goku MUI"
+]
+},
+"kaw_dripstinct_goku": {
+"nome": "Goku Instinto Superior (roupa casual)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 125,
+"quadros": 287,
+"atlas": 10,
+"objs": [
+"Dripstinct Goku"
+]
+},
+"kaw_goku_mui_v2": {
+"nome": "Goku Instinto Superior (versão 2)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 228,
+"quadros": 778,
+"atlas": 14,
+"objs": [
+"Goku (MUI)"
+]
+},
+"kaw_goku_oozaru_brm": {
+"nome": "Goku Oozaru",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 137,
+"quadros": 927,
+"atlas": 2,
+"objs": [
+"Goku Oozaru BRM"
+]
+},
+"kaw_goku_ssj": {
+"nome": "Goku SSJ",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 192,
+"quadros": 707,
+"atlas": 6,
+"objs": [
+"Goku (SSJ)"
+]
+},
+"kaw_gokussgss": {
+"nome": "Goku SSJ Blue",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 169,
+"quadros": 464,
+"atlas": 5,
+"objs": [
+"GokuSSGSS"
+]
+},
+"kaw_goku_ssgss_team_shonen": {
+"nome": "Goku SSJ Blue (Team Shonen)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 223,
+"quadros": 946,
+"atlas": 4,
+"objs": [
+"Goku SSGSS (Team Shonen)"
+]
+},
+"kaw_goku_perfect_ssb": {
+"nome": "Goku SSJ Blue Perfeito",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 149,
+"quadros": 570,
+"atlas": 6,
+"objs": [
+"Goku_Perfect SSB"
+]
+},
+"kaw_ssj3_gokuz2i": {
+"nome": "Goku SSJ3",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 729,
+"quadros": 2041,
+"atlas": 2,
+"objs": [
+"SSJ3_GokuZ2i"
+]
+},
+"kaw_gokuss6": {
+"nome": "Goku SSJ6 (fã)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 123,
+"quadros": 370,
+"atlas": 4,
+"objs": [
+"GokuSS6"
+]
+},
+"kaw_gokuterror": {
+"nome": "Goku Terror (fã)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 291,
+"quadros": 1414,
+"atlas": 7,
+"objs": [
+"GokuTerror"
+]
+},
+"kaw_granola": {
+"nome": "Granola",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 138,
+"quadros": 590,
+"atlas": 9,
+"objs": [
+"Granola"
+]
+},
+"kaw_granola_by_charmarher": {
+"nome": "Granola (versão 2)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 132,
+"quadros": 445,
+"atlas": 9,
+"objs": [
+"Granola by charmarher"
+]
+},
+"kaw_janemba": {
+"nome": "Janemba",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 210,
+"quadros": 1042,
+"atlas": 4,
+"objs": [
+"Janemba"
+]
+},
+"kaw_jiren": {
+"nome": "Jiren",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 208,
+"quadros": 746,
+"atlas": 4,
+"objs": [
+"Jiren"
+]
+},
+"kaw_mecha_frieza": {
+"nome": "Mecha Freeza",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 113,
+"quadros": 144,
+"atlas": 2,
+"objs": [
+"mecha_frieza"
+]
+},
+"kaw_metal_cooler": {
+"nome": "Metal Cooler",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 142,
+"quadros": 510,
+"atlas": 3,
+"objs": [
+"Metal Cooler"
+]
+},
+"kaw_nappa": {
+"nome": "Nappa",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 126,
+"quadros": 434,
+"atlas": 2,
+"objs": [
+"Nappa"
+]
+},
+"kaw_nuova_shenron": {
+"nome": "Nuova Shenron",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 139,
+"quadros": 761,
+"atlas": 4,
+"objs": [
+"Nuova Shenron"
+]
+},
+"kaw_omega_shenron": {
+"nome": "Omega Shenron",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 149,
+"quadros": 420,
+"atlas": 2,
+"objs": [
+"Omega Shenron"
+]
+},
+"kaw_orange_piccolo": {
+"nome": "Piccolo Laranja",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 150,
+"quadros": 531,
+"atlas": 2,
+"objs": [
+"Orange Piccolo"
+]
+},
+"kaw_saiyanwarlordxjus": {
+"nome": "Saiyan Warlord X (personagem de fã)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 279,
+"quadros": 354,
+"atlas": 1,
+"objs": [
+"saiyanwarlordxjus"
+]
+},
+"kaw_son_goku": {
+"nome": "Son Goku (todas as formas)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 1255,
+"quadros": 2953,
+"atlas": 9,
+"objs": [
+"Son Goku"
+]
+},
+"kaw_super_baby_vegeta_2": {
+"nome": "Super Baby 2",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 127,
+"quadros": 432,
+"atlas": 4,
+"objs": [
+"Super Baby Vegeta 2"
+]
+},
+"kaw_tien": {
+"nome": "Tenshinhan",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 187,
+"quadros": 384,
+"atlas": 2,
+"objs": [
+"tien"
+]
+},
+"kaw_turles": {
+"nome": "Turles",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 143,
+"quadros": 464,
+"atlas": 3,
+"objs": [
+"Turles"
+]
+},
+"kaw_vegeta_omni_god": {
+"nome": "Vegeta Deus Supremo (fã)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 179,
+"quadros": 565,
+"atlas": 3,
+"objs": [
+"VEGETA Omni God"
+]
+},
+"kaw_tnd_vegeta_ultra_ego": {
+"nome": "Vegeta Ego Superior",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 281,
+"quadros": 1512,
+"atlas": 7,
+"objs": [
+"TND-Vegeta_Ultra_ego"
+]
+},
+"kaw_vegeta_ssj7": {
+"nome": "Vegeta SSJ3",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 136,
+"quadros": 638,
+"atlas": 5,
+"objs": [
+"Vegeta ssj7"
+]
+},
+"kaw_vegeta_ss6": {
+"nome": "Vegeta SSJ4 Xeno",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 299,
+"quadros": 577,
+"atlas": 5,
+"objs": [
+"Vegeta SS6"
+]
+},
+"kaw_super_vegetto": {
+"nome": "Vegetto SSJ",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 164,
+"quadros": 706,
+"atlas": 6,
+"objs": [
+"Super Vegetto"
+]
+},
+"kaw_vegito_ssb": {
+"nome": "Vegetto SSJ Blue",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 199,
+"quadros": 700,
+"atlas": 2,
+"objs": [
+"Vegito (SSB)"
+]
+},
+"kaw_vegetto_jus3": {
+"nome": "Vegetto SSJ Blue (JUS)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 185,
+"quadros": 628,
+"atlas": 5,
+"objs": [
+"Vegetto JUS3"
+]
+},
+"kaw_vegitoblue": {
+"nome": "Vegetto SSJ Blue (versão 2)",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 270,
+"quadros": 857,
+"atlas": 4,
+"objs": [
+"VegitoBlue"
+]
+},
+"kaw_zamasufused": {
+"nome": "Zamasu Fundido",
+"cat": "kaw",
+"tipo": "personagens",
+"fonte": "kaw",
+"anims": 164,
+"quadros": 675,
+"atlas": 2,
+"objs": [
+"ZamasuFused"
+]
+},
+"kaw_android_17_efeitos": {
+"nome": "Androide 17 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 32,
+"quadros": 418,
+"atlas": 7,
+"objs": [
+"Android_17"
+]
+},
+"kaw_android_18_efeitos": {
+"nome": "Androide 18 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 31,
+"quadros": 345,
+"atlas": 4,
+"objs": [
+"Android_18"
+]
+},
+"kaw_babyvegeta_efeitos": {
+"nome": "Baby Vegeta (versão 2) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 19,
+"quadros": 548,
+"atlas": 6,
+"objs": [
+"BabyVegeta"
+]
+},
+"kaw_baby_vegeta_efeitos": {
+"nome": "Baby Vegeta · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 51,
+"quadros": 599,
+"atlas": 7,
+"objs": [
+"Baby Vegeta"
+]
+},
+"kaw_bardock_ui_efeitos": {
+"nome": "Bardock Instinto Superior · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 53,
+"quadros": 1038,
+"atlas": 9,
+"objs": [
+"Bardock UI"
+]
+},
+"kaw_beerus_efeitos": {
+"nome": "Bills · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 72,
+"quadros": 987,
+"atlas": 10,
+"objs": [
+"Beerus"
+]
+},
+"kaw_black_frieza_v2_efeitos": {
+"nome": "Black Freeza (versão 2) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 97,
+"quadros": 1707,
+"atlas": 16,
+"objs": [
+"Black Frieza V2"
+]
+},
+"kaw_black_frieza_efeitos": {
+"nome": "Black Freeza · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 33,
+"quadros": 553,
+"atlas": 7,
+"objs": [
+"Black Frieza"
+]
+},
+"kaw_broly_2019_efeitos": {
+"nome": "Broly (filme 2018) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 8,
+"quadros": 133,
+"atlas": 1,
+"objs": [
+"Broly 2019"
+]
+},
+"kaw_broly_dbs_efeitos": {
+"nome": "Broly (Super) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 48,
+"quadros": 479,
+"atlas": 6,
+"objs": [
+"Broly (DBS)"
+]
+},
+"kaw_broly_efeitos": {
+"nome": "Broly (Z) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 24,
+"quadros": 142,
+"atlas": 1,
+"objs": [
+"Broly"
+]
+},
+"kaw_txr_broly_ss4_efeitos": {
+"nome": "Broly SSJ4 (TXR) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 93,
+"quadros": 661,
+"atlas": 4,
+"objs": [
+"TXR-Broly_SS4"
+]
+},
+"kaw_ssj4blory_kn_edit_efeitos": {
+"nome": "Broly SSJ4 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 2,
+"quadros": 12,
+"atlas": 1,
+"objs": [
+"SSJ4Blory_KN.edit"
+]
+},
+"kaw_semi_perfect_cell_efeitos": {
+"nome": "Cell Semiperfeito · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 54,
+"quadros": 692,
+"atlas": 4,
+"objs": [
+"Semi Perfect Cell"
+]
+},
+"kaw_cellbuuzer_efeitos": {
+"nome": "Cell-Boo-Freeza (fusão) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 45,
+"quadros": 857,
+"atlas": 8,
+"objs": [
+"Cellbuuzer"
+]
+},
+"kaw_golden_cooler_efeitos": {
+"nome": "Cooler Dourado · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 88,
+"quadros": 1076,
+"atlas": 7,
+"objs": [
+"Golden Cooler"
+]
+},
+"kaw_frieza_efeitos": {
+"nome": "Freeza · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 90,
+"quadros": 1226,
+"atlas": 14,
+"objs": [
+"Frieza"
+]
+},
+"kaw_frost_golden_efeitos": {
+"nome": "Frost Dourado · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 28,
+"quadros": 619,
+"atlas": 8,
+"objs": [
+"Frost Golden"
+]
+},
+"kaw_gas_heata_by_charmarher_efeitos": {
+"nome": "Gas (Heeters) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 27,
+"quadros": 564,
+"atlas": 3,
+"objs": [
+"Gas Heata By Charmarher"
+]
+},
+"kaw_ginyu_efeitos": {
+"nome": "Ginyu (corpo do Goku) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 31,
+"quadros": 675,
+"atlas": 7,
+"objs": [
+"Ginyu"
+]
+},
+"kaw_gogeta_migatte_efeitos": {
+"nome": "Gogeta Instinto Superior · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 33,
+"quadros": 673,
+"atlas": 13,
+"objs": [
+"Gogeta_Migatte"
+]
+},
+"kaw_gogeto_efeitos": {
+"nome": "Gogeta · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 45,
+"quadros": 1695,
+"atlas": 21,
+"objs": [
+"Gogeto"
+]
+},
+"kaw_gohan_beast_efeitos": {
+"nome": "Gohan Besta · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 62,
+"quadros": 1070,
+"atlas": 10,
+"objs": [
+"Gohan Beast"
+]
+},
+"kaw_black_gohan_efeitos": {
+"nome": "Gohan Black · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 38,
+"quadros": 568,
+"atlas": 5,
+"objs": [
+"Black Gohan"
+]
+},
+"kaw_future_gohan_efeitos": {
+"nome": "Gohan do Futuro · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 52,
+"quadros": 686,
+"atlas": 6,
+"objs": [
+"Future_Gohan"
+]
+},
+"kaw_gohan_ssjblue_efeitos": {
+"nome": "Gohan SSJ Blue · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 30,
+"quadros": 556,
+"atlas": 3,
+"objs": [
+"Gohan SSJBlue"
+]
+},
+"kaw_gohan_teen_ssj2_efeitos": {
+"nome": "Gohan SSJ2 (adolescente) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 53,
+"quadros": 742,
+"atlas": 10,
+"objs": [
+"Gohan Teen SSJ2"
+]
+},
+"kaw_gohan_efeitos": {
+"nome": "Gohan · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 46,
+"quadros": 325,
+"atlas": 4,
+"objs": [
+"Gohan"
+]
+},
+"kaw_black_gokhan_efeitos": {
+"nome": "Gokhan Black (fusão Goku+Gohan) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 55,
+"quadros": 764,
+"atlas": 14,
+"objs": [
+"Black Gokhan"
+]
+},
+"kaw_goku_1000_tp_v1_efeitos": {
+"nome": "Goku (1000 TP) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 114,
+"quadros": 3176,
+"atlas": 28,
+"objs": [
+"Goku 1000_TP V1"
+]
+},
+"kaw_goku_dr_efeitos": {
+"nome": "Goku (DR) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 41,
+"quadros": 338,
+"atlas": 6,
+"objs": [
+"Goku DR"
+]
+},
+"kaw_goku_jus3x_efeitos": {
+"nome": "Goku (JUS 3) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 35,
+"quadros": 559,
+"atlas": 5,
+"objs": [
+"Goku_JUS3X"
+]
+},
+"kaw_goku_jus4_efeitos": {
+"nome": "Goku (JUS 4) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 200,
+"quadros": 3364,
+"atlas": 36,
+"objs": [
+"Goku_JUS4"
+]
+},
+"kaw_tta_goku_jus_v2_efeitos": {
+"nome": "Goku (JUS, pequeno) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 20,
+"quadros": 70,
+"atlas": 1,
+"objs": [
+"TTA'Goku JUS_V2"
+]
+},
+"kaw_goku_monkey_king_efeitos": {
+"nome": "Goku (Rei Macaco) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 261,
+"quadros": 3915,
+"atlas": 62,
+"objs": [
+"Goku (Monkey King)"
+]
+},
+"kaw_goku_efeitos": {
+"nome": "Goku (todas as formas) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 182,
+"quadros": 1756,
+"atlas": 18,
+"objs": [
+"Goku"
+]
+},
+"kaw_goku10_efeitos": {
+"nome": "Goku (versão 10) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 207,
+"quadros": 3026,
+"atlas": 42,
+"objs": [
+"Goku10"
+]
+},
+"kaw_goku_beyond_ssb_efeitos": {
+"nome": "Goku Além do SSJ Blue · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 39,
+"quadros": 586,
+"atlas": 6,
+"objs": [
+"Goku Beyond SSB"
+]
+},
+"kaw_black_efeitos": {
+"nome": "Goku Black Rosé (InSeph) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 44,
+"quadros": 531,
+"atlas": 5,
+"objs": [
+"Black"
+]
+},
+"kaw_blackssr_efeitos": {
+"nome": "Goku Black Rosé (SSR) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 44,
+"quadros": 527,
+"atlas": 5,
+"objs": [
+"BlackSSR"
+]
+},
+"kaw_goku_black_ssr_efeitos": {
+"nome": "Goku Black Rosé · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 71,
+"quadros": 595,
+"atlas": 7,
+"objs": [
+"Goku Black (SSR)"
+]
+},
+"kaw_dripstinct_goku_efeitos": {
+"nome": "Goku Instinto Superior (roupa casual) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 14,
+"quadros": 294,
+"atlas": 8,
+"objs": [
+"Dripstinct Goku"
+]
+},
+"kaw_goku_mui_v2_efeitos": {
+"nome": "Goku Instinto Superior (versão 2) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 73,
+"quadros": 765,
+"atlas": 13,
+"objs": [
+"Goku (MUI)"
+]
+},
+"kaw_goku_mui_efeitos": {
+"nome": "Goku Instinto Superior · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 92,
+"quadros": 1234,
+"atlas": 16,
+"objs": [
+"Goku MUI"
+]
+},
+"kaw_goku_oozaru_brm_efeitos": {
+"nome": "Goku Oozaru · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 8,
+"quadros": 72,
+"atlas": 1,
+"objs": [
+"Goku Oozaru BRM"
+]
+},
+"kaw_goku_ssgss_team_shonen_efeitos": {
+"nome": "Goku SSJ Blue (Team Shonen) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 131,
+"quadros": 872,
+"atlas": 10,
+"objs": [
+"Goku SSGSS (Team Shonen)"
+]
+},
+"kaw_goku_perfect_ssb_efeitos": {
+"nome": "Goku SSJ Blue Perfeito · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 49,
+"quadros": 620,
+"atlas": 10,
+"objs": [
+"Goku_Perfect SSB"
+]
+},
+"kaw_gokussgss_efeitos": {
+"nome": "Goku SSJ Blue · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 84,
+"quadros": 611,
+"atlas": 9,
+"objs": [
+"GokuSSGSS"
+]
+},
+"kaw_goku_ssj_efeitos": {
+"nome": "Goku SSJ · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 88,
+"quadros": 600,
+"atlas": 9,
+"objs": [
+"Goku (SSJ)"
+]
+},
+"kaw_ssj3_gokuz2i_efeitos": {
+"nome": "Goku SSJ3 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 10,
+"quadros": 21,
+"atlas": 1,
+"objs": [
+"SSJ3_GokuZ2i"
+]
+},
+"kaw_gokuss6_efeitos": {
+"nome": "Goku SSJ6 (fã) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 16,
+"quadros": 282,
+"atlas": 4,
+"objs": [
+"GokuSS6"
+]
+},
+"kaw_gokuterror_efeitos": {
+"nome": "Goku Terror (fã) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 230,
+"quadros": 4948,
+"atlas": 61,
+"objs": [
+"GokuTerror"
+]
+},
+"kaw_granola_by_charmarher_efeitos": {
+"nome": "Granola (versão 2) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 33,
+"quadros": 469,
+"atlas": 9,
+"objs": [
+"Granola by charmarher"
+]
+},
+"kaw_granola_efeitos": {
+"nome": "Granola · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 34,
+"quadros": 510,
+"atlas": 9,
+"objs": [
+"Granola"
+]
+},
+"kaw_janemba_efeitos": {
+"nome": "Janemba · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 109,
+"quadros": 1357,
+"atlas": 11,
+"objs": [
+"Janemba"
+]
+},
+"kaw_jiren_efeitos": {
+"nome": "Jiren · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 55,
+"quadros": 1292,
+"atlas": 10,
+"objs": [
+"Jiren"
+]
+},
+"kaw_mecha_frieza_efeitos": {
+"nome": "Mecha Freeza · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 21,
+"quadros": 438,
+"atlas": 4,
+"objs": [
+"mecha_frieza"
+]
+},
+"kaw_metal_cooler_efeitos": {
+"nome": "Metal Cooler · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 50,
+"quadros": 913,
+"atlas": 8,
+"objs": [
+"Metal Cooler"
+]
+},
+"kaw_nappa_efeitos": {
+"nome": "Nappa · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 22,
+"quadros": 250,
+"atlas": 3,
+"objs": [
+"Nappa"
+]
+},
+"kaw_nuova_shenron_efeitos": {
+"nome": "Nuova Shenron · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 42,
+"quadros": 994,
+"atlas": 12,
+"objs": [
+"Nuova Shenron"
+]
+},
+"kaw_omega_shenron_efeitos": {
+"nome": "Omega Shenron · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 28,
+"quadros": 474,
+"atlas": 3,
+"objs": [
+"Omega Shenron"
+]
+},
+"kaw_orange_piccolo_efeitos": {
+"nome": "Piccolo Laranja · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 47,
+"quadros": 891,
+"atlas": 9,
+"objs": [
+"Orange Piccolo"
+]
+},
+"kaw_saiyanwarlordxjus_efeitos": {
+"nome": "Saiyan Warlord X (personagem de fã) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 3,
+"quadros": 29,
+"atlas": 1,
+"objs": [
+"saiyanwarlordxjus"
+]
+},
+"kaw_son_goku_efeitos": {
+"nome": "Son Goku (todas as formas) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 278,
+"quadros": 4112,
+"atlas": 65,
+"objs": [
+"Son Goku"
+]
+},
+"kaw_super_baby_vegeta_2_efeitos": {
+"nome": "Super Baby 2 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 38,
+"quadros": 538,
+"atlas": 5,
+"objs": [
+"Super Baby Vegeta 2"
+]
+},
+"kaw_tien_efeitos": {
+"nome": "Tenshinhan · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 75,
+"quadros": 627,
+"atlas": 7,
+"objs": [
+"tien"
+]
+},
+"kaw_turles_efeitos": {
+"nome": "Turles · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 45,
+"quadros": 770,
+"atlas": 7,
+"objs": [
+"Turles"
+]
+},
+"kaw_vegeta_omni_god_efeitos": {
+"nome": "Vegeta Deus Supremo (fã) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 85,
+"quadros": 1292,
+"atlas": 11,
+"objs": [
+"VEGETA Omni God"
+]
+},
+"kaw_tnd_vegeta_ultra_ego_efeitos": {
+"nome": "Vegeta Ego Superior · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 78,
+"quadros": 859,
+"atlas": 11,
+"objs": [
+"TND-Vegeta_Ultra_ego"
+]
+},
+"kaw_vegeta_ssj7_efeitos": {
+"nome": "Vegeta SSJ3 · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 30,
+"quadros": 626,
+"atlas": 6,
+"objs": [
+"Vegeta ssj7"
+]
+},
+"kaw_vegeta_ss6_efeitos": {
+"nome": "Vegeta SSJ4 Xeno · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 75,
+"quadros": 700,
+"atlas": 11,
+"objs": [
+"Vegeta SS6"
+]
+},
+"kaw_vegetto_jus3_efeitos": {
+"nome": "Vegetto SSJ Blue (JUS) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 27,
+"quadros": 429,
+"atlas": 5,
+"objs": [
+"Vegetto JUS3"
+]
+},
+"kaw_vegitoblue_efeitos": {
+"nome": "Vegetto SSJ Blue (versão 2) · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 117,
+"quadros": 1108,
+"atlas": 10,
+"objs": [
+"VegitoBlue"
+]
+},
+"kaw_vegito_ssb_efeitos": {
+"nome": "Vegetto SSJ Blue · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 80,
+"quadros": 584,
+"atlas": 5,
+"objs": [
+"Vegito (SSB)"
+]
+},
+"kaw_super_vegetto_efeitos": {
+"nome": "Vegetto SSJ · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 50,
+"quadros": 777,
+"atlas": 10,
+"objs": [
+"Super Vegetto"
+]
+},
+"kaw_zamasufused_efeitos": {
+"nome": "Zamasu Fundido · efeitos",
+"cat": "kaw",
+"tipo": "efeitos",
+"fonte": "kaw",
+"anims": 61,
+"quadros": 738,
+"atlas": 6,
+"objs": [
+"ZamasuFused"
 ]
 },
 "lw_active_skill2": {
