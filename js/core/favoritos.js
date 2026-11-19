@@ -5,6 +5,8 @@
 //   favSons["acervo/swz/explosao_1"] = "explosao"      sons (FF.FavSons), separados por categoria
 //   favoritosPastas["Goku"] = ["gokubase#Kamehameha", "fx_extra"]   pastas criadas pelo usuário (nome livre;
 //   favSonsPastas["Explosões grandes"] = ["acervo/swz/explosao_1"]    um item pode estar em várias pastas)
+//   spritesInfo[id].pasta = "Goku"   sprite inteiro MOVIDO para a pasta: sai do lugar dele nas listas (acervo/do jogo)
+//                                    e passa a morar só ali (seletor de sprites e aba Sprites). Só sprites (seção favoritos).
 window.FF = window.FF || {};
 
 FF.criarFavoritos = (secao, TIPOS, plural) => ({
@@ -19,7 +21,28 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
   pastas() { return (FF.Edicoes && FF.Edicoes.dados()[this.secao + 'Pastas']) || {}; },
   nomesPastas() { return Object.keys(this.pastas()).sort((a, b) => a.localeCompare(b, 'pt')); },
   itensPasta(nome) {
-    return (this.pastas()[nome] || []).map(k => { const i = k.indexOf('#'); return { sprite: i < 0 ? k : k.slice(0, i), anim: i < 0 ? null : k.slice(i + 1), tipo: this.todos()[k] || null }; });
+    const l = (this.pastas()[nome] || []).map(k => { const i = k.indexOf('#'); return { sprite: i < 0 ? k : k.slice(0, i), anim: i < 0 ? null : k.slice(i + 1), tipo: this.todos()[k] || null }; });
+    this.movidos(nome).forEach(id => { if (!l.some(v => v.sprite === id && !v.anim)) l.push({ sprite: id, anim: null, tipo: this.todos()[id] || null, movido: true }); });
+    return l;
+  },
+  // ---- sprites movidos para pastas (organizar o acervo) ----
+  movidos(nome) {
+    if (this.secao !== 'favoritos') return [];
+    const info = (FF.Edicoes && FF.Edicoes.dados().spritesInfo) || {};
+    return Object.keys(info).filter(id => info[id] && info[id].pasta === nome && !info[id].oculto);
+  },
+  // pasta onde o sprite mora (só se a pasta ainda existe); null = no lugar original
+  pastaDoSprite(id) {
+    if (this.secao !== 'favoritos') return null;
+    const p = FF.Assets && FF.Assets.infoSprite(id).pasta;
+    return p && this.pastas()[p] ? p : null;
+  },
+  moverSprites(ids, nome) {   // nome null = volta para o lugar original
+    ids.forEach(id => {
+      const v = Object.assign({}, FF.Assets.infoSprite(id));
+      if (nome) v.pasta = nome; else delete v.pasta;
+      FF.Edicoes.setDepois(['spritesInfo', id], Object.keys(v).length ? v : null);
+    });
   },
   naPasta(nome, sprite, anim) { return (this.pastas()[nome] || []).includes(this.chave(sprite, anim)); },
   pastasDe(sprite, anim) { const k = this.chave(sprite, anim); return this.nomesPastas().filter(n => (this.pastas()[n] || []).includes(k)); },
@@ -42,9 +65,50 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const l = (this.pastas()[velho] || []).slice();
     FF.Edicoes.setDepois([this.secao + 'Pastas', novo], l);
     FF.Edicoes.setDepois([this.secao + 'Pastas', velho], null);
+    const mv = this.movidos(velho); if (mv.length) this.moverSprites(mv, novo);
     return true;
   },
-  apagarPasta(nome) { FF.Edicoes.setDepois([this.secao + 'Pastas', nome], null); },
+  apagarPasta(nome) { const mv = this.movidos(nome); if (mv.length) this.moverSprites(mv, null); FF.Edicoes.setDepois([this.secao + 'Pastas', nome], null); },
+  // menu "📂 Mover para a pasta": sprites inteiros (ids) mudam de lugar nas listas; null = voltar ao lugar original
+  menuMover(ancora, ids, aoMudar) {
+    document.querySelectorAll('.es-fav-menu').forEach(x => x.remove());
+    const m = document.createElement('div'); m.className = 'es-fav-menu';
+    const tit = document.createElement('div'); tit.className = 'es-fav-tit';
+    tit.textContent = '📂 Mover ' + (ids.length === 1 ? '"' + FF.Assets.nomeSprite(ids[0]) + '"' : ids.length + ' sprites') + ' para a pasta:';
+    m.appendChild(tit);
+    const fim = (nome) => { this.moverSprites(ids, nome); m.remove(); aoMudar && aoMudar(nome); };
+    const atual = ids.length === 1 ? this.pastaDoSprite(ids[0]) : null;
+    this.nomesPastas().forEach(nome => {
+      const b = document.createElement('button'); b.textContent = '📁 ' + nome + (nome === atual ? '  ✓' : '');
+      if (nome === atual) b.className = 'on';
+      b.onclick = (e) => { e.stopPropagation(); fim(nome); };
+      m.appendChild(b);
+    });
+    const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
+    nova.onclick = (e) => {
+      e.stopPropagation();
+      const inp = document.createElement('input'); inp.placeholder = 'Nome da pasta (ex.: Majin Buu)'; inp.className = 'es-fav-nova';
+      nova.replaceWith(inp); inp.focus();
+      let feito = false;
+      const ok = (sim) => { if (feito) return; feito = true; const n = sim && inp.value.trim() ? this.criarPasta(inp.value) : null; if (n) fim(n); else m.remove(); };
+      inp.onkeydown = (ev) => { ev.stopPropagation(); if (ev.key === 'Enter') ok(true); if (ev.key === 'Escape') ok(false); };
+      inp.onblur = () => ok(true);
+      inp.onpointerdown = (ev) => ev.stopPropagation();
+    };
+    m.appendChild(nova);
+    if (ids.some(id => this.pastaDoSprite(id))) {
+      const b = document.createElement('button'); b.className = 'tirar'; b.textContent = '↩ Voltar para o lugar original';
+      b.onclick = (e) => { e.stopPropagation(); fim(null); };
+      m.appendChild(b);
+    }
+    document.body.appendChild(m);
+    const r = ancora.getBoundingClientRect();
+    m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
+    const embaixo = r.bottom + 2 + m.offsetHeight < innerHeight;
+    m.style.top = Math.max(4, embaixo ? r.bottom + 2 : r.top - m.offsetHeight - 4) + 'px';
+    const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
+    setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
+  },
   // [{sprite, anim|null, tipo}] (tipo opcional filtra)
   lista(tipo) {
     return Object.entries(this.todos()).filter(([, t]) => !tipo || t === tipo).map(([k, t]) => {
@@ -203,9 +267,10 @@ FF.listaPastas = (F, pai, bt, aoMudar, chaveAtual, aoApagarAtual) => {
   pintarCab();
   pai = corpo;   // itens, "Nova pasta" e a dica vão dentro do corpo que abre/fecha
   nomes.forEach(nome => {
-    const el = bt('pasta:' + nome, '📁 ' + nome, String((F.pastas()[nome] || []).length), pai);
+    const el = bt('pasta:' + nome, '📁 ' + nome, String(F.itensPasta(nome).length), pai);
     const item = el && el.closest ? (el.closest('.es-item') || el) : el;
     if (!item) return;
+    FF.alvoDePasta(F, item, nome, () => aoMudar(null));
     const ac = document.createElement('span'); ac.className = 'es-seletor-acoes es-pasta-acoes';
     const ren = document.createElement('button'); ren.textContent = '✏'; ren.title = 'Renomear a pasta';
     ren.onclick = (e) => {
@@ -253,3 +318,28 @@ FF.FavSons = FF.criarFavoritos('favSons',
   [['explosao', '💥', 'Explosão'], ['golpe', '👊', 'Golpe / impacto'], ['ki', '⚡', 'Ki / energia'], ['aura', '✨', 'Aura / transformação'],
     ['voz', '🗣', 'Voz / personagem'], ['movimento', '💨', 'Movimento'], ['musica', '🎵', 'Música'], ['interface', '🖥', 'Interface'], ['outros', '🔊', 'Outros']],
   { explosao: 'Explosões', golpe: 'Golpes e impactos', ki: 'Ki e energia', aura: 'Auras e transformações', voz: 'Vozes e personagens', movimento: 'Movimentos', musica: 'Músicas', interface: 'Interface', outros: 'Outros' });
+
+// arrastar e soltar numa pasta (seletor de sprites e aba Sprites):
+//   'application/x-ff-sprites' = ["id", ...]          sprites inteiros: MOVE para a pasta
+//   'application/x-ff-anims'   = [["id", "anim"], ...] animações: coloca na pasta (continuam no sprite delas)
+FF.TIPO_ARRASTO_SPRITES = 'application/x-ff-sprites';
+FF.TIPO_ARRASTO_ANIMS = 'application/x-ff-anims';
+FF.alvoDePasta = (F, el, nome, aoMudar) => {
+  if (F.secao !== 'favoritos') return;
+  const aceita = (e) => [...(e.dataTransfer && e.dataTransfer.types || [])].some(t => t === FF.TIPO_ARRASTO_SPRITES || t === FF.TIPO_ARRASTO_ANIMS);
+  el.addEventListener('dragover', (e) => { if (!aceita(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; el.classList.add('es-pasta-alvo'); });
+  el.addEventListener('dragleave', () => el.classList.remove('es-pasta-alvo'));
+  el.addEventListener('drop', (e) => {
+    el.classList.remove('es-pasta-alvo');
+    if (!aceita(e)) return;
+    e.preventDefault(); e.stopPropagation();
+    let n = 0;
+    try {
+      const spr = e.dataTransfer.getData(FF.TIPO_ARRASTO_SPRITES), an = e.dataTransfer.getData(FF.TIPO_ARRASTO_ANIMS);
+      if (spr) { const ids = JSON.parse(spr); F.moverSprites(ids, nome); n = ids.length; }
+      else if (an) { const l = JSON.parse(an); l.forEach(([id, a]) => { if (!F.naPasta(nome, id, a)) F.alternarPasta(nome, id, a); }); n = l.length; }
+    } catch (err) { return; }
+    if (n && FF.Estudio && FF.Estudio.aviso) FF.Estudio.aviso('📁 ' + n + (n === 1 ? ' item' : ' itens') + ' em "' + nome + '"');
+    aoMudar && aoMudar();
+  });
+};

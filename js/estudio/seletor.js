@@ -28,18 +28,28 @@ window.FF = window.FF || {};
 
   E.escolherSprite = function (o) {
     const todos = FF.Assets.listaSprites();
-    const jogo = todos.filter(id => !FF.Assets.doAcervo(id)).sort((a, b) => {
+    const jogoTodos = todos.filter(id => !FF.Assets.doAcervo(id)).sort((a, b) => {
       const pa = a === 'fx' ? 0 : a === 'fx_extra' ? 1 : UTIL.includes(a) ? 3 : 2;
       const pb = b === 'fx' ? 0 : b === 'fx_extra' ? 1 : UTIL.includes(b) ? 3 : 2;
       return pa - pb || a.localeCompare(b);
     });
-    const acervo = Object.keys(FF.Assets.acervo()).filter(id => !FF.Assets.spriteOculto(id));   // já vem em ordem de categoria/nome; sem os excluídos
-    const porCat = {};
-    acervo.forEach(id => { (porCat[FF.Assets.categoriaSprite(id)] = porCat[FF.Assets.categoriaSprite(id)] || []).push(id); });
-    const cats = ORDEM_CAT.filter(c => porCat[c]).concat(Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c)));
+    const acervoTodos = Object.keys(FF.Assets.acervo()).filter(id => !FF.Assets.spriteOculto(id));   // já vem em ordem de categoria/nome; sem os excluídos
     const NOME_CAT = FF.Assets.categoriasAcervo();
-    const ids = jogo.concat(acervo);
+    const ids = jogoTodos.concat(acervoTodos);
     const NM = nomes();
+    // listas da coluna da esquerda: sprites movidos para uma pasta (📂) saem do lugar original e moram só na pasta
+    let jogo, acervo, porCat, cats;
+    const movido = (id) => FF.Favoritos && FF.Favoritos.pastaDoSprite(id);
+    const recalcular = () => {
+      jogo = jogoTodos.filter(id => !movido(id));
+      acervo = acervoTodos.filter(id => !movido(id));
+      porCat = {};
+      acervo.forEach(id => { (porCat[FF.Assets.categoriaSprite(id)] = porCat[FF.Assets.categoriaSprite(id)] || []).push(id); });
+      cats = ORDEM_CAT.filter(c => porCat[c]).concat(Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c)));
+    };
+    recalcular();
+    let ordemLado = E.rascunho.ler('seletor_ordem_lado') || 'padrao', ordemGrade = E.rascunho.ler('seletor_ordem_grade') || 'padrao';
+    const ordenarIds = (l) => E.ordenar(l, ordemLado, (id) => NM[id] || id, (id) => E.qtdAnimsSprite(id));
 
     let fonte = o.inicio || (o.atual && o.atual.sprite) || E.rascunho.ler('seletor_fonte') || 'efeitos';
     if (fonte !== 'efeitos' && fonte !== 'todos' && !/^(cat|fav|pasta)(:|$)/.test(fonte) && fonte !== 'lixeira' && !ids.includes(fonte)) fonte = 'efeitos';
@@ -62,7 +72,9 @@ window.FF = window.FF || {};
     selTam.onchange = () => { tam = selTam.value; E.rascunho.gravar('seletor_tam', tam); aplicarTam(); render(); };
     let cheia = !!E.rascunho.ler('seletor_cheia');
     const btCheia = E.botao('⛶', () => { cheia = !cheia; E.rascunho.gravar('seletor_cheia', cheia || null); aplicarCheia(); }, 'Expandir / reduzir a janela', 'es-seletor-cheia');
-    topo.append(busca, info, selTam, btCheia);
+    const selOrdem = E.seletorOrdem('seletor_ordem_grade', 'quadros', (v) => { ordemGrade = v; render(); });
+    selOrdem.title = 'Ordem dos cartões';
+    topo.append(busca, info, selOrdem, selTam, btCheia);
     if (o.limpar) topo.appendChild(E.botao('Nenhum', () => { o.limpar(); m.fechar(); }));
     const grade = E.el('div', 'es-grade');
     // ☑ seleção de vários: caixinha no cartão, Ctrl/Shift+clique ou arrastar uma caixa no espaço vazio da grade
@@ -73,7 +85,7 @@ window.FF = window.FF || {};
     const txtSel = E.el('span');
     const btTodos = E.botao('Marcar todos', () => { visiveis.forEach(x => marcados.set(chave(x), { id: x.id, a: x.a })); pintarMarcas(); }, 'Marca todas as animações mostradas agora');
     const btLimpar = E.botao('Limpar', () => { marcados.clear(); pintarMarcas(); }, 'Desmarcar todos');
-    const btFavSel = E.botao('⭐ Favoritar / pasta', () => {
+    const btFavSel = E.botao('⭐📁 Favoritar / pôr na pasta', () => {
       if (!marcados.size || !FF.Favoritos) return;
       FF.Favoritos.menuVarios(btFavSel, [...marcados.values()].map(v => ({ sprite: v.id, anim: v.a })), () => { contarFav(); render(); });
     }, 'Favoritar ou pôr numa pasta todas as marcadas de uma vez');
@@ -203,7 +215,10 @@ window.FF = window.FF || {};
           inp.onblur = () => fim(true);
         }, 'Renomear este sprite'));
         if (FF.Assets.doAcervo(chave)) ac.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); E.mudarInfoSprite(chave, { oculto: true }); b.remove(); E.aviso('🗑 Sprite excluído das listas (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir este sprite das listas (vai para a Lixeira)', 'es-bt-perigo'));
+        { const bm = E.botao('📂', (e) => { e.stopPropagation(); FF.Favoritos.menuMover(bm, [chave], () => { montarLado(); render(); }); }, FF.Favoritos.pastaDoSprite(chave) ? 'Está na pasta "' + FF.Favoritos.pastaDoSprite(chave) + '" — mover para outra ou voltar ao lugar original' : 'Mover este sprite para uma das suas pastas (sai daqui e fica só lá). Também dá para arrastar até a pasta.'); ac.appendChild(bm); }
         ac.appendChild(FF.Favoritos.botao(chave, null, () => { contarFav(); render(); }));   // ☆ sprite inteiro
+        b.draggable = true;
+        b.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_SPRITES, JSON.stringify([chave])); e.dataTransfer.effectAllowed = 'move'; });
         b.appendChild(ac);
       }
       b.onclick = () => { fonte = chave; E.rascunho.gravar('seletor_fonte', chave); marcar(); render(); };
@@ -212,11 +227,18 @@ window.FF = window.FF || {};
     };
     const mini = (cv, id) => desenharQuando(cv, id, (s) => E.miniatura(cv, s, Object.keys(s.def.anims)[0], 0));
 
-    lado.appendChild(E.el('div', 'es-sub', 'Mostrar'));
+    let contarFav = () => {};
+    function montarLado() {
+    const rolagem = lado.scrollTop;
+    lado.innerHTML = '';
+    recalcular();
+    const cabLado = E.el('div', 'es-sub es-seletor-ordem-lado');
+    cabLado.append(E.el('span', null, 'Mostrar'), E.seletorOrdem('seletor_ordem_lado', 'animações', (v) => { ordemLado = v; montarLado(); }));
+    lado.appendChild(cabLado);
     bt('efeitos', '✺ Efeitos (todos)', null);
     // ⭐ favoritos do usuário, separados pelo tipo que ele escolheu
     const favBox = E.el('div');
-    const contarFav = () => {
+    contarFav = () => {
       if (!FF.Favoritos) return;
       favBox.innerHTML = '';
       const l = FF.Favoritos.lista();
@@ -229,7 +251,7 @@ window.FF = window.FF || {};
         });
       }
       // 📁 pastas criadas pelo usuário (ex.: "Goku" com as animações e efeitos dele)
-      FF.listaPastas(FF.Favoritos, favBox, bt, (nova) => { if (nova) { fonte = nova; E.rascunho.gravar('seletor_fonte', nova); } contarFav(); render(); }, () => fonte, () => { fonte = 'efeitos'; });
+      FF.listaPastas(FF.Favoritos, favBox, bt, (nova) => { if (nova) { fonte = nova; E.rascunho.gravar('seletor_fonte', nova); } montarLado(); render(); }, () => fonte, () => { fonte = 'efeitos'; });
       marcar();
     };
     bt('todos', '★ Tudo', null);
@@ -241,7 +263,7 @@ window.FF = window.FF || {};
       const ap = () => {
         cab.textContent = (fechado ? '▸ ' : '▾ ') + '🎮 Do jogo (' + jogo.length + ')';
         corpo.style.display = fechado ? 'none' : '';
-        if (!fechado && !montado) { montado = true; jogo.forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null, corpo), id)); marcar(); }
+        if (!fechado && !montado) { montado = true; ordenarIds(jogo).forEach(id => mini(bt(id, NM[id] ? NM[id] + ' · ' + id : id, null, corpo), id)); marcar(); }
       };
       cab.onclick = () => { fechado = !fechado; E.rascunho.gravar('seletor_jogo_fechado', fechado || null); ap(); };
       lado.append(cab, corpo); ap();
@@ -266,7 +288,7 @@ window.FF = window.FF || {};
           const item = (id, onde) => mini(bt(id, NM[id] || id, String((FF.Assets.acervo()[id] || [])[2] || ''), onde), id);
           // jogo inteiro (ex.: Drag Warriors): subgrupos por tipo, cada um abre/fecha e tem o seu "Todos"
           const tipos = TIPOS.filter(t => porCat[cat].some(id => FF.Assets.tipoSprite(id) === t));
-          if (tipos.length < 2) { porCat[cat].forEach(id => item(id, corpo)); return; }
+          if (tipos.length < 2) { ordenarIds(porCat[cat]).forEach(id => item(id, corpo)); return; }
           tipos.forEach(t => {
             const chave = cat + ':' + t, ids = porCat[cat].filter(id => FF.Assets.tipoSprite(id) === t);
             const sc = E.el('div', 'es-seletor-cat es-seletor-subcat'), sb = E.el('div', 'es-seletor-cat-corpo');
@@ -274,7 +296,7 @@ window.FF = window.FF || {};
             let feito = false;
             const ap = () => {
               sb.style.display = abertas.has(chave) ? '' : 'none'; sc.textContent = tt();
-              if (abertas.has(chave) && !feito) { feito = true; bt('cat:' + chave, '☰ Todos: ' + NOME_TIPO[t].toLowerCase(), null, sb); ids.forEach(id => item(id, sb)); }
+              if (abertas.has(chave) && !feito) { feito = true; bt('cat:' + chave, '☰ Todos: ' + NOME_TIPO[t].toLowerCase(), null, sb); ordenarIds(ids).forEach(id => item(id, sb)); }
             };
             sc.onclick = () => { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); E.rascunho.gravar('seletor_cats_abertas', [...abertas]); ap(); };
             corpo.append(sc, sb); ap();
@@ -286,6 +308,9 @@ window.FF = window.FF || {};
         aplicar();
       });
     }
+    lado.scrollTop = rolagem;
+    }
+    montarLado();
 
     // ---- grade
     let geracao = 0;
@@ -318,6 +343,7 @@ window.FF = window.FF || {};
       if (favs) itens = itens.filter(x => favs.some(v => v.sprite === x.id && (!v.anim || v.anim === x.a)));
       if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
       if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '') + ' ' + FF.Assets.nomeAnim(x.id, x.a) + ' ' + FF.Assets.nomeSprite(x.id)).toLowerCase().includes(f));
+      itens = E.ordenar(itens, ordemGrade, (x) => FF.Assets.nomeAnim(x.id, x.a), (x) => x.n);
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
       info.textContent = itens.length + ' animação(ões)' + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
@@ -326,6 +352,11 @@ window.FF = window.FF || {};
         const sel = o.atual && x.a === o.atual.anim && (!o.atual.sprite || o.atual.sprite === x.id);
         const k = E.el('div', 'es-cartao' + (sel ? ' sel' : ''));
         k.dataset.k = chave(x);
+        k.draggable = true;   // arrastar até uma 📁 pasta da coluna da esquerda (leva todos os marcados, se este estiver entre eles)
+        k.addEventListener('dragstart', (e) => {
+          const l = marcados.has(chave(x)) ? [...marcados.values()].map(v => [v.id, v.a]) : [[x.id, x.a]];
+          e.dataTransfer.setData(FF.TIPO_ARRASTO_ANIMS, JSON.stringify(l)); e.dataTransfer.effectAllowed = 'copyMove';
+        });
         const chk = document.createElement('input'); chk.type = 'checkbox'; chk.className = 'es-cartao-chk'; chk.title = 'Marcar (para favoritar, excluir ou pôr na trilha vários de uma vez)';
         chk.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); alternar(x, idx, e); });
         chk.addEventListener('pointerdown', (e) => e.stopPropagation());

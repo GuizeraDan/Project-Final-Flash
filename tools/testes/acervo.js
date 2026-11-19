@@ -51,7 +51,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto, null, { timeout: 30000 });
   s = await p.evaluate(() => ({
     n: Object.keys(FF.Assets.acervo()).length,
-    lista: FF.Assets.listaSprites().filter(i => FF.Assets.doAcervo(i)).length,
+    lista: FF.Assets.listaSprites().filter(i => FF.Assets.doAcervo(i)).length + Object.keys(FF.Assets.acervo()).filter(i => FF.Assets.spriteOculto(i)).length,   // + os que o usuário mandou para a Lixeira
     cat: FF.Assets.categoriaSprite('zl3_explosao'), nome: FF.Assets.nomeSprite('zl3_explosao'), jogo: FF.Assets.categoriaSprite('gokubase'),
   }));
   ok(s.n === nIdx && s.lista === nIdx, 'índice do acervo no Estúdio: ' + s.n + ' sprites (indice.json tem ' + nIdx + ')');
@@ -136,7 +136,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     itens: document.querySelectorAll('.ess-sprites .es-item').length,
   }));
   ok(s.id === 'zl3_cell' && s.anims === indice.sprites.zl3_cell.anims, 'aba Sprites abre zl3_cell (' + s.anims + ' animações)');
-  ok(s.cats.filter(c => !/⭐|📁/.test(c)).length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(s.cats.filter(c => !/⭐|📁/.test(c))[0]), 'lista agrupada: ' + s.cats.join(' | '));
+  { const cs = s.cats.filter(c => !/⭐|📁|Lixeira/.test(c));   // pastas, favoritos e Lixeira dependem das edições do usuário
+    ok(cs.length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(cs[0]), 'lista agrupada: ' + s.cats.join(' | ')); }
   await p.screenshot({ path: OUT + '/3_aba_sprites.png' });
   // a categoria do sprite aberto precisa fechar com um clique (antes reabria na hora a cada redesenho)
   s = await p.evaluate(() => {
@@ -153,8 +154,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     cab.click();   // reabre
     const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => i.dataset.sprite === 'zl3_nappa');
     it.querySelector('.ess-lixo').click();
-    const n1 = FF.Assets.listaSprites().length, lix = !!document.querySelector('.ess-cat') && [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(1\)/.test(c.textContent));
-    [...document.querySelectorAll('.ess-cat')].find(c => /Lixeira/.test(c.textContent)).querySelector('.ess-cat-bt').click();
+    const n1 = FF.Assets.listaSprites().length, lix = [...document.querySelectorAll('.ess-sprites .es-item.ess-na-lixeira')].some(i => i.dataset.sprite === 'zl3_nappa') || [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(\d+\)/.test(c.textContent));
+    FF.Estudio.mudarInfoSprite('zl3_nappa', { oculto: null });   // restaura só este (a Lixeira do usuário pode ter outros)
     return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];
   });
   ok(s[0] === 1 && s[1] && s[2], 'Lixeira: some das listas, aparece na Lixeira e volta com ♻ (' + s + ')');

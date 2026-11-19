@@ -124,3 +124,8 @@
 .ess-cat-sub { padding-left: 16px; border-top: none; color: var(--texto, #ddd); font-weight: normal; }
 
 .ess-anims .es-item .es-fav-bt { margin-left: 3px; flex: none; }
+.ess .ess-busca-linha { display: flex; gap: 4px; align-items: center; margin: 0 6px 4px; }
+.ess .ess-busca-linha .ess-busca { flex: 1; min-width: 0; margin: 0; }
+.ess .ess-busca-linha .es-ordem { flex: none; max-width: 110px; }
+.ess-sprites .es-item .ess-mover { opacity: 0.35; }
+.ess-sprites .es-item:hover .ess-mover, .ess-sprites .es-item .ess-mover.on { opacity: 1; }

@@ -71,6 +71,29 @@ FF.Estudio = {
     this.renderHist();
   },
 
+  // ordenar listas (sprites, animações): <select> lembrado no aparelho + função que ordena uma cópia
+  //   oQue = 'animações' | 'quadros' (texto das opções de quantidade)
+  seletorOrdem(chave, oQue, aoMudar) {
+    const sel = document.createElement('select'); sel.className = 'es-ordem'; sel.title = 'Ordenar';
+    [['padrao', '↕ Ordem padrão'], ['az', '↕ Nome A→Z'], ['za', '↕ Nome Z→A'], ['mais', '↕ Mais ' + oQue], ['menos', '↕ Menos ' + oQue]]
+      .forEach(([v, t]) => { const op = document.createElement('option'); op.value = v; op.textContent = t; sel.appendChild(op); });
+    sel.value = this.rascunho.ler(chave) || 'padrao';
+    if (!sel.value) sel.value = 'padrao';
+    sel.onchange = () => { this.rascunho.gravar(chave, sel.value === 'padrao' ? null : sel.value); aoMudar(sel.value); };
+    sel.addEventListener('click', (e) => e.stopPropagation());
+    return sel;
+  },
+  ordenar(lista, modo, nome, qtd) {
+    if (!modo || modo === 'padrao') return lista;
+    const l = lista.slice(), cmp = (a, b) => String(nome(a)).localeCompare(String(nome(b)), 'pt', { numeric: true, sensitivity: 'base' });
+    if (modo === 'az') l.sort(cmp);
+    else if (modo === 'za') l.sort((a, b) => cmp(b, a));
+    else if (modo === 'mais') l.sort((a, b) => (qtd(b) || 0) - (qtd(a) || 0) || cmp(a, b));
+    else if (modo === 'menos') l.sort((a, b) => (qtd(a) || 0) - (qtd(b) || 0) || cmp(a, b));
+    return l;
+  },
+  qtdAnimsSprite(id) { const s = FF.Assets.sprites[id]; return s ? Object.keys(s.def.anims).length : +((FF.Assets.acervo()[id] || [])[2] || 0); },
+
   // atalho: abre um sprite/animação na aba Sprites (de qualquer lugar, ex.: o seletor de sprites)
   async editarSprite(id, anim) {
     await this.abrir('sprites');

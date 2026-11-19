@@ -91,6 +91,9 @@
     ui.buscaSprite.type = 'search'; ui.buscaSprite.placeholder = 'Buscar sprite…'; ui.buscaSprite.className = 'ess-busca';
     ui.buscaSprite.oninput = () => { st.buscaSprite = ui.buscaSprite.value; renderSprites(); };
     ui.sprites = el('div', 'es-lista ess-sprites');
+    // ↕ ordenar a lista de sprites e a de animações (lembrado no aparelho)
+    ui.ordemSprites = E.seletorOrdem('sprites_ordem', 'animações', () => renderSprites());
+    ui.ordemAnims = E.seletorOrdem('sprites_ordem_anims', 'quadros', () => renderAnims());
     const tA = el('div', 'es-titulo', '🎞 Animações <span class="ess-n"></span>');
     ui.nAnims = tA.querySelector('.ess-n');
     tA.appendChild(E.botao('＋ Nova', () => novaAnimacao(), 'Nova animação (vazia ou com os quadros escolhidos)', 'es-mais'));
@@ -98,7 +101,9 @@
     ui.buscaAnim.type = 'search'; ui.buscaAnim.placeholder = 'Buscar animação…'; ui.buscaAnim.className = 'ess-busca';
     ui.buscaAnim.oninput = () => { st.buscaAnim = ui.buscaAnim.value; renderAnims(); };
     ui.anims = el('div', 'es-lista ess-anims es-rolar');
-    esq.append(ui.buscaSprite, ui.sprites, tA, ui.buscaAnim, ui.anims);
+    const linhaS = el('div', 'ess-busca-linha'), linhaA = el('div', 'ess-busca-linha');
+    linhaS.append(ui.buscaSprite, ui.ordemSprites); linhaA.append(ui.buscaAnim, ui.ordemAnims);
+    esq.append(linhaS, ui.sprites, tA, linhaA, ui.anims);
 
     // centro: barra de ações, palco, controles, tira de quadros
     const cen = el('div', 'es-centro ess-centro');
@@ -224,14 +229,25 @@
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
       else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'es-fav-bt ess-lixo ess-restaurar'));
       else if (ac) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); lixeiraSprites([s]); }, 'Mandar para a Lixeira (some das listas; dá para restaurar no fim da lista)', 'es-fav-bt ess-lixo'));
+      if (FF.Favoritos && !naLixeira) {
+        const p = FF.Favoritos.pastaDoSprite(s);
+        const bm = E.botao('📂', (e) => { e.stopPropagation(); FF.Favoritos.menuMover(bm, [s], () => renderSprites()); }, p ? 'Está na pasta "' + p + '" — mover para outra ou voltar ao lugar original' : 'Mover este sprite para uma das suas pastas (sai daqui e fica só lá). Também dá para arrastar até a pasta.', 'es-fav-bt ess-mover');
+        it.appendChild(bm);
+        it.draggable = true;
+        it.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_SPRITES, JSON.stringify([s])); e.dataTransfer.effectAllowed = 'move'; });
+      }
       if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
     };
     const bate = (s) => !f || s.toLowerCase().includes(f) || FF.Assets.nomeSprite(s).toLowerCase().includes(f);
+    const ordem = ui.ordemSprites ? ui.ordemSprites.value : 'padrao';
+    const ord = (l) => E.ordenar(l, ordem, (s) => FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) : s, (s) => E.qtdAnimsSprite(s));
     const lista = FF.Assets.listaSprites().filter(bate);
-    const jogo = lista.filter(s => !FF.Assets.doAcervo(s));
-    const acervo = lista.filter(s => FF.Assets.doAcervo(s));
+    // 📂 sprites movidos para uma pasta moram só nela (saem de "Do jogo"/acervo)
+    const movido = (s) => FF.Favoritos && FF.Favoritos.pastaDoSprite(s);
+    const jogo = ord(lista.filter(s => !FF.Assets.doAcervo(s) && !movido(s)));
+    const acervo = ord(lista.filter(s => FF.Assets.doAcervo(s) && !movido(s)));
     if (!acervo.length && !(FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length)) { jogo.forEach(s => item(s, ui.sprites)); return; }
     // agrupado: sprites do jogo, depois o acervo por categoria/jogo (abre/fecha); dentro de cada jogo, por tipo
     const NOMES = FF.Assets.categoriasAcervo();
@@ -247,8 +263,8 @@
       abertas.add(c); abertas.add(c + ':' + FF.Assets.tipoSprite(st.id));
       E.rascunho.gravar('sprites_cats_abertas', [...abertas]);
     }
-    const grupo = (chave, titulo, ids, sub) => {
-      if (!ids.length) return;
+    const grupo = (chave, titulo, ids, sub, pasta) => {
+      if (!ids.length && !pasta) return;
       const padraoAberto = chave === 'jogo' || chave.startsWith('fav:');   // do jogo e favoritos começam abertos
       const aberta = !!f || padraoAberto ? !abertas.has('!' + chave) : abertas.has(chave);
       const cab = el('div', 'ess-cat' + (sub ? ' ess-cat-sub' : ''), (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
@@ -263,6 +279,7 @@
           e.stopPropagation();
           if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar os ' + ids.length + ' sprites de "' + titulo.replace(/^\S+\s/, '') + '" para a Lixeira? Eles somem das listas do Estúdio (em todos os aparelhos). Dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) lixeiraSprites(ids);
         }, 'Mandar todos os sprites deste grupo para a Lixeira', 'ess-cat-bt'));
+      if (pasta) FF.alvoDePasta(FF.Favoritos, cab, pasta, () => renderSprites());   // soltar um sprite aqui = mover para a pasta
       ui.sprites.appendChild(cab);
       if (!aberta) return;
       if (chave === 'lixeira') { ids.forEach(s => item(s, ui.sprites, true)); return; }
@@ -273,14 +290,22 @@
     };
     // ⭐ favoritos (sprites inteiros) separados pelo tipo que o usuário escolheu
     if (FF.Favoritos) FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
-      const ids = FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite);
+      const ids = ord(FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite));
       grupo('fav:' + t, '⭐ ' + ic + ' ' + FF.Favoritos.plural[t] + ' (favoritos)', ids);
     });
     // 📁 pastas do usuário (as mesmas do seletor de sprites e da aba Favoritos), com os sprites inteiros que estão nelas
-    if (FF.Favoritos && FF.Favoritos.nomesPastas) FF.Favoritos.nomesPastas().forEach(nome => {
-      const ids = [...new Set(FF.Favoritos.itensPasta(nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))];
-      grupo('fav:pasta:' + nome, '📁 ' + nome, ids);
-    });
+    // tudo dentro de um título "📁 Minhas pastas" que abre/fecha; pastas vazias aparecem (dá para soltar sprites nelas)
+    if (FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length) {
+      const nomesP = FF.Favoritos.nomesPastas(), fechada = abertas.has('!pastas');
+      const cabP = el('div', 'ess-cat', (fechada ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + nomesP.length + ')');
+      cabP.title = 'Pastas suas (as mesmas do seletor de sprites). Arraste um sprite até uma pasta, ou use o 📂 dele, para mover.';
+      cabP.onclick = () => { fechada ? abertas.delete('!pastas') : abertas.add('!pastas'); E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites(); };
+      ui.sprites.appendChild(cabP);
+      if (!fechada) nomesP.forEach(nome => {
+        const ids = ord([...new Set(FF.Favoritos.itensPasta(nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
+        grupo('fav:pasta:' + nome, '📁 ' + nome, ids, true, nome);
+      });
+    }
     grupo('jogo', 'Do jogo', jogo);
     const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
     cats.forEach(c => grupo(c, '📦 ' + (NOMES[c] || c), acervo.filter(s => FF.Assets.categoriaSprite(s) === c)));
@@ -340,7 +365,10 @@
       if (importado()) v.appendChild(E.botao('🗑 Apagar sprite', () => apagarSprite(st.id), 'Apagar este sprite importado', 'es-bt-perigo'));
       ui.anims.appendChild(v);
     }
-    lista.filter(n => !f || n.toLowerCase().includes(f)).forEach(n => {
+    const ordA = ui.ordemAnims ? ui.ordemAnims.value : 'padrao';
+    const listaVer = E.ordenar(lista.filter(n => !f || n.toLowerCase().includes(f) || FF.Assets.nomeAnim(st.id, n).toLowerCase().includes(f)), ordA,
+      (n) => FF.Assets.nomeAnim(st.id, n), (n) => { const a = st.set.def.anims[n]; return a ? a.frames.length : 0; });
+    listaVer.forEach(n => {
       const novoAqui = st.novo && n === st.nome && !st.set.def.anims[n];
       const a = novoAqui ? st.anim : st.set.def.anims[n];
       const it = el('div', 'es-item ess-anim' + (n === st.nome ? ' sel' : ''));

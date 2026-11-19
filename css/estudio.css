@@ -266,3 +266,10 @@ a { color: var(--ouro); }
 .es-caixa-sel { position: absolute; border: 1px dashed #ffd84a; background: rgba(255, 216, 74, 0.12); pointer-events: none; z-index: 5; }
 .es-seletor-sel { flex-wrap: wrap; }
 .es-seletor-sel.ativa span { color: #ffe9a8; }
+
+/* ordenar listas e arrastar para pastas */
+.es-ordem { font-size: 11px; padding: 1px 2px; max-width: 150px; }
+.es-seletor-ordem-lado { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.es-seletor-ordem-lado .es-ordem { max-width: 130px; }
+.es-pasta-alvo { outline: 2px dashed #ffd84a; background: rgba(255, 216, 74, 0.18) !important; }
+.es-item[draggable="true"] { cursor: grab; }
