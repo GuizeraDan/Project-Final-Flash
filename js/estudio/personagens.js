@@ -57,6 +57,8 @@
       this.rodape = E().el('div', 'es-barra ep-rodape');
       dir.append(this.cab, this.subAbas, this.painel, this.rodape);
       el.append(esq, centro, dir);
+      E().ladoRedimensionavel(esq, 'personagens_esq', 'esq', 400);
+      E().ladoRedimensionavel(dir, 'personagens_dir', 'dir', 520, { titulo: ':scope > .ep-cab', antes: true });
 
       this.oponente = E().rascunho.ler('pers_oponente') || 'raditz';
       await this.carregarLista();

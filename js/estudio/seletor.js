@@ -155,6 +155,7 @@ window.FF = window.FF || {};
     });
     dir.append(topo, grade, barraSel);
     c.append(lado, dir);
+    E.ladoRedimensionavel(lado, 'seletor_esq', 'esq', 440, { irmao: true, titulo: ':scope > .es-sub' });   // » expande a coluna da esquerda
     const m = E.modal(o.titulo || '🖼 Escolher sprite', c, { larga: true });
     const caixa = m.el.querySelector('.es-modal-caixa');
     function aplicarTam() { const [w, h] = TAMS[tam]; c.style.setProperty('--cartao-w', w + 'px'); c.style.setProperty('--cartao-h', h + 'px'); c.dataset.tam = tam; }

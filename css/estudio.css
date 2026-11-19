@@ -280,6 +280,11 @@ a { color: var(--ouro); }
 .red-esq > .es-lado-alca { right: -7px; }   /* fora da coluna: não cobre a barra de rolagem */
 .red-dir > .es-lado-alca { left: -7px; }
 .es-lado-alca:hover, .es-redimensionando .es-lado-alca { background: rgba(255, 216, 74, 0.45); }
+.es-lado-alca.irmao { position: static; flex: none; align-self: stretch; width: 6px; margin: 0 -5px 0 -7px; border-radius: 3px; }
+.es-sub .es-lado-bt, .ep-cab .es-lado-bt { float: right; margin: 0 0 0 4px; padding: 0 6px; font-size: 12px; font-weight: 700; line-height: 1.2; border-radius: 5px;
+  background: #3a2a6e; color: #ffd84a; border: 1px solid #5a3fa8; cursor: pointer; }
+.es-seletor-ordem-lado .es-lado-bt { float: none; flex: none; }
+.es-sub .es-lado-bt:hover, .ep-cab .es-lado-bt:hover { background: #5a3fa8; }
 .es-titulo .es-lado-bt { margin-left: auto; padding: 1px 7px; font-size: 13px; font-weight: 700; line-height: 1.1; letter-spacing: 0; border-radius: 5px;
   background: #3a2a6e; color: #ffd84a; border: 1px solid #5a3fa8; cursor: pointer; flex: none; }
 .es-titulo .es-lado-bt:not(:first-child) { margin-left: 4px; }

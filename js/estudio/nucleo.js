@@ -73,18 +73,21 @@ FF.Estudio = {
 
   // coluna lateral que estica: arrastar a borda muda a largura; o botão » / « (setas duplas) alterna entre a largura
   // normal e a larga. Lembrado no aparelho (rascunho 'lado_<chave>'). lado = 'esq' (borda à direita) | 'dir'.
-  ladoRedimensionavel(aside, chave, lado, larga) {
+  //   o.titulo: onde fica o botão (padrão ':scope > .es-titulo'); o.irmao: a borda vai FORA da coluna, como irmã
+  //   (colunas que rolam sozinhas, ex.: seletores de sprites e de sons, cortariam uma borda posicionada dentro delas)
+  ladoRedimensionavel(aside, chave, lado, larga, o) {
+    o = o || {};
     const ch = 'lado_' + chave;
     aside.classList.add('es-lado-red', lado === 'dir' ? 'red-dir' : 'red-esq');
     const alca = this.el('div', 'es-lado-alca');
     alca.title = 'Arraste para mudar a largura (duplo clique: largura normal)';
     // botão » / « no título da coluna (1º .es-titulo), longe das barras de rolagem
     const bt = this.el('button', 'es-lado-bt');
-    aside.appendChild(alca);
+    if (o.irmao) { alca.classList.add('irmao'); aside.after(alca); } else aside.appendChild(alca);
     const colocar = () => {
-      if (alca.parentNode !== aside) aside.appendChild(alca);   // quem redesenha a coluna com innerHTML = '' apaga a alça
-      const tit = aside.querySelector(':scope > .es-titulo');
-      if (tit && bt.parentNode !== tit) tit.appendChild(bt);
+      if (!o.irmao && alca.parentNode !== aside) aside.appendChild(alca);   // quem redesenha a coluna com innerHTML = '' apaga a alça
+      const tit = aside.querySelector(o.titulo || ':scope > .es-titulo');
+      if (tit && bt.parentNode !== tit) { if (o.antes) tit.prepend(bt); else tit.appendChild(bt); }   // antes: com float à direita, fica na 1ª linha
     };
     colocar();
     new MutationObserver(colocar).observe(aside, { childList: true, subtree: true });   // título reescrito (textContent) também perde o botão
@@ -448,6 +451,7 @@ FF.Estudio = {
     const topo = this.el('div', 'es-barra');
     const busca = document.createElement('input');
     busca.type = 'search'; busca.placeholder = 'Filtrar (ex.: vgkn, kame, explos, soco, goku)';
+    lado.classList.add('es-sons-lado');
     busca.value = vozes || '';
     const info = this.el('span', 'es-dica');
     // 📥 importar som do computador (vai para "Meus sons"; sobe para o GitHub com as edições)
@@ -483,6 +487,7 @@ FF.Estudio = {
     };
     dir.append(topo, chips, lista, barraSel);
     c.append(lado, dir);
+    this.ladoRedimensionavel(lado, 'sons_esq', 'esq', 420, { irmao: true, titulo: ':scope > .es-sub' });   // » expande a coluna das fontes
     const fontesBt = [];
     const bt = (chave, texto, n, pai) => {
       const b = this.el('div', 'es-item es-seletor-fonte' + (chave === fonte ? ' sel' : ''));
