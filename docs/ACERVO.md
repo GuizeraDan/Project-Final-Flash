@@ -2,7 +2,7 @@
 
 Sprites extraídos dos jogos da pasta `Project Final Flash Sprites` (`tools/extrair_acervo.py` para o Z Legends 3, `tools/extrair_jogos.py` para os outros). Cada sprite fica em `data/acervo/<id>.js` + `assets/img/acervo/<id>_<n>.png` e aparece no Estúdio (aba Sprites e seletor de sprites). Nomes de animação são os do jogo de origem.
 
-**11154 sprites · 89787 animações · 338832 quadros.**
+**11154 sprites · 89887 animações · 338944 quadros.**
 
 ## Z Legends 3 (326 sprites)
 
@@ -1728,6 +1728,7 @@ Deixados de fora (invisíveis/vazios): blacksperm (personagem-piada), Goku_Xeno_
 | `lw_trunks_dbs_ssj` | trunks_dbs_ssj | Personagens | 4 | 68 | resources.assets |
 | `lw_turles` | turles | Personagens | 3 | 47 | resources.assets |
 | `lw_turles_ssj` | turles_ssj | Personagens | 4 | 61 | resources.assets |
+| `lw_sactx_0_512x512_etc2_ui_character_pack_635b0817` | Ui character pack (atlas) | Personagens | 101 | 104 | resources.assets |
 | `lw_vegeta_base` | vegeta_base | Personagens | 4 | 55 | resources.assets |
 | `lw_vegeta_gt_base` | vegeta_gt_base | Personagens | 1 | 58 | resources.assets |
 | `lw_vegeta_gt_ssj` | vegeta_gt_ssj | Personagens | 4 | 53 | resources.assets |
@@ -1826,6 +1827,7 @@ Deixados de fora (invisíveis/vazios): blacksperm (personagem-piada), Goku_Xeno_
 | `lw_sky` | sky | Cenários | 1 | 1 | resources.assets |
 | `lw_splash` | splash | Cenários | 1 | 1 | globalgamemanagers.assets |
 | `lw_tournament` | tournament | Cenários | 5 | 6 | resources.assets |
+| `lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74` | Ui stages image (atlas) | Cenários | 1 | 10 | resources.assets |
 | `lw_unitywatermark_beta` | UnityWatermark-beta | Cenários | 1 | 1 | unity default resources |
 | `lw_unitywatermark_dev` | UnityWatermark-dev | Cenários | 1 | 1 | unity default resources |
 | `lw_unitywatermark_edu` | UnityWatermark-edu | Cenários | 1 | 1 | unity default resources |
@@ -1853,8 +1855,6 @@ Deixados de fora (invisíveis/vazios): blacksperm (personagem-piada), Goku_Xeno_
 | `lw_horizontal_scrollbar_thumb` | horizontal scrollbar thumb | Interface | 1 | 1 | unity default resources |
 | `lw_loading_icon` | loading_icon | Interface | 1 | 9 | sharedassets0.assets |
 | `lw_log_icon` | log_icon | Interface | 1 | 1 | sharedassets0.assets |
-| `lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74` | sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74 | Interface | 1 | 1 | resources.assets |
-| `lw_sactx_0_512x512_etc2_ui_character_pack_635b0817` | sactx-0-512x512-ETC2-ui_character_pack-635b0817 | Interface | 1 | 1 | resources.assets |
 | `lw_selected` | selected | Interface | 1 | 1 | sharedassets0.assets |
 | `lw_slider_thumb` | slider thumb | Interface | 1 | 1 | unity default resources |
 | `lw_slider_thumb_active` | slider thumb active | Interface | 1 | 1 | unity default resources |

@@ -20101,6 +20101,18 @@
 "resources.assets"
 ]
 },
+"lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
+"nome": "Ui character pack (atlas)",
+"cat": "lw",
+"tipo": "personagens",
+"fonte": "lw",
+"anims": 101,
+"quadros": 104,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
 "lw_vegeta_base": {
 "nome": "vegeta_base",
 "cat": "lw",
@@ -21277,6 +21289,18 @@
 "resources.assets"
 ]
 },
+"lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
+"nome": "Ui stages image (atlas)",
+"cat": "lw",
+"tipo": "cenarios",
+"fonte": "lw",
+"anims": 1,
+"quadros": 10,
+"atlas": 1,
+"objs": [
+"resources.assets"
+]
+},
 "lw_unitywatermark_beta": {
 "nome": "UnityWatermark-beta",
 "cat": "lw",
@@ -21599,30 +21623,6 @@
 "atlas": 1,
 "objs": [
 "sharedassets0.assets"
-]
-},
-"lw_sactx_0_1024x1024_etc2_ui_stages_image_0ffa2a74": {
-"nome": "sactx-0-1024x1024-ETC2-ui_stages_image-0ffa2a74",
-"cat": "lw",
-"tipo": "interface",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
-]
-},
-"lw_sactx_0_512x512_etc2_ui_character_pack_635b0817": {
-"nome": "sactx-0-512x512-ETC2-ui_character_pack-635b0817",
-"cat": "lw",
-"tipo": "interface",
-"fonte": "lw",
-"anims": 1,
-"quadros": 1,
-"atlas": 1,
-"objs": [
-"resources.assets"
 ]
 },
 "lw_selected": {

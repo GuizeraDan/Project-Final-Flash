@@ -334,6 +334,14 @@ def fazer_pastas(a):
 
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
+    extra_ficha = {}
+    if a.so_atlas:                                          # mantém os outros sprites da fonte como estão
+        fp = os.path.join(a.out, 'data/acervo/fontes', a.chave + '.json')
+        if os.path.exists(fp):
+            with open(fp, encoding='utf-8') as fh:
+                velha = json.load(fh)
+            fonte.sprites.update(velha.get('sprites', {}))
+            extra_ficha = {k: v for k, v in velha.items() if k not in ('chave', 'nome', 'categorias', 'sprites')}
 
     def tipo_de(rel):
         if R_CENARIO.search(rel): return 'cenarios'
@@ -447,7 +455,20 @@ def _unity_arquivo(d):
         if ver < 16: r.u('H', 2); r.u('h', 2)
         if 11 <= ver < 17 and ver != 16: pass
         objs.append((pid, doff + bs, bz, cid))
-    return dict(uv=uv, typetree=False, objs=objs)
+    ext = []
+    try:                                                    # arquivos externos (PPtr com fileID > 0 apontam para cá)
+        if ver >= 11:
+            for _ in range(r.i32()):
+                r.i32()
+                if ver >= 14: r.align(); r.i64()
+                else: r.i32()
+        for _ in range(r.i32()):
+            if ver >= 6: r.cstr()
+            if ver >= 5: r.o += 20
+            ext.append(os.path.basename(r.cstr().replace('\\', '/')))
+    except Exception:
+        pass
+    return dict(uv=uv, typetree=False, objs=objs, ext=ext)
 
 
 def _vu(uv):
@@ -501,12 +522,34 @@ def _unity_sprite(d, o, v):
     r.u32()
     if v >= (5, 3): r.u8()
     r.align()
+    s['chave'] = None
     if v >= (2017,):
-        r.o += 24
+        s['chave'] = (d[r.o:r.o + 16], struct.unpack_from('<q', d, r.o + 16)[0]); r.o += 24   # m_RenderDataKey
         for _ in range(r.i32()): r.s_()
-        r.i32(); r.i64()
-    r.i32(); s['tex'] = r.i64()
+        r.i32(); r.i64()                                    # m_SpriteAtlas
+    s['tex_fid'] = r.i32(); s['tex'] = r.i64()
     return s
+
+
+def _unity_spriteatlas(d, o, v):
+    """SpriteAtlas (2017+): {chave de render: dados do recorte na textura do atlas}"""
+    r = _R(d, o)
+    a = dict(nome=r.s_(), mapa={})
+    for _ in range(r.i32()): r.i32(); r.i64()               # m_PackedSprites
+    for _ in range(r.i32()): r.s_()                         # m_PackedSpriteNamesToIndex
+    for _ in range(r.i32()):
+        k = (d[r.o:r.o + 16], struct.unpack_from('<q', d, r.o + 16)[0]); r.o += 24
+        e = dict(tex=(r.i32(), r.i64()))
+        r.i32(); r.i64()                                    # alphaTexture
+        e['rect'] = [r.f32() for _ in range(4)]
+        e['off'] = [r.f32(), r.f32()]
+        if v >= (2017, 2): r.f32(); r.f32()                 # atlasRectOffset
+        r.o += 16; r.f32()                                  # uvTransform, downscaleMultiplier
+        e['cfg'] = r.u32()
+        if v >= (2020, 2):
+            for _ in range(r.i32()): r.i32(); r.i64(); r.s_()
+        a['mapa'][k] = e
+    return a
 
 
 FMT_UNITY = {10: 'DXT1', 12: 'DXT5', 34: 'ETC1', 45: 'ETC2_RGB', 46: 'ETC2_RGBA1', 47: 'ETC2_RGBA8', 1: 'A8', 2: 'ARGB4444', 3: 'RGB24', 4: 'RGBA32', 5: 'ARGB32', 7: 'RGB565', 13: 'RGBA4444', 14: 'BGRA32', 63: 'R8'}
@@ -619,6 +662,7 @@ def fazer_unity(a):
     (AnimationClip) não são lidas — monte-as no Estúdio a partir desses quadros."""
     raiz = a.origem
     texturas, sprites, sem_formato = {}, [], collections.Counter()
+    mapa_atlas = {}                                         # Sprite Atlas: chave de render → recorte na textura "sactx-…"
     # arquivos soltos da pasta Data + o conteúdo dos pacotes UnityFS (data.unity3d, *.bundle)
     virtuais = {}
     for f in sorted(os.listdir(raiz)):
@@ -665,7 +709,15 @@ def fazer_unity(a):
                 elif cid == 213:
                     s = _unity_sprite(d, o, v)
                     s['arq'] = fn
+                    s['ext'] = m.get('ext', [])
                     sprites.append(s)
+                elif cid == 687078895:
+                    sa = _unity_spriteatlas(d, o, v)
+                    for k, e in sa['mapa'].items():
+                        fid, pidt = e['tex']
+                        e['arq_tex'] = fn if fid == 0 else (m['ext'][fid - 1] if fid - 1 < len(m.get('ext', [])) else None)
+                        e['atlas'] = sa['nome']
+                        mapa_atlas[k] = e
             except Exception:
                 continue
     imgs = {}
@@ -673,6 +725,31 @@ def fazer_unity(a):
     def folha(k):
         return imgs[k]
 
+    girados = 0
+    nomes_atlas = {}
+    for s in sprites:                                       # sprite empacotado num Sprite Atlas: recorte vem do atlas
+        e = mapa_atlas.get(s.get('chave'))
+        if not e or not e['arq_tex']:
+            if s.get('tex_fid'):                            # textura em outro arquivo (fileID > 0)
+                ext = s.get('ext', [])
+                if 0 < s['tex_fid'] <= len(ext): s['arq'] = ext[s['tex_fid'] - 1]
+            continue
+        if (e['cfg'] >> 2) & 15:                            # empacotado girado/espelhado: não tratado
+            girados += 1
+            continue
+        W, H = s['rect'][2], s['rect'][3]
+        x, y, w, h = e['rect']
+        px, py = s['pivot'][0] * W, s['pivot'][1] * H
+        s['arq'], s['tex'] = e['arq_tex'], e['tex'][1]
+        s['rect'] = [x, y, w, h]
+        s['origem'] = (px - e['off'][0], e['off'][1] + h - py)   # origem dentro do recorte (topo-esquerda)
+        nomes_atlas[(s['arq'], s['tex'])] = e['atlas']
+    if mapa_atlas:
+        print('Sprite Atlas: %d recortes, %d texturas de atlas%s' % (len(mapa_atlas), len(nomes_atlas and set(nomes_atlas)),
+              ', %d girados (fora)' % girados if girados else ''), flush=True)
+    if a.so_atlas:                                          # só refaz as folhas "sactx" (atlas), mantendo o resto da fonte
+        sprites = [s for s in sprites if (s['arq'], s['tex']) in nomes_atlas]
+        texturas = {k: t for k, t in texturas.items() if k in nomes_atlas}
     por_tex = collections.OrderedDict()
     for s in sprites:
         k = (s['arq'], s['tex'])
@@ -684,6 +761,14 @@ def fazer_unity(a):
             por_tex[k] = [dict(nome=t['nome'], rect=[0, 0, t['w'], t['h']], pivot=[0.5, 0.0], inteira=True)]
     fonte = AC.Fonte(a.out, a.chave, a.nome, folha)
     usados = set()
+    extra_ficha = {}
+    if a.so_atlas:                                          # mantém os outros sprites da fonte como estão
+        fp = os.path.join(a.out, 'data/acervo/fontes', a.chave + '.json')
+        if os.path.exists(fp):
+            with open(fp, encoding='utf-8') as fh:
+                velha = json.load(fh)
+            fonte.sprites.update(velha.get('sprites', {}))
+            extra_ficha = {k: v for k, v in velha.items() if k not in ('chave', 'nome', 'categorias', 'sprites')}
     for k, lista in por_tex.items():
         t = texturas[k]
         if k not in imgs:
@@ -707,7 +792,8 @@ def fazer_unity(a):
                     continue
                 x, top, w, h = bb[0], bb[1], bb[2] - bb[0], bb[3] - bb[1]
                 s['pivot'] = [0.5, 0.0]
-            fr.append((s['nome'], dict(img=k, x=x, y=top, w=w, h=h, ox=s['pivot'][0] * w, oy=(1 - s['pivot'][1]) * h, dur=1)))
+            ox, oy = s['origem'] if s.get('origem') else (s['pivot'][0] * w, (1 - s['pivot'][1]) * h)
+            fr.append((s['nome'], dict(img=k, x=x, y=top, w=w, h=h, ox=ox, oy=oy, dur=1)))
         if not fr:
             continue
         anims = [('Todos' if len(fr) > 1 else 'folha', dict(fps=10, loop=True, frames=[q for _, q in fr]))]
@@ -721,11 +807,17 @@ def fazer_unity(a):
             sid += '_'
         usados.add(sid)
         maior = (max(q['w'] for _, q in fr), max(q['h'] for _, q in fr))
-        fonte.gravar(sid, t['nome'], classificar(t['nome'], 10 if len(fr) >= 12 else 1, maior), anims, [t['arq']], cat=a.chave)
+        nome = t['nome']
+        if k in nomes_atlas:                                # folha de Sprite Atlas: nome do atlas (ex.: KI_EX_BIG_PACK)
+            nome = nomes_atlas[k].replace('_', ' ').strip().capitalize() + ' (atlas)'
+        fonte.gravar(sid, nome, classificar(t['nome'] + ' ' + nome, 10 if len(fr) >= 12 else 1, maior), anims, [t['arq']], cat=a.chave)
         del imgs[k]
     if sem_formato:
         print('texturas em formato comprimido não lido:', dict(sem_formato))
-    fonte.fechar({a.chave: a.nome}, dict(sem_formato={str(k): v for k, v in sem_formato.items()}))
+    if a.so_atlas:
+        fonte.fechar({a.chave: a.nome}, extra_ficha)
+    else:
+        fonte.fechar({a.chave: a.nome}, dict(sem_formato={str(k): v for k, v in sem_formato.items()}))
 
 
 # ====================================================================== main
@@ -737,6 +829,7 @@ def main():
     ap.add_argument('--nome', required=True, help='nome do jogo (categoria no Estúdio)')
     ap.add_argument('--out', required=True)
     ap.add_argument('--ignorar', default='', help='pastas: nomes de subpastas a pular, separados por vírgula')
+    ap.add_argument('--so-atlas', action='store_true', help='unity: só refaz as folhas de Sprite Atlas ("sactx-…"), cortadas nos sprites')
     ap.add_argument('--agrupar', default='', help='pastas: caminhos cujas subpastas são personagens e as sub-subpastas, animações')
     a = ap.parse_args()
     globals()['fazer_' + a.formato](a)
