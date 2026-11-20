@@ -314,3 +314,9 @@ a { color: var(--ouro); }
 .es-pasta-item .es-pasta-acoes { display: none; }
 .es-pasta-item:hover .es-pasta-acoes { display: flex; }
 .es-pasta-item:hover small { display: none; }
+
+/* menus ⭐/📂 com muitas pastas: cabem na tela e rolam */
+.es-fav-menu { max-height: calc(100vh - 12px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #5a3fa8 #1e1336; }
+.es-fav-menu > *, .es-fav-menu .es-fav-pastas > * { flex: none; }
+.es-fav-menu::-webkit-scrollbar { width: 8px; }
+.es-fav-menu::-webkit-scrollbar-thumb { background: #5a3fa8; border-radius: 4px; }

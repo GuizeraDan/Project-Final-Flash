@@ -11,6 +11,13 @@
 //                                    e passa a morar só ali (seletor de sprites e aba Sprites). Só sprites (seção favoritos).
 window.FF = window.FF || {};
 
+// menu flutuante sempre dentro da tela (com muitas pastas ele rola sozinho, CSS max-height)
+FF.menuNaTela = (m) => {
+  const h = Math.min(m.offsetHeight, innerHeight - 12), w = m.offsetWidth;
+  const top = parseFloat(m.style.top) || 0, left = parseFloat(m.style.left) || 0;
+  m.style.top = Math.max(6, Math.min(innerHeight - h - 6, top)) + 'px';
+  m.style.left = Math.max(4, Math.min(innerWidth - w - 4, left)) + 'px';
+};
 FF.criarFavoritos = (secao, TIPOS, plural) => ({
   secao, TIPOS, plural,
   icone(t) { const x = this.TIPOS.find(k => k[0] === t); return x ? x[1] : '⭐'; },
@@ -150,6 +157,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const r = ancora.getBoundingClientRect();
     m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
     m.style.top = Math.max(4, r.bottom + 2 + m.offsetHeight < innerHeight ? r.bottom + 2 : r.top - m.offsetHeight - 4) + 'px';
+    FF.menuNaTela(m);   // sempre inteiro dentro da tela (a âncora pode estar fora, numa lista rolada)
     const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
     setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
   },
@@ -197,6 +205,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
     const embaixo = r.bottom + 2 + m.offsetHeight < innerHeight;
     m.style.top = Math.max(4, embaixo ? r.bottom + 2 : r.top - m.offsetHeight - 4) + 'px';
+    FF.menuNaTela(m);   // sempre inteiro dentro da tela (a âncora pode estar fora, numa lista rolada)
     const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
     setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
   },
@@ -257,6 +266,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const r = ancora.getBoundingClientRect();
     m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
     m.style.top = Math.max(4, Math.min(innerHeight - m.offsetHeight - 4, r.bottom + 2)) + 'px';
+    FF.menuNaTela(m);   // sempre inteiro dentro da tela (a âncora pode estar fora, numa lista rolada)
     const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
     setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
   },
@@ -310,6 +320,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const r = ancora.getBoundingClientRect();
     m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
     m.style.top = Math.max(4, Math.min(innerHeight - m.offsetHeight - 4, r.top - m.offsetHeight - 4)) + 'px';
+    FF.menuNaTela(m);   // sempre inteiro dentro da tela (a âncora pode estar fora, numa lista rolada)
     const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
     setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
   },
