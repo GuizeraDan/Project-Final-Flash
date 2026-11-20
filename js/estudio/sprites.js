@@ -47,7 +47,7 @@
     if (!st.sel.size && n) st.sel.add(st.i);
     if (st.anim && st.anim.repeatTo >= n) st.anim.repeatTo = Math.max(0, n - 1);
   }
-  function limpa(a) { return { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: copia(a.frames || []) }; }
+  function limpa(a) { const r = { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: copia(a.frames || []) }; if (a.raio) r.raio = copia(a.raio); return r; }
   // versão salva (a que o jogo usa agora) da animação aberta
   function salva() {
     if (st.novo || !st.set) return null;
@@ -142,6 +142,7 @@
     [['mover', '✥ Origem', 'Arraste o desenho para mudar a origem (pés) dos quadros escolhidos · setas = 1 px, Shift = 10'],
       ['caixa', '▭ Recorte', 'Ajuste a caixa do quadro no atlas (alças nos cantos e lados; arraste dentro para mover)'],
       ['disparo', '🎯 Disparo', 'Clique no palco para gravar o ponto de disparo do quadro'],
+      ['raio', '↔ Raio', 'Marque o trecho do corpo de um raio que pode se repetir (raio elástico até o alvo e "Estender raio")'],
       ['cortar', '✂ Cortar', 'Desenhe um retângulo no palco para aproveitar só um pedaço dos quadros (ex.: só o raio de um golpe) e crie uma animação nova com ele'],
       ['mao', '✋ Mover vista', 'Arraste para mover a vista (também: botão do meio ou arrastar fora do desenho)']].forEach(([m, t, d]) => {
       const b = E.botao(t, () => { st.modo = m; renderModos(); }, d);
@@ -514,6 +515,7 @@
     if (!st.anim) { p.appendChild(grupoSprite()); return; }
     const a = st.anim, fr = frames(), esc = escolhidos(), f = fr[st.i];
     if (st.modo === 'cortar') p.appendChild(grupoCorte());
+    if (st.modo === 'raio') p.appendChild(grupoRaio());
     // animação
     const gA = E.grupo('🎞 Animação');
     const tot = fr.reduce((s, q) => s + (q[7] || 1), 0) / fpsDe(a);
@@ -1289,7 +1291,9 @@
         if (ant) FF.drawFrame(ctx, st.set, ant, cx, cy, z, flip, { tint: 'rgba(255,70,90,0.55)', alpha: 0.4 });
         if (prox) FF.drawFrame(ctx, st.set, prox, cx, cy, z, flip, { tint: 'rgba(80,150,255,0.55)', alpha: 0.4 });
       }
-      FF.drawFrame(ctx, st.set, f, cx, cy, z, flip);
+      const fxR = st.modo === 'raio' && st.raioPrevia > 0 ? FF.raioDoQuadro(st.anim, st.i, f) : null;
+      if (fxR) FF.drawRaio(ctx, st.set, st.anim, st.i, f, cx, cy, z, flip, ((fxR[0] > 0 ? f[3] - f[5] : f[5]) + st.raioPrevia) * z);
+      else FF.drawFrame(ctx, st.set, f, cx, cy, z, flip);
       // caixa do quadro
       const [x0, y0] = mundoParaTela(flip ? f[3] - f[5] : -f[5], -f[6]);
       const bw = f[3] * z, bh = f[4] * z;
@@ -1315,6 +1319,7 @@
       }
     }
     if (st.modo === 'cortar') desenharCorte(ctx, flip, z);
+    if (st.modo === 'raio') desenharRaio(ctx, f);
     // origem (pés)
     ctx.strokeStyle = '#000'; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(cx - 9, cy); ctx.lineTo(cx + 9, cy); ctx.moveTo(cx, cy - 9); ctx.lineTo(cx, cy + 9); ctx.stroke();
@@ -1408,6 +1413,207 @@
     return g;
   }
 
+  // ------------------------------------------------------------------ ↔ raio elástico
+  // Marca o trecho do corpo do raio que pode se repetir (anim.raio, colunas relativas à origem). Usado pelo golpe
+  // ("Até o alvo → 🔁 Repetir o corpo até o alvo", FF.drawRaio) e por "↔ Estender raio…" (grava quadros mais compridos).
+  function espRaio() { return st.set && st.set.def.espelhar ? -1 : 1; }
+  function faixaCrua(k) {
+    const r = st.anim && st.anim.raio;
+    if (!r) return null;
+    const q = r.q && r.q[k];
+    return q ? { x0: q[0], x1: q[1], proprio: true } : { x0: r.x0, x1: r.x1, proprio: false };
+  }
+  function gravarFaixa(x0, x1, soQuadro) {
+    if (x1 < x0) [x0, x1] = [x1, x0];
+    x0 = Math.round(x0); x1 = Math.max(x0 + 1, Math.round(x1));
+    const a = st.anim;
+    if (!a.raio) a.raio = { x0, x1 };
+    if (soQuadro) { a.raio.q = a.raio.q || {}; a.raio.q[st.i] = [x0, x1]; }
+    else { a.raio.x0 = x0; a.raio.x1 = x1; }
+  }
+  // acha sozinho o trecho que se repete: colunas iguais (corpo liso) ou um desenho que volta a cada p colunas
+  function sugerirFaixa(f) {
+    const img = A().pixelsDoQuadro(st.set, f), W = img.largura, H = img.altura, px = img.rgba, ox = f[5];
+    const cob = new Float32Array(W);
+    for (let u = 0; u < W; u++) { let s = 0; for (let y = 0; y < H; y++) s += px[(y * W + u) * 4 + 3]; cob[u] = s / (H * 255); }
+    const igual = (u, v) => {
+      let d = 0, n = 0;
+      for (let y = 0; y < H; y++) {
+        const i = (y * W + u) * 4, j = (y * W + v) * 4;
+        if (px[i + 3] < 8 && px[j + 3] < 8) continue;
+        d += Math.abs(px[i] - px[j]) + Math.abs(px[i + 1] - px[j + 1]) + Math.abs(px[i + 2] - px[j + 2]) + Math.abs(px[i + 3] - px[j + 3]); n++;
+      }
+      return n > 0 && d / (n * 1020) < 0.06;
+    };
+    let melhor = null;
+    const lado = (ini, fim) => {   // [ini, fim) colunas de um lado da origem
+      const maxP = Math.min(48, Math.floor((fim - ini) / 3));
+      for (let p = 1; p <= maxP; p++) {
+        let a = -1;
+        for (let u = ini; u <= fim - p; u++) {
+          const ok = u < fim - p && cob[u] > 0.01 && igual(u, u + p);
+          if (ok && a < 0) a = u;
+          if (!ok && a >= 0) {
+            const run = u - a, nota = run - p * 0.3;
+            if (run >= p && (!melhor || nota > melhor.nota)) melhor = { a, b: u, p, nota };
+            a = -1;
+          }
+        }
+      }
+    };
+    lado(Math.max(0, ox + 1), W);
+    lado(0, Math.min(W, ox));
+    let u0, u1;
+    if (melhor) {
+      const m = Math.min(2, Math.floor((melhor.b - melhor.a) / 4));
+      const cabe = melhor.b + melhor.p - melhor.a - 2 * m;
+      u0 = melhor.a + m; u1 = u0 + melhor.p * Math.max(1, Math.floor(cabe / melhor.p));
+    } else {   // sem repetição clara: o terço do meio do lado mais comprido
+      const dir = W - ox >= ox;
+      const ini = dir ? ox : 0, fim = dir ? W : ox, t = Math.max(1, Math.floor((fim - ini) / 3));
+      u0 = ini + t; u1 = fim - t;
+    }
+    return [u0 - ox, u1 - ox, !!melhor];
+  }
+  function sugerirRaio() {
+    const f = frames()[st.i];
+    if (!f) return;
+    let r;
+    try { r = sugerirFaixa(f); } catch (e) { E.aviso('❌ ' + erroLeitura(e), 'erro'); return; }
+    gravarFaixa(r[0], r[1], !!st.raioSoQuadro);
+    mudou('Sugerir trecho do raio');
+    E.aviso(r[2] ? '🪄 Achei um trecho que se repete (' + (r[1] - r[0]) + ' px). Confira no palco e ajuste as linhas se precisar.' : '🪄 Não achei repetição clara; marquei o meio do raio. Ajuste as linhas no palco.', r[2] ? 'ok' : null);
+  }
+  function grupoRaio() {
+    const g = E.grupo('↔ Raio elástico', true);
+    const fr = frames(), f = fr[st.i], fx = faixaCrua(st.i);
+    g.appendChild(el('div', 'es-dica', 'Marque o pedaço do corpo do raio que pode se repetir (as duas linhas roxas no palco; arraste as linhas ou o meio). À esquerda dele fica a cabeça, à direita a ponta — se o raio não tem ponta desenhada, o fim do corpo vira a ponta.'));
+    if (!fx) {
+      g.appendChild(el('div', 'es-dica', 'Esta animação ainda não tem trecho marcado. Use 🪄 ou arraste no palco de um lado ao outro do pedaço.'));
+      const b = el('div', 'ess-bts');
+      b.append(E.botao('🪄 Sugerir', () => sugerirRaio(), 'Procura as colunas que se repetem no desenho deste quadro', 'es-bt-ouro'));
+      g.appendChild(b);
+      return g;
+    }
+    const campo = (k, rot) => E.campo('numero', rot, fx[k], (v) => { if (v == null) return; const n = { x0: fx.x0, x1: fx.x1 }; n[k] = v; gravarFaixa(n.x0, n.x1, fx.proprio || !!st.raioSoQuadro); mudou('Trecho do raio', true); }, { passo: 1, dica: 'Pixels a partir da origem do sprite' });
+    g.append(campo('x0', 'Início do corpo'), campo('x1', 'Fim do corpo'));
+    g.appendChild(el('div', 'es-dica', 'Corpo: ' + (fx.x1 - fx.x0) + ' px' + (fx.proprio ? ' · ✎ este quadro tem ajuste próprio' : ' · vale para todos os quadros')));
+    g.appendChild(E.campo('check', 'Ajustar só este quadro', !!st.raioSoQuadro || fx.proprio, (v) => {
+      st.raioSoQuadro = v;
+      if (!v && fx.proprio) { delete st.anim.raio.q[st.i]; if (!Object.keys(st.anim.raio.q).length) delete st.anim.raio.q; mudou('Tirar ajuste do quadro'); }
+      else renderProps();
+    }, { dica: 'Para raios que pulsam e mudam de tamanho: este quadro usa um trecho próprio (desmarque para voltar ao da animação)' }));
+    const ruins = fr.filter((q, k) => !FF.raioDoQuadro(st.anim, k, q)).length;
+    if (ruins) g.appendChild(el('div', 'es-dica', '⚠ Em ' + ruins + ' de ' + fr.length + ' quadro(s) o trecho não cabe no desenho (ex.: o raio ainda está saindo da mão). Nesses, o golpe só corta o raio no alvo.'));
+    g.appendChild(E.campo('numero', 'Prévia: + px', st.raioPrevia || 0, (v) => { st.raioPrevia = Math.max(0, Math.min(3000, Math.round(v || 0))); }, { passo: 20, min: 0, max: 3000, dica: 'Só para ver no palco como fica o raio mais comprido (não muda nada)' }));
+    const b = el('div', 'ess-bts');
+    b.append(E.botao('🪄 Sugerir de novo', () => sugerirRaio(), 'Procura de novo as colunas que se repetem neste quadro'),
+      E.botao('↔ Estender raio…', () => estenderRaio(), 'Grava quadros com o raio mais comprido (tamanho fixo)', 'es-bt-ouro'),
+      E.botao('Remover trecho', () => { delete st.anim.raio; mudou('Remover trecho do raio'); }, 'Tira a marcação desta animação'));
+    g.appendChild(b);
+    g.appendChild(el('div', 'es-dica', 'No golpe: clipe de efeito → Até o alvo → 🔁 Repetir o corpo até o alvo (o raio se ajusta à distância). Salve a animação para valer no jogo.'));
+    return g;
+  }
+  function desenharRaio(ctx, f) {
+    const fx = faixaCrua(st.i);
+    if (!fx || !f) return;
+    const e = espRaio();
+    const [, ty] = mundoParaTela(0, -f[6]), [, by] = mundoParaTela(0, f[4] - f[6]);
+    const [xa] = mundoParaTela(fx.x0 * e, 0), [xb] = mundoParaTela(fx.x1 * e, 0);
+    const l = Math.min(xa, xb), r = Math.max(xa, xb);
+    ctx.fillStyle = 'rgba(170,90,255,0.18)'; ctx.fillRect(l, ty, r - l, by - ty);
+    ctx.lineWidth = 2;
+    [xa, xb].forEach(x => {
+      ctx.strokeStyle = '#000'; ctx.beginPath(); ctx.moveTo(Math.round(x) + 0.5, ty - 14); ctx.lineTo(Math.round(x) + 0.5, by + 14); ctx.stroke();
+      ctx.strokeStyle = '#c38bff'; ctx.setLineDash([5, 3]); ctx.beginPath(); ctx.moveTo(Math.round(x) + 0.5, ty - 14); ctx.lineTo(Math.round(x) + 0.5, by + 14); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#c38bff'; ctx.fillRect(x - 5, (ty + by) / 2 - 9, 10, 18);
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 1; ctx.strokeRect(x - 5, (ty + by) / 2 - 9, 10, 18); ctx.lineWidth = 2;
+    });
+    ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+    const txt = (t, x) => { ctx.fillStyle = '#000'; ctx.fillText(t, x + 1, ty - 17); ctx.fillStyle = '#e2c8ff'; ctx.fillText(t, x, ty - 18); };
+    txt('corpo ↔', (l + r) / 2);
+    ctx.textAlign = 'left';
+  }
+  // ↔ Estender raio: quadros novos com o corpo repetido (tamanho fixo), numa animação nova ou nesta mesma
+  function estenderRaio() {
+    if (!st.anim || !st.anim.raio) return;
+    pausar();
+    const c = el('div', 'ess-conf');
+    const cfg = { modo: 'px', px: 300, vezes: 2, destino: 'nova', nome: st.nome + '_longo' };
+    c.appendChild(el('p', 'es-dica', 'Repete o corpo do raio em todos os quadros onde o trecho marcado cabe. Os outros quadros ficam como estão.'));
+    c.appendChild(E.campo('select', 'Quanto', cfg.modo, (v) => { cfg.modo = v; boxPx.style.display = v === 'px' ? '' : 'none'; boxX.style.display = v === 'vezes' ? '' : 'none'; }, { lista: [['px', 'Somar pixels ao comprimento'], ['vezes', 'Multiplicar o comprimento']] }));
+    const boxPx = E.campo('numero', 'Mais (px)', cfg.px, (v) => { cfg.px = Math.max(1, Math.round(v || 0)); }, { passo: 10, min: 1, dica: 'Pixels do desenho (antes da escala do sprite)' });
+    const boxX = E.campo('numero', 'Vezes (×)', cfg.vezes, (v) => { cfg.vezes = Math.max(1.05, v || 2); }, { passo: 0.25, min: 1.05, max: 10 });
+    boxX.style.display = 'none';
+    c.append(boxPx, boxX);
+    const nomeC = E.campo('texto', 'Nome', cfg.nome, (v) => { cfg.nome = (v || '').trim().replace(/\s+/g, '_'); });
+    c.appendChild(E.campo('select', 'Onde', cfg.destino, (v) => { cfg.destino = v; nomeC.style.display = v === 'nova' ? '' : 'none'; }, { lista: [['nova', 'Animação nova (esta fica igual)'], ['aqui', 'Nesta animação (Ctrl+Z desfaz; salve para valer)']] }));
+    c.appendChild(nomeC);
+    const bts = el('div', 'ess-conf-bts');
+    const m = E.modal('↔ Estender raio', c);
+    const ir = E.botao('↔ Estender', async (ev, bt) => {
+      if (cfg.destino === 'nova') {
+        if (!cfg.nome) { E.aviso('Dê um nome para a animação nova.', 'erro'); return; }
+        if (st.set.def.anims[cfg.nome] && !(await confirmar('Já existe', '"' + cfg.nome + '" já existe neste sprite. Substituir?', 'Substituir', true))) return;
+      }
+      bt.disabled = true;
+      const ok = await aplicarEstender(cfg);
+      bt.disabled = false;
+      if (ok) m.fechar();
+    }, null, 'es-bt-ouro');
+    bts.append(ir, E.botao('Cancelar', () => m.fechar()));
+    c.appendChild(bts);
+  }
+  async function aplicarEstender(cfg) {
+    const fr = frames(), a = st.anim;
+    const chave = (f, fx) => f.slice(0, 7).join(',') + '|' + fx.join(','), unicos = [], idx = new Map();
+    const plano = fr.map((f, k) => {
+      const fx = FF.raioDoQuadro(a, k, f);
+      if (!fx) return null;
+      const natural = fx[0] > 0 ? f[3] - f[5] : f[5];
+      const comp = cfg.modo === 'vezes' ? Math.round(natural * cfg.vezes) : natural + cfg.px;
+      const ch = chave(f, fx) + '|' + comp;
+      if (!idx.has(ch)) { idx.set(ch, unicos.length); unicos.push({ f, fx, comp }); }
+      return idx.get(ch);
+    });
+    if (!unicos.length) { E.aviso('O trecho marcado não cabe em nenhum quadro.', 'erro'); return false; }
+    let imgs, meta;
+    try {
+      meta = unicos.map(u => {
+        const tela = document.createElement('canvas'); tela.width = 1; tela.height = 1;
+        const r = FF.compRaio(st.set.images[u.f[0]], u.f[1], u.f[2], u.f, u.fx, u.comp, tela);
+        if (!r) throw new Error('não deu para montar um dos quadros');
+        return r;
+      });
+      imgs = meta.map(r => FF.Imagem.deCanvas(r.canvas));
+    } catch (e) { E.aviso('❌ ' + erroLeitura(e), 'erro'); return false; }
+    try {
+      const res = await A().adicionarImagens(st.id, imgs);
+      st.set = res.set;
+      const novos = fr.map((f, k) => {
+        const j = plano[k];
+        if (j == null) return copia(f);
+        const p = res.posicoes[j], r = meta[j];
+        const q = [res.indice, p.x, p.y, r.w, r.h, r.ox, r.oy, f[7] || 1];
+        if (f[8] && f[8].length) q.push(copia(f[8]));
+        return q;
+      });
+      if (cfg.destino === 'nova') {
+        A().salvarAnim(st.id, cfg.nome, { fps: a.fps, loop: a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: novos, raio: copia(a.raio) });
+        E.aviso('↔ Animação "' + cfg.nome + '" criada com o raio mais comprido.' + (FF.Edicoes.conectado() ? ' Enviando…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+        E.renderSync();
+        renderSprites();
+        abrirAnim(cfg.nome, { forcar: true });
+      } else {
+        novos.forEach((q, k) => { fr[k] = q; });
+        mudou('Estender raio');
+        enquadrar();
+        E.aviso('↔ Raio estendido em ' + plano.filter(j => j != null).length + ' quadro(s). Salve para valer no jogo.', 'ok');
+      }
+      return true;
+    } catch (e) { E.aviso('❌ ' + e.message, 'erro'); return false; }
+  }
+
   // alças do recorte em coordenadas de tela: [nome, x, y]
   function alcas(f) {
     const [x0, y0] = mundoParaTela(-f[5], -f[6]), z = ez();
@@ -1441,6 +1647,19 @@
         arr = { tipo: 'disparo', f, antes: copia(f) };
         f[8] = f[8] || []; f[8][0] = [Math.round(wx), Math.round(wy)];
         renderProps();
+        return;
+      }
+      if (st.modo === 'raio') {
+        const fx = faixaCrua(st.i), e2 = espRaio(), so = (fx && fx.proprio) || !!st.raioSoQuadro, ux = Math.round(wx * e2);
+        if (fx) {
+          const [xa] = mundoParaTela(fx.x0 * e2, 0), [xb] = mundoParaTela(fx.x1 * e2, 0);
+          const da = Math.abs(sx - xa), db = Math.abs(sx - xb);
+          const antes = copia(st.anim.raio);
+          if (Math.min(da, db) <= 9) { arr = { tipo: 'raio', lado: da <= db ? 'x0' : 'x1', fx: { x0: fx.x0, x1: fx.x1 }, so, antes }; return; }
+          if (ux > Math.min(fx.x0, fx.x1) && ux < Math.max(fx.x0, fx.x1)) { arr = { tipo: 'raio', lado: 'tudo', u0: ux, fx: { x0: fx.x0, x1: fx.x1 }, so, antes }; return; }
+        }
+        // sem trecho (ou fora dele): marca um novo arrastando de um lado ao outro
+        arr = { tipo: 'raio', lado: 'novo', u0: ux, fx: { x0: ux, x1: ux + 1 }, so, antes: st.anim.raio ? copia(st.anim.raio) : null };
         return;
       }
       if (st.modo === 'cortar') {
@@ -1477,6 +1696,15 @@
       if (arr.tipo === 'pan') { st.panX = arr.p0[0] + sx - arr.s0[0]; st.panY = arr.p0[1] + sy - arr.s0[1]; return; }
       const [wx, wy] = telaParaMundo(sx, sy);
       if (arr.tipo === 'disparo') { arr.f[8][0] = [Math.round(wx), Math.round(wy)]; arr.mexeu = true; return; }
+      if (arr.tipo === 'raio') {
+        const ux = Math.round(wx * espRaio()), fx = arr.fx;
+        if (arr.lado === 'x0') gravarFaixa(Math.min(ux, fx.x1 - 1), fx.x1, arr.so);
+        else if (arr.lado === 'x1') gravarFaixa(fx.x0, Math.max(ux, fx.x0 + 1), arr.so);
+        else if (arr.lado === 'tudo') { const d = ux - arr.u0; gravarFaixa(fx.x0 + d, fx.x1 + d, arr.so); }
+        else gravarFaixa(Math.min(arr.u0, ux), Math.max(arr.u0 + 1, ux), arr.so);
+        arr.mexeu = true;
+        return;
+      }
       if (arr.tipo === 'corte') { st.corte = { x0: Math.min(arr.w0[0], Math.round(wx)), y0: Math.min(arr.w0[1], Math.round(wy)), x1: Math.max(arr.w0[0], Math.round(wx)), y1: Math.max(arr.w0[1], Math.round(wy)) }; return; }
       const dx = Math.round(wx - arr.w0[0]), dy = Math.round(wy - arr.w0[1]);
       if (arr.tipo === 'origem') {
@@ -1504,6 +1732,7 @@
       if (a.tipo === 'pinca') { if (toques.size === 0) arr = null; return; }
       arr = null;
       if (a.tipo === 'corte') { if (st.corte && (st.corte.x1 - st.corte.x0 < 2 || st.corte.y1 - st.corte.y0 < 2)) st.corte = null; renderProps(); return; }
+      if (a.tipo === 'raio') { if (a.mexeu) mudou('Trecho do raio'); return; }
       if (a.tipo === 'disparo') mudou('Ponto de disparo');
       else if (a.tipo === 'origem' && a.mexeu) mudou('Mover origem');
       else if (a.tipo === 'caixa' && a.mexeu) mudou('Recortar quadro');
@@ -1512,6 +1741,7 @@
     cv.addEventListener('pointercancel', soltar);
     function desfazerArrasto(a) {
       if (a.tipo === 'origem') a.ks.forEach((k, j) => { const q = frames()[k]; if (q) { q[5] = a.antes[j][0]; q[6] = a.antes[j][1]; } });
+      else if (a.tipo === 'raio') { if (a.antes) st.anim.raio = a.antes; else delete st.anim.raio; }
       else if ((a.tipo === 'caixa' || a.tipo === 'disparo') && a.f) { a.f.length = 0; a.antes.forEach(v => a.f.push(v)); }
     }
     function atualizarCursor(sx, sy) {
@@ -1519,6 +1749,11 @@
       let c = 'default';
       if (st.modo === 'mao') c = 'grab';
       else if (st.modo === 'disparo' || st.modo === 'cortar') c = 'crosshair';
+      else if (st.modo === 'raio') {
+        const fx = faixaCrua(st.i);
+        c = 'crosshair';
+        if (fx) { const e2 = espRaio(), [xa] = mundoParaTela(fx.x0 * e2, 0), [xb] = mundoParaTela(fx.x1 * e2, 0); if (Math.min(Math.abs(sx - xa), Math.abs(sx - xb)) <= 9) c = 'ew-resize'; else if (sx > Math.min(xa, xb) && sx < Math.max(xa, xb)) c = 'move'; }
+      }
       else if (f) {
         const [wx, wy] = telaParaMundo(sx, sy);
         if (st.modo === 'caixa') {

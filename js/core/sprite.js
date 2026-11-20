@@ -204,3 +204,69 @@ FF.drawFrame = (function () {
     ctx.restore();
   };
 })();
+
+// ---------------------------------------------------------------- raio elástico
+// Raios/rajadas têm cabeça (onde nascem), corpo (faixa que se repete) e ponta. A animação guarda o trecho do
+// corpo em anim.raio = {x0, x1, q?: {"<quadro>": [x0, x1]}} — colunas do desenho relativas à origem (ox), no
+// desenho como está no atlas; q = ajuste de um quadro só. O lado do corpo (direita/esquerda da origem) diz para
+// onde o raio vai. FF.raioDoQuadro devolve [x0, x1] ou null; FF.compRaio monta o quadro com o comprimento pedido.
+FF.raioDoQuadro = function (anim, i, f) {
+  const r = anim && anim.raio;
+  if (!r || !f) return null;
+  const q = r.q && r.q[i];
+  const x0 = Math.round(q ? q[0] : r.x0), x1 = Math.round(q ? q[1] : r.x1);
+  if (!(x1 - x0 >= 1)) return null;
+  const ox = f[5], w = f[3];
+  if (ox + x0 < 0 || ox + x1 > w) return null;   // o trecho não cabe neste quadro (ex.: raio ainda crescendo)
+  if (x0 < 0 && x1 > 0) return null;              // a origem não pode ficar dentro do corpo
+  return [x0, x1];
+};
+
+// Monta numa tela o quadro com o corpo repetido para o raio ter "comp" pixels (do desenho) da origem até o fim
+// da ponta. Devolve {canvas, w, h, ox, oy} ou null (não dá: comprimento menor que cabeça + ponta).
+// fonte = imagem/canvas e posição do quadro nela (permite recolor/filtro); destino opcional (reaproveita a tela).
+FF.compRaio = function (fonte, sx, sy, f, faixa, comp, destino) {
+  const w = f[3], h = f[4], ox = f[5], oy = f[6];
+  const [x0, x1] = faixa, bw = x1 - x0, frente = x0 > 0;
+  const natural = frente ? w - ox : ox;
+  const extra = Math.round(comp) - natural, B = bw + extra;
+  if (B < 0) return null;
+  const W = w + extra;
+  if (W < 1 || W > 8192) return null;
+  const c = destino || document.createElement('canvas');
+  if (c.width < W) c.width = W;
+  if (c.height < h) c.height = h;
+  const g = c.getContext('2d');
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.clearRect(0, 0, W + 2, h + 2);
+  g.imageSmoothingEnabled = false;
+  const u0 = ox + x0, u1 = ox + x1;   // corpo no desenho original
+  const blit = (a, b, x) => { if (b > a) g.drawImage(fonte, sx + a, sy, b - a, h, x, 0, b - a, h); };
+  const corpo = (x) => { let pos = 0; while (pos < B) { const n = Math.min(bw, B - pos); blit(u0, u0 + n, x + pos); pos += n; } };
+  if (frente) { blit(0, u0, 0); corpo(u0); blit(u1, w, u0 + B); }
+  else {
+    // raio para a esquerda: ponta | corpo | cabeça (com a origem)
+    blit(0, u0, 0);
+    // o corpo cresce para a esquerda: os pedaços parciais ficam do lado da ponta
+    let pos = B; while (pos > 0) { const n = Math.min(bw, pos); blit(u1 - n, u1, u0 + pos - n); pos -= n; }
+    blit(u1, w, u0 + B);
+  }
+  return { canvas: c, w: W, h, ox: frente ? ox : ox + extra, oy };
+};
+
+// desenha o quadro atual de uma Anim como raio elástico com "L" pixels de tela (da origem até o fim da ponta).
+// Sem trecho marcado (ou quando não cabe), desenha o quadro normal.
+FF.drawRaio = (function () {
+  const tela = document.createElement('canvas');
+  return function (ctx, set, anim, i, f, x, y, scale, flip, L, opts = {}) {
+    const faixa = FF.raioDoQuadro(anim, i, f);
+    if (!faixa || !(L > 0)) return FF.drawFrame(ctx, set, f, x, y, scale, flip, opts);
+    let src = set.images[f[0]], sx = f[1], sy = f[2];
+    if (opts.recolor) { src = FF.Recolor.quadro(set, f, opts.recolor); sx = 0; sy = 0; }
+    else if (opts.filtro) { src = FF.CacheQuadros.filtrado(set, f, opts.filtro); sx = 0; sy = 0; }
+    const r = FF.compRaio(src, sx, sy, f, faixa, L / scale, tela);
+    if (!r) return FF.drawFrame(ctx, set, f, x, y, scale, flip, opts);
+    const falso = { images: [r.canvas], def: { espelhar: set.def && set.def.espelhar } };
+    FF.drawFrame(ctx, falso, [0, 0, 0, r.w, r.h, r.ox, r.oy], x, y, scale, flip, { alpha: opts.alpha, tint: opts.tint });
+  };
+})();
