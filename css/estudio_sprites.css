@@ -138,3 +138,14 @@
 .ess .ess-sel-sprites { position: static; flex-wrap: wrap; margin: 0 6px 4px; border: 1px solid #ffd84a; border-radius: 5px; }
 .ess-sprites .es-item.marcado { background: rgba(255, 216, 74, 0.12); box-shadow: inset 3px 0 0 #ffd84a; }
 .ess-sprites .es-item:hover .es-seletor-chk, .ess-sprites:has(.es-seletor-chk:checked) .es-seletor-chk { opacity: 1; }
+
+/* ▦ separar sheet */
+.ess-sep { display: flex; gap: 12px; padding: 10px !important; align-items: flex-start; }
+.ess-sep-vista { flex: 1; min-width: 0; overflow: auto; max-height: 72vh; background: repeating-conic-gradient(#1d1533 0 25%, #150f27 0 50%) 0 0 / 16px 16px; border: 1px solid var(--linha); border-radius: 6px; }
+.ess-sep-vista canvas { display: block; image-rendering: pixelated; cursor: pointer; }
+.ess-sep-lado { width: 280px; flex: none; display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+.ess-sep-campo { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.ess-sep-campo span { flex: 1; }
+.ess-sep-campo input[type=number] { width: 64px; }
+.ess-sep-campo select { max-width: 170px; }
+.ess-sep-bts { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--linha); padding-top: 8px; margin-top: 4px; }

@@ -179,6 +179,7 @@
       E.botao('Mover ▶', () => mover(1), 'Mover os escolhidos para a direita'),
       E.botao('⇄ Inverter', () => inverter(), 'Inverte a ordem dos escolhidos (ou de todos, se só um estiver escolhido)'),
       E.botao('＋ Inserir quadros…', () => inserirDeOutra(), 'Inserir quadros de qualquer animação deste sprite depois do quadro escolhido'),
+      E.botao('▦ Separar sheet', () => separarSheet(), 'O quadro é uma folha com vários desenhos? Separa em quadros (automático ou em grade), sem mexer nas imagens', 'es-bt-ouro'),
       el('span', 'sep'));
     ui.btMulti = E.botao('☑ Vários', () => { st.multi = !st.multi; renderCtr(); }, 'Toque para escolher vários quadros (ou use Ctrl/Shift)');
     tiraBarra.append(ui.btMulti, E.botao('Todos', () => { st.sel = new Set(frames().map((_, k) => k)); renderTira(); renderProps(); }, 'Escolher todos os quadros (Ctrl+A)'));
@@ -634,6 +635,7 @@
       });
       if (st.set.images.length > 1) gQ.appendChild(E.campo('select', 'Atlas', String(f[0]), (v) => { f[0] = +v; mudou('Trocar atlas'); }, { lista: st.set.images.map((_, k) => [String(k), 'Atlas ' + k + ' (' + (st.set.def.atlases[k] || '').split('/').pop() + ')']) }));
       const bl = el('div', 'ess-bts');
+      bl.append(E.botao('▦ Separar sheet', () => separarSheet(), 'Este quadro tem vários desenhos (uma folha)? Separa em quadros'));
       bl.append(E.botao('✂ Editor livre', () => editorLivre(), 'Abre os quadros escolhidos como camadas soltas: mover, recortar, esticar, espelhar, duplicar e juntar num quadro só', 'es-bt-ouro'));
       gQ.appendChild(bl);
       if (multi) {
@@ -1003,6 +1005,160 @@
   }
 
   // ✂ Editor livre (js/estudio/montador.js): monta um quadro novo a partir dos escolhidos
+  // ------------------------------------------------------------------ ▦ separar sheet
+  // O quadro atual é uma folha (sheet) com vários desenhos: acha cada um (figuras soltas ou grade) e vira quadros
+  // novos que apontam para pedaços do MESMO atlas (não grava imagem nenhuma). Resultado: substituir este quadro,
+  // criar uma animação nova ou uma animação por linha da folha.
+  function separarSheet() {
+    if (!st.anim || !frames().length) { E.aviso('Abra uma animação com pelo menos um quadro.', 'erro'); return; }
+    pausar();
+    const I = FF.Imagem, k0 = st.i, f0 = frames()[k0];
+    let img;
+    try { img = A().pixelsDoQuadro(st.set, f0); } catch (e) { E.aviso('Não deu para ler os pixels deste quadro (' + e.message + ').', 'erro'); return; }
+    const opacoFundo = I.corDeFundo(img)[3] === 255;
+    const cfg = Object.assign({ modo: 'auto', juntar: 3, minArea: 16, cols: 0, linhas: 0, margem: 0, espaco: 0, aparar: true, origem: 'linha', fundo: opacoFundo },
+      E.rascunho.ler('separar_cfg') || {}, { fundo: opacoFundo });
+    const g0 = I.detectarGrade(img);
+    if (!cfg.cols || !cfg.linhas) { cfg.cols = g0 ? g0.colunas : 4; cfg.linhas = g0 ? g0.linhas : 1; }
+    let caixas = [], fora = new Set();
+    const c = el('div', 'ess-sep');
+    const lado = el('div', 'ess-sep-lado'), vista = el('div', 'ess-sep-vista');
+    const cv = document.createElement('canvas'), info = el('p', 'es-dica');
+    vista.append(cv);
+    const linhaCampo = (rot, input, dica) => { const d = el('label', 'ess-sep-campo'); d.append(el('span', null, rot), input); if (dica) d.title = dica; return d; };
+    const num = (k, min, max, dica) => { const i = document.createElement('input'); i.type = 'number'; i.min = min; i.max = max; i.value = cfg[k]; i.oninput = () => { cfg[k] = Math.max(min, Math.min(max, +i.value || 0)); calcular(); }; return i; };
+    const selModo = document.createElement('select');
+    [['auto', 'Automático (cada desenho solto)'], ['grade', 'Grade (colunas × linhas)']].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; selModo.appendChild(o); });
+    selModo.value = cfg.modo;
+    const boxAuto = el('div'), boxGrade = el('div');
+    boxAuto.append(linhaCampo('Juntar pedaços a até (px)', num('juntar', 0, 40), 'Partes do mesmo desenho separadas por até esta distância viram um quadro só (ex.: faíscas em volta)'),
+      linhaCampo('Ignorar menores que (px²)', num('minArea', 1, 5000), 'Sujeirinhas menores que isto não viram quadro'));
+    boxGrade.append(linhaCampo('Colunas', num('cols', 1, 200)), linhaCampo('Linhas', num('linhas', 1, 200)),
+      linhaCampo('Margem (px)', num('margem', 0, 200), 'Borda em volta da folha'), linhaCampo('Espaço entre células (px)', num('espaco', 0, 200)));
+    const ckAparar = document.createElement('input'); ckAparar.type = 'checkbox'; ckAparar.checked = cfg.aparar; ckAparar.onchange = () => { cfg.aparar = ckAparar.checked; calcular(); };
+    boxGrade.append(linhaCampo('Recortar a sobra vazia de cada célula', ckAparar));
+    if (g0) boxGrade.append(el('p', 'es-dica', 'Grade achada: ' + g0.colunas + ' × ' + g0.linhas + '.'));
+    const ckFundo = document.createElement('input'); ckFundo.type = 'checkbox'; ckFundo.checked = cfg.fundo; ckFundo.onchange = () => { cfg.fundo = ckFundo.checked; calcular(); };
+    const selOrig = document.createElement('select');
+    [['linha', 'Pés alinhados na linha (personagens)'], ['pes', 'Pés de cada quadro (embaixo, no meio)'], ['centro', 'Centro de cada quadro (efeitos)']].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; selOrig.appendChild(o); });
+    selOrig.value = cfg.origem; selOrig.onchange = () => { cfg.origem = selOrig.value; };
+    selModo.onchange = () => { cfg.modo = selModo.value; calcular(); };
+    const selZoom = document.createElement('select');
+    [['0', 'Ajustar à janela'], ['1', '1×'], ['2', '2×'], ['3', '3×'], ['4', '4×']].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; selZoom.appendChild(o); });
+    selZoom.value = String(E.rascunho.ler('separar_zoom') || 0);
+    selZoom.onchange = () => { E.rascunho.gravar('separar_zoom', +selZoom.value || null); desenhar(); };
+    lado.append(linhaCampo('Zoom da prévia', selZoom), linhaCampo('Como separar', selModo), boxAuto, boxGrade,
+      linhaCampo('Fundo de cor sólida', ckFundo, 'Liga quando a folha tem fundo pintado (não transparente): a cor da borda é ignorada para achar os desenhos. O fundo continua aparecendo nos quadros.'),
+      linhaCampo('Origem dos quadros', selOrig), info);
+    // resultado
+    const nomeNova = document.createElement('input'); nomeNova.placeholder = 'Nome da animação nova'; nomeNova.value = st.nome + '_sep';
+    const bts = el('div', 'ess-sep-bts');
+    bts.append(
+      E.botao('Substituir este quadro', () => aplicar('substituir'), 'O quadro ' + (k0 + 1) + ' vira os quadros separados, nesta animação (depois é só salvar)', 'es-bt-ouro'),
+      E.botao('＋ Nova animação', () => aplicar('nova'), 'Cria uma animação com os quadros separados (com o nome ao lado)'),
+      nomeNova,
+      E.botao('Uma animação por linha', () => aplicar('linhas'), 'Cada linha da folha vira uma animação (nome_1, nome_2…), já salvas no jogo'));
+    lado.append(bts);
+    c.append(vista, lado);
+    const m = E.modal('▦ Separar sheet — ' + st.id + ' / ' + st.nome + ' (quadro ' + (k0 + 1) + ')', c, { larga: true });
+
+    // linhas da folha: agrupa as caixas pela altura (o centro de cada uma cai dentro da faixa da linha)
+    function emLinhas(l) {
+      const ord = l.map((b, i) => Object.assign({ i }, b)).sort((a, b) => (a.y + a.h / 2) - (b.y + b.h / 2));
+      const rows = [];
+      ord.forEach(b => {
+        const cy = b.y + b.h / 2, r = rows.find(r => cy >= r.y0 && cy <= r.y1);
+        if (r) { r.itens.push(b); r.y0 = Math.min(r.y0, b.y); r.y1 = Math.max(r.y1, b.y + b.h); } else rows.push({ y0: b.y, y1: b.y + b.h, itens: [b] });
+      });
+      rows.sort((a, b) => a.y0 - b.y0);
+      rows.forEach(r => r.itens.sort((a, b) => a.x - b.x));
+      return rows;
+    }
+    function calcular() {
+      boxAuto.style.display = cfg.modo === 'auto' ? '' : 'none';
+      boxGrade.style.display = cfg.modo === 'grade' ? '' : 'none';
+      E.rascunho.gravar('separar_cfg', { modo: cfg.modo, juntar: cfg.juntar, minArea: cfg.minArea, margem: cfg.margem, espaco: cfg.espaco, aparar: cfg.aparar, origem: cfg.origem });
+      const base = cfg.fundo ? I.removerFundo(img, 'auto', 12) : img;
+      let l;
+      if (cfg.modo === 'auto') l = I.componentes(base, { juntarDistancia: cfg.juntar, minArea: cfg.minArea });
+      else {
+        l = I.grade(base, cfg.cols, cfg.linhas, { margem: cfg.margem, espaco: cfg.espaco, ignorarVazios: true });
+        if (cfg.aparar) l = l.map(b => { const a = I.aparar(I.recortar(base, b)); return a.largura ? { x: b.x + a.x, y: b.y + a.y, w: a.largura, h: a.altura } : null; }).filter(Boolean);
+      }
+      // ordem de leitura: linha por linha, da esquerda para a direita
+      caixas = [].concat(...emLinhas(l).map(r => r.itens.map(b => ({ x: b.x, y: b.y, w: b.w, h: b.h }))));
+      fora = new Set();
+      desenhar();
+    }
+    let esc = 1;
+    function desenhar() {
+      const maxW = Math.max(300, Math.min(innerWidth * 0.62, 1000)), maxH = Math.max(240, innerHeight * 0.66);
+      esc = +selZoom.value || Math.max(0.1, Math.min(8, maxW / img.largura, maxH / img.altura));
+      cv.width = Math.round(img.largura * esc); cv.height = Math.round(img.altura * esc);
+      const g = cv.getContext('2d');
+      g.imageSmoothingEnabled = false;
+      g.drawImage(I.paraCanvas(img), 0, 0, cv.width, cv.height);
+      g.lineWidth = 1; g.font = 'bold 11px sans-serif';
+      caixas.forEach((b, i) => {
+        const x = b.x * esc + 0.5, y = b.y * esc + 0.5, w = b.w * esc - 1, h = b.h * esc - 1, off = fora.has(i);
+        g.strokeStyle = off ? 'rgba(160,160,160,0.6)' : '#3cf0ff'; g.setLineDash(off ? [4, 3] : []);
+        g.strokeRect(x, y, w, h);
+        if (off) { g.fillStyle = 'rgba(0,0,0,0.45)'; g.fillRect(x, y, w, h); }
+        g.setLineDash([]); g.fillStyle = off ? '#999' : '#ffd84a';
+        g.fillText(String(i + 1), x + 2, y + 11);
+      });
+      const n = caixas.length - fora.size, rows = emLinhas(caixas.filter((_, i) => !fora.has(i))).length;
+      info.textContent = n + ' quadro(s) em ' + rows + ' linha(s)' + (fora.size ? ' · ' + fora.size + ' fora' : '') + '. Clique numa caixa para tirar/pôr de volta.';
+    }
+    cv.addEventListener('click', (e) => {
+      const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / esc, y = (e.clientY - r.top) / esc;
+      let melhor = -1, area = Infinity;
+      caixas.forEach((b, i) => { if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h && b.w * b.h < area) { melhor = i; area = b.w * b.h; } });
+      if (melhor < 0) return;
+      fora.has(melhor) ? fora.delete(melhor) : fora.add(melhor); desenhar();
+    });
+    // caixa (na folha) → quadro: pedaço do mesmo atlas; origem conforme a escolha
+    function quadros(lista) {
+      const rows = emLinhas(lista);
+      return rows.map(r => r.itens.map(b => {
+        const ox = Math.round(b.w / 2);
+        const oy = cfg.origem === 'centro' ? Math.round(b.h / 2) : cfg.origem === 'pes' ? b.h : r.y1 - b.y;
+        return [f0[0], f0[1] + b.x, f0[2] + b.y, b.w, b.h, ox, oy, 1];
+      }));
+    }
+    function aplicar(como) {
+      const lista = caixas.filter((_, i) => !fora.has(i));
+      if (lista.length < 1) { E.aviso('Nenhum quadro separado.', 'erro'); return; }
+      const porLinha = quadros(lista), todos = [].concat(...porLinha);
+      if (como === 'substituir') {
+        frames().splice(k0, 1, ...todos);
+        st.sel = new Set(todos.map((_, j) => k0 + j)); st.i = k0;
+        m.fechar(); mudou('Separar sheet'); tudo();
+        E.aviso('▦ Quadro ' + (k0 + 1) + ' separado em ' + todos.length + ' quadros. Salve para valer no jogo.');
+        return;
+      }
+      const baseNome = (nomeNova.value.trim() || st.nome + '_sep').replace(/\s+/g, '_');
+      const fps = st.anim.fps || 12;
+      if (como === 'nova') {
+        if (st.set.def.anims[baseNome]) { E.aviso('Já existe "' + baseNome + '" neste sprite. Escolha outro nome.', 'erro'); return; }
+        m.fechar();
+        abrirAnim(baseNome, { forcar: true, novo: true, anim: { fps, loop: true, repeatTo: 0, pingpong: false, frames: todos } });
+        E.aviso('▦ Animação "' + baseNome + '" com ' + todos.length + ' quadros — salve para ela valer no jogo.');
+        return;
+      }
+      const nomes = porLinha.map((_, j) => baseNome + '_' + (j + 1));
+      const repetidos = nomes.filter(n => st.set.def.anims[n]);
+      if (repetidos.length) { E.aviso('Já existe(m): ' + repetidos.join(', ') + '. Mude o nome base.', 'erro'); return; }
+      porLinha.forEach((fr, j) => A().salvarAnim(st.id, nomes[j], { fps, loop: true, repeatTo: 0, pingpong: false, frames: fr }));
+      m.fechar();
+      E.renderSync && E.renderSync();
+      renderSprites();
+      abrirAnim(nomes[0], { forcar: true });
+      E.aviso('▦ ' + nomes.length + ' animações criadas e salvas (' + nomes[0] + ' … ' + nomes[nomes.length - 1] + ').', 'ok');
+    }
+    calcular();
+  }
+
   function editorLivre() {
     if (!st.anim || !frames().length) return;
     pausar();
