@@ -154,6 +154,9 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     cab.click();   // reabre
     const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => i.dataset.sprite === 'zl3_nappa');
     it.querySelector('.ess-lixo').click();
+    await new Promise(r => setTimeout(r, 100));   // agora pergunta antes
+    [...document.querySelectorAll('.es-modal button')].find(b => /Mandar para a Lixeira/.test(b.textContent)).click();
+    await new Promise(r => setTimeout(r, 100));
     const n1 = FF.Assets.listaSprites().length, lix = [...document.querySelectorAll('.ess-sprites .es-item.ess-na-lixeira')].some(i => i.dataset.sprite === 'zl3_nappa') || [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(\d+\)/.test(c.textContent));
     FF.Estudio.mudarInfoSprite('zl3_nappa', { oculto: null });   // restaura só este (a Lixeira do usuário pode ter outros)
     return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];

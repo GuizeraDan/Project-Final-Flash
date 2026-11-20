@@ -276,9 +276,14 @@ window.FF = window.FF || {};
           inp.onkeydown = (ev) => { if (ev.key === 'Enter') fim(true); if (ev.key === 'Escape') fim(false); };
           inp.onblur = () => fim(true);
         }, 'Renomear este sprite'));
-        if (FF.Assets.doAcervo(chave)) ac.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); E.mudarInfoSprite(chave, { oculto: true }); b.remove(); E.aviso('🗑 Sprite excluído das listas (Lixeira, no fim da coluna, para restaurar).'); }, 'Excluir este sprite das listas (vai para a Lixeira)', 'es-bt-perigo'));
         { const bm = E.botao('📂', (e) => { e.stopPropagation(); FF.Favoritos.menuMover(bm, [chave], () => { montarLado(); render(); }); }, FF.Favoritos.pastaDoSprite(chave) ? 'Está na pasta "' + FF.Favoritos.pastaDoSprite(chave) + '" — mover para outra ou voltar ao lugar original' : 'Mover este sprite para uma das suas pastas (sai daqui e fica só lá). Também dá para arrastar até a pasta.'); ac.appendChild(bm); }
         ac.appendChild(FF.Favoritos.botao(chave, null, () => { contarFav(); render(); }));   // ☆ sprite inteiro
+        // 🗑 por último, separado do 📂, e pergunta antes (era fácil clicar sem querer)
+        if (FF.Assets.doAcervo(chave)) ac.appendChild(E.botao('🗑', async (e) => {
+          e.stopPropagation();
+          if (!(await E.confirmar('🗑 Mandar para a Lixeira', 'Mandar "' + FF.Assets.nomeSprite(chave) + '" para a Lixeira? Ele some das listas e das pastas; dá para restaurar em "🗑 Lixeira (excluídos)".', '🗑 Mandar para a Lixeira', true))) return;
+          E.mudarInfoSprite(chave, { oculto: true }); b.remove(); E.aviso('🗑 Sprite mandado para a Lixeira (no fim da coluna, para restaurar).'); contarFav();
+        }, 'Mandar este sprite para a Lixeira (pergunta antes)', 'es-bt-perigo es-lixo-sep'));
         b.draggable = true;
         b.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_SPRITES, JSON.stringify([chave])); e.dataTransfer.effectAllowed = 'move'; });
         b.appendChild(ac);
@@ -482,7 +487,22 @@ window.FF = window.FF || {};
         k.addEventListener('dblclick', (ev) => { ev.preventDefault(); usar([{ id: x.id, a: x.a }]); });   // atalho: usa este na hora
         grade.appendChild(k);
       });
-      if (!itens.length) grade.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';
+      // pasta com itens de sprites que estão na Lixeira: avisa e deixa restaurar dali mesmo
+      if (favs && /^pasta:/.test(fonte) && FF.Favoritos) {
+        const todosDaPasta = FF.Favoritos.itensPasta(fonte.slice(6), true);
+        const naLix = [...new Set(todosDaPasta.filter(v => FF.Assets.spriteOculto(v.sprite)).map(v => v.sprite))];
+        if (naLix.length) {
+          const nItens = todosDaPasta.filter(v => naLix.includes(v.sprite)).length;
+          const av = E.el('div', 'es-grade-lixo');
+          av.appendChild(E.el('span', null, '🗑 ' + nItens + ' ' + (nItens === 1 ? 'item desta pasta é' : 'itens desta pasta são') + ' de ' + (naLix.length === 1 ? 'um sprite que está' : naLix.length + ' sprites que estão') + ' na Lixeira (' + naLix.map(id => FF.Assets.nomeSprite(id)).join(', ') + ').'));
+          av.appendChild(E.botao('♻ Restaurar', () => {
+            naLix.forEach(id => { E.mudarInfoSprite(id, { oculto: null }); if (!acervoTodos.includes(id)) acervoTodos.push(id); if (!ids.includes(id)) ids.push(id); });
+            E.aviso('♻ ' + (naLix.length === 1 ? 'Sprite restaurado.' : naLix.length + ' sprites restaurados.')); montarLado(); render();
+          }, 'Tirar da Lixeira (voltam para as listas e para esta pasta)', 'es-bt-ouro'));
+          grade.insertBefore(av, grade.firstChild);
+        }
+      }
+      if (!itens.length && !grade.querySelector('.es-grade-lixo')) grade.innerHTML = '<p class="es-vazio">Nada encontrado.</p>';
       pintarMarcas();
       if (sel0) { const s = grade.querySelector('.es-cartao.sel'); if (s) s.scrollIntoView({ block: 'center' }); sel0 = false; }
     };

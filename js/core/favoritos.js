@@ -379,7 +379,9 @@ FF.listaPastas = (F, pai, bt, aoMudar, chaveAtual, aoApagarAtual) => {
   arvore.forEach(p => {
     const nome = p.nome;
     if (!visivel(nome)) return;
-    const el = bt('pasta:' + nome, '📁 ' + p.folha, String(F.itensPasta(nome, true).length), pai);
+    // contador: só o que dá para ver; itens de sprites na Lixeira aparecem à parte ("0 +38🗑")
+    const tudoP = F.itensPasta(nome, true), lixo = FF.Assets && FF.Assets.spriteOculto ? tudoP.filter(v => FF.Assets.spriteOculto(v.sprite)).length : 0;
+    const el = bt('pasta:' + nome, '📁 ' + p.folha, String(tudoP.length - lixo) + (lixo ? ' +' + lixo + '🗑' : ''), pai);
     const item = el && el.closest ? (el.closest('.es-item') || el) : el;
     if (!item) return;
     item.classList.add('es-pasta-item');

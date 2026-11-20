@@ -264,7 +264,10 @@
       else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
       if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
       else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'es-fav-bt ess-lixo ess-restaurar'));
-      else if (ac) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); lixeiraSprites([s]); }, 'Mandar para a Lixeira (some das listas; dá para restaurar no fim da lista)', 'es-fav-bt ess-lixo'));
+      const btLixo = ac && !imp && !naLixeira ? E.botao('🗑', async (e) => {
+        e.stopPropagation();
+        if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar "' + FF.Assets.nomeSprite(s) + '" para a Lixeira? Ele some das listas e das pastas; dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) lixeiraSprites([s]);
+      }, 'Mandar para a Lixeira (pergunta antes)', 'es-fav-bt ess-lixo es-lixo-sep') : null;   // vai por último, longe do 📂
       if (FF.Favoritos && !naLixeira) {
         const p = FF.Favoritos.pastaDoSprite(s);
         const bm = E.botao('📂', (e) => { e.stopPropagation(); FF.Favoritos.menuMover(bm, [s], () => renderSprites()); }, p ? 'Está na pasta "' + p + '" — mover para outra ou voltar ao lugar original' : 'Mover este sprite para uma das suas pastas (sai daqui e fica só lá). Também dá para arrastar até a pasta.', 'es-fav-bt ess-mover');
@@ -273,6 +276,7 @@
         it.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_SPRITES, JSON.stringify([s])); e.dataTransfer.effectAllowed = 'move'; });
       }
       if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
+      if (btLixo) it.appendChild(btLixo);
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
     };
