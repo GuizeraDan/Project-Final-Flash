@@ -1651,8 +1651,11 @@ FF.Battle = class {
     // camada de cada coisa (Estúdio: "Atrás dos lutadores"): primeiro o que fica atrás, depois os lutadores, depois a frente
     const desenharFx = (e) => {
       const o = e.alpha != null ? { alpha: e.alpha } : undefined;
-      if (!e.rot) return FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, o);
-      ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(e.rot * Math.PI / 180);
+      if (!e.rot && !e.kx && e.corte == null) return FF.drawFrame(ctx, e.set, e.a.frame(), e.x, e.y, e.scale, e.flip, o);
+      ctx.save(); ctx.translate(e.x, e.y); if (e.rot) ctx.rotate(e.rot * Math.PI / 180);
+      // até o alvo: corte (esconde o que passa do peito do alvo) ou esticar (comprimento até ele), no eixo do efeito
+      if (e.corte != null) { ctx.beginPath(); if (e.flip) ctx.rect(-e.corte, -5000, e.corte + 5000, 10000); else ctx.rect(-5000, -5000, 5000 + e.corte, 10000); ctx.clip(); }
+      if (e.kx) { const b0 = (e.kxBase || 0) * (e.flip ? 1 : -1); ctx.translate(b0, 0); ctx.scale(e.kx, 1); ctx.translate(-b0, 0); }   // estica a partir da ponta de trás
       FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
       ctx.restore();
     };

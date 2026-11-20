@@ -12,7 +12,7 @@
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
-//            seguir? (anda junto com o lutador em que está preso)}
+//            seguir? (anda junto com o lutador em que está preso), ateAlvo? ("cortar" | "esticar": raio termina no peito do alvo)}
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?,
 //            centro? (meio do desenho no caminho, em vez da origem do sprite), spriteDx?, spriteDy? (desenho deslocado do caminho),
 //            rot? (giro fixo do desenho, °), cor? (matiz 0–359: pinta o projétil), corForca? (0–2, padrão 1),
@@ -302,6 +302,19 @@ FF.Linha = {
         const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, (c.escala || 1) * kp,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras });
         if (e && (c.rot || inclina)) e.rot = ((c.rot || 0) + inclina) * dir;
+        // até o alvo (raios, rajadas): o desenho termina no peito do alvo — "cortar" esconde o que passa dele,
+        // "esticar" estica/encolhe o comprimento para chegar nele (a distância muda com a fileira e a tela)
+        if (e && c.ateAlvo && target && target !== actor) {
+          const tp = target.peito(), fc = e.flip ? -1 : 1;
+          const dist = Math.hypot(tp.x - e.x, tp.y - e.y) * ((tp.x - e.x) * fc >= 0 ? 1 : -1);
+          if (c.ateAlvo === 'esticar') {
+            // a ponta de trás fica onde está (na mão); só a da frente vai até o alvo
+            let frente = 0, tras = 0;
+            try { e.set.anim(c.fx).frames.forEach(fr => { frente = Math.max(frente, fr[3] - fr[5]); tras = Math.max(tras, fr[5]); }); } catch (err) { frente = 0; }
+            frente *= e.scale; tras *= e.scale;
+            if (frente + tras > 4 && dist > 4) { e.kx = Math.max(0.15, Math.min(4, (dist + tras) / (frente + tras))); e.kxBase = tras; }
+          } else e.corte = Math.max(0, dist);
+        }
         // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
         const f = c.em === 'alvo' || c.em === 'alvoPes' ? target : c.em === 'tela' ? null : actor;
         if (e && c.seguir && f) e.segue = { f, x0: f.x, y0: f.y, ex: e.x, ey: e.y };
