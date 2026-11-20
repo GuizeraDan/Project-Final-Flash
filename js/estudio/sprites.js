@@ -248,7 +248,7 @@
           const chs = [...ui.sprites.querySelectorAll('.es-seletor-chk')].map(c => c.dataset.id);
           if (e.shiftKey && st.ultMarcS && chs.includes(st.ultMarcS)) { const [a, z] = [chs.indexOf(st.ultMarcS), chs.indexOf(s)].sort((x, y) => x - y); chs.slice(a, z + 1).forEach(i => st.marcS.add(i)); }
           else if (st.marcS.has(s)) st.marcS.delete(s); else st.marcS.add(s);
-          st.ultMarcS = s; pintarMarcS();
+          st.ultMarcS = s; pintarMarcS(); setTimeout(pintarMarcS, 0);   // o preventDefault desfaz o ✓ ao fim do clique
         });
         it.appendChild(ch);
       }

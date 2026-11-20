@@ -241,7 +241,7 @@ window.FF = window.FF || {};
       if (FF.Favoritos && ids.includes(chave)) {
         const ch = document.createElement('input'); ch.type = 'checkbox'; ch.className = 'es-seletor-chk'; ch.dataset.id = chave; ch.checked = marcadosS.has(chave);
         ch.title = 'Marcar este sprite (Shift = marca o intervalo) para mover, favoritar ou mandar para a Lixeira vários de uma vez';
-        ch.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); marcarS(chave, e); });
+        ch.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); marcarS(chave, e); setTimeout(pintarS, 0); });   // preventDefault desfaz o ✓ depois do clique: repinta em seguida
         b.appendChild(ch);
       }
       const cv = document.createElement('canvas'); cv.width = 30; cv.height = 30;
@@ -404,7 +404,7 @@ window.FF = window.FF || {};
           e.dataTransfer.setData(FF.TIPO_ARRASTO_ANIMS, JSON.stringify(l)); e.dataTransfer.effectAllowed = 'copyMove';
         });
         const chk = document.createElement('input'); chk.type = 'checkbox'; chk.className = 'es-cartao-chk'; chk.title = 'Marcar (para favoritar, excluir ou pôr na trilha vários de uma vez)';
-        chk.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); alternar(x, idx, e); });
+        chk.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); alternar(x, idx, e); setTimeout(pintarMarcas, 0); });   // idem: o navegador desfaz o ✓ ao fim do clique
         chk.addEventListener('pointerdown', (e) => e.stopPropagation());
         const cv = document.createElement('canvas'); cv.width = TAMS[tam][0]; cv.height = TAMS[tam][1];
         const inf = E.el('small', 'es-cartao-info'); inf.textContent = x.n + ' quadro' + (x.n === 1 ? '' : 's');
