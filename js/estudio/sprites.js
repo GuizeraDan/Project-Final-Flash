@@ -91,6 +91,7 @@
     ui.buscaSprite.type = 'search'; ui.buscaSprite.placeholder = 'Buscar sprite…'; ui.buscaSprite.className = 'ess-busca';
     ui.buscaSprite.oninput = () => { st.buscaSprite = ui.buscaSprite.value; renderSprites(); };
     ui.sprites = el('div', 'es-lista ess-sprites');
+    FF.autoRolarArraste(ui.sprites);
     // ↕ ordenar a lista de sprites e a de animações (lembrado no aparelho)
     ui.ordemSprites = E.seletorOrdem('sprites_ordem', 'animações', () => renderSprites());
     ui.ordemAnims = E.seletorOrdem('sprites_ordem_anims', 'quadros', () => renderAnims());

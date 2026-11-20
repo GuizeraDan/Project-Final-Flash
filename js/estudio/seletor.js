@@ -110,14 +110,24 @@ window.FF = window.FF || {};
       o.aoEscolherVarios ? 'Coloca as marcadas na trilha, uma depois da outra (na ordem em que foram marcadas)' : 'Usa a animação marcada', 'es-bt-ouro');
     // ✂ atalho para a aba Sprites (editar os quadros da animação); fecha o seletor
     const editar = async (id, a) => { m.fechar(); await E.editarSprite(id, a); };
+    const btMovSel = E.botao('📂 Mover para…', () => {
+      if (!marcados.size || !FF.Favoritos) return;
+      const l = [...marcados.values()].map(v => { const o = origemDe(v.id, v.a); return Object.assign({ sprite: v.id, anim: v.a }, o ? { origem: o.pasta, inteiro: o.inteiro, movido: o.movido } : {}); });
+      const dePasta = l.some(v => v.origem);
+      FF.Favoritos.menuEscolherPasta(btMovSel, (dePasta ? '📂 Mover ' : '📁 Pôr ') + l.length + ' para a pasta:', (dest) => {
+        const n = FF.Favoritos.moverItens(l, dest, false);
+        E.aviso('📁 ' + n + (n === 1 ? ' item ' : ' itens ') + (dePasta ? 'movido(s) para' : 'em') + ' "' + FF.Favoritos.folha(dest) + '"');
+        marcados.clear(); montarLado(); render();
+      });
+    }, 'Mover as marcadas para uma pasta (saem da pasta aberta agora). Para copiar, use ⭐📁 ou arraste com Ctrl.');
     const btEdSel = E.botao('✂ Editar na aba Sprites', () => { const v = [...marcados.values()][0]; if (v) editar(v.id, v.a); }, 'Abre a animação marcada na aba Sprites (editar quadros, origem, velocidade…). Marque só uma.');
-    barraSel.append(txtSel, btTodos, btLimpar, btFavSel, btEdSel, btDelSel);
+    barraSel.append(txtSel, btTodos, btLimpar, btMovSel, btFavSel, btEdSel, btDelSel);
     if (btUsarSel) barraSel.appendChild(btUsarSel);
     const pintarMarcas = () => {
       grade.querySelectorAll('.es-cartao[data-k]').forEach(k => { const on = marcados.has(k.dataset.k); k.classList.toggle('marcado', on); const ch = k.querySelector('.es-cartao-chk'); if (ch) ch.checked = on; });
       const n = marcados.size;
       txtSel.textContent = n ? '☑ ' + n + ' marcada(s)' : '☐ Clique para marcar (Shift = intervalo, ou arraste uma caixa no espaço vazio) · duplo clique usa na hora';
-      [btLimpar, btFavSel, btDelSel, btUsarSel].forEach(b => { if (b) b.disabled = !n; });
+      [btLimpar, btFavSel, btDelSel, btUsarSel, btMovSel].forEach(b => { if (b) b.disabled = !n; });
       btEdSel.disabled = n !== 1;
       if (o.aoEscolherVarios) btUsarSel.textContent = n > 1 ? '➕ Pôr os ' + n + ' na trilha' : '➕ Pôr na trilha';
       else { btUsarSel.textContent = '✔ Usar'; btUsarSel.disabled = n !== 1; btUsarSel.title = n > 1 ? 'Aqui só dá para usar uma: deixe só uma marcada' : 'Usa a animação marcada'; }
@@ -160,7 +170,8 @@ window.FF = window.FF || {};
     });
     dir.append(topo, grade, barraSel);
     c.append(lado, dir);
-    E.ladoRedimensionavel(lado, 'seletor_esq', 'esq', 440, { irmao: true, titulo: ':scope > .es-sub' });   // » expande a coluna da esquerda
+    E.ladoRedimensionavel(lado, 'seletor_esq', 'esq', 440, { irmao: true, titulo: ':scope > .es-sub' });
+    FF.autoRolarArraste(lado);   // arrastar até uma pasta lá em cima/embaixo: a coluna rola sozinha   // » expande a coluna da esquerda
     const m = E.modal(o.titulo || '🖼 Escolher sprite', c, { larga: true });
     const caixa = m.el.querySelector('.es-modal-caixa');
     function aplicarTam() { const [w, h] = TAMS[tam]; c.style.setProperty('--cartao-w', w + 'px'); c.style.setProperty('--cartao-h', h + 'px'); c.dataset.tam = tam; }
@@ -359,14 +370,22 @@ window.FF = window.FF || {};
     montarLado();
 
     // ---- grade
-    let geracao = 0;
+    let geracao = 0, favsAtual = null;
+    // de qual pasta veio um cartão (só quando a grade mostra uma pasta): {pasta, inteiro, movido}
+    const origemDe = (id, a) => {
+      if (!favsAtual) return null;
+      const v = favsAtual.find(v => v.sprite === id && v.anim === a) || favsAtual.find(v => v.sprite === id && !v.anim);
+      return v ? { pasta: v.pasta, inteiro: !v.anim, movido: !!v.movido } : null;
+    };
     const render = async () => {
       const g = ++geracao;
       const f = busca.value.trim().toLowerCase();
       let lista, favs = null;
+      favsAtual = null;
       if (/^(fav|pasta)(:|$)/.test(fonte) && !f) {   // favoritos / pasta: sprites inteiros + animações marcadas
         favs = (/^pasta:/.test(fonte) ? FF.Favoritos.itensPasta(fonte.slice(6), true) : FF.Favoritos.lista(fonte.slice(4) || null)).filter(x => ids.includes(x.sprite));
         lista = [...new Set(favs.map(x => x.sprite))];
+        if (/^pasta:/.test(fonte)) favsAtual = favs;
       } else if (fonte === 'todos' || f) lista = ids;                       // buscar procura em tudo
       else if (fonte === 'efeitos') {
         lista = jogo.concat(acervo.filter(id => FF.Assets.tipoSprite(id) === 'efeitos'));
@@ -417,7 +436,8 @@ window.FF = window.FF || {};
         k.dataset.k = chave(x);
         k.draggable = true;   // arrastar até uma 📁 pasta da coluna da esquerda (leva todos os marcados, se este estiver entre eles)
         k.addEventListener('dragstart', (e) => {
-          const l = marcados.has(chave(x)) ? [...marcados.values()].map(v => [v.id, v.a]) : [[x.id, x.a]];
+          // dentro de uma pasta, leva também de onde saiu (soltar noutra pasta = mover; Ctrl = copiar)
+          const l = (marcados.has(chave(x)) ? [...marcados.values()] : [{ id: x.id, a: x.a }]).map(v => { const o = origemDe(v.id, v.a); return o ? [v.id, v.a, o.pasta, o.inteiro, o.movido] : [v.id, v.a]; });
           e.dataTransfer.setData(FF.TIPO_ARRASTO_ANIMS, JSON.stringify(l)); e.dataTransfer.effectAllowed = 'copyMove';
         });
         const chk = document.createElement('input'); chk.type = 'checkbox'; chk.className = 'es-cartao-chk'; chk.title = 'Marcar (para favoritar, excluir ou pôr na trilha vários de uma vez)';

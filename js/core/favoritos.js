@@ -111,6 +111,48 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const mv = this.movidos(nome); if (mv.length) this.moverSprites(mv, null);
     FF.Edicoes.setDepois([this.secao + 'Pastas', nome], null);
   },
+  // mover/copiar itens entre pastas. itens = [{sprite, anim, origem?, inteiro?, movido?}] (origem = pasta de onde saiu)
+  // copiar (ou sem origem) = só põe na pasta de destino; mover = tira da origem. Sprite movido (📂) muda de pasta inteiro.
+  moverItens(itens, dest, copiar) {
+    let n = 0;
+    const feitos = new Set();
+    itens.forEach(v => {
+      const mover = !copiar && v.origem && v.origem !== dest;
+      if (v.movido && (mover || !v.origem)) { if (!feitos.has(v.sprite)) { feitos.add(v.sprite); this.moverSprites([v.sprite], dest); n++; } return; }
+      const anim = v.inteiro ? null : v.anim, k = v.sprite + '#' + anim;
+      if (feitos.has(k)) return; feitos.add(k);
+      if (!this.naPasta(dest, v.sprite, anim)) this.alternarPasta(dest, v.sprite, anim);
+      if (mover && this.naPasta(v.origem, v.sprite, anim)) this.alternarPasta(v.origem, v.sprite, anim);
+      n++;
+    });
+    return n;
+  },
+  // menu pequeno: escolher uma pasta (árvore) ou criar uma nova; cb(nome)
+  menuEscolherPasta(ancora, titulo, cb) {
+    document.querySelectorAll('.es-fav-menu').forEach(x => x.remove());
+    const m = document.createElement('div'); m.className = 'es-fav-menu';
+    const tit = document.createElement('div'); tit.className = 'es-fav-tit'; tit.textContent = titulo; m.appendChild(tit);
+    const fim = (nome) => { m.remove(); cb(nome); };
+    this.botoesArvore(m, (nome) => ({ texto: '📁 ' + this.folha(nome) }), fim);
+    const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
+    nova.onclick = (e) => {
+      e.stopPropagation();
+      const inp = document.createElement('input'); inp.placeholder = 'Nome (use / para subpasta: Goku/SSJ)'; inp.className = 'es-fav-nova';
+      nova.replaceWith(inp); inp.focus();
+      let feito = false;
+      const ok = (sim) => { if (feito) return; feito = true; const n = sim && inp.value.trim() ? this.criarPasta(inp.value) : null; if (n) fim(n); else m.remove(); };
+      inp.onkeydown = (ev) => { ev.stopPropagation(); if (ev.key === 'Enter') ok(true); if (ev.key === 'Escape') ok(false); };
+      inp.onblur = () => ok(true);
+      inp.onpointerdown = (ev) => ev.stopPropagation();
+    };
+    m.appendChild(nova);
+    document.body.appendChild(m);
+    const r = ancora.getBoundingClientRect();
+    m.style.left = Math.max(4, Math.min(innerWidth - m.offsetWidth - 4, r.left)) + 'px';
+    m.style.top = Math.max(4, r.bottom + 2 + m.offsetHeight < innerHeight ? r.bottom + 2 : r.top - m.offsetHeight - 4) + 'px';
+    const fora = (e) => { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('pointerdown', fora, true); } };
+    setTimeout(() => document.addEventListener('pointerdown', fora, true), 0);
+  },
   // lista de pastas com recuo (menus ⭐ e 📂)
   botoesArvore(caixa, rotulo, onclick) {
     this.arvorePastas().forEach(p => {
@@ -420,13 +462,13 @@ FF.alvoDePasta = (F, el, nome, aoMudar) => {
   const tipos = (e) => [...(e.dataTransfer && e.dataTransfer.types || [])];
   // sons só aceitam pastas (sprites e animações são da seção de sprites); '' = título "Minhas pastas" (só pastas)
   const aceita = (e) => tipos(e).some(t => t === FF.TIPO_ARRASTO_PASTA || (nome && F.secao === 'favoritos' && (t === FF.TIPO_ARRASTO_SPRITES || t === FF.TIPO_ARRASTO_ANIMS)));
-  el.addEventListener('dragover', (e) => { if (!aceita(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; el.classList.add('es-pasta-alvo'); });
+  el.addEventListener('dragover', (e) => { if (!aceita(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = e.ctrlKey || e.metaKey ? 'copy' : 'move'; el.classList.add('es-pasta-alvo'); });
   el.addEventListener('dragleave', () => el.classList.remove('es-pasta-alvo'));
   el.addEventListener('drop', (e) => {
     el.classList.remove('es-pasta-alvo');
     if (!aceita(e)) return;
     e.preventDefault(); e.stopPropagation();
-    let n = 0;
+    let n = 0, copiou = true;
     const pasta = e.dataTransfer.getData(FF.TIPO_ARRASTO_PASTA);
     if (pasta) {   // pasta solta dentro de outra (ou no título = primeiro nível)
       if (F.moverPasta(pasta, nome)) { FF.Estudio && FF.Estudio.aviso('📁 "' + F.folha(pasta) + '" ' + (nome ? 'agora está dentro de "' + F.folha(nome) + '"' : 'voltou para o primeiro nível')); aoMudar && aoMudar(); }
@@ -437,9 +479,25 @@ FF.alvoDePasta = (F, el, nome, aoMudar) => {
     try {
       const spr = e.dataTransfer.getData(FF.TIPO_ARRASTO_SPRITES), an = e.dataTransfer.getData(FF.TIPO_ARRASTO_ANIMS);
       if (spr) { const ids = JSON.parse(spr); F.moverSprites(ids, nome); n = ids.length; }
-      else if (an) { const l = JSON.parse(an); l.forEach(([id, a]) => { if (!F.naPasta(nome, id, a)) F.alternarPasta(nome, id, a); }); n = l.length; }
+      else if (an) {
+        // [id, anim, origem?, inteiro?, movido?] — vindo de dentro de uma pasta = MOVE (Ctrl = copia)
+        const l = JSON.parse(an).map(([sprite, anim, origem, inteiro, movido]) => ({ sprite, anim, origem, inteiro, movido }));
+        copiou = e.ctrlKey || e.metaKey || !l.some(v => v.origem);
+        n = F.moverItens(l, nome, e.ctrlKey || e.metaKey);
+      }
     } catch (err) { return; }
-    if (n && FF.Estudio && FF.Estudio.aviso) FF.Estudio.aviso('📁 ' + n + (n === 1 ? ' item' : ' itens') + ' em "' + F.folha(nome) + '"');
+    if (n && FF.Estudio && FF.Estudio.aviso) FF.Estudio.aviso('📁 ' + n + (n === 1 ? ' item ' : ' itens ') + (copiou ? 'em' : 'movido(s) para') + ' "' + F.folha(nome) + '"');
     aoMudar && aoMudar();
+  });
+};
+
+// rolagem automática enquanto arrasta perto da borda de cima/de baixo de uma lista que rola (coluna de pastas)
+FF.autoRolarArraste = (el) => {
+  if (!el || el._autoRolar) return;
+  el._autoRolar = true;
+  el.addEventListener('dragover', (e) => {
+    const r = el.getBoundingClientRect(), zona = Math.min(60, r.height / 4);
+    const v = e.clientY < r.top + zona ? -(1 - (e.clientY - r.top) / zona) : e.clientY > r.bottom - zona ? 1 - (r.bottom - e.clientY) / zona : 0;
+    if (v) el.scrollTop += Math.round(v * 28);
   });
 };

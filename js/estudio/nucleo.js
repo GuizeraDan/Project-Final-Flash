@@ -488,6 +488,7 @@ FF.Estudio = {
     dir.append(topo, chips, lista, barraSel);
     c.append(lado, dir);
     this.ladoRedimensionavel(lado, 'sons_esq', 'esq', 420, { irmao: true, titulo: ':scope > .es-sub' });   // » expande a coluna das fontes
+    FF.autoRolarArraste(lado);
     const fontesBt = [];
     const bt = (chave, texto, n, pai) => {
       const b = this.el('div', 'es-item es-seletor-fonte' + (chave === fonte ? ' sel' : ''));
