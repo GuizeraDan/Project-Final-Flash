@@ -202,9 +202,48 @@ window.FF = window.FF || {};
 
     // ---- coluna da esquerda
     const marcar = () => lado.querySelectorAll('.es-seletor-fonte').forEach(x => x.classList.toggle('sel', x.dataset.fonte === fonte));
+    // ☑ marcar vários SPRITES na coluna da esquerda (caixinha; Shift = intervalo) → mover, favoritar, Lixeira
+    const marcadosS = new Set();
+    let ultimoS = null;
+    const barraS = E.el('div', 'es-seletor-sel-lado');
+    const txtS = E.el('span');
+    const btMoverS = E.botao('📂 Mover', () => { if (marcadosS.size) FF.Favoritos.menuMover(btMoverS, [...marcadosS], () => { marcadosS.clear(); montarLado(); render(); }); }, 'Mover os sprites marcados para uma das suas pastas');
+    const btFavS = E.botao('⭐', () => { if (marcadosS.size) FF.Favoritos.menuVarios(btFavS, [...marcadosS].map(id => ({ sprite: id, anim: null })), () => { contarFav(); render(); }); }, 'Favoritar ou pôr numa pasta (sem tirar do lugar) os sprites marcados');
+    const btLixoS = E.botao('🗑', async () => {
+      const l = [...marcadosS].filter(id => FF.Assets.doAcervo(id));
+      if (!l.length) { E.aviso('Só sprites do acervo vão para a Lixeira (os do jogo não).'); return; }
+      const ok = await E.escolha('🗑 Mandar para a Lixeira', 'Mandar os ' + l.length + ' sprites marcados para a Lixeira? Eles somem das listas; dá para restaurar em "🗑 Lixeira (excluídos)".' + (l.length < marcadosS.size ? ' (' + (marcadosS.size - l.length) + ' do jogo ficam onde estão.)' : ''),
+        [{ txt: '🗑 Mandar ' + l.length, valor: true, cls: 'es-bt-perigo' }, { txt: 'Cancelar', valor: false }]);
+      if (!ok) return;
+      l.forEach(id => E.mudarInfoSprite(id, { oculto: true }));
+      E.aviso('🗑 ' + l.length + ' sprites mandados para a Lixeira.');
+      l.forEach(id => { marcadosS.delete(id); const i = acervoTodos.indexOf(id); if (i >= 0) acervoTodos.splice(i, 1); });
+      montarLado(); render();
+    }, 'Mandar os sprites marcados para a Lixeira', 'es-bt-perigo');
+    const btLimparS = E.botao('✕', () => { marcadosS.clear(); pintarS(); }, 'Desmarcar todos');
+    barraS.append(txtS, btMoverS, btFavS, btLixoS, btLimparS);
+    const pintarS = () => {
+      lado.querySelectorAll('.es-seletor-chk').forEach(ch => { ch.checked = marcadosS.has(ch.dataset.id); ch.closest('.es-item').classList.toggle('marcado', ch.checked); });
+      txtS.textContent = '☑ ' + marcadosS.size;
+      barraS.style.display = marcadosS.size ? '' : 'none';
+    };
+    const marcarS = (id, ev) => {
+      const chs = [...lado.querySelectorAll('.es-seletor-chk')].map(c => c.dataset.id);
+      if (ev && ev.shiftKey && ultimoS && chs.includes(ultimoS)) {
+        const [a, z] = [chs.indexOf(ultimoS), chs.indexOf(id)].sort((x, y) => x - y);
+        chs.slice(a, z + 1).forEach(i => marcadosS.add(i));
+      } else if (marcadosS.has(id)) marcadosS.delete(id); else marcadosS.add(id);
+      ultimoS = id; pintarS();
+    };
     const bt = (chave, texto, sub, pai) => {
-      const b = E.el('div', 'es-item es-seletor-fonte' + (chave === fonte ? ' sel' : ''));
+      const b = E.el('div', 'es-item es-seletor-fonte' + (chave === fonte ? ' sel' : '') + (marcadosS.has(chave) ? ' marcado' : ''));
       b.dataset.fonte = chave;
+      if (FF.Favoritos && ids.includes(chave)) {
+        const ch = document.createElement('input'); ch.type = 'checkbox'; ch.className = 'es-seletor-chk'; ch.dataset.id = chave; ch.checked = marcadosS.has(chave);
+        ch.title = 'Marcar este sprite (Shift = marca o intervalo) para mover, favoritar ou mandar para a Lixeira vários de uma vez';
+        ch.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); marcarS(chave, e); });
+        b.appendChild(ch);
+      }
       const cv = document.createElement('canvas'); cv.width = 30; cv.height = 30;
       const t = E.el('span'); t.textContent = texto;
       b.append(cv, t);
@@ -314,6 +353,7 @@ window.FF = window.FF || {};
         aplicar();
       });
     }
+    lado.appendChild(barraS); pintarS();   // barra dos sprites marcados: grudada no pé da coluna
     lado.scrollTop = rolagem;
     }
     montarLado();

@@ -103,7 +103,18 @@
     ui.anims = el('div', 'es-lista ess-anims es-rolar');
     const linhaS = el('div', 'ess-busca-linha'), linhaA = el('div', 'ess-busca-linha');
     linhaS.append(ui.buscaSprite, ui.ordemSprites); linhaA.append(ui.buscaAnim, ui.ordemAnims);
-    esq.append(linhaS, ui.sprites, tA, linhaA, ui.anims);
+    // ☑ barra dos sprites marcados (caixinhas da lista): mover, favoritar, Lixeira
+    ui.selS = el('div', 'es-seletor-sel-lado ess-sel-sprites'); ui.selS.style.display = 'none';
+    ui.selTxt = el('span');
+    const btMov = E.botao('📂 Mover', () => { if (st.marcS.size) FF.Favoritos.menuMover(btMov, [...st.marcS], () => { st.marcS.clear(); renderSprites(); }); }, 'Mover os sprites marcados para uma das suas pastas');
+    const btFav = E.botao('⭐', () => { if (st.marcS.size) FF.Favoritos.menuVarios(btFav, [...st.marcS].map(id => ({ sprite: id, anim: null })), () => renderSprites()); }, 'Favoritar ou pôr numa pasta (sem tirar do lugar)');
+    const btLix = E.botao('🗑', async () => {
+      const l = [...st.marcS].filter(id => FF.Assets.doAcervo(id) && !importado(id) && !FF.Assets.spriteOculto(id));
+      if (!l.length) { E.aviso('Só sprites do acervo vão para a Lixeira.'); return; }
+      if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar os ' + l.length + ' sprites marcados para a Lixeira? Eles somem das listas; dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) { st.marcS.clear(); lixeiraSprites(l); }
+    }, 'Mandar os sprites marcados para a Lixeira', 'es-bt-perigo');
+    ui.selS.append(ui.selTxt, btMov, btFav, btLix, E.botao('✕', () => { st.marcS.clear(); renderSprites(); }, 'Desmarcar todos'));
+    esq.append(linhaS, ui.sprites, ui.selS, tA, linhaA, ui.anims);
 
     // centro: barra de ações, palco, controles, tira de quadros
     const cen = el('div', 'es-centro ess-centro');
@@ -215,12 +226,32 @@
   }
 
   // ------------------------------------------------------------------ sprites e animações
+  function pintarMarcS() {
+    ui.sprites.querySelectorAll('.es-seletor-chk').forEach(ch => { ch.checked = st.marcS.has(ch.dataset.id); ch.closest('.es-item').classList.toggle('marcado', ch.checked); });
+    ui.selTxt.textContent = '☑ ' + st.marcS.size + ' sprite(s)';
+    ui.selS.style.display = st.marcS.size ? '' : 'none';
+  }
   function renderSprites() {
+    if (!st.marcS) st.marcS = new Set();
+    queueMicrotask(pintarMarcS);   // barra dos marcados (a função tem saídas no meio)
     const f = st.buscaSprite.toLowerCase();
     ui.sprites.innerHTML = '';
+    if (!st.marcS) st.marcS = new Set();
     const item = (s, pai, naLixeira) => {
-      const it = el('div', 'es-item' + (s === st.id ? ' sel' : '') + (naLixeira ? ' ess-na-lixeira' : ''));
+      const it = el('div', 'es-item' + (s === st.id ? ' sel' : '') + (naLixeira ? ' ess-na-lixeira' : '') + (st.marcS.has(s) ? ' marcado' : ''));
       it.dataset.sprite = s;
+      if (!naLixeira) {   // caixinha: marcar vários (Shift = intervalo)
+        const ch = document.createElement('input'); ch.type = 'checkbox'; ch.className = 'es-seletor-chk'; ch.checked = st.marcS.has(s); ch.dataset.id = s;
+        ch.title = 'Marcar (Shift = intervalo) para mover, favoritar ou mandar para a Lixeira vários de uma vez';
+        ch.addEventListener('click', (e) => {
+          e.stopPropagation(); e.preventDefault();
+          const chs = [...ui.sprites.querySelectorAll('.es-seletor-chk')].map(c => c.dataset.id);
+          if (e.shiftKey && st.ultMarcS && chs.includes(st.ultMarcS)) { const [a, z] = [chs.indexOf(st.ultMarcS), chs.indexOf(s)].sort((x, y) => x - y); chs.slice(a, z + 1).forEach(i => st.marcS.add(i)); }
+          else if (st.marcS.has(s)) st.marcS.delete(s); else st.marcS.add(s);
+          st.ultMarcS = s; pintarMarcS();
+        });
+        it.appendChild(ch);
+      }
       const imp = importado(s);
       if (imp) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; it.appendChild(t); }
       const ac = FF.Assets.doAcervo(s);

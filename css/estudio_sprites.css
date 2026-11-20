@@ -135,3 +135,6 @@
 .ess-tira::-webkit-scrollbar-track { background: #100a1e; }
 .ess-tira::-webkit-scrollbar-thumb { background: #5a3fa8; border-radius: 4px; }
 .ess-q { box-sizing: border-box; }
+.ess .ess-sel-sprites { position: static; flex-wrap: wrap; margin: 0 6px 4px; border: 1px solid #ffd84a; border-radius: 5px; }
+.ess-sprites .es-item.marcado { background: rgba(255, 216, 74, 0.12); box-shadow: inset 3px 0 0 #ffd84a; }
+.ess-sprites .es-item:hover .es-seletor-chk, .ess-sprites:has(.es-seletor-chk:checked) .es-seletor-chk { opacity: 1; }
