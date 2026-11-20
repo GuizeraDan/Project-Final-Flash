@@ -74,7 +74,13 @@ window.FF = window.FF || {};
     const btCheia = E.botao('⛶', () => { cheia = !cheia; E.rascunho.gravar('seletor_cheia', cheia || null); aplicarCheia(); }, 'Expandir / reduzir a janela', 'es-seletor-cheia');
     const selOrdem = E.seletorOrdem('seletor_ordem_grade', 'quadros', (v) => { ordemGrade = v; render(); });
     selOrdem.title = 'Ordem dos cartões';
-    topo.append(busca, info, selOrdem, selTam, btCheia);
+    // 🙈 esconder o que já está em alguma pasta (vale fora das pastas/favoritos): a grade vira "o que falta organizar"
+    let esconderPastas = !!E.rascunho.ler('seletor_esconder_pastas');
+    const btEsc = E.botao('', () => { esconderPastas = !esconderPastas; E.rascunho.gravar('seletor_esconder_pastas', esconderPastas || null); pintarEsc(); render(); },
+      'Esconder as animações que já estão em alguma das suas pastas (enquanto navega pelos sprites e pelo acervo). Bom para ver o que falta organizar.');
+    const pintarEsc = () => { btEsc.textContent = esconderPastas ? '🙈 Escondendo o que está em pastas' : '👁 Mostrando tudo'; btEsc.classList.toggle('es-bt-ouro', esconderPastas); };
+    pintarEsc();
+    topo.append(busca, info, btEsc, selOrdem, selTam, btCheia);
     if (o.limpar) topo.appendChild(E.botao('Nenhum', () => { o.limpar(); m.fechar(); }));
     const grade = E.el('div', 'es-grade');
     // ☑ seleção de vários: caixinha no cartão, Ctrl/Shift+clique ou arrastar uma caixa no espaço vazio da grade
@@ -408,6 +414,14 @@ window.FF = window.FF || {};
       if (favs) itens = itens.filter(x => favs.some(v => v.sprite === x.id && (!v.anim || v.anim === x.a)));
       if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
       if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '') + ' ' + FF.Assets.nomeAnim(x.id, x.a) + ' ' + FF.Assets.nomeSprite(x.id)).toLowerCase().includes(f));
+      let escondidas = 0;
+      if (esconderPastas && !favs && FF.Favoritos) {
+        const naPasta = new Set();
+        FF.Favoritos.nomesPastas().forEach(n => FF.Favoritos.itensPasta(n).forEach(v => naPasta.add(v.anim ? v.sprite + '#' + v.anim : v.sprite)));
+        const antes = itens.length;
+        itens = itens.filter(x => !naPasta.has(x.id + '#' + x.a) && !naPasta.has(x.id));
+        escondidas = antes - itens.length;
+      }
       itens = E.ordenar(itens, ordemGrade, (x) => FF.Assets.nomeAnim(x.id, x.a), (x) => x.n);
       // pasta com subpastas: a grade sai separada por subpasta (na ordem da árvore); "Soltos na pasta" só se houver
       let grupos = null;
@@ -421,7 +435,7 @@ window.FF = window.FF || {};
       }
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
-      info.textContent = itens.length + ' animação(ões)' + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
+      info.textContent = itens.length + ' animação(ões)' + (escondidas ? ' · ' + escondidas + ' já em pastas (escondidas)' : '') + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
       visiveis = itens.slice(0, 400); ultimoMarcado = -1;
       const inicioGrupo = new Map();
       if (grupos) { let k = 0; grupos.forEach(g => { inicioGrupo.set(k, g); k += g.itens.length; }); }
