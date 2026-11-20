@@ -80,7 +80,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.evaluate(() => FF.Estudio.escolherSprite({ inicio: 'cat:cenarios', aoEscolher: (a, id) => window.__escolheu(a, id) }));
   await p.waitForSelector('.es-seletor .es-cartao', { timeout: 20000 });
   s = await p.evaluate(() => ({
-    cats: [...document.querySelectorAll('.es-seletor-cat')].map(c => c.textContent).filter(t => !/Minhas pastas|Do jogo/.test(t)),
+    cats: [...document.querySelectorAll('.es-seletor .es-nav-grupo')].filter(c => /^cat:[^:]+$/.test(c.dataset.chave)).map(c => c.textContent),   // navegador: só as categorias
     cartoes: document.querySelectorAll('.es-seletor .es-cartao').length,
     info: document.querySelector('.es-seletor .es-dica').textContent,
   }));
@@ -132,11 +132,11 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.waitForFunction(() => FF.Estudio && FF.Estudio.pronto && FF.Estudio.Sprites.st.set, null, { timeout: 30000 });
   s = await p.evaluate(() => ({
     id: FF.Estudio.Sprites.st.id, anims: Object.keys(FF.Estudio.Sprites.st.set.def.anims).length,
-    cats: [...document.querySelectorAll('.ess-cat')].map(c => c.textContent),
+    cats: [...document.querySelectorAll('.ess-sprites .es-nav-grupo')].filter(c => c.dataset.chave === 'jogo' || /^cat:[^:]+$/.test(c.dataset.chave)).map(c => c.textContent),
     itens: document.querySelectorAll('.ess-sprites .es-item').length,
   }));
   ok(s.id === 'zl3_cell' && s.anims === indice.sprites.zl3_cell.anims, 'aba Sprites abre zl3_cell (' + s.anims + ' animações)');
-  { const cs = s.cats.filter(c => !/⭐|📁|Lixeira/.test(c));   // pastas, favoritos e Lixeira dependem das edições do usuário
+  { const cs = s.cats;   // pastas, favoritos e Lixeira dependem das edições do usuário (ficam de fora)
     ok(cs.length === 1 + new Set(Object.values(indice.sprites).map(v => v.cat)).size && /Do jogo/.test(cs[0]), 'lista agrupada: ' + s.cats.join(' | ')); }
   await p.screenshot({ path: OUT + '/3_aba_sprites.png' });
   // a categoria do sprite aberto precisa fechar com um clique (antes reabria na hora a cada redesenho)
@@ -157,7 +157,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     await new Promise(r => setTimeout(r, 100));   // agora pergunta antes
     [...document.querySelectorAll('.es-modal button')].find(b => /Mandar para a Lixeira/.test(b.textContent)).click();
     await new Promise(r => setTimeout(r, 100));
-    const n1 = FF.Assets.listaSprites().length, lix = [...document.querySelectorAll('.ess-sprites .es-item.ess-na-lixeira')].some(i => i.dataset.sprite === 'zl3_nappa') || [...document.querySelectorAll('.ess-cat')].some(c => /Lixeira \(\d+\)/.test(c.textContent));
+    const n1 = FF.Assets.listaSprites().length, lix = FF.Assets.spriteOculto('zl3_nappa') && !!document.querySelector('.ess-sprites .es-nav-grupo[data-chave="lixeira"]');
     FF.Estudio.mudarInfoSprite('zl3_nappa', { oculto: null });   // restaura só este (a Lixeira do usuário pode ter outros)
     return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];
   });

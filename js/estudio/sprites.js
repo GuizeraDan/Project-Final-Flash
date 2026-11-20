@@ -107,18 +107,7 @@
     ui.anims = el('div', 'es-lista ess-anims es-rolar');
     const linhaS = el('div', 'ess-busca-linha'), linhaA = el('div', 'ess-busca-linha');
     linhaS.append(ui.buscaSprite, ui.ordemSprites); linhaA.append(ui.buscaAnim, ui.ordemAnims);
-    // ☑ barra dos sprites marcados (caixinhas da lista): mover, favoritar, Lixeira
-    ui.selS = el('div', 'es-seletor-sel-lado ess-sel-sprites'); ui.selS.style.display = 'none';
-    ui.selTxt = el('span');
-    const btMov = E.botao('📂 Mover', () => { if (st.marcS.size) FF.Favoritos.menuMover(btMov, [...st.marcS], () => { st.marcS.clear(); renderSprites(); }); }, 'Mover os sprites marcados para uma das suas pastas');
-    const btFav = E.botao('⭐', () => { if (st.marcS.size) FF.Favoritos.menuVarios(btFav, [...st.marcS].map(id => ({ sprite: id, anim: null })), () => renderSprites()); }, 'Favoritar ou pôr numa pasta (sem tirar do lugar)');
-    const btLix = E.botao('🗑', async () => {
-      const l = [...st.marcS].filter(id => FF.Assets.doAcervo(id) && !importado(id) && !FF.Assets.spriteOculto(id));
-      if (!l.length) { E.aviso('Só sprites do acervo vão para a Lixeira.'); return; }
-      if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar os ' + l.length + ' sprites marcados para a Lixeira? Eles somem das listas; dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) { st.marcS.clear(); lixeiraSprites(l); }
-    }, 'Mandar os sprites marcados para a Lixeira', 'es-bt-perigo');
-    ui.selS.append(ui.selTxt, btMov, btFav, btLix, E.botao('✕', () => { st.marcS.clear(); renderSprites(); }, 'Desmarcar todos'));
-    esq.append(linhaS, ui.sprites, ui.selS, tA, linhaA, ui.anims);
+    esq.append(linhaS, ui.sprites, tA, linhaA, ui.anims);
 
     // centro: barra de ações, palco, controles, tira de quadros
     const cen = el('div', 'es-centro ess-centro');
@@ -198,7 +187,7 @@
     dir.appendChild(ui.props);
     montarPainelMontagem(dir);   // 🧩 montar animação nova com quadros escolhidos da tira
     // mudou algo nas edições (no seletor de sprites, por exemplo): a lista de sprites e a de animações acompanham
-    E.aoMudarEdicoes(() => { if (raiz.hidden || !raiz.isConnected || E.digitando({ target: document.activeElement })) return; const r = ui.sprites.scrollTop; renderSprites(); ui.sprites.scrollTop = r; renderAnims(); }, 300);
+    E.aoMudarEdicoes(() => { if (raiz.hidden || !raiz.isConnected || E.digitando({ target: document.activeElement })) return; renderAnims(); }, 300);   // a lista de sprites (navegador) se atualiza sozinha
     FF.Assets.animsAcervo().then(() => { if (st.buscaSprite) renderSprites(); });   // nomes das animações para a busca
 
     raiz.append(esq, cen, dir);
@@ -235,153 +224,31 @@
   }
 
   // ------------------------------------------------------------------ sprites e animações
-  function pintarMarcS() {
-    ui.sprites.querySelectorAll('.es-seletor-chk').forEach(ch => { ch.checked = st.marcS.has(ch.dataset.id); ch.closest('.es-item').classList.toggle('marcado', ch.checked); });
-    ui.selTxt.textContent = '☑ ' + st.marcS.size + ' sprite(s)';
-    ui.selS.style.display = st.marcS.size ? '' : 'none';
-  }
+  // lista de sprites = navegador de sprites (o mesmo do seletor; js/estudio/navegador.js)
   function renderSprites() {
-    if (!st.marcS) st.marcS = new Set();
-    queueMicrotask(pintarMarcS);   // barra dos marcados (a função tem saídas no meio)
-    const f = st.buscaSprite.toLowerCase();
-    ui.sprites.innerHTML = '';
-    if (!st.marcS) st.marcS = new Set();
-    const item = (s, pai, naLixeira) => {
-      if (s[0] === '#') {   // animação dentro de uma pasta ("#sprite#anim"): clicar abre o sprite já nela
-        const [, spr, an] = s.split('#');
-        const it = el('div', 'es-item ess-anim-pasta' + (spr === st.id && an === st.nome ? ' sel' : ''));
-        it.dataset.sprite = spr; it.dataset.anim = an;
-        const n = el('span', 'ess-spr-nome'); n.textContent = '🎞 ' + FF.Assets.nomeAnim(spr, an); n.title = an + ' · ' + FF.Assets.nomeSprite(spr) + ' (' + spr + ')';
-        it.append(n, el('small', null, FF.Assets.nomeSprite(spr)));
-        it.onclick = () => abrirSprite(spr, an);
-        pai.appendChild(it);
-        return;
-      }
-      const it = el('div', 'es-item' + (s === st.id ? ' sel' : '') + (naLixeira ? ' ess-na-lixeira' : '') + (st.marcS.has(s) ? ' marcado' : ''));
-      it.dataset.sprite = s;
-      if (!naLixeira) {   // caixinha: marcar vários (Shift = intervalo)
-        const ch = document.createElement('input'); ch.type = 'checkbox'; ch.className = 'es-seletor-chk'; ch.checked = st.marcS.has(s); ch.dataset.id = s;
-        ch.title = 'Marcar (Shift = intervalo) para mover, favoritar ou mandar para a Lixeira vários de uma vez';
-        ch.addEventListener('click', (e) => {
-          e.stopPropagation(); e.preventDefault();
-          const chs = [...ui.sprites.querySelectorAll('.es-seletor-chk')].map(c => c.dataset.id);
-          if (e.shiftKey && st.ultMarcS && chs.includes(st.ultMarcS)) { const [a, z] = [chs.indexOf(st.ultMarcS), chs.indexOf(s)].sort((x, y) => x - y); chs.slice(a, z + 1).forEach(i => st.marcS.add(i)); }
-          else if (st.marcS.has(s)) st.marcS.delete(s); else st.marcS.add(s);
-          st.ultMarcS = s; pintarMarcS(); setTimeout(pintarMarcS, 0);   // o preventDefault desfaz o ✓ ao fim do clique
-        });
-        it.appendChild(ch);
-      }
-      const imp = importado(s);
-      if (imp) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; it.appendChild(t); }
-      const ac = FF.Assets.doAcervo(s);
-      const n = el('span', 'ess-spr-nome'); n.textContent = ac ? FF.Assets.nomeSprite(s) : s; n.title = s; it.appendChild(n);
-      const mods = (FF.Mods.ler()[s] && Object.keys(FF.Mods.ler()[s]).length) || 0;
-      if (mods) { const t = el('small', null, '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; it.appendChild(t); }
-      else if (ac) { const t = el('small', null, String((FF.Assets.acervo()[s] || [])[2] || '')); t.title = 'animações'; it.appendChild(t); }
-      if (imp) it.appendChild(E.botao('🗑', (e) => { e.stopPropagation(); apagarSprite(s); }, 'Apagar este sprite importado (todas as animações)', 'ess-anim-apagar'));
-      else if (ac && naLixeira) it.appendChild(E.botao('♻', (e) => { e.stopPropagation(); restaurarSprites([s]); }, 'Tirar da Lixeira (volta para as listas)', 'es-fav-bt ess-lixo ess-restaurar'));
-      const btLixo = ac && !imp && !naLixeira ? E.botao('🗑', async (e) => {
-        e.stopPropagation();
-        if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar "' + FF.Assets.nomeSprite(s) + '" para a Lixeira? Ele some das listas e das pastas; dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) lixeiraSprites([s]);
-      }, 'Mandar para a Lixeira (pergunta antes)', 'es-fav-bt ess-lixo es-lixo-sep') : null;   // vai por último, longe do 📂
-      if (FF.Favoritos && !naLixeira) {
-        const p = FF.Favoritos.pastaDoSprite(s);
-        const bm = E.botao('📂', (e) => { e.stopPropagation(); FF.Favoritos.menuMover(bm, [s], () => renderSprites()); }, p ? 'Está na pasta "' + p + '" — mover para outra ou voltar ao lugar original' : 'Mover este sprite para uma das suas pastas (sai daqui e fica só lá). Também dá para arrastar até a pasta.', 'es-fav-bt ess-mover');
-        it.appendChild(bm);
-        it.draggable = true;
-        it.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_SPRITES, JSON.stringify([s])); e.dataTransfer.effectAllowed = 'move'; });
-      }
-      if (FF.Favoritos) it.appendChild(FF.Favoritos.botao(s, null, () => renderSprites()));
-      if (btLixo) it.appendChild(btLixo);
-      it.onclick = () => abrirSprite(s);
-      pai.appendChild(it);
-    };
-    // busca: nome do sprite ou de qualquer animação dele (como no seletor de sprites)
-    const bate = (s) => !f || s.toLowerCase().includes(f) || FF.Assets.nomeSprite(s).toLowerCase().includes(f) || E.animsDoSprite(s).some(a => a.toLowerCase().includes(f) || FF.Assets.nomeAnim(s, a).toLowerCase().includes(f));
-    const ordem = ui.ordemSprites ? ui.ordemSprites.value : 'padrao';
-    const ord = (l) => E.ordenar(l, ordem, (s) => FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) : s, (s) => E.qtdAnimsSprite(s));
-    const lista = FF.Assets.listaSprites().filter(bate);
-    // 📂 sprites movidos para uma pasta moram só nela (saem de "Do jogo"/acervo)
-    const movido = (s) => FF.Favoritos && FF.Favoritos.pastaDoSprite(s);
-    const jogo = ord(lista.filter(s => !FF.Assets.doAcervo(s) && !movido(s)));
-    const acervo = ord(lista.filter(s => FF.Assets.doAcervo(s) && !movido(s)));
-    if (!acervo.length && !(FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length)) { jogo.forEach(s => item(s, ui.sprites)); return; }
-    // agrupado: sprites do jogo, depois o acervo por categoria/jogo (abre/fecha); dentro de cada jogo, por tipo
-    const NOMES = FF.Assets.categoriasAcervo();
-    const TIPOS_ACERVO = ['personagens', 'efeitos', 'cenarios', 'interface', 'cutscenes'];
-    const ICONE_TIPO = { personagens: '🥋', efeitos: '✺', cenarios: '🏞', interface: '🖥', cutscenes: '🎞' };
-    const NOME_TIPO = { personagens: 'Personagens', efeitos: 'Efeitos', cenarios: 'Cenários', interface: 'Interface e outros', cutscenes: 'Cutscenes' };
-    const abertas = new Set(E.rascunho.ler('sprites_cats_abertas') || []);
-    // abre a categoria do sprite aberto só uma vez (ao abrir o sprite); antes isso rodava a cada redesenho e
-    // impedia de fechar a categoria/tipo dele (o clique fechava e a lista reabria na hora)
+    if (!ui.nav) {
+      ui.nav = FF.EstudioNav.criar(ui.sprites, {
+        modo: 'sprites',
+        fonte: () => st.id,
+        animAtual: () => st.nome,
+        busca: () => st.buscaSprite,
+        escolher: (id, anim) => { if (id) abrirSprite(id, anim || null); },
+        aoMudar: () => renderAnims(),
+        decorar: (id, linha) => {
+          const nome = linha.querySelector('.es-nav-nome');
+          if (importado(id)) { const t = el('span', 'ess-spr-imp', '📥'); t.title = 'Sprite importado por você'; linha.insertBefore(t, nome); }
+          const mods = (FF.Mods.ler()[id] && Object.keys(FF.Mods.ler()[id]).length) || 0;
+          if (mods) { const t = el('small', 'ess-mods', '✎ ' + mods); t.title = mods + ' animação(ões) alterada(s)'; nome.after(t); }
+        },
+      });
+    }
+    // abre a categoria do sprite aberto uma vez (ao abrir o sprite), sem impedir de fechar depois
     if (st.id && st.catAbertaDe !== st.id && FF.Assets.doAcervo(st.id)) {
       st.catAbertaDe = st.id;
       const c = FF.Assets.categoriaSprite(st.id);
-      abertas.add(c); abertas.add(c + ':' + FF.Assets.tipoSprite(st.id));
-      E.rascunho.gravar('sprites_cats_abertas', [...abertas]);
+      ui.nav.abrir('cat:' + c); ui.nav.abrir('cat:' + c + ':' + FF.Assets.tipoSprite(st.id));
     }
-    const grupo = (chave, titulo, ids, sub, pasta) => {
-      if (!ids.length && !pasta) return;
-      const padraoAberto = chave === 'jogo' || (chave.startsWith('fav:') && !chave.startsWith('fav:pasta:'));   // do jogo e favoritos começam abertos; pastas começam fechadas (podem ter muitas animações)
-      const aberta = !!f || padraoAberto ? !abertas.has('!' + chave) : abertas.has(chave);
-      const cab = el('div', 'ess-cat' + (sub ? ' ess-cat-sub' : ''), (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
-      cab.onclick = () => {
-        if (padraoAberto) { abertas.has('!' + chave) ? abertas.delete('!' + chave) : abertas.add('!' + chave); }
-        else { abertas.has(chave) ? abertas.delete(chave) : abertas.add(chave); }
-        E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites();
-      };
-      if (chave === 'lixeira') cab.appendChild(E.botao('♻ Restaurar todos', (e) => { e.stopPropagation(); restaurarSprites(ids); }, 'Tirar todos da Lixeira', 'ess-cat-bt'));
-      else if (chave !== 'jogo' && !chave.startsWith('fav:') && ids.every(i => FF.Assets.doAcervo(i) && !importado(i)))
-        cab.appendChild(E.botao('🗑', async (e) => {
-          e.stopPropagation();
-          if (await confirmar('🗑 Mandar para a Lixeira', 'Mandar os ' + ids.length + ' sprites de "' + titulo.replace(/^\S+\s/, '') + '" para a Lixeira? Eles somem das listas do Estúdio (em todos os aparelhos). Dá para restaurar na "🗑 Lixeira", no fim da lista.', '🗑 Mandar para a Lixeira', true)) lixeiraSprites(ids);
-        }, 'Mandar todos os sprites deste grupo para a Lixeira', 'ess-cat-bt'));
-      if (pasta) FF.alvoDePasta(FF.Favoritos, cab, pasta, () => renderSprites());   // soltar um sprite aqui = mover para a pasta
-      ui.sprites.appendChild(cab);
-      if (!aberta) return;
-      if (chave === 'lixeira') { ids.forEach(s => item(s, ui.sprites, true)); return; }
-      // jogo inteiro (ex.: Drag Warriors): separa por tipo (personagens, efeitos, cenários, interface)
-      const tipos = sub ? [] : TIPOS_ACERVO.filter(t => ids.some(s => FF.Assets.tipoSprite(s) === t));
-      if (chave === 'jogo' || tipos.length < 2) { ids.forEach(s => item(s, ui.sprites)); return; }
-      tipos.forEach(t => grupo(chave + ':' + t, ICONE_TIPO[t] + ' ' + NOME_TIPO[t], ids.filter(s => FF.Assets.tipoSprite(s) === t), true));
-    };
-    // ⭐ favoritos (sprites inteiros) separados pelo tipo que o usuário escolheu
-    if (FF.Favoritos) FF.Favoritos.TIPOS.forEach(([t, ic, nm]) => {
-      const ids = ord(FF.Favoritos.lista(t).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite));
-      grupo('fav:' + t, '⭐ ' + ic + ' ' + FF.Favoritos.plural[t] + ' (favoritos)', ids);
-    });
-    // 📁 pastas do usuário (as mesmas do seletor de sprites e da aba Favoritos), com os sprites inteiros que estão nelas
-    // tudo dentro de um título "📁 Minhas pastas" que abre/fecha; pastas vazias aparecem (dá para soltar sprites nelas)
-    if (FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length) {
-      const arv = FF.Favoritos.arvorePastas(), fechada = abertas.has('!pastas');
-      const cabP = el('div', 'ess-cat', (fechada ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + arv.filter(p => !p.nivel).length + ')');
-      cabP.title = 'Pastas suas (as mesmas do seletor de sprites). Arraste um sprite até uma pasta, ou use o 📂 dele, para mover.';
-      cabP.onclick = () => { fechada ? abertas.delete('!pastas') : abertas.add('!pastas'); E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites(); };
-      FF.alvoDePasta(FF.Favoritos, cabP, '', () => renderSprites());   // soltar uma pasta aqui = primeiro nível
-      ui.sprites.appendChild(cabP);
-      // árvore: cada pasta mostra os sprites dela; fechar uma pasta esconde as subpastas dela
-      const fechadasP = [];
-      if (!fechada) arv.forEach(p => {
-        if (fechadasP.some(f => p.nome.startsWith(f + '/'))) return;
-        const itP = FF.Favoritos.itensPasta(p.nome);
-        const ids = ord([...new Set(itP.filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
-        const anims = itP.filter(v => v.anim && !FF.Assets.spriteOculto(v.sprite) && (!f || bate(v.sprite) || v.anim.toLowerCase().includes(f)));
-        const antes = ui.sprites.children.length;
-        grupo('fav:pasta:' + p.nome, '📁 ' + p.folha, ids.concat(anims.map(v => '#' + v.sprite + '#' + v.anim)), true, p.nome);
-        const cab = ui.sprites.children[antes];
-        if (cab) {
-          cab.style.paddingLeft = (14 + p.nivel * 14) + 'px';
-          cab.title = p.nome;
-          cab.draggable = true;   // arrastar a pasta para dentro de outra
-          cab.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_PASTA, p.nome); e.dataTransfer.effectAllowed = 'move'; });
-          if (cab.textContent.startsWith('▸')) fechadasP.push(p.nome);
-        }
-      });
-    }
-    grupo('jogo', 'Do jogo', jogo);
-    const cats = [...new Set(acervo.map(s => FF.Assets.categoriaSprite(s)))];
-    cats.forEach(c => grupo(c, '📦 ' + (NOMES[c] || c), acervo.filter(s => FF.Assets.categoriaSprite(s) === c)));
-    grupo('lixeira', '🗑 Lixeira', FF.Assets.listaSprites(true).filter(s => FF.Assets.spriteOculto(s) && bate(s)));
+    ui.nav.render();
   }
 
   // Lixeira: sprites do acervo que o usuário não quer usar somem das listas (spritesInfo[id].oculto; um commit só

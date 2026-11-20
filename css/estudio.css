@@ -323,3 +323,41 @@ a { color: var(--ouro); }
 .es-lixo-sep { margin-left: 8px !important; }
 .es-grade-lixo { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid #ff9a6a; border-radius: 6px; background: rgba(255, 120, 80, 0.1); color: #ffd2bf; font-size: 12px; }
 .es-grade-lixo span { flex: 1; }
+
+/* navegador de sprites (seletor e aba Sprites) */
+.es-nav { display: flex; flex-direction: column; gap: 1px; padding-bottom: 4px; }
+.es-nav .es-item { display: flex; align-items: center; gap: 5px; min-height: 26px; padding-top: 2px; padding-bottom: 2px; }
+.es-nav-grupo { display: flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; color: #ffd84a; font-weight: 700; font-size: 12px; padding: 4px 4px; border-radius: 4px; }
+.es-nav-grupo.es-nav-sub { font-weight: 600; color: #ffe9a8; }
+.es-nav-grupo:hover { background: rgba(255, 216, 74, 0.08); }
+.es-nav-grupo.sel, .es-nav .es-item.sel { background: #3a2a6e; outline: 1px solid #ffd84a; }
+.es-nav-seta { flex: none; width: 12px; text-align: center; font-size: 11px; color: #ffd84a; }
+.es-nav-nome { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.es-nav-n { flex: none; color: var(--apagado, #9d8fc4); font-size: 11px; font-weight: 400; }
+.es-nav-mini { flex: none; width: 24px; height: 24px; image-rendering: pixelated; background: #0c0718; border-radius: 3px; }
+.es-nav-acoes { display: none; flex: none; gap: 2px; margin-left: 2px; }
+.es-nav-acoes button { padding: 0 4px; font-size: 11px; line-height: 18px; }
+.es-nav .es-item:hover .es-nav-acoes, .es-nav-grupo:hover .es-nav-acoes { display: flex; }
+.es-nav .es-item:hover > .es-nav-n, .es-nav-grupo.es-pasta-item:hover > .es-nav-n { display: none; }
+.es-nav-acoes .es-fav-bt.on { display: inline-block; }
+.es-nav-chk { flex: none; width: 13px; height: 13px; margin: 0; accent-color: #ffd84a; cursor: pointer; opacity: 0.35; }
+.es-nav .es-item:hover .es-nav-chk, .es-nav-chk:checked, .es-nav:has(.es-nav-chk:checked) .es-nav-chk { opacity: 1; }
+.es-nav .es-item.marcado { background: rgba(255, 216, 74, 0.12); box-shadow: inset 3px 0 0 #ffd84a; }
+.es-nav-anim { font-size: 12px; color: #e8deff; }
+.es-nav-anim .es-nav-n { max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.es-nav-bt { margin-left: 4px; padding: 0 5px; font-size: 11px; }
+.es-nav-grupo .es-nav-bt { opacity: 0; } .es-nav-grupo:hover .es-nav-bt { opacity: 1; }
+.es-nav-nova { color: #9fe3ff; font-size: 12px; }
+.es-nav-rotulo { margin-top: 4px; }
+.es-nav-inp { width: 100%; }
+.es-nav-sel { position: sticky; bottom: 0; z-index: 3; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 5px 4px; margin-top: 4px; background: rgba(20, 12, 40, 0.97); border-top: 1px solid #ffd84a; font-size: 12px; color: #ffe9a8; }
+.es-nav-sel span { flex: 1; white-space: nowrap; }
+.es-nav-sel button { padding: 2px 6px; font-size: 12px; }
+.es-nav-grupo.es-pasta-alvo, .es-nav .es-pasta-alvo { outline: 2px dashed #ffd84a; background: rgba(255, 216, 74, 0.18); }
+.es-nav .es-seletor-fonte span, .es-nav .es-nav-grupo span { flex: none; }
+.es-nav span.es-nav-nome { flex: 1 1 auto; min-width: 0; text-align: left; }
+.es-nav .es-pasta-item { padding-right: 4px; }
+/* botões do cartão em coluna à esquerda (no cartão pequeno a fila de cima batia na ☆) */
+.es-cartao .es-cartao-del { left: 3px; top: 24px; }
+.es-cartao .es-cartao-ren { left: 3px; top: 45px; }
+.es-cartao .es-cartao-ed { left: 3px; top: 66px; }
