@@ -192,6 +192,7 @@
     dir.innerHTML = '<div class="es-titulo">⚙ Propriedades</div>';
     ui.props = el('div', 'es-rolar ess-props');
     dir.appendChild(ui.props);
+    montarPainelMontagem(dir);   // 🧩 montar animação nova com quadros escolhidos da tira
 
     raiz.append(esq, cen, dir);
     E.ladoRedimensionavel(esq, 'sprites_esq', 'esq', 460);   // » expande a coluna para ler os nomes inteiros
@@ -375,6 +376,7 @@
     try { set = await FF.Assets.loadSprite(id); } catch (e) { E.aviso('❌ Não deu para abrir o sprite ' + id + ': ' + e.message, 'erro'); return; }
     st.id = id; st.set = set;
     renderSprites();
+    if (ui.mont) { ui.mont.k = 0; ui.mont.t = 0; renderMontagem(); }   // cada sprite tem a sua montagem
     const nomes = Object.keys(set.def.anims);
     if (!nomes.length) {   // sprite sem nenhuma animação (ex.: todas apagadas)
       st.nome = null; st.anim = null; st.novo = false; st.i = 0; st.sel = new Set();
@@ -1638,6 +1640,7 @@
         t.classList.add('arrastando');
       }
       if (ini.arrastando) {
+        if (ui.mont) ui.mont.caixa.classList.toggle('alvo', dentro(ui.mont.caixa, e));
         ini.dest = destinoTira(e.clientX);
         const cs = t.querySelectorAll('.ess-q');
         const ref = cs[Math.min(ini.dest, cs.length - 1)];
@@ -1654,13 +1657,152 @@
       if (!ini || e.pointerId !== ini.id) return;
       const a = ini; ini = null;
       ui.marca.hidden = true; t.classList.remove('arrastando');
-      if (a.arrastando) { if (e.type === 'pointerup' && a.dest != null) moverPara(a.dest); return; }
+      if (a.arrastando) {
+        if (ui.mont) ui.mont.caixa.classList.remove('alvo');
+        // soltou em cima do painel 🧩 Montar animação: os quadros escolhidos entram na montagem (a tira não muda)
+        if (e.type === 'pointerup' && ui.mont && dentro(ui.mont.caixa, e)) { montAdicionar(escolhidos()); return; }
+        if (e.type === 'pointerup' && a.dest != null) moverPara(a.dest);
+        return;
+      }
       if (e.type !== 'pointerup') return;
       clicarQuadro(a.k, a.ctrl || st.multi, a.shift);
     };
     t.addEventListener('pointerup', fim);
     t.addEventListener('pointercancel', fim);
   }
+  const dentro = (el, e) => { const r = el.getBoundingClientRect(); return r.width > 0 && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; };
+
+  // ------------------------------------------------------------------ 🧩 montar animação (coluna da direita)
+  // Monte uma animação nova pegando quadros de qualquer animação do sprite aberto: arraste da tira para o painel
+  // (ou escolha na tira e use "＋ Escolhidos"), reordene arrastando, tire com ✕, veja a prévia e salve com um nome.
+  // Os quadros apontam para os mesmos pedaços do atlas (nada é recortado nem gravado em imagem). Uma montagem por
+  // sprite (st.montagens[id]); fica na memória enquanto o Estúdio estiver aberto.
+  function montAtual() { st.montagens = st.montagens || {}; return (st.montagens[st.id] = st.montagens[st.id] || { frames: [], fps: 10, loop: true, sel: -1 }); }
+  function montAdicionar(ks) {
+    const fr = frames(), m = montAtual();
+    const novos = ks.filter(k => fr[k]).map(k => copia(fr[k]));
+    if (!novos.length) { E.aviso('Escolha quadros na tira de baixo (clique; Ctrl/Shift para vários).'); return; }
+    if (!m.frames.length && st.anim) m.fps = st.anim.fps || m.fps;
+    m.frames.push(...novos); m.sel = m.frames.length - 1;
+    if (ui.mont && ui.mont.fechado) { ui.mont.fechado = false; E.rascunho.gravar('mont_fechado', null); }
+    renderMontagem();
+  }
+  function montarPainelMontagem(dir) {
+    const caixa = el('div', 'ess-mont');
+    const cab = el('div', 'es-titulo ess-mont-cab');
+    const corpo = el('div', 'ess-mont-corpo');
+    caixa.append(cab, corpo);
+    dir.appendChild(caixa);
+    ui.mont = { caixa, cab, corpo, fechado: !!E.rascunho.ler('mont_fechado'), t: 0, k: 0 };
+    cab.onclick = (e) => { if (e.target.closest('button')) return; ui.mont.fechado = !ui.mont.fechado; E.rascunho.gravar('mont_fechado', ui.mont.fechado || null); renderMontagem(); };
+    renderMontagem();
+  }
+  function renderMontagem() {
+    const M = ui.mont; if (!M) return;
+    const m = st.id ? montAtual() : { frames: [] };
+    M.cab.innerHTML = '';
+    M.cab.append((M.fechado ? '▸ ' : '▾ ') + '🧩 Montar animação' + (m.frames.length ? ' (' + m.frames.length + ')' : ''));
+    M.caixa.classList.toggle('fechado', M.fechado);
+    M.corpo.innerHTML = '';
+    if (M.fechado || !st.set) return;
+    // quadros da montagem
+    const lista = el('div', 'ess-mont-lista');
+    if (!m.frames.length) lista.appendChild(el('p', 'es-dica', 'Arraste quadros da tira de baixo para cá (um ou vários escolhidos), ou escolha na tira e clique em "＋ Escolhidos". Vale qualquer animação deste sprite.'));
+    const [mw, mh] = maiores(m.frames.length ? m.frames : [[0, 0, 0, 1, 1]]);
+    let arr = null;
+    m.frames.forEach((f, i) => {
+      const q = el('div', 'ess-mont-q' + (i === m.sel ? ' sel' : ''));
+      const cv = document.createElement('canvas'); cv.width = 52; cv.height = 52;
+      mini(cv, st.set, f, mw, mh);
+      q.append(cv, el('span', 'ess-mont-n', String(i + 1)));
+      const x = E.botao('✕', (e) => { e.stopPropagation(); m.frames.splice(i, 1); m.sel = Math.min(m.sel, m.frames.length - 1); renderMontagem(); }, 'Tirar este quadro da montagem', 'ess-mont-x');
+      x.addEventListener('pointerdown', (e) => e.stopPropagation());
+      q.appendChild(x);
+      q.title = 'Quadro ' + (i + 1) + ' · arraste para mudar a ordem · duplo clique duplica';
+      q.addEventListener('dblclick', () => { m.frames.splice(i + 1, 0, copia(f)); m.sel = i + 1; renderMontagem(); });
+      // reordenar arrastando dentro do painel
+      q.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        arr = { i, x: e.clientX, y: e.clientY, mexeu: false };
+        q.setPointerCapture(e.pointerId);
+      });
+      q.addEventListener('pointermove', (e) => {
+        if (!arr) return;
+        if (!arr.mexeu && Math.abs(e.clientX - arr.x) + Math.abs(e.clientY - arr.y) > 5) { arr.mexeu = true; q.classList.add('arrastando'); }
+        if (!arr.mexeu) return;
+        const qs = [...lista.querySelectorAll('.ess-mont-q')];
+        let dest = qs.length;
+        for (let k = 0; k < qs.length; k++) { const r = qs[k].getBoundingClientRect(); if (e.clientY < r.bottom && e.clientX < r.left + r.width / 2 && e.clientY > r.top - 4) { dest = k; break; } if (e.clientY < r.top) { dest = k; break; } }
+        arr.dest = dest;
+        qs.forEach((c, k) => c.classList.toggle('antes', k === dest));
+      });
+      q.addEventListener('pointerup', () => {
+        const a = arr; arr = null; q.classList.remove('arrastando');
+        if (!a) return;
+        if (!a.mexeu) { m.sel = i; M.k = i; M.t = 0; renderMontagem(); return; }
+        if (a.dest == null) { renderMontagem(); return; }
+        const [it] = m.frames.splice(a.i, 1);
+        const d = a.dest > a.i ? a.dest - 1 : a.dest;
+        m.frames.splice(d, 0, it); m.sel = d; renderMontagem();
+      });
+      lista.appendChild(q);
+    });
+    M.corpo.appendChild(lista);
+    // botões
+    const bts = el('div', 'ess-mont-bts');
+    bts.append(
+      E.botao('＋ Escolhidos', () => montAdicionar(escolhidos()), 'Adiciona os quadros escolhidos na tira de baixo (na ordem da tira)', 'es-bt-ouro'),
+      E.botao('＋ Todos', () => montAdicionar(frames().map((_, k) => k)), 'Adiciona todos os quadros da animação aberta'),
+      E.botao('⇄', () => { m.frames.reverse(); renderMontagem(); }, 'Inverter a ordem'),
+      E.botao('Limpar', async () => { if (!m.frames.length || await confirmar('Limpar a montagem', 'Tirar os ' + m.frames.length + ' quadros da montagem?', 'Limpar', true)) { m.frames = []; m.sel = -1; renderMontagem(); } }, 'Esvaziar a montagem'));
+    M.corpo.appendChild(bts);
+    if (!m.frames.length) return;
+    // prévia + fps/loop
+    const pre = el('div', 'ess-mont-previa');
+    const cv = document.createElement('canvas'); cv.width = 150; cv.height = 150;
+    M.cv = cv;
+    const opc = el('div', 'ess-mont-opc');
+    opc.append(E.campo('numero', 'fps', m.fps, (v) => { m.fps = Math.max(1, Math.min(60, v || 10)); }, { passo: 1, min: 1, max: 60 }),
+      E.campo('check', 'Repetir (loop)', m.loop, (v) => { m.loop = v; }));
+    pre.append(cv, opc);
+    M.corpo.appendChild(pre);
+    // salvar
+    const sv = el('div', 'ess-mont-salvar');
+    const nome = document.createElement('input'); nome.placeholder = 'Nome da animação nova'; nome.value = m.nome || '';
+    nome.oninput = () => { m.nome = nome.value; };
+    nome.onkeydown = (e) => { e.stopPropagation(); if (e.key === 'Enter') salvarM(); };
+    const salvarM = async () => {
+      const n = (nome.value || '').trim().replace(/\s+/g, '_');
+      if (!n) { E.aviso('Dê um nome para a animação.', 'erro'); nome.focus(); return; }
+      if (st.set.def.anims[n] && !(await confirmar('Já existe', '"' + n + '" já existe neste sprite. Substituir?', 'Substituir', true))) return;
+      A().salvarAnim(st.id, n, { fps: m.fps, loop: !!m.loop, repeatTo: 0, pingpong: false, frames: m.frames.map(f => copia(f)) });
+      E.aviso('💾 Animação "' + n + '" criada com ' + m.frames.length + ' quadros.' + (FF.Edicoes.conectado() ? ' Enviando…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+      E.renderSync && E.renderSync();
+      m.nome = '';
+      renderSprites(); renderAnims(); renderMontagem();
+    };
+    sv.append(nome, E.botao('💾 Salvar como animação nova', salvarM, 'Grava a montagem como uma animação nova deste sprite (vale no jogo)', 'es-bt-ouro'));
+    M.corpo.appendChild(sv);
+    desenharPreviaMont(0);
+  }
+  // prévia da montagem: os quadros alinhados pela origem (como no jogo), animando no fps escolhido
+  function desenharPreviaMont(dt) {
+    const M = ui.mont; if (!M || M.fechado || !M.cv || !M.cv.isConnected || !st.id) return;
+    const m = montAtual(), fr = m.frames; if (!fr.length) return;
+    M.t += dt;
+    const passo = 1 / (m.fps || 10);
+    while (M.t >= passo * ((fr[M.k] && fr[M.k][7]) || 1)) { M.t -= passo * ((fr[M.k] && fr[M.k][7]) || 1); M.k++; if (M.k >= fr.length) M.k = m.loop ? 0 : fr.length - 1; if (!m.loop && M.k === fr.length - 1) { M.t = 0; break; } }
+    if (M.k >= fr.length) M.k = 0;
+    let x0 = 0, x1 = 1, y0 = 0, y1 = 1;
+    fr.forEach(f => { x0 = Math.min(x0, -f[5]); x1 = Math.max(x1, f[3] - f[5]); y0 = Math.min(y0, -f[6]); y1 = Math.max(y1, f[4] - f[6]); });
+    const cv = M.cv, g = cv.getContext('2d'), s = Math.min((cv.width - 8) / (x1 - x0), (cv.height - 8) / (y1 - y0), 4);
+    g.imageSmoothingEnabled = false; g.clearRect(0, 0, cv.width, cv.height);
+    const f = fr[M.k], ox = (cv.width - (x1 - x0) * s) / 2 - x0 * s, oy = (cv.height - (y1 - y0) * s) / 2 - y0 * s;
+    g.drawImage(st.set.images[f[0]], f[1], f[2], f[3], f[4], Math.round(ox - f[5] * s), Math.round(oy - f[6] * s), f[3] * s, f[4] * s);
+    g.fillStyle = 'rgba(255,216,74,0.8)'; g.fillRect(Math.round(ox) - 3, Math.round(oy), 7, 1); g.fillRect(Math.round(ox), Math.round(oy) - 3, 1, 7);
+    M.corpo.querySelectorAll('.ess-mont-q').forEach((q, i) => q.classList.toggle('tocando', i === M.k));
+  }
+
   function destinoTira(clientX) {
     const cs = [...ui.tira.querySelectorAll('.ess-q')];
     for (let k = 0; k < cs.length; k++) { const r = cs[k].getBoundingClientRect(); if (clientX < r.left + r.width / 2) return k; }
@@ -1712,7 +1854,7 @@
     montar,
     mostrar() { ajustarCanvas(); if (st.set) { renderSprites(); renderAnims(); renderTitulo(); } },
     esconder() { pausar(); },
-    quadro(dt) { avancar(dt); desenharPalco(); },
+    quadro(dt) { avancar(dt); desenharPalco(); desenharPreviaMont(dt); },
     teclado,
     antesDeSair() { gravarRascunho(); },
   };
