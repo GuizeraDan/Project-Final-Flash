@@ -469,9 +469,10 @@ FF.HUD = {
       const k = Math.min(1, (FF.Clock.t - bn.start) / 0.15);
       ctx.save();
       ctx.fillStyle = 'rgba(0,0,0,' + 0.45 * k + ')';
-      ctx.fillRect(0, 128, FF.W, 54);
+      const yb = 248;   // abaixo dos painéis do HUD (3 por lado ocupam até ~235 na tela de 720)
+      ctx.fillRect(0, yb, FF.W, 54);
       ctx.restore();
-      this.text(ctx, bn.text, FF.W / 2, 155, 34 * (0.7 + 0.3 * k), '#ffe25a', 'center');
+      this.text(ctx, bn.text, FF.W / 2, yb + 27, 34 * (0.7 + 0.3 * k), '#ffe25a', 'center');
     }
     if (FF.Tutorial && b.def && b.def.tutorial) FF.Tutorial.desenharDica(ctx, b);   // luta de treino: dicas
   },

@@ -25,7 +25,7 @@ window.FF = window.FF || {};
       this.barra = E.el('div', 'es-barra');
       const wrap = E.el('div', 'es-palco-wrap');
       this.cv = document.createElement('canvas');
-      this.cv.width = 1084; this.cv.height = 580;
+      this.cv.width = FF.BW; this.cv.height = FF.H;
       this.infoPalco = E.el('div', 'es-palco-info');
       wrap.append(this.cv, this.infoPalco);
       const tl = E.el('div');
@@ -40,7 +40,7 @@ window.FF = window.FF || {};
       el.appendChild(dir);
       E.ladoRedimensionavel(dir, 'golpes_dir', 'dir', 460);
 
-      FF.W = 1084;
+      FF.W = FF.BW;
       this.palco = new FF.EstudioPalco(this.cv);
       this.tl = new FF.EstudioLinha(tl, this);
       this.historico = new E.Historico(() => this.doc, (d) => { this.doc = d; if (!this.achar(this.sel)) this.sel = null; this.tudo(); this.salvarRascunho(); });
@@ -78,7 +78,7 @@ window.FF = window.FF || {};
       this.novo();
     },
 
-    mostrar() { FF.W = 1084; if (this.doc) this.redesenharTudo(); },
+    mostrar() { FF.W = FF.BW; if (this.doc) this.redesenharTudo(); },
     esconder() { this.pausar(); },
 
     async carregarDefs() {
@@ -863,7 +863,7 @@ window.FF = window.FF || {};
       if ((c.tipo === 'teleporte' || c.tipo === 'mover') && c.para === 'x') {
         const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
         if (f) {
-          const dx = c.x != null ? c.x + (FF.W - 1084) / 2 : f.homeX, dy = f.groundY + (c.y || 0);
+          const dx = c.x != null ? c.x + FF.legado().x : f.homeX, dy = f.groundY + (c.y || 0);
           const sc = f.scale * (c.escala || 1), raio = 34 * sc, cy = dy - 30 * sc;
           L.push({ k: 'destino', x: dx, y: cy, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover', animMov: c.animMov, esc: c.escala || 1, rot: (c.rot || 0) * f.dir, raio },
             { k: 'escala', x: dx + raio * 0.75, y: cy + raio * 0.75, cor: '#ffd84a', cx: dx, cy },
@@ -1001,8 +1001,8 @@ window.FF = window.FF || {};
           case 'mover': case 'acerto': { const d = c.em === 'tela' ? 1 : dir; c.dx = R((o.dx || 0) + dx * d); c.dy = R((o.dy || 0) + dy); break; }
           case 'lutador': { const dd = r.f ? r.f.dir : dir; c.dx = R((o.dx || 0) + dx * dd); c.dy = R((o.dy || 0) + dy); break; }
           case 'destino': {
-            const x0 = o.x != null ? o.x : h.f.homeX - (FF.W - 1084) / 2;
-            c.x = Math.max(0, Math.min(1084, R(x0 + dx)));
+            const lx = FF.legado().x, x0 = o.x != null ? o.x : h.f.homeX - lx;
+            c.x = Math.max(-lx, Math.min(1084 + lx, R(x0 + dx)));   // x na tela antiga (1084), que fica no miolo da de 1280
             c.y = Math.min(200, R((o.y || 0) + dy));   // pode descer um pouco abaixo do chão (desenhos deitados/girados)
             if (!c.y) delete c.y;
             break;

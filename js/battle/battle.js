@@ -2,7 +2,12 @@
 // golpes críticos, efeitos, projéteis e desenho da cena.
 window.FF = window.FF || {};
 
-FF.W = 1084;
+// TELA LÓGICA: 1280×720 (16:9). Telas mais largas ganham largura (até 1600, main.js); a altura é sempre 720.
+// Conteúdo montado na tela antiga de 1084×580 (posições das batalhas, pontos de tela dos golpes) fica centralizado:
+// FF.legado() = deslocamento desse conteúdo antigo dentro da tela atual.
+FF.BW = 1280;
+FF.W = 1280;
+FF.legado = () => ({ x: (FF.W - 1084) / 2, y: (FF.H - 580) / 2 });
 // versão mostrada no título e na batalha (aviso de pré-alpha)
 FF.VERSAO = { fase: 'PRÉ-ALPHA', build: '0.0.1' };
 // CAMPO DE VISÃO (Opções / pausa; FF.Save "fov"): multiplica o tamanho de tudo na batalha (lutadores, efeitos, raios,
@@ -44,7 +49,7 @@ FF.Dificuldade = {
   },
 };
 if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.Dificuldade.ligar());
-FF.H = 580;
+FF.H = 720;
 
 FF.Battle = class {
   constructor(def, stage, ui) {
@@ -54,7 +59,7 @@ FF.Battle = class {
     // campo de visão (não vale no palco do Estúdio, que monta os golpes no tamanho original)
     this.fov = def.id === 'estudio' ? 1 : FF.FOV.valor();
     this.scale = (def.escala || 2.5) * this.fov;
-    this.groundY = stage.chaoY || 470;
+    this.groundY = (stage.chaoY || 470) + (FF.H - 580);   // chaoY dos cenários é da tela antiga (580): mesma distância até a base
     // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
     this.persp = def.perspectiva !== false && !def.semPerspectiva;   // diagonal é o padrão do jogo (o palco do Estúdio escolhe)
     this.heroes = [];
@@ -1435,17 +1440,17 @@ FF.Battle = class {
   // Cada lado vira uma diagonal de fileiras: quem está no fundo fica mais alto, menor, mais perto do meio e
   // um pouco apagado (névoa); na frente, mais baixo e maior. Sombras em elipse no chão, como no DS.
   // Quem ataca "anda em profundidade" até a fileira do alvo e volta para a sua no retorno.
-  get PERSP() { return { horizonte: 292, fundo: 388, frente: 536 }; }
+  get PERSP() { return { horizonte: 330, fundo: 455, frente: 660 }; }   // tela de 720 (antes 292/388/536 em 580)
   profundidades(n) { return n === 1 ? [0.45] : n === 2 ? [0.2, 0.85] : [0.5, 1, 0]; }
   montarPerspectiva() {
-    const offX = (FF.W - 1084) / 2;
+    const offX = (FF.W - FF.BW) / 2;
     const lado = (lista, heroi) => {
       const ds = this.profundidades(lista.length);
       lista.forEach((f, i) => {
         const d = ds[i] != null ? ds[i] : 0.5;
         f.prof = d;
         f.latX = f.homeX; f.latG = f.groundY;   // posição na visão lateral (os golpes foram montados nela)
-        f.homeX = Math.round(offX + (heroi ? 190 + 175 * d : 1084 - 190 - 175 * d));
+        f.homeX = Math.round(offX + (heroi ? 210 + 290 * d : FF.BW - 210 - 290 * d));   // cada time ocupa ~290 px (antes 175)
         f.homeG = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d);
         f.homeS = this.scale * (1.14 - 0.36 * d);
         f.x = f.homeX; f.groundY = f.homeG; f.y = f.homeG; f.scale = f.homeS;

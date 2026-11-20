@@ -8,7 +8,7 @@
 //      empurrao? (desliza para trás), voltarNormal? (fica parado no fim)}
 //     {tipo:"mover", d, para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, suave?, arco? (px, curva para cima), girar? (voltas)}
 //     {tipo:"teleporte", para: "alvo"|"casa"|"frente"|"x", dist?, x?, y?, animMov?, escala?, rot?}   (mover também aceita escala/rot: tamanho e giro na chegada)
-//     para "x" = qualquer ponto da tela: x em pixels da tela (0 a 1084), y = altura em relação ao chão (negativo = no ar)
+//     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
@@ -187,7 +187,7 @@ FF.Linha = {
   destino(b, f, outro, c) {
     const dist = (c.dist != null ? c.dist : 22) * f.scale;
     if (c.para === 'casa') return f.homeX;
-    if (c.para === 'x') return c.x != null ? c.x + (FF.W - 1084) / 2 : f.x;
+    if (c.para === 'x') return c.x != null ? c.x + FF.legado().x : f.x;
     if (c.para === 'frente') return f.x + f.dir * dist;
     if (c.para === 'tras') return f.x - f.dir * dist;
     return outro ? outro.x - f.dir * dist : f.x;
@@ -369,7 +369,7 @@ FF.Linha = {
 
   // pontos de referência usados por efeitos (e pelo Estúdio para posicionar)
   ponto(b, actor, target, em) {
-    if (em === 'tela') return { x: (FF.W - 1084) / 2, y: 0 };
+    if (em === 'tela') return FF.legado();   // pontos de tela dos golpes: tela antiga (1084×580) centralizada
     if (em === 'alvo' && target) return target.peito();
     if (em === 'alvoPes' && target) return { x: target.x, y: target.groundY };
     if (em === 'disparo' && actor) return actor.pontoDisparo();

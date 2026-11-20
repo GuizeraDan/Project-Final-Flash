@@ -27,7 +27,7 @@ FF.Cena = {
   },
 
   ancora(b, actor, target, c) {
-    if (c.ancora === 'tela') return { x: 0, y: 0, dir: 1 };
+    if (c.ancora === 'tela') { const l = FF.legado(); return { x: l.x, y: l.y, dir: 1 }; }   // tela antiga (1084×580) centralizada
     if (c.ancora === 'alvo' && target) { const p = target.peito(); return { x: p.x, y: p.y, dir: actor ? actor.dir : 1 }; }
     if (actor) return { x: actor.base ? actor.base.x : actor.homeX, y: actor.groundY, dir: actor.dir };
     return { x: FF.W / 2, y: b.groundY, dir: 1 };
@@ -56,7 +56,7 @@ FF.Cena = {
     const k = c.px === 'sprite' ? sc : (c.ancora === 'tela' ? 1 : (b && b.fov) || 1);
     let px = an.x + e.x * k * an.dir, py = an.y + e.y * k;
     // perspectiva diagonal: camadas presas em quem solta / na tela acompanham a linha até o alvo (FF.Linha.mapaPersp)
-    if (b && b.persp && c.ancora !== 'alvo' && FF.Linha && !(c.ancora === 'tela' && py < 140)) ({ x: px, y: py } = FF.Linha.mapaPersp(b, actor, target, px, py, c.ancora === 'tela'));
+    if (b && b.persp && c.ancora !== 'alvo' && FF.Linha && !(c.ancora === 'tela' && py - FF.legado().y < 140)) ({ x: px, y: py } = FF.Linha.mapaPersp(b, actor, target, px, py, c.ancora === 'tela'));
     return { set, f, x: px, y: py, escala: e.escala * sc * (set.def.escala || 1), alpha: Math.max(0, Math.min(1, e.alpha)), rot: (e.rot || 0) * an.dir, flip };
   },
 

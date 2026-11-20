@@ -2,8 +2,8 @@
 html, body { margin: 0; height: 100%; background: #0c0a14; overflow: hidden; }
 body { display: flex; align-items: center; justify-content: center; font-family: "Trebuchet MS", Arial, sans-serif; color: #fff; }
 
-/* área do jogo mantém 1084x580 e escala para caber na tela */
-#jogo { position: relative; width: min(100vw, calc(100vh * var(--asp, 1.869))); width: min(100vw, calc(100dvh * var(--asp, 1.869))); aspect-ratio: var(--asp, 1.869); container-type: inline-size; }
+/* área do jogo: 1280x720 (16:9; mais largo em telas compridas, main.js) e escala para caber na tela */
+#jogo { position: relative; width: min(100vw, calc(100vh * var(--asp, 1.7778))); width: min(100vw, calc(100dvh * var(--asp, 1.7778))); aspect-ratio: var(--asp, 1.7778); container-type: inline-size; }
 #tela { width: 100%; height: 100%; display: block; image-rendering: pixelated; touch-action: none; }
 
 

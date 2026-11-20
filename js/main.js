@@ -209,29 +209,29 @@ FF.UI = {
 };
 
 // Ajusta a largura lógica do jogo à proporção da tela (celulares compridos ganham campo mais largo
-// em vez de faixas pretas). Altura fixa em 580; largura entre 1084 e 1300.
+// em vez de faixas pretas). Altura fixa em FF.H (720); largura entre FF.BW (1280, 16:9) e 1600.
 FF.ajustarTela = function () {
   const canvas = document.getElementById('tela');
-  const asp = Math.max(1084 / 580, Math.min(1300 / 580, window.innerWidth / Math.max(1, window.innerHeight)));
-  FF.W = Math.round(580 * asp);
-  // resolução interna maior que a lógica (FF.W × 580): o jogo continua desenhando em 1084×580, mas a tela
+  const asp = Math.max(FF.BW / FF.H, Math.min(1600 / FF.H, window.innerWidth / Math.max(1, window.innerHeight)));
+  FF.W = Math.round(FF.H * asp);
+  // resolução interna maior que a lógica (FF.W × FF.H): o jogo continua desenhando em 1280×720, mas a tela
   // tem N× mais pixels, então o HUD, os textos e a arte em alta não ficam borrados ao ampliar
   const dpr = window.devicePixelRatio || 1;
-  let R = Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / 580));
+  let R = Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / FF.H));
   R = Math.max(1, Math.min(2, R));   // 3× pesava demais em telas grandes (2560×1440 = 5 milhões de pixels por quadro)
-  while (R > 1 && FF.W * R * 580 * R > 9e6) R--;   // limite de pixels (aparelhos fracos)
+  while (R > 1 && FF.W * R * FF.H * R > 9e6) R--;   // limite de pixels (aparelhos fracos)
   FF.RES = R;
   canvas.width = FF.W * R;
-  canvas.height = 580 * R;
-  document.getElementById('jogo').style.setProperty('--asp', (FF.W / 580).toFixed(4));
+  canvas.height = FF.H * R;
+  document.getElementById('jogo').style.setProperty('--asp', (FF.W / FF.H).toFixed(4));
 };
 // girar o celular / mudar o tamanho da janela: recalcula a resolução (o tamanho lógico só muda ao abrir a luta)
 window.addEventListener('resize', () => {
   const c = document.getElementById('tela'); if (!c || !FF.W) return;
   const dpr = window.devicePixelRatio || 1;
-  let R = Math.max(1, Math.min(3, Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / 580))));
-  while (R > 1 && FF.W * R * 580 * R > 9e6) R--;
-  if (R !== FF.RES) { FF.RES = R; c.width = FF.W * R; c.height = 580 * R; }
+  let R = Math.max(1, Math.min(3, Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / FF.H))));
+  while (R > 1 && FF.W * R * FF.H * R > 9e6) R--;
+  if (R !== FF.RES) { FF.RES = R; c.width = FF.W * R; c.height = FF.H * R; }
 });
 
 FF.start = async function (escolhida) {
@@ -292,7 +292,7 @@ FF.start = async function (escolhida) {
     last = now;
     const dt = FF.Clock.tick(real);
     battle.update(dt);
-    ctx.setTransform(FF.RES || 1, 0, 0, FF.RES || 1, 0, 0);   // desenha em coordenadas lógicas (1084×580)
+    ctx.setTransform(FF.RES || 1, 0, 0, FF.RES || 1, 0, 0);   // desenha em coordenadas lógicas (FF.W×720)
     ctx.imageSmoothingEnabled = false;
     battle.draw(ctx);
     requestAnimationFrame(frame);

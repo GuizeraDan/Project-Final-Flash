@@ -29,7 +29,7 @@ const estiloMenu = opt('menu', null);   // --menu radial|trilho|dock: testa os e
 (async () => {
   const exe = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(p => require('fs').existsSync(p));
   const b = await chromium.launch({ executablePath: exe, args: ['--autoplay-policy=no-user-gesture-required'] });
-  const p = await b.newPage({ viewport: { width: 1084, height: 580 } });
+  const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
   const erros = [];
   p.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') erros.push(m.type() + ': ' + m.text()); });
   p.on('pageerror', e => erros.push('PAGEERROR: ' + e.message));
