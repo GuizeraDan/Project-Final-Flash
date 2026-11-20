@@ -48,7 +48,7 @@ window.FF = window.FF || {};
       cats = ORDEM_CAT.filter(c => porCat[c]).concat(Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c)));
     };
     recalcular();
-    let ordemLado = E.rascunho.ler('seletor_ordem_lado') || 'padrao', ordemGrade = E.rascunho.ler('seletor_ordem_grade') || 'padrao';
+    let ordemLado = E.rascunho.ler('nav_ordem') || 'padrao', ordemGrade = E.rascunho.ler('seletor_ordem_grade') || 'padrao';
     const ordenarIds = (l) => E.ordenar(l, ordemLado, (id) => NM[id] || id, (id) => E.qtdAnimsSprite(id));
 
     let fonte = o.inicio || (o.atual && o.atual.sprite) || E.rascunho.ler('seletor_fonte') || 'efeitos';
@@ -75,8 +75,8 @@ window.FF = window.FF || {};
     const selOrdem = E.seletorOrdem('seletor_ordem_grade', 'quadros', (v) => { ordemGrade = v; render(); });
     selOrdem.title = 'Ordem dos cartões';
     // 🙈 esconder o que já está em alguma pasta (vale fora das pastas/favoritos): a grade vira "o que falta organizar"
-    let esconderPastas = !!E.rascunho.ler('seletor_esconder_pastas');
-    const btEsc = E.botao('', () => { esconderPastas = !esconderPastas; E.rascunho.gravar('seletor_esconder_pastas', esconderPastas || null); pintarEsc(); render(); },
+    let esconderPastas = !!E.rascunho.ler('nav_esconder');   // o mesmo da aba Sprites
+    const btEsc = E.botao('', () => { esconderPastas = !esconderPastas; E.rascunho.gravar('nav_esconder', esconderPastas || null); pintarEsc(); render(); },
       'Esconder as animações que já estão em alguma das suas pastas (enquanto navega pelos sprites e pelo acervo). Bom para ver o que falta organizar.');
     const pintarEsc = () => { btEsc.textContent = esconderPastas ? '🙈 Escondendo o que está em pastas' : '👁 Mostrando tudo'; btEsc.classList.toggle('es-bt-ouro', esconderPastas); };
     pintarEsc();
@@ -197,7 +197,9 @@ window.FF = window.FF || {};
       });
     }, { rootMargin: '150px' });
     const fecharOrig = m.fechar;
-    m.fechar = function () { obs.disconnect(); return fecharOrig.apply(this, arguments); };
+    // mudou algo nas edições (aqui ou na aba Sprites): coluna e grade se atualizam sozinhas
+    const pararDeOuvir = E.aoMudarEdicoes(() => { if (!c.isConnected) return; const rol = grade.scrollTop; montarLado(); render().then(() => { grade.scrollTop = rol; }); }, 250);
+    m.fechar = function () { obs.disconnect(); pararDeOuvir(); return fecharOrig.apply(this, arguments); };
 
     // "12 quadros · 0,8 s · 120×96" (duração pelo fps e pela duração de cada quadro; tamanho = maior quadro)
     const infoAnim = (s, a) => {
@@ -300,7 +302,7 @@ window.FF = window.FF || {};
     lado.innerHTML = '';
     recalcular();
     const cabLado = E.el('div', 'es-sub es-seletor-ordem-lado');
-    cabLado.append(E.el('span', null, 'Mostrar'), E.seletorOrdem('seletor_ordem_lado', 'animações', (v) => { ordemLado = v; montarLado(); }));
+    cabLado.append(E.el('span', null, 'Mostrar'), E.seletorOrdem('nav_ordem', 'animações', (v) => { ordemLado = v; montarLado(); }));
     lado.appendChild(cabLado);
     bt('efeitos', '✺ Efeitos (todos)', null);
     // ⭐ favoritos do usuário, separados pelo tipo que ele escolheu

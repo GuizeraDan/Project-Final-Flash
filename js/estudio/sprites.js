@@ -93,11 +93,14 @@
     ui.sprites = el('div', 'es-lista ess-sprites');
     FF.autoRolarArraste(ui.sprites);
     // ↕ ordenar a lista de sprites e a de animações (lembrado no aparelho)
-    ui.ordemSprites = E.seletorOrdem('sprites_ordem', 'animações', () => renderSprites());
+    ui.ordemSprites = E.seletorOrdem('nav_ordem', 'animações', () => renderSprites());   // a mesma ordem do seletor de sprites
     ui.ordemAnims = E.seletorOrdem('sprites_ordem_anims', 'quadros', () => renderAnims());
     const tA = el('div', 'es-titulo', '🎞 Animações <span class="ess-n"></span>');
     ui.nAnims = tA.querySelector('.ess-n');
     tA.appendChild(E.botao('＋ Nova', () => novaAnimacao(), 'Nova animação (vazia ou com os quadros escolhidos)', 'es-mais'));
+    // 🙈 o mesmo filtro do seletor de sprites: esconder as animações que já estão em alguma pasta
+    ui.btEsc = E.botao('', () => { E.rascunho.gravar('nav_esconder', E.rascunho.ler('nav_esconder') ? null : true); pintarEscA(); renderAnims(); }, 'Esconder as animações que já estão em alguma das suas pastas (o mesmo botão do seletor de sprites)', 'ess-esc');
+    tA.insertBefore(ui.btEsc, tA.lastChild);
     ui.buscaAnim = document.createElement('input');
     ui.buscaAnim.type = 'search'; ui.buscaAnim.placeholder = 'Buscar animação…'; ui.buscaAnim.className = 'ess-busca';
     ui.buscaAnim.oninput = () => { st.buscaAnim = ui.buscaAnim.value; renderAnims(); };
@@ -194,6 +197,9 @@
     ui.props = el('div', 'es-rolar ess-props');
     dir.appendChild(ui.props);
     montarPainelMontagem(dir);   // 🧩 montar animação nova com quadros escolhidos da tira
+    // mudou algo nas edições (no seletor de sprites, por exemplo): a lista de sprites e a de animações acompanham
+    E.aoMudarEdicoes(() => { if (raiz.hidden || !raiz.isConnected || E.digitando({ target: document.activeElement })) return; const r = ui.sprites.scrollTop; renderSprites(); ui.sprites.scrollTop = r; renderAnims(); }, 300);
+    FF.Assets.animsAcervo().then(() => { if (st.buscaSprite) renderSprites(); });   // nomes das animações para a busca
 
     raiz.append(esq, cen, dir);
     E.ladoRedimensionavel(esq, 'sprites_esq', 'esq', 460);   // » expande a coluna para ler os nomes inteiros
@@ -241,6 +247,16 @@
     ui.sprites.innerHTML = '';
     if (!st.marcS) st.marcS = new Set();
     const item = (s, pai, naLixeira) => {
+      if (s[0] === '#') {   // animação dentro de uma pasta ("#sprite#anim"): clicar abre o sprite já nela
+        const [, spr, an] = s.split('#');
+        const it = el('div', 'es-item ess-anim-pasta' + (spr === st.id && an === st.nome ? ' sel' : ''));
+        it.dataset.sprite = spr; it.dataset.anim = an;
+        const n = el('span', 'ess-spr-nome'); n.textContent = '🎞 ' + FF.Assets.nomeAnim(spr, an); n.title = an + ' · ' + FF.Assets.nomeSprite(spr) + ' (' + spr + ')';
+        it.append(n, el('small', null, FF.Assets.nomeSprite(spr)));
+        it.onclick = () => abrirSprite(spr, an);
+        pai.appendChild(it);
+        return;
+      }
       const it = el('div', 'es-item' + (s === st.id ? ' sel' : '') + (naLixeira ? ' ess-na-lixeira' : '') + (st.marcS.has(s) ? ' marcado' : ''));
       it.dataset.sprite = s;
       if (!naLixeira) {   // caixinha: marcar vários (Shift = intervalo)
@@ -280,7 +296,8 @@
       it.onclick = () => abrirSprite(s);
       pai.appendChild(it);
     };
-    const bate = (s) => !f || s.toLowerCase().includes(f) || FF.Assets.nomeSprite(s).toLowerCase().includes(f);
+    // busca: nome do sprite ou de qualquer animação dele (como no seletor de sprites)
+    const bate = (s) => !f || s.toLowerCase().includes(f) || FF.Assets.nomeSprite(s).toLowerCase().includes(f) || E.animsDoSprite(s).some(a => a.toLowerCase().includes(f) || FF.Assets.nomeAnim(s, a).toLowerCase().includes(f));
     const ordem = ui.ordemSprites ? ui.ordemSprites.value : 'padrao';
     const ord = (l) => E.ordenar(l, ordem, (s) => FF.Assets.doAcervo(s) ? FF.Assets.nomeSprite(s) : s, (s) => E.qtdAnimsSprite(s));
     const lista = FF.Assets.listaSprites().filter(bate);
@@ -305,7 +322,7 @@
     }
     const grupo = (chave, titulo, ids, sub, pasta) => {
       if (!ids.length && !pasta) return;
-      const padraoAberto = chave === 'jogo' || chave.startsWith('fav:');   // do jogo e favoritos começam abertos
+      const padraoAberto = chave === 'jogo' || (chave.startsWith('fav:') && !chave.startsWith('fav:pasta:'));   // do jogo e favoritos começam abertos; pastas começam fechadas (podem ter muitas animações)
       const aberta = !!f || padraoAberto ? !abertas.has('!' + chave) : abertas.has(chave);
       const cab = el('div', 'ess-cat' + (sub ? ' ess-cat-sub' : ''), (aberta ? '▾ ' : '▸ ') + titulo + ' (' + ids.length + ')');
       cab.onclick = () => {
@@ -346,9 +363,11 @@
       const fechadasP = [];
       if (!fechada) arv.forEach(p => {
         if (fechadasP.some(f => p.nome.startsWith(f + '/'))) return;
-        const ids = ord([...new Set(FF.Favoritos.itensPasta(p.nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
+        const itP = FF.Favoritos.itensPasta(p.nome);
+        const ids = ord([...new Set(itP.filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
+        const anims = itP.filter(v => v.anim && !FF.Assets.spriteOculto(v.sprite) && (!f || bate(v.sprite) || v.anim.toLowerCase().includes(f)));
         const antes = ui.sprites.children.length;
-        grupo('fav:pasta:' + p.nome, '📁 ' + p.folha, ids, true, p.nome);
+        grupo('fav:pasta:' + p.nome, '📁 ' + p.folha, ids.concat(anims.map(v => '#' + v.sprite + '#' + v.anim)), true, p.nome);
         const cab = ui.sprites.children[antes];
         if (cab) {
           cab.style.paddingLeft = (14 + p.nivel * 14) + 'px';
@@ -405,8 +424,10 @@
     abrirAnim(nome && set.def.anims[nome] ? nome : nomes[0], { forcar: true });
   }
 
+  function pintarEscA() { if (ui.btEsc) { const on = !!E.rascunho.ler('nav_esconder'); ui.btEsc.textContent = on ? '🙈' : '👁'; ui.btEsc.classList.toggle('es-bt-ouro', on); } }
   function renderAnims() {
     ui.anims.innerHTML = '';
+    pintarEscA();
     if (!st.set) return;
     const f = st.buscaAnim.toLowerCase();
     const nomes = Object.keys(st.set.def.anims);
@@ -420,7 +441,9 @@
       ui.anims.appendChild(v);
     }
     const ordA = ui.ordemAnims ? ui.ordemAnims.value : 'padrao';
-    const listaVer = E.ordenar(lista.filter(n => !f || n.toLowerCase().includes(f) || FF.Assets.nomeAnim(st.id, n).toLowerCase().includes(f)), ordA,
+    const escP = !!E.rascunho.ler('nav_esconder') && FF.Favoritos ? new Set(FF.Favoritos.nomesPastas().flatMap(n => FF.Favoritos.itensPasta(n).filter(v => v.sprite === st.id).map(v => v.anim || '*'))) : null;
+    if (escP && escP.has('*')) escP.clear();   // o sprite inteiro está numa pasta: não esconde as animações dele aqui
+    const listaVer = E.ordenar(lista.filter(n => (!escP || n === st.nome || !escP.has(n)) && (!f || n.toLowerCase().includes(f) || FF.Assets.nomeAnim(st.id, n).toLowerCase().includes(f))), ordA,
       (n) => FF.Assets.nomeAnim(st.id, n), (n) => { const a = st.set.def.anims[n]; return a ? a.frames.length : 0; });
     listaVer.forEach(n => {
       const novoAqui = st.novo && n === st.nome && !st.set.def.anims[n];

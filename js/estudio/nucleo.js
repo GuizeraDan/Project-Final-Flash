@@ -118,6 +118,21 @@ FF.Estudio = {
     requestAnimationFrame(() => aplicar(this.rascunho.ler(ch) || 0));
   },
 
+  // avisa quando as edições mudam (pastas, favoritos, Lixeira, nomes…) — as listas de sprites se redesenham juntas.
+  // devolve uma função para parar de ouvir. A espera junta vários cliques seguidos num redesenho só.
+  aoMudarEdicoes(fn, ms = 120) {
+    let t = null;
+    const f = () => { clearTimeout(t); t = setTimeout(() => { try { fn(); } catch (e) { console.error(e); } }, ms); };
+    FF.Edicoes.ouvintes.push(f);
+    return () => { const i = FF.Edicoes.ouvintes.indexOf(f); if (i >= 0) FF.Edicoes.ouvintes.splice(i, 1); clearTimeout(t); };
+  },
+  // nomes das animações de todos os sprites (acervo pelo índice; jogo pelo que está carregado) para a busca
+  animsDoSprite(id, idx) {
+    const s = FF.Assets.sprites[id];
+    if (s) return Object.keys(s.def.anims);
+    return Object.keys((idx || window.FF_ACERVO_ANIMS || {})[id] || {});
+  },
+
   // ordenar listas (sprites, animações): <select> lembrado no aparelho + função que ordena uma cópia
   //   oQue = 'animações' | 'quadros' (texto das opções de quantidade)
   seletorOrdem(chave, oQue, aoMudar) {

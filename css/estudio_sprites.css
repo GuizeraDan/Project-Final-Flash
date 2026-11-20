@@ -177,3 +177,6 @@
 .ess-mont-opc .es-campo { margin: 0; }
 .ess-mont-opc .es-campo .es-rot { width: auto; flex: 1; }
 .ess-mont-opc .es-campo input[type=number], .ess-mont-opc .es-campo input:not([type]) { width: 58px; flex: none; }
+.ess-sprites .ess-anim-pasta { padding-left: 22px; font-size: 12px; }
+.ess-sprites .ess-anim-pasta small { max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--apagado); }
+.ess-esc { padding: 1px 6px; margin-left: auto; }
