@@ -5,6 +5,8 @@
 //   favSons["acervo/swz/explosao_1"] = "explosao"      sons (FF.FavSons), separados por categoria
 //   favoritosPastas["Goku"] = ["gokubase#Kamehameha", "fx_extra"]   pastas criadas pelo usuário (nome livre;
 //   favSonsPastas["Explosões grandes"] = ["acervo/swz/explosao_1"]    um item pode estar em várias pastas)
+//   SUBPASTAS: o nome da pasta é o caminho, separado por "/" ("Android 18/Golpes"); a árvore é montada pelos nomes
+//   (arvorePastas), e abrir uma pasta mostra os itens dela e das subpastas (itensPasta(nome, true)).
 //   spritesInfo[id].pasta = "Goku"   sprite inteiro MOVIDO para a pasta: sai do lugar dele nas listas (acervo/do jogo)
 //                                    e passa a morar só ali (seletor de sprites e aba Sprites). Só sprites (seção favoritos).
 window.FF = window.FF || {};
@@ -19,10 +21,29 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
   marcar(sprite, anim, tipo) { FF.Edicoes.setDepois([this.secao, this.chave(sprite, anim)], tipo || null); },
   // ---- pastas do usuário ----
   pastas() { return (FF.Edicoes && FF.Edicoes.dados()[this.secao + 'Pastas']) || {}; },
-  nomesPastas() { return Object.keys(this.pastas()).sort((a, b) => a.localeCompare(b, 'pt')); },
-  itensPasta(nome) {
-    const l = (this.pastas()[nome] || []).map(k => { const i = k.indexOf('#'); return { sprite: i < 0 ? k : k.slice(0, i), anim: i < 0 ? null : k.slice(i + 1), tipo: this.todos()[k] || null }; });
-    this.movidos(nome).forEach(id => { if (!l.some(v => v.sprite === id && !v.anim)) l.push({ sprite: id, anim: null, tipo: this.todos()[id] || null, movido: true }); });
+  nomesPastas() { return Object.keys(this.pastas()).sort((a, b) => a.localeCompare(b, 'pt', { numeric: true })); },
+  // ---- subpastas (o nome é o caminho "Pai/Filha") ----
+  folha(nome) { const i = nome.lastIndexOf('/'); return i < 0 ? nome : nome.slice(i + 1); },
+  paiDe(nome) { const i = nome.lastIndexOf('/'); return i < 0 ? '' : nome.slice(0, i); },
+  nivel(nome) { return nome.split('/').length - 1; },
+  descendentes(nome) { return this.nomesPastas().filter(n => n.startsWith(nome + '/')); },
+  // árvore em ordem de exibição: [{nome, folha, nivel, temFilhas}] (pais que só existem pelo caminho também entram)
+  arvorePastas() {
+    const todos = new Set();
+    this.nomesPastas().forEach(n => { const p = n.split('/'); for (let i = 1; i <= p.length; i++) todos.add(p.slice(0, i).join('/')); });
+    const filhas = (pai) => [...todos].filter(n => this.paiDe(n) === pai).sort((a, b) => this.folha(a).localeCompare(this.folha(b), 'pt', { numeric: true }));
+    const out = [];
+    const andar = (pai) => filhas(pai).forEach(n => { const f = filhas(n); out.push({ nome: n, folha: this.folha(n), nivel: this.nivel(n), temFilhas: f.length > 0 }); andar(n); });
+    andar('');
+    return out;
+  },
+  itensPasta(nome, comSub) {
+    const nomes = comSub ? [nome].concat(this.descendentes(nome)) : [nome];
+    const l = [];
+    nomes.forEach(pn => {
+      (this.pastas()[pn] || []).forEach(k => { const i = k.indexOf('#'); const v = { sprite: i < 0 ? k : k.slice(0, i), anim: i < 0 ? null : k.slice(i + 1), tipo: this.todos()[k] || null, pasta: pn }; if (!l.some(x => x.sprite === v.sprite && x.anim === v.anim)) l.push(v); });
+      this.movidos(pn).forEach(id => { if (!l.some(v => v.sprite === id && !v.anim)) l.push({ sprite: id, anim: null, tipo: this.todos()[id] || null, movido: true, pasta: pn }); });
+    });
     return l;
   },
   // ---- sprites movidos para pastas (organizar o acervo) ----
@@ -54,21 +75,54 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     return i < 0;
   },
   criarPasta(nome) {
-    nome = String(nome || '').trim().slice(0, 40);
+    nome = String(nome || '').split('/').map(x => x.trim().slice(0, 40)).filter(Boolean).join('/').slice(0, 160);
     if (!nome || this.pastas()[nome]) return nome && this.pastas()[nome] ? nome : null;
     FF.Edicoes.setDepois([this.secao + 'Pastas', nome], []);
     return nome;
   },
+  // renomeia/move uma pasta (novo = caminho completo); as subpastas e os sprites movidos vão junto
   renomearPasta(velho, novo) {
-    novo = String(novo || '').trim().slice(0, 40);
-    if (!novo || novo === velho || this.pastas()[novo]) return false;
-    const l = (this.pastas()[velho] || []).slice();
-    FF.Edicoes.setDepois([this.secao + 'Pastas', novo], l);
-    FF.Edicoes.setDepois([this.secao + 'Pastas', velho], null);
-    const mv = this.movidos(velho); if (mv.length) this.moverSprites(mv, novo);
+    novo = String(novo || '').split('/').map(x => x.trim().slice(0, 40)).filter(Boolean).join('/');
+    if (!novo || novo === velho || novo.startsWith(velho + '/')) return false;
+    const P = this.pastas(), troca = [velho].concat(this.descendentes(velho)).map(n => [n, novo + n.slice(velho.length)]);
+    if (troca.some(([, b]) => P[b])) return false;   // já existe uma pasta com esse nome
+    troca.forEach(([a, b]) => {
+      FF.Edicoes.setDepois([this.secao + 'Pastas', b], (P[a] || []).slice());
+      FF.Edicoes.setDepois([this.secao + 'Pastas', a], null);
+      const mv = this.movidos(a); if (mv.length) this.moverSprites(mv, b);
+    });
     return true;
   },
-  apagarPasta(nome) { const mv = this.movidos(nome); if (mv.length) this.moverSprites(mv, null); FF.Edicoes.setDepois([this.secao + 'Pastas', nome], null); },
+  renomearFolha(nome, folha) { const pai = this.paiDe(nome); return this.renomearPasta(nome, (pai ? pai + '/' : '') + String(folha || '').replace(/\//g, '-')); },
+  // pôr a pasta dentro de outra ('' = no primeiro nível)
+  moverPasta(nome, novoPai) {
+    if (novoPai === nome || (novoPai && novoPai.startsWith(nome + '/'))) return false;
+    if (this.paiDe(nome) === (novoPai || '')) return false;
+    return this.renomearPasta(nome, (novoPai ? novoPai + '/' : '') + this.folha(nome));
+  },
+  // tudo = apaga também as subpastas; senão as subpastas sobem um nível. Os itens nunca são apagados.
+  apagarPasta(nome, tudo) {
+    const desc = this.descendentes(nome);
+    if (tudo) desc.forEach(n => { const mv = this.movidos(n); if (mv.length) this.moverSprites(mv, null); FF.Edicoes.setDepois([this.secao + 'Pastas', n], null); });
+    else {
+      const pai = this.paiDe(nome);
+      desc.filter(n => this.paiDe(n) === nome).forEach(n => this.renomearPasta(n, (pai ? pai + '/' : '') + this.folha(n)));
+    }
+    const mv = this.movidos(nome); if (mv.length) this.moverSprites(mv, null);
+    FF.Edicoes.setDepois([this.secao + 'Pastas', nome], null);
+  },
+  // lista de pastas com recuo (menus ⭐ e 📂)
+  botoesArvore(caixa, rotulo, onclick) {
+    this.arvorePastas().forEach(p => {
+      const b = document.createElement('button');
+      const r = rotulo(p.nome);
+      b.textContent = r.texto; if (r.on) b.className = 'on';
+      b.style.paddingLeft = (6 + p.nivel * 14) + 'px';
+      if (r.title) b.title = r.title;
+      b.onclick = (e) => { e.stopPropagation(); onclick(p.nome); };
+      caixa.appendChild(b);
+    });
+  },
   // menu "📂 Mover para a pasta": sprites inteiros (ids) mudam de lugar nas listas; null = voltar ao lugar original
   menuMover(ancora, ids, aoMudar) {
     document.querySelectorAll('.es-fav-menu').forEach(x => x.remove());
@@ -78,12 +132,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     m.appendChild(tit);
     const fim = (nome) => { this.moverSprites(ids, nome); m.remove(); aoMudar && aoMudar(nome); };
     const atual = ids.length === 1 ? this.pastaDoSprite(ids[0]) : null;
-    this.nomesPastas().forEach(nome => {
-      const b = document.createElement('button'); b.textContent = '📁 ' + nome + (nome === atual ? '  ✓' : '');
-      if (nome === atual) b.className = 'on';
-      b.onclick = (e) => { e.stopPropagation(); fim(nome); };
-      m.appendChild(b);
-    });
+    this.botoesArvore(m, (nome) => ({ texto: '📁 ' + this.folha(nome) + (nome === atual ? '  ✓' : ''), on: nome === atual }), (nome) => fim(nome));
     const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
     nova.onclick = (e) => {
       e.stopPropagation();
@@ -144,14 +193,8 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     m.appendChild(caixa);
     const pintarPastas = () => {
       caixa.innerHTML = '';
-      this.nomesPastas().forEach(nome => {
-        const b = document.createElement('button');
-        const dentro = this.naPasta(nome, sprite, anim);
-        b.textContent = (dentro ? '☑ ' : '☐ ') + nome;
-        if (dentro) b.className = 'on';
-        b.onclick = (e) => { e.stopPropagation(); this.alternarPasta(nome, sprite, anim); pintarPastas(); aoMudar && aoMudar(this.de(sprite, anim)); };
-        caixa.appendChild(b);
-      });
+      this.botoesArvore(caixa, (nome) => { const dentro = this.naPasta(nome, sprite, anim); return { texto: (dentro ? '☑ ' : '☐ ') + this.folha(nome), on: dentro }; },
+        (nome) => { this.alternarPasta(nome, sprite, anim); pintarPastas(); aoMudar && aoMudar(this.de(sprite, anim)); });
       const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
       nova.onclick = (e) => {
         e.stopPropagation();
@@ -206,15 +249,8 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     const tirar = (nome) => { itens.forEach(v => { if (this.naPasta(nome, v.sprite, v.anim)) this.alternarPasta(nome, v.sprite, v.anim); }); };
     const pintar = () => {
       caixa.innerHTML = '';
-      this.nomesPastas().forEach(nome => {
-        const todos = itens.every(v => this.naPasta(nome, v.sprite, v.anim));
-        const b = document.createElement('button');
-        b.textContent = (todos ? '☑ ' : '☐ ') + nome;
-        if (todos) b.className = 'on';
-        b.title = todos ? 'Tirar todos desta pasta' : 'Colocar todos nesta pasta';
-        b.onclick = (e) => { e.stopPropagation(); if (todos) tirar(nome); else colocar(nome); pintar(); aoMudar && aoMudar(); };
-        caixa.appendChild(b);
-      });
+      this.botoesArvore(caixa, (nome) => { const todos = itens.every(v => this.naPasta(nome, v.sprite, v.anim)); return { texto: (todos ? '☑ ' : '☐ ') + this.folha(nome), on: todos, title: todos ? 'Tirar todos desta pasta' : 'Colocar todos nesta pasta' }; },
+        (nome) => { if (itens.every(v => this.naPasta(nome, v.sprite, v.anim))) tirar(nome); else colocar(nome); pintar(); aoMudar && aoMudar(); });
       const nova = document.createElement('button'); nova.className = 'nova'; nova.textContent = '＋ Nova pasta…';
       nova.onclick = (e) => {
         e.stopPropagation();
@@ -255,45 +291,100 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
 // lista de pastas na coluna da esquerda (seletor de sons, seletor de sprites): título + "📁 nome (n)" com ✏ renomear e
 // 🗑 apagar + "＋ Nova pasta". bt(chave, texto, n, pai) cria o item clicável e devolve o elemento; aoMudar() redesenha.
 FF.listaPastas = (F, pai, bt, aoMudar, chaveAtual, aoApagarAtual) => {
-  const nomes = F.nomesPastas();
+  const arvore = F.arvorePastas(), raizes = arvore.filter(p => !p.nivel).length;
   // título que abre/fecha (como as categorias do acervo); fechado fica lembrado no aparelho, por seção (sprites/sons)
-  const CH = 'ff_estudio_pastas_fechadas';
-  let fechadas = {}; try { fechadas = JSON.parse(localStorage.getItem(CH) || '{}') || {}; } catch (e) { fechadas = {}; }
+  const CH = 'ff_estudio_pastas_fechadas', CA = 'ff_estudio_pastas_abertas';
+  const ler = (k) => { try { return JSON.parse(localStorage.getItem(k) || '{}') || {}; } catch (e) { return {}; } };
+  const gravar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } };
+  const fechadas = ler(CH), abertasTodas = ler(CA);
+  const abertas = new Set(abertasTodas[F.secao] || []);
+  // a pasta aberta na grade: os pais dela ficam abertos
+  const atual = (chaveAtual && chaveAtual()) || '';
+  const fechouAtual = abertasTodas[F.secao + ':fechou'] === atual;   // fechou a pasta aberta na grade de propósito
+  if (/^pasta:/.test(atual)) { const n = atual.slice(6).split('/'); for (let k = 1; k <= n.length; k++) if (k < n.length || !fechouAtual) abertas.add(n.slice(0, k).join('/')); }   // e ela mesma (mostra as subpastas)
   const sub = document.createElement('div'); sub.className = 'es-seletor-cat es-pastas-cab';
   const corpo = document.createElement('div'); corpo.className = 'es-seletor-cat-corpo es-pastas-corpo';
-  const pintarCab = () => { const f = !!fechadas[F.secao]; sub.textContent = (f ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + nomes.length + ')'; corpo.style.display = f ? 'none' : ''; };
-  sub.onclick = () => { fechadas[F.secao] = !fechadas[F.secao]; if (!fechadas[F.secao]) delete fechadas[F.secao]; try { localStorage.setItem(CH, JSON.stringify(fechadas)); } catch (e) { /* sem armazenamento */ } pintarCab(); };
+  const pintarCab = () => { const f = !!fechadas[F.secao]; sub.textContent = (f ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + raizes + ')'; corpo.style.display = f ? 'none' : ''; };
+  sub.onclick = () => { fechadas[F.secao] = !fechadas[F.secao]; if (!fechadas[F.secao]) delete fechadas[F.secao]; gravar(CH, fechadas); pintarCab(); };
+  sub.title = 'Solte uma pasta aqui para ela voltar ao primeiro nível';
+  FF.alvoDePasta(F, sub, '', () => aoMudar(null));   // soltar uma pasta no título = primeiro nível
   pai.append(sub, corpo);
   pintarCab();
   pai = corpo;   // itens, "Nova pasta" e a dica vão dentro do corpo que abre/fecha
-  nomes.forEach(nome => {
-    const el = bt('pasta:' + nome, '📁 ' + nome, String(F.itensPasta(nome).length), pai);
+  const visivel = (nome) => { const p = nome.split('/'); for (let k = 1; k < p.length; k++) if (!abertas.has(p.slice(0, k).join('/'))) return false; return true; };
+  const pedirNome = (item, valor, ok) => {
+    const t = item.querySelector('span:not(.es-seletor-acoes):not(.es-pasta-seta)');
+    const inp = document.createElement('input'); inp.value = valor; inp.className = 'es-som-renomear';
+    if (t) t.replaceWith(inp); else item.appendChild(inp);
+    inp.focus(); inp.select();
+    ['click', 'pointerdown', 'dblclick'].forEach(ev => inp.addEventListener(ev, (e) => e.stopPropagation()));
+    let feito = false;
+    const fim = (sim) => { if (feito) return; feito = true; ok(sim ? inp.value.trim() : null); };
+    inp.onkeydown = (ev) => { ev.stopPropagation(); if (ev.key === 'Enter') fim(true); if (ev.key === 'Escape') fim(false); };
+    inp.onblur = () => fim(true);
+  };
+  arvore.forEach(p => {
+    const nome = p.nome;
+    if (!visivel(nome)) return;
+    const el = bt('pasta:' + nome, '📁 ' + p.folha, String(F.itensPasta(nome, true).length), pai);
     const item = el && el.closest ? (el.closest('.es-item') || el) : el;
     if (!item) return;
+    item.classList.add('es-pasta-item');
+    item.style.paddingLeft = (4 + p.nivel * 16) + 'px';
+    item.title = nome;
+    // ▸/▾ das pastas que têm subpastas
+    const seta = document.createElement('span'); seta.className = 'es-pasta-seta';
+    seta.textContent = p.temFilhas ? (abertas.has(nome) ? '▾' : '▸') : '';
+    if (p.temFilhas) seta.onclick = (e) => {
+      e.stopPropagation();
+      if (abertas.has(nome)) { abertas.delete(nome); if (atual === 'pasta:' + nome) abertasTodas[F.secao + ':fechou'] = atual; }
+      else { abertas.add(nome); delete abertasTodas[F.secao + ':fechou']; }
+      abertasTodas[F.secao] = [...abertas]; gravar(CA, abertasTodas); aoMudar(null);
+    };
+    item.insertBefore(seta, item.firstChild);
+    // arrastar a pasta para dentro de outra (ou para o título "Minhas pastas")
+    item.draggable = true;
+    item.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_PASTA, nome); e.dataTransfer.effectAllowed = 'move'; e.stopPropagation(); });
     FF.alvoDePasta(F, item, nome, () => aoMudar(null));
     const ac = document.createElement('span'); ac.className = 'es-seletor-acoes es-pasta-acoes';
+    const subp = document.createElement('button'); subp.textContent = '＋'; subp.title = 'Criar uma subpasta dentro de "' + p.folha + '"';
+    subp.onclick = (e) => {
+      e.stopPropagation();
+      abertas.add(nome); abertasTodas[F.secao] = [...abertas]; gravar(CA, abertasTodas);
+      const linha = document.createElement('div'); linha.className = 'es-item es-seletor-fonte es-pasta-item'; linha.style.paddingLeft = (4 + (p.nivel + 1) * 16) + 'px';
+      item.after(linha);
+      pedirNome(linha, '', (v) => { const n = v ? F.criarPasta(nome + '/' + v.replace(/\//g, '-')) : null; aoMudar(n ? 'pasta:' + n : null); });
+    };
     const ren = document.createElement('button'); ren.textContent = '✏'; ren.title = 'Renomear a pasta';
     ren.onclick = (e) => {
       e.stopPropagation();
-      const t = item.querySelector('span:not(.es-seletor-acoes)');
-      const inp = document.createElement('input'); inp.value = nome; inp.className = 'es-som-renomear';
-      if (t) t.replaceWith(inp); else item.appendChild(inp);
-      inp.focus(); inp.select();
-      inp.onclick = (ev) => ev.stopPropagation();
-      const fim = (ok) => { if (ok && inp.value.trim() && inp.value.trim() !== nome) { if (!F.renomearPasta(nome, inp.value)) FF.Estudio && FF.Estudio.aviso('Já existe uma pasta com esse nome.', 'erro'); } aoMudar(ok && chaveAtual() === 'pasta:' + nome ? 'pasta:' + inp.value.trim() : null); };
-      inp.onkeydown = (ev) => { ev.stopPropagation(); if (ev.key === 'Enter') fim(true); if (ev.key === 'Escape') fim(false); };
-      inp.onblur = () => fim(true);
+      pedirNome(item, p.folha, (v) => {
+        let novo = null;
+        if (v && v !== p.folha) { if (F.renomearFolha(nome, v)) novo = (p.nivel ? F.paiDe(nome) + '/' : '') + v.replace(/\//g, '-'); else FF.Estudio && FF.Estudio.aviso('Já existe uma pasta com esse nome aqui.', 'erro'); }
+        const cur = chaveAtual && chaveAtual();
+        aoMudar(novo && cur && (cur === 'pasta:' + nome || cur.startsWith('pasta:' + nome + '/')) ? 'pasta:' + novo + cur.slice(6 + nome.length) : null);
+      });
     };
-    const del = document.createElement('button'); del.textContent = '🗑'; del.title = 'Apagar a pasta (os sons/sprites continuam, só a pasta some)'; del.className = 'es-bt-perigo';
+    const del = document.createElement('button'); del.textContent = '🗑'; del.title = 'Apagar a pasta (o que está dentro continua no Estúdio)'; del.className = 'es-bt-perigo';
     del.onclick = async (e) => {
       e.stopPropagation();
-      const ok = FF.Estudio && FF.Estudio.confirmar ? await FF.Estudio.confirmar('Apagar pasta', 'Apagar a pasta "' + nome + '"? O que está dentro dela continua no Estúdio.', '🗑 Apagar', true) : true;
-      if (!ok) return;
-      F.apagarPasta(nome);
-      if (chaveAtual() === 'pasta:' + nome) aoApagarAtual && aoApagarAtual();
+      const E = FF.Estudio;
+      let tudo = false;
+      if (p.temFilhas && E && E.escolha) {
+        const r = await E.escolha('Apagar pasta', 'A pasta "' + p.folha + '" tem subpastas. O que fazer com elas? (Os sprites e animações nunca são apagados; os movidos voltam para o lugar de origem.)',
+          [{ txt: 'Apagar só esta (as subpastas sobem um nível)', valor: 'so', cls: 'es-bt-ouro' }, { txt: '🗑 Apagar com as subpastas', valor: 'tudo', cls: 'es-bt-perigo' }, { txt: 'Cancelar', valor: null }]);
+        if (!r) return;
+        tudo = r === 'tudo';
+      } else {
+        const ok = E && E.confirmar ? await E.confirmar('Apagar pasta', 'Apagar a pasta "' + p.folha + '"? O que está dentro dela continua no Estúdio.', '🗑 Apagar', true) : true;
+        if (!ok) return;
+      }
+      F.apagarPasta(nome, tudo);
+      const cur = chaveAtual && chaveAtual();
+      if (cur === 'pasta:' + nome || (tudo && cur && cur.startsWith('pasta:' + nome + '/'))) aoApagarAtual && aoApagarAtual();
       aoMudar();
     };
-    ac.append(ren, del);
+    ac.append(subp, ren, del);
     item.appendChild(ac);
   });
   const nova = document.createElement('div'); nova.className = 'es-item es-seletor-fonte es-pasta-nova'; nova.textContent = '＋ Nova pasta';
@@ -306,7 +397,7 @@ FF.listaPastas = (F, pai, bt, aoMudar, chaveAtual, aoApagarAtual) => {
     inp.onblur = () => fim(true);
   };
   pai.appendChild(nova);
-  if (!nomes.length) { const p = document.createElement('p'); p.className = 'es-dica'; p.textContent = 'Crie pastas com o nome que quiser e coloque itens nelas pela ☆.'; pai.appendChild(p); }
+  if (!arvore.length) { const p = document.createElement('p'); p.className = 'es-dica'; p.textContent = 'Crie pastas com o nome que quiser e coloque itens nelas pela ☆.'; pai.appendChild(p); }
 };
 
 // sprites (o tipo de um sprite inteiro do acervo vira o tipo dele; "Explosão" conta como efeito)
@@ -324,9 +415,11 @@ FF.FavSons = FF.criarFavoritos('favSons',
 //   'application/x-ff-anims'   = [["id", "anim"], ...] animações: coloca na pasta (continuam no sprite delas)
 FF.TIPO_ARRASTO_SPRITES = 'application/x-ff-sprites';
 FF.TIPO_ARRASTO_ANIMS = 'application/x-ff-anims';
+FF.TIPO_ARRASTO_PASTA = 'application/x-ff-pasta';
 FF.alvoDePasta = (F, el, nome, aoMudar) => {
-  if (F.secao !== 'favoritos') return;
-  const aceita = (e) => [...(e.dataTransfer && e.dataTransfer.types || [])].some(t => t === FF.TIPO_ARRASTO_SPRITES || t === FF.TIPO_ARRASTO_ANIMS);
+  const tipos = (e) => [...(e.dataTransfer && e.dataTransfer.types || [])];
+  // sons só aceitam pastas (sprites e animações são da seção de sprites); '' = título "Minhas pastas" (só pastas)
+  const aceita = (e) => tipos(e).some(t => t === FF.TIPO_ARRASTO_PASTA || (nome && F.secao === 'favoritos' && (t === FF.TIPO_ARRASTO_SPRITES || t === FF.TIPO_ARRASTO_ANIMS)));
   el.addEventListener('dragover', (e) => { if (!aceita(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'move'; el.classList.add('es-pasta-alvo'); });
   el.addEventListener('dragleave', () => el.classList.remove('es-pasta-alvo'));
   el.addEventListener('drop', (e) => {
@@ -334,12 +427,19 @@ FF.alvoDePasta = (F, el, nome, aoMudar) => {
     if (!aceita(e)) return;
     e.preventDefault(); e.stopPropagation();
     let n = 0;
+    const pasta = e.dataTransfer.getData(FF.TIPO_ARRASTO_PASTA);
+    if (pasta) {   // pasta solta dentro de outra (ou no título = primeiro nível)
+      if (F.moverPasta(pasta, nome)) { FF.Estudio && FF.Estudio.aviso('📁 "' + F.folha(pasta) + '" ' + (nome ? 'agora está dentro de "' + F.folha(nome) + '"' : 'voltou para o primeiro nível')); aoMudar && aoMudar(); }
+      else if (pasta !== nome && F.paiDe(pasta) !== (nome || '')) FF.Estudio && FF.Estudio.aviso('Não dá para pôr a pasta aí (dentro dela mesma ou já existe uma com esse nome).', 'erro');
+      return;
+    }
+    if (!nome) return;
     try {
       const spr = e.dataTransfer.getData(FF.TIPO_ARRASTO_SPRITES), an = e.dataTransfer.getData(FF.TIPO_ARRASTO_ANIMS);
       if (spr) { const ids = JSON.parse(spr); F.moverSprites(ids, nome); n = ids.length; }
       else if (an) { const l = JSON.parse(an); l.forEach(([id, a]) => { if (!F.naPasta(nome, id, a)) F.alternarPasta(nome, id, a); }); n = l.length; }
     } catch (err) { return; }
-    if (n && FF.Estudio && FF.Estudio.aviso) FF.Estudio.aviso('📁 ' + n + (n === 1 ? ' item' : ' itens') + ' em "' + nome + '"');
+    if (n && FF.Estudio && FF.Estudio.aviso) FF.Estudio.aviso('📁 ' + n + (n === 1 ? ' item' : ' itens') + ' em "' + F.folha(nome) + '"');
     aoMudar && aoMudar();
   });
 };

@@ -331,14 +331,27 @@
     // 📁 pastas do usuário (as mesmas do seletor de sprites e da aba Favoritos), com os sprites inteiros que estão nelas
     // tudo dentro de um título "📁 Minhas pastas" que abre/fecha; pastas vazias aparecem (dá para soltar sprites nelas)
     if (FF.Favoritos && FF.Favoritos.nomesPastas && FF.Favoritos.nomesPastas().length) {
-      const nomesP = FF.Favoritos.nomesPastas(), fechada = abertas.has('!pastas');
-      const cabP = el('div', 'ess-cat', (fechada ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + nomesP.length + ')');
+      const arv = FF.Favoritos.arvorePastas(), fechada = abertas.has('!pastas');
+      const cabP = el('div', 'ess-cat', (fechada ? '▸ ' : '▾ ') + '📁 Minhas pastas (' + arv.filter(p => !p.nivel).length + ')');
       cabP.title = 'Pastas suas (as mesmas do seletor de sprites). Arraste um sprite até uma pasta, ou use o 📂 dele, para mover.';
       cabP.onclick = () => { fechada ? abertas.delete('!pastas') : abertas.add('!pastas'); E.rascunho.gravar('sprites_cats_abertas', [...abertas]); renderSprites(); };
+      FF.alvoDePasta(FF.Favoritos, cabP, '', () => renderSprites());   // soltar uma pasta aqui = primeiro nível
       ui.sprites.appendChild(cabP);
-      if (!fechada) nomesP.forEach(nome => {
-        const ids = ord([...new Set(FF.Favoritos.itensPasta(nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
-        grupo('fav:pasta:' + nome, '📁 ' + nome, ids, true, nome);
+      // árvore: cada pasta mostra os sprites dela; fechar uma pasta esconde as subpastas dela
+      const fechadasP = [];
+      if (!fechada) arv.forEach(p => {
+        if (fechadasP.some(f => p.nome.startsWith(f + '/'))) return;
+        const ids = ord([...new Set(FF.Favoritos.itensPasta(p.nome).filter(v => !v.anim && lista.includes(v.sprite)).map(v => v.sprite))]);
+        const antes = ui.sprites.children.length;
+        grupo('fav:pasta:' + p.nome, '📁 ' + p.folha, ids, true, p.nome);
+        const cab = ui.sprites.children[antes];
+        if (cab) {
+          cab.style.paddingLeft = (14 + p.nivel * 14) + 'px';
+          cab.title = p.nome;
+          cab.draggable = true;   // arrastar a pasta para dentro de outra
+          cab.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_PASTA, p.nome); e.dataTransfer.effectAllowed = 'move'; });
+          if (cab.textContent.startsWith('▸')) fechadasP.push(p.nome);
+        }
       });
     }
     grupo('jogo', 'Do jogo', jogo);

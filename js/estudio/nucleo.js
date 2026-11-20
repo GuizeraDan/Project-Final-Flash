@@ -541,7 +541,7 @@ FF.Estudio = {
       const lix = fonte === 'lixeira';
       if (lix) l = todosTudo.filter(x => SU && SU.apagado(x.id));
       else if (f || fonte === 'tudo') l = todos;
-      else if (/^pasta:/.test(fonte)) l = FS.itensPasta(fonte.slice(6)).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
+      else if (/^pasta:/.test(fonte)) l = FS.itensPasta(fonte.slice(6), true).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
       else if (/^fav(:|$)/.test(fonte)) l = FS.lista(fonte.slice(4) || null).map(v => porId[v.sprite] || { id: v.sprite, nome: v.sprite, fonte: '?' }).filter(x => !(SU && SU.apagado(x.id)));
       else l = todos.filter(x => x.fonte === fonte);
       if (f) l = l.filter(x => (x.id + ' ' + x.nome + ' ' + nomeDe(x)).toLowerCase().includes(f));

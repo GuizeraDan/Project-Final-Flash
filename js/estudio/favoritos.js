@@ -47,10 +47,11 @@ window.FF = window.FF || {};
         inp.onblur = () => fim(true);
       }, 'Criar uma pasta com o nome que quiser; coloque itens nela pela ☆ de cada um'));
       corpo.appendChild(barra);
-      F.nomesPastas().forEach(nome => {
+      F.arvorePastas().map(p => p.nome).forEach(nome => {   // ordem da árvore; subpasta aparece como "Pai › Filha"
         const l = F.itensPasta(nome);
         const h = E.el('div', 'es-favs-tit es-favs-pasta');
-        const t = E.el('span'); t.textContent = '📁 ' + nome + ' (' + l.length + ')';
+        h.style.paddingLeft = (F.nivel(nome) * 16) + 'px';
+        const t = E.el('span'); t.textContent = '📁 ' + nome.replace(/\//g, ' › ') + ' (' + l.length + ')';
         h.appendChild(t);
         h.appendChild(E.botao('✏', () => {
           const inp = document.createElement('input'); inp.value = nome; inp.className = 'es-som-renomear';

@@ -304,3 +304,13 @@ a { color: var(--ouro); }
 .es-filas { display: inline-flex; align-items: center; gap: 2px; margin-left: 4px; }
 .es-filas > span { font-size: 13px; margin-right: 1px; }
 .es-filas button { min-width: 24px; padding: 2px 6px; }
+
+/* subpastas: árvore na coluna e títulos de grupo na grade */
+.es-pasta-seta { flex: none; width: 12px; text-align: center; color: #ffd84a; font-size: 11px; cursor: pointer; }
+.es-pasta-item canvas { display: none; }
+.es-grade-grupo { grid-column: 1 / -1; font-size: 12px; color: #ffe9a8; border-bottom: 1px solid var(--linha, #3a2a66); padding: 6px 2px 3px; margin-top: 4px; }
+.es-pastas-cab.es-pasta-alvo { outline: 2px dashed #ffd84a; }
+.es-seletor-fonte span.es-pasta-seta { flex: none; width: 12px; }
+.es-pasta-item .es-pasta-acoes { display: none; }
+.es-pasta-item:hover .es-pasta-acoes { display: flex; }
+.es-pasta-item:hover small { display: none; }

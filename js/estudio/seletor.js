@@ -365,7 +365,7 @@ window.FF = window.FF || {};
       const f = busca.value.trim().toLowerCase();
       let lista, favs = null;
       if (/^(fav|pasta)(:|$)/.test(fonte) && !f) {   // favoritos / pasta: sprites inteiros + animações marcadas
-        favs = (/^pasta:/.test(fonte) ? FF.Favoritos.itensPasta(fonte.slice(6)) : FF.Favoritos.lista(fonte.slice(4) || null)).filter(x => ids.includes(x.sprite));
+        favs = (/^pasta:/.test(fonte) ? FF.Favoritos.itensPasta(fonte.slice(6), true) : FF.Favoritos.lista(fonte.slice(4) || null)).filter(x => ids.includes(x.sprite));
         lista = [...new Set(favs.map(x => x.sprite))];
       } else if (fonte === 'todos' || f) lista = ids;                       // buscar procura em tudo
       else if (fonte === 'efeitos') {
@@ -390,11 +390,28 @@ window.FF = window.FF || {};
       if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
       if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '') + ' ' + FF.Assets.nomeAnim(x.id, x.a) + ' ' + FF.Assets.nomeSprite(x.id)).toLowerCase().includes(f));
       itens = E.ordenar(itens, ordemGrade, (x) => FF.Assets.nomeAnim(x.id, x.a), (x) => x.n);
+      // pasta com subpastas: a grade sai separada por subpasta (na ordem da árvore); "Soltos na pasta" só se houver
+      let grupos = null;
+      if (favs && /^pasta:/.test(fonte) && FF.Favoritos.descendentes(fonte.slice(6)).length) {
+        const raiz = fonte.slice(6), ordem = [raiz].concat(FF.Favoritos.arvorePastas().map(p => p.nome).filter(n => n.startsWith(raiz + '/')));
+        const pastaDe = (x) => { const v = favs.find(v => v.sprite === x.id && v.anim === x.a) || favs.find(v => v.sprite === x.id && !v.anim); return v ? v.pasta : raiz; };
+        const porPasta = new Map(ordem.map(n => [n, []]));
+        itens.forEach(x => { const pn = pastaDe(x); (porPasta.get(pn) || porPasta.get(raiz)).push(x); });
+        grupos = ordem.filter(n => porPasta.get(n).length).map(n => ({ nome: n, itens: porPasta.get(n) }));
+        itens = [].concat(...grupos.map(g => g.itens));
+      }
       grade.innerHTML = '';
       pendentes.forEach((_, el) => obs.unobserve(el)); pendentes.clear();
       info.textContent = itens.length + ' animação(ões)' + (itens.length > 400 ? ' · mostrando 400, use o filtro' : '');
       visiveis = itens.slice(0, 400); ultimoMarcado = -1;
+      const inicioGrupo = new Map();
+      if (grupos) { let k = 0; grupos.forEach(g => { inicioGrupo.set(k, g); k += g.itens.length; }); }
       visiveis.forEach((x, idx) => {
+        if (inicioGrupo.has(idx)) {   // título da subpasta, ocupando a linha inteira da grade
+          const g = inicioGrupo.get(idx), raiz = fonte.slice(6);
+          const t = E.el('div', 'es-grade-grupo', '📁 ' + (g.nome === raiz ? 'Soltos na pasta' : g.nome.slice(raiz.length + 1).replace(/\//g, ' › ')) + ' (' + g.itens.length + ')');
+          grade.appendChild(t);
+        }
         const sel = o.atual && x.a === o.atual.anim && (!o.atual.sprite || o.atual.sprite === x.id);
         const k = E.el('div', 'es-cartao' + (sel ? ' sel' : ''));
         k.dataset.k = chave(x);
