@@ -542,3 +542,7 @@ Cache do app: `finalflash-v47`.
 ## 2026-11-20 — Efeito "Até o alvo" (raios que saíam da tela)
 - Vídeo do usuário: no Kamehameha (efeitos `kamehameha 2 loop/fim` do `swz_especial_39_1`), o raio passava do alvo e saía da tela. Causa: o clipe do raio estava preso no **alvo** com X fixo (-572 px) — com a perspectiva/tela nova a distância até o alvo muda e o desenho (476 px de comprimento) não acompanha.
 - Novo campo no clipe de efeito: `ateAlvo` ("Até o alvo" no Estúdio): **✂ Cortar no alvo** (esconde o que passa do peito do alvo) ou **↔ Esticar/encolher até o alvo** (a ponta de trás fica, a da frente vai até o alvo). Calculado quando o efeito nasce (`js/battle/linha.js`), desenhado com recorte/escala no eixo do efeito, junto com o giro (`battle.js`, `desenharFx`). Recomendação ao usuário: prender o raio no "Ponto de disparo" + "Até o alvo".
+
+## 2026-11-20 — Palco do Estúdio: fileiras e quem é atacado
+- Pedido do usuário: testar os golpes nos 3 lugares onde os lutadores aparecem e escolher quem é atacado. Painel Palco: "🎯 Quem é atacado" (o Alvo ou um aliado dele; `cfg.alvoIdx`), "Fileira de quem solta" e "Fileira do alvo" (`cfg.filaAtk/filaAlvo`: frente/meio/fundo). Barra do palco: botões 🧍 1 2 3 e 🎯 1 2 3 (clique de novo volta à fileira do jogo). Só na visão Diagonal.
+- Motor: `Fighter.profFixa` (0 / 0,5 / 1) em `montarPerspectiva` — quem tem fica nela e os outros do time pegam as fileiras que sobram, mais perto das que teriam (`palco.js` aplica a partir do cfg).

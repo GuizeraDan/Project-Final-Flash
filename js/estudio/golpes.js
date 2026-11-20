@@ -51,6 +51,7 @@ window.FF = window.FF || {};
       if (!FF.Assets.listaPersonagens().includes(this.cfg.atacante)) this.cfg.atacante = 'goku';
       await this.carregarDefs();
       this.montarLado();
+      this.renderFilas();
       // abrir pela URL (?aba=golpes&personagem=goku&golpe=kamehameha | &hab=<id>) ou recuperar o rascunho
       const q = new URLSearchParams(location.search);
       const rasc = E.rascunho.ler('golpe_doc');
@@ -185,6 +186,19 @@ window.FF = window.FF || {};
       };
       const par = cfg.parceiros || [], ali = cfg.aliadosAlvo || [];
       const ladoAtk = cfg.lado === 'inimigo' ? 'direita' : 'esquerda', ladoAlvo = cfg.lado === 'inimigo' ? 'esquerda' : 'direita';
+      // fileira de quem solta e do alvo (visão Diagonal): testar o golpe nos 3 lugares onde os lutadores aparecem
+      const FILAS = [['', 'a do jogo'], ['frente', '1 · frente (embaixo)'], ['meio', '2 · meio'], ['fundo', '3 · fundo (perto do horizonte)']];
+      const mudarFila = (k, v) => { cfg[k] = v || null; if (!v) delete cfg[k]; E.rascunho.gravar('golpe_cfg', cfg); this.irPara(this.t); if (this.renderFilas) this.renderFilas(); };
+      // quem é atacado: o Alvo ou um dos aliados dele (as referências do golpe — peito, pés, fileira — passam a ser dele)
+      const timeAlvo = [cfg.alvo].concat(ali).filter(Boolean);
+      if (timeAlvo.length > 1) {
+        const nomeDe = (id) => (nomes.find(n => n[0] === id) || [id, id])[1];
+        pb.appendChild(E.campo('select', '🎯 Quem é atacado', String(Math.min(cfg.alvoIdx || 0, timeAlvo.length - 1)), (v) => { cfg.alvoIdx = +v || 0; if (!cfg.alvoIdx) delete cfg.alvoIdx; E.rascunho.gravar('golpe_cfg', cfg); this.irPara(this.t); },
+          { lista: timeAlvo.map((id, i) => [String(i), (i ? 'Aliado ' + i + ': ' : 'Alvo: ') + nomeDe(id)]), dica: 'Qual lutador do outro time recebe o golpe no palco (as referências peito/pés/fileira do golpe passam a ser dele)' }));
+      }
+      pb.appendChild(E.campo('select', 'Fileira de quem solta', cfg.filaAtk || '', (v) => mudarFila('filaAtk', v), { lista: FILAS, dica: 'Na visão Diagonal: em qual dos 3 lugares quem solta aparece (para testar o golpe em cada um). Também nos botões 1 2 3 da barra do palco.' }));
+      pb.appendChild(E.campo('select', 'Fileira do alvo', cfg.filaAlvo || '', (v) => mudarFila('filaAlvo', v), { lista: FILAS, dica: 'Na visão Diagonal: em qual dos 3 lugares o alvo aparece' }));
+      if (!this.palco.opts.persp) pb.appendChild(E.el('div', 'es-dica', '⚠ As fileiras só valem na visão Diagonal (botão na barra do palco).'));
       pb.appendChild(E.el('div', 'es-dica', 'Até 3 lutadores de cada lado.'));
       pb.appendChild(E.campo('select', 'Parceiro 1 (' + ladoAtk + ')', par[0] || '', (v) => mudarLista('parceiros', 0, v), { lista: lista1(cfg.atacante), dica: 'Entra no time de quem solta (Sparking Combo: o parceiro ganha uma trilha própria)' }));
       if (par[0]) pb.appendChild(E.campo('select', 'Parceiro 2 (' + ladoAtk + ')', par[1] || '', (v) => mudarLista('parceiros', 1, v), { lista: lista1(cfg.atacante), dica: 'Terceiro lutador do time de quem solta' }));
@@ -662,10 +676,26 @@ window.FF = window.FF || {};
         E.rascunho.gravar('palco_opts', this.palco.opts);
         rotP();
         if (this.doc) this.irPara(this.t); else this.redesenhar();
+        if (this.cfg) this.montarLado();   // aviso "fileiras só na Diagonal" 
       }, 'Visão do palco: lateral ou diagonal (estilo Attack of the Saiyans, igual ao jogo com Opções → Perspectiva: Diagonal). Na diagonal os efeitos presos em quem solta vão até o alvo. Para arrastar alças com precisão, use a lateral.');
       const rotP = () => { btP.innerHTML = this.palco.opts.persp ? '◢ Diagonal' : '▬ Lateral'; btP.classList.toggle('es-bt-ouro', !!this.palco.opts.persp); };
       rotP();
       b.appendChild(btP);
+      // fileiras rápidas (Diagonal): 🧍 quem solta e 🎯 alvo nos lugares 1 (frente), 2 (meio), 3 (fundo)
+      const filaBts = (k, ic, tit) => {
+        const g = E.el('span', 'es-filas'); g.title = tit;
+        g.appendChild(E.el('span', null, ic));
+        [['frente', '1'], ['meio', '2'], ['fundo', '3']].forEach(([v, t]) => {
+          const bt = E.botao(t, () => { this.cfg[k] = this.cfg[k] === v ? null : v; if (!this.cfg[k]) delete this.cfg[k]; E.rascunho.gravar('golpe_cfg', this.cfg); this.irPara(this.t); this.montarLado(); this.renderFilas(); },
+            tit + ': ' + ({ frente: 'frente (embaixo)', meio: 'meio', fundo: 'fundo' })[v] + ' — clique de novo para voltar à do jogo');
+          bt.dataset.fila = v; g.appendChild(bt);
+        });
+        return g;
+      };
+      this._filas = [filaBts('filaAtk', '🧍', 'Fileira de quem solta'), filaBts('filaAlvo', '🎯', 'Fileira do alvo')];
+      this._filas.forEach(g => b.appendChild(g));
+      this.renderFilas = () => { if (!this.cfg) return; const ks = ['filaAtk', 'filaAlvo']; this._filas.forEach((g, i) => g.querySelectorAll('button').forEach(bt => bt.classList.toggle('es-bt-ouro', this.cfg[ks[i]] === bt.dataset.fila))); };
+      this.renderFilas();
       b.appendChild(E.el('span', 'sep'));
       b.appendChild(E.botao('⚔ Na batalha', () => this.naBatalha(), 'Roda o golpe completo na batalha real (dano, anéis de guarda/crítico). Espaço/clique = apertar no anel.'));
       b.appendChild(E.botao('＋ Trilha', () => this.novaTrilha(), 'Nova trilha (efeitos, sons, parceiro…)'));

@@ -1445,7 +1445,20 @@ FF.Battle = class {
   montarPerspectiva() {
     const offX = (FF.W - FF.BW) / 2;
     const lado = (lista, heroi) => {
-      const ds = this.profundidades(lista.length);
+      // fileiras do time; quem tem profFixa (Estúdio: "Fileira de quem solta/do alvo") fica nela e os outros
+      // pegam as fileiras que sobram (com 1 ou 2 lutadores, a forçada pode ser uma que o time nem usaria)
+      const base = this.profundidades(lista.length), livres = [0, 0.5, 1].filter(v => !lista.some(f => f.profFixa === v));
+      const ds = lista.map((f, i) => f.profFixa != null ? f.profFixa : null);
+      let k = 0;
+      lista.forEach((f, i) => {
+        if (ds[i] != null) return;
+        const queria = base[i] != null ? base[i] : 0.5;
+        if (!lista.some(g => g.profFixa != null)) { ds[i] = queria; return; }
+        // pega a fileira livre mais perto da que teria (sem repetir)
+        let melhor = null;
+        livres.forEach(v => { if (!ds.includes(v) && (melhor == null || Math.abs(v - queria) < Math.abs(melhor - queria))) melhor = v; });
+        ds[i] = melhor != null ? melhor : queria; k++;
+      });
       lista.forEach((f, i) => {
         const d = ds[i] != null ? ds[i] : 0.5;
         f.prof = d;

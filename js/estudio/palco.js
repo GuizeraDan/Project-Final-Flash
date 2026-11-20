@@ -59,10 +59,16 @@ FF.EstudioPalco = class {
     herois.forEach((id, i) => b.addFighter(this.defs[id], 'heroi', i));
     inimigos.forEach((id, i) => b.addFighter(this.defs[id], 'inimigo', i));
     const atk = heroiAtaca ? b.heroes[0] : b.enemies[0];
-    const alvo = heroiAtaca ? b.enemies[0] : b.heroes[0];
+    // quem é atacado (painel Palco: "Quem é atacado"): 0 = o Alvo, 1/2 = aliados do alvo
+    const tAlvo = heroiAtaca ? b.enemies : b.heroes;
+    const alvo = tAlvo[Math.min(tAlvo.length - 1, Math.max(0, cfg.alvoIdx || 0))];
     if (cfg.forma && atk.def.formas[cfg.forma]) atk.setForm(cfg.forma);
-    if (cfg.alvoForma && alvo.def.formas[cfg.alvoForma]) alvo.setForm(cfg.alvoForma);
+    if (cfg.alvoForma && tAlvo[0].def.formas[cfg.alvoForma]) tAlvo[0].setForm(cfg.alvoForma);
     if (cfg.buff && atk.def.buffs && atk.def.buffs[cfg.buff]) { atk.buffs[cfg.buff] = Object.assign({ id: cfg.buff }, atk.def.buffs[cfg.buff]); atk.idle(); }
+    // fileira forçada (painel Palco do Estúdio): 'frente' | 'meio' | 'fundo' (vazio = a do jogo)
+    const FILA = { frente: 0, meio: 0.5, fundo: 1 };
+    if (FILA[cfg.filaAtk] != null) atk.profFixa = FILA[cfg.filaAtk];
+    if (FILA[cfg.filaAlvo] != null) alvo.profFixa = FILA[cfg.filaAlvo];
     if (b.persp) { b.montarPerspectiva(); b.acaoAtual = { actor: atk, target: alvo }; }
     b.semDesafios = true;   // os desafios de botão ficam para o jogo
     b.atk = atk; b.alvo = alvo;
