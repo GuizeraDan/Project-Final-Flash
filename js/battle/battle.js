@@ -1669,8 +1669,7 @@ FF.Battle = class {
       // até o alvo: corte (esconde o que passa do peito do alvo) ou esticar (comprimento até ele), no eixo do efeito
       if (e.corte != null) { ctx.beginPath(); if (e.flip) ctx.rect(-e.corte, -5000, e.corte + 5000, 10000); else ctx.rect(-5000, -5000, 5000 + e.corte, 10000); ctx.clip(); }
       if (e.kx) { const b0 = (e.kxBase || 0) * (e.flip ? 1 : -1); ctx.translate(b0, 0); ctx.scale(e.kx, 1); ctx.translate(-b0, 0); }   // estica a partir da ponta de trás
-      if (e.raioL != null && e.a.a && e.a.a.raio) FF.drawRaio(ctx, e.set, e.a.a, e.a.i, e.a.frame(), 0, 0, e.scale, e.flip, e.raioL, o || {});   // corpo repetido até o alvo
-      else FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
+      FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
       ctx.restore();
     };
     const camada = (atras) => {

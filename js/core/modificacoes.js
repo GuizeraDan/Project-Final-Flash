@@ -20,7 +20,6 @@ FF.Mods = {
 
   salvar(id, nome, anim) {
     const limpo = { fps: anim.fps || 0, loop: !!anim.loop, repeatTo: anim.repeatTo || 0, pingpong: false, frames: anim.frames };
-    if (anim.raio) limpo.raio = JSON.parse(JSON.stringify(anim.raio));   // trecho do corpo do raio (modo ↔ Raio)
     FF.Edicoes.set(['sprites', id, nome], limpo);
     const set = FF.Assets.sprites[id];
     if (set) this.aplicar(id, set);

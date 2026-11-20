@@ -17,7 +17,7 @@
   function novos() { return FF.Edicoes.dados().spritesNovos || {}; }
   function importado(id) { return !!novos()[id]; }
 
-  function limpaAnim(a) { const r = { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: copia(a.frames || []) }; if (a.raio) r.raio = copia(a.raio); return r; }
+  function limpaAnim(a) { return { fps: a.fps || 0, loop: !!a.loop, repeatTo: a.repeatTo || 0, pingpong: false, frames: copia(a.frames || []) }; }
 
   async function adicionarImagens(id, imgs) {
     if (!imgs.length) throw new Error('Nenhuma imagem para adicionar.');

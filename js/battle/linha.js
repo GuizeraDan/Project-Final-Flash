@@ -12,8 +12,7 @@
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
-//            seguir? (anda junto com o lutador em que está preso), ateAlvo? ("cortar" | "esticar" | "repetir": raio termina no peito do alvo;
-//            "repetir" repete o corpo do raio — trecho anim.raio marcado na aba Sprites, modo ↔ Raio)}
+//            seguir? (anda junto com o lutador em que está preso), ateAlvo? ("cortar" | "esticar": raio termina no peito do alvo)}
 //  projeteis {tipo:"projetil", fx, sprite?, ...todos os campos do projétil do motor, deDx?, deDy?, alvoDx?, alvoDy?,
 //            centro? (meio do desenho no caminho, em vez da origem do sprite), spriteDx?, spriteDy? (desenho deslocado do caminho),
 //            rot? (giro fixo do desenho, °), cor? (matiz 0–359: pinta o projétil), corForca? (0–2, padrão 1),
@@ -314,8 +313,7 @@ FF.Linha = {
             try { e.set.anim(c.fx).frames.forEach(fr => { frente = Math.max(frente, fr[3] - fr[5]); tras = Math.max(tras, fr[5]); }); } catch (err) { frente = 0; }
             frente *= e.scale; tras *= e.scale;
             if (frente + tras > 4 && dist > 4) { e.kx = Math.max(0.15, Math.min(4, (dist + tras) / (frente + tras))); e.kxBase = tras; }
-          } else if (c.ateAlvo === 'repetir') { e.raioL = Math.max(0, dist); e.corte = Math.max(0, dist); }
-          else e.corte = Math.max(0, dist);
+          } else e.corte = Math.max(0, dist);
         }
         // seguir: o efeito anda junto com o lutador em que está preso (aura, rastro durante um avanço…)
         const f = c.em === 'alvo' || c.em === 'alvoPes' ? target : c.em === 'tela' ? null : actor;
