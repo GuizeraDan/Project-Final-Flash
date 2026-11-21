@@ -152,13 +152,15 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
     const n0 = FF.Assets.listaSprites().length;
     const cab = [...document.querySelectorAll('.ess-cat')].find(c => /ZL3 · Personagens/.test(c.textContent));
     cab.click();   // reabre
-    const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => i.dataset.sprite === 'zl3_nappa');
+    // um sprite do ZL3 que esteja na lista (o usuário move alguns para as pastas dele)
+    const it = [...document.querySelectorAll('.ess-sprites .es-item')].find(i => /^zl3_/.test(i.dataset.sprite || '') && i.querySelector('.ess-lixo'));
+    const sid = it.dataset.sprite;
     it.querySelector('.ess-lixo').click();
     await new Promise(r => setTimeout(r, 100));   // agora pergunta antes
     [...document.querySelectorAll('.es-modal button')].find(b => /Mandar para a Lixeira/.test(b.textContent)).click();
     await new Promise(r => setTimeout(r, 100));
-    const n1 = FF.Assets.listaSprites().length, lix = FF.Assets.spriteOculto('zl3_nappa') && !!document.querySelector('.ess-sprites .es-nav-grupo[data-chave="lixeira"]');
-    FF.Estudio.mudarInfoSprite('zl3_nappa', { oculto: null });   // restaura só este (a Lixeira do usuário pode ter outros)
+    const n1 = FF.Assets.listaSprites().length, lix = FF.Assets.spriteOculto(sid) && !!document.querySelector('.ess-sprites .es-nav-grupo[data-chave="lixeira"]');
+    FF.Estudio.mudarInfoSprite(sid, { oculto: null });   // restaura só este (a Lixeira do usuário pode ter outros)
     return [n0 - n1, lix, FF.Assets.listaSprites().length === n0];
   });
   ok(s[0] === 1 && s[1] && s[2], 'Lixeira: some das listas, aparece na Lixeira e volta com ♻ (' + s + ')');

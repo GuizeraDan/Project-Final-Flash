@@ -18,6 +18,8 @@ FF.menuNaTela = (m) => {
   m.style.top = Math.max(6, Math.min(innerHeight - h - 6, top)) + 'px';
   m.style.left = Math.max(4, Math.min(innerWidth - w - 4, left)) + 'px';
 };
+// comparar nomes em português (acentos, números em ordem natural) — Collator é bem mais rápido que localeCompare
+FF.compararNomes = (function () { try { return new Intl.Collator('pt', { numeric: true }).compare; } catch (e) { return (a, b) => a.localeCompare(b); } })();
 FF.criarFavoritos = (secao, TIPOS, plural) => ({
   secao, TIPOS, plural,
   icone(t) { const x = this.TIPOS.find(k => k[0] === t); return x ? x[1] : '⭐'; },
@@ -28,7 +30,16 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
   marcar(sprite, anim, tipo) { FF.Edicoes.setDepois([this.secao, this.chave(sprite, anim)], tipo || null); },
   // ---- pastas do usuário ----
   pastas() { return (FF.Edicoes && FF.Edicoes.dados()[this.secao + 'Pastas']) || {}; },
-  nomesPastas() { return Object.keys(this.pastas()).sort((a, b) => a.localeCompare(b, 'pt', { numeric: true })); },
+  // nomes ordenados, árvore e índice "item → pastas" calculados uma vez por versão das edições (desempenho:
+  // cada linha das listas pergunta em quais pastas o item está; ordenar com acentos a cada pergunta travava os menus)
+  _cacheP() {
+    const p = this.pastas();
+    if (this._pc && this._pc.p === p) return this._pc;
+    const nomes = Object.keys(p).sort(FF.compararNomes), idx = new Map();
+    nomes.forEach(n => (p[n] || []).forEach(k => { let a = idx.get(k); if (!a) idx.set(k, a = []); if (!a.includes(n)) a.push(n); }));
+    return (this._pc = { p, nomes, idx, arvore: null });
+  },
+  nomesPastas() { return this._cacheP().nomes.slice(); },
   // ---- subpastas (o nome é o caminho "Pai/Filha") ----
   folha(nome) { const i = nome.lastIndexOf('/'); return i < 0 ? nome : nome.slice(i + 1); },
   paiDe(nome) { const i = nome.lastIndexOf('/'); return i < 0 ? '' : nome.slice(0, i); },
@@ -36,9 +47,14 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
   descendentes(nome) { return this.nomesPastas().filter(n => n.startsWith(nome + '/')); },
   // árvore em ordem de exibição: [{nome, folha, nivel, temFilhas}] (pais que só existem pelo caminho também entram)
   arvorePastas() {
+    const c = this._cacheP();
+    if (!c.arvore) c.arvore = this._arvore();
+    return c.arvore.map(x => Object.assign({}, x));
+  },
+  _arvore() {
     const todos = new Set();
     this.nomesPastas().forEach(n => { const p = n.split('/'); for (let i = 1; i <= p.length; i++) todos.add(p.slice(0, i).join('/')); });
-    const filhas = (pai) => [...todos].filter(n => this.paiDe(n) === pai).sort((a, b) => this.folha(a).localeCompare(this.folha(b), 'pt', { numeric: true }));
+    const filhas = (pai) => [...todos].filter(n => this.paiDe(n) === pai).sort((a, b) => FF.compararNomes(this.folha(a), this.folha(b)));
     const out = [];
     const andar = (pai) => filhas(pai).forEach(n => { const f = filhas(n); out.push({ nome: n, folha: this.folha(n), nivel: this.nivel(n), temFilhas: f.length > 0 }); andar(n); });
     andar('');
@@ -73,7 +89,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     });
   },
   naPasta(nome, sprite, anim) { return (this.pastas()[nome] || []).includes(this.chave(sprite, anim)); },
-  pastasDe(sprite, anim) { const k = this.chave(sprite, anim); return this.nomesPastas().filter(n => (this.pastas()[n] || []).includes(k)); },
+  pastasDe(sprite, anim) { return (this._cacheP().idx.get(this.chave(sprite, anim)) || []).slice(); },
   alternarPasta(nome, sprite, anim) {
     const k = this.chave(sprite, anim), l = (this.pastas()[nome] || []).slice();
     const i = l.indexOf(k);

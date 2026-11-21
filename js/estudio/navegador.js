@@ -345,11 +345,29 @@ window.FF = window.FF || {};
     }
 
     FF.autoRolarArraste(caixa);
-    const parar = E.aoMudarEdicoes(() => { if (raiz.isConnected && !raiz.contains(document.activeElement)) { NM = null; render(); o.aoMudar && o.aoMudar(); } }, 250);
+    // redesenha quando as edições mudam — mas só se estiver à vista: escondida (outra aba) ou atrás de uma janela
+    // (ex.: a coluna da aba Sprites com o seletor de sprites aberto), espera aparecer de novo (desempenho)
+    const escondida = () => !raiz.isConnected || raiz.offsetParent === null ||
+      [...document.querySelectorAll('.es-modal')].some(m => !m.hidden && !m.contains(raiz));
+    const digitando = () => { const a = document.activeElement; return !!a && raiz.contains(a) && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && !/checkbox|radio|button/.test(a.type))); };
+    let pendente = null;
+    const redesenhar = () => { NM = null; render(); o.aoMudar && o.aoMudar(); };
+    const esperarAparecer = () => {
+      if (pendente) return;
+      pendente = setInterval(() => {
+        if (!raiz.isConnected) { clearInterval(pendente); pendente = null; return; }
+        if (!escondida() && !digitando()) { clearInterval(pendente); pendente = null; redesenhar(); }
+      }, 400);
+    };
+    const parar = E.aoMudarEdicoes(() => {
+      if (!raiz.isConnected) return;
+      if (escondida() || digitando()) { esperarAparecer(); return; }
+      redesenhar();
+    }, 250);
     return {
       el: raiz, render, marcados,
       abrir(chave) { abertos.add(chave); gravarAbertos(); },
-      destruir() { parar(); obs.disconnect(); raiz.remove(); },
+      destruir() { parar(); clearInterval(pendente); obs.disconnect(); raiz.remove(); },
     };
   }
 
