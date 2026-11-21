@@ -567,3 +567,7 @@ Cache do app: `finalflash-v47`.
 
 ## 2026-11-20 — Raio elástico desfeito
 - O usuário não gostou do resultado do raio elástico (modo ↔ Raio, "🔁 Repetir o corpo até o alvo", "↔ Estender raio…") e pediu para desfazer: commit revertido. Ficaram nas edições dele um campo `raio` (ignorado) e uma animação `_longo` que ele criou (é uma animação comum).
+
+## 2026-11-20 — Gohan Teen: animações restauradas
+- Usuário: a pasta "Teen" mostrava 32 mas abria com 7. As outras 34 animações do `mc_b_102` tinham sido excluídas (`sprites.mc_b_102.*.apagada`, um envio às 18:04). Ele clicou "♻ Restaurar todos" na Lixeira, mas esse botão só restaura sprites inteiros (trouxe de volta 277 sprites ocultos) — as animações excluídas continuaram. Restaurei só as 34 dele direto no `data/edicoes.js`.
+- Não mudei o botão: nas edições há 1441 animações excluídas (25 sprites, a maioria KODAIKA), então incluir animações no "Restaurar todos" desfaria limpezas de propósito. Opções em debate com o usuário (contador da pasta sem as excluídas, aviso com ♻ só da pasta, Lixeira separando sprites/animações).
