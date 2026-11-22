@@ -1259,7 +1259,7 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
     a.play(name, { loop: !!dur, fps: opts && opts.fps });
-    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null, atras: !!(opts && opts.atras) };
+    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null, atras: !!(opts && opts.atras), ordem: (opts && opts.ordem) || '' };
     this.fxList.push(e);
     return e;
   }
@@ -1343,7 +1343,7 @@ FF.Battle = class {
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
       girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
-      atras: !!spec.atras, centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
+      atras: !!spec.atras, ordem: spec.ordem || '', centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
       rot: spec.rot ? spec.rot * att.dir * Math.PI / 180 : 0, filtro: FF.Battle.filtroCor(spec.cor, spec.corForca),
       done: new Promise(r => (res = r)),
     };
@@ -1672,10 +1672,14 @@ FF.Battle = class {
       FF.drawFrame(ctx, e.set, e.a.frame(), 0, 0, e.scale, e.flip, o);
       ctx.restore();
     };
+    // dentro de cada faixa (atrás/na frente dos lutadores), "ordem" do clipe (Estúdio): por baixo → normal → por cima;
+    // em cada uma: camadas, projéteis e efeitos (entre efeitos, o que começou depois fica por cima)
     const camada = (atras) => {
-      (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras));
-      this.projectiles.forEach(p => { if (!!p.atras === atras) this.desenharProjetil(ctx, p); });
-      this.fxList.forEach(e => { if (!!e.atras === atras) desenharFx(e); });
+      ['baixo', '', 'cima'].forEach(ord => {
+        (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras, ord));
+        this.projectiles.forEach(p => { if (!!p.atras === atras && (p.ordem || '') === ord) this.desenharProjetil(ctx, p); });
+        this.fxList.forEach(e => { if (!!e.atras === atras && (e.ordem || '') === ord) desenharFx(e); });
+      });
     };
     camada(true);
     // quem está agindo fica na frente; "naFrente"/"atras" do clipe de animação (Estúdio) mandam mais
