@@ -86,7 +86,9 @@
     raiz.classList.add('ess');
     // esquerda: sprites e animações
     const esq = el('aside', 'es-lado ess-esq');
-    esq.appendChild(el('div', 'es-titulo', '🖼 Sprites'));
+    const tS = el('div', 'es-titulo', '🖼 Sprites');
+    tS.appendChild(E.botao('🗂 Organizar', () => FF.EstudioOrganizar.abrir(), 'Tela dividida para separar os sprites do acervo nas suas pastas (marcar vários, mover, sugestões por nome)', 'es-mais ess-organizar'));
+    esq.appendChild(tS);
     ui.buscaSprite = document.createElement('input');
     ui.buscaSprite.type = 'search'; ui.buscaSprite.placeholder = 'Buscar sprite…'; ui.buscaSprite.className = 'ess-busca';
     ui.buscaSprite.oninput = () => { st.buscaSprite = ui.buscaSprite.value; renderSprites(); };
