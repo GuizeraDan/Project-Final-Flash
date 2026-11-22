@@ -74,8 +74,10 @@
       semPasta: E.rascunho.ler('org_sem_pasta') !== false,
       busca: '', pasta: E.rascunho.ler('org_pasta') || '', buscaPasta: '',
       limite: LIMITE, sugestoes: null,
+      dentro: null,   // sprite aberto (duplo clique): mostra as animações dele para mover uma a uma
     };
     const marcados = new Set();
+    const marcA = new Set();   // animações marcadas ("sprite#anim") na visão de dentro do sprite
     let ultimo = null, lista = [];
 
     const c = E.el('div', 'es-org');
@@ -98,7 +100,7 @@
     const selCat = document.createElement('select');
     Object.keys(porCat).forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = (NOME_CAT[k] || k) + ' (' + porCat[k].length + ')'; selCat.appendChild(o); });
     selCat.value = st.cat;
-    selCat.onchange = () => { st.cat = selCat.value; E.rascunho.gravar('org_cat', st.cat); st.limite = LIMITE; marcados.clear(); st.sugestoes = null; tudo(); };
+    selCat.onchange = () => { st.dentro = null; st.cat = selCat.value; E.rascunho.gravar('org_cat', st.cat); st.limite = LIMITE; marcados.clear(); st.sugestoes = null; tudo(); };
     const selTipo = document.createElement('select');
     [['', 'Todos os tipos'], ['personagens', 'Personagens'], ['efeitos', 'Efeitos'], ['cenarios', 'Cenários'], ['interface', 'Interface'], ['cutscenes', 'Cutscenes']].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; selTipo.appendChild(o); });
     selTipo.value = st.tipo;
@@ -110,10 +112,11 @@
     const btTodos = E.botao('Marcar todos', () => { lista.slice(0, st.limite).forEach(id => marcados.add(id)); pintar(); }, 'Marca todos os cartões que estão aparecendo');
     const btLimpar = E.botao('Limpar', () => { marcados.clear(); pintar(); }, 'Desmarcar todos');
     filtros.append(selCat, selTipo, chkSem, busca, btTodos, btLimpar);
+    const barraDentro = E.el('div', 'es-org-filtros es-org-dentro');
     const info = E.el('div', 'es-org-info');
     const grade = E.el('div', 'es-org-grade');
     const sug = E.el('div', 'es-org-sug');
-    esq.append(filtros, info, grade, sug);
+    esq.append(filtros, barraDentro, info, grade, sug);
 
     // ---- direita: pastas
     const dir = E.el('div', 'es-org-dir');
@@ -122,7 +125,7 @@
     buscaP.oninput = () => { st.buscaPasta = buscaP.value; renderPastas(); };
     const trilha = E.el('div', 'es-org-trilha');
     const pastasEl = E.el('div', 'es-org-pastas');
-    const dicaDir = E.el('div', 'es-org-dica', 'Com cartões marcados, clique numa pasta (ou arraste os cartões até ela) para mover. Sem marcados, o clique abre a pasta.');
+    const dicaDir = E.el('div', 'es-org-dica', 'Com cartões marcados, clique numa pasta (ou arraste os cartões até ela) para mover. Sem marcados, o clique abre a pasta. Animações movidas saem da pasta do personagem.');
     dir.append(buscaP, trilha, pastasEl, dicaDir);
 
     const corpo = E.el('div', 'es-org-corpo');
@@ -137,6 +140,21 @@
       pend.delete(en.target); obs.unobserve(en.target);
       FF.Assets.loadSprite(id).then(s => { if (s) E.miniatura(en.target, s, Object.keys(s.def.anims)[0], 0); }).catch(() => {});
     }), { root: grade, rootMargin: '200px' });
+
+    // ---- prévia tocando enquanto o mouse está em cima (igual ao seletor)
+    function previaNoMouse(el, cv, id, anim) {
+      let t = null;
+      el.addEventListener('mouseenter', () => {
+        const s = FF.Assets.sprites[id];
+        const a = anim || (s && Object.keys(s.def.anims)[0]);
+        const def = s && s.anim(a);
+        if (!def || def.frames.length < 2) return;
+        let i = 0;
+        const passo = () => { i = (i + 1) % def.frames.length; E.miniatura(cv, s, a, i); t = setTimeout(passo, 1000 / (def.fps || 10) * (def.frames[i][7] || 1)); };
+        t = setTimeout(passo, 60);
+      });
+      el.addEventListener('mouseleave', () => { clearTimeout(t); t = null; const s = FF.Assets.sprites[id]; if (s) E.miniatura(cv, s, anim || Object.keys(s.def.anims)[0], 0); });
+    }
 
     // ---- dados
     const emPasta = (id) => !!F.pastaDoSprite(id) || F.pastasDe(id, null).length > 0;
@@ -194,11 +212,31 @@
       setTimeout(() => { if (st.sugestoes) st.sugestoes = calcularSugestoes(); tudo(); }, 0);
     }
 
+    // mover animações (opção A): entram na pasta escolhida e saem das outras pastas em que estavam soltas;
+    // na pasta onde está o sprite inteiro elas deixam de aparecer (seletor.js filtra)
+    function moverAnims(chaves, nome) {
+      chaves = chaves.filter(Boolean);
+      if (!chaves.length || !nome) return;
+      garantirPasta(nome);
+      chaves.forEach(k => {
+        const i = k.indexOf('#'), id = k.slice(0, i), a = k.slice(i + 1);
+        const ps = F.pastasDe(id, a);
+        if (!ps.includes(nome)) F.alternarPasta(nome, id, a);
+        ps.filter(p => p !== nome).forEach(p => F.alternarPasta(p, id, a));
+        marcA.delete(k);
+      });
+      E.aviso('📁 ' + chaves.length + (chaves.length === 1 ? ' animação movida' : ' animações movidas') + ' para "' + nome.replace(/\//g, ' › ') + '".', 'ok');
+      setTimeout(tudo, 0);
+    }
+    function moverMarcados(nome) { if (st.dentro) moverAnims([...marcA], nome); else mover([...marcados], nome); }
+    const temMarcados = () => (st.dentro ? marcA.size : marcados.size) > 0;
+
     // ---- desenho
     function pintar() {
-      grade.querySelectorAll('.es-org-card').forEach(k => k.classList.toggle('marcado', marcados.has(k.dataset.id)));
-      txtMarc.textContent = marcados.size ? '☑ ' + marcados.size + ' marcado(s) — clique numa pasta à direita' : 'Marque os sprites e escolha a pasta à direita';
-      c.classList.toggle('tem-marcados', marcados.size > 0);
+      grade.querySelectorAll('.es-org-card').forEach(k => k.classList.toggle('marcado', k.dataset.k ? marcA.has(k.dataset.k) : marcados.has(k.dataset.id)));
+      const n = st.dentro ? marcA.size : marcados.size;
+      txtMarc.textContent = n ? '☑ ' + n + (st.dentro ? ' animação(ões)' : ' sprite(s)') + ' marcado(s) — clique numa pasta à direita' : (st.dentro ? 'Marque as animações e escolha a pasta à direita (ex.: efeitos para a pasta de efeitos)' : 'Marque os sprites e escolha a pasta à direita · duplo clique abre as animações do sprite');
+      c.classList.toggle('tem-marcados', n > 0);
     }
     function marcar(id, ev) {
       if (ev.shiftKey && ultimo && lista.includes(ultimo)) {
@@ -220,16 +258,74 @@
       const p = st.sugestoes && st.sugestoes.porId.get(id);
       if (p) { const sg = E.el('div', 'es-org-sugcard'); sg.textContent = '→ ' + F.folha(p); sg.title = 'Sugestão: ' + p.replace(/\//g, ' › '); k.appendChild(sg); }
       else if (st.sugestoes) k.appendChild(E.el('div', 'es-org-sugcard nada', '?'));
+      const ed = E.botao('✂', (ev) => { ev.stopPropagation(); m.fechar(); E.editarSprite && E.editarSprite(id); }, 'Abrir na aba Sprites (editar quadros)');
+      ed.className = 'es-org-editar';
+      k.appendChild(ed);
       k.onclick = (ev) => marcar(id, ev);
-      k.ondblclick = () => { m.fechar(); E.editarSprite && E.editarSprite(id); };
+      k.ondblclick = () => abrirDentro(id);
+      previaNoMouse(k, cv, id, null);
       k.addEventListener('dragstart', (ev) => {
         if (!marcados.has(id)) { marcados.add(id); pintar(); }
-        ev.dataTransfer.setData('application/x-ff-org', JSON.stringify([...marcados]));
+        ev.dataTransfer.setData('application/x-ff-org', JSON.stringify({ ids: [...marcados] }));
         ev.dataTransfer.effectAllowed = 'move';
       });
       return k;
     }
+    async function abrirDentro(id) {
+      st.dentro = id; marcA.clear(); marcados.clear();
+      await FF.Assets.loadSprite(id).catch(() => null);
+      tudo();
+    }
+    function sairDentro() { st.dentro = null; marcA.clear(); tudo(); }
+    function cartaoAnim(id, s, a) {
+      const k0 = id + '#' + a, def = s.anim(a);
+      const k = E.el('div', 'es-org-card es-org-anim' + (marcA.has(k0) ? ' marcado' : ''));
+      k.dataset.k = k0; k.dataset.id = id; k.draggable = true;
+      const cv = document.createElement('canvas'); cv.width = 104; cv.height = 84;
+      requestAnimationFrame(() => E.miniatura(cv, s, a, 0));
+      const nm = E.el('div', 'es-org-nome'); nm.textContent = FF.Assets.nomeAnim ? FF.Assets.nomeAnim(id, a) : a; nm.title = a;
+      const fr = def.frames, dur = fr.reduce((t, q) => t + (q[7] || 1), 0) / (def.fps || 10);
+      let w = 0, h = 0; fr.forEach(q => { w = Math.max(w, q[3]); h = Math.max(h, q[4]); });
+      const sub = E.el('div', 'es-org-sub'); sub.textContent = fr.length + ' quadro' + (fr.length === 1 ? '' : 's') + ' · ' + dur.toFixed(2).replace('.', ',') + ' s · ' + w + '×' + h;
+      k.append(cv, nm, sub);
+      const ps = F.pastasDe(id, a);
+      if (ps.length) { const pl = E.el('div', 'es-org-sugcard'); pl.textContent = '📁 ' + ps.map(p => F.folha(p)).join(', '); pl.title = ps.join(' | '); k.appendChild(pl); }
+      k.onclick = (ev) => {
+        const ks = [...grade.querySelectorAll('.es-org-anim')].map(x => x.dataset.k);
+        if (ev.shiftKey && ultimo && ks.includes(ultimo)) { const [i, j] = [ks.indexOf(ultimo), ks.indexOf(k0)].sort((x, y) => x - y); ks.slice(i, j + 1).forEach(x => marcA.add(x)); }
+        else if (marcA.has(k0)) marcA.delete(k0); else marcA.add(k0);
+        ultimo = k0; pintar();
+      };
+      previaNoMouse(k, cv, id, a);
+      k.addEventListener('dragstart', (ev) => {
+        if (!marcA.has(k0)) { marcA.add(k0); pintar(); }
+        ev.dataTransfer.setData('application/x-ff-org', JSON.stringify({ anims: [...marcA] }));
+        ev.dataTransfer.effectAllowed = 'move';
+      });
+      return k;
+    }
+    function renderDentro() {
+      const id = st.dentro, s = FF.Assets.sprites[id];
+      filtros.style.display = 'none'; barraDentro.style.display = '';
+      barraDentro.innerHTML = '';
+      const volta = E.botao('← Voltar', () => sairDentro(), 'Voltar para os sprites');
+      const tit = E.el('span', 'es-org-dtit'); tit.textContent = (NOME_CAT[st.cat] || st.cat) + ' › ' + FF.Assets.nomeSprite(id);
+      const pSpr = F.pastaDoSprite(id);
+      const onde = E.el('span', 'es-org-sub', pSpr ? ' (sprite inteiro em 📁 ' + pSpr.replace(/\//g, ' › ') + ')' : '');
+      barraDentro.append(volta, tit, onde, E.el('span', 'es-org-esp'),
+        E.botao('Marcar todos', () => { grade.querySelectorAll('.es-org-anim').forEach(x => marcA.add(x.dataset.k)); pintar(); }, 'Marca todas as animações que estão aparecendo'),
+        E.botao('Limpar', () => { marcA.clear(); pintar(); }, 'Desmarcar todas'));
+      grade.innerHTML = '';
+      if (!s) { info.textContent = ''; grade.appendChild(E.el('p', 'es-vazio', 'Não deu para abrir este sprite.')); return; }
+      const nomes = Object.keys(s.def.anims).sort((a, b) => FF.compararNomes(a, b));
+      const soltas = nomes.filter(a => !F.pastasDe(id, a).length);
+      info.textContent = nomes.length + ' animação(ões) · ' + (nomes.length - soltas.length) + ' já em outras pastas';
+      nomes.forEach(a => grade.appendChild(cartaoAnim(id, s, a)));
+      pintar();
+    }
     function renderGrade() {
+      if (st.dentro) return renderDentro();
+      filtros.style.display = ''; barraDentro.style.display = 'none';
       calcularLista();
       pend.forEach((_, el) => obs.unobserve(el)); pend.clear();
       grade.innerHTML = '';
@@ -242,6 +338,7 @@
     }
     function renderSug() {
       sug.innerHTML = '';
+      if (st.dentro) return;
       btSug.classList.toggle('es-bt-ouro', !!st.sugestoes);
       if (!st.sugestoes) return;
       const g = st.sugestoes.grupos;
@@ -269,10 +366,13 @@
       const n = E.el('small', 'es-org-pn', String(contar(nome)));
       r.append(ic, nm, n);
       if (temFilhas) { const ent = E.botao('▸', (ev) => { ev.stopPropagation(); entrar(nome); }, 'Abrir a pasta'); ent.className = 'es-org-entrar'; r.appendChild(ent); }
-      r.onclick = () => { if (marcados.size) mover([...marcados], nome); else entrar(nome); };
+      r.onclick = () => { if (temMarcados()) moverMarcados(nome); else entrar(nome); };
       r.addEventListener('dragover', (ev) => { if (ev.dataTransfer.types.includes('application/x-ff-org')) { ev.preventDefault(); r.classList.add('alvo'); } });
       r.addEventListener('dragleave', () => r.classList.remove('alvo'));
-      r.addEventListener('drop', (ev) => { ev.preventDefault(); r.classList.remove('alvo'); try { mover(JSON.parse(ev.dataTransfer.getData('application/x-ff-org')), nome); } catch (e) { /* nada */ } });
+      r.addEventListener('drop', (ev) => {
+        ev.preventDefault(); r.classList.remove('alvo');
+        try { const d = JSON.parse(ev.dataTransfer.getData('application/x-ff-org')); if (d.anims) moverAnims(d.anims, nome); else mover(d.ids || d, nome); } catch (e) { /* nada */ }
+      });
       return r;
     }
     function entrar(nome) { st.pasta = nome; E.rascunho.gravar('org_pasta', nome); st.buscaPasta = ''; buscaP.value = ''; renderPastas(); }
@@ -307,7 +407,7 @@
         if (!n || !n.trim()) return;
         const nome = F.criarPasta((st.pasta ? st.pasta + '/' : '') + n.trim());
         if (!nome) return;
-        setTimeout(() => { if (marcados.size) mover([...marcados], nome); else renderPastas(); }, 0);
+        setTimeout(() => { if (temMarcados()) moverMarcados(nome); else renderPastas(); }, 0);
       };
       pastasEl.appendChild(nova);
     }

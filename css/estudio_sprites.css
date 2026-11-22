@@ -225,3 +225,8 @@
 .es-org-aqui { border-style: dashed; }
 .es-org-nova { color: var(--apagado); border-style: dashed; justify-content: center; }
 .es-org-dica { color: var(--apagado); font-size: 12px; }
+.es-org-dentro { border-bottom: 1px solid var(--linha); }
+.es-org-dtit { color: var(--ouro); font-weight: 700; }
+.es-org-editar { position: absolute; top: 4px; right: 4px; padding: 0 4px; font-size: 11px; opacity: 0; }
+.es-org-card:hover .es-org-editar { opacity: 1; }
+.es-org-anim canvas { height: 84px; }

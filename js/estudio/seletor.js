@@ -273,7 +273,13 @@ window.FF = window.FF || {};
       doJogo.forEach(id => { itens = itens.concat(itensJogo(id)); });
       if (fonte === 'efeitos' && !f) itens = itens.filter(x => ehEfeito(x));
       doAcervo.forEach(id => { itens = itens.concat(itensAcervo(id, idx)); });
-      if (favs) itens = itens.filter(x => favs.some(v => v.sprite === x.id && (!v.anim || v.anim === x.a)));
+      if (favs) {
+        // pasta com o sprite inteiro: as animações que foram MOVIDAS para outra pasta (fora desta e das subpastas)
+        // não aparecem aqui (🗂 Organizar → mover animações; opção A combinada com o usuário)
+        const dentro = /^pasta:/.test(fonte) ? new Set([fonte.slice(6)].concat(FF.Favoritos.descendentes(fonte.slice(6)))) : null;
+        itens = itens.filter(x => favs.some(v => v.sprite === x.id && v.anim === x.a) ||
+          (favs.some(v => v.sprite === x.id && !v.anim) && !(dentro && FF.Favoritos.pastasDe(x.id, x.a).some(pn => !dentro.has(pn)))));
+      }
       if (fonte === 'efeitos' && !f && FF.Favoritos) itens = itens.filter(x => !FF.Assets.doAcervo(x.id) || FF.Assets.tipoSprite(x.id) === 'efeitos' ? ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a) || 'efeitos') : ['efeitos', 'explosoes'].includes(FF.Favoritos.de(x.id, x.a)));
       if (f) itens = itens.filter(x => (x.a + ' ' + x.id + ' ' + (NM[x.id] || '') + ' ' + FF.Assets.nomeAnim(x.id, x.a) + ' ' + FF.Assets.nomeSprite(x.id)).toLowerCase().includes(f));
       let escondidas = 0;

@@ -58,6 +58,33 @@ const { chromium } = require('playwright');
     await p.waitForTimeout(300);
     ok(await p.evaluate(() => FF.Favoritos.movidos('ZZ Teste Org').length === 4), 'arrastar o cartão até a pasta move');
     await p.screenshot({ path: require('os').tmpdir() + '/ff_org3.png' });
+    // duplo clique no sprite: animações dele; mover 2 para outra pasta (opção A: saem da pasta do sprite inteiro)
+    await p.click('.es-org-voltar').catch(() => {});
+    await p.evaluate(() => FF.Favoritos.criarPasta('ZZ Efeitos'));
+    await p.waitForTimeout(200);
+    await p.dblclick('.es-org-card[data-id="zl3_bills"]');
+    await p.waitForSelector('.es-org-anim');
+    const nA = await p.locator('.es-org-anim').count();
+    ok(nA > 10, 'duplo clique abre as animações do sprite: ' + nA);
+    const ks = await p.evaluate(() => [...document.querySelectorAll('.es-org-anim')].slice(0, 2).map(x => x.dataset.k));
+    await p.click('.es-org-anim[data-k="' + ks[0] + '"]');
+    await p.click('.es-org-anim[data-k="' + ks[1] + '"]');
+    await p.fill('.es-org-dir input[type="search"]', 'zz efeitos');
+    await p.click('.es-org-pasta[data-pasta="ZZ Efeitos"]');
+    await p.waitForTimeout(400);
+    const mv = await p.evaluate((ks) => ks.map(k => FF.Favoritos.pastasDe(k.split('#')[0], k.split('#')[1])), ks);
+    ok(mv.every(l => l.length === 1 && l[0] === 'ZZ Efeitos'), 'animações movidas para a pasta: ' + JSON.stringify(mv));
+    await p.screenshot({ path: require('os').tmpdir() + '/ff_org4.png' });
+    await p.keyboard.press('Escape');
+    await p.waitForTimeout(300);
+    const grade = await p.evaluate(async (ks) => {
+      FF.Estudio.escolherSprite({ titulo: 't', inicio: 'pasta:ZZ Teste Org', aoEscolher: () => {} });
+      await new Promise(r => setTimeout(r, 2500));
+      const cards = [...document.querySelectorAll('.es-seletor .es-cartao[data-k]')].map(k => k.dataset.k);
+      const bills = cards.filter(k => k.startsWith('zl3_bills'));
+      return { total: cards.length, bills: bills.length, temMovidas: ks.filter(k => cards.some(c => c === k || c === k.replace('#', '|'))) };
+    }, ks);
+    ok(grade.bills > 10 && !grade.temMovidas.length, 'seletor: na pasta do sprite inteiro as animações movidas não aparecem (' + JSON.stringify(grade) + ')');
     ok(!erros.length, 'console: ' + erros.join(' | '));
   } catch (e) { falhas++; console.log('FALHOU: ' + e.message); }
   await b.close();
