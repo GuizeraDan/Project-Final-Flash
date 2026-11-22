@@ -860,6 +860,16 @@ window.FF = window.FF || {};
       if (b) this.infoPalco.textContent = (this.palco.modo === 'batalha' ? '⚔ BATALHA REAL · ' : '') + 't = ' + this.t.toFixed(3).replace('.', ',') + ' s · ' + (b.atk.anim.name || '') + ' q' + (b.atk.anim.i || 0) + (b.alvo ? ' · alvo: ' + Math.ceil(b.alvo.hp) + '/' + b.alvo.hpMax : '');
     },
 
+    // ponto (x, y) antes da perspectiva → onde o motor desenha o efeito
+    pontoEfeito(r, x, y) { return r && r.mapa ? r.mapa(x, y) : { x, y }; },
+    // movimento na tela (dx, dy) → movimento antes da perspectiva, em volta de (x, y) (a conta é linear por partes)
+    desfazerMapa(r, x, y, dx, dy) {
+      const h = 10, m0 = r.mapa(x, y), mx = r.mapa(x + h, y), my = r.mapa(x, y + h);
+      const a = (mx.x - m0.x) / h, b = (my.x - m0.x) / h, c = (mx.y - m0.y) / h, d = (my.y - m0.y) / h;
+      const det = a * d - b * c;
+      if (!isFinite(det) || Math.abs(det) < 1e-4) return { x: dx, y: dy };
+      return { x: (d * dx - b * dy) / det, y: (-c * dx + a * dy) / det };
+    },
     // alças do clipe escolhido; devolve a lista para o ponteiro
     alcas() {
       const a = this.achar(this.sel), b = this.palco._b;
@@ -869,9 +879,10 @@ window.FF = window.FF || {};
       const L = [];
       if (c.tipo === 'efeito' && r.p) {
         const d = c.em === 'tela' ? 1 : dir;
-        const x = r.p.x + (c.dx || 0) * d, y = r.p.y + (c.dy || 0);
-        const raio = 30 * (c.escala || 1);
-        L.push({ k: 'mover', x, y, cor: '#fff' }, { k: 'escala', x: x + raio, y: y + raio, cor: '#ffd84a', cx: x, cy: y, r0: raio }, { k: 'giro', x, y: y - raio - 16, cor: '#6cc8ff', cx: x, cy: y });
+        // onde o efeito é desenhado de verdade (perspectiva: palco.js r.mapa) e no tamanho da fileira (r.kp)
+        const q = this.pontoEfeito(r, r.p.x + (c.dx || 0) * d, r.p.y + (c.dy || 0)), x = q.x, y = q.y;
+        const raio = 30 * (c.escala || 1) * (r.kp || 1);
+        L.push({ k: 'mover', x, y, cor: '#fff', raio }, { k: 'escala', x: x + raio, y: y + raio, cor: '#ffd84a', cx: x, cy: y, r0: raio }, { k: 'giro', x, y: y - raio - 16, cor: '#6cc8ff', cx: x, cy: y });
       }
       if (c.tipo === 'projetil' && r.de) {
         L.push({ k: 'de', x: r.de.x + (c.deDx || 0) * dir, y: r.de.y + (c.deDy || 0), cor: '#5fe08a' });
@@ -957,7 +968,7 @@ window.FF = window.FF || {};
         if (h.k === 'escala' || h.k === 'giro') { ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(h.cx, h.cy); ctx.lineTo(h.x, h.y); ctx.stroke(); }
         if (h.k === 'lutador' && h.raio) { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'sprite') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
-        if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
+        if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio || 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         ctx.fillStyle = h.cor; ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.arc(h.x, h.y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       }
@@ -1028,7 +1039,13 @@ window.FF = window.FF || {};
         const r = this.palco.ref[c.id] || {}, dir = r.dir || 1;
         const R = (v) => Math.round(v);
         switch (h.k) {
-          case 'mover': case 'acerto': { const d = c.em === 'tela' ? 1 : dir; c.dx = R((o.dx || 0) + dx * d); c.dy = R((o.dy || 0) + dy); break; }
+          case 'mover': case 'acerto': {
+            const d = c.em === 'tela' ? 1 : dir;
+            let mx = dx, my = dy;
+            // efeito com perspectiva: desfaz a conta da diagonal para o desenho seguir o mouse 1 para 1
+            if (c.tipo === 'efeito' && r.mapa && r.p) { const v = this.desfazerMapa(r, r.p.x + (o.dx || 0) * d, r.p.y + (o.dy || 0), dx, dy); mx = v.x; my = v.y; }
+            c.dx = R((o.dx || 0) + mx * d); c.dy = R((o.dy || 0) + my); break;
+          }
           case 'lutador': { const dd = r.f ? r.f.dir : dir; c.dx = R((o.dx || 0) + dx * dd); c.dy = R((o.dy || 0) + dy); break; }
           case 'destino': {
             const lx = FF.legado().x, x0 = o.x != null ? o.x : h.f.homeX - lx;

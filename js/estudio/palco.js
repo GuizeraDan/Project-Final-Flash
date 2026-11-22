@@ -125,7 +125,18 @@ FF.EstudioPalco = class {
   gravarRef(b, viva, c) {
     const a = viva.actor, t = viva.target;
     const r = { dir: a ? a.dir : 1 };
-    if (c.tipo === 'efeito') r.p = FF.Linha.ponto(b, a, t, c.em);
+    if (c.tipo === 'efeito') {
+      r.p = FF.Linha.ponto(b, a, t, c.em);
+      // perspectiva: o motor leva o efeito para a diagonal entre quem solta e o alvo (FF.Linha.mapaPersp) e muda o
+      // tamanho pelo da fileira. As alças usam a mesma conta (com as posições deste instante) para ficar em cima dele.
+      if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
+        const foto = (f) => ({ latX: f.latX, latG: f.latG, homeX: f.homeX, homeG: f.homeG, base: f.base ? { x: f.base.x, g: f.base.g } : null });
+        const A = foto(a), T = foto(t), tela = c.em === 'tela';
+        r.mapa = (x, y) => (tela && y < 140) ? { x, y } : FF.Linha.mapaPersp(b, A, T, x, y, tela);
+      }
+      const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? t : a;
+      r.kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
+    }
     if (c.tipo === 'projetil') { r.de = a.pontoDisparo(); r.ate = t ? t.peito() : null; }
     if (c.tipo === 'acerto' && t) r.p = t.peito();
     if (c.tipo === 'anim') { const f = FF.Linha.lutadorDe(b, a, t, c._tr.quem); if (f) r.f = f; }

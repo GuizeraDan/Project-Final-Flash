@@ -44,6 +44,7 @@ const ok = (c, m) => { if (!c) { console.log('FALHOU:', m); process.exitCode = 1
     return h && { x: r.left + h.x * r.width / G.cv.width, y: r.top + h.y * r.height / G.cv.height, k: r.width / G.cv.width };
   });
   ok(!!pos, 'alça do efeito aparece no palco');
+  const fxAntes = await p.evaluate(() => { const G = FF.Estudio.Golpes, h = G.alcas().find(a => a.k === 'mover'); return h && { x: h.x, y: h.y }; });
   if (pos) {
     await p.mouse.move(pos.x, pos.y); await p.mouse.down();
     await p.mouse.move(pos.x + 30 * pos.k, pos.y - 15 * pos.k, { steps: 4 });
@@ -51,7 +52,10 @@ const ok = (c, m) => { if (!c) { console.log('FALHOU:', m); process.exitCode = 1
     await p.mouse.up();
   }
   const ef = await p.evaluate(() => FF.Estudio.Golpes.clipe());
-  ok(ef && Math.abs(ef.dx - 60) <= 2 && Math.abs(ef.dy + 30) <= 2, 'arrastar no palco posicionou o efeito (dx=' + (ef && ef.dx) + ', dy=' + (ef && ef.dy) + ')');
+  // com a perspectiva o dx gravado não é igual ao movimento do mouse: o que vale é o desenho andar 60, -30 na tela
+  const fxDepois = await p.evaluate(() => { const G = FF.Estudio.Golpes, h = G.alcas().find(a => a.k === 'mover'); return h && { x: h.x, y: h.y }; });
+  const mov = fxAntes && fxDepois ? [fxDepois.x - fxAntes.x, fxDepois.y - fxAntes.y] : [0, 0];
+  ok(ef && Math.abs(mov[0] - 60) <= 3 && Math.abs(mov[1] + 30) <= 3, 'arrastar no palco posicionou o efeito (andou ' + mov.map(v => v.toFixed(1)).join(', ') + ' na tela; dx=' + (ef && ef.dx) + ', dy=' + (ef && ef.dy) + ')');
   await p.evaluate(() => {
     const G = FF.Estudio.Golpes;
     G.adicionar('projeteis', 0.5);

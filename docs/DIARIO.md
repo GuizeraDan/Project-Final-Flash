@@ -583,3 +583,6 @@ Cache do app: `finalflash-v47`.
 
 ## 2026-11-22 — "Ordem" dos efeitos (quem fica por cima)
 - Usuário: a pedra ficou por cima do efeito azul. Antes a ordem era fixa (faixa atrás/na frente dos lutadores; camadas sempre por baixo dos efeitos; entre efeitos, o que começou depois por cima). Combinado: campo **Ordem** (Normal / ⬆ Por cima / ⬇ Por baixo dos outros efeitos) nos clipes de efeito, projétil e camada (`ordem: "cima"|"baixo"`). `battle.js` desenha cada faixa em três passadas (baixo → normal → cima); `FF.Cena.desenhar` aceita o filtro de ordem. Teste `node tools/testes/ordem_efeitos.js`.
+
+## 2026-11-22 — Alças dos efeitos no lugar certo (perspectiva)
+- Usuário: as alças do efeito (pedras) ficavam longe do desenho no palco. Com a perspectiva diagonal o motor leva os efeitos presos em quem solta para a diagonal (`FF.Linha.mapaPersp`) e muda o tamanho pela fileira, mas as alças usavam o ponto de antes. `palco.js gravarRef` guarda `r.mapa` (a mesma conta, com as posições do instante do disparo) e `r.kp`; `golpes.js` desenha as alças em `pontoEfeito` (círculo no tamanho da fileira) e o arrasto da alça branca desfaz a conta (`desfazerMapa`, 2×2 pela derivada) — o efeito segue o mouse 1 para 1. Teste `node tools/testes/estudio_alcas_persp.js` (3 combinações de fileiras).
