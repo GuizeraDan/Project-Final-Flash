@@ -74,14 +74,15 @@
       semPasta: E.rascunho.ler('org_sem_pasta') !== false,
       busca: '', pasta: E.rascunho.ler('org_pasta') || '', buscaPasta: '',
       limite: LIMITE, sugestoes: null,
-      dentro: null,   // sprite aberto (duplo clique): mostra as animações dele para mover uma a uma
+      dentro: null,
+      vista: E.rascunho.ler('org_vista') || 'capa',   // pastas: 'compacta' | 'capa' (lista com capa) | 'grade' (capas)   // sprite aberto (duplo clique): mostra as animações dele para mover uma a uma
     };
     const marcados = new Set();
     const marcA = new Set();   // animações marcadas ("sprite#anim") na visão de dentro do sprite
     let ultimo = null, lista = [];
 
     const c = E.el('div', 'es-org');
-    const m = E.modal('🗂 Organizar acervo', c, { larga: true, aoFechar: () => { obs.disconnect(); E.aviso('🗂 Organização salva.' + (FF.Edicoes.conectado() ? '' : ' (só neste aparelho até conectar o ☁)')); } });
+    const m = E.modal('🗂 Organizar acervo', c, { larga: true, aoFechar: () => { obs.disconnect(); obsCapa.disconnect(); E.aviso('🗂 Organização salva.' + (FF.Edicoes.conectado() ? '' : ' (só neste aparelho até conectar o ☁)')); } });
     m.el.querySelector('.es-modal-caixa').classList.add('es-org-caixa');
 
     // ---- topo
@@ -123,10 +124,16 @@
     const buscaP = document.createElement('input');
     buscaP.type = 'search'; buscaP.placeholder = '🔎 Buscar pasta (ex.: ssj4)…';
     buscaP.oninput = () => { st.buscaPasta = buscaP.value; renderPastas(); };
+    const vistas = E.el('div', 'es-org-vistas');
+    vistas.appendChild(E.el('span', 'es-org-sub', 'Ver como:'));
+    const btsVista = [['compacta', '☰ Compacta', 'Linhas finas: cabe mais na tela'], ['capa', '▤ Lista com capa', 'Capa, nome e quantos itens'], ['grade', '▦ Capas', 'Capas grandes lado a lado (bom para arrastar)']].map(([v, t, d]) => {
+      const b = E.botao(t, () => { st.vista = v; E.rascunho.gravar('org_vista', v); renderPastas(); }, d);
+      b.dataset.vista = v; vistas.appendChild(b); return b;
+    });
     const trilha = E.el('div', 'es-org-trilha');
     const pastasEl = E.el('div', 'es-org-pastas');
     const dicaDir = E.el('div', 'es-org-dica', 'Com cartões marcados, clique numa pasta (ou arraste os cartões até ela) para mover. Sem marcados, o clique abre a pasta. Animações movidas saem da pasta do personagem.');
-    dir.append(buscaP, trilha, pastasEl, dicaDir);
+    dir.append(buscaP, vistas, trilha, pastasEl, dicaDir);
 
     const corpo = E.el('div', 'es-org-corpo');
     corpo.append(esq, dir);
@@ -140,6 +147,21 @@
       pend.delete(en.target); obs.unobserve(en.target);
       FF.Assets.loadSprite(id).then(s => { if (s) E.miniatura(en.target, s, Object.keys(s.def.anims)[0], 0); }).catch(() => {});
     }), { root: grade, rootMargin: '200px' });
+
+    // ---- capas das pastas (1º sprite/animação de dentro), só quando aparecem
+    const pendCapa = new Map();
+    const obsCapa = new IntersectionObserver((ents) => ents.forEach(en => {
+      if (!en.isIntersecting) return;
+      const v = pendCapa.get(en.target); if (!v) return;
+      pendCapa.delete(en.target); obsCapa.unobserve(en.target);
+      FF.Assets.loadSprite(v.sprite).then(s => { if (s) E.miniatura(en.target, s, v.anim && s.has(v.anim) ? v.anim : Object.keys(s.def.anims)[0], 0); }).catch(() => {});
+    }), { root: pastasEl, rootMargin: '150px' });
+    function capa(nome, tam) {
+      const cv = document.createElement('canvas'); cv.width = tam; cv.height = tam; cv.className = 'es-org-capa';
+      const it = F.itensPasta(nome, true).find(v => !FF.Assets.spriteOculto(v.sprite));
+      if (it) { pendCapa.set(cv, it); obsCapa.observe(cv); } else cv.classList.add('vazia');
+      return cv;
+    }
 
     // ---- prévia tocando enquanto o mouse está em cima (igual ao seletor)
     function previaNoMouse(el, cv, id, anim) {
@@ -358,13 +380,24 @@
       }, 'Move cada grupo para a pasta sugerida (cria as que faltam)', 'es-bt-ouro'));
     }
     function contar(nome) { return F.itensPasta(nome, true).length; }
-    function linhaPasta(nome, rotulo, temFilhas) {
-      const r = E.el('div', 'es-org-pasta');
+    function linhaPasta(nome, rotulo, temFilhas, especial) {
+      const vista = especial ? 'compacta' : st.vista;
+      const r = E.el('div', 'es-org-pasta v-' + vista);
       r.dataset.pasta = nome;
-      const ic = E.el('span', 'es-org-pic', '📁');
-      const nm = E.el('span', 'es-org-pnome'); nm.textContent = rotulo;
-      const n = E.el('small', 'es-org-pn', String(contar(nome)));
-      r.append(ic, nm, n);
+      const nItens = contar(nome), nSub = F.arvorePastas().filter(p => F.paiDe(p.nome) === nome).length;
+      const nm = E.el('span', 'es-org-pnome'); nm.textContent = rotulo; nm.title = nome.replace(/\//g, ' › ');
+      const resumo = (nSub ? nSub + (nSub === 1 ? ' subpasta · ' : ' subpastas · ') : '') + nItens + (nItens === 1 ? ' item' : ' itens');
+      if (vista === 'compacta') {
+        const n = E.el('small', 'es-org-pn', String(nItens));
+        r.append(E.el('span', 'es-org-pic', '📁'), nm, n);
+      } else if (vista === 'capa') {
+        const tx = E.el('div', 'es-org-ptx');
+        tx.append(nm, E.el('small', 'es-org-pn', resumo));
+        r.append(capa(nome, 44), tx);
+      } else {
+        const sub = E.el('small', 'es-org-pn', resumo);
+        r.append(capa(nome, 112), nm, sub);
+      }
       if (temFilhas) { const ent = E.botao('▸', (ev) => { ev.stopPropagation(); entrar(nome); }, 'Abrir a pasta'); ent.className = 'es-org-entrar'; r.appendChild(ent); }
       r.onclick = () => { if (temMarcados()) moverMarcados(nome); else entrar(nome); };
       r.addEventListener('dragover', (ev) => { if (ev.dataTransfer.types.includes('application/x-ff-org')) { ev.preventDefault(); r.classList.add('alvo'); } });
@@ -378,6 +411,9 @@
     function entrar(nome) { st.pasta = nome; E.rascunho.gravar('org_pasta', nome); st.buscaPasta = ''; buscaP.value = ''; renderPastas(); }
     function renderPastas() {
       const arv = F.arvorePastas();
+      pendCapa.forEach((_, el) => obsCapa.unobserve(el)); pendCapa.clear();
+      btsVista.forEach(b => b.classList.toggle('sel', b.dataset.vista === st.vista));
+      pastasEl.dataset.vista = st.vista;
       if (st.pasta && !arv.some(p => p.nome === st.pasta)) st.pasta = '';
       trilha.innerHTML = '';
       const partes = st.pasta ? st.pasta.split('/') : [];
@@ -394,14 +430,14 @@
         return;
       }
       if (st.pasta) {   // a própria pasta aberta também recebe
-        const aqui = linhaPasta(st.pasta, '⬇ Pôr aqui: ' + F.folha(st.pasta), false);
+        const aqui = linhaPasta(st.pasta, '⬇ Pôr aqui: ' + F.folha(st.pasta), false, true);
         aqui.classList.add('es-org-aqui');
         pastasEl.appendChild(aqui);
       }
       const filhas = arv.filter(p => F.paiDe(p.nome) === st.pasta);
       filhas.forEach(p => pastasEl.appendChild(linhaPasta(p.nome, p.folha, p.temFilhas)));
       if (!filhas.length && !st.pasta) pastasEl.appendChild(E.el('p', 'es-vazio', 'Você ainda não tem pastas.'));
-      const nova = E.el('div', 'es-org-pasta es-org-nova', '＋ Nova pasta aqui');
+      const nova = E.el('div', 'es-org-pasta es-org-nova v-compacta', '＋ Nova pasta aqui');
       nova.onclick = async () => {
         let n = await E.perguntar('＋ Nova pasta', 'Nome da pasta' + (st.pasta ? ' dentro de "' + F.folha(st.pasta) + '"' : '') + ':', '');
         if (!n || !n.trim()) return;

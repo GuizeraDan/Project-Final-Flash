@@ -216,7 +216,7 @@
 .es-org-sep { color: var(--apagado); }
 .es-org-voltar { padding: 0 6px; }
 .es-org-pastas { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
-.es-org-pasta { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--linha); border-radius: 6px; background: var(--painel); cursor: pointer; }
+.es-org-pasta { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--linha); border-radius: 6px; background: var(--painel); cursor: pointer; }
 .es-org-pasta:hover { border-color: var(--azul); }
 .es-org.tem-marcados .es-org-pasta:not(.es-org-nova):hover, .es-org-pasta.alvo { border: 2px solid var(--ouro); padding: 5px 7px; background: #3a2a10; }
 .es-org-pnome { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
@@ -230,3 +230,19 @@
 .es-org-editar { position: absolute; top: 4px; right: 4px; padding: 0 4px; font-size: 11px; opacity: 0; }
 .es-org-card:hover .es-org-editar { opacity: 1; }
 .es-org-anim canvas { height: 84px; }
+
+/* pastas do Organizar: compacta / lista com capa / capas (grade), estilo playlist */
+.es-org-vistas { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.es-org-vistas button { font-size: 12px; padding: 2px 8px; }
+.es-org-pasta.v-compacta { padding: 3px 8px; border-radius: 4px; }
+.es-org-pasta.v-compacta .es-org-pnome { font-weight: 400; }
+.es-org-pasta.v-capa { padding: 4px 8px 4px 4px; }
+.es-org-ptx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.es-org-capa { flex: none; width: 44px; height: 44px; border-radius: 6px; background: #0c0718; image-rendering: pixelated; }
+.es-org-capa.vazia { background: repeating-linear-gradient(45deg, #1a1030, #1a1030 6px, #140c24 6px, #140c24 12px); }
+.es-org-pastas[data-vista="grade"] { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); align-content: start; gap: 8px; }
+.es-org-pastas[data-vista="grade"] > :not(.v-grade) { grid-column: 1 / -1; }
+.es-org-pasta.v-grade { position: relative; flex-direction: column; align-items: stretch; gap: 3px; padding: 6px; text-align: left; }
+.es-org-pasta.v-grade .es-org-capa { width: 100%; height: auto; aspect-ratio: 1; }
+.es-org-pasta.v-grade .es-org-entrar { position: absolute; top: 8px; right: 8px; }
+.es-org.tem-marcados .es-org-pasta.v-grade:hover, .es-org-pasta.v-grade.alvo { padding: 5px; }

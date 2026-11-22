@@ -85,6 +85,16 @@ const { chromium } = require('playwright');
       return { total: cards.length, bills: bills.length, temMovidas: ks.filter(k => cards.some(c => c === k || c === k.replace('#', '|'))) };
     }, ks);
     ok(grade.bills > 10 && !grade.temMovidas.length, 'seletor: na pasta do sprite inteiro as animações movidas não aparecem (' + JSON.stringify(grade) + ')');
+    // vistas das pastas: compacta / lista com capa / capas
+    await p.evaluate(() => { FF.Estudio.EstOrgTeste = FF.EstudioOrganizar.abrir(); });
+    await p.waitForSelector('.es-org-vistas button');
+    for (const v of ['compacta', 'capa', 'grade']) {
+      await p.click('.es-org-vistas button[data-vista="' + v + '"]');
+      await p.waitForTimeout(700);
+      const r2 = await p.evaluate((v) => ({ n: document.querySelectorAll('.es-org-pasta.v-' + v).length, capas: [...document.querySelectorAll('.es-org-capa')].length, vista: document.querySelector('.es-org-pastas').dataset.vista }), v);
+      ok(r2.vista === v && r2.n > 0 && (v === 'compacta' ? r2.capas === 0 : r2.capas > 0), 'vista "' + v + '": ' + JSON.stringify(r2));
+      await p.screenshot({ path: require('os').tmpdir() + '/ff_org_vista_' + v + '.png' });
+    }
     ok(!erros.length, 'console: ' + erros.join(' | '));
   } catch (e) { falhas++; console.log('FALHOU: ' + e.message); }
   await b.close();
