@@ -89,7 +89,8 @@
     const topo = E.el('div', 'es-org-topo');
     const txtMarc = E.el('span', 'es-org-marc');
     const btSug = E.botao('🪄 Sugerir por nome', () => { st.sugestoes = st.sugestoes ? null : calcularSugestoes(); renderSug(); renderGrade(); }, 'Reconhece o personagem pelo nome do sprite e sugere a pasta');
-    topo.append(txtMarc, E.el('span', 'es-org-esp'), btSug);
+    const btLixo = E.botao('🗑 Lixeira', () => lixeiraMarcados(), 'Manda os marcados para a Lixeira (dá para restaurar em "🗑 Lixeira")', 'es-bt-perigo es-org-lixo');
+    topo.append(txtMarc, btLixo, E.el('span', 'es-org-esp'), btSug);
 
     // ---- esquerda: acervo
     const esq = E.el('div', 'es-org-esq');
@@ -256,12 +257,46 @@
     function moverMarcados(nome) { if (st.dentro) moverAnims([...marcA], nome); else mover([...marcados], nome); }
     const temMarcados = () => (st.dentro ? marcA.size : marcados.size) > 0;
 
+    // ---- renomear e Lixeira (sprites do acervo e animações)
+    function renomear(alvoEl, id, anim) {
+      const atual = anim ? FF.Assets.nomeAnim(id, anim) : FF.Assets.nomeSprite(id);
+      E.editarNoLugar(alvoEl, atual, (v) => {
+        if (anim) E.renomearAnim(id, anim, v);
+        else E.mudarInfoSprite(id, { nome: (v || '').trim() && v.trim() !== (FF.Assets.acervo()[id] || [])[1] ? v.trim() : null });
+        setTimeout(() => { alvoEl.textContent = anim ? FF.Assets.nomeAnim(id, anim) : FF.Assets.nomeSprite(id); }, 0);
+      });
+    }
+    async function lixeira(ids, anims) {
+      ids = (ids || []).filter(id => FF.Assets.doAcervo(id) && !FF.Assets.spriteOculto(id));
+      anims = anims || [];
+      const n = ids.length + anims.length;
+      if (!n) { E.aviso('Marque primeiro o que quer mandar para a Lixeira.'); return; }
+      const txt = (ids.length ? ids.length + ' sprite(s)' : '') + (ids.length && anims.length ? ' e ' : '') + (anims.length ? anims.length + ' animação(ões)' : '');
+      if (!(await E.confirmar('🗑 Mandar para a Lixeira', 'Mandar ' + txt + ' para a Lixeira? Somem das listas e das pastas; dá para restaurar em "🗑 Lixeira".', '🗑 Mandar para a Lixeira', true))) return;
+      ids.forEach(id => { E.mudarInfoSprite(id, { oculto: true }); marcados.delete(id); });
+      anims.forEach(k => { const i = k.indexOf('#'); FF.Edicoes.setDepois(['sprites', k.slice(0, i), k.slice(i + 1)], { apagada: true }); marcA.delete(k); });
+      anims.forEach(k => { const id = k.slice(0, k.indexOf('#')), s = FF.Assets.sprites[id]; if (s) FF.Mods.aplicar(id, s); });
+      E.aviso('🗑 ' + txt + ' na Lixeira.');
+      setTimeout(tudo, 0);
+    }
+    function lixeiraMarcados() { if (st.dentro) lixeira([], [...marcA]); else lixeira([...marcados], []); }
+    function botoesCartao(k, nm, id, anim) {
+      const bx = E.el('div', 'es-org-bts');
+      const ren = E.botao('✏', (ev) => { ev.stopPropagation(); renomear(nm, id, anim); }, anim ? 'Renomear esta animação (só o nome que aparece)' : 'Renomear este sprite (só o nome que aparece)');
+      const del = E.botao('🗑', (ev) => { ev.stopPropagation(); if (anim) lixeira([], [id + '#' + anim]); else lixeira([id], []); }, 'Mandar para a Lixeira', 'es-bt-perigo');
+      bx.append(ren, del);
+      if (!anim) bx.prepend(E.botao('✂', (ev) => { ev.stopPropagation(); m.fechar(); E.editarSprite && E.editarSprite(id); }, 'Abrir na aba Sprites (editar quadros)'));
+      [ren, del].forEach(b => b.addEventListener('dblclick', (ev) => ev.stopPropagation()));
+      k.appendChild(bx);
+    }
+
     // ---- desenho
     function pintar() {
       grade.querySelectorAll('.es-org-card').forEach(k => k.classList.toggle('marcado', k.dataset.k ? marcA.has(k.dataset.k) : marcados.has(k.dataset.id)));
       const n = st.dentro ? marcA.size : marcados.size;
       txtMarc.textContent = n ? '☑ ' + n + (st.dentro ? ' animação(ões)' : ' sprite(s)') + ' marcado(s) — clique numa pasta à direita' : (st.dentro ? 'Marque as animações e escolha a pasta à direita (ex.: efeitos para a pasta de efeitos)' : 'Marque os sprites e escolha a pasta à direita · duplo clique abre as animações do sprite');
       c.classList.toggle('tem-marcados', n > 0);
+      btLixo.textContent = '🗑 Lixeira' + (n ? ' (' + n + ')' : '');
     }
     function marcar(id, ev) {
       if (ev.shiftKey && ultimo && lista.includes(ultimo)) {
@@ -283,9 +318,7 @@
       const p = st.sugestoes && st.sugestoes.porId.get(id);
       if (p) { const sg = E.el('div', 'es-org-sugcard'); sg.textContent = '→ ' + F.folha(p); sg.title = 'Sugestão: ' + p.replace(/\//g, ' › '); k.appendChild(sg); }
       else if (st.sugestoes) k.appendChild(E.el('div', 'es-org-sugcard nada', '?'));
-      const ed = E.botao('✂', (ev) => { ev.stopPropagation(); m.fechar(); E.editarSprite && E.editarSprite(id); }, 'Abrir na aba Sprites (editar quadros)');
-      ed.className = 'es-org-editar';
-      k.appendChild(ed);
+      botoesCartao(k, nm, id, null);
       k.onclick = (ev) => marcar(id, ev);
       k.ondblclick = () => abrirDentro(id);
       previaNoMouse(k, cv, id, null);
@@ -313,6 +346,7 @@
       let w = 0, h = 0; fr.forEach(q => { w = Math.max(w, q[3]); h = Math.max(h, q[4]); });
       const sub = E.el('div', 'es-org-sub'); sub.textContent = fr.length + ' quadro' + (fr.length === 1 ? '' : 's') + ' · ' + dur.toFixed(2).replace('.', ',') + ' s · ' + w + '×' + h;
       k.append(cv, nm, sub);
+      botoesCartao(k, nm, id, a);
       const ps = F.pastasDe(id, a);
       if (ps.length) { const pl = E.el('div', 'es-org-sugcard'); pl.textContent = '📁 ' + ps.map(p => F.folha(p)).join(', '); pl.title = ps.join(' | '); k.appendChild(pl); }
       k.onclick = (ev) => {

@@ -269,3 +269,8 @@
 .es-org-item .es-org-capa { width: 100%; height: 56px; }
 .es-org-tirar { position: absolute; top: 4px; right: 4px; padding: 0 5px; font-size: 11px; opacity: 0; }
 .es-org-item:hover .es-org-tirar { opacity: 1; }
+/* ✂ ✏ 🗑 nos cartões do Organizar */
+.es-org-bts { position: absolute; top: 4px; right: 4px; display: flex; flex-direction: column; gap: 2px; opacity: 0; }
+.es-org-card:hover .es-org-bts { opacity: 1; }
+.es-org-bts button { padding: 0 4px; font-size: 11px; line-height: 16px; }
+.es-org-lixo { font-size: 12px; }

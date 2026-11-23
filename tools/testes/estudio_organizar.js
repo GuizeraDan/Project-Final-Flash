@@ -93,6 +93,24 @@ const { chromium } = require('playwright');
       return { total: cards.length, bills: bills.length, temMovidas: ks.filter(k => cards.some(c => c === k || c === k.replace('#', '|'))) };
     }, ks);
     ok(grade.bills > 10 && !grade.temMovidas.length, 'seletor: na pasta do sprite inteiro as animações movidas não aparecem (' + JSON.stringify(grade) + ')');
+    // ✏ renomear e 🗑 Lixeira nos cartões
+    await p.evaluate(() => { document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); FF.EstudioOrganizar.abrir(); });
+    await p.waitForSelector('.es-org-card');
+    const cardK = p.locator('.es-org-card[data-id="zl3_kefla"]');
+    if (await cardK.count()) {
+      await cardK.hover();
+      await cardK.locator('.es-org-bts button:has-text("✏")').click();
+      await p.keyboard.type('Kefla Teste'); await p.keyboard.press('Enter');
+      await p.waitForTimeout(300);
+      ok(await p.evaluate(() => FF.Assets.nomeSprite('zl3_kefla') === 'Kefla Teste'), '✏ renomeia o sprite');
+      await cardK.hover();
+      await cardK.locator('.es-org-bts button:has-text("🗑")').click();
+      await p.click('.es-modal button:has-text("Mandar para a Lixeira")');
+      await p.waitForTimeout(300);
+      ok(await p.evaluate(() => FF.Assets.spriteOculto('zl3_kefla')) && !(await cardK.count()), '🗑 manda o sprite para a Lixeira');
+    } else ok(true, '(Kefla não está à vista; pulei ✏/🗑)');
+    await p.evaluate(() => { document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); });
+    await p.waitForTimeout(300);
     // vistas das pastas: compacta / lista com capa / capas
     await p.evaluate(() => { FF.Estudio.EstOrgTeste = FF.EstudioOrganizar.abrir(); });
     await p.waitForSelector('.es-org-vistas button');

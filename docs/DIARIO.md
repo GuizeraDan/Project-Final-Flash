@@ -595,3 +595,8 @@ Cache do app: `finalflash-v47`.
 - Organizar (pedido do usuário): barra de letras (# A B C … Z) acima das pastas; clicar pula para a 1ª pasta com a letra e ela pisca; letras sem pasta ficam apagadas; só aparece com 8 pastas ou mais no nível aberto.
 - Organizar (pedido do usuário): o "＋ Nova pasta" foi para a linha do "Ver como" (à direita, sempre à vista); o item do fim da lista saiu.
 - Organizar (pedido do usuário): com uma pasta aberta à direita, "Dentro de <pasta> (N)" mostra o que está nela (só nela, sem as subpastas): miniatura com prévia ao passar o mouse, nome, se é sprite inteiro ou animação (e de qual sprite); ↩ tira da pasta (sprite movido volta ao lugar de origem; animação sai da lista da pasta); duplo clique abre o sprite à esquerda.
+
+### 2026-11-23 — Organizar acervo: renomear e Lixeira
+- Cartões de sprite e de animação ganharam ✏ (renomear só o nome exibido: `spritesInfo.nome` / `nomesAnims`) e 🗑 (Lixeira: `spritesInfo.oculto` para sprites do acervo, `{apagada: true}` para animações), além do ✂ — aparecem ao passar o mouse.
+- Botão "🗑 Lixeira (N)" no topo manda os marcados (sprites, ou animações quando aberto "dentro" de um sprite). Sempre pede confirmação; restaura-se pela 🗑 Lixeira da aba Sprites.
+- Teste: `tools/testes/estudio_organizar.js` (✏ e 🗑).
