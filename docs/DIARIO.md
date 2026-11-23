@@ -600,3 +600,8 @@ Cache do app: `finalflash-v47`.
 - Cartões de sprite e de animação ganharam ✏ (renomear só o nome exibido: `spritesInfo.nome` / `nomesAnims`) e 🗑 (Lixeira: `spritesInfo.oculto` para sprites do acervo, `{apagada: true}` para animações), além do ✂ — aparecem ao passar o mouse.
 - Botão "🗑 Lixeira (N)" no topo manda os marcados (sprites, ou animações quando aberto "dentro" de um sprite). Sempre pede confirmação; restaura-se pela 🗑 Lixeira da aba Sprites.
 - Teste: `tools/testes/estudio_organizar.js` (✏ e 🗑).
+
+### 2026-11-23 — Aba Sprites: ⬇ Baixar e ⬆ Trazer de volta
+- `js/estudio/sprites_io.js` (`FF.EstudioIO`): baixa a animação aberta como folha PNG, ZIP (um PNG por quadro + anim.json), APNG ou GIF. Todos os quadros em células do mesmo tamanho (margem de 8 px) com os pés no mesmo ponto; fps, célula, âncora, durações e pontos de disparo vão no tEXt "FinalFlash" dos PNG e no anim.json.
+- Trazer de volta aceita folha, ZIP, APNG ou GIF: corta as células, apara, recalcula a origem, junta quadros iguais e grava a imagem como atlas extra (`FF.EstudioArq.adicionarImagens`). Opções: substituir os quadros da animação aberta (fica no editor, Ctrl+Z, salvar) ou importar como nova animação (já salva). Sem os dados do Estúdio, a geometria vem da animação aberta.
+- Teste: `tools/testes/estudio_baixar.js` (ida e volta com pixels e origem iguais).

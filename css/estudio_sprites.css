@@ -274,3 +274,10 @@
 .es-org-card:hover .es-org-bts { opacity: 1; }
 .es-org-bts button { padding: 0 4px; font-size: 11px; line-height: 16px; }
 .es-org-lixo { font-size: 12px; }
+/* ⬇ Baixar / ⬆ Trazer de volta */
+.es-io { max-width: 560px; }
+.es-io-op { display: flex; flex-direction: column; gap: 2px; margin: 8px 0; }
+.es-io-op button { align-self: flex-start; }
+.es-io-prev { display: block; max-width: 100%; margin: 8px 0; background: repeating-conic-gradient(#2a2440 0 25%, #1d1830 0 50%) 0 0 / 16px 16px; border-radius: 6px; image-rendering: pixelated; }
+.es-io-linha { margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+.es-io-nome { flex: 1; }

@@ -144,7 +144,9 @@
     ui.btComo = E.botao('💾 Salvar como nova…', () => salvarComo(), 'Grava uma cópia com outro nome');
     ui.btOrig = E.botao('↺ Original', () => original(), 'Volta ao original do jogo / descarta as mudanças não salvas');
     ui.btApagar = E.botao('🗑 Apagar', () => apagarAnim(st.nome), 'Apaga esta animação do jogo (dá para trazer de volta em "Apagadas", no fim da lista)', 'es-bt-perigo');
-    barra.append(ui.titulo, el('span', 'ess-esp'), ui.btSalvar, ui.btComo, ui.btOrig, ui.btApagar);
+    ui.btBaixar = E.botao('⬇ Baixar', () => FF.EstudioIO.baixar(ctxIO()), 'Baixa esta animação (folha PNG, ZIP de quadros, GIF ou PNG animado) para editar em outro programa', 'ess-baixar');
+    ui.btTrazer = E.botao('⬆ Trazer de volta', () => FF.EstudioIO.trazer(ctxIO()), 'Traz a animação editada fora: substitui os quadros desta ou vira uma animação nova', 'ess-trazer');
+    barra.append(ui.titulo, el('span', 'ess-esp'), ui.btBaixar, ui.btTrazer, ui.btSalvar, ui.btComo, ui.btOrig, ui.btApagar);
 
     const opcoes = el('div', 'es-barra ess-opcoes');
     const selFundo = E.campo('select', 'Fundo', st.fundo, (v) => { st.fundo = v; }, { lista: FUNDOS });
@@ -497,6 +499,8 @@
     else if (FF.Mods.alterada(st.id, st.nome)) ui.titulo.append(el('span', 'ess-tag alt', '✎ alterada'));
     if (d) ui.titulo.append(el('span', 'ess-sujo', '● não salvo'));
     ui.btSalvar.disabled = !d || !frames().length;
+    ui.btBaixar.disabled = !frames().length;
+    ui.btTrazer.disabled = !st.anim;
     ui.btOrig.disabled = !d && !FF.Mods.alterada(st.id, st.nome);
     if (ui.btApagar) ui.btApagar.disabled = !st.nome;
   }
@@ -819,6 +823,30 @@
     nome.onkeydown = (e) => { if (e.key === 'Enter') criar(!!temSel); };
     const m = E.modal('＋ Nova animação', c);
     setTimeout(() => nome.focus(), 30);
+  }
+
+  // ⬇ Baixar / ⬆ Trazer de volta (js/estudio/sprites_io.js)
+  function ctxIO() {
+    return {
+      id: st.id, set: st.set, nome: st.nome, anim: st.anim,
+      substituir(a, set) {
+        pausar();
+        if (set) st.set = set;
+        st.anim.frames = a.frames; st.anim.fps = a.fps; st.anim.loop = a.loop; st.anim.repeatTo = a.repeatTo;
+        corrigirSel();
+        mudou('Trazer de volta (' + a.frames.length + ' quadros)');
+        enquadrar(); tudo();
+        E.aviso('📥 ' + a.frames.length + ' quadro(s) no lugar dos antigos. Salve para valer no jogo (Ctrl+Z desfaz).', 'ok');
+      },
+      criar(nome, a, set) {
+        if (set) st.set = set;
+        A().salvarAnim(st.id, nome, a);
+        E.renderSync();
+        renderSprites();
+        abrirAnim(nome, { forcar: true });
+        E.aviso('📥 Animação "' + nome + '" criada e salva no jogo.', 'ok');
+      },
+    };
   }
 
   // ------------------------------------------------------------------ salvar
@@ -1795,6 +1823,6 @@
   };
   E.registrarAba(aba);
   // para os testes e outras abas
-  E.Sprites = { st, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
+  E.Sprites = { st, ctxIO, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
     redimensionar, mesclar, editorLivre, compactar, apagarSprite, novaAnimacao, renomearAnim };
 })();
