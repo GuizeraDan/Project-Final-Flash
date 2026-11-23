@@ -605,3 +605,9 @@ Cache do app: `finalflash-v47`.
 - `js/estudio/sprites_io.js` (`FF.EstudioIO`): baixa a animação aberta como folha PNG, ZIP (um PNG por quadro + anim.json), APNG ou GIF. Todos os quadros em células do mesmo tamanho (margem de 8 px) com os pés no mesmo ponto; fps, célula, âncora, durações e pontos de disparo vão no tEXt "FinalFlash" dos PNG e no anim.json.
 - Trazer de volta aceita folha, ZIP, APNG ou GIF: corta as células, apara, recalcula a origem, junta quadros iguais e grava a imagem como atlas extra (`FF.EstudioArq.adicionarImagens`). Opções: substituir os quadros da animação aberta (fica no editor, Ctrl+Z, salvar) ou importar como nova animação (já salva). Sem os dados do Estúdio, a geometria vem da animação aberta.
 - Teste: `tools/testes/estudio_baixar.js` (ida e volta com pixels e origem iguais).
+
+### 2026-11-23 — Lista de animações: renomear qualquer uma e apagar várias
+- Aba Sprites: botão Aa (e duplo clique no nome) em todas as animações. As criadas por você mudam de nome de verdade; as do jogo original ganham só o nome de exibição (`spritesInfo.nomesAnims`), para não quebrar os golpes.
+- Caixinhas nas animações (Shift = intervalo) + barra "☑ N · Todas · 🗑 Apagar · ✕": apaga várias de uma vez com uma confirmação (originais vão para "Apagadas").
+- Coluna da esquerda: ✏ nas animações soltas dentro das pastas; sprites do jogo renomeados mostram o nome novo.
+- Teste: `tools/testes/estudio_anims_lista.js`.

@@ -133,7 +133,8 @@ window.FF = window.FF || {};
       }
       b.appendChild(mini(id));
       const nome = E.el('span', 'es-nav-nome ess-spr-nome');
-      nome.textContent = ac ? FF.Assets.nomeSprite(id) : (NM[id] && NM[id] !== id ? NM[id] + ' · ' + id : id);
+      const nInfo = FF.Assets.infoSprite(id).nome;
+      nome.textContent = ac || nInfo ? FF.Assets.nomeSprite(id) : (NM[id] && NM[id] !== id ? NM[id] + ' · ' + id : id);
       nome.title = id;
       b.appendChild(nome);
       o.decorar && o.decorar(id, b);
@@ -169,6 +170,13 @@ window.FF = window.FF || {};
       const n = E.el('span', 'es-nav-nome'); n.textContent = '🎞 ' + FF.Assets.nomeAnim(v.sprite, v.anim);
       n.title = v.anim + ' · ' + FF.Assets.nomeSprite(v.sprite) + ' (' + v.sprite + ')';
       b.append(n, E.el('small', 'es-nav-n', FF.Assets.nomeSprite(v.sprite)));
+      const acA = E.el('span', 'es-nav-acoes es-seletor-acoes');
+      acA.appendChild(E.botao('✏', (e) => {
+        e.stopPropagation();
+        n.textContent = FF.Assets.nomeAnim(v.sprite, v.anim);
+        E.editarNoLugar(n, n.textContent, (val) => { E.renomearAnim(v.sprite, v.anim, val); setTimeout(() => { n.textContent = '🎞 ' + FF.Assets.nomeAnim(v.sprite, v.anim); }, 0); });
+      }, 'Renomear esta animação (só o nome que aparece; os golpes continuam usando "' + v.anim + '")'));
+      b.appendChild(acA);
       b.draggable = true;   // arrastar para outra pasta (de dentro de uma pasta = mover; Ctrl = copiar)
       b.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_ANIMS, JSON.stringify([[v.sprite, v.anim, v.pasta || null, false, false]])); e.dataTransfer.effectAllowed = 'copyMove'; });
       b.onclick = () => o.escolher(v.sprite, v.anim);

@@ -21,6 +21,7 @@
     tocando: false, t: 0, espera: 0, vel: 1, repetir: true, espelho: false,
     zoom: 3, panX: 0, panY: 0, fundo: 'xadrez', grade: false, cebola: false, caixa: true, pontos: true, usarEscala: false,
     modo: 'mover', multi: false, buscaSprite: '', buscaAnim: '',
+    marcA: new Set(), marcAId: null, marcAUlt: null,
   };
   const A = () => FF.EstudioArq;
   const importado = (id) => A().importado(id || st.id);
@@ -109,6 +110,9 @@
     ui.anims = el('div', 'es-lista ess-anims es-rolar');
     const linhaS = el('div', 'ess-busca-linha'), linhaA = el('div', 'ess-busca-linha');
     linhaS.append(ui.buscaSprite, ui.ordemSprites); linhaA.append(ui.buscaAnim, ui.ordemAnims);
+    // ☑ animações marcadas (caixinhas): apagar várias de uma vez
+    ui.barraA = el('div', 'ess-marc-anims');
+    ui.barraA.hidden = true;
     // ↕ divisória entre Sprites e Animações: arraste para dividir o espaço; ︾ dá mais espaço aos sprites, ︽ às animações
     // (duplo clique volta ao normal; lembrado no aparelho: 'sprites_div' = altura da lista de sprites em px)
     const div = el('div', 'ess-div');
@@ -133,7 +137,7 @@
       const up = () => { div.classList.remove('arrastando'); div.removeEventListener('pointermove', mv); div.removeEventListener('pointerup', up); div.removeEventListener('pointercancel', up); };
       div.addEventListener('pointermove', mv); div.addEventListener('pointerup', up); div.addEventListener('pointercancel', up);
     });
-    esq.append(linhaS, ui.sprites, div, tA, linhaA, ui.anims);
+    esq.append(linhaS, ui.sprites, div, tA, linhaA, ui.barraA, ui.anims);
     requestAnimationFrame(() => { const h = E.rascunho.ler('sprites_div'); if (h) aplicarDiv(h); });
 
     // centro: barra de ações, palco, controles, tira de quadros
@@ -341,11 +345,21 @@
     if (escP && escP.has('*')) escP.clear();   // o sprite inteiro está numa pasta: não esconde as animações dele aqui
     const listaVer = E.ordenar(lista.filter(n => (!escP || n === st.nome || !escP.has(n)) && (!f || n.toLowerCase().includes(f) || FF.Assets.nomeAnim(st.id, n).toLowerCase().includes(f))), ordA,
       (n) => FF.Assets.nomeAnim(st.id, n), (n) => { const a = st.set.def.anims[n]; return a ? a.frames.length : 0; });
+    if (st.marcAId !== st.id) { st.marcA = new Set(); st.marcAId = st.id; st.marcAUlt = null; }
+    st.marcA.forEach(n => { if (!st.set.def.anims[n]) st.marcA.delete(n); });
+    ui.listaAVer = listaVer;
     listaVer.forEach(n => {
       const novoAqui = st.novo && n === st.nome && !st.set.def.anims[n];
       const a = novoAqui ? st.anim : st.set.def.anims[n];
       const it = el('div', 'es-item ess-anim' + (n === st.nome ? ' sel' : ''));
       it.dataset.anim = n;
+      if (!novoAqui) {
+        const ch = document.createElement('input'); ch.type = 'checkbox'; ch.className = 'ess-anim-chk'; ch.checked = st.marcA.has(n);
+        ch.title = 'Marcar (Shift = intervalo) para apagar várias de uma vez';
+        ch.addEventListener('click', (e) => { e.stopPropagation(); marcarAnim(n, e.shiftKey, ch.checked); });
+        it.appendChild(ch);
+        if (st.marcA.has(n)) it.classList.add('marcado');
+      }
       const cv = document.createElement('canvas'); cv.width = 40; cv.height = 40;
       const [mw, mh] = maiores(a.frames);
       mini(cv, st.set, a.frames[0], mw, mh);
@@ -355,7 +369,11 @@
       else if (FF.Mods.criada(st.id, n)) it.appendChild(el('span', 'tag', '★'));
       if (!novoAqui && FF.Mods.alterada(st.id, n)) { const t = el('span', 'tag alt', '✎'); t.title = 'Alterada por você'; it.appendChild(t); }
       it.appendChild(el('small', null, String(a.frames.length)));
-      if (!novoAqui && podeRenomear(n)) it.appendChild(E.botao('Aa', (e) => { e.stopPropagation(); renomearAnim(n); }, 'Renomear esta animação', 'ess-anim-apagar ess-anim-ren'));
+      if (!novoAqui) {
+        const ren = () => { if (podeRenomear(n)) renomearAnim(n); else apelidarAnim(nm, n); };
+        it.appendChild(E.botao('Aa', (e) => { e.stopPropagation(); ren(); }, podeRenomear(n) ? 'Renomear esta animação' : 'Renomear esta animação (só o nome que aparece: os golpes continuam usando "' + n + '")', 'ess-anim-apagar ess-anim-ren'));
+        nm.addEventListener('dblclick', (e) => { e.stopPropagation(); ren(); });
+      }
       const x = E.botao('🗑', (e) => { e.stopPropagation(); apagarAnim(n); }, 'Apagar esta animação do jogo', 'ess-anim-apagar');
       it.appendChild(x);
       // ☆ favoritar a animação (o mesmo menu do seletor: tipo + pastas) → aparece em "⭐ Meus favoritos" no editor de cenas
@@ -363,6 +381,7 @@
       it.onclick = () => abrirAnim(n);
       ui.anims.appendChild(it);
     });
+    pintarMarcA();
     // animações do jogo que você apagou: dá para trazer de volta
     const ap = FF.Mods.apagadas(st.id);
     if (ap.length) {
@@ -396,6 +415,63 @@
     return [...new Set(usos)];
   }
 
+  // nome de exibição (animações originais do jogo: o nome de verdade continua o mesmo nos golpes)
+  function apelidarAnim(nm, n) {
+    E.editarNoLugar(nm, FF.Assets.nomeAnim(st.id, n), (v) => {
+      E.renomearAnim(st.id, n, v);
+      setTimeout(() => { renderAnims(); renderTitulo(); }, 0);
+    });
+  }
+  // ☑ marcar animações (Shift = intervalo na ordem da lista)
+  function marcarAnim(n, shift, on) {
+    const l = ui.listaAVer || [];
+    if (shift && st.marcAUlt && l.includes(st.marcAUlt)) {
+      const a = l.indexOf(st.marcAUlt), b = l.indexOf(n);
+      l.slice(Math.min(a, b), Math.max(a, b) + 1).forEach(k => { if (st.set.def.anims[k]) { if (on) st.marcA.add(k); else st.marcA.delete(k); } });
+    } else if (on) st.marcA.add(n); else st.marcA.delete(n);
+    st.marcAUlt = n;
+    ui.anims.querySelectorAll('.ess-anim').forEach(it => { const k = it.dataset.anim, c = it.querySelector('.ess-anim-chk'); if (c) c.checked = st.marcA.has(k); it.classList.toggle('marcado', st.marcA.has(k)); });
+    pintarMarcA();
+  }
+  function pintarMarcA() {
+    const n = st.marcA.size, b = ui.barraA;
+    b.hidden = !n;
+    if (!n) { b.innerHTML = ''; return; }
+    b.innerHTML = '';
+    b.append(el('span', 'ess-marc-txt', '☑ ' + n),
+      E.botao('Todas', () => { (ui.listaAVer || []).forEach(k => { if (st.set.def.anims[k]) st.marcA.add(k); }); renderAnims(); }, 'Marcar todas as que estão na lista (respeita a busca)'),
+      E.botao('🗑 Apagar', () => apagarVarias([...st.marcA]), 'Apagar as marcadas (pergunta antes; as do jogo original ficam em "Apagadas" e dá para trazer de volta)', 'es-bt-perigo'),
+      E.botao('✕', () => { st.marcA.clear(); renderAnims(); }, 'Desmarcar todas'));
+  }
+  async function apagarVarias(nomes) {
+    const def = st.set.def;
+    nomes = nomes.filter(n => def.anims[n]);
+    if (!nomes.length) return;
+    if (nomes.length === 1) { st.marcA.clear(); return apagarAnim(nomes[0]); }
+    const novoSprite = (FF.Edicoes.dados().spritesNovos || {})[st.id];
+    if (novoSprite && nomes.length >= Object.keys(def.anims).length) {
+      if (await confirmar('Todas as animações', 'Estas são todas as animações de "' + st.id + '". Apagar o sprite inteiro?', '🗑 Apagar sprite', true)) apagarSprite(st.id, true);
+      return;
+    }
+    const usos = [];
+    for (const n of nomes) (await usosDaAnim(n)).forEach(u => { if (!usos.includes(u)) usos.push(u); });
+    const originais = nomes.filter(n => !FF.Mods.criada(st.id, n) && !(novoSprite && novoSprite.anims && novoSprite.anims[n])).length;
+    const txt = 'Apagar ' + nomes.length + ' animações de "' + st.id + '" no jogo (em todos os aparelhos)?\n\n' + nomes.slice(0, 12).map(n => FF.Assets.nomeAnim(st.id, n)).join(' · ') + (nomes.length > 12 ? '…' : '') +
+      (usos.length ? '\n\n⚠ Usadas em: ' + usos.slice(0, 6).join(' · ') + (usos.length > 6 ? '…' : '') + '. Esses golpes vão ficar sem essas animações.' : '') +
+      (originais ? '\n\n' + originais + ' são do jogo original: ficam em "Apagadas" e dá para trazer de volta.' : '');
+    if (!(await confirmar('🗑 Apagar animações', txt, '🗑 Apagar ' + nomes.length, true))) return;
+    nomes.forEach(n => {
+      if (novoSprite && FF.Edicoes.dados().spritesNovos[st.id].anims[n]) A().apagarAnimImportada(st.id, n);
+      else if (FF.Mods.criada(st.id, n)) FF.Mods.restaurar(st.id, n);
+      else FF.Mods.apagar(st.id, n);
+    });
+    st.marcA.clear();
+    E.aviso('🗑 ' + nomes.length + ' animações apagadas.' + (FF.Edicoes.conectado() ? ' Enviando para todos os aparelhos…' : ' (só neste aparelho até conectar o ☁)'), 'ok');
+    E.renderSync();
+    renderSprites();
+    if (nomes.includes(st.nome)) { E.rascunho.gravar(RASC, null); st.anim = null; st.novo = false; return abrirAnim(Object.keys(def.anims)[0], { forcar: true }); }
+    renderAnims();
+  }
   async function apagarAnim(nome) {
     if (!nome) return;
     const def = st.set.def;
@@ -1823,6 +1899,6 @@
   };
   E.registrarAba(aba);
   // para os testes e outras abas
-  E.Sprites = { st, ctxIO, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
+  E.Sprites = { st, ctxIO, apagarVarias, marcarAnim, aplicarCorte, cortarQuadro, abrirSprite, abrirAnim: (n) => abrirAnim(n, { forcar: true }), salvar, sujo, clicarQuadro, moverPara, apagar, duplicar, inverter,
     redimensionar, mesclar, editorLivre, compactar, apagarSprite, novaAnimacao, renomearAnim };
 })();

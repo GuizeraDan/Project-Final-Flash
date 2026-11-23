@@ -281,3 +281,10 @@
 .es-io-prev { display: block; max-width: 100%; margin: 8px 0; background: repeating-conic-gradient(#2a2440 0 25%, #1d1830 0 50%) 0 0 / 16px 16px; border-radius: 6px; image-rendering: pixelated; }
 .es-io-linha { margin-top: 6px; display: flex; align-items: center; gap: 6px; }
 .es-io-nome { flex: 1; }
+/* ☑ várias animações marcadas */
+.ess-anim-chk { flex: none; margin: 0 2px 0 0; cursor: pointer; }
+.ess-anim.marcado { outline: 1px solid var(--ouro); outline-offset: -1px; background: rgba(255, 200, 60, 0.08); }
+.ess-marc-anims { display: flex; align-items: center; gap: 4px; padding: 3px 4px; background: rgba(255, 200, 60, 0.1); border: 1px solid rgba(255, 200, 60, 0.35); border-radius: 6px; margin: 2px 0; flex-wrap: wrap; }
+.ess-marc-anims[hidden] { display: none; }
+.ess-marc-txt { font-size: 12px; color: #ffd84a; margin-right: auto; }
+.ess-marc-anims button { padding: 1px 6px; font-size: 11px; }
