@@ -57,7 +57,15 @@ const { chromium } = require('playwright');
     await p.dragAndDrop('.es-org-card[data-id="zl3_bills"]', '.es-org-aqui');
     await p.waitForTimeout(300);
     ok(await p.evaluate(() => FF.Favoritos.movidos('ZZ Teste Org').length === 4), 'arrastar o cartão até a pasta move');
+    await p.waitForTimeout(300);
+    const nItens = await p.locator('.es-org-item').count();
+    ok(nItens === 4, 'a pasta aberta mostra o que tem dentro: ' + nItens);
     await p.screenshot({ path: require('os').tmpdir() + '/ff_org3.png' });
+    const itemCell = p.locator('.es-org-item').filter({ has: p.locator('.es-org-nome[title="zl3_cell"]') });
+    await itemCell.hover();
+    await itemCell.locator('.es-org-tirar').click();
+    await p.waitForTimeout(300);
+    ok(await p.evaluate(() => FF.Favoritos.movidos('ZZ Teste Org').length === 3) && (await p.locator('.es-org-item').count()) === 3, '↩ tira o sprite da pasta');
     // duplo clique no sprite: animações dele; mover 2 para outra pasta (opção A: saem da pasta do sprite inteiro)
     await p.click('.es-org-voltar').catch(() => {});
     await p.evaluate(() => FF.Favoritos.criarPasta('ZZ Efeitos'));

@@ -418,6 +418,34 @@
       if (!nome) return;
       setTimeout(() => { if (temMarcados()) moverMarcados(nome); else renderPastas(); }, 0);
     }
+    // o que está dentro da pasta aberta (só nela, sem as subpastas): ver, abrir e tirar o que não pertence
+    function renderConteudo() {
+      const itens = F.itensPasta(st.pasta, false).filter(v => !FF.Assets.spriteOculto(v.sprite));
+      const tit = E.el('div', 'es-org-ctit', 'Dentro de "' + F.folha(st.pasta) + '" (' + itens.length + ')');
+      pastasEl.appendChild(tit);
+      if (!itens.length) { pastasEl.appendChild(E.el('p', 'es-org-dica', 'Pasta vazia. Marque cartões à esquerda e clique em "⬇ Pôr aqui".')); return; }
+      const caixa = E.el('div', 'es-org-conteudo');
+      itens.forEach(v => {
+        const k = E.el('div', 'es-org-item');
+        const cv = document.createElement('canvas'); cv.width = 56; cv.height = 56; cv.className = 'es-org-capa';
+        pendCapa.set(cv, v); obsCapa.observe(cv);
+        const nm = E.el('div', 'es-org-nome'); nm.textContent = v.anim ? (FF.Assets.nomeAnim ? FF.Assets.nomeAnim(v.sprite, v.anim) : v.anim) : FF.Assets.nomeSprite(v.sprite);
+        nm.title = v.anim ? v.sprite + ' › ' + v.anim : v.sprite;
+        const sub = E.el('div', 'es-org-sub', v.anim ? '🎞 ' + FF.Assets.nomeSprite(v.sprite) : '🖼 sprite inteiro');
+        const tirar = E.botao('↩', (ev) => {
+          ev.stopPropagation();
+          if (v.movido) F.moverSprites([v.sprite], null); else F.alternarPasta(st.pasta, v.sprite, v.anim);
+          E.aviso('↩ "' + nm.textContent + '" saiu de "' + F.folha(st.pasta) + '".');
+          setTimeout(tudo, 0);
+        }, 'Tirar desta pasta (volta para o lugar de origem)', 'es-org-tirar');
+        k.append(cv, nm, sub, tirar);
+        k.title = 'Duplo clique: abrir ' + (v.anim ? 'o sprite desta animação' : 'as animações do sprite') + ' à esquerda';
+        k.ondblclick = () => abrirDentro(v.sprite);
+        previaNoMouse(k, cv, v.sprite, v.anim);
+        caixa.appendChild(k);
+      });
+      pastasEl.appendChild(caixa);
+    }
     function renderLetras(filhas) {
       letras.innerHTML = '';
       const ini = (n) => { const c = normal(n).charAt(0); return /[a-z]/.test(c) ? c.toUpperCase() : '#'; };
@@ -468,6 +496,7 @@
       renderLetras(filhas);
       filhas.forEach(p => pastasEl.appendChild(linhaPasta(p.nome, p.folha, p.temFilhas)));
       if (!filhas.length && !st.pasta) pastasEl.appendChild(E.el('p', 'es-vazio', 'Você ainda não tem pastas.'));
+      if (st.pasta) renderConteudo();
     }
     function tudo() { renderGrade(); renderSug(); renderPastas(); }
     tudo();
