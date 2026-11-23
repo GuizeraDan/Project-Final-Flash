@@ -259,3 +259,4 @@
 .es-org-letra.sel { background: #5a3fa8; border-color: var(--ouro); }
 .es-org-pasta.piscar { animation: es-org-piscar 0.9s ease-out; }
 @keyframes es-org-piscar { 0%, 40% { border-color: var(--ouro); background: #4a3712; } 100% { } }
+.es-org-novabt { font-weight: 700; }

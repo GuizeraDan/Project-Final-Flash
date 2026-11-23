@@ -130,6 +130,8 @@
       const b = E.botao(t, () => { st.vista = v; E.rascunho.gravar('org_vista', v); renderPastas(); }, d);
       b.dataset.vista = v; vistas.appendChild(b); return b;
     });
+    vistas.appendChild(E.el('span', 'es-org-esp'));
+    vistas.appendChild(E.botao('＋ Nova pasta', () => novaPasta(), 'Cria uma pasta dentro da que está aberta (com cartões marcados, eles já vão para ela)', 'es-org-novabt'));
     const trilha = E.el('div', 'es-org-trilha');
     const pastasEl = E.el('div', 'es-org-pastas');
     const letras = E.el('div', 'es-org-letras');   // A B C …: pula para a 1ª pasta com a letra
@@ -409,6 +411,13 @@
       });
       return r;
     }
+    async function novaPasta() {
+      const n = await E.perguntar('＋ Nova pasta', 'Nome da pasta' + (st.pasta ? ' dentro de "' + F.folha(st.pasta) + '"' : '') + ':', '');
+      if (!n || !n.trim()) return;
+      const nome = F.criarPasta((st.pasta ? st.pasta + '/' : '') + n.trim());
+      if (!nome) return;
+      setTimeout(() => { if (temMarcados()) moverMarcados(nome); else renderPastas(); }, 0);
+    }
     function renderLetras(filhas) {
       letras.innerHTML = '';
       const ini = (n) => { const c = normal(n).charAt(0); return /[a-z]/.test(c) ? c.toUpperCase() : '#'; };
@@ -459,15 +468,6 @@
       renderLetras(filhas);
       filhas.forEach(p => pastasEl.appendChild(linhaPasta(p.nome, p.folha, p.temFilhas)));
       if (!filhas.length && !st.pasta) pastasEl.appendChild(E.el('p', 'es-vazio', 'Você ainda não tem pastas.'));
-      const nova = E.el('div', 'es-org-pasta es-org-nova v-compacta', '＋ Nova pasta aqui');
-      nova.onclick = async () => {
-        let n = await E.perguntar('＋ Nova pasta', 'Nome da pasta' + (st.pasta ? ' dentro de "' + F.folha(st.pasta) + '"' : '') + ':', '');
-        if (!n || !n.trim()) return;
-        const nome = F.criarPasta((st.pasta ? st.pasta + '/' : '') + n.trim());
-        if (!nome) return;
-        setTimeout(() => { if (temMarcados()) moverMarcados(nome); else renderPastas(); }, 0);
-      };
-      pastasEl.appendChild(nova);
     }
     function tudo() { renderGrade(); renderSug(); renderPastas(); }
     tudo();

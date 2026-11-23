@@ -33,7 +33,7 @@ const { chromium } = require('playwright');
     // nova pasta de teste e mover 2 marcados para ela
     await p.click('.es-org-card[data-id="zl3_cell"]');
     await p.click('.es-org-card[data-id="zl3_cooler"]', { modifiers: [] });
-    await p.click('.es-org-nova');
+    await p.click('.es-org-novabt');
     await p.waitForSelector('.es-perg input');
     await p.fill('.es-perg input', 'ZZ Teste Org');
     await p.click('.es-perg button:has-text("OK")');
