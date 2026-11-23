@@ -440,9 +440,19 @@
     b.innerHTML = '';
     b.append(el('span', 'ess-marc-txt', '☑ ' + n),
       E.botao('Todas', () => { (ui.listaAVer || []).forEach(k => { if (st.set.def.anims[k]) st.marcA.add(k); }); renderAnims(); }, 'Marcar todas as que estão na lista (respeita a busca)'),
+      E.botao('⇱ Separar', () => separarMarcadas(), 'Cada animação marcada vira um sprite só dela (o original não muda; nas pastas o atalho vira o sprite novo)', 'ess-separar-anims'),
       n >= 2 ? E.botao('🎞 Juntar', () => juntarMarcadas(), 'Junta as animações marcadas numa animação nova (na ordem da lista; ▲▼ muda)', 'ess-juntar-anims') : '',
       E.botao('🗑 Apagar', () => apagarVarias([...st.marcA]), 'Apagar as marcadas (pergunta antes; as do jogo original ficam em "Apagadas" e dá para trazer de volta)', 'es-bt-perigo'),
       E.botao('✕', () => { st.marcA.clear(); renderAnims(); }, 'Desmarcar todas'));
+  }
+  async function separarMarcadas() {
+    const ns = (ui.listaAVer || []).filter(n => st.marcA.has(n));
+    if (!ns.length) return;
+    const ids = await FF.EstudioSeparar.separar(ns.map(n => ({ sprite: st.id, anim: n })));
+    if (!ids.length) return;
+    st.marcA.clear();
+    renderSprites();
+    if (ids.length === 1) abrirSprite(ids[0], ns[0], true); else renderAnims();
   }
   function juntarMarcadas() {
     const ks = (ui.listaAVer || []).filter(n => st.marcA.has(n)).map(n => st.id + '#' + n);

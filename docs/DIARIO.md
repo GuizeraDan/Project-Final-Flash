@@ -632,3 +632,8 @@ Cache do app: `finalflash-v47`.
 - `FF.EstudioJuntar.abrir` aceita animações (`"sprite#anim"`) além de sprites inteiros: a ordem é a da tela (▲▼ muda), a animação nova vai no sprite do primeiro; animações do mesmo sprite não criam atlas extra. Opção "apagar as animações juntadas" (desligada por padrão).
 - Organizar, dentro de um sprite: marque animações → "🎞 Juntar em animação". Aba Sprites: barra das animações marcadas ganhou "🎞 Juntar".
 - Teste: `tools/testes/estudio_juntar.js` (sprites, animações na aba Sprites e no Organizar).
+
+### 2026-11-23 — ⇱ Separar em sprite próprio
+- `js/estudio/separar.js`: uma animação que mora num sprite grande (ex.: Acao_1551 do Androide 18, 153 animações) vira um sprite só dela (`spritesNovos[sep_…]`, mesmos atlas, sem copiar). O original não muda. Nas pastas, o atalho vira o sprite novo (mora na pasta de onde veio o clique; nas outras fica atalho), ⭐ vai junto.
+- Botões: ⇱ ao passar o mouse nas animações dentro das pastas (coluna da esquerda) e "⇱ Separar" na barra das animações marcadas da aba Sprites.
+- Teste: `tools/testes/estudio_separar.js`. Se der problema, o usuário volta a falar (combinado).

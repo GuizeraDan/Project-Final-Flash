@@ -181,6 +181,11 @@ window.FF = window.FF || {};
         n.textContent = FF.Assets.nomeAnim(v.sprite, v.anim);
         E.editarNoLugar(n, n.textContent, (val) => { E.renomearAnim(v.sprite, v.anim, val); setTimeout(() => { n.textContent = '🎞 ' + FF.Assets.nomeAnim(v.sprite, v.anim); }, 0); });
       }, 'Renomear esta animação (só o nome que aparece; os golpes continuam usando "' + v.anim + '")'));
+      if (FF.EstudioSeparar) acA.appendChild(E.botao('⇱', async (e) => {
+        e.stopPropagation();
+        const ids = await FF.EstudioSeparar.separar([{ sprite: v.sprite, anim: v.anim, pasta: v.pasta }]);
+        if (ids.length) { depois(); o.escolher && o.escolher(ids[0], v.anim); }
+      }, 'Separar em sprite próprio: ao abrir, aparece só esta animação (não as outras de "' + FF.Assets.nomeSprite(v.sprite) + '")', 'es-nav-separar'));
       b.appendChild(acA);
       b.draggable = true;   // arrastar para outra pasta (de dentro de uma pasta = mover; Ctrl = copiar)
       b.addEventListener('dragstart', (e) => { e.dataTransfer.setData(FF.TIPO_ARRASTO_ANIMS, JSON.stringify([[v.sprite, v.anim, v.pasta || null, false, false]])); e.dataTransfer.effectAllowed = 'copyMove'; });
