@@ -132,8 +132,9 @@
     });
     const trilha = E.el('div', 'es-org-trilha');
     const pastasEl = E.el('div', 'es-org-pastas');
+    const letras = E.el('div', 'es-org-letras');   // A B C …: pula para a 1ª pasta com a letra
     const dicaDir = E.el('div', 'es-org-dica', 'Com cartões marcados, clique numa pasta (ou arraste os cartões até ela) para mover. Sem marcados, o clique abre a pasta. Animações movidas saem da pasta do personagem.');
-    dir.append(buscaP, vistas, trilha, pastasEl, dicaDir);
+    dir.append(buscaP, vistas, trilha, letras, pastasEl, dicaDir);
 
     const corpo = E.el('div', 'es-org-corpo');
     corpo.append(esq, dir);
@@ -408,6 +409,25 @@
       });
       return r;
     }
+    function renderLetras(filhas) {
+      letras.innerHTML = '';
+      const ini = (n) => { const c = normal(n).charAt(0); return /[a-z]/.test(c) ? c.toUpperCase() : '#'; };
+      const tem = new Set(filhas.map(p => ini(p.folha)));
+      if (filhas.length < 8) return;   // poucas pastas: a barra não ajuda
+      ['#'].concat('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')).forEach(L => {
+        if (L === '#' && !tem.has('#')) return;
+        const b = E.el('button', 'es-org-letra' + (tem.has(L) ? '' : ' vazia'), L);
+        if (tem.has(L)) b.onclick = () => {
+          const alvo = [...pastasEl.querySelectorAll('.es-org-pasta[data-pasta]')].find(r => !r.classList.contains('es-org-aqui') && ini(F.folha(r.dataset.pasta)) === L);
+          if (!alvo) return;
+          pastasEl.scrollTop = alvo.offsetTop - 2;
+          alvo.classList.remove('piscar'); void alvo.offsetWidth; alvo.classList.add('piscar');
+          letras.querySelectorAll('.es-org-letra').forEach(x => x.classList.toggle('sel', x === b));
+        };
+        else b.title = 'Nenhuma pasta com ' + L;
+        letras.appendChild(b);
+      });
+    }
     function entrar(nome) { st.pasta = nome; E.rascunho.gravar('org_pasta', nome); st.buscaPasta = ''; buscaP.value = ''; renderPastas(); }
     function renderPastas() {
       const arv = F.arvorePastas();
@@ -424,6 +444,7 @@
       pastasEl.innerHTML = '';
       const f = normal(st.buscaPasta);
       if (f) {
+        letras.innerHTML = '';
         const ach = arv.filter(p => normal(p.nome).includes(f));
         if (!ach.length) pastasEl.appendChild(E.el('p', 'es-vazio', 'Nenhuma pasta com "' + st.buscaPasta + '".'));
         ach.forEach(p => pastasEl.appendChild(linhaPasta(p.nome, p.nome.replace(/\//g, ' › '), p.temFilhas)));
@@ -435,6 +456,7 @@
         pastasEl.appendChild(aqui);
       }
       const filhas = arv.filter(p => F.paiDe(p.nome) === st.pasta);
+      renderLetras(filhas);
       filhas.forEach(p => pastasEl.appendChild(linhaPasta(p.nome, p.folha, p.temFilhas)));
       if (!filhas.length && !st.pasta) pastasEl.appendChild(E.el('p', 'es-vazio', 'Você ainda não tem pastas.'));
       const nova = E.el('div', 'es-org-pasta es-org-nova v-compacta', '＋ Nova pasta aqui');

@@ -215,7 +215,7 @@
 .es-org-tri:last-child { color: var(--ouro); font-weight: 700; cursor: default; }
 .es-org-sep { color: var(--apagado); }
 .es-org-voltar { padding: 0 6px; }
-.es-org-pastas { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+.es-org-pastas { position: relative; flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
 .es-org-pasta { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--linha); border-radius: 6px; background: var(--painel); cursor: pointer; }
 .es-org-pasta:hover { border-color: var(--azul); }
 .es-org.tem-marcados .es-org-pasta:not(.es-org-nova):hover, .es-org-pasta.alvo { border: 2px solid var(--ouro); padding: 5px 7px; background: #3a2a10; }
@@ -251,3 +251,11 @@
 .ess-div-alca { width: 46px; height: 4px; border-radius: 2px; background: var(--linha); }
 .ess-div:hover .ess-div-alca, .ess-div.arrastando .ess-div-alca { background: var(--ouro); }
 .ess-div-bt { padding: 0 6px; line-height: 12px; font-size: 11px; height: 14px; }
+/* A B C … nas pastas do Organizar */
+.es-org-letras { display: flex; flex-wrap: wrap; gap: 2px; }
+.es-org-letras:empty { display: none; }
+.es-org-letra { min-width: 22px; padding: 1px 3px; font-size: 12px; font-weight: 700; text-align: center; }
+.es-org-letra.vazia { opacity: 0.3; cursor: default; }
+.es-org-letra.sel { background: #5a3fa8; border-color: var(--ouro); }
+.es-org-pasta.piscar { animation: es-org-piscar 0.9s ease-out; }
+@keyframes es-org-piscar { 0%, 40% { border-color: var(--ouro); background: #4a3712; } 100% { } }

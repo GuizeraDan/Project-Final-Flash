@@ -95,6 +95,21 @@ const { chromium } = require('playwright');
       ok(r2.vista === v && r2.n > 0 && (v === 'compacta' ? r2.capas === 0 : r2.capas > 0), 'vista "' + v + '": ' + JSON.stringify(r2));
       await p.screenshot({ path: require('os').tmpdir() + '/ff_org_vista_' + v + '.png' });
     }
+    // letras: entra em Personagens (se houver) e pula para uma letra
+    const letr = await p.evaluate(async () => {
+      const r = document.querySelector('.es-org-pasta[data-pasta="Personagens"]');
+      if (r) r.click();
+      await new Promise(x => setTimeout(x, 300));
+      const bts = [...document.querySelectorAll('.es-org-letra:not(.vazia)')];
+      if (bts.length < 3) return { pulou: 'sem letras suficientes', n: bts.length };
+      const b = bts[bts.length - 1]; b.click();
+      await new Promise(x => setTimeout(x, 100));
+      const caixa = document.querySelector('.es-org-pastas'), cb = caixa.getBoundingClientRect();
+      const alvo = [...caixa.querySelectorAll('.es-org-pasta.piscar')][0];
+      const r2 = alvo && alvo.getBoundingClientRect();
+      return { letra: b.textContent, primeiraVisivel: alvo && FF.Favoritos.folha(alvo.dataset.pasta), visivel: !!r2 && r2.top >= cb.top - 1 && r2.bottom <= cb.bottom + 1 };
+    });
+    ok(letr.pulou || (letr.visivel && letr.primeiraVisivel.toUpperCase().startsWith(letr.letra)), 'letras pulam para a pasta: ' + JSON.stringify(letr));
     ok(!erros.length, 'console: ' + erros.join(' | '));
   } catch (e) { falhas++; console.log('FALHOU: ' + e.message); }
   await b.close();
