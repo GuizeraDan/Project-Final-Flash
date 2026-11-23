@@ -83,11 +83,34 @@ FF.Estudio = {
     alca.title = 'Arraste para mudar a largura (duplo clique: largura normal)';
     // botão » / « no título da coluna (1º .es-titulo), longe das barras de rolagem
     const bt = this.el('button', 'es-lado-bt');
+    // o.esconder: rótulo da aba fina que fica no lugar quando a coluna é escondida (botão ⇥ / ⇤ no título)
+    let btEsc = null;
+    if (o.esconder) {
+      const che = 'esc_' + chave;
+      btEsc = this.el('button', 'es-lado-bt es-lado-esc');
+      btEsc.textContent = lado === 'dir' ? '⇥' : '⇤';
+      btEsc.title = 'Esconder esta coluna (mais espaço para o palco). Para abrir de novo, clique na aba “' + o.esconder + '” na borda';
+      const aba = this.el('button', 'es-lado-aba ' + (lado === 'dir' ? 'aba-dir' : 'aba-esq'));
+      aba.innerHTML = '<span></span>'; aba.firstChild.textContent = o.esconder;
+      aba.title = 'Mostrar “' + o.esconder + '”';
+      const esconder = (sim) => {
+        aside.classList.toggle('es-lado-escondido', sim);
+        if (sim) { if (!aba.isConnected) aside.after(aba); } else aba.remove();
+        this.rascunho.gravar(che, sim ? true : null);
+        window.dispatchEvent(new Event('resize'));
+      };
+      aside._esconder = esconder;
+      btEsc.onclick = (e) => { e.stopPropagation(); esconder(true); };
+      btEsc.addEventListener('pointerdown', (e) => e.stopPropagation());
+      aba.onclick = () => esconder(false);
+      if (this.rascunho.ler(che)) requestAnimationFrame(() => esconder(true));
+    }
     if (o.irmao) { alca.classList.add('irmao'); aside.after(alca); } else aside.appendChild(alca);
     const colocar = () => {
       if (!o.irmao && alca.parentNode !== aside) aside.appendChild(alca);   // quem redesenha a coluna com innerHTML = '' apaga a alça
       const tit = aside.querySelector(o.titulo || ':scope > .es-titulo');
       if (tit && bt.parentNode !== tit) { if (o.antes) tit.prepend(bt); else tit.appendChild(bt); }   // antes: com float à direita, fica na 1ª linha
+      if (btEsc && tit && btEsc.parentNode !== tit) bt.after(btEsc);
     };
     colocar();
     new MutationObserver(colocar).observe(aside, { childList: true, subtree: true });   // título reescrito (textContent) também perde o botão

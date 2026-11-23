@@ -617,3 +617,7 @@ Cache do app: `finalflash-v47`.
 - Sem copiar imagens: as dos outros sprites viram atlas extras do primeiro e a animação aponta para elas. Por isso os soltos vão só para a Lixeira (não podem ser apagados de vez).
 - Achei ~99 séries assim no acervo (~950 sprites, PW/DLZ/UH/DW…); a arrumação automática (opção B) ficou para depois, a pedido do usuário.
 - Teste: `tools/testes/estudio_juntar.js` (ground_smash_fx_00…09 do Drag Warriors).
+
+### 2026-11-23 — Propriedades escamoteáveis
+- `E.ladoRedimensionavel(..., { esconder: 'rótulo' })` (nucleo.js): botão ⇥ no título esconde a coluna; fica uma aba fina vertical na borda ("⚙ Propriedades") que traz de volta. Lembrado no aparelho (`esc_<chave>`). Ligado nas Propriedades das abas Sprites e Golpes.
+- Teste: `tools/testes/estudio_esconder.js`.

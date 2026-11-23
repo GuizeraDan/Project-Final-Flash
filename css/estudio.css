@@ -361,3 +361,11 @@ a { color: var(--ouro); }
 .es-cartao .es-cartao-del { left: 3px; top: 24px; }
 .es-cartao .es-cartao-ren { left: 3px; top: 45px; }
 .es-cartao .es-cartao-ed { left: 3px; top: 66px; }
+/* coluna escondida (⇥) e a aba fina que a traz de volta */
+.es-lado.es-lado-escondido { display: none !important; }
+.es-lado-escondido + .es-lado-alca.irmao { display: none; }
+.es-lado-aba { flex: none; width: 26px; padding: 8px 0; margin: 0; border: 0; border-left: 1px solid rgba(255,216,74,0.35); background: linear-gradient(180deg, #2c2350, #1b1533); color: #ffd84a; cursor: pointer; display: flex; justify-content: center; align-items: flex-start; border-radius: 0; }
+.es-lado-aba.aba-esq { border-left: 0; border-right: 1px solid rgba(255,216,74,0.35); }
+.es-lado-aba span { writing-mode: vertical-rl; font-size: 12px; font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
+.es-lado-aba.aba-esq span { transform: rotate(180deg); }
+.es-lado-aba:hover { background: linear-gradient(180deg, #4a3790, #2c2350); }

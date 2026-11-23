@@ -38,7 +38,7 @@ window.FF = window.FF || {};
       this.rodape = E.el('div', 'es-barra es-rodape');
       dir.append(this.titProps, this.props, this.rodape);
       el.appendChild(dir);
-      E.ladoRedimensionavel(dir, 'golpes_dir', 'dir', 460);
+      E.ladoRedimensionavel(dir, 'golpes_dir', 'dir', 460, { esconder: '⚙ Propriedades' });
 
       FF.W = FF.BW;
       this.palco = new FF.EstudioPalco(this.cv);
