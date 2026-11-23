@@ -621,3 +621,9 @@ Cache do app: `finalflash-v47`.
 ### 2026-11-23 — Propriedades escamoteáveis
 - `E.ladoRedimensionavel(..., { esconder: 'rótulo' })` (nucleo.js): botão ⇥ no título esconde a coluna; fica uma aba fina vertical na borda ("⚙ Propriedades") que traz de volta. Lembrado no aparelho (`esc_<chave>`). Ligado nas Propriedades das abas Sprites e Golpes.
 - Teste: `tools/testes/estudio_esconder.js`.
+
+### 2026-11-23 — Correção: mudanças perdidas na fila de envio
+- Bug em `FF.Edicoes.enviar()`: ao terminar, tirava as N primeiras da fila (`slice(l.length)`). Uma mudança no mesmo caminho feita durante o envio (o 🎞 Juntar renomeia o sprite logo depois de gravar o atlas) saía do meio da fila e o corte levava junto a seguinte — a animação nova nunca chegava ao GitHub ("TESTE 4" com 1 quadro só = a "folha" original). Agora tira só as que foram enviadas (mesmo caminho, valor e hora).
+- `juntar.js` grava atlas + nome numa mudança só.
+- Recuperadas no `data/edicoes.js` as animações perdidas, reconstruídas dos atlas gravados: dlz_1/animacao, dlz_8/TESTE, dlz_10_2/TESTE_2, dlz_10_3/TESTE_4 (fps 1).
+- Teste: `node tools/testes/edicoes_fila.js` (falha com o código antigo).

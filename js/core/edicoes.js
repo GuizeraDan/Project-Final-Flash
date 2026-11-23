@@ -159,7 +159,11 @@ FF.Edicoes = {
         // sucesso: o publicado passa a ser o novo; tira só as pendentes enviadas
         window.FF_EDICOES = obj;
         try { localStorage.setItem(this.ULT, JSON.stringify(obj)); } catch (x) { /* sem armazenamento */ }
-        const resto = this.pendentes().slice(l.length);
+        // tira só as que foram enviadas. Não dá para cortar pelas primeiras N: uma mudança no mesmo caminho feita
+        // durante o envio (ex.: renomear o sprite logo depois de juntar) sai do meio da fila e vai para o fim,
+        // e o corte levava junto a mudança seguinte, que nunca chegava ao GitHub.
+        const enviada = (m) => l.some(x => x.t === m.t && JSON.stringify(x.c) === JSON.stringify(m.c) && JSON.stringify(x.v) === JSON.stringify(m.v));
+        const resto = this.pendentes().filter(m => !enviada(m));
         this.gravarPendentes(resto);
         this._cache = null;
         this.estado = 'ok'; this.erro = null; this.ultimoEnvio = Date.now();

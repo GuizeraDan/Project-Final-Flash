@@ -115,7 +115,9 @@
         // imagens dos outros sprites viram atlas extras do primeiro
         const extras = (FF.Assets.infoSprite(alvo).atlas || []).slice();
         ordem.slice(1).forEach((id, k) => (sets[k + 1].def.atlases || []).forEach(p => { if (!setA.def.atlases.includes(p) && !extras.includes(p)) extras.push(p); }));
-        FF.Edicoes.set(['spritesInfo', alvo], Object.assign({}, FF.Assets.infoSprite(alvo), { atlas: extras }));
+        const infoNova = Object.assign({}, FF.Assets.infoSprite(alvo), { atlas: extras });
+        if (cRen.i.checked) infoNova.nome = inNome.value.trim() || nome;
+        FF.Edicoes.set(['spritesInfo', alvo], infoNova);   // atlas e nome numa mudança só
         FF.Assets.descarregarSprite(alvo);
         setA = await FF.Assets.loadSprite(alvo);
         const frames = [];
@@ -132,7 +134,6 @@
         });
         const fps = Math.max(1, Math.min(60, +inFps.value || 12));
         FF.Mods.salvar(alvo, nome, { fps, loop: cLoop.i.checked, repeatTo: 0, pingpong: false, frames });
-        if (cRen.i.checked) E.mudarInfoSprite(alvo, { nome: inNome.value.trim() || nome });
         if (cLixo.i.checked) ordem.slice(1).forEach(id => { if (FF.Assets.doAcervo(id)) E.mudarInfoSprite(id, { oculto: true }); });
         if (E.renderSync) E.renderSync();
         m.fechar();
