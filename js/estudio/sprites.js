@@ -109,7 +109,32 @@
     ui.anims = el('div', 'es-lista ess-anims es-rolar');
     const linhaS = el('div', 'ess-busca-linha'), linhaA = el('div', 'ess-busca-linha');
     linhaS.append(ui.buscaSprite, ui.ordemSprites); linhaA.append(ui.buscaAnim, ui.ordemAnims);
-    esq.append(linhaS, ui.sprites, tA, linhaA, ui.anims);
+    // ↕ divisória entre Sprites e Animações: arraste para dividir o espaço; ︾ dá mais espaço aos sprites, ︽ às animações
+    // (duplo clique volta ao normal; lembrado no aparelho: 'sprites_div' = altura da lista de sprites em px)
+    const div = el('div', 'ess-div');
+    div.title = 'Arraste para dividir o espaço entre Sprites e Animações · duplo clique volta ao normal';
+    const alturaMax = () => Math.max(80, esq.clientHeight - 240);
+    const aplicarDiv = (h) => {
+      if (!h) { ui.sprites.style.height = ''; ui.sprites.style.maxHeight = ''; E.rascunho.gravar('sprites_div', null); return; }
+      h = Math.round(Math.max(48, Math.min(alturaMax(), h)));
+      ui.sprites.style.height = h + 'px'; ui.sprites.style.maxHeight = 'none';
+      E.rascunho.gravar('sprites_div', h);
+    };
+    const btMaisS = E.botao('︾', (ev) => { ev.stopPropagation(); aplicarDiv(ui.sprites.offsetHeight >= alturaMax() - 4 ? null : alturaMax()); }, 'Mais espaço para os sprites (clique de novo volta ao normal)', 'ess-div-bt');
+    const btMaisA = E.botao('︽', (ev) => { ev.stopPropagation(); aplicarDiv(ui.sprites.offsetHeight <= 52 ? null : 48); }, 'Mais espaço para as animações (clique de novo volta ao normal)', 'ess-div-bt');
+    div.append(btMaisA, el('span', 'ess-div-alca'), btMaisS);
+    div.addEventListener('dblclick', () => aplicarDiv(null));
+    div.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button')) return;
+      e.preventDefault();
+      const y0 = e.clientY, h0 = ui.sprites.offsetHeight;
+      div.setPointerCapture(e.pointerId); div.classList.add('arrastando');
+      const mv = (ev) => aplicarDiv(h0 + ev.clientY - y0);
+      const up = () => { div.classList.remove('arrastando'); div.removeEventListener('pointermove', mv); div.removeEventListener('pointerup', up); div.removeEventListener('pointercancel', up); };
+      div.addEventListener('pointermove', mv); div.addEventListener('pointerup', up); div.addEventListener('pointercancel', up);
+    });
+    esq.append(linhaS, ui.sprites, div, tA, linhaA, ui.anims);
+    requestAnimationFrame(() => { const h = E.rascunho.ler('sprites_div'); if (h) aplicarDiv(h); });
 
     // centro: barra de ações, palco, controles, tira de quadros
     const cen = el('div', 'es-centro ess-centro');

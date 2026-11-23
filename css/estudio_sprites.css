@@ -246,3 +246,8 @@
 .es-org-pasta.v-grade .es-org-capa { width: 100%; height: auto; aspect-ratio: 1; }
 .es-org-pasta.v-grade .es-org-entrar { position: absolute; top: 8px; right: 8px; }
 .es-org.tem-marcados .es-org-pasta.v-grade:hover, .es-org-pasta.v-grade.alvo { padding: 5px; }
+/* ↕ divisória Sprites | Animações (arrastar; ︽ ︾) */
+.ess-div { flex: none; display: flex; align-items: center; justify-content: center; gap: 6px; height: 14px; margin: 2px 0; cursor: row-resize; user-select: none; touch-action: none; }
+.ess-div-alca { width: 46px; height: 4px; border-radius: 2px; background: var(--linha); }
+.ess-div:hover .ess-div-alca, .ess-div.arrastando .ess-div-alca { background: var(--ouro); }
+.ess-div-bt { padding: 0 6px; line-height: 12px; font-size: 11px; height: 14px; }
