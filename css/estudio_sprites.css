@@ -288,3 +288,17 @@
 .ess-marc-anims[hidden] { display: none; }
 .ess-marc-txt { font-size: 12px; color: #ffd84a; margin-right: auto; }
 .ess-marc-anims button { padding: 1px 6px; font-size: 11px; }
+/* 🎞 Juntar em animação */
+.es-juntar { max-width: 620px; }
+.es-juntar-lista { max-height: 240px; overflow: auto; display: flex; flex-direction: column; gap: 2px; margin: 6px 0; }
+.es-juntar-item { display: flex; align-items: center; gap: 6px; padding: 2px 4px; border-radius: 5px; background: rgba(255,255,255,0.03); }
+.es-juntar-item.alvo { outline: 1px solid var(--ouro); }
+.es-juntar-item span { flex: 1; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.es-juntar-item button { padding: 0 5px; font-size: 10px; }
+.es-juntar-tag { color: #ffd84a; font-size: 10px; }
+.es-juntar-meio { display: flex; gap: 10px; align-items: flex-start; }
+.es-juntar-prev { flex: none; background: repeating-conic-gradient(#2a2440 0 25%, #1d1830 0 50%) 0 0 / 16px 16px; border-radius: 6px; }
+.es-juntar-campos { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.es-juntar-lin { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.es-juntar-lin input { flex: 1; min-width: 0; }
+.es-juntar-ck { font-size: 12px; }

@@ -76,11 +76,16 @@ window.FF = window.FF || {};
       E.aviso('🗑 ' + l.length + ' sprites mandados para a Lixeira.');
       marcados.clear(); depois();
     }, 'Mandar os sprites marcados para a Lixeira', 'es-bt-perigo');
-    barra.append(txt, btMov, btFav, btLixo, E.botao('✕', () => { marcados.clear(); pintarMarcas(); }, 'Desmarcar todos'));
+    const btJuntar = E.botao('🎞 Juntar', () => {
+      if (marcados.size < 2) { E.aviso('Marque pelo menos 2 sprites (um quadro cada) para juntar numa animação.'); return; }
+      FF.EstudioJuntar.abrir([...marcados], { aoTerminar: (alvo, anim) => { marcados.clear(); depois(); o.escolher && o.escolher(alvo, anim); } });
+    }, 'Juntar os sprites marcados numa animação só (ex.: efeito_00, efeito_01… viram os quadros de uma animação)', 'es-nav-juntar');
+    barra.append(txt, btJuntar, btMov, btFav, btLixo, E.botao('✕', () => { marcados.clear(); pintarMarcas(); }, 'Desmarcar todos'));
     const pintarMarcas = () => {
       raiz.querySelectorAll('.es-nav-chk').forEach(ch => { ch.checked = marcados.has(ch.dataset.id); ch.closest('.es-item').classList.toggle('marcado', ch.checked); });
       txt.textContent = '☑ ' + marcados.size;
       barra.style.display = marcados.size ? '' : 'none';
+      btJuntar.style.display = marcados.size >= 2 ? '' : 'none';
     };
     const marcar = (id, ev) => {
       const chs = [...raiz.querySelectorAll('.es-nav-chk')].map(c => c.dataset.id);

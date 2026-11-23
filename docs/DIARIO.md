@@ -611,3 +611,9 @@ Cache do app: `finalflash-v47`.
 - Caixinhas nas animações (Shift = intervalo) + barra "☑ N · Todas · 🗑 Apagar · ✕": apaga várias de uma vez com uma confirmação (originais vão para "Apagadas").
 - Coluna da esquerda: ✏ nas animações soltas dentro das pastas; sprites do jogo renomeados mostram o nome novo.
 - Teste: `tools/testes/estudio_anims_lista.js`.
+
+### 2026-11-23 — 🎞 Juntar em animação
+- `js/estudio/juntar.js`: marque vários sprites soltos (caixinhas da coluna, Shift = intervalo, ou no Organizar) → "🎞 Juntar". Janela com a ordem (pelo nome, ▲▼ para ajustar), prévia animada, nome sugerido pelo prefixo comum, fps, loop, "mandar os soltos para a Lixeira" e "renomear o primeiro".
+- Sem copiar imagens: as dos outros sprites viram atlas extras do primeiro e a animação aponta para elas. Por isso os soltos vão só para a Lixeira (não podem ser apagados de vez).
+- Achei ~99 séries assim no acervo (~950 sprites, PW/DLZ/UH/DW…); a arrumação automática (opção B) ficou para depois, a pedido do usuário.
+- Teste: `tools/testes/estudio_juntar.js` (ground_smash_fx_00…09 do Drag Warriors).
