@@ -20,7 +20,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await linha.waitFor({ timeout: 15000 });
   await linha.hover();
   await linha.locator('.es-nav-separar').click();
-  await p.click('.es-modal button:has-text("⇱ Separar")');
+  await p.uncheck('.es-separar-ck input');   // este caso: manter no original
+  await p.click('.es-separar .es-escolha-bts button:has-text("⇱ Separar")');
   await p.waitForFunction((A) => FF.Estudio.Sprites.st.id.startsWith('sep_'), A, { timeout: 15000 });
   const r = await p.evaluate(async ([A, N]) => {
     const st = FF.Estudio.Sprites.st, id = st.id, nov = FF.Edicoes.dados().spritesNovos[id], info = FF.Assets.infoSprite(id), P = FF.Edicoes.dados().favoritosPastas;
@@ -53,9 +54,32 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   const n2 = await p.evaluate(() => Object.keys(FF.Estudio.Sprites.st.set.def.anims)[1]);
   await p.click('.ess-anims .ess-anim[data-anim="' + n2 + '"] .ess-anim-chk');
   await p.click('.ess-separar-anims');
-  await p.click('.es-modal button:has-text("⇱ Separar")');
+  ok(!(await p.isChecked('.es-separar-ck input')), 'sprite do jogo: "tirar do original" vem desmarcado');
+  await p.click('.es-separar .es-escolha-bts button:has-text("⇱ Separar")');
   await p.waitForFunction(() => FF.Estudio.Sprites.st.id.startsWith('sep_') && FF.Estudio.Sprites.st.id !== 'x', null, { timeout: 10000 });
   ok(await p.evaluate((n2) => FF.Estudio.Sprites.st.nome === n2 && Object.keys(FF.Estudio.Sprites.st.set.def.anims).length === 1, n2), 'separar pela barra das animações marcadas abre o sprite novo');
+  // Organizar: dentro do Bills (Twiss), marcar "bola" e separar para a pasta aberta à direita (sai do Bills)
+  await p.evaluate(() => { FF.Edicoes.set(['favoritosPastas', 'ZZ Assets'], []); FF.Estudio.rascunho.gravar('org_pasta', 'ZZ Assets'); FF.Estudio.rascunho.gravar('org_cat', 'twiss'); FF.EstudioOrganizar.abrir(); });
+  await p.waitForSelector('.es-org-grade');
+  const semP2 = p.locator('.es-org-filtros input[type="checkbox"]'); if (await semP2.isChecked()) await semP2.click();
+  await p.dblclick('.es-org-card[data-id="twiss_beerus"]');
+  await p.waitForSelector('.es-org-anim[data-k="twiss_beerus#bola"]');
+  ok(await p.isHidden('.es-org-separar'), '⇱ Separar escondido sem animação marcada');
+  await p.click('.es-org-anim[data-k="twiss_beerus#bola"]');
+  ok(/ZZ Assets/.test(await p.textContent('.es-org-separar')), 'botão mostra a pasta de destino: ' + await p.textContent('.es-org-separar'));
+  await p.click('.es-org-separar');
+  ok(await p.isChecked('.es-separar-ck input'), '"Tirar do sprite original" vem marcado (sprite do acervo)');
+  await p.click('.es-separar .es-escolha-bts button:has-text("⇱ Separar")');
+  await p.waitForFunction(() => Object.values(FF.Edicoes.dados().spritesNovos || {}).some(d => d.separadoDe === 'twiss_beerus#bola'), null, { timeout: 10000 });
+  await p.waitForTimeout(400);
+  const ro = await p.evaluate(() => {
+    const id = Object.keys(FF.Edicoes.dados().spritesNovos).find(k => FF.Edicoes.dados().spritesNovos[k].separadoDe === 'twiss_beerus#bola');
+    return { id, pasta: FF.Assets.infoSprite(id).pasta, apagada: FF.Mods.apagadas('twiss_beerus').includes('bola'), naGrade: !!document.querySelector('.es-org-anim[data-k="twiss_beerus#bola"]'),
+      noPainel: [...document.querySelectorAll('.es-org-item .es-org-nome')].some(e => e.textContent === 'bola') };
+  });
+  ok(ro.pasta === 'ZZ Assets', 'sprite novo ' + ro.id + ' mora em "ZZ Assets"');
+  ok(ro.apagada && !ro.naGrade, '"bola" saiu do Bills (está em Apagadas dele)');
+  ok(ro.noPainel, 'aparece no painel "Dentro de ZZ Assets"');
   ok(!msgs.length, 'sem erros na página' + (msgs.length ? ': ' + msgs.join(' | ') : ''));
   await b.close();
 })();

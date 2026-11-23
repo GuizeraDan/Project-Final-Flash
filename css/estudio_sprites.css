@@ -302,3 +302,7 @@
 .es-juntar-lin { display: flex; align-items: center; gap: 6px; font-size: 12px; }
 .es-juntar-lin input { flex: 1; min-width: 0; }
 .es-juntar-ck { font-size: 12px; }
+/* ⇱ Separar no Organizar */
+.es-org-separar-item { position: absolute; top: 24px; right: 4px; padding: 0 5px; font-size: 11px; opacity: 0; }
+.es-org-item:hover .es-org-separar-item { opacity: 1; }
+.es-separar-ck { display: block; margin: 4px 0 8px; font-size: 13px; }

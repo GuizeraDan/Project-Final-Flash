@@ -637,3 +637,5 @@ Cache do app: `finalflash-v47`.
 - `js/estudio/separar.js`: uma animação que mora num sprite grande (ex.: Acao_1551 do Androide 18, 153 animações) vira um sprite só dela (`spritesNovos[sep_…]`, mesmos atlas, sem copiar). O original não muda. Nas pastas, o atalho vira o sprite novo (mora na pasta de onde veio o clique; nas outras fica atalho), ⭐ vai junto.
 - Botões: ⇱ ao passar o mouse nas animações dentro das pastas (coluna da esquerda) e "⇱ Separar" na barra das animações marcadas da aba Sprites.
 - Teste: `tools/testes/estudio_separar.js`. Se der problema, o usuário volta a falar (combinado).
+- Separar agora TIRA do original por padrão nos sprites do acervo (o usuário quer assets limpos: aura, bola… sem ficar atrelados ao sprite de origem); nos do jogo vem desmarcado com aviso. Janela própria com a caixinha "Tirar do sprite original".
+- Organizar: dentro de um sprite, marque animações → "⇱ Separar (N) → <pasta aberta à direita>"; no painel "Dentro de <pasta>", ⇱ nos atalhos de animação. Teste ampliado (bola do Bills/Twiss).

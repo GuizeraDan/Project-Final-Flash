@@ -101,7 +101,18 @@
       if (marcados.size < 2) { E.aviso('Marque pelo menos 2 sprites para juntar numa animação.'); return; }
       FF.EstudioJuntar.abrir([...marcados], { aoTerminar: () => { marcados.clear(); setTimeout(tudo, 0); } });
     }, 'Junta os marcados numa animação só: sprites soltos (efeito_00…09) ou, dentro de um sprite, as animações escolhidas', 'es-org-juntar');
-    topo.append(txtMarc, btJuntar, btLixo, E.el('span', 'es-org-esp'), btSug);
+    const btSeparar = E.botao('⇱ Separar', async () => {
+      const ks = [...grade.querySelectorAll('.es-org-anim')].map(x => x.dataset.k).filter(k => marcA.has(k));
+      if (!ks.length) return;
+      const itens = ks.map(k => { const i = k.indexOf('#'); return { sprite: k.slice(0, i), anim: k.slice(i + 1) }; });
+      const ids = await FF.EstudioSeparar.separar(itens, { destino: st.pasta || null });
+      if (!ids.length) return;
+      marcA.clear();
+      const s = FF.Assets.sprites[st.dentro];
+      if (s) FF.Mods.aplicar(st.dentro, s);
+      setTimeout(tudo, 0);
+    }, 'Cada animação marcada vira um sprite só dela e sai deste sprite (vai para a pasta aberta à direita, se houver)', 'es-org-separar');
+    topo.append(txtMarc, btSeparar, btJuntar, btLixo, E.el('span', 'es-org-esp'), btSug);
 
     // ---- esquerda: acervo
     const esq = E.el('div', 'es-org-esq');
@@ -309,6 +320,8 @@
       c.classList.toggle('tem-marcados', n > 0);
       btLixo.textContent = '🗑 Lixeira' + (n ? ' (' + n + ')' : '');
       btJuntar.hidden = (st.dentro ? marcA.size : marcados.size) < 2;
+      btSeparar.hidden = !st.dentro || !marcA.size;
+      btSeparar.textContent = '⇱ Separar' + (st.dentro && marcA.size ? ' (' + marcA.size + ')' : '') + (st.pasta ? ' → ' + F.folha(st.pasta) : '');
     }
     function marcar(id, ev) {
       if (ev.shiftKey && ultimo && lista.includes(ultimo)) {
@@ -485,6 +498,14 @@
           setTimeout(tudo, 0);
         }, 'Tirar desta pasta (volta para o lugar de origem)', 'es-org-tirar');
         k.append(cv, nm, sub, tirar);
+        if (v.anim && !v.movido) {
+          const sep = E.botao('⇱', async (ev) => {
+            ev.stopPropagation();
+            const ids = await FF.EstudioSeparar.separar([{ sprite: v.sprite, anim: v.anim, pasta: st.pasta }], { destino: st.pasta });
+            if (ids.length) setTimeout(tudo, 0);
+          }, 'Separar: vira um sprite só desta animação, aqui nesta pasta, e sai de "' + FF.Assets.nomeSprite(v.sprite) + '"', 'es-org-separar-item');
+          k.appendChild(sep);
+        }
         k.title = 'Duplo clique: abrir ' + (v.anim ? 'o sprite desta animação' : 'as animações do sprite') + ' à esquerda';
         k.ondblclick = () => abrirDentro(v.sprite);
         previaNoMouse(k, cv, v.sprite, v.anim);
