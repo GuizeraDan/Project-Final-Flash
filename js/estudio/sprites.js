@@ -440,8 +440,19 @@
     b.innerHTML = '';
     b.append(el('span', 'ess-marc-txt', '☑ ' + n),
       E.botao('Todas', () => { (ui.listaAVer || []).forEach(k => { if (st.set.def.anims[k]) st.marcA.add(k); }); renderAnims(); }, 'Marcar todas as que estão na lista (respeita a busca)'),
+      n >= 2 ? E.botao('🎞 Juntar', () => juntarMarcadas(), 'Junta as animações marcadas numa animação nova (na ordem da lista; ▲▼ muda)', 'ess-juntar-anims') : '',
       E.botao('🗑 Apagar', () => apagarVarias([...st.marcA]), 'Apagar as marcadas (pergunta antes; as do jogo original ficam em "Apagadas" e dá para trazer de volta)', 'es-bt-perigo'),
       E.botao('✕', () => { st.marcA.clear(); renderAnims(); }, 'Desmarcar todas'));
+  }
+  function juntarMarcadas() {
+    const ks = (ui.listaAVer || []).filter(n => st.marcA.has(n)).map(n => st.id + '#' + n);
+    if (ks.length < 2) return;
+    FF.EstudioJuntar.abrir(ks, { aoTerminar: (alvo, nome) => {
+      st.marcA.clear();
+      if (FF.Assets.sprites[st.id]) st.set = FF.Assets.sprites[st.id];
+      renderSprites();
+      abrirAnim(nome, { forcar: true });
+    } });
   }
   async function apagarVarias(nomes) {
     const def = st.set.def;

@@ -91,9 +91,16 @@
     const btSug = E.botao('🪄 Sugerir por nome', () => { st.sugestoes = st.sugestoes ? null : calcularSugestoes(); renderSug(); renderGrade(); }, 'Reconhece o personagem pelo nome do sprite e sugere a pasta');
     const btLixo = E.botao('🗑 Lixeira', () => lixeiraMarcados(), 'Manda os marcados para a Lixeira (dá para restaurar em "🗑 Lixeira")', 'es-bt-perigo es-org-lixo');
     const btJuntar = E.botao('🎞 Juntar em animação', () => {
+      if (st.dentro) {
+        // animações marcadas, na ordem em que aparecem na grade
+        const ks = [...grade.querySelectorAll('.es-org-anim')].map(x => x.dataset.k).filter(k => marcA.has(k));
+        if (ks.length < 2) { E.aviso('Marque pelo menos 2 animações para juntar.'); return; }
+        FF.EstudioJuntar.abrir(ks, { aoTerminar: () => { marcA.clear(); setTimeout(tudo, 0); } });
+        return;
+      }
       if (marcados.size < 2) { E.aviso('Marque pelo menos 2 sprites para juntar numa animação.'); return; }
       FF.EstudioJuntar.abrir([...marcados], { aoTerminar: () => { marcados.clear(); setTimeout(tudo, 0); } });
-    }, 'Os sprites marcados (um quadro cada, ex.: efeito_00…09) viram uma animação só, no primeiro deles', 'es-org-juntar');
+    }, 'Junta os marcados numa animação só: sprites soltos (efeito_00…09) ou, dentro de um sprite, as animações escolhidas', 'es-org-juntar');
     topo.append(txtMarc, btJuntar, btLixo, E.el('span', 'es-org-esp'), btSug);
 
     // ---- esquerda: acervo
@@ -301,7 +308,7 @@
       txtMarc.textContent = n ? '☑ ' + n + (st.dentro ? ' animação(ões)' : ' sprite(s)') + ' marcado(s) — clique numa pasta à direita' : (st.dentro ? 'Marque as animações e escolha a pasta à direita (ex.: efeitos para a pasta de efeitos)' : 'Marque os sprites e escolha a pasta à direita · duplo clique abre as animações do sprite');
       c.classList.toggle('tem-marcados', n > 0);
       btLixo.textContent = '🗑 Lixeira' + (n ? ' (' + n + ')' : '');
-      btJuntar.hidden = !!st.dentro || marcados.size < 2;
+      btJuntar.hidden = (st.dentro ? marcA.size : marcados.size) < 2;
     }
     function marcar(id, ev) {
       if (ev.shiftKey && ultimo && lista.includes(ultimo)) {

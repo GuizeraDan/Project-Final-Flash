@@ -627,3 +627,8 @@ Cache do app: `finalflash-v47`.
 - `juntar.js` grava atlas + nome numa mudança só.
 - Recuperadas no `data/edicoes.js` as animações perdidas, reconstruídas dos atlas gravados: dlz_1/animacao, dlz_8/TESTE, dlz_10_2/TESTE_2, dlz_10_3/TESTE_4 (fps 1).
 - Teste: `node tools/testes/edicoes_fila.js` (falha com o código antigo).
+
+### 2026-11-23 — 🎞 Juntar também animações
+- `FF.EstudioJuntar.abrir` aceita animações (`"sprite#anim"`) além de sprites inteiros: a ordem é a da tela (▲▼ muda), a animação nova vai no sprite do primeiro; animações do mesmo sprite não criam atlas extra. Opção "apagar as animações juntadas" (desligada por padrão).
+- Organizar, dentro de um sprite: marque animações → "🎞 Juntar em animação". Aba Sprites: barra das animações marcadas ganhou "🎞 Juntar".
+- Teste: `tools/testes/estudio_juntar.js` (sprites, animações na aba Sprites e no Organizar).

@@ -6,6 +6,8 @@
 // aponta para elas. Por isso os sprites juntados podem ir para a Lixeira (oculto), mas não ser apagados de vez.
 //
 // FF.EstudioJuntar.abrir(ids, { aoTerminar(alvo, nomeAnim) })
+//   ids: sprites inteiros ("dlz_9") e/ou animações ("zl3_esferas#DeathBall"). Só sprites: ordem pelo nome;
+//   com animações: a ordem em que vieram (a da tela). Animações do mesmo sprite do alvo não precisam de atlas extra.
 (function () {
   'use strict';
   const E = FF.Estudio;
@@ -32,27 +34,33 @@
   async function abrir(ids, cfg) {
     cfg = cfg || {};
     ids = [...new Set(ids)];
-    if (ids.length < 2) { E.aviso('Marque pelo menos 2 sprites para juntar.', 'erro'); return; }
-    const ordem = ids.slice().sort((a, b) => cmp(FF.Assets.nomeSprite(a), FF.Assets.nomeSprite(b)) || cmp(a, b));
+    if (ids.length < 2) { E.aviso('Marque pelo menos 2 para juntar.', 'erro'); return; }
+    const deAnims = ids.some(x => x.includes('#'));
+    // item = { spr, anim (null = a animação única do sprite), rot }
+    const itens = ids.map(x => { const i = x.indexOf('#'); return i < 0 ? { spr: x, anim: null } : { spr: x.slice(0, i), anim: x.slice(i + 1) }; });
+    if (!deAnims) itens.sort((a, b) => cmp(FF.Assets.nomeSprite(a.spr), FF.Assets.nomeSprite(b.spr)) || cmp(a.spr, b.spr));
+    const ordem = itens;
     let sets;
-    try { sets = await Promise.all(ordem.map(id => FF.Assets.loadSprite(id))); }
+    try { sets = await Promise.all(itens.map(it => FF.Assets.loadSprite(it.spr))); }
     catch (e) { E.aviso('❌ Não deu para abrir os sprites: ' + e.message, 'erro'); return; }
-    const vazios = ordem.filter((id, k) => !sets[k] || !animDe(sets[k]) || !animDe(sets[k]).frames.length);
-    if (vazios.length) { E.aviso('Sem quadros: ' + vazios.join(', '), 'erro'); return; }
+    const animIt = (it, s) => (it.anim ? s.def.anims[it.anim] : animDe(s));
+    const rotulo = (it) => it.anim ? FF.Assets.nomeAnim(it.spr, it.anim) + (itens.some(o => o.spr !== it.spr) ? ' · ' + FF.Assets.nomeSprite(it.spr) : '') : FF.Assets.nomeSprite(it.spr);
+    const vazios = itens.filter((it, k) => !sets[k] || !animIt(it, sets[k]) || !animIt(it, sets[k]).frames.length);
+    if (vazios.length) { E.aviso('Sem quadros: ' + vazios.map(rotulo).join(', '), 'erro'); return; }
 
     // ---- janela
     const c = E.el('div', 'es-juntar');
-    const nQ = ordem.reduce((s, id, k) => s + animDe(sets[k]).frames.length, 0);
-    const intro = E.el('p'); intro.textContent = ordem.length + ' sprites → 1 animação com ' + nQ + ' quadro(s), na ordem do nome. Ela fica no primeiro sprite da lista.';
+    const nQ = ordem.reduce((s, it, k) => s + animIt(it, sets[k]).frames.length, 0);
+    const intro = E.el('p'); intro.textContent = ordem.length + (deAnims ? ' animações' : ' sprites') + ' → 1 animação com ' + nQ + ' quadro(s), ' + (deAnims ? 'na ordem da tela' : 'na ordem do nome') + ' (▲▼ muda). Ela fica no sprite do primeiro da lista.';
     c.appendChild(intro);
     const lista = E.el('div', 'es-juntar-lista');
     const pintarLista = () => {
       lista.innerHTML = '';
-      ordem.forEach((id, k) => {
+      ordem.forEach((o, k) => {
         const it = E.el('div', 'es-juntar-item' + (k === 0 ? ' alvo' : ''));
         const cv = document.createElement('canvas'); cv.width = 40; cv.height = 40;
-        E.miniatura(cv, sets[k], Object.keys(sets[k].def.anims).find(n => sets[k].def.anims[n] === animDe(sets[k])), 0);
-        const nm = E.el('span'); nm.textContent = (k + 1) + '. ' + FF.Assets.nomeSprite(id);
+        E.miniatura(cv, sets[k], o.anim || Object.keys(sets[k].def.anims).find(n => sets[k].def.anims[n] === animDe(sets[k])), 0);
+        const nm = E.el('span'); nm.textContent = (k + 1) + '. ' + rotulo(o) + ' (' + animIt(o, sets[k]).frames.length + ')';
         it.append(cv, nm);
         const sobe = E.botao('▲', () => { if (k) { [ordem[k - 1], ordem[k]] = [ordem[k], ordem[k - 1]]; [sets[k - 1], sets[k]] = [sets[k], sets[k - 1]]; pintarLista(); } }, 'Subir');
         const desce = E.botao('▼', () => { if (k < ordem.length - 1) { [ordem[k + 1], ordem[k]] = [ordem[k], ordem[k + 1]]; [sets[k + 1], sets[k]] = [sets[k], sets[k + 1]]; pintarLista(); } }, 'Descer');
@@ -67,16 +75,22 @@
 
     // prévia animada
     const prev = document.createElement('canvas'); prev.width = 160; prev.height = 120; prev.className = 'es-juntar-prev';
-    const quadros = () => ordem.flatMap((id, k) => animDe(sets[k]).frames.map(f => ({ set: sets[k], f })));
+    const quadros = () => ordem.flatMap((it, k) => animIt(it, sets[k]).frames.map(f => ({ set: sets[k], f })));
     const campos = E.el('div', 'es-juntar-campos');
-    const inNome = document.createElement('input'); inNome.value = limpaNome(prefixo(ordem.map(id => FF.Assets.nomeSprite(id)))) || 'animacao';
+    const inNome = document.createElement('input'); inNome.value = limpaNome(prefixo(ordem.map(it => it.anim || FF.Assets.nomeSprite(it.spr)))) || 'animacao';
+    if (deAnims && sets[0].def.anims[inNome.value]) inNome.value += '_junta';
     const inFps = document.createElement('input'); inFps.type = 'number'; inFps.min = 1; inFps.max = 60; inFps.value = 12;
     const ck = (txt, on, dica) => { const l = E.el('label', 'es-juntar-ck'); l.title = dica || ''; const i = document.createElement('input'); i.type = 'checkbox'; i.checked = on; l.append(i, document.createTextNode(' ' + txt)); return { l, i }; };
     const cLoop = ck('Repetir (loop)', false, 'A animação recomeça sozinha ao terminar');
-    const cLixo = ck('Mandar os sprites soltos para a Lixeira', true, 'Os ' + (ordem.length - 1) + ' sprites que viraram quadros saem das listas (dá para restaurar em "🗑 Lixeira")');
-    const cRen = ck('Dar ao primeiro sprite o nome da animação', true, 'Ex.: "ground_smash_fx_00" passa a aparecer como "ground_smash_fx"');
+    const cLixo = deAnims ? ck('Apagar as animações juntadas (do sprite do alvo)', false, 'As animações usadas que são do mesmo sprite do alvo vão para "Apagadas" (dá para trazer de volta). As de outros sprites ficam como estão.')
+      : ck('Mandar os sprites soltos para a Lixeira', true, 'Os ' + (ordem.length - 1) + ' sprites que viraram quadros saem das listas (dá para restaurar em "🗑 Lixeira")');
+    const cRen = ck('Dar ao primeiro sprite o nome da animação', !deAnims, 'Ex.: "ground_smash_fx_00" passa a aparecer como "ground_smash_fx"');
     const lin = (rot, inp) => { const d = E.el('label', 'es-juntar-lin'); d.append(document.createTextNode(rot + ' '), inp); return d; };
-    campos.append(lin('Nome da animação', inNome), lin('Quadros por segundo', inFps), cLoop.l, cLixo.l, cRen.l);
+    campos.append(lin('Nome da animação', inNome), lin('Quadros por segundo', inFps), cLoop.l, cLixo.l);
+    if (!deAnims) campos.appendChild(cRen.l);
+    // fps sugerido: o da primeira animação
+    const fps0 = (animIt(ordem[0], sets[0]) || {}).fps;
+    if (deAnims && fps0 > 0) inFps.value = fps0;
     const meio = E.el('div', 'es-juntar-meio'); meio.append(prev, campos);
     c.appendChild(meio);
     const info = E.el('div', 'es-dica');
@@ -107,26 +121,30 @@
     async function fazer() {
       const nome = limpaNome(inNome.value);
       if (!nome) { E.aviso('Dê um nome para a animação.', 'erro'); return; }
-      const alvo = ordem[0];
+      const alvo = ordem[0].spr;
       btOk.disabled = true; info.textContent = '⏳ Juntando…';
       try {
         let setA = FF.Assets.sprites[alvo] || await FF.Assets.loadSprite(alvo);
         if (setA.def.anims[nome] && !(await E.confirmar('Já existe', '"' + nome + '" já existe em "' + FF.Assets.nomeSprite(alvo) + '". Substituir?', 'Substituir', true))) { btOk.disabled = false; info.textContent = ''; return; }
         // imagens dos outros sprites viram atlas extras do primeiro
         const extras = (FF.Assets.infoSprite(alvo).atlas || []).slice();
-        ordem.slice(1).forEach((id, k) => (sets[k + 1].def.atlases || []).forEach(p => { if (!setA.def.atlases.includes(p) && !extras.includes(p)) extras.push(p); }));
-        const infoNova = Object.assign({}, FF.Assets.infoSprite(alvo), { atlas: extras });
-        if (cRen.i.checked) infoNova.nome = inNome.value.trim() || nome;
-        FF.Edicoes.set(['spritesInfo', alvo], infoNova);   // atlas e nome numa mudança só
-        FF.Assets.descarregarSprite(alvo);
-        setA = await FF.Assets.loadSprite(alvo);
+        ordem.forEach((it, k) => { if (it.spr !== alvo) (sets[k].def.atlases || []).forEach(p => { if (!setA.def.atlases.includes(p) && !extras.includes(p)) extras.push(p); }); });
+        const infoAntes = FF.Assets.infoSprite(alvo);
+        const infoNova = Object.assign({}, infoAntes, { atlas: extras });
+        if (!extras.length) delete infoNova.atlas;
+        if (cRen.i.checked && !deAnims) infoNova.nome = inNome.value.trim() || nome;
+        if (JSON.stringify(infoNova) !== JSON.stringify(infoAntes)) {
+          FF.Edicoes.set(['spritesInfo', alvo], Object.keys(infoNova).length ? infoNova : null);   // atlas e nome numa mudança só
+          FF.Assets.descarregarSprite(alvo);
+          setA = await FF.Assets.loadSprite(alvo);
+        }
         const frames = [];
-        ordem.forEach((id, k) => {
-          const s = id === alvo ? setA : sets[k];
-          animDe(s).frames.forEach(f => {
+        ordem.forEach((it, k) => {
+          const s = it.spr === alvo ? setA : sets[k];
+          animIt(it, s).frames.forEach(f => {
             const q = copia(f);
             const ai = setA.def.atlases.indexOf(s.def.atlases[f[0]]);
-            if (ai < 0) throw new Error('A imagem de "' + id + '" não entrou no sprite.');
+            if (ai < 0) throw new Error('A imagem de "' + rotulo(it) + '" não entrou no sprite.');
             q[0] = ai;
             if (q[7] == null) q[7] = 1;
             frames.push(q);
@@ -134,10 +152,11 @@
         });
         const fps = Math.max(1, Math.min(60, +inFps.value || 12));
         FF.Mods.salvar(alvo, nome, { fps, loop: cLoop.i.checked, repeatTo: 0, pingpong: false, frames });
-        if (cLixo.i.checked) ordem.slice(1).forEach(id => { if (FF.Assets.doAcervo(id)) E.mudarInfoSprite(id, { oculto: true }); });
+        if (cLixo.i.checked && !deAnims) ordem.slice(1).forEach(it => { if (FF.Assets.doAcervo(it.spr)) E.mudarInfoSprite(it.spr, { oculto: true }); });
+        if (cLixo.i.checked && deAnims) ordem.forEach(it => { if (it.spr === alvo && it.anim && it.anim !== nome) { if (FF.Mods.criada(alvo, it.anim)) FF.Mods.restaurar(alvo, it.anim); else FF.Mods.apagar(alvo, it.anim); } });
         if (E.renderSync) E.renderSync();
         m.fechar();
-        E.aviso('🎞 "' + nome + '" criada em "' + FF.Assets.nomeSprite(alvo) + '" com ' + frames.length + ' quadros.' + (cLixo.i.checked ? ' Os soltos foram para a Lixeira.' : ''), 'ok');
+        E.aviso('🎞 "' + nome + '" criada em "' + FF.Assets.nomeSprite(alvo) + '" com ' + frames.length + ' quadros.' + (cLixo.i.checked ? (deAnims ? ' As originais foram apagadas.' : ' Os soltos foram para a Lixeira.') : ''), 'ok');
         if (cfg.aoTerminar) cfg.aoTerminar(alvo, nome);
       } catch (e) { btOk.disabled = false; info.textContent = '❌ ' + e.message; }
     }
