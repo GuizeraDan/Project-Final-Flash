@@ -639,3 +639,8 @@ Cache do app: `finalflash-v47`.
 - Teste: `tools/testes/estudio_separar.js`. Se der problema, o usuário volta a falar (combinado).
 - Separar agora TIRA do original por padrão nos sprites do acervo (o usuário quer assets limpos: aura, bola… sem ficar atrelados ao sprite de origem); nos do jogo vem desmarcado com aviso. Janela própria com a caixinha "Tirar do sprite original".
 - Organizar: dentro de um sprite, marque animações → "⇱ Separar (N) → <pasta aberta à direita>"; no painel "Dentro de <pasta>", ⇱ nos atalhos de animação. Teste ampliado (bola do Bills/Twiss).
+
+### 2026-11-24 — Camada "na profundidade"
+- Efeito, projétil e camada ganharam o seletor "Camada" no Estúdio (no lugar da caixinha "Atrás dos lutadores"): na frente de todos (padrão, como antes) / na profundidade de quem solta / na profundidade do alvo / atrás de todos. Campo `prof: "quem"|"alvo"`.
+- Motor (`battle.js` draw): com perspectiva, os itens "na profundidade" entram na ordem dos lutadores logo acima da referência (prio + 0,75): quem está mais embaixo (na frente) cobre o efeito. Sem perspectiva vale como "na frente". Golpes existentes não mudam (opção 1 do usuário).
+- Teste: `tools/testes/profundidade.js`.

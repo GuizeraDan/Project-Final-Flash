@@ -11,6 +11,8 @@
 //     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
+//  (efeito, projétil e camada aceitam prof: "quem"|"alvo" = na profundidade de quem solta / do alvo — com perspectiva,
+//   entra entre os lutadores pela altura de chão: quem está mais à frente cobre; sem perspectiva = na frente de todos)
 //  (efeito, projétil e camada aceitam ordem: "baixo"|"cima" = por baixo/por cima dos outros efeitos, camadas e
 //   projéteis da mesma faixa; sem ordem = normal, e entre efeitos fica por cima o que começou depois)
 //  efeitos  {tipo:"efeito", fx, sprite?, em: "atacante"|"peito"|"disparo"|"alvo"|"alvoPes"|"tela", dx, dy, escala, rot?, alpha?, flip?, fps?, d?,
@@ -302,7 +304,7 @@ FF.Linha = {
         const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? target : actor;
         const kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
         const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, (c.escala || 1) * kp,
-          { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras, ordem: c.ordem });
+          { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras, ordem: c.ordem, prof: !c.atras && c.prof ? (c.prof === 'alvo' ? target : actor) : null });
         if (e && (c.rot || inclina)) e.rot = ((c.rot || 0) + inclina) * dir;
         // até o alvo (raios, rajadas): o desenho termina no peito do alvo — "cortar" esconde o que passa dele,
         // "esticar" estica/encolhe o comprimento para chegar nele (a distância muda com a fileira e a tela)

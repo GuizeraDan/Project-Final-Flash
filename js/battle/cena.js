@@ -79,8 +79,9 @@ FF.Cena = {
 
   // atras: undefined = todas; true = só as marcadas "atrás dos lutadores"; false = só as da frente
   // ordem: undefined = todas; 'baixo' | '' | 'cima' = só as camadas com essa "ordem" (Estúdio)
-  desenhar(ctx, b, actor, target, cena, t, atras, ordem) {
-    (cena.camadas || []).forEach(c => { if (!c.oculta && (atras === undefined || !!c.atras === atras) && (ordem === undefined || (c.ordem || '') === ordem)) this.desenharCamada(ctx, this.naTela(b, actor, target, c, t)); });
+  // semProf: pula as camadas "na profundidade" (a batalha desenha essas entre os lutadores)
+  desenhar(ctx, b, actor, target, cena, t, atras, ordem, semProf) {
+    (cena.camadas || []).forEach(c => { if (!c.oculta && (atras === undefined || !!c.atras === atras) && (ordem === undefined || (c.ordem || '') === ordem) && !(semProf && c.prof && !c.atras)) this.desenharCamada(ctx, this.naTela(b, actor, target, c, t)); });
   },
 
   // carrega os sprites usados pela cena

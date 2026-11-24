@@ -1259,7 +1259,7 @@ FF.Battle = class {
     const a = new FF.Animator(set);
     const dur = opts && opts.duracao;   // anima em loop por "duracao" s (efeitos curtos que repetem)
     a.play(name, { loop: !!dur, fps: opts && opts.fps });
-    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null, atras: !!(opts && opts.atras), ordem: (opts && opts.ordem) || '' };
+    const e = { a, set, x, y, flip, scale: (scale || 1) * this.scale * (set.def.escala || 1), alpha: opts && opts.alpha, ate: dur ? FF.Clock.t + dur : null, atras: !!(opts && opts.atras), ordem: (opts && opts.ordem) || '', prof: (opts && opts.prof) || null };
     this.fxList.push(e);
     return e;
   }
@@ -1343,7 +1343,7 @@ FF.Battle = class {
       flip: att.dir < 0, dir: att.dir, rastroOn: spec.rastro !== false, rastro: [],
       crescer: spec.crescer !== false, curva: spec.curva || 0, ondular: spec.ondular || 0,
       girar: spec.girar || 0, ang: 0, atravessar: !!spec.atravessar, acertou: false,
-      atras: !!spec.atras, ordem: spec.ordem || '', centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
+      atras: !!spec.atras, ordem: spec.ordem || '', prof: !spec.atras && spec.prof ? (spec.prof === 'alvo' ? def : att) : null, centro: !!spec.centro, ajX: (spec.spriteDx || 0) * att.dir, ajY: spec.spriteDy || 0, clipe: spec.id,
       rot: spec.rot ? spec.rot * att.dir * Math.PI / 180 : 0, filtro: FF.Battle.filtroCor(spec.cor, spec.corForca),
       done: new Promise(r => (res = r)),
     };
@@ -1674,11 +1674,15 @@ FF.Battle = class {
     };
     // dentro de cada faixa (atrás/na frente dos lutadores), "ordem" do clipe (Estúdio): por baixo → normal → por cima;
     // em cada uma: camadas, projéteis e efeitos (entre efeitos, o que começou depois fica por cima)
+    // "Na profundidade de quem solta / do alvo" (Estúdio, só com perspectiva): o efeito entra entre os lutadores,
+    // na altura de chão dele — quem está mais embaixo (na frente) cobre, quem está mais em cima (no fundo) fica coberto
+    const persp = !!this.persp;
+    const naProf = (x) => persp && x.prof && !x.atras;
     const camada = (atras) => {
       ['baixo', '', 'cima'].forEach(ord => {
-        (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras, ord));
-        this.projectiles.forEach(p => { if (!!p.atras === atras && (p.ordem || '') === ord) this.desenharProjetil(ctx, p); });
-        this.fxList.forEach(e => { if (!!e.atras === atras && (e.ordem || '') === ord) desenharFx(e); });
+        (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras, ord, persp));
+        this.projectiles.forEach(p => { if (!!p.atras === atras && (p.ordem || '') === ord && !naProf(p)) this.desenharProjetil(ctx, p); });
+        this.fxList.forEach(e => { if (!!e.atras === atras && (e.ordem || '') === ord && !naProf(e)) desenharFx(e); });
       });
     };
     camada(true);
@@ -1687,15 +1691,29 @@ FF.Battle = class {
       ? (f) => (f.camadaExtra || 0) * 10000 + f.groundY + (f.busy ? 0.5 : 0)   // perspectiva: o que está mais embaixo fica na frente
       : (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
     const order = this.all.slice().sort((a, b) => prio(a) - prio(b));
+    // itens na profundidade: logo acima de quem é a referência (por cima dele, por baixo de quem está mais à frente)
+    const profs = [];
+    if (persp) {
+      const ORD = { baixo: 0, '': 1, cima: 2 };
+      const add = (ref, ord, fn) => { if (ref && ref.groundY != null) profs.push({ k: prio(ref) + 0.75, o: ORD[ord || ''] || 1, i: profs.length, fn }); };
+      (this.cenasVivas || []).forEach(v => (v.cena.camadas || []).forEach(c => { if (!c.oculta && !c.atras && c.prof) add(c.prof === 'alvo' ? v.target : v.actor, c.ordem, () => FF.Cena.desenharCamada(ctx, FF.Cena.naTela(this, v.actor, v.target, c, v.t))); }));
+      this.projectiles.forEach(p => { if (naProf(p)) add(p.prof, p.ordem, () => this.desenharProjetil(ctx, p)); });
+      this.fxList.forEach(e => { if (naProf(e)) add(e.prof, e.ordem, () => desenharFx(e)); });
+      profs.sort((a, b) => a.k - b.k || a.o - b.o || a.i - b.i);
+    }
+    let ip = 0;
+    const profAte = (k) => { while (ip < profs.length && profs[ip].k < k) profs[ip++].fn(); };
     if (this.persp) {
       this.desenharSombras(ctx);
       order.forEach(f => {
+        profAte(prio(f));
         // névoa: o fundo fica um pouco mais claro e menos saturado (some quando ele vem para a frente)
         const d = f.homeG != null ? Math.max(0, Math.min(1, (this.PERSP.frente - f.groundY) / (this.PERSP.frente - this.PERSP.fundo))) : 0;
         // (um véu claro por cima do desenho, pelo tint do quadro: ctx.filter na tela era o que mais pesava)
         f.nevoa = d > 0.05 && !f.busy ? d : 0;
         f.draw(ctx, this.fx);
       });
+      profAte(Infinity);
     } else order.forEach(f => f.draw(ctx, this.fx));
     // supremo: escurece tudo e redesenha só quem solta, aceso
     const esc = this.efTela && this.efTela.escuro;

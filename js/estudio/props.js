@@ -78,6 +78,13 @@ FF.EstudioProps = {
     const num = (obj, k, rot, dica, o = {}) => E.campo('numero', rot, obj[k], set(obj, k, rot), Object.assign({ dica, passo: o.passo || 'any' }, o));
     const chk = (obj, k, rot, dica) => E.campo('check', rot, obj[k], (v) => { if (v) obj[k] = true; else delete obj[k]; host.mudou(rot); }, { dica });
     const txt = (obj, k, rot, dica, o = {}) => E.campo('texto', rot, obj[k], set(obj, k, rot), Object.assign({ dica }, o));
+    // camada em relação aos lutadores: atrás de todos / na profundidade de quem solta ou do alvo / na frente de todos
+    const camadaLut = (obj) => E.campo('select', 'Camada', obj.atras ? 'atras' : obj.prof ? 'prof_' + obj.prof : '', (v) => {
+      delete obj.atras; delete obj.prof;
+      if (v === 'atras') obj.atras = true; else if (v) obj.prof = v.slice(5);
+      host.mudou('Camada');
+    }, { lista: [['', 'Na frente de todos os lutadores'], ['prof_quem', 'Na profundidade de quem solta'], ['prof_alvo', 'Na profundidade do alvo'], ['atras', 'Atrás de todos os lutadores']],
+      dica: 'Profundidade (lutas em perspectiva): o efeito fica entre os lutadores, na altura de chão de quem solta (ou do alvo) — quem está mais embaixo, na frente, cobre o efeito; quem está no fundo fica coberto. Sem perspectiva, vale como "na frente".' });
     const sel = (obj, k, rot, lista, dica, padrao) => E.campo('select', rot, obj[k] != null ? obj[k] : padrao, (v) => { if (v === '' || v === padrao && padrao === '') delete obj[k]; else obj[k] = v; host.mudou(rot); }, { lista, dica });
 
     if (!c) {
@@ -179,8 +186,8 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'rot', 'Giro (°)'));
         g.appendChild(num(c, 'alpha', 'Opacidade', null, { passo: 0.05, min: 0, max: 1 }));
         g.appendChild(chk(c, 'flip', 'Espelhar'));
-        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores (fica por baixo deles)'));
-        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis (dentro da mesma faixa: atrás ou na frente dos lutadores)', ''));
+        g.appendChild(camadaLut(c));
+        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis da mesma camada', ''));
         g.appendChild(num(c, 'fps', 'fps', 'Vazio = o do efeito'));
         g.appendChild(num(c, 'd', 'Repetir por (s)', 'Vazio = toca uma vez', { min: 0, passo: 0.05 }));
         break;
@@ -197,8 +204,8 @@ FF.EstudioProps = {
         g.appendChild(E.campo('check', 'Rastro', c.rastro !== false, (v) => { if (v) delete c.rastro; else c.rastro = false; host.mudou('Rastro'); }));
         g.appendChild(E.campo('check', 'Cresce ao sair', c.crescer !== false, (v) => { if (v) delete c.crescer; else c.crescer = false; host.mudou('Crescer'); }));
         g.appendChild(chk(c, 'atravessar', 'Atravessa o alvo'));
-        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores'));
-        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis (dentro da mesma faixa: atrás ou na frente dos lutadores)', ''));
+        g.appendChild(camadaLut(c));
+        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis da mesma camada', ''));
         g.appendChild(chk(c, 'deCima', 'Cai do alto'));
         g.appendChild(num(c, 'curva', 'Arco (px)', 'Altura do arco'));
         g.appendChild(num(c, 'ondular', 'Ondular (px)'));
@@ -238,8 +245,8 @@ FF.EstudioProps = {
         g.appendChild(this.comEscolha(E.campo('anim', 'Animação', c.anim, set(c, 'anim', 'Animação'), { sugestoes: s ? Object.keys(s.def.anims) : [] }), () => FF.Estudio.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; host.mudou('Sprite da camada'); } }), () => ({ set: FF.Assets.sprites[c.sprite], anim: c.anim })));
         g.appendChild(num(c, 'd', 'Duração (s)', null, { min: 0.02, passo: 0.05 }));
         g.appendChild(sel(c, 'ancora', 'Âncora', [['atacante', 'quem solta (pés)'], ['alvo', 'alvo (peito)'], ['tela', 'tela']], null, 'atacante'));
-        g.appendChild(chk(c, 'atras', 'Atrás dos lutadores'));
-        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis (dentro da mesma faixa: atrás ou na frente dos lutadores)', ''));
+        g.appendChild(camadaLut(c));
+        g.appendChild(sel(c, 'ordem', 'Ordem', [['', 'Normal'], ['cima', '⬆ Por cima dos outros efeitos'], ['baixo', '⬇ Por baixo dos outros efeitos']], 'Quem fica por cima entre efeitos, camadas e projéteis da mesma camada', ''));
         g.appendChild(num(c, 'x', 'X')); g.appendChild(num(c, 'y', 'Y'));
         g.appendChild(sel(c, 'px', 'Unidade X/Y', [['', 'pixels da tela'], ['sprite', 'pixels do sprite (segue a escala da luta)']], 'Pixels do sprite: a camada fica no mesmo lugar em lutas 1×1 e 3×3', ''));
         g.appendChild(num(c, 'escala', 'Tamanho (×)', null, { passo: 0.05 }));
