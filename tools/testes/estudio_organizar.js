@@ -31,19 +31,19 @@ const { chromium } = require('playwright');
     ok(sugGoku.includes('zl3_gokubase') && !sugGoku.includes('zl3_gokublackrose') && !sugGoku.includes('zl3_gohanbeast'), 'Goku Black e Gohan não caem em Goku: ' + sugGoku.slice(0, 6).join(','));
     await p.screenshot({ path: require('os').tmpdir() + '/ff_org2.png' });
     // nova pasta de teste e mover 2 marcados para ela
-    await p.click('.es-org-card[data-id="zl3_cell"]');
+    await p.click('.es-org-card[data-id="zl3_chaos"]');
     await p.click('.es-org-card[data-id="zl3_cooler"]', { modifiers: [] });
     await p.click('.es-org-novabt');
     await p.waitForSelector('.es-perg input');
     await p.fill('.es-perg input', 'ZZ Teste Org');
     await p.click('.es-perg button:has-text("OK")');
     await p.waitForTimeout(500);
-    const r = await p.evaluate(() => ({ cell: FF.Assets.infoSprite('zl3_cell').pasta, cooler: FF.Assets.infoSprite('zl3_cooler').pasta, existe: !!FF.Favoritos.pastas()['ZZ Teste Org'] }));
+    const r = await p.evaluate(() => ({ cell: FF.Assets.infoSprite('zl3_chaos').pasta, cooler: FF.Assets.infoSprite('zl3_cooler').pasta, existe: !!FF.Favoritos.pastas()['ZZ Teste Org'] }));
     ok(r.cell === 'ZZ Teste Org' && r.cooler === 'ZZ Teste Org' && r.existe, 'nova pasta já recebe os marcados: ' + JSON.stringify(r));
     // "só sem pasta" esconde os dois
     await semPasta.click();
     await p.waitForTimeout(300);
-    ok(!(await p.locator('.es-org-card[data-id="zl3_cell"]').count()), '"Só sem pasta" esconde o que foi movido');
+    ok(!(await p.locator('.es-org-card[data-id="zl3_chaos"]').count()), '"Só sem pasta" esconde o que foi movido');
     // clicar na pasta com marcado move; sem marcado entra
     await semPasta.click(); await p.waitForTimeout(300);
     await p.click('.es-org-card[data-id="zl3_freeza"]');
@@ -61,7 +61,7 @@ const { chromium } = require('playwright');
     const nItens = await p.locator('.es-org-item').count();
     ok(nItens === 4, 'a pasta aberta mostra o que tem dentro: ' + nItens);
     await p.screenshot({ path: require('os').tmpdir() + '/ff_org3.png' });
-    const itemCell = p.locator('.es-org-item').filter({ has: p.locator('.es-org-nome[title="zl3_cell"]') });
+    const itemCell = p.locator('.es-org-item').filter({ has: p.locator('.es-org-nome[title="zl3_chaos"]') });
     await itemCell.hover();
     await itemCell.locator('.es-org-tirar').click();
     await p.waitForTimeout(300);
@@ -110,6 +110,16 @@ const { chromium } = require('playwright');
       ok(await p.evaluate(() => FF.Assets.spriteOculto('zl3_kefla')) && !(await cardK.count()), '🗑 manda o sprite para a Lixeira');
     } else ok(true, '(Kefla não está à vista; pulei ✏/🗑)');
     await p.evaluate(() => { document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); });
+    await p.waitForTimeout(300);
+    // 🔍 tamanho dos quadros
+    await p.evaluate(() => { FF.EstudioOrganizar.abrir(); });
+    await p.waitForSelector('.es-org-zoom input');
+    const h0 = await p.evaluate(() => { const c = document.querySelector('.es-org-modal .es-org-card canvas, .es-org-card canvas'); return c ? c.getBoundingClientRect().height : 0; });
+    await p.fill('.es-org-zoom input >> nth=-1', '200'); await p.dispatchEvent('.es-org-zoom input >> nth=-1', 'change');
+    await p.waitForTimeout(500);
+    const zr = await p.evaluate(() => { const cs = [...document.querySelectorAll('.es-org-card canvas')]; const c = cs[cs.length - 1]; return { h: c ? c.getBoundingClientRect().height : 0, res: c ? c.height : 0, salvo: FF.Estudio.rascunho.ler('org_tam') }; });
+    ok(zr.h >= 190 && zr.res === 200 && zr.salvo === 200, '🔍 quadros maiores (' + Math.round(h0) + ' → ' + Math.round(zr.h) + ' px) e lembrado');
+    await p.evaluate(() => { FF.Estudio.rascunho.gravar('org_tam', null); document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); });
     await p.waitForTimeout(300);
     // vistas das pastas: compacta / lista com capa / capas
     await p.evaluate(() => { FF.Estudio.EstOrgTeste = FF.EstudioOrganizar.abrir(); });

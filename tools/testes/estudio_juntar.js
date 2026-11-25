@@ -70,7 +70,7 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   await p.waitForSelector('.es-org-grade');
   await p.selectOption('.es-org-filtros select >> nth=0', 'personagens');
   const semP = p.locator('.es-org-filtros input[type="checkbox"]'); if (await semP.isChecked()) await semP.click();
-  await p.dblclick('.es-org-card[data-id="zl3_cell"]');
+  await p.dblclick('.es-org-card[data-id="zl3_chaos"]');
   await p.waitForSelector('.es-org-anim');
   await p.click('.es-org-anim >> nth=0'); await p.click('.es-org-anim >> nth=2', { modifiers: ['Shift'] });
   ok(await p.isVisible('.es-org-juntar'), 'Organizar (dentro do sprite): 🎞 Juntar aparece com animações marcadas');
@@ -79,8 +79,8 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   ok(await p.locator('.es-juntar-item').count() === 3, 'janela com as 3 animações em ordem');
   await p.fill('.es-juntar-lin input >> nth=0', 'Org_Junta');
   await p.click('.es-juntar-ok');
-  await p.waitForFunction(() => !!(FF.Edicoes.dados().sprites.zl3_cell || {}).Org_Junta, null, { timeout: 10000 });
-  ok(await p.locator('.es-org-anim[data-k="zl3_cell#Org_Junta"]').count() === 1, 'a animação nova aparece na grade do sprite');
+  await p.waitForFunction(() => !!(FF.Edicoes.dados().sprites.zl3_chaos || {}).Org_Junta, null, { timeout: 10000 });
+  ok(await p.locator('.es-org-anim[data-k="zl3_chaos#Org_Junta"]').count() === 1, 'a animação nova aparece na grade do sprite');
   ok(!msgs.length, 'sem erros na página' + (msgs.length ? ': ' + msgs.join(' | ') : ''));
   await b.close();
 })();

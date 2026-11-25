@@ -112,7 +112,24 @@
       if (s) FF.Mods.aplicar(st.dentro, s);
       setTimeout(tudo, 0);
     }, 'Cada animação marcada vira um sprite só dela e sai deste sprite (vai para a pasta aberta à direita, se houver)', 'es-org-separar');
-    topo.append(txtMarc, btSeparar, btJuntar, btLixo, E.el('span', 'es-org-esp'), btSug);
+    // 🔍 tamanho dos quadros da grade (lembrado no aparelho); Ctrl + roda do mouse na grade também muda
+    const TAM_MIN = 64, TAM_MAX = 280;
+    let tam = Math.max(TAM_MIN, Math.min(TAM_MAX, +E.rascunho.ler('org_tam') || 84));
+    const zoom = E.el('label', 'es-org-zoom'); zoom.title = 'Tamanho dos quadros (Ctrl + roda do mouse na grade)';
+    const inZoom = document.createElement('input'); inZoom.type = 'range'; inZoom.min = TAM_MIN; inZoom.max = TAM_MAX; inZoom.step = 4; inZoom.value = tam;
+    zoom.append(document.createTextNode('🔍 '), inZoom);
+    let tZoom = null;
+    const mudarTam = (v, redesenhar) => {
+      tam = Math.max(TAM_MIN, Math.min(TAM_MAX, Math.round(v)));
+      inZoom.value = tam; aplicarTam();
+      E.rascunho.gravar('org_tam', tam === 84 ? null : tam);
+      clearTimeout(tZoom);
+      if (redesenhar) tZoom = setTimeout(() => renderGrade(), 150);   // redesenha as miniaturas na resolução nova
+    };
+    inZoom.oninput = () => mudarTam(+inZoom.value, false);
+    inZoom.onchange = () => mudarTam(+inZoom.value, true);
+    zoom.addEventListener('dblclick', () => mudarTam(84, true));
+    topo.append(txtMarc, btSeparar, btJuntar, btLixo, E.el('span', 'es-org-esp'), zoom, btSug);
 
     // ---- esquerda: acervo
     const esq = E.el('div', 'es-org-esq');
@@ -139,6 +156,9 @@
     const barraDentro = E.el('div', 'es-org-filtros es-org-dentro');
     const info = E.el('div', 'es-org-info');
     const grade = E.el('div', 'es-org-grade');
+    const aplicarTam = () => { grade.style.setProperty('--org-tam', tam + 'px'); };
+    aplicarTam();
+    grade.addEventListener('wheel', (ev) => { if (!ev.ctrlKey) return; ev.preventDefault(); mudarTam(tam * (ev.deltaY < 0 ? 1.12 : 1 / 1.12), true); }, { passive: false });
     const sug = E.el('div', 'es-org-sug');
     esq.append(filtros, barraDentro, info, grade, sug);
 
@@ -333,7 +353,7 @@
     function cartao(id) {
       const k = E.el('div', 'es-org-card' + (marcados.has(id) ? ' marcado' : ''));
       k.dataset.id = id; k.draggable = true;
-      const cv = document.createElement('canvas'); cv.width = 84; cv.height = 84;
+      const cv = document.createElement('canvas'); cv.width = tam; cv.height = tam;
       const s = FF.Assets.sprites[id];
       if (s) requestAnimationFrame(() => E.miniatura(cv, s, Object.keys(s.def.anims)[0], 0)); else { pend.set(cv, id); obs.observe(cv); }
       const a = FF.Assets.acervo()[id] || [];
@@ -364,7 +384,7 @@
       const k0 = id + '#' + a, def = s.anim(a);
       const k = E.el('div', 'es-org-card es-org-anim' + (marcA.has(k0) ? ' marcado' : ''));
       k.dataset.k = k0; k.dataset.id = id; k.draggable = true;
-      const cv = document.createElement('canvas'); cv.width = 104; cv.height = 84;
+      const cv = document.createElement('canvas'); cv.width = Math.round(tam * 1.24); cv.height = tam;
       requestAnimationFrame(() => E.miniatura(cv, s, a, 0));
       const nm = E.el('div', 'es-org-nome'); nm.textContent = FF.Assets.nomeAnim ? FF.Assets.nomeAnim(id, a) : a; nm.title = a;
       const fr = def.frames, dur = fr.reduce((t, q) => t + (q[7] || 1), 0) / (def.fps || 10);

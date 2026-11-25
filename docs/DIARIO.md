@@ -644,3 +644,7 @@ Cache do app: `finalflash-v47`.
 - Efeito, projétil e camada ganharam o seletor "Camada" no Estúdio (no lugar da caixinha "Atrás dos lutadores"): na frente de todos (padrão, como antes) / na profundidade de quem solta / na profundidade do alvo / atrás de todos. Campo `prof: "quem"|"alvo"`.
 - Motor (`battle.js` draw): com perspectiva, os itens "na profundidade" entram na ordem dos lutadores logo acima da referência (prio + 0,75): quem está mais embaixo (na frente) cobre o efeito. Sem perspectiva vale como "na frente". Golpes existentes não mudam (opção 1 do usuário).
 - Teste: `tools/testes/profundidade.js`.
+
+### 2026-11-25 — Organizar: tamanho dos quadros
+- Controle 🔍 no topo do Organizar (64–280 px, duplo clique volta a 84) e Ctrl + roda do mouse na grade; vale para os sprites e para as animações de dentro; miniaturas redesenhadas na resolução nova; lembrado no aparelho (`org_tam`). CSS por `--org-tam`.
+- Testes do Organizar/Juntar trocaram zl3_cell (o usuário mandou para a Lixeira) por zl3_chaos.
