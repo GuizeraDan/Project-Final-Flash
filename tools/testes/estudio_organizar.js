@@ -111,6 +111,25 @@ const { chromium } = require('playwright');
     } else ok(true, '(Kefla não está à vista; pulei ✏/🗑)');
     await p.evaluate(() => { document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); });
     await p.waitForTimeout(300);
+    // ✏ renomear pasta (com subpasta e itens)
+    await p.evaluate(() => { document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); FF.Edicoes.set(['favoritosPastas', 'ZZ Ren'], ['fx#Rochas']); FF.Edicoes.set(['favoritosPastas', 'ZZ Ren/Sub'], []); FF.Estudio.rascunho.gravar('org_pasta', ''); FF.EstudioOrganizar.abrir(); });
+    const linhaRen = p.locator('.es-org-pasta[data-pasta="ZZ Ren"]').first();
+    await linhaRen.scrollIntoViewIfNeeded();
+    await linhaRen.hover();
+    await linhaRen.locator('.es-org-ren').click();
+    await p.keyboard.press('Control+A'); await p.keyboard.type('ZZ Novo Nome'); await p.keyboard.press('Enter');
+    await p.waitForTimeout(400);
+    const pr = await p.evaluate(() => { const P = FF.Favoritos.pastas(); return { velho: !!P['ZZ Ren'], novo: JSON.stringify(P['ZZ Novo Nome']), sub: !!P['ZZ Novo Nome/Sub'], linha: !!document.querySelector('.es-org-pasta[data-pasta="ZZ Novo Nome"]') }; });
+    ok(!pr.velho && pr.novo === '["fx#Rochas"]' && pr.sub && pr.linha, '✏ renomeia a pasta (itens e subpasta vão junto): ' + JSON.stringify(pr));
+    // ✏ da trilha: renomeia a pasta aberta e ela continua aberta
+    await p.click('.es-org-pasta[data-pasta="ZZ Novo Nome"]');
+    await p.waitForSelector('.es-org-ren-tri');
+    await p.click('.es-org-ren-tri');
+    await p.keyboard.press('Control+A'); await p.keyboard.type('ZZ Final'); await p.keyboard.press('Enter');
+    await p.waitForTimeout(400);
+    ok(await p.evaluate(() => !!FF.Favoritos.pastas()['ZZ Final/Sub'] && /ZZ Final/.test(document.querySelector('.es-org-trilha') ? document.querySelector('.es-org-trilha').textContent : document.body.textContent)), '✏ na trilha renomeia a pasta aberta');
+    await p.evaluate(() => { FF.Edicoes.set(['favoritosPastas', 'ZZ Final'], null); FF.Edicoes.set(['favoritosPastas', 'ZZ Final/Sub'], null); FF.Estudio.rascunho.gravar('org_pasta', ''); document.querySelectorAll('.es-modal').forEach(m => m._fechar && m._fechar()); });
+    await p.waitForTimeout(300);
     // 🔍 tamanho dos quadros
     await p.evaluate(() => { FF.EstudioOrganizar.abrir(); });
     await p.waitForSelector('.es-org-zoom input');

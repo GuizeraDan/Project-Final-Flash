@@ -480,6 +480,11 @@
         const sub = E.el('small', 'es-org-pn', resumo);
         r.append(capa(nome, 112), nm, sub);
       }
+      if (!especial) {
+        const ren = E.botao('✏', (ev) => { ev.stopPropagation(); renomearPasta(nome, nm); }, 'Renomear esta pasta (as subpastas e o que está dentro vão junto)', 'es-org-ren');
+        ren.addEventListener('dblclick', (ev) => ev.stopPropagation());
+        r.appendChild(ren);
+      }
       if (temFilhas) { const ent = E.botao('▸', (ev) => { ev.stopPropagation(); entrar(nome); }, 'Abrir a pasta'); ent.className = 'es-org-entrar'; r.appendChild(ent); }
       r.onclick = () => { if (temMarcados()) moverMarcados(nome); else entrar(nome); };
       r.addEventListener('dragover', (ev) => { if (ev.dataTransfer.types.includes('application/x-ff-org')) { ev.preventDefault(); r.classList.add('alvo'); } });
@@ -489,6 +494,20 @@
         try { const d = JSON.parse(ev.dataTransfer.getData('application/x-ff-org')); if (d.anims) moverAnims(d.anims, nome); else mover(d.ids || d, nome); } catch (e) { /* nada */ }
       });
       return r;
+    }
+    // ✏ renomear no lugar: muda só o último pedaço do caminho; subpastas, itens e sprites movidos acompanham
+    function renomearPasta(nome, el) {
+      el.textContent = F.folha(nome);
+      E.editarNoLugar(el, F.folha(nome), (v) => {
+        v = String(v || '').trim();
+        if (!v || v === F.folha(nome)) { setTimeout(renderPastas, 0); return; }
+        const pai = F.paiDe(nome), novo = (pai ? pai + '/' : '') + v.replace(/\//g, '-');
+        if (!F.renomearFolha(nome, v)) { E.aviso('Já existe uma pasta "' + v + '" aqui.', 'erro'); setTimeout(renderPastas, 0); return; }
+        // a pasta aberta (ou uma dentro dela) foi renomeada: continua aberta com o nome novo
+        if (st.pasta === nome || (st.pasta || '').startsWith(nome + '/')) { st.pasta = novo + st.pasta.slice(nome.length); E.rascunho.gravar('org_pasta', st.pasta); }
+        E.aviso('✏ Pasta renomeada para "' + v + '".', 'ok');
+        setTimeout(() => { renderPastas(); renderGrade(); }, 0);
+      });
     }
     async function novaPasta() {
       const n = await E.perguntar('＋ Nova pasta', 'Nome da pasta' + (st.pasta ? ' dentro de "' + F.folha(st.pasta) + '"' : '') + ':', '');
@@ -564,7 +583,9 @@
       const ir = (n, t) => { const a = E.el('span', 'es-org-tri'); a.textContent = t; a.onclick = () => entrar(n); return a; };
       if (partes.length) { const v = E.botao('←', () => entrar(F.paiDe(st.pasta)), 'Voltar uma pasta'); v.className = 'es-org-voltar'; trilha.appendChild(v); }
       trilha.appendChild(ir('', 'Minhas pastas'));
-      partes.forEach((p, i) => { trilha.appendChild(E.el('span', 'es-org-sep', '›')); trilha.appendChild(ir(partes.slice(0, i + 1).join('/'), p)); });
+      let ultimoTri = null;
+      partes.forEach((p, i) => { trilha.appendChild(E.el('span', 'es-org-sep', '›')); trilha.appendChild(ultimoTri = ir(partes.slice(0, i + 1).join('/'), p)); });
+      if (ultimoTri) { const atual = st.pasta, t = ultimoTri; trilha.appendChild(E.botao('✏', () => renomearPasta(atual, t), 'Renomear a pasta aberta', 'es-org-ren-tri')); }
       pastasEl.innerHTML = '';
       const f = normal(st.buscaPasta);
       if (f) {

@@ -648,3 +648,6 @@ Cache do app: `finalflash-v47`.
 ### 2026-11-25 — Organizar: tamanho dos quadros
 - Controle 🔍 no topo do Organizar (64–280 px, duplo clique volta a 84) e Ctrl + roda do mouse na grade; vale para os sprites e para as animações de dentro; miniaturas redesenhadas na resolução nova; lembrado no aparelho (`org_tam`). CSS por `--org-tam`.
 - Testes do Organizar/Juntar trocaram zl3_cell (o usuário mandou para a Lixeira) por zl3_chaos.
+
+### 2026-11-25 — Organizar: renomear pastas
+- ✏ ao passar o mouse em cada pasta/subpasta do painel da direita (nas 3 vistas) e ao lado da trilha (pasta aberta): edita no lugar; usa `F.renomearFolha` (subpastas, itens e sprites movidos acompanham); a pasta aberta continua aberta com o nome novo.
