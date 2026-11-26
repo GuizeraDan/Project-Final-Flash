@@ -11,6 +11,7 @@
 //     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
+//  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
 //  (efeito, projétil e camada aceitam prof: "quem"|"alvo" = na profundidade de quem solta / do alvo — com perspectiva,
 //   entra entre os lutadores pela altura de chão: quem está mais à frente cobre; sem perspectiva = na frente de todos)
@@ -247,6 +248,8 @@ FF.Linha = {
         const alt0 = f.groundY - f.y, altDest = c.para === 'x' ? -(c.y || 0) : alt0;
         // espelhar: o lutador fica virado para o outro lado (no movimento desde o começo; no teleporte ao reaparecer)
         // até o próximo clipe de animação desse lutador (que decide o próprio "Espelhar") ou o fim do golpe
+        // começar reto: desfaz o giro, o tamanho e o espelhar que vieram da animação anterior
+        if (c.tipo === 'mover' && c.reto) { f.rotExtra = 0; f.escExtra = 1; f.flipExtra = false; }
         if (c.tipo === 'mover' && c.flip != null) f.flipExtra = !!c.flip;
         if (c.tipo === 'mover') {
           const x0 = f.x, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;

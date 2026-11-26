@@ -659,3 +659,4 @@ Cache do app: `finalflash-v47`.
 ### 2026-11-26 — Movimento/teleporte: ⇋ Espelhar
 - Clipes de movimento e teleporte ganharam "⇋ Espelhar" (`flip: true`): vira o lutador (flipExtra) durante o movimento e na chegada / ao reaparecer no teleporte, até o próximo clipe de animação dele (que decide o próprio "Espelhar") ou o fim do golpe. A silhueta de chegada no palco aparece espelhada também.
 - Teste: `tools/testes/movimento_espelhar.js`.
+- Movimento ganhou "↥ Começar reto" (`reto: true`): no começo desfaz giro/tamanho/espelhar herdados da animação anterior (antes o movimento partia do giro que a animação deixou e só mudava até o "Giro na chegada"). Teste em `movimento_espelhar.js`.
