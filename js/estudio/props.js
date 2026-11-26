@@ -148,6 +148,22 @@ FF.EstudioProps = {
         if (ultP && c.rot != null && !c.pontos.some(q => q.rot != null)) { ultP.rot = c.rot; delete c.rot; }
         if (ultP && c.escala != null && !c.pontos.some(q => q.esc != null)) { ultP.esc = c.escala; delete c.escala; }
         const lp = E.el('div', 'es-caminho-pontos');
+        // saída: pose com que o lutador sai (vazio = como a animação anterior deixou)
+        {
+          const ln = E.el('div', 'es-caminho-pt es-caminho-saida');
+          ln.appendChild(E.el('b', null, '▶'));
+          const ent0 = (k, rot, dica) => {
+            const l = E.el('label', 'es-caminho-in'); l.title = dica;
+            const inp = document.createElement('input'); inp.type = 'number'; inp.step = 'any'; inp.placeholder = 'herda'; inp.value = c[k] != null ? c[k] : '';
+            inp.onchange = () => { const v = parseFloat(inp.value); if (isNaN(v)) delete c[k]; else c[k] = k === 'esc0' ? Math.max(0.05, Math.round(v * 100) / 100) : Math.round(v); host.mudou('Pose da saída'); };
+            l.append(E.el('span', null, rot), inp);
+            return l;
+          };
+          ln.appendChild(ent0('rot0', '↻', 'Giro na saída (°). Vazio = sai como a animação anterior deixou. No palco: alça azul em cima do lutador ("saída").'));
+          ln.appendChild(ent0('esc0', '⤢', 'Tamanho na saída (×). Vazio = como estava. No palco: alça amarela em cima do lutador.'));
+          ln.appendChild(E.el('span'));
+          lp.appendChild(ln);
+        }
         c.pontos.forEach((q, i) => {
           const ln = E.el('div', 'es-caminho-pt');
           ln.appendChild(E.el('b', null, String(i + 1)));

@@ -12,7 +12,8 @@
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
 //  caminho  {tipo:"caminho", d, pontos:[{x, y, rot, esc}], ritmo:""|"suave"|"freia", animMov, girarCaminho, virar, reto, flip, girar (voltas), manterGiro}
-//           (rot/esc de cada ponto: giro e tamanho ali, suave entre os pontos; escala/rot no clipe = jeito antigo, só na chegada)
+//           (rot/esc de cada ponto: giro e tamanho ali, suave entre os pontos; rot0/esc0 = pose na saída;
+//            escala/rot no clipe = jeito antigo, só na chegada)
 //           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
@@ -440,7 +441,9 @@ FF.Linha = {
   posesCaminho(f, c, r0, e0) {
     const pts = c.pontos || [], n = pts.length;
     const temRot = pts.some(q => q.rot != null), temEsc = pts.some(q => q.esc != null);
-    const rots = [c.girarCaminho ? 0 : r0], escs = [e0];
+    // saída (ponto 0): giro/tamanho próprios do clipe (rot0/esc0) ou o que o lutador já tinha
+    const rots = [c.rot0 != null ? (c.girarCaminho ? c.rot0 : c.rot0 * f.dir) : (c.girarCaminho ? 0 : r0)], escs = [c.esc0 != null ? c.esc0 : e0];
+    const temRot0 = c.rot0 != null, temEsc0 = c.esc0 != null;
     pts.forEach((q, i) => {
       const ult = i === n - 1;
       let r = rots[i], e = escs[i];
@@ -451,7 +454,7 @@ FF.Linha = {
       rots.push(r); escs.push(e);
     });
     // sem giro/tamanho nos pontos (clipes antigos): vão mudando pelo caminho todo, como antes
-    return { rots, escs, porPonto: { rot: temRot, esc: temEsc } };
+    return { rots, escs, porPonto: { rot: temRot || temRot0, esc: temEsc || temEsc0 } };
   },
   andarCaminho(b, viva, f, c) {
     const { actor, target } = viva;

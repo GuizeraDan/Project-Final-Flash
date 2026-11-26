@@ -41,6 +41,14 @@ const { chromium } = require('playwright');
     fn2(0, 1); const noFim = { rot: a.rotExtra, esc: a.escExtra };
     out.giroPorPonto = Math.abs(noPonto1.rot - 90 * a.dir) < 0.5 && Math.abs(noPonto1.esc - 1.5) < 0.01 && Math.abs(noFim.rot - 180 * a.dir) < 0.5 && Math.abs(noFim.esc - 1.5) < 0.01;
     out.poses = { noPonto1, noFim };
+    // pose da saída (rot0/esc0): já sai assim, mesmo que a animação anterior tenha deixado outro giro
+    a.rotExtra = 50; a.escExtra = 1;
+    const c3 = Object.assign({}, c2, { rot0: -30, esc0: 0.8 });
+    const viva3 = { actor: a, target: t, move: {}, cena: { camadas: [] }, ativos: [], lutadores: new Set(), t: 0, foto: {} };
+    FF.Linha.disparar(bt, viva3, c3, 0, () => {});
+    const fn3 = viva3.ativos[viva3.ativos.length - 1];
+    fn3(0, 0);
+    out.saida = Math.abs(a.rotExtra + 30 * a.dir) < 0.5 && Math.abs(a.escExtra - 0.8) < 0.01;
     a.x = x0; a.y = a.groundY; a.flipExtra = false; a.rotExtra = 0; a.escExtra = 1; a.idle && a.idle();
     return out;
   });
@@ -63,7 +71,12 @@ const { chromium } = require('playwright');
     const depois = await p.evaluate(() => JSON.stringify(FF.Estudio.Golpes.clipe().pontos[1]));
     arrastou = antes !== depois;
   }
-  const ok = r.giroPorPonto && r.passaMeio && r.fim && r.semParar && r.chegou && r.virou && r.girouNoFim && est.props && est.n === 2 && alc.length === 2 && arrastou;
+  // alça azul da saída: arrastar muda o giro com que ele sai (rot0)
+  const giro0 = await p.evaluate(() => { const G = FF.Estudio.Golpes, c = G.cv, rc = c.getBoundingClientRect(), a = G.alcas().find(x => x.k === 'pgiro' && x.i === -1); return a ? { x: rc.left + a.x * rc.width / c.width, y: rc.top + a.y * rc.height / c.height, cx: rc.left + a.cx * rc.width / c.width, cy: rc.top + a.cy * rc.height / c.height } : null; });
+  let rot0 = null;
+  if (giro0) { await p.mouse.move(giro0.x, giro0.y); await p.mouse.down(); await p.mouse.move(giro0.cx, giro0.cy + 80, { steps: 6 }); await p.mouse.up(); rot0 = await p.evaluate(() => FF.Estudio.Golpes.clipe().rot0); }
+  r.alcaSaida = rot0 != null && Math.abs(Math.abs(rot0) - 180) <= 3;
+  const ok = r.alcaSaida && r.saida && r.giroPorPonto && r.passaMeio && r.fim && r.semParar && r.chegou && r.virou && r.girouNoFim && est.props && est.n === 3 && alc.length === 2 && arrastou;
   console.log((ok ? 'ok: ' : 'FALHOU: ') + 'caminho ' + JSON.stringify(Object.assign({}, r, est, { alcas: alc.length, arrastou })) + (erros.length ? ' erros: ' + erros.join(' | ') : ''));
   await b.close();
   process.exit(ok && !erros.length ? 0 : 1);

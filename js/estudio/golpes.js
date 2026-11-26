@@ -927,6 +927,16 @@ window.FF = window.FF || {};
           const P = FF.Linha.posesCaminho(f, c, r.r0 != null ? r.r0 : (c.reto ? 0 : f.rotExtra || 0), r.e0 != null ? r.e0 : (c.reto ? 1 : f.escExtra || 1));
           const cvc = FF.Linha.curva([ini].concat(pts));
           const flip0 = r.fl0 != null ? r.fl0 : !!f.flipExtra;
+          // saída: alças de giro e tamanho em cima do próprio lutador (pose com que ele sai)
+          {
+            const esc = P.escs[0], sc = f.scale * esc, raio = 34 * sc, cy = ini.y - 30 * sc;
+            const tg0 = cvc.at(0), fl0 = c.virar && Math.abs(tg0.tx) > 0.3 ? (tg0.tx < 0) !== (f.dir < 0) : flip0, vira0 = (f.dir < 0) !== fl0;
+            let rot = P.rots[0];
+            if (c.girarCaminho) { let ang = Math.atan2(tg0.ty, tg0.tx) * 180 / Math.PI; if (vira0) ang -= 180; rot = ang + rot * (vira0 ? -1 : 1); }
+            L.push({ k: 'saida', x: ini.x, y: cy, px: ini.x, py: ini.y, cor: '#ffffff', f, esc, rot, vira: vira0, rr: raio, raio: 10 },
+              { k: 'pgiro', i: -1, x: ini.x, y: cy - raio - 16, cor: '#6cc8ff', cx: ini.x, cy, dir: f.dir },
+              { k: 'pesc', i: -1, x: ini.x + raio * 0.75, y: cy + raio * 0.75, cor: '#ffd84a', cx: ini.x, cy, esc0: esc });
+          }
           pts.forEach((q, i) => {
             const esc = P.escs[i + 1], sc = f.scale * esc, raio = 34 * sc, cy = q.y - 30 * sc;
             let rot = P.rots[i + 1];
@@ -974,6 +984,7 @@ window.FF = window.FF || {};
       }
       // 〰 caminho: a curva (do lugar atual passando pelos pontos), a silhueta na pose de cada ponto e os números
       const pc = L.filter(h => h.k === 'ponto');
+      const sd = L.find(h => h.k === 'saida');
       if (pc.length) {
         const f = pc[0].f, ofs = 30 * f.scale;
         ctx.save();
@@ -991,8 +1002,15 @@ window.FF = window.FF || {};
           } else FF.drawFrame(ctx, f.sprite, qa, h.px, h.py, sc, fl, { alpha });
           ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.rr, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
         });
+        if (sd && qa) {   // saída: pose com que ele sai (o próprio lutador fica por baixo)
+          const sc = f.scale * sd.esc;
+          if (sd.rot) { const cx = (sd.vira ? -1 : 1) * (qa[3] / 2 - qa[5]) * sc, cy = (qa[4] / 2 - qa[6]) * sc; ctx.save(); ctx.translate(sd.px + cx, sd.py + cy); ctx.rotate(sd.rot * Math.PI / 180); FF.drawFrame(ctx, f.sprite, qa, -cx, -cy, sc, sd.vira, { alpha: 0.3 }); ctx.restore(); }
+          else FF.drawFrame(ctx, f.sprite, qa, sd.px, sd.py, sc, sd.vira, { alpha: 0.3 });
+          ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.arc(sd.x, sd.y, sd.rr, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+        }
         ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#eaffef';
         pc.forEach(h => ctx.fillText(String(h.i + 1), h.x + 9, h.y - 8));
+        if (sd) ctx.fillText('saída', sd.x + 9, sd.y - 8);
         ctx.restore();
       }
       for (const h of L) {
@@ -1032,7 +1050,7 @@ window.FF = window.FF || {};
 
     // pontos para alinhar no palco: as outras alças do clipe + pés, peito e mão dos lutadores
     pontosRef(h) {
-      const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro', 'pgiro', 'pesc'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
+      const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro', 'pgiro', 'pesc', 'saida'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
       const b = this.palco._b;
       if (b) for (const f of b.all) {
         const pe = f.peito();
@@ -1119,19 +1137,22 @@ window.FF = window.FF || {};
             let ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90;
             if (ang > 180) ang -= 360;
             c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
-            const q = c.pontos[h.i]; if (!q) break;
+            // i = -1: a saída (giro com que ele sai) fica no próprio clipe (rot0)
+            const q = h.i < 0 ? { rot: o.rot0 } : c.pontos[h.i]; if (!q) break;
+            const hp = this.alcas().find(x => h.i < 0 ? x.k === 'saida' : (x.k === 'ponto' && x.i === h.i));
             if (c.girarCaminho) {   // ajuste em cima da inclinação do caminho: o que falta para chegar no ângulo do mouse
-              const hp = this.alcas().find(x => x.k === 'ponto' && x.i === h.i);
               const base = hp ? hp.rot - ((q.rot || 0) * (hp.vira ? -1 : 1)) : 0;
               q.rot = R((ang - base) * (hp && hp.vira ? -1 : 1));
             } else q.rot = R(ang * (h.dir || 1));
             if (Math.abs(q.rot) <= 2) q.rot = 0;
+            if (h.i < 0) c.rot0 = q.rot;
             break;
           }
           case 'pesc': {   // 〰 tamanho de um ponto do caminho
             const d0 = Math.hypot(arr.p0.x - h.cx, arr.p0.y - h.cy), d1 = Math.hypot(p.x - h.cx, p.y - h.cy);
             c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
-            if (c.pontos[h.i]) c.pontos[h.i].esc = Math.max(0.05, Math.round((h.esc0 || 1) * d1 / Math.max(1, d0) * 100) / 100);
+            const ne = Math.max(0.05, Math.round((h.esc0 || 1) * d1 / Math.max(1, d0) * 100) / 100);
+            if (h.i < 0) c.esc0 = ne; else if (c.pontos[h.i]) c.pontos[h.i].esc = ne;
             break;
           }
           case 'de': c.deDx = R((o.deDx || 0) + dx * dir); c.deDy = R((o.deDy || 0) + dy); break;
