@@ -330,12 +330,19 @@ window.FF = window.FF || {};
       const real = ((f && f.anims) || {})[nome] || nome;
       return s.anim(c.tipo === 'anim' ? FF.Linha.trecho(s, real, c.de, c.ate) : real);
     },
-    redimensionavel(c) { return ['anim', 'mover', 'efeito', 'projetil', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash'].includes(c.tipo); },
+    // 〰 Caminho novo: dois pontos à frente do lutador (um no ar e outro no chão), para arrastar no palco
+    novoCaminho(tr) {
+      const b = this.palco && this.palco._b, f = b && FF.Linha.lutadorDe(b, b.atk, b.alvo, tr.quem);
+      const lx = FF.legado().x, x0 = f ? f.x - lx : 300, dir = f ? f.dir : 1;
+      return { tipo: 'caminho', d: 0.6, ritmo: 'suave', animMov: 'avancar', pontos: [{ x: Math.round(x0 + 180 * dir), y: -120 }, { x: Math.round(x0 + 360 * dir), y: 0 }] };
+    },
+    redimensionavel(c) { return ['anim', 'mover', 'caminho', 'efeito', 'projetil', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
         case 'teleporte': { const a = this.animDoClipe(c, tr); return a ? FF.Linha.duracaoAnim(a) : 0.25; }
         case 'mover': return c.d || 0.22;
+        case 'caminho': return c.d || 0.6;
         case 'vaporizar': return c.d || 1.2;
         case 'escurecer': case 'linhas': case 'faixa': return c.d || 1.5;
         case 'efeito': { if (c.d) return c.d; const s = c.sprite ? FF.Assets.sprites[c.sprite] : (FF.Assets.sprites.fx.has(c.fx) ? FF.Assets.sprites.fx : FF.Assets.sprites.fx_extra); const a = s && s.anim(c.fx); return a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3; }
@@ -468,7 +475,7 @@ window.FF = window.FF || {};
       };
       const s = this.spriteDe(tr.quem);
       const opcoes = {
-        lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })], ['💨 Vaporizar', () => criar({ tipo: 'vaporizar', d: 1.2 })]],
+        lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['〰 Caminho', () => criar(this.novoCaminho(tr))], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })], ['💨 Vaporizar', () => criar({ tipo: 'vaporizar', d: 1.2 })]],
         sons: [['♪ Som', () => criar({ tipo: 'som', som: 'hit_small-a' })], ['🗣 Voz', () => criar({ tipo: 'voz', voz: ((this.defs[this.cfg.atacante].vozes || {}).dano || ['vgkn100'])[0] })]],
         tela: [['🌑 Escurecer', () => criar({ tipo: 'escurecer', d: 1.5, forca: 0.65 })], ['💨 Linhas de velocidade', () => criar({ tipo: 'linhas', d: 1.5 })], ['🎌 Faixa com o nome', () => criar({ tipo: 'faixa', d: 1.5, texto: '{golpe}' })], ['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash', () => criar({ tipo: 'flash', forca: 0.5 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
       }[tr.tipo];
@@ -523,7 +530,7 @@ window.FF = window.FF || {};
           return E.escolherSprite({ titulo: '🎬 Animação (de qualquer sprite)', atual: { anim: c.anim, sprite: c.sprite || pid }, inicio: c.sprite || pid,
             aoEscolher: (a, id) => { c.anim = a; if (id && id !== pid) c.sprite = id; else delete c.sprite; pronto('Animação'); } });
         }
-        case 'mover': case 'teleporte':
+        case 'mover': case 'teleporte': case 'caminho':
           return P.escolherAnim(this.spriteDe(quem), c.animMov, (a) => { c.animMov = a; pronto('Animação'); });
         case 'camada':
           return E.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; pronto('Sprite da camada'); } });
@@ -911,6 +918,15 @@ window.FF = window.FF || {};
             { k: 'giro', x: dx, y: cy - raio - 16, cor: '#6cc8ff', cx: dx, cy });
         }
       }
+      // 〰 caminho: uma alça por ponto (a 1ª posição é onde o lutador está quando o clipe começa)
+      if (c.tipo === 'caminho') {
+        const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
+        if (f) {
+          const pts = FF.Linha.pontosCaminho(b, b.atk, b.alvo, f, c);
+          const ini = r.p0 || { x: f.x + (f.offX || 0), y: f.y + (f.offY || 0) };
+          pts.forEach((q, i) => L.push({ k: 'ponto', i, x: q.x, y: q.y - 30 * f.scale, px: q.x, py: q.y, cor: i === pts.length - 1 ? '#5fe08a' : '#9fffc2', f, caminho: { ini, pts }, ult: i === pts.length - 1, animMov: c.animMov, esc: c.escala || 1, flip: !!c.flip, raio: 12 }));
+        }
+      }
       if (c.tipo === 'anim' && r.f) {   // lutador: mover (branca), tamanho (amarela) e giro (azul), como os efeitos
         const f = r.f, sc = f.scale * (f.escExtra || 1), x = f.x + (f.offX || 0), y = f.y + (f.offY || 0) - 30 * sc, raio = 34 * sc;
         L.push({ k: 'lutador', x, y, cor: '#fff', f, raio },
@@ -939,6 +955,21 @@ window.FF = window.FF || {};
         if (g.eixo === 'x') { ctx.moveTo(g.v + 0.5, 0); ctx.lineTo(g.v + 0.5, this.cv.height); } else { ctx.moveTo(0, g.v + 0.5); ctx.lineTo(this.cv.width, g.v + 0.5); }
         ctx.stroke();
         if (g.de) { ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.fillStyle = '#3cf0ff'; ctx.beginPath(); ctx.arc(g.de.x, g.de.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.font = 'bold 11px sans-serif'; ctx.fillText(g.de.nome, g.de.x + 6, g.de.y - 6); }
+        ctx.restore();
+      }
+      // 〰 caminho: a curva (do lugar atual passando pelos pontos), números dos pontos e a silhueta no último
+      const pc = L.filter(h => h.k === 'ponto');
+      if (pc.length) {
+        const f = pc[0].f, ofs = 30 * f.scale, cv = FF.Linha.curva([pc[0].caminho.ini].concat(pc[0].caminho.pts));
+        ctx.save();
+        ctx.strokeStyle = 'rgba(95,224,138,0.9)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]); ctx.beginPath();
+        (cv.amostras || []).forEach((q, i) => { if (i) ctx.lineTo(q.x, q.y - ofs); else ctx.moveTo(q.x, q.y - ofs); });
+        ctx.stroke(); ctx.setLineDash([]);
+        const ult = pc[pc.length - 1], an = (ult.animMov && f.sprite.anim(f.animName(ult.animMov))) || f.sprite.anim(f.animName('parado'));
+        const qa = an && an.frames ? an.frames[an.frames.length - 1] : null;
+        if (qa) FF.drawFrame(ctx, f.sprite, qa, ult.px, ult.py, f.scale * ult.esc, (f.dir < 0) !== ult.flip, { alpha: 0.4 });
+        ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#eaffef';
+        pc.forEach(h => ctx.fillText(String(h.i + 1), h.x + 9, h.y - 8));
         ctx.restore();
       }
       for (const h of L) {
@@ -1053,6 +1084,12 @@ window.FF = window.FF || {};
             c.x = Math.max(-lx, Math.min(1084 + lx, R(x0 + dx)));   // x na tela antiga (1084), que fica no miolo da de 1280
             c.y = Math.min(200, R((o.y || 0) + dy));   // pode descer um pouco abaixo do chão (desenhos deitados/girados)
             if (!c.y) delete c.y;
+            break;
+          }
+          case 'ponto': {   // 〰 caminho: arrastar um ponto (x na tela antiga, y = altura a partir do chão)
+            const lx = FF.legado().x, q0 = (o.pontos || [])[h.i] || { x: 542, y: 0 };
+            c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
+            c.pontos[h.i] = { x: Math.max(-lx, Math.min(1084 + lx, R((q0.x != null ? q0.x : 542) + dx))), y: Math.min(200, R((q0.y || 0) + dy)) };
             break;
           }
           case 'de': c.deDx = R((o.deDx || 0) + dx * dir); c.deDy = R((o.deDy || 0) + dy); break;

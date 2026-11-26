@@ -139,6 +139,47 @@ FF.EstudioProps = {
         }
         break;
       }
+      case 'caminho': {
+        g.appendChild(num(c, 'd', 'Duração (s)', 'Tempo para percorrer o caminho todo', { min: 0.05, passo: 0.05 }));
+        g.appendChild(E.el('p', 'es-dica', 'O lutador sai de onde está e passa por uma curva suave em todos os pontos, sem parar. No palco: arraste as bolinhas verdes numeradas (a última é a chegada, com a silhueta).'));
+        c.pontos = c.pontos || [];
+        const lp = E.el('div', 'es-caminho-pontos');
+        c.pontos.forEach((q, i) => {
+          const ln = E.el('div', 'es-caminho-pt');
+          ln.appendChild(E.el('b', null, String(i + 1)));
+          const ent = (k, rot, dica) => {
+            const l = E.el('label', 'es-caminho-in'); l.title = dica;
+            const inp = document.createElement('input'); inp.type = 'number'; inp.step = 'any'; inp.value = q[k] != null ? q[k] : (k === 'y' ? 0 : '');
+            inp.onchange = () => { const v = parseFloat(inp.value); if (isNaN(v) || (k === 'y' && v === 0)) delete q[k]; else q[k] = Math.round(v); host.mudou('Ponto ' + (i + 1)); };
+            l.append(E.el('span', null, rot), inp);
+            return l;
+          };
+          ln.appendChild(ent('x', 'X', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio'));
+          ln.appendChild(ent('y', 'Alt.', 'Altura: 0 = no chão; negativo = no ar'));
+          if (c.pontos.length > 1) ln.appendChild(E.botao('✕', () => { c.pontos.splice(i, 1); host.mudou('Tirar ponto'); host.renderProps(); }, 'Tirar este ponto'));
+          lp.appendChild(ln);
+        });
+        g.appendChild(lp);
+        if (c.pontos.length < 8) g.appendChild(E.botao('＋ Ponto', () => {
+          const u = c.pontos[c.pontos.length - 1] || { x: 542, y: 0 }, a0 = c.pontos[c.pontos.length - 2];
+          const vx = a0 ? (u.x - a0.x) : 150;
+          c.pontos.push({ x: Math.round((u.x || 0) + (Math.abs(vx) < 40 ? 150 : vx)), y: u.y || 0 });
+          host.mudou('Novo ponto'); host.renderProps();
+        }, 'Acrescenta um ponto depois do último (arraste no palco)'));
+        g.appendChild(sel(c, 'ritmo', 'Ritmo', [['', 'Velocidade constante'], ['suave', 'Acelera e freia'], ['freia', 'Só freia no fim']], null, ''));
+        g.appendChild(this.comEscolha(
+          E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do caminho'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: 'Vazio = avançar' }),
+          () => this.escolherAnim(host.spriteDe(quem), (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov, (a) => { c.animMov = a; host.mudou('Animação'); }),
+          this.fonteAnim(host, quem, { anim: c.animMov || 'avancar' })));
+        g.appendChild(chk(c, 'girarCaminho', '↗ Girar seguindo o caminho (inclina para onde está indo)'));
+        g.appendChild(num(c, 'rot', c.girarCaminho ? 'Ajuste do giro (°)' : 'Giro na chegada (°)', c.girarCaminho ? 'Soma ao giro do caminho (para acertar a pose do desenho)' : 'Vai girando até este ângulo'));
+        g.appendChild(chk(c, 'virar', '⇄ Virar sozinho (olha para o lado em que está indo)'));
+        g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', null, { passo: 0.05, min: 0.05 }));
+        g.appendChild(E.campo('check', '↥ Começar reto', !!c.reto, (v) => { if (v) c.reto = true; else delete c.reto; host.mudou('Começar reto'); }, { dica: 'Desfaz no começo o giro, o tamanho e o espelhar que vieram da animação anterior' }));
+        g.appendChild(E.campo('check', '⇋ Espelhar', !!c.flip, (v) => { if (v) c.flip = true; else delete c.flip; host.mudou('Espelhar'); }, { dica: 'Vira o lutador para o outro lado no caminho (até a próxima animação dele)' }));
+        if (c.girarCaminho) g.appendChild(chk(c, 'manterGiro', 'Ficar girado no fim'));
+        break;
+      }
       case 'mover': case 'teleporte': {
         if (c.tipo === 'mover') g.appendChild(num(c, 'd', 'Duração (s)', 'Tempo do movimento', { min: 0.01, passo: 0.01 }));
         g.appendChild(sel(c, 'para', 'Para onde', [['alvo', 'até o alvo'], ['casa', 'para a posição inicial'], ['frente', 'para a frente'], ['tras', 'para trás'], ['x', 'qualquer lugar da tela (arraste no palco)']], null, 'alvo'));
@@ -329,7 +370,7 @@ FF.EstudioProps = {
   },
 
   titulo(c) {
-    return { anim: '🎬 Animação', mover: '➡ Movimento', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
+    return { anim: '🎬 Animação', mover: '➡ Movimento', caminho: '〰 Caminho', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
   },
 
   trilha(tr, host, txt) {

@@ -11,6 +11,8 @@
 //     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
+//  caminho  {tipo:"caminho", d, pontos:[{x, y}], ritmo:""|"suave"|"freia", animMov, girarCaminho, virar, reto, flip, escala, rot, manterGiro}
+//           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
 //  (efeito, projétil e camada aceitam prof: "quem"|"alvo" = na profundidade de quem solta / do alvo — com perspectiva,
@@ -213,7 +215,7 @@ FF.Linha = {
         f.vaporizado = true;
         return;
       }
-      case 'anim': case 'mover': case 'teleporte': case 'visivel': {
+      case 'anim': case 'mover': case 'teleporte': case 'visivel': case 'caminho': {
         const f = this.lutadorDe(b, actor, target, tr.quem);
         if (!f || (f.ko && tr.quem !== 'atacante' && !(viva.ko && f === target))) return;
         const outro = f === actor ? target : actor;
@@ -232,7 +234,7 @@ FF.Linha = {
           if (c.empurrao) { f.vx = -f.dir * c.empurrao; f.voando = true; }
           // volta ao normal no fim do clipe: marcado no clipe, ou automático no ÚLTIMO clipe de animação de quem
           // não é o alvo (senão uma animação com duração fica repetindo até o fim da cena — ex.: pose com raio)
-          const ultimo = tr.quem !== 'alvo' && !(tr.clipes || []).some(o => o !== c && (o.tipo === 'anim' || o.tipo === 'mover' || o.tipo === 'teleporte') && o.t > c.t);
+          const ultimo = tr.quem !== 'alvo' && !(tr.clipes || []).some(o => o !== c && (o.tipo === 'anim' || o.tipo === 'mover' || o.tipo === 'teleporte' || o.tipo === 'caminho') && o.t > c.t);
           if (c.voltarNormal || (ultimo && !c.segurarFim)) {
             const nm = f.anim.name, an = f.anim;
             const fimT = c.t + (c.d != null ? c.d : this.duracaoAnim(f.sprite.anim(nm), c.fps || undefined) + (c.segurar || 0));
@@ -240,6 +242,7 @@ FF.Linha = {
           }
           return;
         }
+        if (c.tipo === 'caminho') { this.andarCaminho(b, viva, f, c); return; }
         this.devolverSprite(f);
         let dest = this.destino(b, f, outro, c);
         if (b.persp && c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
@@ -393,6 +396,73 @@ FF.Linha = {
     if (Math.abs(den) < 1) return { x: lx + (Ap.x - Al.x), y: ly + (Ap.y - Al.y) };
     const u = Math.max(-0.8, Math.min(1.8, (lx - Al.x) / den));
     return { x: Ap.x + (lx - Al.x) * ((Tp.x - Ap.x) / den), y: ly + (Ap.y - Al.y) + u * ((Tp.y - Tl.y) - (Ap.y - Al.y)) };
+  },
+
+  // ---------- 〰 Caminho: o lutador percorre uma curva suave que passa por vários pontos ----------
+  // pontos: [{x, y}] — x na tela antiga (como o "x" do Mover), y = altura a partir do chão do lutador (negativo = no ar)
+  pontosCaminho(b, actor, target, f, c) {
+    const lx = FF.legado().x;
+    return (c.pontos || []).map(q => {
+      let x = (q.x != null ? q.x : 542) + lx;
+      if (b && b.persp && actor && target) x = this.mapaPersp(b, actor, target, x, b.groundY, true).x;
+      return { x, y: f.groundY + (q.y || 0) };
+    });
+  },
+  // curva Catmull-Rom (centrípeta) pelos pontos, medida pelo comprimento: at(u 0..1) → {x, y, tx, ty}
+  curva(pts) {
+    if (pts.length < 2) { const p = pts[0] || { x: 0, y: 0 }; return { L: 0, at: () => ({ x: p.x, y: p.y, tx: 1, ty: 0 }) }; }
+    const P = [pts[0]].concat(pts, [pts[pts.length - 1]]);
+    const seg = (i, t) => {
+      const p0 = P[i], p1 = P[i + 1], p2 = P[i + 2], p3 = P[i + 3];
+      const t2 = t * t, t3 = t2 * t;
+      const f = (a, b2, c2, d) => 0.5 * ((2 * b2) + (-a + c2) * t + (2 * a - 5 * b2 + 4 * c2 - d) * t2 + (-a + 3 * b2 - 3 * c2 + d) * t3);
+      return { x: f(p0.x, p1.x, p2.x, p3.x), y: f(p0.y, p1.y, p2.y, p3.y) };
+    };
+    const N = 24, amostras = [];
+    for (let i = 0; i < pts.length - 1; i++) for (let k = 0; k <= N; k++) { if (i && !k) continue; amostras.push(seg(i, k / N)); }
+    const acc = [0];
+    for (let i = 1; i < amostras.length; i++) acc.push(acc[i - 1] + Math.hypot(amostras[i].x - amostras[i - 1].x, amostras[i].y - amostras[i - 1].y));
+    const L = acc[acc.length - 1];
+    const at = (u) => {
+      const alvo = Math.max(0, Math.min(1, u)) * L;
+      let i = 1; while (i < acc.length - 1 && acc[i] < alvo) i++;
+      const a = amostras[i - 1], b2 = amostras[i], len = (acc[i] - acc[i - 1]) || 1, k = (alvo - acc[i - 1]) / len;
+      return { x: a.x + (b2.x - a.x) * k, y: a.y + (b2.y - a.y) * k, tx: b2.x - a.x, ty: b2.y - a.y };
+    };
+    return { L, at, amostras };
+  },
+  andarCaminho(b, viva, f, c) {
+    const { actor, target } = viva;
+    this.devolverSprite(f);
+    // o deslocamento da animação anterior vira posição (sem pulo no começo)
+    f.x += f.offX || 0; f.y += f.offY || 0; f.offX = 0; f.offY = 0;
+    if (c.reto) { f.rotExtra = 0; f.escExtra = 1; f.flipExtra = false; }
+    if (c.flip != null) f.flipExtra = !!c.flip;
+    const pts = [{ x: f.x, y: f.y }].concat(this.pontosCaminho(b, actor, target, f, c));
+    const cv = this.curva(pts);
+    const d = Math.max(0.01, c.d || 0.6), t0 = viva.t;
+    const e0 = f.escExtra || 1, e1 = c.escala != null ? c.escala : e0;
+    const r0 = f.rotExtra || 0, r1 = c.rot != null ? c.rot * f.dir : (c.girarCaminho ? 0 : r0);
+    if (c.animMov !== '') { f.play(c.animMov || 'avancar', { loop: true }); f.react = null; f.semReagirAte = FF.Clock.t + d + 3; }
+    const ritmo = c.ritmo || '';
+    const easing = (k) => ritmo === 'suave' ? (1 - Math.cos(Math.PI * k)) / 2 : ritmo === 'freia' ? 1 - Math.pow(1 - k, 2) : k;
+    viva.ativos.push((dt, t) => {
+      const k = Math.min(1, (t - t0) / d), u = easing(k);
+      const q = cv.at(u);
+      f.x = q.x; f.y = q.y;
+      f.escExtra = e0 + (e1 - e0) * u;
+      // virar sozinho: olha para o lado em que está indo
+      if (c.virar && Math.abs(q.tx) > 0.3) f.flipExtra = (q.tx < 0) !== (f.dir < 0);
+      if (c.girarCaminho) {
+        // inclina na direção do caminho (a frente do desenho aponta para onde ele vai) + ajuste "Giro" da pose
+        const vira = (f.dir < 0) !== !!f.flipExtra;
+        let ang = Math.atan2(q.ty, q.tx) * 180 / Math.PI;
+        if (vira) ang = ang - 180;
+        while (ang > 180) ang -= 360; while (ang < -180) ang += 360;
+        f.rotExtra = ang + (c.rot || 0) * (vira ? -1 : 1);
+      } else f.rotExtra = r0 + (r1 - r0) * u;
+      if (k >= 1) { if (c.girarCaminho && !c.manterGiro) f.rotExtra = 0; return false; }
+    });
   },
 
   // foto de um lutador no começo do golpe (posição, pontos do quadro, dados da perspectiva)

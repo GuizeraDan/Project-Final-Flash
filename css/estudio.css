@@ -369,3 +369,10 @@ a { color: var(--ouro); }
 .es-lado-aba span { writing-mode: vertical-rl; font-size: 12px; font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
 .es-lado-aba.aba-esq span { transform: rotate(180deg); }
 .es-lado-aba:hover { background: linear-gradient(180deg, #4a3790, #2c2350); }
+/* 〰 Caminho: lista de pontos */
+.es-caminho-pontos { display: flex; flex-direction: column; gap: 3px; margin: 4px 0; }
+.es-caminho-pt { display: flex; align-items: center; gap: 4px; }
+.es-caminho-pt > b { flex: none; width: 18px; height: 18px; border-radius: 50%; background: #2d6b45; color: #eaffef; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+.es-caminho-in { flex: 1; min-width: 0; display: flex; align-items: center; gap: 3px; font-size: 11px; color: #b9b0d8; }
+.es-caminho-in input { flex: 1; min-width: 0; width: 100%; }
+.es-caminho-pt button { flex: none; padding: 0 6px; }

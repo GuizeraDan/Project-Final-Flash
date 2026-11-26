@@ -660,3 +660,8 @@ Cache do app: `finalflash-v47`.
 - Clipes de movimento e teleporte ganharam "⇋ Espelhar" (`flip: true`): vira o lutador (flipExtra) durante o movimento e na chegada / ao reaparecer no teleporte, até o próximo clipe de animação dele (que decide o próprio "Espelhar") ou o fim do golpe. A silhueta de chegada no palco aparece espelhada também.
 - Teste: `tools/testes/movimento_espelhar.js`.
 - Movimento ganhou "↥ Começar reto" (`reto: true`): no começo desfaz giro/tamanho/espelhar herdados da animação anterior (antes o movimento partia do giro que a animação deixou e só mudava até o "Giro na chegada"). Teste em `movimento_espelhar.js`.
+
+### 2026-11-26 — 〰 Caminho (movimento por vários pontos)
+- Clipe novo na trilha do lutador: "〰 Caminho" (`tipo: "caminho"`, `pontos: [{x, y}]` — x na tela antiga como o Mover, y = altura a partir do chão). O lutador sai de onde está (o dx/dy da animação anterior vira posição, sem pulo) e percorre uma curva Catmull-Rom pelos pontos, medida pelo comprimento (sem parar nas junções). Ritmo: constante / acelera e freia / só freia. Opções: girar seguindo o caminho (+ ajuste de giro), virar sozinho, começar reto, espelhar, tamanho/giro na chegada, ficar girado.
+- Motor: `FF.Linha.andarCaminho`, `curva`, `pontosCaminho` (perspectiva igual ao Mover). Estúdio: menu da trilha "〰 Caminho", propriedades com a lista de pontos (＋ Ponto, ✕), alças numeradas no palco + curva tracejada + silhueta na chegada; arrastar ponto (golpes.js `case 'ponto'`).
+- Teste: `tools/testes/caminho.js`.

@@ -141,6 +141,7 @@ FF.EstudioPalco = class {
     if (c.tipo === 'projetil') { r.de = a.pontoDisparo(); r.ate = t ? t.peito() : null; }
     if (c.tipo === 'acerto' && t) r.p = t.peito();
     if (c.tipo === 'anim') { const f = FF.Linha.lutadorDe(b, a, t, c._tr.quem); if (f) r.f = f; }
+    if (c.tipo === 'caminho') { const f = FF.Linha.lutadorDe(b, a, t, c._tr.quem); if (f) { r.f = f; r.p0 = { x: f.x + (f.offX || 0), y: f.y + (f.offY || 0) }; } }
     this.ref[c.id] = r;
   }
 

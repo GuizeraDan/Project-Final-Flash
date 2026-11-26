@@ -181,6 +181,7 @@ FF.EstudioLinha = class {
     switch (c.tipo) {
       case 'anim': return (c.anim || '?') + (c.empurrao ? ' ⇠' : '');
       case 'mover': return '→ ' + ({ alvo: 'até o alvo', casa: 'para casa', frente: 'para frente', tras: 'para trás', x: 'x=' + c.x }[c.para] || c.para);
+      case 'caminho': return '〰 caminho · ' + ((c.pontos || []).length) + ' ponto' + ((c.pontos || []).length === 1 ? '' : 's');
       case 'teleporte': return '⚡ ' + ({ alvo: 'até o alvo', casa: 'para casa', frente: 'frente', tras: 'trás', x: 'x' }[c.para] || c.para);
       case 'visivel': return (c.alpha ? '👁 aparece' : '🙈 some');
       case 'vaporizar': return '💨 vaporiza';
