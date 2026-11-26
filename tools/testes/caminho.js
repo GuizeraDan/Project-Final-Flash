@@ -30,7 +30,18 @@ const { chromium } = require('playwright');
     out.chegou = Math.abs(a.x - fimP.x) < 2 && Math.abs(a.y - fimP.y) < 2;
     out.virou = vira[2] === false && vira[18] === true;
     out.girouNoFim = a.rotExtra === 0;
-    a.x = x0; a.y = a.groundY; a.flipExtra = false; a.rotExtra = 0; a.idle && a.idle();
+    a.x = x0; a.y = a.groundY; a.flipExtra = false; a.rotExtra = 0; a.escExtra = 1; a.idle && a.idle();
+    // giro e tamanho em cada ponto (suave entre eles) + voltas
+    const c2 = { tipo: 'caminho', d: 1, pontos: [{ x: x0 - lx + 200 * a.dir, y: -150, rot: 90, esc: 1.5 }, { x: x0 - lx + 400 * a.dir, y: 0, rot: 180 }], _tr: { quem: 'atacante' } };
+    const pts2 = [{ x: a.x, y: a.y }].concat(FF.Linha.pontosCaminho(bt, a, t, a, c2)), nos = FF.Linha.curva(pts2).nos;
+    const viva2 = { actor: a, target: t, move: {}, cena: { camadas: [] }, ativos: [], lutadores: new Set(), t: 0, foto: {} };
+    FF.Linha.disparar(bt, viva2, c2, 0, () => {});
+    const fn2 = viva2.ativos[viva2.ativos.length - 1];
+    fn2(0, nos[1]); const noPonto1 = { rot: a.rotExtra, esc: a.escExtra };
+    fn2(0, 1); const noFim = { rot: a.rotExtra, esc: a.escExtra };
+    out.giroPorPonto = Math.abs(noPonto1.rot - 90 * a.dir) < 0.5 && Math.abs(noPonto1.esc - 1.5) < 0.01 && Math.abs(noFim.rot - 180 * a.dir) < 0.5 && Math.abs(noFim.esc - 1.5) < 0.01;
+    out.poses = { noPonto1, noFim };
+    a.x = x0; a.y = a.groundY; a.flipExtra = false; a.rotExtra = 0; a.escExtra = 1; a.idle && a.idle();
     return out;
   });
   // no Estúdio: criar um Caminho pelo menu da trilha e arrastar um ponto
@@ -52,7 +63,7 @@ const { chromium } = require('playwright');
     const depois = await p.evaluate(() => JSON.stringify(FF.Estudio.Golpes.clipe().pontos[1]));
     arrastou = antes !== depois;
   }
-  const ok = r.passaMeio && r.fim && r.semParar && r.chegou && r.virou && r.girouNoFim && est.props && est.n === 2 && alc.length === 2 && arrastou;
+  const ok = r.giroPorPonto && r.passaMeio && r.fim && r.semParar && r.chegou && r.virou && r.girouNoFim && est.props && est.n === 2 && alc.length === 2 && arrastou;
   console.log((ok ? 'ok: ' : 'FALHOU: ') + 'caminho ' + JSON.stringify(Object.assign({}, r, est, { alcas: alc.length, arrastou })) + (erros.length ? ' erros: ' + erros.join(' | ') : ''));
   await b.close();
   process.exit(ok && !erros.length ? 0 : 1);

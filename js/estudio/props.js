@@ -143,20 +143,27 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'd', 'Duração (s)', 'Tempo para percorrer o caminho todo', { min: 0.05, passo: 0.05 }));
         g.appendChild(E.el('p', 'es-dica', 'O lutador sai de onde está e passa por uma curva suave em todos os pontos, sem parar. No palco: arraste as bolinhas verdes numeradas (a última é a chegada, com a silhueta).'));
         c.pontos = c.pontos || [];
+        // jeito antigo (giro/tamanho só na chegada): passa para o último ponto
+        const ultP = c.pontos[c.pontos.length - 1];
+        if (ultP && c.rot != null && !c.pontos.some(q => q.rot != null)) { ultP.rot = c.rot; delete c.rot; }
+        if (ultP && c.escala != null && !c.pontos.some(q => q.esc != null)) { ultP.esc = c.escala; delete c.escala; }
         const lp = E.el('div', 'es-caminho-pontos');
         c.pontos.forEach((q, i) => {
           const ln = E.el('div', 'es-caminho-pt');
           ln.appendChild(E.el('b', null, String(i + 1)));
-          const ent = (k, rot, dica) => {
+          const ent = (k, rot, dica, ph) => {
             const l = E.el('label', 'es-caminho-in'); l.title = dica;
             const inp = document.createElement('input'); inp.type = 'number'; inp.step = 'any'; inp.value = q[k] != null ? q[k] : (k === 'y' ? 0 : '');
-            inp.onchange = () => { const v = parseFloat(inp.value); if (isNaN(v) || (k === 'y' && v === 0)) delete q[k]; else q[k] = Math.round(v); host.mudou('Ponto ' + (i + 1)); };
+            if (ph) inp.placeholder = ph;
+            inp.onchange = () => { const v = parseFloat(inp.value); if (isNaN(v) || (k === 'y' && v === 0)) delete q[k]; else q[k] = k === 'esc' ? Math.max(0.05, Math.round(v * 100) / 100) : Math.round(v); host.mudou('Ponto ' + (i + 1)); };
             l.append(E.el('span', null, rot), inp);
             return l;
           };
           ln.appendChild(ent('x', 'X', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio'));
           ln.appendChild(ent('y', 'Alt.', 'Altura: 0 = no chão; negativo = no ar'));
-          if (c.pontos.length > 1) ln.appendChild(E.botao('✕', () => { c.pontos.splice(i, 1); host.mudou('Tirar ponto'); host.renderProps(); }, 'Tirar este ponto'));
+          ln.appendChild(c.pontos.length > 1 ? E.botao('✕', () => { c.pontos.splice(i, 1); host.mudou('Tirar ponto'); host.renderProps(); }, 'Tirar este ponto') : E.el('span'));
+          ln.appendChild(ent('rot', '↻', 'Giro neste ponto (°). Vazio = mantém o do ponto anterior. No palco: alça azul da silhueta deste ponto.' + (c.girarCaminho ? ' Com "girar seguindo o caminho", soma à inclinação.' : ''), '—'));
+          ln.appendChild(ent('esc', '⤢', 'Tamanho neste ponto (×). Vazio = mantém o do ponto anterior. No palco: alça amarela da silhueta deste ponto.', '—'));
           lp.appendChild(ln);
         });
         g.appendChild(lp);
@@ -171,13 +178,13 @@ FF.EstudioProps = {
           E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do caminho'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: 'Vazio = avançar' }),
           () => this.escolherAnim(host.spriteDe(quem), (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov, (a) => { c.animMov = a; host.mudou('Animação'); }),
           this.fonteAnim(host, quem, { anim: c.animMov || 'avancar' })));
-        g.appendChild(chk(c, 'girarCaminho', '↗ Girar seguindo o caminho (inclina para onde está indo)'));
-        g.appendChild(num(c, 'rot', c.girarCaminho ? 'Ajuste do giro (°)' : 'Giro na chegada (°)', c.girarCaminho ? 'Soma ao giro do caminho (para acertar a pose do desenho)' : 'Vai girando até este ângulo'));
+        g.appendChild(E.el('p', 'es-dica', '↻ giro e ⤢ tamanho de cada ponto: o boneco vai mudando suavemente de um ponto para o outro (vazio = mantém o anterior).'));
+        g.appendChild(E.campo('check', '↗ Girar seguindo o caminho', !!c.girarCaminho, (v) => { if (v) c.girarCaminho = true; else delete c.girarCaminho; host.mudou('Girar seguindo o caminho'); host.renderProps(); }, { dica: 'Inclina para onde está indo; o ↻ de cada ponto vira um ajuste em cima disso' }));
+        g.appendChild(num(c, 'girar', 'Girar (voltas)', 'Piruetas durante o caminho (ex.: 1.5); negativo = ao contrário', { passo: 0.25 }));
         g.appendChild(chk(c, 'virar', '⇄ Virar sozinho (olha para o lado em que está indo)'));
-        g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', null, { passo: 0.05, min: 0.05 }));
         g.appendChild(E.campo('check', '↥ Começar reto', !!c.reto, (v) => { if (v) c.reto = true; else delete c.reto; host.mudou('Começar reto'); }, { dica: 'Desfaz no começo o giro, o tamanho e o espelhar que vieram da animação anterior' }));
         g.appendChild(E.campo('check', '⇋ Espelhar', !!c.flip, (v) => { if (v) c.flip = true; else delete c.flip; host.mudou('Espelhar'); }, { dica: 'Vira o lutador para o outro lado no caminho (até a próxima animação dele)' }));
-        if (c.girarCaminho) g.appendChild(chk(c, 'manterGiro', 'Ficar girado no fim'));
+        if (c.girarCaminho || c.girar) g.appendChild(chk(c, 'manterGiro', 'Ficar girado no fim'));
         break;
       }
       case 'mover': case 'teleporte': {

@@ -918,13 +918,28 @@ window.FF = window.FF || {};
             { k: 'giro', x: dx, y: cy - raio - 16, cor: '#6cc8ff', cx: dx, cy });
         }
       }
-      // 〰 caminho: uma alça por ponto (a 1ª posição é onde o lutador está quando o clipe começa)
+      // 〰 caminho: em cada ponto, a silhueta na pose dele (giro/tamanho) + alças: verde = mover, azul = giro, amarela = tamanho
       if (c.tipo === 'caminho') {
         const f = FF.Linha.lutadorDe(b, b.atk, b.alvo, a.tr.quem);
         if (f) {
           const pts = FF.Linha.pontosCaminho(b, b.atk, b.alvo, f, c);
           const ini = r.p0 || { x: f.x + (f.offX || 0), y: f.y + (f.offY || 0) };
-          pts.forEach((q, i) => L.push({ k: 'ponto', i, x: q.x, y: q.y - 30 * f.scale, px: q.x, py: q.y, cor: i === pts.length - 1 ? '#5fe08a' : '#9fffc2', f, caminho: { ini, pts }, ult: i === pts.length - 1, animMov: c.animMov, esc: c.escala || 1, flip: !!c.flip, raio: 12 }));
+          const P = FF.Linha.posesCaminho(f, c, r.r0 != null ? r.r0 : (c.reto ? 0 : f.rotExtra || 0), r.e0 != null ? r.e0 : (c.reto ? 1 : f.escExtra || 1));
+          const cvc = FF.Linha.curva([ini].concat(pts));
+          const flip0 = r.fl0 != null ? r.fl0 : !!f.flipExtra;
+          pts.forEach((q, i) => {
+            const esc = P.escs[i + 1], sc = f.scale * esc, raio = 34 * sc, cy = q.y - 30 * sc;
+            let rot = P.rots[i + 1];
+            let fl = flip0;
+            const tg = cvc.at(cvc.nos ? cvc.nos[i + 1] : 1);
+            if (c.virar && Math.abs(tg.tx) > 0.3) fl = (tg.tx < 0) !== (f.dir < 0);
+            const vira = (f.dir < 0) !== fl;
+            if (c.girarCaminho) { let ang = Math.atan2(tg.ty, tg.tx) * 180 / Math.PI; if (vira) ang -= 180; rot = ang + rot * (vira ? -1 : 1); }
+            const ult = i === pts.length - 1;
+            L.push({ k: 'ponto', i, x: q.x, y: cy, px: q.x, py: q.y, cor: ult ? '#5fe08a' : '#9fffc2', f, caminho: { ini, pts, amostras: cvc.amostras }, ult, animMov: c.animMov, esc, rot, vira, raio: 12, rr: raio },
+              { k: 'pgiro', i, x: q.x, y: cy - raio - 16, cor: '#6cc8ff', cx: q.x, cy, dir: f.dir },
+              { k: 'pesc', i, x: q.x + raio * 0.75, y: cy + raio * 0.75, cor: '#ffd84a', cx: q.x, cy, esc0: esc });
+          });
         }
       }
       if (c.tipo === 'anim' && r.f) {   // lutador: mover (branca), tamanho (amarela) e giro (azul), como os efeitos
@@ -957,17 +972,25 @@ window.FF = window.FF || {};
         if (g.de) { ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.fillStyle = '#3cf0ff'; ctx.beginPath(); ctx.arc(g.de.x, g.de.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.font = 'bold 11px sans-serif'; ctx.fillText(g.de.nome, g.de.x + 6, g.de.y - 6); }
         ctx.restore();
       }
-      // 〰 caminho: a curva (do lugar atual passando pelos pontos), números dos pontos e a silhueta no último
+      // 〰 caminho: a curva (do lugar atual passando pelos pontos), a silhueta na pose de cada ponto e os números
       const pc = L.filter(h => h.k === 'ponto');
       if (pc.length) {
-        const f = pc[0].f, ofs = 30 * f.scale, cv = FF.Linha.curva([pc[0].caminho.ini].concat(pc[0].caminho.pts));
+        const f = pc[0].f, ofs = 30 * f.scale;
         ctx.save();
         ctx.strokeStyle = 'rgba(95,224,138,0.9)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]); ctx.beginPath();
-        (cv.amostras || []).forEach((q, i) => { if (i) ctx.lineTo(q.x, q.y - ofs); else ctx.moveTo(q.x, q.y - ofs); });
+        (pc[0].caminho.amostras || []).forEach((q, i) => { if (i) ctx.lineTo(q.x, q.y - ofs); else ctx.moveTo(q.x, q.y - ofs); });
         ctx.stroke(); ctx.setLineDash([]);
-        const ult = pc[pc.length - 1], an = (ult.animMov && f.sprite.anim(f.animName(ult.animMov))) || f.sprite.anim(f.animName('parado'));
-        const qa = an && an.frames ? an.frames[an.frames.length - 1] : null;
-        if (qa) FF.drawFrame(ctx, f.sprite, qa, ult.px, ult.py, f.scale * ult.esc, (f.dir < 0) !== ult.flip, { alpha: 0.4 });
+        const an = (pc[0].animMov && f.sprite.anim(f.animName(pc[0].animMov))) || f.sprite.anim(f.animName('parado'));
+        const qa = an && an.frames ? an.frames[0] : null;
+        pc.forEach(h => {
+          if (!qa) return;
+          const sc = f.scale * h.esc, fl = h.vira, alpha = h.ult ? 0.45 : 0.28;
+          if (h.rot) {
+            const cx = (fl ? -1 : 1) * (qa[3] / 2 - qa[5]) * sc, cy = (qa[4] / 2 - qa[6]) * sc;
+            ctx.save(); ctx.translate(h.px + cx, h.py + cy); ctx.rotate(h.rot * Math.PI / 180); FF.drawFrame(ctx, f.sprite, qa, -cx, -cy, sc, fl, { alpha }); ctx.restore();
+          } else FF.drawFrame(ctx, f.sprite, qa, h.px, h.py, sc, fl, { alpha });
+          ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.rr, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+        });
         ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#eaffef';
         pc.forEach(h => ctx.fillText(String(h.i + 1), h.x + 9, h.y - 8));
         ctx.restore();
@@ -1009,7 +1032,7 @@ window.FF = window.FF || {};
 
     // pontos para alinhar no palco: as outras alças do clipe + pés, peito e mão dos lutadores
     pontosRef(h) {
-      const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
+      const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro', 'pgiro', 'pesc'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
       const b = this.palco._b;
       if (b) for (const f of b.all) {
         const pe = f.peito();
@@ -1059,10 +1082,10 @@ window.FF = window.FF || {};
         const o = arr.c, h = arr.h;
         let dx = p.x - arr.p0.x, dy = p.y - arr.p0.y;
         // Shift: trava num eixo (só para os lados ou só para cima/baixo)
-        if (e.shiftKey && !['escala', 'giro'].includes(h.k)) { if (Math.abs(dx) >= Math.abs(dy)) dy = 0; else dx = 0; }
+        if (e.shiftKey && !['escala', 'giro', 'pgiro', 'pesc'].includes(h.k)) { if (Math.abs(dx) >= Math.abs(dy)) dy = 0; else dx = 0; }
         // guias: encaixa na mesma linha (X ou Y) de outras alças e dos lutadores — Alt solta
         this.guiasPalco = [];
-        if (!e.altKey && !['escala', 'giro'].includes(h.k)) {
+        if (!e.altKey && !['escala', 'giro', 'pgiro', 'pesc'].includes(h.k)) {
           const g = this.alinharPalco(h, h.x + dx, h.y + dy, arr.refs);
           if (g.sx != null && !(e.shiftKey && dx === 0)) { dx += g.sx - (h.x + dx); this.guiasPalco.push({ eixo: 'x', v: g.sx, de: g.dx }); }
           if (g.sy != null && !(e.shiftKey && dy === 0)) { dy += g.sy - (h.y + dy); this.guiasPalco.push({ eixo: 'y', v: g.sy, de: g.dy }); }
@@ -1090,6 +1113,25 @@ window.FF = window.FF || {};
             const lx = FF.legado().x, q0 = (o.pontos || [])[h.i] || { x: 542, y: 0 };
             c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
             c.pontos[h.i] = { x: Math.max(-lx, Math.min(1084 + lx, R((q0.x != null ? q0.x : 542) + dx))), y: Math.min(200, R((q0.y || 0) + dy)) };
+            break;
+          }
+          case 'pgiro': {   // 〰 giro de um ponto do caminho
+            let ang = Math.atan2(p.y - h.cy, p.x - h.cx) * 180 / Math.PI + 90;
+            if (ang > 180) ang -= 360;
+            c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
+            const q = c.pontos[h.i]; if (!q) break;
+            if (c.girarCaminho) {   // ajuste em cima da inclinação do caminho: o que falta para chegar no ângulo do mouse
+              const hp = this.alcas().find(x => x.k === 'ponto' && x.i === h.i);
+              const base = hp ? hp.rot - ((q.rot || 0) * (hp.vira ? -1 : 1)) : 0;
+              q.rot = R((ang - base) * (hp && hp.vira ? -1 : 1));
+            } else q.rot = R(ang * (h.dir || 1));
+            if (Math.abs(q.rot) <= 2) q.rot = 0;
+            break;
+          }
+          case 'pesc': {   // 〰 tamanho de um ponto do caminho
+            const d0 = Math.hypot(arr.p0.x - h.cx, arr.p0.y - h.cy), d1 = Math.hypot(p.x - h.cx, p.y - h.cy);
+            c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
+            if (c.pontos[h.i]) c.pontos[h.i].esc = Math.max(0.05, Math.round((h.esc0 || 1) * d1 / Math.max(1, d0) * 100) / 100);
             break;
           }
           case 'de': c.deDx = R((o.deDx || 0) + dx * dir); c.deDy = R((o.deDy || 0) + dy); break;

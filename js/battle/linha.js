@@ -11,7 +11,8 @@
 //     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
-//  caminho  {tipo:"caminho", d, pontos:[{x, y}], ritmo:""|"suave"|"freia", animMov, girarCaminho, virar, reto, flip, escala, rot, manterGiro}
+//  caminho  {tipo:"caminho", d, pontos:[{x, y, rot, esc}], ritmo:""|"suave"|"freia", animMov, girarCaminho, virar, reto, flip, girar (voltas), manterGiro}
+//           (rot/esc de cada ponto: giro e tamanho ali, suave entre os pontos; escala/rot no clipe = jeito antigo, só na chegada)
 //           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
@@ -429,7 +430,28 @@ FF.Linha = {
       const a = amostras[i - 1], b2 = amostras[i], len = (acc[i] - acc[i - 1]) || 1, k = (alvo - acc[i - 1]) / len;
       return { x: a.x + (b2.x - a.x) * k, y: a.y + (b2.y - a.y) * k, tx: b2.x - a.x, ty: b2.y - a.y };
     };
-    return { L, at, amostras };
+    // onde cada ponto cai no caminho (0..1 pelo comprimento): o ponto i é a amostra i*N
+    const nos = pts.map((_, i) => (L ? acc[Math.min(acc.length - 1, i * N)] / L : i / Math.max(1, pts.length - 1)));
+    return { L, at, amostras, nos };
+  },
+  // poses nos pontos do caminho: giro e tamanho de cada ponto (sem valor = mantém o do ponto anterior).
+  // índice 0 = a saída (o que o lutador já tem). Giro em graus "de tela" (já com o lado), como rotExtra.
+  // girarCaminho: o giro de cada ponto é um ajuste somado à inclinação do caminho (começa em 0).
+  posesCaminho(f, c, r0, e0) {
+    const pts = c.pontos || [], n = pts.length;
+    const temRot = pts.some(q => q.rot != null), temEsc = pts.some(q => q.esc != null);
+    const rots = [c.girarCaminho ? 0 : r0], escs = [e0];
+    pts.forEach((q, i) => {
+      const ult = i === n - 1;
+      let r = rots[i], e = escs[i];
+      if (q.rot != null) r = c.girarCaminho ? q.rot : q.rot * f.dir;
+      else if (ult && !temRot && c.rot != null) r = c.girarCaminho ? c.rot : c.rot * f.dir;   // "Giro na chegada" antigo
+      if (q.esc != null) e = q.esc;
+      else if (ult && !temEsc && c.escala != null) e = c.escala;
+      rots.push(r); escs.push(e);
+    });
+    // sem giro/tamanho nos pontos (clipes antigos): vão mudando pelo caminho todo, como antes
+    return { rots, escs, porPonto: { rot: temRot, esc: temEsc } };
   },
   andarCaminho(b, viva, f, c) {
     const { actor, target } = viva;
@@ -441,8 +463,15 @@ FF.Linha = {
     const pts = [{ x: f.x, y: f.y }].concat(this.pontosCaminho(b, actor, target, f, c));
     const cv = this.curva(pts);
     const d = Math.max(0.01, c.d || 0.6), t0 = viva.t;
-    const e0 = f.escExtra || 1, e1 = c.escala != null ? c.escala : e0;
-    const r0 = f.rotExtra || 0, r1 = c.rot != null ? c.rot * f.dir : (c.girarCaminho ? 0 : r0);
+    const P = this.posesCaminho(f, c, f.rotExtra || 0, f.escExtra || 1);
+    const nos = cv.nos || [0, 1];
+    // valor num ponto u do caminho: entre dois pontos, suave (smoothstep); sem valores por ponto: do início ao fim
+    const valor = (arr, porPonto, u) => {
+      if (!porPonto) return arr[0] + (arr[arr.length - 1] - arr[0]) * u;
+      let i = 1; while (i < nos.length - 1 && nos[i] < u) i++;
+      const a = nos[i - 1], b2 = nos[i], k = b2 > a ? Math.max(0, Math.min(1, (u - a) / (b2 - a))) : 1, s = k * k * (3 - 2 * k);
+      return arr[i - 1] + (arr[i] - arr[i - 1]) * s;
+    };
     if (c.animMov !== '') { f.play(c.animMov || 'avancar', { loop: true }); f.react = null; f.semReagirAte = FF.Clock.t + d + 3; }
     const ritmo = c.ritmo || '';
     const easing = (k) => ritmo === 'suave' ? (1 - Math.cos(Math.PI * k)) / 2 : ritmo === 'freia' ? 1 - Math.pow(1 - k, 2) : k;
@@ -450,18 +479,22 @@ FF.Linha = {
       const k = Math.min(1, (t - t0) / d), u = easing(k);
       const q = cv.at(u);
       f.x = q.x; f.y = q.y;
-      f.escExtra = e0 + (e1 - e0) * u;
+      f.escExtra = valor(P.escs, P.porPonto.esc, u);
       // virar sozinho: olha para o lado em que está indo
       if (c.virar && Math.abs(q.tx) > 0.3) f.flipExtra = (q.tx < 0) !== (f.dir < 0);
+      const voltas = c.girar ? c.girar * 360 * u * f.dir : 0;   // piruetas no caminho
       if (c.girarCaminho) {
-        // inclina na direção do caminho (a frente do desenho aponta para onde ele vai) + ajuste "Giro" da pose
+        // inclina na direção do caminho (a frente do desenho aponta para onde ele vai) + ajuste de cada ponto
         const vira = (f.dir < 0) !== !!f.flipExtra;
         let ang = Math.atan2(q.ty, q.tx) * 180 / Math.PI;
         if (vira) ang = ang - 180;
         while (ang > 180) ang -= 360; while (ang < -180) ang += 360;
-        f.rotExtra = ang + (c.rot || 0) * (vira ? -1 : 1);
-      } else f.rotExtra = r0 + (r1 - r0) * u;
-      if (k >= 1) { if (c.girarCaminho && !c.manterGiro) f.rotExtra = 0; return false; }
+        f.rotExtra = ang + valor(P.rots, P.porPonto.rot, u) * (vira ? -1 : 1) + voltas;
+      } else f.rotExtra = valor(P.rots, P.porPonto.rot, u) + voltas;
+      if (k >= 1) {
+        if (!c.manterGiro) { if (c.girarCaminho) f.rotExtra = 0; else if (c.girar) f.rotExtra = P.rots[P.rots.length - 1]; }
+        return false;
+      }
     });
   },
 
