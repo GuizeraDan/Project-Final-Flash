@@ -667,3 +667,9 @@ Cache do app: `finalflash-v47`.
 - Teste: `tools/testes/caminho.js`.
 - Caminho: giro (↻) e tamanho (⤢) em cada ponto (`pontos[i].rot/esc`, vazio = mantém o anterior), suave entre os pontos (smoothstep pelos nós da curva, `curva().nos`, `FF.Linha.posesCaminho`); "Girar (voltas)"; com "girar seguindo o caminho" o ↻ é ajuste. Palco: silhueta na pose de cada ponto + alças azul (giro, `pgiro`) e amarela (tamanho, `pesc`) por ponto. Clipes antigos com rot/escala no clipe passam para o último ponto ao abrir.
 - Caminho: pose da SAÍDA (`rot0`/`esc0`; linha "▶" nas Propriedades e alças azul/amarela "saída" em cima do lutador no palco). Antes a saída sempre herdava o giro da animação anterior e não havia como virar o boneco ali.
+
+### 2026-11-26 — Palco: nada mais some fora da tela
+- Alças presas na borda: o que sai do que o palco mostra tem a alça desenhada/clicável na borda, com seta apontando para onde está (`G.prender(h)`); arrastar traz de volta.
+- "⌖ Trazer para a tela" no topo das Propriedades (efeito, animação, camada, projétil, movimento/teleporte para ponto, caminho): `G.trazerParaTela()`.
+- "🔍 Fora" na barra do palco (`palco.opts.fora`): o palco encolhe (0,62) e mostra uma faixa escura em volta com a borda "tela do jogo"; `palco.deCanvas/visivel/escalaFora` (pontoTela usa a mesma conta).
+- Teste: `tools/testes/fora_da_tela.js`.

@@ -196,14 +196,29 @@ FF.EstudioPalco = class {
   apertar() { if (this._b) this._b.onPress(); }
 
   // ---------- desenho ----------
+  // 🔍 "Ver fora da tela": o palco encolhe e mostra uma faixa em volta da tela do jogo (o que está fora dela)
+  escalaFora() { return this.opts.fora && this.modo !== 'batalha' ? 0.62 : 1; }
+  aplicarVista(ctx) { const k = this.escalaFora(); if (k !== 1) { ctx.translate(FF.W / 2, FF.H / 2); ctx.scale(k, k); ctx.translate(-FF.W / 2, -FF.H / 2); } }
   desenhar(extra) {
     const b = this._b, ctx = this.ctx;
     if (!b) return;
     ctx.imageSmoothingEnabled = false;
     const hud = FF.HUD.draw;
     if (!(this.modo === 'batalha' || this.opts.hud)) FF.HUD.draw = () => {};
+    const fora = this.escalaFora() !== 1;
+    ctx.save();
+    if (fora) {
+      ctx.fillStyle = '#0b0814'; ctx.fillRect(0, 0, this.cv.width, this.cv.height);
+      this.aplicarVista(ctx);
+    }
     try { b.draw(ctx); } finally { FF.HUD.draw = hud; }
-    if (this.modo === 'batalha') return;
+    if (fora) {   // a borda da tela do jogo e um véu no que está fora dela
+      ctx.save();
+      ctx.strokeStyle = 'rgba(255,216,74,0.9)'; ctx.lineWidth = 3; ctx.setLineDash([10, 6]); ctx.strokeRect(0, 0, FF.W, FF.H); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(255,216,74,0.9)'; ctx.font = 'bold 24px sans-serif'; ctx.fillText('tela do jogo', 8, -10);
+      ctx.restore();
+    }
+    if (this.modo === 'batalha') { ctx.restore(); return; }
     ctx.save();
     const cam = b.cam;
     if (cam && (cam.zoom !== 1 || cam.x || cam.y)) {
@@ -214,7 +229,18 @@ FF.EstudioPalco = class {
     if (this.opts.refs) this.desenharRefs(ctx, b);
     extra && extra(ctx, b);
     ctx.restore();
+    ctx.restore();
   }
+  // canvas (px) → coordenadas do jogo (desfaz a vista "fora da tela" e a câmera)
+  deCanvas(x, y) {
+    const k = this.escalaFora();
+    if (k !== 1) { x = (x - FF.W / 2) / k + FF.W / 2; y = (y - FF.H / 2) / k + FF.H / 2; }
+    const cam = this._b && this._b.cam;
+    if (cam && (cam.zoom !== 1 || cam.x || cam.y)) { x = (x - FF.W / 2) / cam.zoom + FF.W / 2 + cam.x; y = (y - FF.H / 2) / cam.zoom + FF.H / 2 + cam.y; }
+    return { x, y };
+  }
+  // retângulo visível no palco, em coordenadas do jogo
+  visivel() { const a = this.deCanvas(0, 0), b = this.deCanvas(this.cv.width, this.cv.height); return { x0: a.x, y0: a.y, x1: b.x, y1: b.y }; }
 
   desenharGrade(ctx) {
     ctx.save();
@@ -257,9 +283,7 @@ FF.EstudioPalco = class {
   // coordenadas do canvas a partir de um evento do mouse/toque (desfaz a câmera)
   pontoTela(e) {
     const r = this.cv.getBoundingClientRect();
-    let x = (e.clientX - r.left) * this.cv.width / r.width, y = (e.clientY - r.top) * this.cv.height / r.height;
-    const cam = this._b && this._b.cam;
-    if (cam && (cam.zoom !== 1 || cam.x || cam.y)) { x = (x - FF.W / 2) / cam.zoom + FF.W / 2 + cam.x; y = (y - FF.H / 2) / cam.zoom + FF.H / 2 + cam.y; }
-    return { x, y };
+    const x = (e.clientX - r.left) * this.cv.width / r.width, y = (e.clientY - r.top) * this.cv.height / r.height;
+    return this.deCanvas(x, y);
   }
 };

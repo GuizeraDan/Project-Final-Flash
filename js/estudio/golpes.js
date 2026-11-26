@@ -676,6 +676,7 @@ window.FF = window.FF || {};
       b.appendChild(op('grade', '▦', 'Grade de 50 px e linha do chão'));
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
+      b.appendChild(op('fora', '🔍 Fora', 'Ver fora da tela: o palco encolhe e mostra uma faixa em volta da tela do jogo, para pegar e posicionar o que está fora dela'));
       // perspectiva: começa na diagonal (como o jogo) até você trocar aqui
       if (this.palco.opts.persp == null) this.palco.opts.persp = true;   // o jogo é sempre na diagonal
       const btP = E.botao('', () => {
@@ -1042,12 +1043,52 @@ window.FF = window.FF || {};
         if (h.k === 'lutador' && h.raio) { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'sprite') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
         if (h.k === 'mover') { ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio || 30 * ((this.clipe() || {}).escala || 1), 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
+        // fora da tela: a alça fica presa na borda, com uma seta para onde a coisa está (arraste para trazer de volta)
+        const q = this.prender(h);
+        if (q.preso) {
+          const ang = Math.atan2(h.y - q.y, h.x - q.x);
+          ctx.save(); ctx.translate(q.x, q.y); ctx.rotate(ang);
+          ctx.fillStyle = h.cor; ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(18, 0); ctx.lineTo(6, -8); ctx.lineTo(6, 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+          ctx.setLineDash([3, 3]); ctx.strokeStyle = h.cor; ctx.beginPath(); ctx.arc(q.x, q.y, 11, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+        }
         ctx.fillStyle = h.cor; ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(h.x, h.y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.arc(q.x, q.y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       }
       ctx.restore();
     },
 
+    // ⌖ Trazer para a tela: põe o clipe selecionado de volta num lugar visível (pelo tipo)
+    podeTrazer(c) { return !!c && ['efeito', 'anim', 'camada', 'projetil', 'caminho'].includes(c.tipo) || (!!c && (c.tipo === 'mover' || c.tipo === 'teleporte') && c.para === 'x'); },
+    trazerParaTela() {
+      const c = this.clipe(); if (!this.podeTrazer(c)) return;
+      const cx = 542, cy = 290;   // meio da tela (na tela antiga de 1084×580, centralizada)
+      const limX = (x) => Math.max(-38, Math.min(1122, x)), limY = (y) => Math.max(-450, Math.min(100, y || 0));
+      switch (c.tipo) {
+        case 'efeito': if (c.em === 'tela') { c.dx = cx; c.dy = cy; } else { delete c.dx; delete c.dy; } break;
+        case 'anim': delete c.dx; delete c.dy; break;
+        case 'camada': {
+          const x0 = c.ancora === 'tela' ? cx : 0, y0 = c.ancora === 'tela' ? cy : 0;
+          if (c.chaves && c.chaves.length) { const k0 = c.chaves[0], ddx = x0 - (k0.x != null ? k0.x : c.x || 0), ddy = y0 - (k0.y != null ? k0.y : c.y || 0); c.chaves.forEach(k => { k.x = (k.x != null ? k.x : c.x || 0) + ddx; k.y = (k.y != null ? k.y : c.y || 0) + ddy; }); }
+          c.x = x0; c.y = y0; break;
+        }
+        case 'projetil': ['deDx', 'deDy', 'alvoDx', 'alvoDy', 'spriteDx', 'spriteDy'].forEach(k => delete c[k]); break;
+        case 'mover': case 'teleporte': c.x = limX(c.x != null ? c.x : cx); c.y = limY(c.y); if (!c.y) delete c.y; break;
+        case 'caminho': (c.pontos || []).forEach(q => { q.x = limX(q.x != null ? q.x : cx); q.y = limY(q.y); if (!q.y) delete q.y; }); break;
+      }
+      this.mudou('Trazer para a tela');
+      this.renderProps();
+      E.aviso('⌖ De volta para a tela.', 'ok');
+    },
+    // alça fora do que o palco mostra: posição presa na borda (para desenhar e clicar); a alça de verdade não muda
+    prender(h) {
+      const v = this.palco.visivel ? this.palco.visivel() : null;
+      if (!v) return h;
+      const m = 16 / (this.palco.escalaFora ? this.palco.escalaFora() : 1);
+      const x = Math.max(v.x0 + m, Math.min(v.x1 - m, h.x)), y = Math.max(v.y0 + m, Math.min(v.y1 - m, h.y));
+      return x === h.x && y === h.y ? h : Object.assign({}, h, { x, y, preso: true });
+    },
     // pontos para alinhar no palco: as outras alças do clipe + pés, peito e mão dos lutadores
     pontosRef(h) {
       const L = this.alcas().filter(x => x !== h && x.k !== h.k && !['escala', 'giro', 'pgiro', 'pesc', 'saida'].includes(x.k)).map(x => ({ x: x.x, y: x.y, nome: 'alça' }));
@@ -1080,7 +1121,8 @@ window.FF = window.FF || {};
         if (this.palco.modo === 'batalha') { this.palco.apertar(); return; }
         if (!this.doc) return;
         const p = this.palco.pontoTela(e);
-        const perto = (h) => Math.hypot(h.x - p.x, h.y - p.y) < 14;
+        const k = this.palco.escalaFora ? this.palco.escalaFora() : 1;
+        const perto = (h) => { const q = this.prender(h); return Math.hypot(q.x - p.x, q.y - p.y) < 14 / k; };
         let h = this.alcas().find(perto);
         if (!h) {
           // escolher pelo que está no palco: efeitos, camadas, lutadores

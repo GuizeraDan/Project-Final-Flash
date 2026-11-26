@@ -93,6 +93,7 @@ FF.EstudioProps = {
       return;
     }
     const g = E.grupo(this.titulo(c));
+    if (host.podeTrazer && host.podeTrazer(c)) g.appendChild(E.botao('⌖ Trazer para a tela', () => host.trazerParaTela(), 'Sumiu da tela? Põe este clipe de volta num lugar visível (perto de quem solta ou no meio da tela)', 'es-trazer-tela'));
     g.appendChild(num(c, 't', 'Início (s)', 'Quando o clipe começa na linha do tempo', { passo: 0.01, min: 0 }));
     box.appendChild(g);
     const quem = tr && tr.quem;
