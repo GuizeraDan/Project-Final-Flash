@@ -150,6 +150,8 @@ FF.EstudioProps = {
           g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', 'No palco: alça amarela da silhueta (1 = normal)', { passo: 0.05, min: 0.05 }));
           g.appendChild(num(c, 'rot', 'Giro na chegada (°)', 'No palco: alça azul da silhueta'));
         }
+        g.appendChild(E.campo('check', '⇋ Espelhar', !!c.flip, (v) => { if (v) c.flip = true; else delete c.flip; host.mudou('Espelhar'); },
+          { dica: c.tipo === 'mover' ? 'Vira o lutador para o outro lado durante o movimento e na chegada (até a próxima animação dele)' : 'Reaparece virado para o outro lado (até a próxima animação dele)' }));
         // animação do movimento: campo + 🖼 escolher vendo as miniaturas (animações do próprio lutador)
         g.appendChild(this.comEscolha(
           E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }),

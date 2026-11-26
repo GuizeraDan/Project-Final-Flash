@@ -655,3 +655,7 @@ Cache do app: `finalflash-v47`.
 ### 2026-11-26 — Efeito: 📌 Fixar no começo do golpe
 - Efeito ganhou `fixar: true` (caixinha "📌 Fixar no começo do golpe", logo abaixo de "Preso em"): o ponto (pés/peito de quem solta, disparo, peito/pés do alvo) vem da foto tirada no começo da linha do tempo (`FF.Linha.foto`/`pontoFoto`, `viva.foto`), então mover o clipe na trilha não muda o lugar. A perspectiva e o tamanho da fileira usam a mesma foto; as alças do palco também (palco.js gravarRef).
 - Teste: `tools/testes/efeito_fixar.js`.
+
+### 2026-11-26 — Movimento/teleporte: ⇋ Espelhar
+- Clipes de movimento e teleporte ganharam "⇋ Espelhar" (`flip: true`): vira o lutador (flipExtra) durante o movimento e na chegada / ao reaparecer no teleporte, até o próximo clipe de animação dele (que decide o próprio "Espelhar") ou o fim do golpe. A silhueta de chegada no palco aparece espelhada também.
+- Teste: `tools/testes/movimento_espelhar.js`.

@@ -906,7 +906,7 @@ window.FF = window.FF || {};
         if (f) {
           const dx = c.x != null ? c.x + FF.legado().x : f.homeX, dy = f.groundY + (c.y || 0);
           const sc = f.scale * (c.escala || 1), raio = 34 * sc, cy = dy - 30 * sc;
-          L.push({ k: 'destino', x: dx, y: cy, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover', animMov: c.animMov, esc: c.escala || 1, rot: (c.rot || 0) * f.dir, raio },
+          L.push({ k: 'destino', x: dx, y: cy, px: dx, py: dy, cor: '#5fe08a', f, arco: c.tipo === 'mover' ? c.arco || 0 : 0, mover: c.tipo === 'mover', animMov: c.animMov, esc: c.escala || 1, rot: (c.rot || 0) * f.dir, flip: !!c.flip, raio },
             { k: 'escala', x: dx + raio * 0.75, y: cy + raio * 0.75, cor: '#ffd84a', cx: dx, cy },
             { k: 'giro', x: dx, y: cy - raio - 16, cor: '#6cc8ff', cx: dx, cy });
         }
@@ -948,11 +948,12 @@ window.FF = window.FF || {};
           const qa = an && an.frames ? an.frames[an.frames.length - 1] : null;
           if (qa) {
             const sc = f.scale * h.esc;
+            const fl = (f.dir < 0) !== !!h.flip;   // ⇋ Espelhar do movimento
             if (h.rot) {
-              const fr = qa, fl = f.dir < 0, cx = (fl ? -1 : 1) * (fr[3] / 2 - fr[5]) * sc, cy = (fr[4] / 2 - fr[6]) * sc;
+              const fr = qa, cx = (fl ? -1 : 1) * (fr[3] / 2 - fr[5]) * sc, cy = (fr[4] / 2 - fr[6]) * sc;
               ctx.save(); ctx.translate(h.px + cx, h.py + cy); ctx.rotate(h.rot * Math.PI / 180); FF.drawFrame(ctx, f.sprite, fr, -cx, -cy, sc, fl, { alpha: 0.45 }); ctx.restore();
             }
-            else FF.drawFrame(ctx, f.sprite, qa, h.px, h.py, sc, f.dir < 0, { alpha: 0.45 });
+            else FF.drawFrame(ctx, f.sprite, qa, h.px, h.py, sc, fl, { alpha: 0.45 });
           }
           ctx.strokeStyle = 'rgba(255,255,255,0.6)'; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.arc(h.x, h.y, h.raio, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
           ctx.strokeStyle = 'rgba(95,224,138,0.8)'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;

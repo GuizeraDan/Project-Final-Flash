@@ -245,6 +245,9 @@ FF.Linha = {
         // ponto da tela: também muda a altura (sem "y" = volta ao chão). Altura medida a partir do chão do lutador:
         // na perspectiva o chão muda de fileira durante o movimento (vai para a fileira do alvo e volta)
         const alt0 = f.groundY - f.y, altDest = c.para === 'x' ? -(c.y || 0) : alt0;
+        // espelhar: o lutador fica virado para o outro lado (no movimento desde o começo; no teleporte ao reaparecer)
+        // até o próximo clipe de animação desse lutador (que decide o próprio "Espelhar") ou o fim do golpe
+        if (c.tipo === 'mover' && c.flip != null) f.flipExtra = !!c.flip;
         if (c.tipo === 'mover') {
           const x0 = f.x, d = Math.max(0.01, c.d || 0.22), t0 = viva.t;
           // tamanho e giro no destino (alças no palco): vão mudando durante o movimento
@@ -277,7 +280,7 @@ FF.Linha = {
         // o teleporte desfaz giro/tamanho que vieram de um movimento anterior: some e reaparece "em pé"
         // (Tamanho/Giro na chegada do próprio teleporte valem ao reaparecer)
         f.rotExtra = 0; f.escExtra = 1; f.offX = 0; f.offY = 0;
-        const chegar = () => { f.x = dest; f.y = f.groundY - altDest; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; };
+        const chegar = () => { f.x = dest; f.y = f.groundY - altDest; if (c.escala != null) f.escExtra = c.escala; if (c.rot != null) f.rotExtra = c.rot * f.dir; if (c.flip != null) f.flipExtra = !!c.flip; };
         if (!a) { chegar(); return; }
         const meio = Math.floor(a.frames.length / 2);
         // ao terminar, volta à pose parada (se nada mais trocou a animação nesse meio tempo)
