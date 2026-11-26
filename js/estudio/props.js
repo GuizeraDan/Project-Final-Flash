@@ -176,6 +176,7 @@ FF.EstudioProps = {
         }
         g.appendChild(this.campoEfeito(c, 'fx', 'Efeito', host));
         g.appendChild(sel(c, 'em', 'Preso em', this.EM, null, 'atacante'));
+        g.appendChild(chk(c, 'fixar', '📌 Fixar no começo do golpe (não muda de lugar ao mover o clipe na trilha)'));
         g.appendChild(chk(c, 'seguir', 'Acompanha o lutador (anda junto quando ele se move)'));
         g.appendChild(sel(c, 'ateAlvo', 'Até o alvo', [['', 'Não (tamanho normal)'], ['cortar', '✂ Cortar no alvo'], ['esticar', '↔ Esticar/encolher até o alvo']],
           'Para raios e rajadas (ex.: Kamehameha): o desenho termina no peito do alvo em vez de passar dele e sair da tela', ''));

@@ -651,3 +651,7 @@ Cache do app: `finalflash-v47`.
 
 ### 2026-11-25 — Organizar: renomear pastas
 - ✏ ao passar o mouse em cada pasta/subpasta do painel da direita (nas 3 vistas) e ao lado da trilha (pasta aberta): edita no lugar; usa `F.renomearFolha` (subpastas, itens e sprites movidos acompanham); a pasta aberta continua aberta com o nome novo.
+
+### 2026-11-26 — Efeito: 📌 Fixar no começo do golpe
+- Efeito ganhou `fixar: true` (caixinha "📌 Fixar no começo do golpe", logo abaixo de "Preso em"): o ponto (pés/peito de quem solta, disparo, peito/pés do alvo) vem da foto tirada no começo da linha do tempo (`FF.Linha.foto`/`pontoFoto`, `viva.foto`), então mover o clipe na trilha não muda o lugar. A perspectiva e o tamanho da fileira usam a mesma foto; as alças do palco também (palco.js gravarRef).
+- Teste: `tools/testes/efeito_fixar.js`.

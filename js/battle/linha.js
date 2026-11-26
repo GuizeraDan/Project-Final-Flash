@@ -11,6 +11,7 @@
 //     para "x" = qualquer ponto da tela: x em pixels da tela antiga (0 a 1084 = miolo; a tela de 1280 vai de -98 a 1182), y = altura em relação ao chão (negativo = no ar)
 //     {tipo:"visivel", alpha}
 //  (efeito, projétil e camada aceitam atras: true = desenhado atrás dos lutadores; anim aceita camada: "frente"|"atras")
+//  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
 //  (efeito, projétil e camada aceitam prof: "quem"|"alvo" = na profundidade de quem solta / do alvo — com perspectiva,
 //   entra entre os lutadores pela altura de chão: quem está mais à frente cobre; sem perspectiva = na frente de todos)
 //  (efeito, projétil e camada aceitam ordem: "baixo"|"cima" = por baixo/por cima dos outros efeitos, camadas e
@@ -124,6 +125,8 @@ FF.Linha = {
       if (mode) eventos.push({ t: ini, ordem: -1, fn: () => { if (!target.ko) g.qte = b.addQte(mode, target, g.t - viva.t); } });
     });
     const viva = { linha, actor, target, move, t: -atraso, cena: { camadas: [] }, dur, ativos: [], lutadores: new Set(), ko: ehKO };
+    // foto do começo do golpe: efeitos com "fixar" usam estes pontos (não mudam se o clipe andar na trilha)
+    viva.foto = { actor: this.foto(actor), target: this.foto(target) };
     let fimRes;
     viva.fim = new Promise(r => (fimRes = r));
     const estado = new Map();     // alpha original de quem a linha mexe
@@ -288,7 +291,9 @@ FF.Linha = {
         return;
       }
       case 'efeito': {
-        const p = this.ponto(b, actor, target, c.em);
+        const fx = c.fixar && viva.foto ? viva.foto : null;   // "Fixar no começo do golpe"
+        const A0 = fx ? fx.actor || actor : actor, T0 = fx ? fx.target || target : target;
+        const p = fx ? this.pontoFoto(fx, c.em, b) : this.ponto(b, actor, target, c.em);
         const dir = actor ? actor.dir : 1;
         const kf = c.em === 'tela' ? 1 : (b.fov || 1);
         let ex = p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir) * kf, ey = p.y + (c.dy || 0) * kf;
@@ -296,12 +301,12 @@ FF.Linha = {
         // (os de tela bem no alto, como faixas e brilhos de tela cheia, ficam onde estão)
         let inclina = 0;
         if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
-          ({ x: ex, y: ey } = this.mapaPersp(b, actor, target, ex, ey, c.em === 'tela'));
+          ({ x: ex, y: ey } = this.mapaPersp(b, A0, T0, ex, ey, c.em === 'tela'));
           // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
           if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null) { const bx = actor.base ? actor.base.x : actor.homeX, bg = actor.base ? actor.base.g - 4 : actor.homeG; if (Math.abs(target.homeX - bx) > 20) inclina = Math.atan2(target.homeG - bg, Math.abs(target.homeX - bx)) * 180 / Math.PI; }
         }
         // perspectiva: efeito preso em alguém acompanha o tamanho dele (fileira de trás = menor)
-        const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? target : actor;
+        const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? T0 : A0;
         const kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
         const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, (c.escala || 1) * kp,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras, ordem: c.ordem, prof: !c.atras && c.prof ? (c.prof === 'alvo' ? target : actor) : null });
@@ -382,6 +387,25 @@ FF.Linha = {
     if (Math.abs(den) < 1) return { x: lx + (Ap.x - Al.x), y: ly + (Ap.y - Al.y) };
     const u = Math.max(-0.8, Math.min(1.8, (lx - Al.x) / den));
     return { x: Ap.x + (lx - Al.x) * ((Tp.x - Ap.x) / den), y: ly + (Ap.y - Al.y) + u * ((Tp.y - Tl.y) - (Ap.y - Al.y)) };
+  },
+
+  // foto de um lutador no começo do golpe (posição, pontos do quadro, dados da perspectiva)
+  foto(f) {
+    if (!f) return null;
+    let peito = null, disparo = null;
+    try { peito = f.peito(); } catch (e) { peito = { x: f.x, y: f.groundY - 40 }; }
+    try { disparo = f.pontoDisparo(); } catch (e) { disparo = peito; }
+    return { x: f.x, groundY: f.groundY, peito, disparo, scale: f.scale, dir: f.dir, latX: f.latX, latG: f.latG, homeX: f.homeX, homeG: f.homeG, base: f.base ? { x: f.base.x, g: f.base.g } : null };
+  },
+  pontoFoto(foto, em, b) {
+    const a = foto.actor, t = foto.target;
+    if (em === 'tela') return FF.legado();
+    if (em === 'alvo' && t) return Object.assign({}, t.peito);
+    if (em === 'alvoPes' && t) return { x: t.x, y: t.groundY };
+    if (em === 'disparo' && a) return Object.assign({}, a.disparo);
+    if (em === 'peito' && a) return Object.assign({}, a.peito);
+    if (a) return { x: a.x, y: a.groundY };
+    return { x: FF.W / 2, y: b ? b.groundY : FF.H / 2 };
   },
 
   // pontos de referência usados por efeitos (e pelo Estúdio para posicionar)

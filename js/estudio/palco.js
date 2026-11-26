@@ -126,15 +126,16 @@ FF.EstudioPalco = class {
     const a = viva.actor, t = viva.target;
     const r = { dir: a ? a.dir : 1 };
     if (c.tipo === 'efeito') {
-      r.p = FF.Linha.ponto(b, a, t, c.em);
+      const fx = c.fixar && viva.foto ? viva.foto : null;   // "Fixar no começo do golpe": a mesma foto que o motor usa
+      r.p = fx ? FF.Linha.pontoFoto(fx, c.em, b) : FF.Linha.ponto(b, a, t, c.em);
       // perspectiva: o motor leva o efeito para a diagonal entre quem solta e o alvo (FF.Linha.mapaPersp) e muda o
       // tamanho pelo da fileira. As alças usam a mesma conta (com as posições deste instante) para ficar em cima dele.
       if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
         const foto = (f) => ({ latX: f.latX, latG: f.latG, homeX: f.homeX, homeG: f.homeG, base: f.base ? { x: f.base.x, g: f.base.g } : null });
-        const A = foto(a), T = foto(t), tela = c.em === 'tela';
+        const A = foto(fx && fx.actor || a), T = foto(fx && fx.target || t), tela = c.em === 'tela';
         r.mapa = (x, y) => (tela && y < 140) ? { x, y } : FF.Linha.mapaPersp(b, A, T, x, y, tela);
       }
-      const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? t : a;
+      const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? (fx && fx.target || t) : (fx && fx.actor || a);
       r.kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
     }
     if (c.tipo === 'projetil') { r.de = a.pontoDisparo(); r.ate = t ? t.peito() : null; }
