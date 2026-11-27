@@ -51,7 +51,7 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 ## Tela (resolução)
 - Tela lógica **1280×720** (16:9; `FF.BW`, `FF.H` em `js/battle/battle.js`). Telas mais compridas ganham largura até 1600 (`FF.ajustarTela`, main.js); a altura é sempre 720. O Estúdio desenha o palco em 1280×720.
 - Conteúdo montado na tela antiga de 1084×580 continua valendo, centralizado por `FF.legado()` (`{x: (FF.W-1084)/2, y: (FF.H-580)/2}`): posições `pos` das batalhas, efeitos `em: "tela"`, camadas `ancora: "tela"`, teleporte/movimento `para: "x"` (x na faixa antiga: -98 a 1182 cobre a tela de 1280). `chaoY` dos cenários é da tela antiga: o motor soma `FF.H - 580`.
-- Perspectiva diagonal: `PERSP` horizonte 330 / fundo 455 / frente 660; cada time ocupa ~290 px (`montarPerspectiva`).
+- Perspectiva diagonal: `PERSP` horizonte 330 / fundo 455 / frente 660; cada time ocupa ~290 px (`montarPerspectiva`). Golpe com `fileiras: 'centro'` (🎬 cena do golpe: os dois vão para a profundidade 0,45 e voltam) ou `'alvo'` (alvo vem para a fileira de quem solta): `Battle.prepararCena/cenaGolpe/desfazerCena`; o palco do Estúdio aplica a cena e o `alinharFileira` automático sem deslizar.
 
 ## HUD da batalha
 - HUD novo com a arte do usuário (`tools/receitas/arte/hud.png`): `python3 -I tools/hud_moderno.py` gera `assets/img/hud_moderno.png` (moldura com as partes que mudam apagadas + camada dos cantos ciano). O desenho fica em `FF.HUD.panelModerno` (`js/battle/hud.js`; posições em `FF.HUD.L`, em pixels da arte recortada 2125×545; inimigo = espelhado). Sem a imagem, cai no HUD antigo do ZL3 (`hud_zl3`).

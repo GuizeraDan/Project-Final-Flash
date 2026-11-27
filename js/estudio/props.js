@@ -436,6 +436,8 @@ FF.EstudioProps = {
     a.appendChild(num(g, 'custoKi', 'Custo de ki', null, { min: 0, passo: 1 }));
     a.appendChild(num(g, 'poder', 'Poder', 'Multiplicador de dano (ex.: 1.7 sequência, 3 Kamehameha)', { passo: 0.1, min: 0 }));
     a.appendChild(chk(g, 'supremo', 'Supremo (Fúria cheia)'));
+    a.appendChild(sel(g, 'fileiras', 'Fileiras durante o golpe', [['', 'Cada um na sua fileira (automático)'], ['alvo', 'O alvo vem para a fileira de quem solta'], ['centro', '🎬 Cena do golpe: os dois vão para o centro']],
+      'Luta em diagonal: "Cena do golpe" põe quem solta e o alvo no lugar onde o golpe é montado aqui no palco (como na luta 1×1) e no fim cada um volta para a sua fileira — o golpe sai igual em qualquer fileira (bom para combos com pontos da tela e raios desenhados na animação). "O alvo vem…" só traz o alvo para a altura de quem solta.', ''));
     a.appendChild(E.campo('check', 'Anunciar o nome', g.anuncio !== false, (v) => { if (v) delete g.anuncio; else g.anuncio = false; host.mudou('Anúncio'); }));
     box.appendChild(a);
     }

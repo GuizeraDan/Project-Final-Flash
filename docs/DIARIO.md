@@ -686,3 +686,8 @@ Cache do app: `finalflash-v47`.
 - Atenção: efeitos já montados com "Acompanha o lutador" passam a ficar junto (pedido do usuário).
 - Teste: `tools/testes/efeito_junto.js`.
 - Caso do usuário (kamehameha_kaioken, poeira "Loop"): estava "Preso em: peito do alvo" com X −541 — a posição dependia da distância até o alvo, que muda de luta para luta. Trocar "Preso em" agora recalcula X/Y para o efeito não sair do lugar (`G.trocarAncora`, pontos gravados pelo palco em `r.pontos`); indo de alvo/tela para quem solta, já liga "junto do lutador". Teste: `tools/testes/efeito_trocar_ancora.js`.
+
+### 2026-11-27 — 🎬 Fileiras durante o golpe (cena do golpe)
+- Campo do golpe `fileiras`: '' (automático, como antes) / 'alvo' (o alvo desliza para a fileira de quem solta) / 'centro' (🎬 quem solta e o alvo deslizam para o lugar padrão da luta 1×1 — profundidade 0,45 — e no fim voltam). `Battle.prepararCena/cenaGolpe/desfazerCena/posFileira`; o deslize de fileira usa `f.cenaDe` em `atualizarPerspectiva`. Resolve combos montados com pontos da tela (Caminho, mover para x) e raios desenhados na animação que mudavam de lugar conforme a fileira.
+- Palco do Estúdio: aplica a cena (sem deslizar) e, sem ela, o mesmo passo automático para a fileira do alvo que o jogo já fazia antes de raios/rajadas (`alinharFileira(..., instantaneo)`) — antes o palco não mostrava isso e a prévia diferia do jogo.
+- UI: propriedades do golpe → "Fileiras durante o golpe". Teste: `tools/testes/cena_golpe.js`.
