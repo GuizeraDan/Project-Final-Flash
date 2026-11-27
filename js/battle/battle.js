@@ -481,9 +481,7 @@ FF.Battle = class {
     }
     // perspectiva: antes de golpear alguém de outra fileira, quem ataca desliza até a fileira do alvo
     // (raios, rajadas e projéteis saem alinhados com ele; no fim volta para a sua)
-    // "Fileiras durante o golpe" (Estúdio): cena do golpe (os dois no centro) ou o alvo vem para a fileira de quem solta
-    const cenaG = await this.cenaGolpe(actor, target, move);
-    const alinhou = cenaG ? false : await this.alinharFileira(actor, target, move);
+    const alinhou = await this.alinharFileira(actor, target, move);
     // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
     actor.desafioMult = 1;
     if (actor.isHero && move.desafio && target && target !== actor && !this.semDesafios) actor.desafioMult = await this.desafio(actor, move.desafio);
@@ -509,50 +507,11 @@ FF.Battle = class {
     actor.busy = false;
     actor.desafioMult = 1;
     actor.idle();
-    const volta = cenaG ? this.desfazerCena(cenaG) : null;
-    await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null, volta]);
-  }
-
-  // ---------- fileiras durante o golpe (perspectiva) ----------
-  // move.fileiras: 'centro' = quem solta e o alvo vão para o lugar padrão da luta 1×1 (onde o golpe é montado no
-  // Estúdio) e o golpe sai sempre igual; 'alvo' = o alvo vem para a fileira de quem solta. Sem nada: automático.
-  posFileira(f, d) {
-    const offX = (FF.W - FF.BW) / 2;
-    return { x: Math.round(offX + (f.isHero ? 210 + 290 * d : FF.BW - 210 - 290 * d)), g: Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d), s: this.scale * (1.14 - 0.36 * d) };
-  }
-  // põe os lutadores nas fileiras da cena (síncrono; instantaneo = sem deslizar, para o palco do Estúdio)
-  prepararCena(actor, target, move, instantaneo) {
-    const modo = move && move.fileiras;
-    if (!this.persp || (modo !== 'centro' && modo !== 'alvo') || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return null;
-    const quem = modo === 'centro' ? [actor, target] : [target];
-    const d0 = modo === 'centro' ? this.profundidades(1)[0] : (actor.prof != null ? actor.prof : 0.5);
-    const salvo = quem.map(f => ({ f, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof }));
-    if (salvo.every(v => { const p = this.posFileira(v.f, d0); return Math.abs(p.g - v.homeG) < 2 && Math.abs(p.x - v.homeX) < 2; })) return null;   // já está lá
-    quem.forEach(f => {
-      const p = this.posFileira(f, d0);
-      f.cenaDe = instantaneo ? null : { g: f.groundY, s: f.scale, t0: FF.Clock.t, d: 0.3 };
-      f.homeX = p.x; f.homeG = p.g; f.homeS = p.s; f.prof = d0;
-      if (instantaneo) { f.x = p.x; f.groundY = p.g; f.y = p.g; f.scale = p.s; }
-    });
-    return salvo;
-  }
-  async cenaGolpe(actor, target, move) {
-    const salvo = this.prepararCena(actor, target, move, false);
-    if (!salvo) return null;
-    const quem = salvo.map(v => v.f);
-    quem.forEach(f => { if (!f.ko && f.sprite.has(f.animName('avancar'))) f.play('avancar', { loop: true }); this.spawnFx('poeira', f.x, f.groundY, f.dir < 0, 0.6); });
-    await Promise.all(quem.map(f => this.tween(f, f.homeX, 0.3)));
-    quem.forEach(f => { if (!f.ko) f.idle(); });
-    return salvo;
-  }
-  // volta cada um para a sua fileira (a posição de x volta pelo resetPositions)
-  desfazerCena(salvo) {
-    salvo.forEach(v => { const f = v.f; f.cenaDe = { g: f.groundY, s: f.scale, t0: FF.Clock.t, d: 0.3 }; f.homeX = v.homeX; f.homeG = v.homeG; f.homeS = v.homeS; f.prof = v.prof; });
-    return FF.Clock.wait(0.3);
+    await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null]);
   }
 
   // ---------- mudança de fileira (perspectiva) ----------
-  async alinharFileira(actor, target, move, instantaneo) {
+  async alinharFileira(actor, target, move) {
     if (!this.persp || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
     if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
     // golpe que avança até o alvo: o próprio avanço já vai na diagonal até a fileira dele (sem passo para o lado)
@@ -565,12 +524,6 @@ FF.Battle = class {
     if (dir * (destX - actor.x) < 40) destX = actor.x + dir * 40;
     const limite = target.x - dir * 170;   // não chega colado no alvo
     if (dir * (destX - limite) > 0) destX = limite;
-    if (instantaneo) {   // palco do Estúdio: já começa onde o jogo vai pôr
-      actor.faixa = { alvo: target, de: 1, para: 1, t0: -1e9, d: 0.3 };
-      actor.x = destX; actor.base = { x: destX, g: target.homeG + 4 };
-      this.atualizarPerspectiva();
-      return true;
-    }
     actor.faixa = { alvo: target, de: 0, para: 1, t0: FF.Clock.t, d: 0.3 };
     if (actor.sprite.has(actor.animName('avancar'))) actor.play('avancar', { loop: true });
     this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);
@@ -1541,12 +1494,6 @@ FF.Battle = class {
       if (t && e > 0) {
         g = f.homeG + (t.homeG + 4 - f.homeG) * e;
         s = f.homeS + (t.homeS - f.homeS) * e;
-      }
-      // indo para a cena do golpe / voltando dela: desliza de fileira (cenaGolpe / desfazerCena)
-      if (f.cenaDe) {
-        const u = Math.max(0, Math.min(1, (FF.Clock.t - f.cenaDe.t0) / f.cenaDe.d)), uu = u * u * (3 - 2 * u);
-        g = f.cenaDe.g + (g - f.cenaDe.g) * uu; s = f.cenaDe.s + (s - f.cenaDe.s) * uu;
-        if (u >= 1) f.cenaDe = null;
       }
       const dy = g - f.groundY;
       if (Math.abs(dy) > 0.01) { f.groundY = g; f.y += dy; }

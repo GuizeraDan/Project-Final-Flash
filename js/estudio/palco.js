@@ -97,9 +97,6 @@ FF.EstudioPalco = class {
     const b = this.novaBatalha();
     this._b = b;
     this.golpe = golpe; this.linha = linha;
-    // "Fileiras durante o golpe": o palco já mostra os dois onde o jogo vai pôr (sem o deslizar)
-    // (sem isso, o mesmo passo para o lado da fileira do alvo que o jogo faz antes de raios e rajadas)
-    if (b.persp) { const mv = Object.assign({}, golpe, { roteiro: [{ linha }] }); if (!(golpe && golpe.fileiras && b.prepararCena(b.atk, b.alvo, mv, true))) b.alinharFileira(b.atk, b.alvo, mv, true); }
     b.atk.busy = true;
     const orig = FF.Linha.disparar;
     const self = this;
