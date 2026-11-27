@@ -247,6 +247,8 @@ FF.EstudioProps = {
         g.appendChild(sel(c, 'em', 'Preso em', this.EM, null, 'atacante'));
         g.appendChild(chk(c, 'fixar', '📌 Fixar no começo do golpe (não muda de lugar ao mover o clipe na trilha)'));
         g.appendChild(chk(c, 'seguir', 'Acompanha o lutador (anda junto quando ele se move)'));
+        if (c.em !== 'tela') g.appendChild(E.campo('check', '📍 Ficar junto do lutador (sem diagonal)', FF.Linha.efeitoJunto(c), (v) => { c.junto = !!v; if (c.junto === !!c.seguir) delete c.junto; host.mudou('Ficar junto do lutador'); },
+          { dica: 'Na luta em diagonal, o efeito fica sempre no mesmo lugar em relação ao boneco (só o tamanho acompanha a fileira) e não inclina sozinho. Desmarcado: vai pela diagonal até o alvo (bom para raios). Padrão: marcado quando "Acompanha o lutador" está marcado.' }));
         g.appendChild(sel(c, 'ateAlvo', 'Até o alvo', [['', 'Não (tamanho normal)'], ['cortar', '✂ Cortar no alvo'], ['esticar', '↔ Esticar/encolher até o alvo']],
           'Para raios e rajadas (ex.: Kamehameha): o desenho termina no peito do alvo em vez de passar dele e sair da tela', ''));
         g.appendChild(E.el('p', 'es-dica', 'Arraste no palco para posicionar; alça amarela = tamanho, alça azul = giro.'));

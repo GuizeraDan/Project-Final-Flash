@@ -680,3 +680,8 @@ Cache do app: `finalflash-v47`.
 - `gravarPendentes`: se o localStorage encher, tenta liberar a cópia `ULT` e, se não der, marca `cheio` e o painel ☁ avisa (antes falhava calado).
 - Teste: `tools/testes/edicoes_fila.js` (arquivo grande simulado).
 - Pendente: o arquivo vai crescer com as 8916 mudanças; proposta de guardar os sprites separados como referência (sem copiar os quadros) para encolher.
+
+### 2026-11-27 — Efeito: 📍 Ficar junto do lutador
+- `junto` no efeito (`FF.Linha.efeitoJunto(c)`: padrão = `seguir`; "tela" nunca): na diagonal o efeito não passa pelo `mapaPersp` nem ganha a inclinação automática — fica no mesmo lugar em relação ao boneco em qualquer fileira (só o tamanho acompanha). Resolve linhas de velocidade/poeira que saíam do lugar conforme a perspectiva. Palco (gravarRef) usa a mesma regra para as alças.
+- Atenção: efeitos já montados com "Acompanha o lutador" passam a ficar junto (pedido do usuário).
+- Teste: `tools/testes/efeito_junto.js`.

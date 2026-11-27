@@ -130,7 +130,7 @@ FF.EstudioPalco = class {
       r.p = fx ? FF.Linha.pontoFoto(fx, c.em, b) : FF.Linha.ponto(b, a, t, c.em);
       // perspectiva: o motor leva o efeito para a diagonal entre quem solta e o alvo (FF.Linha.mapaPersp) e muda o
       // tamanho pelo da fileira. As alças usam a mesma conta (com as posições deste instante) para ficar em cima dele.
-      if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
+      if (b.persp && !FF.Linha.efeitoJunto(c) && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
         const foto = (f) => ({ latX: f.latX, latG: f.latG, homeX: f.homeX, homeG: f.homeG, base: f.base ? { x: f.base.x, g: f.base.g } : null });
         const A = foto(fx && fx.actor || a), T = foto(fx && fx.target || t), tela = c.em === 'tela';
         r.mapa = (x, y) => (tela && y < 140) ? { x, y } : FF.Linha.mapaPersp(b, A, T, x, y, tela);

@@ -16,6 +16,7 @@
 //            escala/rot no clipe = jeito antigo, só na chegada)
 //           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
+//  (efeito aceita junto: true = fica junto do lutador na perspectiva (sem diagonal/inclinação); padrão = seguir)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
 //  (efeito, projétil e camada aceitam prof: "quem"|"alvo" = na profundidade de quem solta / do alvo — com perspectiva,
 //   entra entre os lutadores pela altura de chão: quem está mais à frente cobre; sem perspectiva = na frente de todos)
@@ -311,7 +312,9 @@ FF.Linha = {
         // perspectiva: efeitos presos em quem solta ou na tela vão para o lugar certo entre ele e o alvo
         // (os de tela bem no alto, como faixas e brilhos de tela cheia, ficam onde estão)
         let inclina = 0;
-        if (b.persp && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
+        // "Ficar junto do lutador": sem a diagonal nem a inclinação automática (padrão: ligado se "Acompanha o lutador")
+        const junto = this.efeitoJunto(c);
+        if (b.persp && !junto && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
           ({ x: ex, y: ey } = this.mapaPersp(b, A0, T0, ex, ey, c.em === 'tela'));
           // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
           if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null) { const bx = actor.base ? actor.base.x : actor.homeX, bg = actor.base ? actor.base.g - 4 : actor.homeG; if (Math.abs(target.homeX - bx) > 20) inclina = Math.atan2(target.homeG - bg, Math.abs(target.homeX - bx)) * 180 / Math.PI; }
@@ -500,6 +503,9 @@ FF.Linha = {
       }
     });
   },
+
+  // efeito que fica junto do lutador (não vai pela diagonal até o alvo nem inclina sozinho)
+  efeitoJunto(c) { return c.em !== 'tela' && (c.junto != null ? !!c.junto : !!c.seguir); },
 
   // foto de um lutador no começo do golpe (posição, pontos do quadro, dados da perspectiva)
   foto(f) {
