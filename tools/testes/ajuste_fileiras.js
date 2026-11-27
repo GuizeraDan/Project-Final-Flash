@@ -1,53 +1,11 @@
-// Teste: ✏ ajuste por combinação de fileiras — o que muda com o modo ligado fica só naquela combinação (c.ajustes),
-// o base continua igual, o motor usa o ajuste certo e o salvo no jogo não leva o estado de edição (_base).
-const { chromium } = require('playwright');
-(async () => {
-  const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
-  const p = await (await b.newContext({ viewport: { width: 1500, height: 900 } })).newPage();
-  const erros = []; p.on('pageerror', e => erros.push(e.message));
-  await p.route('https://api.github.com/**', r => r.abort());
-  await p.goto('file://' + require('path').resolve(__dirname, '..', '..') + '/estudio.html?aba=golpes&personagem=goku&golpe=kamehameha');
-  await p.waitForFunction(() => FF.Estudio.pronto && FF.Estudio.Golpes && FF.Estudio.Golpes.doc && FF.Estudio.Golpes.palco._b, null, { timeout: 30000 });
-  const ok = (c, m) => { console.log((c ? 'ok: ' : 'FALHOU: ') + m); if (!c) process.exitCode = 1; };
-  const r = await p.evaluate(() => {
-    const G = FF.Estudio.Golpes;
-    G.palco.opts.persp = true; G.cfg.filaAtk = 'fundo'; G.cfg.filaAlvo = 'meio'; G.irPara(0.2);
-    const tr = G.doc.linha.trilhas.find(x => x.tipo === 'efeitos');
-    const c = { id: 'taj', tipo: 'efeito', t: 0.05, fx: 'Rochas', em: 'atacante', dx: 10, dy: 0, d: 1 };
-    tr.clipes.push(c); G.sel = c.id; G.trSel = tr.id; G.mudou('teste');
-    G.ligarAjuste();
-    const chave = G.ajuste;
-    G.clipe().dx = 200; G.mudou('Mover no ajuste');
-    const noModo = { dx: G.clipe().dx, aj: JSON.stringify(G.clipe().ajustes) };
-    const salvo = G.montarGolpe();
-    const cs = salvo.roteiro[0].linha.trilhas.find(x => x.tipo === 'efeitos').clipes.find(x => x.id === 'taj');
-    G.desligarAjuste(true);
-    const base = G.clipe().dx;
-    // motor: com a combinação do ajuste usa dx 200; em outra combinação, o base (10)
-    const cBase = Object.assign({}, G.clipe(), { _tr: tr });
-    const usa = FF.Linha.comAjuste(cBase, chave).dx, outra = FF.Linha.comAjuste(cBase, 'frente>frente').dx;
-    // a batalha de verdade (sem semAjustes) acha a chave pelas fileiras
-    const B = G.palco._b, k2 = FF.Linha.chaveFileiras(B, B.atk, B.alvo);
-    return { chave, noModo, base, usa, outra, k2, salvoBase: cs.dx, salvoSemBase: !('_base' in cs), salvoAj: JSON.stringify(cs.ajustes), rotulo: G.tl.rotulo(G.clipe()) };
-  });
-  ok(r.chave === 'fundo>meio' && r.k2 === 'fundo>meio', 'combinação atual: ' + r.chave);
-  ok(r.noModo.dx === 200 && /"fundo>meio":\{"dx":200\}/.test(r.noModo.aj), 'no modo: mudança guardada só na combinação ' + r.noModo.aj);
-  ok(r.base === 10, 'desligado: o base continua 10');
-  ok(r.usa === 200 && r.outra === 10, 'motor: usa o ajuste na combinação certa (200) e o base nas outras (10)');
-  ok(r.salvoBase === 10 && r.salvoSemBase && /200/.test(r.salvoAj), 'salvar no jogo leva o base + os ajustes, sem o estado de edição');
-  ok(/◆1/.test(r.rotulo), 'clipe com ajuste marcado na linha do tempo: ' + r.rotulo);
-  ok(await p.locator('.es-bt-ajuste').count() === 1, 'botão ✏ na barra do palco');
-  // ⧉ Copiar para… e ⤴ Usar como base
-  await p.evaluate(() => { const G = FF.Estudio.Golpes; G.sel = 'taj'; G.ligarAjuste(); G.clipe().dx = 300; G.mudou('Mover no ajuste'); });
-  await p.click('.es-bts-ajuste button:has-text("Copiar")');
-  await p.waitForSelector('.es-copiar-grade');
-  const cels = p.locator('.es-copiar-cel input:not([disabled])');
-  await cels.nth(0).check();
-  await p.click('.es-escolha-bts button:has-text("⧉ Copiar")');
-  const cp = await p.evaluate(() => JSON.stringify(FF.Estudio.Golpes.clipe().ajustes));
-  ok((cp.match(/"dx":300/g) || []).length === 2, '⧉ ajuste copiado para outra combinação: ' + cp);
-  const ub = await p.evaluate(() => { const G = FF.Estudio.Golpes; G.usarComoBase(false); G.desligarAjuste(true); const c = G.clipe(); return { dx: c.dx, aj: JSON.stringify(c.ajustes || null) }; });
-  ok(ub.dx === 300 && !/fundo>meio/.test(ub.aj), '⤴ usar como base: base vira 300 e o ajuste desta combinação sai ' + JSON.stringify(ub));
-  ok(!erros.length, 'sem erros' + (erros.length ? ': ' + erros.join(' | ') : ''));
-  await b.close();
-})();
+// Teste: ajustes por combinação de fileiras ({"frente>meio": {dx…}}) — o Estúdio não edita mais (tudo é cena), mas o
+// motor ainda usa os que existem quando o jogador desliga as cenas; dentro da cena eles não valem.
+global.window = global; global.FF = {};
+require('../../js/battle/linha.js');
+const L = FF.Linha;
+const ok = (c, m) => { console.log((c ? 'ok: ' : 'FALHOU: ') + m); if (!c) process.exitCode = 1; };
+const c = { tipo: 'efeito', dx: 10, ajustes: { 'frente>meio': { dx: 200 } } };
+const b = { persp: true }, a = { prof: 0.1 }, t = { prof: 0.5 };
+ok(L.chaveFileiras(b, a, t) === 'frente>meio', 'chave da combinação');
+ok(L.comAjuste(c, 'frente>meio').dx === 200 && L.comAjuste(c, 'fundo>fundo').dx === 10, 'usa o ajuste só na combinação certa');
+ok(L.chaveFileiras(Object.assign({ cena: {} }, b), a, t) === null, 'dentro da cena os ajustes não valem');

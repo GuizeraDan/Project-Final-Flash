@@ -97,11 +97,11 @@ FF.EstudioPalco = class {
     const b = this.novaBatalha();
     this._b = b;
     this.golpe = golpe; this.linha = linha;
-    // o palco mostra o que o jogo vai fazer: 💥 rush / 🔥 supremo = a cena (só os dois, palco fixo);
-    // 👊 normal = a formação, com o passo até a fileira do alvo que o jogo dá antes de raios e rajadas
+    // o palco mostra o que o jogo vai fazer: golpe que acerta alguém = a cena (só os dois, palco fixo);
+    // o resto (buffs, carregar ki…) = a formação
     {
       const mv = Object.assign({}, golpe, { roteiro: [{ linha }] });
-      if (FF.Battle.categoria(mv) !== 'normal' && b.alvo && b.alvo !== b.atk) b.entrarCena(b.atk, b.alvo, mv, true);
+      if (FF.Battle.ofensivo(mv) && b.alvo && b.alvo !== b.atk && b.alvo.lado !== b.atk.lado) b.entrarCena(b.atk, b.alvo, mv, true);
       else b.alinharFileira(b.atk, b.alvo, mv, true);
     }
     // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;

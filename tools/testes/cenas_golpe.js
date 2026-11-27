@@ -1,5 +1,5 @@
-// Teste: 🎬 cenas de golpe — 💥 rush / 🔥 supremo cortam para a cena (só quem ataca e o alvo, palco fixo, igual em
-// qualquer fileira), 👊 normal fica na formação; na luta os outros somem durante a cena e tudo volta no fim.
+// Teste: 🎬 cenas de golpe — todo golpe que acerta alguém corta para a cena (só quem ataca e o alvo, palco fixo, igual
+// em qualquer fileira; normal = corte seco, rush/supremo = flash); na luta os outros somem durante a cena e tudo volta no fim.
 const { chromium } = require('playwright');
 (async () => {
   const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
@@ -15,7 +15,9 @@ const { chromium } = require('playwright');
   const r1 = await pos('fundo', 'fundo', 'rush'), r2 = await pos('frente', 'meio', 'rush');
   ok(r1 === r2 && JSON.parse(r1).cena, 'palco: rush mostra a cena, igual em qualquer fileira ' + r1);
   const n1 = await pos('fundo', 'fundo', 'normal'), n2 = await pos('frente', 'meio', 'normal');
-  ok(n1 !== n2 && !JSON.parse(n1).cena, 'palco: normal fica na formação (muda com a fileira)');
+  ok(n1 === r1 && n2 === r1, 'palco: normal também vira cena (mesmo palco)');
+  const corte = await p.evaluate(async () => { const B = FF.Estudio.Golpes.palco._b; const mv = { categoria: 'normal', roteiro: [{ linha: { duracao: 1, trilhas: [{ tipo: 'acertos', clipes: [{ tipo: 'acerto', t: 0.1 }] }] } }] }; return [B.querCena(B.atk, B.alvo, mv), FF.Battle.categoria(mv)]; });
+  ok(corte[0] === true, 'golpe normal pede cena no jogo (cenas ligadas)');
   // pontos de tela (Mover para x) caem no mesmo lugar com qualquer tamanho de time
   const ponto = async (ali) => {
     await p.evaluate(async (ali) => { const G = FF.Estudio.Golpes; await G.aplicarCfg(Object.assign({}, G.cfg, { aliadosAlvo: ali, filaAtk: null, filaAlvo: null }), true); }, ali);

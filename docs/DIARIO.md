@@ -703,4 +703,6 @@ Cache do app: `finalflash-v47`.
 - Visão lateral removida (sempre diagonal); botão ◢/▬ saiu do palco. O palco mostra exatamente o que o jogo vai fazer.
 - Teste novo `tools/testes/cenas_golpe.js`.
 - Falta: o usuário testar os golpes com cena; se ficar bom, dá para limpar a UI de ajustes por fileira (🧍🎯 / "Só nesta combinação"), que perde o sentido nos golpes com cena.
+- Mesmo dia: corrigido o desencontro palco × luta na cena (pontos de tela usavam a formação lateral, que muda com o tamanho dos times). Depois, a pedido: **todo golpe que acerta alguém vira cena** (normal = corte seco, rush/supremo = flash); saíram do Estúdio as fileiras (🧍🎯 e os selects) e o "✏ Só nesta combinação".
+- Próximo passo conversado: câmera e entrada estilo Octopath Traveler (zoom no par, retrato no supremo, "espaço do golpe" para quando as cenas estiverem desligadas) — o usuário ainda vai decidir.
 

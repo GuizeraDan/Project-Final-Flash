@@ -101,8 +101,6 @@ FF.EstudioProps = {
         E.botao('⤴ Tornar base', () => host.usarComoBase(true), 'O ajuste deste clipe nesta combinação vira a versão base dele (vale para as outras combinações sem ajuste)'));
       g.appendChild(aj);
     }
-    const nAj = c.ajustes ? Object.keys(c.ajustes).length : 0;
-    if (nAj && !host.ajuste) g.appendChild(E.el('p', 'es-dica', '◆ Este clipe tem ajuste em ' + nAj + ' combinação(ões) de fileiras: ' + Object.keys(c.ajustes).map(k => host.nomeChave(k)).join(', ') + '. O que mudar agora vale para as outras.'));
     if (host.podeTrazer && host.podeTrazer(c)) g.appendChild(E.botao('⌖ Trazer para a tela', () => host.trazerParaTela(), 'Sumiu da tela? Põe este clipe de volta num lugar visível (perto de quem solta ou no meio da tela)', 'es-trazer-tela'));
     g.appendChild(num(c, 't', 'Início (s)', 'Quando o clipe começa na linha do tempo', { passo: 0.01, min: 0 }));
     box.appendChild(g);
@@ -450,8 +448,8 @@ FF.EstudioProps = {
       const auto = FF.Battle.categoria(Object.assign({}, g, { categoria: null, roteiro: [{ linha: host.doc.linha }] }));
       const nomes = { normal: '👊 Normal', rush: '💥 Rush', supremo: '🔥 Supremo' };
       a.appendChild(E.campo('select', 'Tipo de cena', g.categoria || '', (v) => { if (v) g.categoria = v; else delete g.categoria; host.mudou('Tipo de cena'); host.renderProps(); },
-        { lista: [['', 'Automático: ' + nomes[auto]], ['normal', '👊 Normal — na formação, sem cena'], ['rush', '💥 Rush — corta para a cena'], ['supremo', '🔥 Supremo — corta para a cena']],
-          dica: 'Rush e Supremo cortam para uma cena só com quem ataca e o alvo, sempre no mesmo palco (o que você vê aqui) — monte à vontade com pontos da tela. Normal acontece na formação da luta (as fileiras contam). O jogador pode desligar as cenas em Opções.' }));
+        { lista: [['', 'Automático: ' + nomes[auto]], ['normal', '👊 Normal — corte rápido'], ['rush', '💥 Rush — corte com flash'], ['supremo', '🔥 Supremo — corte com flash']],
+          dica: 'Todo golpe que acerta alguém corta para uma cena só com quem ataca e o alvo, sempre no mesmo palco (o que você vê aqui) — o que você monta é o que aparece na luta, em qualquer fileira. O tipo muda só a entrada (Normal = corte seco; Rush e Supremo = flash) e a opção "Só supremos" do jogador.' }));
     }
     a.appendChild(E.campo('check', 'Anunciar o nome', g.anuncio !== false, (v) => { if (v) delete g.anuncio; else g.anuncio = false; host.mudou('Anúncio'); }));
     box.appendChild(a);

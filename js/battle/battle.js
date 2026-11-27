@@ -506,7 +506,7 @@ FF.Battle = class {
     }
     // perspectiva: antes de golpear alguém de outra fileira, quem ataca desliza até a fileira do alvo
     // (raios, rajadas e projéteis saem alinhados com ele; no fim volta para a sua)
-    // 💥 rush / 🔥 supremo: corta para a cena (só quem ataca e o alvo, palco fixo)
+    // golpe em alguém do outro time: corta para a cena (só quem ataca e o alvo, palco fixo)
     const cena = this.querCena(actor, target, move) ? await this.entrarCena(actor, target, move) : null;
     const alinhou = cena ? false : await this.alinharFileira(actor, target, move);
     // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
@@ -538,11 +538,11 @@ FF.Battle = class {
     await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null]);
   }
 
-  // ---------- 🎬 cena do golpe (rush e supremo) ----------
+  // ---------- 🎬 cena do golpe (todo golpe que acerta alguém do outro time) ----------
   querCena(actor, target, move) {
     if (this.semCenas || !this.persp || !target || target === actor || actor.lado === target.lado || !FF.Battle.ofensivo(move)) return false;
     const cat = FF.Battle.categoria(move), op = FF.Cenas.id();
-    return op === 'ligadas' ? cat !== 'normal' : op === 'supremos' ? cat === 'supremo' : false;
+    return op === 'ligadas' ? true : op === 'supremos' ? cat === 'supremo' : false;
   }
   // quem aparece na cena: quem ataca, o alvo e os parceiros das trilhas do golpe
   atoresCena(actor, target, move) {
@@ -560,7 +560,9 @@ FF.Battle = class {
     const atores = this.atoresCena(actor, target, move);
     const ESC = 2.5, offX = (FF.W - FF.BW) / 2;
     const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa, latX: f.latX, latG: f.latG })) };
-    if (!instantaneo) { this.flash(0.9, 0.3); await FF.Clock.wait(0.12); }
+    // entrada: 👊 normal = corte seco; 💥 rush / 🔥 supremo = flash
+    const comFlash = FF.Battle.categoria(move) !== 'normal';
+    if (!instantaneo) { if (comFlash) { this.flash(0.9, 0.3); await FF.Clock.wait(0.12); } else await FF.Clock.wait(0.05); }
     this.scale = ESC; this.fov = 1;
     const outras = [0.15, 0.8, 0.95];
     const porLado = {};
@@ -575,14 +577,13 @@ FF.Battle = class {
       Object.assign(f, { homeX: x, homeG: g, homeS: sc, prof: d, x, groundY: g, y: g, scale: sc, base: null, faixa: null, latX, latG: this.groundY });
       f.naCena = true;
     });
-    this.cena = { salvo };
-    if (!instantaneo) await FF.Clock.wait(0.15);
+    this.cena = { salvo, comFlash };
+    if (!instantaneo) await FF.Clock.wait(comFlash ? 0.15 : 0.08);
     return this.cena;
   }
   async sairCena(cena) {
     if (!cena || this.cena !== cena) return;
-    this.flash(0.8, 0.3);
-    await FF.Clock.wait(0.1);
+    if (cena.comFlash) { this.flash(0.8, 0.3); await FF.Clock.wait(0.1); }
     this.scale = cena.salvo.scale; this.fov = cena.salvo.fov;
     cena.salvo.atores.forEach(v => {
       const f = v.f;
