@@ -694,3 +694,4 @@ Cache do app: `finalflash-v47`.
 - Clipe ganha `ajustes: {"<fila quem solta>><fila alvo>": {campos}}` (filas frente/meio/fundo pelo `prof`: <0,3 / >0,7). O motor aplica na hora de tocar (`FF.Linha.chaveFileiras/comAjuste` em `iniciar`); campos: posição, giro, tamanho, pontos, chaves, arco, dist, flip, alpha.
 - Estúdio: botão "✏ Só nesta combinação" na barra do palco (ao lado de 🧍/🎯). Ligado: os clipes mostram a combinação atual e o que mudar fica nela (`c._base` guarda o base só durante a edição; `linhaBase()` no salvar, `restaurarBase` ao abrir); trocar fileira com o modo ligado guarda e liga na nova. Props: aviso + "↺ Usar o base aqui"; linha do tempo marca ◆N. O palco desligado mostra/edita o base (`b.semAjustes`).
 - Teste: `tools/testes/ajuste_fileiras.js`.
+- Revisão do motor/Estúdio (só leitura) em `docs/REVISAO_MOTOR.md`: 9 itens com proposta e risco; aguardando o usuário escolher.
