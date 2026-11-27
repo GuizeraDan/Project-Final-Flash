@@ -15,6 +15,8 @@
 //           (rot/esc de cada ponto: giro e tamanho ali, suave entre os pontos; rot0/esc0 = pose na saída;
 //            escala/rot no clipe = jeito antigo, só na chegada)
 //           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
+//  ajustes: {"frente>meio": {dx, dy, x, y, pontos, …}} = campos que mudam só quando quem solta e o alvo estão
+//           nessas fileiras (luta em diagonal); o resto do clipe vale para todas (FF.Linha.comAjuste)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita junto: true = fica junto do lutador na perspectiva (sem diagonal/inclinação); padrão = seguir)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
@@ -46,6 +48,20 @@ FF.Linha = {
   LEAD: 0.55,
 
   // ---------- utilidades ----------
+  // combinação de fileiras de quem solta e do alvo (luta em diagonal): "frente>meio", "fundo>fundo"…
+  fila(p) { return p == null ? null : p < 0.3 ? 'frente' : p > 0.7 ? 'fundo' : 'meio'; },
+  chaveFileiras(b, actor, target) {
+    if (!b || !b.persp || !actor || !target || actor === target || actor.prof == null || target.prof == null) return null;
+    return this.fila(actor.prof) + '>' + this.fila(target.prof);
+  },
+  // clipe com os campos ajustados para uma combinação (null no ajuste = sem o campo)
+  comAjuste(c, chave) {
+    const a = chave && c.ajustes && c.ajustes[chave];
+    if (!a) return c;
+    const o = Object.assign({}, c);
+    for (const k of Object.keys(a)) { if (a[k] === null) delete o[k]; else o[k] = JSON.parse(JSON.stringify(a[k])); }
+    return o;
+  },
   clipes(linha) { const l = []; (linha.trilhas || []).forEach(tr => { if (!tr.oculta) (tr.clipes || []).forEach(c => l.push({ tr, c })); }); return l; },
 
   // tempo total de uma animação (s) com um fps
@@ -109,7 +125,9 @@ FF.Linha = {
   iniciar(b, actor, target, move, linha, opts) {
     const ehKO = !!(opts && opts.ko);
     const dur = linha.duracao || 1;
-    const lista = this.clipes(linha).map(x => Object.assign({ t: 0 }, x.c, { _tr: x.tr })).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
+    // ajustes por combinação de fileiras (Estúdio: "✏ Só nesta combinação"): o clipe usa os campos daquela combinação
+    const chave = b && b.semAjustes ? null : this.chaveFileiras(b, actor, target);
+    const lista = this.clipes(linha).map(x => this.comAjuste(Object.assign({ t: 0 }, x.c, { _tr: x.tr }), chave)).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
     // anéis de guarda/crítico: agrupa os acertos e abre cada anel LEAD s antes do 1º acerto do grupo
     const mode = target ? b.qteMode(actor, target) : null;
     const acertos = lista.filter(c => c.tipo === 'acerto');

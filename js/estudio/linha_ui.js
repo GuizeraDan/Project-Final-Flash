@@ -176,7 +176,8 @@ FF.EstudioLinha = class {
   }
   cor(tipo) { return { lutador: '#5a8cff', efeitos: '#ff8a3a', projeteis: '#ffd84a', camadas: '#b06cff', sons: '#3ad08a', acertos: '#ff4a5a', tela: '#9aa8c0', acoes: '#36c8d8' }[tipo] || '#888'; }
 
-  rotulo(c) {
+  rotulo(c) { const n = c.ajustes ? Object.keys(c.ajustes).length : 0; return this.rotuloBase(c) + (n ? ' ◆' + n : ''); }
+  rotuloBase(c) {
     const v = (x) => Array.isArray(x) ? x[0] + (x.length > 1 ? ' +' + (x.length - 1) : '') : (x || '');
     switch (c.tipo) {
       case 'anim': return (c.anim || '?') + (c.empurrao ? ' ⇠' : '');

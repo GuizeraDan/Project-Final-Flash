@@ -689,3 +689,8 @@ Cache do app: `finalflash-v47`.
 
 ### 2026-11-27 — Desfeito: "Fileiras durante o golpe"
 - O usuário testou e não gostou: revert do commit ef62569d (cena do golpe / alvo vem para a fileira e o alinharFileira instantâneo no palco). Nenhum golpe salvo usava o campo. Próximo passo em debate: ajustes por fileira do alvo nos clipes e uma revisão do motor (redundâncias).
+
+### 2026-11-27 — ✏ Ajuste por combinação de fileiras
+- Clipe ganha `ajustes: {"<fila quem solta>><fila alvo>": {campos}}` (filas frente/meio/fundo pelo `prof`: <0,3 / >0,7). O motor aplica na hora de tocar (`FF.Linha.chaveFileiras/comAjuste` em `iniciar`); campos: posição, giro, tamanho, pontos, chaves, arco, dist, flip, alpha.
+- Estúdio: botão "✏ Só nesta combinação" na barra do palco (ao lado de 🧍/🎯). Ligado: os clipes mostram a combinação atual e o que mudar fica nela (`c._base` guarda o base só durante a edição; `linhaBase()` no salvar, `restaurarBase` ao abrir); trocar fileira com o modo ligado guarda e liga na nova. Props: aviso + "↺ Usar o base aqui"; linha do tempo marca ◆N. O palco desligado mostra/edita o base (`b.semAjustes`).
+- Teste: `tools/testes/ajuste_fileiras.js`.

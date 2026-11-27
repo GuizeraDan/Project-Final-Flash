@@ -188,7 +188,7 @@ window.FF = window.FF || {};
       const ladoAtk = cfg.lado === 'inimigo' ? 'direita' : 'esquerda', ladoAlvo = cfg.lado === 'inimigo' ? 'esquerda' : 'direita';
       // fileira de quem solta e do alvo (visão Diagonal): testar o golpe nos 3 lugares onde os lutadores aparecem
       const FILAS = [['', 'a do jogo'], ['frente', '1 · frente (embaixo)'], ['meio', '2 · meio'], ['fundo', '3 · fundo (perto do horizonte)']];
-      const mudarFila = (k, v) => { cfg[k] = v || null; if (!v) delete cfg[k]; E.rascunho.gravar('golpe_cfg', cfg); this.irPara(this.t); if (this.renderFilas) this.renderFilas(); };
+      const mudarFila = (k, v) => { const aj = this.ajuste; if (aj) this.desligarAjuste(true); cfg[k] = v || null; if (!v) delete cfg[k]; E.rascunho.gravar('golpe_cfg', cfg); this.irPara(this.t); if (this.renderFilas) this.renderFilas(); if (aj) this.ligarAjuste(); };
       // quem é atacado: o Alvo ou um dos aliados dele (as referências do golpe — peito, pés, fileira — passam a ser dele)
       const timeAlvo = [cfg.alvo].concat(ali).filter(Boolean);
       if (timeAlvo.length > 1) {
@@ -291,7 +291,8 @@ window.FF = window.FF || {};
       this.pausar();
       // garante ids e trilhas
       doc.linha.trilhas = doc.linha.trilhas || [];
-      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).forEach(c => { if (!c.id) c.id = novoId(); }));
+      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).forEach(c => { if (!c.id) c.id = novoId(); this.restaurarBase(c); }));
+      this.ajuste = null;
       this.extrairImpactos(doc.linha);
       this.doc = doc;
       this.sel = null; this.trSel = null; this.t = 0; this.loop = null;
@@ -387,6 +388,7 @@ window.FF = window.FF || {};
     },
     // rotulo: texto para o desfazer; juntar: agrupa mudanças seguidas; arrastando: ainda no meio de um arraste
     mudou(rot, juntar, arrastando) {
+      if (this.ajuste) this.guardarAjuste();
       this.sincronizarPresos();
       this.autoDuracao();
       this.sujo = true;
@@ -694,7 +696,7 @@ window.FF = window.FF || {};
         const g = E.el('span', 'es-filas'); g.title = tit;
         g.appendChild(E.el('span', null, ic));
         [['frente', '1'], ['meio', '2'], ['fundo', '3']].forEach(([v, t]) => {
-          const bt = E.botao(t, () => { this.cfg[k] = this.cfg[k] === v ? null : v; if (!this.cfg[k]) delete this.cfg[k]; E.rascunho.gravar('golpe_cfg', this.cfg); this.irPara(this.t); this.montarLado(); this.renderFilas(); },
+          const bt = E.botao(t, () => { const aj = this.ajuste; if (aj) this.desligarAjuste(true); this.cfg[k] = this.cfg[k] === v ? null : v; if (!this.cfg[k]) delete this.cfg[k]; E.rascunho.gravar('golpe_cfg', this.cfg); this.irPara(this.t); this.montarLado(); this.renderFilas(); if (aj) this.ligarAjuste(); },
             tit + ': ' + ({ frente: 'frente (embaixo)', meio: 'meio', fundo: 'fundo' })[v] + ' — clique de novo para voltar à do jogo');
           bt.dataset.fila = v; g.appendChild(bt);
         });
@@ -704,6 +706,9 @@ window.FF = window.FF || {};
       this._filas.forEach(g => b.appendChild(g));
       this.renderFilas = () => { if (!this.cfg) return; const ks = ['filaAtk', 'filaAlvo']; this._filas.forEach((g, i) => g.querySelectorAll('button').forEach(bt => bt.classList.toggle('es-bt-ouro', this.cfg[ks[i]] === bt.dataset.fila))); };
       this.renderFilas();
+      this.btAjuste = E.botao('✏ Só nesta combinação', () => { if (this.ajuste) this.desligarAjuste(); else this.ligarAjuste(); },
+        'Ajustar só esta combinação de fileiras (🧍 quem solta × 🎯 alvo): o que você arrastar ou mudar de posição vale só quando os dois estiverem nessas fileiras; as outras continuam com a versão base. Clique de novo para voltar ao base.', 'es-bt-ajuste');
+      b.appendChild(this.btAjuste);
       b.appendChild(E.el('span', 'sep'));
       b.appendChild(E.botao('⚔ Na batalha', () => this.naBatalha(), 'Roda o golpe completo na batalha real (dano, anéis de guarda/crítico). Espaço/clique = apertar no anel.'));
       b.appendChild(E.botao('＋ Trilha', () => this.novaTrilha(), 'Nova trilha (efeitos, sons, parceiro…)'));
@@ -743,7 +748,7 @@ window.FF = window.FF || {};
     },
     montarGolpe() {
       const g = E.copia(this.doc.golpe);
-      const linha = E.copia(this.doc.linha);
+      const linha = this.linhaBase();
       g.roteiro = [{ linha }];
       // sprites de que o golpe precisa além dos do lutador (o jogo carrega antes da luta)
       const usados = new Set(FF.Linha.spritesUsados(linha));
@@ -765,11 +770,11 @@ window.FF = window.FF || {};
       const g = this.montarGolpe();
       if (!g.nome) g.nome = 'Sem nome';
       if (o.tipo === 'abertura') {
-        const linha = E.copia(this.doc.linha);
+        const linha = this.linhaBase();
         if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
         E.salvarNoJogo(['abertura', o.id], linha, '⚡ ' + g.nome + ' salva no jogo.');
       } else if (o.tipo === 'ko') {
-        const linha = E.copia(this.doc.linha);
+        const linha = this.linhaBase();
         if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
         E.salvarNoJogo(['ko', o.id], linha, '💀 ' + g.nome + ' salva no jogo.');
       } else if (o.tipo === 'golpe') {
@@ -1076,6 +1081,69 @@ window.FF = window.FF || {};
       if (['atacante', 'peito', 'disparo'].includes(novo) && c.junto == null && !c.seguir && ['alvo', 'alvoPes', 'tela'].includes(velho)) c.junto = true;
       this.mudou('Preso em');
       this.renderProps();
+    },
+    // ---------- ✏ ajustes por combinação de fileiras (luta em diagonal) ----------
+    // Ligado: os clipes mostram os campos da combinação atual (🧍 × 🎯) e o que mudar de posição fica só nela
+    // (c.ajustes["fundo>meio"]); o motor usa o ajuste quando quem solta e o alvo estão nessas fileiras.
+    // Enquanto ligado, cada clipe guarda a versão base em c._base (nunca vai para o jogo: linhaBase/restaurarBase).
+    CAMPOS_AJUSTE: ['dx', 'dy', 'x', 'y', 'rot', 'escala', 'pontos', 'rot0', 'esc0', 'deDx', 'deDy', 'alvoDx', 'alvoDy', 'spriteDx', 'spriteDy', 'chaves', 'arco', 'dist', 'flip', 'alpha'],
+    cadaClipe(fn) { if (this.doc) this.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => fn(c, tr))); },
+    chaveAtual() { const b = this.palco && this.palco._b; return b ? FF.Linha.chaveFileiras(b, b.atk, b.alvo) : null; },
+    nomeChave(k) { const n = { frente: '1', meio: '2', fundo: '3' }; const [a, t] = (k || '').split('>'); return '🧍' + (n[a] || '?') + ' → 🎯' + (n[t] || '?'); },
+    restaurarBase(c) {
+      if (!c._base) return;
+      this.CAMPOS_AJUSTE.forEach(f => { if (f in c._base) c[f] = E.copia(c._base[f]); else delete c[f]; });
+      delete c._base;
+    },
+    linhaBase() { const L = E.copia(this.doc.linha); L.trilhas.forEach(tr => tr.clipes.forEach(c => this.restaurarBase(c))); return L; },
+    guardarAjuste() {
+      const k = this.ajuste; if (!k) return;
+      this.cadaClipe(c => {
+        if (!c._base) return;
+        const d = {};
+        this.CAMPOS_AJUSTE.forEach(f => { const v0 = c._base[f], v1 = c[f]; if (JSON.stringify(v0) !== JSON.stringify(v1)) d[f] = v1 === undefined ? null : E.copia(v1); });
+        if (Object.keys(d).length) { c.ajustes = c.ajustes || {}; c.ajustes[k] = d; }
+        else if (c.ajustes) { delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes; }
+      });
+    },
+    ligarAjuste() {
+      if (!this.doc) return;
+      const k = this.chaveAtual();
+      if (!k) { E.aviso('Os ajustes por combinação são para a visão Diagonal (botão ◢ na barra do palco).', 'erro'); return; }
+      this.ajuste = k;
+      this.cadaClipe(c => {
+        const b = {}; this.CAMPOS_AJUSTE.forEach(f => { if (c[f] !== undefined) b[f] = E.copia(c[f]); }); c._base = b;
+        const a = c.ajustes && c.ajustes[k];
+        if (a) Object.keys(a).forEach(f => { if (a[f] === null) delete c[f]; else c[f] = E.copia(a[f]); });
+      });
+      this.irPara(this.t); this.tl.render(); this.renderProps(); this.renderAjuste();
+      E.aviso('✏ Ajustando só ' + this.nomeChave(k) + ': o que você mover agora vale só nessa combinação.', 'ok');
+    },
+    desligarAjuste(semAviso) {
+      if (!this.ajuste) return;
+      this.guardarAjuste();
+      this.cadaClipe(c => this.restaurarBase(c));
+      this.ajuste = null;
+      this.irPara(this.t); this.tl.render(); this.renderProps(); this.renderAjuste();
+      if (!semAviso) E.aviso('✏ Ajustes guardados. Voltou a editar a versão base (vale para todas as combinações).', 'ok');
+    },
+    // tira o ajuste do clipe selecionado (ou de todos) nesta combinação: volta a usar o base
+    tirarAjuste(todos) {
+      const k = this.ajuste; if (!k) return;
+      const alvo = todos ? null : this.clipe();
+      this.cadaClipe(c => {
+        if (alvo && c !== alvo) return;
+        if (c._base) { this.CAMPOS_AJUSTE.forEach(f => { if (f in c._base) c[f] = E.copia(c._base[f]); else delete c[f]; }); }
+        if (c.ajustes) { delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes; }
+      });
+      this.mudou('Tirar ajuste'); this.renderProps();
+    },
+    // trocou a fileira com o modo ligado: guarda, volta ao base e liga de novo na combinação nova
+    trocouFileira() { if (this.ajuste) { this.desligarAjuste(true); this.ligarAjuste(); } },
+    renderAjuste() {
+      if (!this.btAjuste) return;
+      this.btAjuste.classList.toggle('es-bt-ouro', !!this.ajuste);
+      this.btAjuste.textContent = this.ajuste ? '✏ Só ' + this.nomeChave(this.ajuste) : '✏ Só nesta combinação';
     },
     // ⌖ Trazer para a tela: põe o clipe selecionado de volta num lugar visível (pelo tipo)
     podeTrazer(c) { return !!c && ['efeito', 'anim', 'camada', 'projetil', 'caminho'].includes(c.tipo) || (!!c && (c.tipo === 'mover' || c.tipo === 'teleporte') && c.para === 'x'); },

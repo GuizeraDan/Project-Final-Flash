@@ -97,6 +97,9 @@ FF.EstudioPalco = class {
     const b = this.novaBatalha();
     this._b = b;
     this.golpe = golpe; this.linha = linha;
+    // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;
+    // desligado, o palco mostra e edita a versão base
+    b.semAjustes = true;
     b.atk.busy = true;
     const orig = FF.Linha.disparar;
     const self = this;

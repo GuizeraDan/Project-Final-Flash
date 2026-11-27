@@ -93,6 +93,15 @@ FF.EstudioProps = {
       return;
     }
     const g = E.grupo(this.titulo(c));
+    if (host.ajuste) {   // ✏ modo de ajuste por combinação de fileiras
+      const aj = E.el('div', 'es-ajuste-aviso');
+      const tem = c.ajustes && c.ajustes[host.ajuste];
+      aj.appendChild(E.el('span', null, '✏ Ajustando só ' + host.nomeChave(host.ajuste) + (tem ? ' · este clipe tem ajuste' : ' · este clipe usa o base')));
+      if (tem) aj.appendChild(E.botao('↺ Usar o base aqui', () => host.tirarAjuste(false), 'Tira o ajuste deste clipe nesta combinação (volta à versão base)'));
+      g.appendChild(aj);
+    }
+    const nAj = c.ajustes ? Object.keys(c.ajustes).length : 0;
+    if (nAj && !host.ajuste) g.appendChild(E.el('p', 'es-dica', '◆ Este clipe tem ajuste em ' + nAj + ' combinação(ões) de fileiras: ' + Object.keys(c.ajustes).map(k => host.nomeChave(k)).join(', ') + '. O que mudar agora vale para as outras.'));
     if (host.podeTrazer && host.podeTrazer(c)) g.appendChild(E.botao('⌖ Trazer para a tela', () => host.trazerParaTela(), 'Sumiu da tela? Põe este clipe de volta num lugar visível (perto de quem solta ou no meio da tela)', 'es-trazer-tela'));
     g.appendChild(num(c, 't', 'Início (s)', 'Quando o clipe começa na linha do tempo', { passo: 0.01, min: 0 }));
     box.appendChild(g);
