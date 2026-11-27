@@ -45,7 +45,14 @@ FF.Edicoes = {
     return o;
   },
   pendentes() { try { return JSON.parse(localStorage.getItem(this.PEND) || '[]'); } catch (e) { return []; } },
-  gravarPendentes(l) { try { localStorage.setItem(this.PEND, JSON.stringify(l)); } catch (e) { /* sem armazenamento */ } },
+  // armazenamento cheio: a mudança vale na tela, mas não ficou guardada no aparelho — avisa (antes era silencioso)
+  gravarPendentes(l) {
+    try { localStorage.setItem(this.PEND, JSON.stringify(l)); this.cheio = false; }
+    catch (e) {
+      try { localStorage.removeItem(this.ULT); localStorage.setItem(this.PEND, JSON.stringify(l)); this.cheio = false; return; } catch (x) { /* continua cheio */ }
+      this.cheio = true;
+    }
+  },
 
   // aplica uma lista de mudanças [{c: [seção, a, b], v}] sobre um objeto de edições
   aplicarLista(obj, lista) {
@@ -101,6 +108,24 @@ FF.Edicoes = {
     if (!r.ok) { const e = new Error(j.message || ('GitHub respondeu ' + r.status)); e.status = r.status; throw e; }
     return j;
   },
+  // lê um arquivo do repositório (texto + sha). Acima de 1 MB a API de contents não manda o conteúdo junto
+  // ("content" vazio, encoding "none"): aí busca o arquivo cru (Accept: raw, até 100 MB). Sem isso o envio quebrava
+  // com "Unexpected end of JSON input" quando o data/edicoes.js passou de 1 MB.
+  async lerRemoto(caminho) {
+    const atual = await this.api('/contents/' + caminho + '?ref=main', { headers: { Accept: 'application/vnd.github.object' } }).catch(e => { if (e.status === 404) return null; throw e; });
+    if (!atual) return null;
+    let texto;
+    if (atual.content && atual.encoding === 'base64') texto = this.de64(atual.content);
+    else {
+      const r = await fetch('https://api.github.com/repos/' + this.REPO + '/contents/' + caminho + '?ref=main', {
+        headers: { Authorization: 'Bearer ' + this.token(), Accept: 'application/vnd.github.raw' }, cache: 'no-store',
+      });
+      if (!r.ok) { const e = new Error('GitHub respondeu ' + r.status + ' ao ler ' + caminho); e.status = r.status; throw e; }
+      texto = await r.text();
+    }
+    if (!texto || texto.indexOf('{') < 0) throw new Error('Não consegui ler ' + caminho + ' do GitHub (veio vazio). Nada foi gravado; tento de novo depois.');
+    return { sha: atual.sha, texto };
+  },
   async conectar(token) {
     const ant = this.token();
     try { localStorage.setItem(this.TOKEN, token.trim()); } catch (e) { throw new Error('Este navegador não deixa guardar a chave.'); }
@@ -141,8 +166,8 @@ FF.Edicoes = {
       // imagens importadas primeiro (o arquivo de edições aponta para elas)
       if (FF.ImagensUsr) await FF.ImagensUsr.enviarPendentes();
       for (let tent = 0; tent < 3; tent++) {
-        const atual = await this.api('/contents/' + this.ARQ + '?ref=main').catch(e => { if (e.status === 404) return null; throw e; });
-        const obj = atual ? this.ler(this.de64(atual.content)) : { versao: 1 };
+        const atual = await this.lerRemoto(this.ARQ);
+        const obj = atual ? this.ler(atual.texto) : { versao: 1 };
         this.SECOES.forEach(k => { obj[k] = obj[k] || {}; });
         this.aplicarLista(obj, l);
         obj.rev = Math.max(Date.now(), (obj.rev || 0) + 1);
@@ -181,6 +206,7 @@ FF.Edicoes = {
   // texto curto para a interface
   resumo() {
     const n = this.pendentes().length;
+    if (this.cheio) return '⚠ O armazenamento deste aparelho encheu: as últimas mudanças podem não ter sido guardadas. Envie as pendentes (☁) antes de continuar.';
     if (!this.conectado()) return n ? '📱 ' + n + ' alteração(ões) só neste aparelho · conecte o GitHub para valer em todos' : '📱 Salvando só neste aparelho · conecte o GitHub para valer em todos';
     if (this.estado === 'enviando') return '☁ Enviando para o GitHub…';
     if (this.estado === 'erro') return '⚠ Não enviou (' + this.erro + ')' + (n ? ' · ' + n + ' pendente(s), tento de novo ao salvar' : '');
@@ -192,7 +218,7 @@ FF.Edicoes = {
 
   // grava um arquivo binário (base64) no repositório pela API de contents
   async gravarArquivo(caminho, base64, mensagem) {
-    const atual = await this.api('/contents/' + caminho + '?ref=main').catch(e => { if (e.status === 404) return null; throw e; });
+    const atual = await this.api('/contents/' + caminho + '?ref=main', { headers: { Accept: 'application/vnd.github.object' } }).catch(e => { if (e.status === 404) return null; throw e; });
     const corpo = { message: mensagem || ('Estúdio: ' + caminho), content: base64, branch: 'main',
       committer: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' },
       author: { name: 'GuizeraDan', email: 'GuizeraDan@users.noreply.github.com' } };

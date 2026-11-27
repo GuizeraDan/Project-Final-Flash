@@ -673,3 +673,10 @@ Cache do app: `finalflash-v47`.
 - "⌖ Trazer para a tela" no topo das Propriedades (efeito, animação, camada, projétil, movimento/teleporte para ponto, caminho): `G.trazerParaTela()`.
 - "🔍 Fora" na barra do palco (`palco.opts.fora`): o palco encolhe (0,62) e mostra uma faixa escura em volta com a borda "tela do jogo"; `palco.deCanvas/visivel/escalaFora` (pontoTela usa a mesma conta).
 - Teste: `tools/testes/fora_da_tela.js`.
+
+### 2026-11-27 — Correção urgente: envio parado desde 25/11 ("Unexpected end of JSON input")
+- `data/edicoes.js` passou de 1 MB (1,13 MB; `spritesNovos` = 771 KB, 1526 sprites do ⇱ Separar). Acima de 1 MB a API de contents manda `content` vazio (encoding "none") → `JSON.parse("")` → erro; nada foi enviado desde 25/11 11:40 (8916 pendentes no aparelho do usuário).
+- `FF.Edicoes.lerRemoto()`: pede `Accept: application/vnd.github.object` (sha) e, sem conteúdo, lê o arquivo cru (`application/vnd.github.raw`, até 100 MB). Texto vazio = erro sem gravar (nunca sobrescreve com vazio). `gravarArquivo` usa o mesmo cabeçalho.
+- `gravarPendentes`: se o localStorage encher, tenta liberar a cópia `ULT` e, se não der, marca `cheio` e o painel ☁ avisa (antes falhava calado).
+- Teste: `tools/testes/edicoes_fila.js` (arquivo grande simulado).
+- Pendente: o arquivo vai crescer com as 8916 mudanças; proposta de guardar os sprites separados como referência (sem copiar os quadros) para encolher.

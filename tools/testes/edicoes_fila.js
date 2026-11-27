@@ -9,11 +9,13 @@ vm.runInContext(fs.readFileSync(path.join(__dirname, '..', '..', 'js/core/edicoe
 const E = ctx.FF.Edicoes;
 let remoto = { versao: 1 }, puts = 0;
 E.conectado = () => true;
+let grande = false;   // simula o arquivo acima de 1 MB: a API manda content vazio e o texto vem pelo "raw"
 E.api = async (url, o) => {
   await new Promise(r => setTimeout(r, 30));
   if (o && o.method === 'PUT') { puts++; remoto = E.ler(E.de64(JSON.parse(o.body).content)); return {}; }
-  return { content: E.b64(E.escrever(remoto)), sha: 'x' + puts };
+  return grande ? { content: '', encoding: 'none', sha: 'x' + puts } : { content: E.b64(E.escrever(remoto)), encoding: 'base64', sha: 'x' + puts };
 };
+ctx.fetch = async (url, o) => ({ ok: true, status: 200, text: async () => E.escrever(remoto) });
 (async () => {
   // 1º envio começa com o atlas; durante ele: animação nova + nome no MESMO caminho do atlas
   const p1 = E.set(['spritesInfo', 'dlz_10_3'], { atlas: ['a.png'] });
@@ -27,4 +29,8 @@ E.api = async (url, o) => {
   ok(remoto.sprites && remoto.sprites.dlz_10_3 && remoto.sprites.dlz_10_3.TESTE_4 && remoto.sprites.dlz_10_3.TESTE_4.frames.length === 2, 'a animação chegou ao GitHub');
   ok(remoto.spritesInfo.dlz_10_3.nome === 'TESTE 4', 'o nome chegou ao GitHub');
   ok(E.pendentes().length === 0, 'fila vazia no fim');
+  // arquivo acima de 1 MB: lê pelo raw e envia normalmente (antes: "Unexpected end of JSON input")
+  grande = true;
+  await E.set(['spritesInfo', 'zz_grande'], { nome: 'Grande' });
+  ok(remoto.spritesInfo.zz_grande && remoto.sprites.dlz_10_3.TESTE_4 && E.pendentes().length === 0 && E.estado === 'ok', 'arquivo acima de 1 MB: lido pelo raw e enviado sem perder nada (' + E.estado + (E.erro ? ': ' + E.erro : '') + ')');
 })();
