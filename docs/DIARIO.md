@@ -685,3 +685,4 @@ Cache do app: `finalflash-v47`.
 - `junto` no efeito (`FF.Linha.efeitoJunto(c)`: padrão = `seguir`; "tela" nunca): na diagonal o efeito não passa pelo `mapaPersp` nem ganha a inclinação automática — fica no mesmo lugar em relação ao boneco em qualquer fileira (só o tamanho acompanha). Resolve linhas de velocidade/poeira que saíam do lugar conforme a perspectiva. Palco (gravarRef) usa a mesma regra para as alças.
 - Atenção: efeitos já montados com "Acompanha o lutador" passam a ficar junto (pedido do usuário).
 - Teste: `tools/testes/efeito_junto.js`.
+- Caso do usuário (kamehameha_kaioken, poeira "Loop"): estava "Preso em: peito do alvo" com X −541 — a posição dependia da distância até o alvo, que muda de luta para luta. Trocar "Preso em" agora recalcula X/Y para o efeito não sair do lugar (`G.trocarAncora`, pontos gravados pelo palco em `r.pontos`); indo de alvo/tela para quem solta, já liga "junto do lutador". Teste: `tools/testes/efeito_trocar_ancora.js`.

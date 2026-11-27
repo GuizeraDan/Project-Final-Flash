@@ -244,7 +244,8 @@ FF.EstudioProps = {
           g.appendChild(av);
         }
         g.appendChild(this.campoEfeito(c, 'fx', 'Efeito', host));
-        g.appendChild(sel(c, 'em', 'Preso em', this.EM, null, 'atacante'));
+        g.appendChild(E.campo('select', 'Preso em', c.em || 'atacante', (v) => { if (host.trocarAncora) host.trocarAncora(c, v); else { c.em = v; host.mudou('Preso em'); } },
+          { lista: this.EM, dica: 'Em quem o efeito fica preso. Trocar aqui não tira o efeito do lugar: X/Y são recalculados. Poeira e linhas atrás de quem solta: use "pés/peito de quem solta" (a distância até o alvo muda de uma luta para outra).' }));
         g.appendChild(chk(c, 'fixar', '📌 Fixar no começo do golpe (não muda de lugar ao mover o clipe na trilha)'));
         g.appendChild(chk(c, 'seguir', 'Acompanha o lutador (anda junto quando ele se move)'));
         if (c.em !== 'tela') g.appendChild(E.campo('check', '📍 Ficar junto do lutador (sem diagonal)', FF.Linha.efeitoJunto(c), (v) => { c.junto = !!v; if (c.junto === !!c.seguir) delete c.junto; host.mudou('Ficar junto do lutador'); },

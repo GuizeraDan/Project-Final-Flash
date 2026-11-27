@@ -1059,6 +1059,24 @@ window.FF = window.FF || {};
       ctx.restore();
     },
 
+    // trocar "Preso em" de um efeito sem ele sair do lugar na tela: recalcula X/Y a partir do ponto novo
+    // (pontos de quando o efeito começou, gravados pelo palco). Passando para quem solta, já fica "junto do lutador".
+    trocarAncora(c, novo) {
+      const velho = c.em || 'atacante';
+      if (novo === velho) return;
+      const r = (this.palco.ref || {})[c.id] || {}, P = r.pontos;
+      if (P && P[velho] && P[novo]) {
+        const dir = r.dir || 1, d0 = velho === 'tela' ? 1 : dir, d1 = novo === 'tela' ? 1 : dir;
+        const k0 = velho === 'tela' ? 1 : (r.kf || 1), k1 = novo === 'tela' ? 1 : (r.kf || 1);
+        const x = P[velho].x + (c.dx || 0) * d0 * k0, y = P[velho].y + (c.dy || 0) * k0;
+        c.dx = Math.round((x - P[novo].x) / (d1 * k1)); c.dy = Math.round((y - P[novo].y) / k1);
+        if (!c.dx) delete c.dx; if (!c.dy) delete c.dy;
+      }
+      c.em = novo;
+      if (['atacante', 'peito', 'disparo'].includes(novo) && c.junto == null && !c.seguir && ['alvo', 'alvoPes', 'tela'].includes(velho)) c.junto = true;
+      this.mudou('Preso em');
+      this.renderProps();
+    },
     // ⌖ Trazer para a tela: põe o clipe selecionado de volta num lugar visível (pelo tipo)
     podeTrazer(c) { return !!c && ['efeito', 'anim', 'camada', 'projetil', 'caminho'].includes(c.tipo) || (!!c && (c.tipo === 'mover' || c.tipo === 'teleporte') && c.para === 'x'); },
     trazerParaTela() {

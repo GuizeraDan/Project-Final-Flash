@@ -128,6 +128,10 @@ FF.EstudioPalco = class {
     if (c.tipo === 'efeito') {
       const fx = c.fixar && viva.foto ? viva.foto : null;   // "Fixar no começo do golpe": a mesma foto que o motor usa
       r.p = fx ? FF.Linha.pontoFoto(fx, c.em, b) : FF.Linha.ponto(b, a, t, c.em);
+      // todos os pontos de referência neste instante (trocar "Preso em" sem o efeito sair do lugar)
+      r.pontos = {};
+      ['atacante', 'peito', 'disparo', 'alvo', 'alvoPes', 'tela'].forEach(em => { try { r.pontos[em] = fx ? FF.Linha.pontoFoto(fx, em, b) : FF.Linha.ponto(b, a, t, em); } catch (e) { /* sem ponto */ } });
+      r.kf = b.fov || 1;
       // perspectiva: o motor leva o efeito para a diagonal entre quem solta e o alvo (FF.Linha.mapaPersp) e muda o
       // tamanho pelo da fileira. As alças usam a mesma conta (com as posições deste instante) para ficar em cima dele.
       if (b.persp && !FF.Linha.efeitoJunto(c) && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
