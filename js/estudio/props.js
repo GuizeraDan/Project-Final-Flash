@@ -97,7 +97,8 @@ FF.EstudioProps = {
       const aj = E.el('div', 'es-ajuste-aviso');
       const tem = c.ajustes && c.ajustes[host.ajuste];
       aj.appendChild(E.el('span', null, '✏ Ajustando só ' + host.nomeChave(host.ajuste) + (tem ? ' · este clipe tem ajuste' : ' · este clipe usa o base')));
-      if (tem) aj.appendChild(E.botao('↺ Usar o base aqui', () => host.tirarAjuste(false), 'Tira o ajuste deste clipe nesta combinação (volta à versão base)'));
+      if (tem) aj.append(E.botao('↺ Usar o base aqui', () => host.tirarAjuste(false), 'Tira o ajuste deste clipe nesta combinação (volta à versão base)'),
+        E.botao('⤴ Tornar base', () => host.usarComoBase(true), 'O ajuste deste clipe nesta combinação vira a versão base dele (vale para as outras combinações sem ajuste)'));
       g.appendChild(aj);
     }
     const nAj = c.ajustes ? Object.keys(c.ajustes).length : 0;

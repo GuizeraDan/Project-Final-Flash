@@ -384,3 +384,8 @@ a { color: var(--ouro); }
 /* ✏ ajuste por combinação de fileiras */
 .es-ajuste-aviso { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 5px 7px; margin: 0 0 6px; border: 1px solid #ffd84a; border-radius: 6px; background: rgba(255,216,74,0.12); color: #ffe48a; font-size: 12px; }
 .es-ajuste-aviso button { padding: 1px 6px; font-size: 11px; }
+.es-bts-ajuste { display: inline-flex; gap: 4px; }
+.es-copiar-grade { display: grid; grid-template-columns: repeat(4, auto); gap: 4px 10px; align-items: center; justify-content: start; margin: 8px 0; }
+.es-copiar-cab { font-size: 12px; color: #c9c0ea; text-align: center; }
+.es-copiar-cel { display: flex; align-items: center; justify-content: center; gap: 2px; font-size: 11px; }
+.es-copiar-cel.tem { outline: 1px dashed #ffd84a; border-radius: 4px; }

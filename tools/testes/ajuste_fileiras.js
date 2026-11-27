@@ -37,6 +37,17 @@ const { chromium } = require('playwright');
   ok(r.salvoBase === 10 && r.salvoSemBase && /200/.test(r.salvoAj), 'salvar no jogo leva o base + os ajustes, sem o estado de edição');
   ok(/◆1/.test(r.rotulo), 'clipe com ajuste marcado na linha do tempo: ' + r.rotulo);
   ok(await p.locator('.es-bt-ajuste').count() === 1, 'botão ✏ na barra do palco');
+  // ⧉ Copiar para… e ⤴ Usar como base
+  await p.evaluate(() => { const G = FF.Estudio.Golpes; G.sel = 'taj'; G.ligarAjuste(); G.clipe().dx = 300; G.mudou('Mover no ajuste'); });
+  await p.click('.es-bts-ajuste button:has-text("Copiar")');
+  await p.waitForSelector('.es-copiar-grade');
+  const cels = p.locator('.es-copiar-cel input:not([disabled])');
+  await cels.nth(0).check();
+  await p.click('.es-escolha-bts button:has-text("⧉ Copiar")');
+  const cp = await p.evaluate(() => JSON.stringify(FF.Estudio.Golpes.clipe().ajustes));
+  ok((cp.match(/"dx":300/g) || []).length === 2, '⧉ ajuste copiado para outra combinação: ' + cp);
+  const ub = await p.evaluate(() => { const G = FF.Estudio.Golpes; G.usarComoBase(false); G.desligarAjuste(true); const c = G.clipe(); return { dx: c.dx, aj: JSON.stringify(c.ajustes || null) }; });
+  ok(ub.dx === 300 && !/fundo>meio/.test(ub.aj), '⤴ usar como base: base vira 300 e o ajuste desta combinação sai ' + JSON.stringify(ub));
   ok(!erros.length, 'sem erros' + (erros.length ? ': ' + erros.join(' | ') : ''));
   await b.close();
 })();

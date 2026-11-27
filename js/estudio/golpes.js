@@ -709,6 +709,11 @@ window.FF = window.FF || {};
       this.btAjuste = E.botao('✏ Só nesta combinação', () => { if (this.ajuste) this.desligarAjuste(); else this.ligarAjuste(); },
         'Ajustar só esta combinação de fileiras (🧍 quem solta × 🎯 alvo): o que você arrastar ou mudar de posição vale só quando os dois estiverem nessas fileiras; as outras continuam com a versão base. Clique de novo para voltar ao base.', 'es-bt-ajuste');
       b.appendChild(this.btAjuste);
+      this.btsAjuste = E.el('span', 'es-bts-ajuste');
+      this.btsAjuste.append(E.botao('⤴ Usar como base', () => this.usarComoBase(false), 'O que está ajustado nesta combinação vira a versão base (vale para todas as combinações que não têm ajuste próprio)'),
+        E.botao('⧉ Copiar para…', () => this.copiarAjustePara(), 'Copia os ajustes desta combinação para outras combinações de fileiras'));
+      this.btsAjuste.style.display = 'none';
+      b.appendChild(this.btsAjuste);
       b.appendChild(E.el('span', 'sep'));
       b.appendChild(E.botao('⚔ Na batalha', () => this.naBatalha(), 'Roda o golpe completo na batalha real (dano, anéis de guarda/crítico). Espaço/clique = apertar no anel.'));
       b.appendChild(E.botao('＋ Trilha', () => this.novaTrilha(), 'Nova trilha (efeitos, sons, parceiro…)'));
@@ -1138,12 +1143,68 @@ window.FF = window.FF || {};
       });
       this.mudou('Tirar ajuste'); this.renderProps();
     },
+    // ⤴ Usar como base: o que está ajustado nesta combinação vira a versão base (vale para todas as combinações sem
+    // ajuste próprio). Só os clipes com ajuste aqui (ou só o selecionado).
+    usarComoBase(soClipe) {
+      const k = this.ajuste; if (!k) return;
+      this.guardarAjuste();
+      let n = 0;
+      const alvo = soClipe ? this.clipe() : null;
+      this.cadaClipe(c => {
+        if (alvo && c !== alvo) return;
+        if (!(c.ajustes && c.ajustes[k])) return;
+        const b = {}; this.CAMPOS_AJUSTE.forEach(f => { if (c[f] !== undefined) b[f] = E.copia(c[f]); }); c._base = b;
+        delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes;
+        n++;
+      });
+      if (!n) { E.aviso('Nenhum clipe com ajuste nesta combinação.'); return; }
+      this.mudou('Usar como base'); this.renderProps();
+      E.aviso('⤴ ' + n + ' clipe(s): o ajuste de ' + this.nomeChave(k) + ' virou a versão base.', 'ok');
+    },
+    // ⧉ Copiar para…: copia os ajustes desta combinação para outras
+    copiarAjustePara() {
+      const k = this.ajuste; if (!k) return;
+      this.guardarAjuste();
+      const com = []; this.cadaClipe(c => { if (c.ajustes && c.ajustes[k]) com.push(c); });
+      if (!com.length) { E.aviso('Nenhum clipe com ajuste nesta combinação para copiar.'); return; }
+      const filas = ['frente', 'meio', 'fundo'], n = { frente: '1', meio: '2', fundo: '3' };
+      const c0 = E.el('div', 'es-copiar-aj');
+      c0.appendChild(E.el('p', null, 'Copiar os ajustes de ' + this.nomeChave(k) + ' (' + com.length + ' clipe(s)) para:'));
+      const grade = E.el('div', 'es-copiar-grade');
+      grade.appendChild(E.el('span', 'es-copiar-cab', '🧍 \ 🎯'));
+      filas.forEach(t => grade.appendChild(E.el('span', 'es-copiar-cab', '🎯' + n[t])));
+      const cks = [];
+      filas.forEach(a => {
+        grade.appendChild(E.el('span', 'es-copiar-cab', '🧍' + n[a]));
+        filas.forEach(t => {
+          const key = a + '>' + t, l = E.el('label', 'es-copiar-cel');
+          const i = document.createElement('input'); i.type = 'checkbox'; i.disabled = key === k; i.checked = key === k;
+          l.appendChild(i); if (com.some(c => c.ajustes[key]) && key !== k) l.title = 'Já tem ajuste aqui (será substituído)';
+          if (key !== k && com.some(c => c.ajustes[key])) l.classList.add('tem');
+          cks.push([key, i]); l.appendChild(document.createTextNode(key === k ? ' (esta)' : ''));
+          grade.appendChild(l);
+        });
+      });
+      c0.appendChild(grade);
+      const bts = E.el('div', 'es-escolha-bts');
+      const m = E.modal('⧉ Copiar ajuste para outras combinações', c0);
+      bts.append(E.botao('Todas', () => cks.forEach(([key, i]) => { if (key !== k) i.checked = true; })),
+        E.botao('⧉ Copiar', () => {
+          const dest = cks.filter(([key, i]) => key !== k && i.checked).map(([key]) => key);
+          if (!dest.length) { E.aviso('Marque pelo menos uma combinação.'); return; }
+          com.forEach(c => dest.forEach(key => { c.ajustes[key] = E.copia(c.ajustes[k]); }));
+          m.fechar(); this.mudou('Copiar ajuste'); this.renderProps();
+          E.aviso('⧉ Ajustes copiados para ' + dest.map(x => this.nomeChave(x)).join(', ') + '.', 'ok');
+        }, null, 'es-bt-ouro'));
+      c0.appendChild(bts);
+    },
     // trocou a fileira com o modo ligado: guarda, volta ao base e liga de novo na combinação nova
     trocouFileira() { if (this.ajuste) { this.desligarAjuste(true); this.ligarAjuste(); } },
     renderAjuste() {
       if (!this.btAjuste) return;
       this.btAjuste.classList.toggle('es-bt-ouro', !!this.ajuste);
       this.btAjuste.textContent = this.ajuste ? '✏ Só ' + this.nomeChave(this.ajuste) : '✏ Só nesta combinação';
+      if (this.btsAjuste) this.btsAjuste.style.display = this.ajuste ? '' : 'none';
     },
     // ⌖ Trazer para a tela: põe o clipe selecionado de volta num lugar visível (pelo tipo)
     podeTrazer(c) { return !!c && ['efeito', 'anim', 'camada', 'projetil', 'caminho'].includes(c.tipo) || (!!c && (c.tipo === 'mover' || c.tipo === 'teleporte') && c.para === 'x'); },
