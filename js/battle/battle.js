@@ -559,7 +559,7 @@ FF.Battle = class {
   async entrarCena(actor, target, move, instantaneo) {
     const atores = this.atoresCena(actor, target, move);
     const ESC = 2.5, offX = (FF.W - FF.BW) / 2;
-    const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa })) };
+    const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa, latX: f.latX, latG: f.latG })) };
     if (!instantaneo) { this.flash(0.9, 0.3); await FF.Clock.wait(0.12); }
     this.scale = ESC; this.fov = 1;
     const outras = [0.15, 0.8, 0.95];
@@ -569,7 +569,10 @@ FF.Battle = class {
       const d = (f === actor || f === target) ? 0.45 : outras[(i - 2 + 3) % 3];
       const x = Math.round(offX + (f.isHero ? 210 + 290 * d : FF.BW - 210 - 290 * d));
       const g = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d), sc = ESC * (1.14 - 0.36 * d);
-      Object.assign(f, { homeX: x, homeG: g, homeS: sc, prof: d, x, groundY: g, y: g, scale: sc, base: null, faixa: null });
+      // referência "lateral" dos pontos de tela (Mover para x, Caminho, efeitos na tela) = a de uma luta 1×1,
+      // senão o mesmo ponto cairia em lugares diferentes conforme o tamanho dos times
+      const latX = (f.isHero ? (f === actor || f === target ? 170 : 250) : (f === actor || f === target ? 915 : 870)) + (FF.W - 1084) / 2;
+      Object.assign(f, { homeX: x, homeG: g, homeS: sc, prof: d, x, groundY: g, y: g, scale: sc, base: null, faixa: null, latX, latG: this.groundY });
       f.naCena = true;
     });
     this.cena = { salvo };
@@ -583,7 +586,7 @@ FF.Battle = class {
     this.scale = cena.salvo.scale; this.fov = cena.salvo.fov;
     cena.salvo.atores.forEach(v => {
       const f = v.f;
-      Object.assign(f, { homeX: v.homeX, homeG: v.homeG, homeS: v.homeS, prof: v.prof, base: null, faixa: null, groundY: v.homeG, scale: v.homeS, offX: 0, offY: 0, escExtra: 1, rotExtra: 0, flipExtra: false });
+      Object.assign(f, { homeX: v.homeX, homeG: v.homeG, homeS: v.homeS, prof: v.prof, base: null, faixa: null, latX: v.latX, latG: v.latG, groundY: v.homeG, scale: v.homeS, offX: 0, offY: 0, escExtra: 1, rotExtra: 0, flipExtra: false });
       if (!f.ko) { f.x = v.homeX; f.y = v.homeG; } else { f.x = v.homeX; f.y = v.homeG; }
       f.naCena = false;
     });

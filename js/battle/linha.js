@@ -51,7 +51,7 @@ FF.Linha = {
   // combinação de fileiras de quem solta e do alvo (luta em diagonal): "frente>meio", "fundo>fundo"…
   fila(p) { return p == null ? null : p < 0.3 ? 'frente' : p > 0.7 ? 'fundo' : 'meio'; },
   chaveFileiras(b, actor, target) {
-    if (!b || !b.persp || !actor || !target || actor === target || actor.prof == null || target.prof == null) return null;
+    if (!b || b.cena || !b.persp || !actor || !target || actor === target || actor.prof == null || target.prof == null) return null;
     return this.fila(actor.prof) + '>' + this.fila(target.prof);
   },
   // clipe com os campos ajustados para uma combinação (null no ajuste = sem o campo)

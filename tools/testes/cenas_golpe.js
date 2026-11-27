@@ -16,6 +16,15 @@ const { chromium } = require('playwright');
   ok(r1 === r2 && JSON.parse(r1).cena, 'palco: rush mostra a cena, igual em qualquer fileira ' + r1);
   const n1 = await pos('fundo', 'fundo', 'normal'), n2 = await pos('frente', 'meio', 'normal');
   ok(n1 !== n2 && !JSON.parse(n1).cena, 'palco: normal fica na formação (muda com a fileira)');
+  // pontos de tela (Mover para x) caem no mesmo lugar com qualquer tamanho de time
+  const ponto = async (ali) => {
+    await p.evaluate(async (ali) => { const G = FF.Estudio.Golpes; await G.aplicarCfg(Object.assign({}, G.cfg, { aliadosAlvo: ali, filaAtk: null, filaAlvo: null }), true); }, ali);
+    await p.waitForFunction((n) => { const G = FF.Estudio.Golpes; return G.palco._b && G.palco._b.all.length === n; }, 2 + ali.length, { timeout: 30000 });
+    return p.evaluate(() => { const G = FF.Estudio.Golpes; G.doc.golpe.categoria = 'rush'; const tr = G.doc.linha.trilhas.find(t => t.quem === 'alvo'); if (!tr.clipes.some(c => c.id === 'tst')) tr.clipes.push({ id: 'tst', tipo: 'mover', t: 0.05, d: 0.1, para: 'x', x: 100, y: -50 }); G.irPara(0.3); const B = G.palco._b; return [Math.round(B.alvo.x), Math.round(B.alvo.y)].join(','); });
+  };
+  const p1 = await ponto([]), p3 = await ponto(['nappa', 'vegeta']);
+  ok(p1 === p3, 'cena: ponto da tela igual em 1×1 e 1×3 (' + p1 + ' / ' + p3 + ')');
+  await p.evaluate(() => { const G = FF.Estudio.Golpes; G.doc.linha.trilhas.forEach(t => (t.clipes = t.clipes.filter(c => c.id !== 'tst'))); });
   // na luta (⚔ Na batalha): durante a cena só os dois aparecem; no fim volta tudo
   await p.evaluate(async () => { const G = FF.Estudio.Golpes; await G.aplicarCfg(Object.assign({}, G.cfg, { aliadosAlvo: ['nappa'], filaAtk: null, filaAlvo: null }), true); });
   await p.waitForFunction(() => { const G = FF.Estudio.Golpes; return G.defs.nappa && G.palco._b && G.palco._b.all.length === 3; }, null, { timeout: 30000 });
