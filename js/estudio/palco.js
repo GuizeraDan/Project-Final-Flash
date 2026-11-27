@@ -11,7 +11,7 @@ FF.EstudioPalco = class {
     this.DT = 1 / 60;
     this._b = null;
     this.ref = {};          // clipe id → pontos de referência gravados quando o clipe disparou
-    this.opts = { grade: false, refs: true, cebola: false, hud: false };
+    this.opts = { grade: false, refs: true, cebola: false, hud: false, persp: true };
     this.modo = 'edicao';   // 'edicao' | 'batalha'
   }
 
@@ -97,6 +97,13 @@ FF.EstudioPalco = class {
     const b = this.novaBatalha();
     this._b = b;
     this.golpe = golpe; this.linha = linha;
+    // o palco mostra o que o jogo vai fazer: 💥 rush / 🔥 supremo = a cena (só os dois, palco fixo);
+    // 👊 normal = a formação, com o passo até a fileira do alvo que o jogo dá antes de raios e rajadas
+    {
+      const mv = Object.assign({}, golpe, { roteiro: [{ linha }] });
+      if (FF.Battle.categoria(mv) !== 'normal' && b.alvo && b.alvo !== b.atk) b.entrarCena(b.atk, b.alvo, mv, true);
+      else b.alinharFileira(b.atk, b.alvo, mv, true);
+    }
     // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;
     // desligado, o palco mostra e edita a versão base
     b.semAjustes = true;

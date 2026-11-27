@@ -45,6 +45,12 @@ Jogo de Dragon Ball por turnos (projeto pessoal, não distribuído), inspirado n
 - Batalha Livre/Treinamento: abas por pacote (`.sel-pacotes`) + busca (`.sel-busca`); personagens só no modo batalha (não na história).
 - Teste: `node tools/testes/batalha.js --livre el_zl3_freeza,goku:el_swz_goku_player --velocidade 3`.
 
+## Cenas de golpe (rush e supremo)
+- Golpes têm 3 tipos (`FF.Battle.categoria(move)`; campo `categoria` no golpe, select "Tipo de cena" nas props do Estúdio): 👊 `normal` (acontece na formação; antes de raios/rajadas o atacante dá o passo até a fileira do alvo, `alinharFileira`), 💥 `rush` e 🔥 `supremo` (cortam para a cena). Sem o campo: `supremo` → supremo; avança até o alvo (`vaiAteAlvo`) → rush; o resto → normal.
+- Cena (`Battle.entrarCena/sairCena`, `b.cena`, `f.naCena`): flash, só quem ataca + alvo + parceiros das trilhas (`atoresCena`) ficam visíveis, em posições fixas (d=0.45 de cada lado, escala 2.5, fov 1 — o mesmo palco do Estúdio); cenário e barras continuam; no fim (depois dos projéteis e da cena de KO) flash e todos voltam para a formação. Golpes com cena podem ser montados com pontos da tela: ficam iguais em qualquer fileira.
+- Opção do jogador `FF.Cenas` (Opções e pausa, `FF.Save` "cenas"): ligadas | supremos | desligadas. `b.semCenas` desliga numa batalha.
+- Sempre diagonal: a visão lateral saiu do motor (`persp` sempre true) e do palco. O palco do Estúdio mostra a cena em golpes rush/supremo e a formação (com o passo de fileira) nos normais. Teste: `node tools/testes/cenas_golpe.js`.
+
 ## Cena de KO
 - Quando a vida de alguém chega a zero, o motor toca uma linha do tempo de KO (`js/battle/ko.js`, `FF.KO.tocar`) junto com o golpe (trilha Alvo = quem caiu; o hitstop continua fixo). Ordem: `edicoes.ko[<personagem>]` → `edicoes.ko.padrao` → `FF.KO.PADRAO` (o original). `execute()` espera as cenas (`b.cenasKO`) antes de seguir. No Estúdio: aba Golpes, seção "💀 Cena de KO" (padrão + "Quando <Alvo> cai"). `FF.Linha.iniciar(..., {ko: true})` deixa o alvo nocauteado animar e, no fim, só devolve ele. Clipe de voz aceita `vozTipo` + `quem` (voz cadastrada do personagem).
 

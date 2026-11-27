@@ -446,6 +446,13 @@ FF.EstudioProps = {
     a.appendChild(num(g, 'custoKi', 'Custo de ki', null, { min: 0, passo: 1 }));
     a.appendChild(num(g, 'poder', 'Poder', 'Multiplicador de dano (ex.: 1.7 sequência, 3 Kamehameha)', { passo: 0.1, min: 0 }));
     a.appendChild(chk(g, 'supremo', 'Supremo (Fúria cheia)'));
+    {
+      const auto = FF.Battle.categoria(Object.assign({}, g, { categoria: null, roteiro: [{ linha: host.doc.linha }] }));
+      const nomes = { normal: '👊 Normal', rush: '💥 Rush', supremo: '🔥 Supremo' };
+      a.appendChild(E.campo('select', 'Tipo de cena', g.categoria || '', (v) => { if (v) g.categoria = v; else delete g.categoria; host.mudou('Tipo de cena'); host.renderProps(); },
+        { lista: [['', 'Automático: ' + nomes[auto]], ['normal', '👊 Normal — na formação, sem cena'], ['rush', '💥 Rush — corta para a cena'], ['supremo', '🔥 Supremo — corta para a cena']],
+          dica: 'Rush e Supremo cortam para uma cena só com quem ataca e o alvo, sempre no mesmo palco (o que você vê aqui) — monte à vontade com pontos da tela. Normal acontece na formação da luta (as fileiras contam). O jogador pode desligar as cenas em Opções.' }));
+    }
     a.appendChild(E.campo('check', 'Anunciar o nome', g.anuncio !== false, (v) => { if (v) delete g.anuncio; else g.anuncio = false; host.mudou('Anúncio'); }));
     box.appendChild(a);
     }

@@ -28,6 +28,22 @@ FF.FOV = {
   },
 };
 if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.FOV.ligar());
+// CENAS DE GOLPE (Opções / pausa; FF.Save "cenas"): golpes 💥 rush e 🔥 supremo viram uma cena só com quem ataca e o
+// alvo, num palco fixo (o mesmo do palco do Estúdio); 👊 normais acontecem na formação. ligadas | supremos | desligadas
+FF.Cenas = {
+  ids: ['ligadas', 'supremos', 'desligadas'],
+  id() { const v = FF.Save && FF.Save.get && FF.Save.get().cenas; return this.ids.includes(v) ? v : 'ligadas'; },
+  ligar() {
+    document.querySelectorAll('#cenas, [data-p="cenas"]').forEach(sel => {
+      sel.value = this.id();
+      sel.onchange = () => {
+        if (FF.Save) FF.Save.set({ cenas: sel.value });
+        document.querySelectorAll('#cenas, [data-p="cenas"]').forEach(o => (o.value = sel.value));
+      };
+    });
+  },
+};
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.Cenas.ligar());
 // DIFICULDADE (Opções / pausa → Dificuldade; FF.Save "dificuldade"): quanto o inimigo defende, janela da guarda/crítico
 // perfeitos e força dos inimigos. guarda = chance de defender um golpe; perfeita = parte das defesas que é perfeita
 // (dano 0 + contra-ataque no corpo a corpo); contraPerf = chance de defender perfeito o SEU contra-ataque (→ PERCEPÇÃO)
@@ -61,7 +77,7 @@ FF.Battle = class {
     this.scale = (def.escala || 2.5) * this.fov;
     this.groundY = (stage.chaoY || 470) + (FF.H - 580);   // chaoY dos cenários é da tela antiga (580): mesma distância até a base
     // perspectiva diagonal (Opções → Perspectiva): lutadores em fileiras de profundidade, como no Attack of the Saiyans
-    this.persp = def.perspectiva !== false && !def.semPerspectiva;   // diagonal é o padrão do jogo (o palco do Estúdio escolhe)
+    this.persp = true;   // sempre diagonal (a visão lateral foi tirada do jogo e do Estúdio)
     this.heroes = [];
     this.enemies = [];
     this.fxList = [];
@@ -170,6 +186,15 @@ FF.Battle = class {
       }
     }
     return false;
+  }
+  // tipo do golpe para as cenas: 👊 normal (na formação) | 💥 rush | 🔥 supremo (com cena)
+  // move.categoria manda; sem ela: supremo → 'supremo'; avança até o alvo → 'rush'; o resto → 'normal'
+  static categoria(m) {
+    if (!m) return 'normal';
+    if (['normal', 'rush', 'supremo'].includes(m.categoria)) return m.categoria;
+    if (m.supremo) return 'supremo';
+    if (FF.Battle.ofensivo(m) && FF.Battle.vaiAteAlvo(m)) return 'rush';
+    return 'normal';
   }
   static tipoGolpe(m) {
     if (!m) return null;
@@ -481,7 +506,9 @@ FF.Battle = class {
     }
     // perspectiva: antes de golpear alguém de outra fileira, quem ataca desliza até a fileira do alvo
     // (raios, rajadas e projéteis saem alinhados com ele; no fim volta para a sua)
-    const alinhou = await this.alinharFileira(actor, target, move);
+    // 💥 rush / 🔥 supremo: corta para a cena (só quem ataca e o alvo, palco fixo)
+    const cena = this.querCena(actor, target, move) ? await this.entrarCena(actor, target, move) : null;
+    const alinhou = cena ? false : await this.alinharFileira(actor, target, move);
     // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
     actor.desafioMult = 1;
     if (actor.isHero && move.desafio && target && target !== actor && !this.semDesafios) actor.desafioMult = await this.desafio(actor, move.desafio);
@@ -492,6 +519,7 @@ FF.Battle = class {
     await Promise.all(this.projectiles.map(p => p.done));
     await Promise.all(this.cenasKO || []);   // espera a cena de KO de quem caiu terminar
     this.cenasKO = [];
+    if (cena) await this.sairCena(cena);   // volta para a formação
     // falas dos chefes (metade da vida)
     for (const f of (this.falasPendentes || []).splice(0)) {
       if (f.ko) continue;
@@ -510,8 +538,62 @@ FF.Battle = class {
     await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null]);
   }
 
+  // ---------- 🎬 cena do golpe (rush e supremo) ----------
+  querCena(actor, target, move) {
+    if (this.semCenas || !this.persp || !target || target === actor || actor.lado === target.lado || !FF.Battle.ofensivo(move)) return false;
+    const cat = FF.Battle.categoria(move), op = FF.Cenas.id();
+    return op === 'ligadas' ? cat !== 'normal' : op === 'supremos' ? cat === 'supremo' : false;
+  }
+  // quem aparece na cena: quem ataca, o alvo e os parceiros das trilhas do golpe
+  atoresCena(actor, target, move) {
+    const l = [actor, target];
+    for (const p of (move && move.roteiro) || []) for (const tr of (p.linha && p.linha.trilhas) || []) {
+      if (tr.tipo !== 'lutador' || !tr.quem || tr.quem === 'atacante' || tr.quem === 'alvo') continue;
+      const f = FF.Linha.lutadorDe(this, actor, target, tr.quem);
+      if (f && !l.includes(f)) l.push(f);
+    }
+    return l;
+  }
+  // palco fixo da cena: escala da luta 1×1, sem campo de visão; quem ataca e o alvo na profundidade do 1×1,
+  // parceiros nas outras fileiras do seu lado. instantaneo = sem o corte (palco do Estúdio)
+  async entrarCena(actor, target, move, instantaneo) {
+    const atores = this.atoresCena(actor, target, move);
+    const ESC = 2.5, offX = (FF.W - FF.BW) / 2;
+    const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa })) };
+    if (!instantaneo) { this.flash(0.9, 0.3); await FF.Clock.wait(0.12); }
+    this.scale = ESC; this.fov = 1;
+    const outras = [0.15, 0.8, 0.95];
+    const porLado = {};
+    atores.forEach(f => {
+      const lado = f.lado, i = porLado[lado] = (porLado[lado] || 0) + 1;
+      const d = (f === actor || f === target) ? 0.45 : outras[(i - 2 + 3) % 3];
+      const x = Math.round(offX + (f.isHero ? 210 + 290 * d : FF.BW - 210 - 290 * d));
+      const g = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d), sc = ESC * (1.14 - 0.36 * d);
+      Object.assign(f, { homeX: x, homeG: g, homeS: sc, prof: d, x, groundY: g, y: g, scale: sc, base: null, faixa: null });
+      f.naCena = true;
+    });
+    this.cena = { salvo };
+    if (!instantaneo) await FF.Clock.wait(0.15);
+    return this.cena;
+  }
+  async sairCena(cena) {
+    if (!cena || this.cena !== cena) return;
+    this.flash(0.8, 0.3);
+    await FF.Clock.wait(0.1);
+    this.scale = cena.salvo.scale; this.fov = cena.salvo.fov;
+    cena.salvo.atores.forEach(v => {
+      const f = v.f;
+      Object.assign(f, { homeX: v.homeX, homeG: v.homeG, homeS: v.homeS, prof: v.prof, base: null, faixa: null, groundY: v.homeG, scale: v.homeS, offX: 0, offY: 0, escExtra: 1, rotExtra: 0, flipExtra: false });
+      if (!f.ko) { f.x = v.homeX; f.y = v.homeG; } else { f.x = v.homeX; f.y = v.homeG; }
+      f.naCena = false;
+    });
+    this.cena = null;
+    this.fxList.length = 0;
+    await FF.Clock.wait(0.1);
+  }
+
   // ---------- mudança de fileira (perspectiva) ----------
-  async alinharFileira(actor, target, move) {
+  async alinharFileira(actor, target, move, instantaneo) {
     if (!this.persp || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
     if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
     // golpe que avança até o alvo: o próprio avanço já vai na diagonal até a fileira dele (sem passo para o lado)
@@ -524,6 +606,12 @@ FF.Battle = class {
     if (dir * (destX - actor.x) < 40) destX = actor.x + dir * 40;
     const limite = target.x - dir * 170;   // não chega colado no alvo
     if (dir * (destX - limite) > 0) destX = limite;
+    if (instantaneo) {   // palco do Estúdio: já começa onde o jogo vai pôr
+      actor.faixa = { alvo: target, de: 1, para: 1, t0: -1e9, d: 0.3 };
+      actor.x = destX; actor.base = { x: destX, g: target.homeG + 4 };
+      this.atualizarPerspectiva();
+      return true;
+    }
     actor.faixa = { alvo: target, de: 0, para: 1, t0: FF.Clock.t, d: 0.3 };
     if (actor.sprite.has(actor.animName('avancar'))) actor.play('avancar', { loop: true });
     this.spawnFx('poeira', actor.x, actor.groundY, actor.dir < 0, 0.6);
@@ -1503,7 +1591,7 @@ FF.Battle = class {
   // escudos sobre cada inimigo: número + fraquezas (👊 corpo, 🔥 energia; "?" até descobrir acertando)
   desenharEscudos(ctx) {
     for (const f of this.enemies) {
-      if (!f.escudosMax || f.ko || !(f.alpha > 0.1)) continue;
+      if (!f.escudosMax || f.ko || !(f.alpha > 0.1) || (this.cena && !f.naCena)) continue;
       const fr = f.anim.frame(), alto = fr ? fr[6] * f.scale * (f.escExtra || 1) : 60 * f.scale;
       const x = f.x + (f.offX || 0), y = f.y + (f.offY || 0) - alto - 16;
       ctx.save();
@@ -1539,7 +1627,7 @@ FF.Battle = class {
 
   desenharSombras(ctx) {
     for (const f of this.all) {
-      if (!(f.alpha > 0.05) || f.vaporizado) continue;
+      if (!(f.alpha > 0.05) || f.vaporizado || (this.cena && !f.naCena)) continue;
       const alto = Math.max(0, f.groundY - (f.y + (f.offY || 0)));
       const k = Math.max(0.35, 1 - alto / 160);
       const rx = 21 * f.scale * k, ry = 5.5 * f.scale * k;
@@ -1690,7 +1778,7 @@ FF.Battle = class {
     const prio = this.persp
       ? (f) => (f.camadaExtra || 0) * 10000 + f.groundY + (f.busy ? 0.5 : 0)   // perspectiva: o que está mais embaixo fica na frente
       : (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
-    const order = this.all.slice().sort((a, b) => prio(a) - prio(b));
+    const order = this.all.filter(f => !this.cena || f.naCena).sort((a, b) => prio(a) - prio(b));
     // itens na profundidade: logo acima de quem é a referência (por cima dele, por baixo de quem está mais à frente)
     const profs = [];
     if (persp) {
@@ -1725,7 +1813,7 @@ FF.Battle = class {
     this.desenharOndas(ctx);
     this.desenharEscudos(ctx);
     // modo Planejamento: o que cada herói já tem marcado aparece em cima dele
-    this.all.forEach(f => { if (f.planoIcone && !f.ko) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
+    this.all.forEach(f => { if (f.planoIcone && !f.ko && !(this.cena && !f.naCena)) FF.HUD.text(ctx, f.planoIcone + ' ✔', f.x, f.y - 70 * f.scale, 16, '#ffe25a', 'center'); });
     Object.values(this.objs).forEach(o => FF.drawFrame(ctx, o.set, o.a.frame(), o.x, o.y, o.scale || 0.01, o.flip));
     camada(false);
     ctx.restore();

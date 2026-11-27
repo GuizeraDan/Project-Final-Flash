@@ -198,7 +198,6 @@ window.FF = window.FF || {};
       }
       pb.appendChild(E.campo('select', 'Fileira de quem solta', cfg.filaAtk || '', (v) => mudarFila('filaAtk', v), { lista: FILAS, dica: 'Na visão Diagonal: em qual dos 3 lugares quem solta aparece (para testar o golpe em cada um). Também nos botões 1 2 3 da barra do palco.' }));
       pb.appendChild(E.campo('select', 'Fileira do alvo', cfg.filaAlvo || '', (v) => mudarFila('filaAlvo', v), { lista: FILAS, dica: 'Na visão Diagonal: em qual dos 3 lugares o alvo aparece' }));
-      if (!this.palco.opts.persp) pb.appendChild(E.el('div', 'es-dica', '⚠ As fileiras só valem na visão Diagonal (botão na barra do palco).'));
       pb.appendChild(E.el('div', 'es-dica', 'Até 3 lutadores de cada lado.'));
       pb.appendChild(E.campo('select', 'Parceiro 1 (' + ladoAtk + ')', par[0] || '', (v) => mudarLista('parceiros', 0, v), { lista: lista1(cfg.atacante), dica: 'Entra no time de quem solta (Sparking Combo: o parceiro ganha uma trilha própria)' }));
       if (par[0]) pb.appendChild(E.campo('select', 'Parceiro 2 (' + ladoAtk + ')', par[1] || '', (v) => mudarLista('parceiros', 1, v), { lista: lista1(cfg.atacante), dica: 'Terceiro lutador do time de quem solta' }));
@@ -679,18 +678,7 @@ window.FF = window.FF || {};
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
       b.appendChild(op('fora', '🔍 Fora', 'Ver fora da tela: o palco encolhe e mostra uma faixa em volta da tela do jogo, para pegar e posicionar o que está fora dela'));
-      // perspectiva: começa na diagonal (como o jogo) até você trocar aqui
-      if (this.palco.opts.persp == null) this.palco.opts.persp = true;   // o jogo é sempre na diagonal
-      const btP = E.botao('', () => {
-        this.palco.opts.persp = !this.palco.opts.persp;
-        E.rascunho.gravar('palco_opts', this.palco.opts);
-        rotP();
-        if (this.doc) this.irPara(this.t); else this.redesenhar();
-        if (this.cfg) this.montarLado();   // aviso "fileiras só na Diagonal" 
-      }, 'Visão do palco: lateral ou diagonal (estilo Attack of the Saiyans, igual ao jogo com Opções → Perspectiva: Diagonal). Na diagonal os efeitos presos em quem solta vão até o alvo. Para arrastar alças com precisão, use a lateral.');
-      const rotP = () => { btP.innerHTML = this.palco.opts.persp ? '◢ Diagonal' : '▬ Lateral'; btP.classList.toggle('es-bt-ouro', !!this.palco.opts.persp); };
-      rotP();
-      b.appendChild(btP);
+      this.palco.opts.persp = true;   // sempre diagonal (a visão lateral foi tirada)
       // fileiras rápidas (Diagonal): 🧍 quem solta e 🎯 alvo nos lugares 1 (frente), 2 (meio), 3 (fundo)
       const filaBts = (k, ic, tit) => {
         const g = E.el('span', 'es-filas'); g.title = tit;

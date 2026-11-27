@@ -696,3 +696,11 @@ Cache do app: `finalflash-v47`.
 - Teste: `tools/testes/ajuste_fileiras.js`.
 - Revisão do motor/Estúdio (só leitura) em `docs/REVISAO_MOTOR.md`: 9 itens com proposta e risco; aguardando o usuário escolher.
 - Caso do usuário: os 10 ajustes do combo_kaioken estão só em `frente>frente` (palco com 🧍1/🎯1); na luta o Goku sozinho fica no meio → o jogo usa o base. Com o modo ✏ ligado, a barra ganhou "⤴ Usar como base" (o ajuste desta combinação vira o base dos clipes) e "⧉ Copiar para…" (grade 3×3 de combinações); nas Propriedades, "⤴ Tornar base" por clipe. Teste ampliado em `ajuste_fileiras.js`.
+
+## 2026-11-27 — Cenas de golpe (estilo Budokai Tenkaichi)
+- Golpes ganharam tipo: 👊 Normal (na formação), 💥 Rush e 🔥 Supremo (cortam para uma cena só com quem ataca e o alvo, em palco fixo). Classificação automática dos antigos (supremo → supremo; avança até o alvo → rush; resto → normal), trocável no Estúdio ("Tipo de cena").
+- Opção "Cenas de golpe: Ligadas / Só supremos / Desligadas" em Opções e na pausa.
+- Visão lateral removida (sempre diagonal); botão ◢/▬ saiu do palco. O palco mostra exatamente o que o jogo vai fazer.
+- Teste novo `tools/testes/cenas_golpe.js`.
+- Falta: o usuário testar os golpes com cena; se ficar bom, dá para limpar a UI de ajustes por fileira (🧍🎯 / "Só nesta combinação"), que perde o sentido nos golpes com cena.
+
