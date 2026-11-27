@@ -184,7 +184,7 @@ FF.EstudioProps = {
             l.append(E.el('span', null, rot), inp);
             return l;
           };
-          ln.appendChild(ent('x', 'X', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio'));
+          ln.appendChild(ent('x', 'X', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio; passa da borda para sair da tela'));
           ln.appendChild(ent('y', 'Alt.', 'Altura: 0 = no chão; negativo = no ar'));
           ln.appendChild(c.pontos.length > 1 ? E.botao('✕', () => { c.pontos.splice(i, 1); host.mudou('Tirar ponto'); host.renderProps(); }, 'Tirar este ponto') : E.el('span'));
           ln.appendChild(ent('rot', '↻', 'Giro neste ponto (°). Vazio = mantém o do ponto anterior. No palco: alça azul da silhueta deste ponto.' + (c.girarCaminho ? ' Com "girar seguindo o caminho", soma à inclinação.' : ''), '—'));
@@ -218,7 +218,7 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'dist', 'Distância', 'Alvo: quanto para antes dele. Frente/trás: quanto anda (em px do sprite × escala)'));
         if (c.para === 'x') {
           g.appendChild(E.el('p', 'es-dica', 'Arraste a bolinha verde (e a silhueta) no palco para escolher o ponto. Vale para cima também: o lutador fica no ar até o próximo movimento.'));
-          g.appendChild(num(c, 'x', 'X na tela', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio'));
+          g.appendChild(num(c, 'x', 'X na tela', '-98 (borda esquerda) a 1182 (borda direita); 542 = meio; passa da borda para sair da tela'));
           g.appendChild(num(c, 'y', 'Altura (Y)', '0 = no chão; negativo = no ar (ex.: -120); positivo = desce um pouco (para encostar um desenho deitado ou girado no chão)'));
           g.appendChild(num(c, 'escala', 'Tamanho na chegada (×)', 'No palco: alça amarela da silhueta (1 = normal)', { passo: 0.05, min: 0.05 }));
           g.appendChild(num(c, 'rot', 'Giro na chegada (°)', 'No palco: alça azul da silhueta'));

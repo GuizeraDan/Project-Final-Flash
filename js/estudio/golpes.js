@@ -4,6 +4,7 @@
 window.FF = window.FF || {};
 
 (function () {
+  const FORA = 500;   // quanto um ponto da tela (Mover para x, Caminho) pode passar da borda, em px
   const E = FF.Estudio;
   const TIPOS_TRILHA = [['lutador', '🧍 Lutador (parceiro / alvo)'], ['efeitos', '✺ Efeitos'], ['projeteis', '➶ Projéteis'], ['camadas', '▣ Camadas livres'], ['sons', '♪ Sons e vozes'], ['acertos', '✸ Acertos'], ['tela', '🎥 Tela (tremor, flash, câmera, mensagem)'], ['acoes', '⚙ Ações (ki, buff, transformar…)']];
   const RERENDER = new Set(['Para onde', 'Sprite da camada', 'Ação', 'Editar JSON', 'Desligar trilha', 'Lutador da trilha', 'Animação', 'Efeito', 'Projétil', 'Explosão', 'Efeito na mão', 'Duração automática', 'Chaves', 'Anel', 'Lança o alvo', 'Voz do personagem']);
@@ -1323,7 +1324,7 @@ window.FF = window.FF || {};
           case 'lutador': { const dd = r.f ? r.f.dir : dir; c.dx = R((o.dx || 0) + dx * dd); c.dy = R((o.dy || 0) + dy); break; }
           case 'destino': {
             const lx = FF.legado().x, x0 = o.x != null ? o.x : h.f.homeX - lx;
-            c.x = Math.max(-lx, Math.min(1084 + lx, R(x0 + dx)));   // x na tela antiga (1084), que fica no miolo da de 1280
+            c.x = Math.max(-lx - FORA, Math.min(1084 + lx + FORA, R(x0 + dx)));   // x na tela antiga (1084), no miolo da de 1280; pode sair da tela (bater na parede, sair voando)
             c.y = Math.min(200, R((o.y || 0) + dy));   // pode descer um pouco abaixo do chão (desenhos deitados/girados)
             if (!c.y) delete c.y;
             break;
@@ -1331,7 +1332,7 @@ window.FF = window.FF || {};
           case 'ponto': {   // 〰 caminho: arrastar um ponto (x na tela antiga, y = altura a partir do chão)
             const lx = FF.legado().x, q0 = (o.pontos || [])[h.i] || { x: 542, y: 0 };
             c.pontos = (o.pontos || []).map(q => Object.assign({}, q));
-            c.pontos[h.i] = { x: Math.max(-lx, Math.min(1084 + lx, R((q0.x != null ? q0.x : 542) + dx))), y: Math.min(200, R((q0.y || 0) + dy)) };
+            c.pontos[h.i] = { x: Math.max(-lx - FORA, Math.min(1084 + lx + FORA, R((q0.x != null ? q0.x : 542) + dx))), y: Math.min(200, R((q0.y || 0) + dy)) };
             break;
           }
           case 'pgiro': {   // 〰 giro de um ponto do caminho
