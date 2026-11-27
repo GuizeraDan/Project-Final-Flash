@@ -1,5 +1,5 @@
 // Teste automático de batalha (headless).
-// Uso: node tools/testes/batalha.js [--plano 1,2,4,5] [--erro 0.0] [--fotos pasta] [--batalha id] [--tempo 170]
+// Uso: node tools/testes/batalha.js [--plano 1,2,4,5] [--erro 0.0] [--fotos pasta] [--batalha id] [--tempo 300]
 // - plano: ordem das escolhas no menu (índice do botão, 1 = primeiro). Se o botão estiver desabilitado, usa o primeiro habilitado.
 // - erro: probabilidade (0..1) de o "jogador automático" NÃO apertar no tempo.
 // - fotos: se informado, salva capturas periódicas nessa pasta.
@@ -15,7 +15,7 @@ const plano = opt('plano', '1').split(',');
 const erro = parseFloat(opt('erro', '0'));
 const fotos = opt('fotos', null);
 const batalha = opt('batalha', null);
-const tempo = parseFloat(opt('tempo', '170')) * 1000;
+const tempo = parseFloat(opt('tempo', '300')) * 1000;   // as cenas de golpe e do Sparking deixam a luta mais longa
 const rage = opt('rage', null);
 const historia = opt('historia', null);
 const hpInimigos = opt('hpInimigos', null);

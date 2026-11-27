@@ -707,4 +707,5 @@ Cache do app: `finalflash-v47`.
 - Próximo passo conversado: câmera e entrada estilo Octopath Traveler (zoom no par, retrato no supremo, "espaço do golpe" para quando as cenas estiverem desligadas) — o usuário ainda vai decidir.
 - Mesmo dia (tarde): entradas e saídas da cena editáveis por tipo e por personagem (clipes ✂ Corte, ✦ Clarão com cor, 🖼 Retrato); a Abertura do Supremo virou a entrada do Supremo (o que já estava salvo continua valendo). ⚡ Sparking por personagem: cena ao encher a Fúria + aura e pose parada enquanto dura (Personagens → Atributos). Painel do palco sem aliados do alvo e sem "Quem é atacado".
 - Falta: o usuário montar as entradas/aura no Estúdio e dizer se o retrato e os tempos padrão estão bons.
+- 🎭 Trilha do Alvo por personagem em cada golpe ("✏ Trilha só para <Alvo>" no painel do palco; os outros alvos usam a padrão). Teste da batalha passou a dar 300 s (as lutas ficaram mais longas com as cenas).
 

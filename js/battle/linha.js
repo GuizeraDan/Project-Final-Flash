@@ -63,7 +63,18 @@ FF.Linha = {
     for (const k of Object.keys(a)) { if (a[k] === null) delete o[k]; else o[k] = JSON.parse(JSON.stringify(a[k])); }
     return o;
   },
-  clipes(linha) { const l = []; (linha.trilhas || []).forEach(tr => { if (!tr.oculta) (tr.clipes || []).forEach(c => l.push({ tr, c })); }); return l; },
+  // 🎭 trilha do Alvo por personagem: tr.porAlvo[<id do alvo>] = clipes próprios (sem versão própria = a base).
+  // target = quem leva o golpe (sem target: a base). tr._ver = o Estúdio já trocou os clipes (palco)
+  clipes(linha, target, todas) {
+    const l = [], id = target && target.def && target.def.id;
+    (linha.trilhas || []).forEach(tr => {
+      if (tr.oculta) return;
+      const proprio = tr.porAlvo && !tr._ver && id && tr.porAlvo[id];
+      (proprio || tr.clipes || []).forEach(c => l.push({ tr, c }));
+      if (todas && tr.porAlvo) Object.values(tr.porAlvo).forEach(cs => (cs || []).forEach(c => l.push({ tr, c })));
+    });
+    return l;
+  },
 
   // tempo total de uma animação (s) com um fps
   duracaoAnim(a, fps) {
@@ -95,7 +106,7 @@ FF.Linha = {
   spritesUsados(linha) {
     const s = new Set();
     const add = (o) => { if (!o) return; ['sprite', 'disparoSprite', 'impactoSprite'].forEach(k => { if (o[k]) s.add(o[k]); }); };
-    this.clipes(linha).forEach(({ c }) => {
+    this.clipes(linha, null, true).forEach(({ c }) => {
       add(c); add(c.acerto);
       [].concat(c.acertos || [], c.impacto && typeof c.impacto === 'object' ? c.impacto : []).forEach(add);
     });
@@ -128,7 +139,7 @@ FF.Linha = {
     const dur = linha.duracao || 1;
     // ajustes por combinação de fileiras (Estúdio: "✏ Só nesta combinação"): o clipe usa os campos daquela combinação
     const chave = b && b.semAjustes ? null : this.chaveFileiras(b, actor, target);
-    const lista = this.clipes(linha).map(x => this.comAjuste(Object.assign({ t: 0 }, x.c, { _tr: x.tr }), chave)).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
+    const lista = this.clipes(linha, target).map(x => this.comAjuste(Object.assign({ t: 0 }, x.c, { _tr: x.tr }), chave)).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
     // anéis de guarda/crítico: agrupa os acertos e abre cada anel LEAD s antes do 1º acerto do grupo
     const mode = target ? b.qteMode(actor, target) : null;
     const acertos = lista.filter(c => c.tipo === 'acerto');

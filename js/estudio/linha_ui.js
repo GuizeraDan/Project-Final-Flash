@@ -171,6 +171,8 @@ FF.EstudioLinha = class {
   todos() { const l = []; (this.host.linha().trilhas || []).forEach((tr, i) => (tr.clipes || []).forEach(c => l.push({ c, tr, i }))); return l; }
 
   nomeTrilha(tr) {
+    // 🎭 trilha do Alvo própria de um personagem (golpes.js: sincAlvo)
+    if (tr._ver) { const d = this.host.defs && this.host.defs[tr._ver]; return (tr.nome || 'Alvo') + ' · 🎭 ' + ((d && d.nome) || tr._ver); }
     if (tr.nome) return tr.nome;
     return { lutador: 'Lutador', efeitos: 'Efeitos', projeteis: 'Projéteis', camadas: 'Camadas', sons: 'Sons', acertos: 'Acertos', tela: 'Tela', acoes: 'Ações' }[tr.tipo] || tr.tipo;
   }

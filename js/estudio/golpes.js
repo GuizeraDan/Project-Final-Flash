@@ -93,6 +93,7 @@ window.FF = window.FF || {};
       E.rascunho.gravar('golpe_cfg', cfg);
       await this.carregarDefs();
       if (!this.defs[cfg.atacante].formas[cfg.forma]) this.cfg.forma = this.defs[cfg.atacante].formaInicial || Object.keys(this.defs[cfg.atacante].formas)[0];
+      this.sincAlvo();
       this.montarLado();
       if (manter && this.doc) { this.doc.origem.forma = this.cfg.forma; this.irPara(this.t); this.tl.render(); }
     },
@@ -201,7 +202,19 @@ window.FF = window.FF || {};
       const t3 = E.el('div', 'es-titulo', 'Palco');
       L.appendChild(t3);
       const pb = E.el('div', 'es-rolar'); pb.style.flex = 'none';
-      pb.appendChild(E.campo('select', 'Alvo', cfg.alvo, (v) => this.aplicarCfg(Object.assign({}, cfg, { alvo: v, alvoForma: null }), true), { lista: nomes }));
+      const trA = this.doc && this.trAlvo(), propriosA = Object.assign({}, (trA && trA.porAlvo) || {}, trA && trA._ver ? { [trA._ver]: 1 } : {});
+      pb.appendChild(E.campo('select', 'Alvo', cfg.alvo, (v) => this.aplicarCfg(Object.assign({}, cfg, { alvo: v, alvoForma: null }), true), { lista: nomes.map(([id, n]) => [id, n + (propriosA[id] ? ' 🎭' : '')]) }));
+      if (trA && ['golpe', 'habilidade', 'novo'].includes(this.doc.origem.tipo)) {
+        const linhaA = E.el('div', 'es-alvo-proprio');
+        if (trA._ver) {
+          linhaA.appendChild(E.el('span', 'es-dica', '🎭 Trilha do Alvo: <b>só do ' + this.nomeDe(cfg.alvo) + '</b> (os outros usam a padrão)'));
+          linhaA.appendChild(E.botao('↺ Usar a padrão', () => this.usarBaseAlvo(), 'Apaga a trilha própria dele neste golpe'));
+        } else {
+          linhaA.appendChild(E.el('span', 'es-dica', '🎭 Trilha do Alvo: padrão (vale para todos)'));
+          linhaA.appendChild(E.botao('✏ Trilha só para ' + this.nomeDe(cfg.alvo), () => this.criarAlvoProprio(), 'Copia a trilha do Alvo e, daqui em diante, o que você mudar nela vale só quando o alvo for ' + this.nomeDe(cfg.alvo) + ' (animações próprias, tempos, movimentos)'));
+        }
+        pb.appendChild(linhaA);
+      }
       const dA = this.defs[cfg.alvo];
       if (dA && Object.keys(dA.formas).length > 1) pb.appendChild(E.campo('select', 'Forma do alvo', cfg.alvoForma || dA.formaInicial, (v) => this.aplicarCfg(Object.assign({}, cfg, { alvoForma: v }), true), { lista: Object.entries(dA.formas).map(([k, f]) => [k, f.nome || k]) }));
       pb.appendChild(E.campo('select', 'Quem solta é', cfg.lado, (v) => this.aplicarCfg(Object.assign({}, cfg, { lado: v }), true), { lista: [['heroi', 'herói (esquerda)'], ['inimigo', 'inimigo (direita)']] }));
@@ -319,10 +332,11 @@ window.FF = window.FF || {};
       this.pausar();
       // garante ids e trilhas
       doc.linha.trilhas = doc.linha.trilhas || [];
-      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).forEach(c => { if (!c.id) c.id = novoId(); this.restaurarBase(c); }));
+      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).concat(...Object.values(tr.porAlvo || {})).forEach(c => { if (!c.id) c.id = novoId(); this.restaurarBase(c); }));
       this.ajuste = null;
       this.extrairImpactos(doc.linha);
       this.doc = doc;
+      this.sincAlvo();
       this.sel = null; this.trSel = null; this.t = 0; this.loop = null;
       if (this.multi) this.multi.clear();
       this.sujo = false;
@@ -882,7 +896,7 @@ window.FF = window.FF || {};
     },
 
     // ---------- desenho ----------
-    tudo() { this.autoDuracao(); this.irPara(Math.min(this.t, this.doc.linha.duracao)); this.tl.render(); this.renderProps(); this.renderRodape(); },
+    tudo() { this.sincAlvo(); this.autoDuracao(); this.irPara(Math.min(this.t, this.doc.linha.duracao)); this.tl.render(); this.renderProps(); this.renderRodape(); },
     redesenharTudo() { this.irPara(this.t); this.tl.render(); },
     renderProps() { if (this.doc) FF.EstudioProps.render(this.props, this); this._deCanvas = false; },
     redesenhar() {
@@ -1113,7 +1127,52 @@ window.FF = window.FF || {};
       this.CAMPOS_AJUSTE.forEach(f => { if (f in c._base) c[f] = E.copia(c._base[f]); else delete c[f]; });
       delete c._base;
     },
-    linhaBase() { const L = E.copia(this.doc.linha); L.trilhas.forEach(tr => tr.clipes.forEach(c => this.restaurarBase(c))); return L; },
+    linhaBase() { const L = this.juntarAlvo(E.copia(this.doc.linha)); L.trilhas.forEach(tr => tr.clipes.forEach(c => this.restaurarBase(c))); return L; },
+    // ---------- 🎭 trilha do Alvo por personagem (tr.porAlvo[id]) ----------
+    // No Estúdio, quando o Alvo do palco tem versão própria, os clipes dela ficam em tr.clipes (a base guardada em
+    // tr._base, tr._ver = id); ao salvar (linhaBase) tudo volta para o formato do jogo.
+    trAlvo(L) { return ((L || (this.doc && this.doc.linha) || {}).trilhas || []).find(t => t.tipo === 'lutador' && t.quem === 'alvo'); },
+    juntarAlvo(L) {
+      const tr = this.trAlvo(L);
+      if (!tr || !tr._ver) return L;
+      (tr.porAlvo = tr.porAlvo || {})[tr._ver] = tr.clipes;
+      tr.clipes = tr._base || [];
+      delete tr._ver; delete tr._base;
+      return L;
+    },
+    sincAlvo() {
+      if (!this.doc) return;
+      const L = this.doc.linha, tr = this.trAlvo(L);
+      if (!tr) return;
+      const quer = tr.porAlvo && tr.porAlvo[this.cfg.alvo] && !tr.porAlvo[this.cfg.alvo]._apagar ? this.cfg.alvo : null;
+      if ((tr._ver || null) === quer) { if (quer) tr.porAlvo[quer] = tr.clipes; return; }
+      this.juntarAlvo(L);
+      if (quer) { tr._base = tr.clipes; tr.clipes = tr.porAlvo[quer]; tr._ver = quer; }
+      if (this.sel && !this.clipe()) this.sel = null;
+    },
+    alvoProprio() { const tr = this.trAlvo(); return !!(tr && tr._ver); },
+    criarAlvoProprio() {
+      this.sincAlvo();
+      const tr = this.trAlvo(); if (!tr || tr._ver) return;
+      (tr.porAlvo = tr.porAlvo || {})[this.cfg.alvo] = E.copia(tr.clipes).map(c => Object.assign(c, { id: novoId() }));
+      this.sel = null;
+      this.sincAlvo();
+      this.mudou('Trilha do Alvo só para ' + this.nomeDe(this.cfg.alvo));
+      this.montarLado(); this.tudo();
+      E.aviso('🎭 Agora a trilha do Alvo vale só para ' + this.nomeDe(this.cfg.alvo) + '. Os outros alvos continuam com a padrão.', 'ok');
+    },
+    async usarBaseAlvo() {
+      const tr = this.trAlvo(); if (!tr || !tr._ver) return;
+      const id = tr._ver;
+      if (!(await E.confirmar('Usar a padrão', 'Apagar a trilha do Alvo própria de ' + this.nomeDe(id) + ' neste golpe? Ele volta a usar a padrão.', '↺ Usar a padrão', true))) return;
+      tr.clipes = tr._base || [];
+      delete tr._ver; delete tr._base; delete tr.porAlvo[id];
+      if (!Object.keys(tr.porAlvo).length) delete tr.porAlvo;
+      this.sel = null;
+      this.mudou('Trilha do Alvo padrão para ' + this.nomeDe(id));
+      this.montarLado(); this.tudo();
+    },
+    nomeDe(id) { return (this.defs[id] || {}).nome || id; },
     guardarAjuste() {
       const k = this.ajuste; if (!k) return;
       this.cadaClipe(c => {
