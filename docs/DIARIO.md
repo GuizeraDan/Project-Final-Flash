@@ -705,4 +705,6 @@ Cache do app: `finalflash-v47`.
 - Falta: o usuário testar os golpes com cena; se ficar bom, dá para limpar a UI de ajustes por fileira (🧍🎯 / "Só nesta combinação"), que perde o sentido nos golpes com cena.
 - Mesmo dia: corrigido o desencontro palco × luta na cena (pontos de tela usavam a formação lateral, que muda com o tamanho dos times). Depois, a pedido: **todo golpe que acerta alguém vira cena** (normal = corte seco, rush/supremo = flash); saíram do Estúdio as fileiras (🧍🎯 e os selects) e o "✏ Só nesta combinação".
 - Próximo passo conversado: câmera e entrada estilo Octopath Traveler (zoom no par, retrato no supremo, "espaço do golpe" para quando as cenas estiverem desligadas) — o usuário ainda vai decidir.
+- Mesmo dia (tarde): entradas e saídas da cena editáveis por tipo e por personagem (clipes ✂ Corte, ✦ Clarão com cor, 🖼 Retrato); a Abertura do Supremo virou a entrada do Supremo (o que já estava salvo continua valendo). ⚡ Sparking por personagem: cena ao encher a Fúria + aura e pose parada enquanto dura (Personagens → Atributos). Painel do palco sem aliados do alvo e sem "Quem é atacado".
+- Falta: o usuário montar as entradas/aura no Estúdio e dizer se o retrato e os tempos padrão estão bons.
 

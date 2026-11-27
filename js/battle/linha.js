@@ -38,6 +38,7 @@
 //           sem o campo: anel novo quando o acerto anterior foi há mais de 0,6 s.
 //  tela     {tipo:"tremer", forca, d?} | {tipo:"flash", forca, d?} | {tipo:"mensagem", texto, d?}   (d = duração: segura a força até o fim; sem d = só o impacto)
 //           {tipo:"escurecer", d, forca} | {tipo:"linhas", d} | {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
+//           {tipo:"flash", forca, d, cor} | {tipo:"corte"} (entrada/saída da cena) | {tipo:"retrato", d, quem, de, cor}
 //           {tipo:"camera", d, zoom, foco: "centro"|"atacante"|"alvo"|"entre", dx?, dy?}
 //  acoes    {tipo:"acao", passo: {qualquer passo de roteiro: transformar, aplicar, ki, curar, atordoar, objeto,
 //           lancarObjeto, autoNocaute, removerBuff, vozTipo...}}
@@ -378,7 +379,11 @@ FF.Linha = {
         return;
       }
       case 'tremer': b.shake(c.forca || 6, c.d); return;
-      case 'flash': b.flash(c.forca || 0.5, c.d); return;
+      case 'flash': b.flash(c.forca || 0.5, c.d, c.cor); return;
+      // ✂ corte para a cena (entrada/saída da cena do golpe): quem toca a linha decide o que acontece
+      case 'corte': if (b._corte) b._corte(); return;
+      // 🖼 retrato: a arte (banner) de quem solta ou do alvo passa pela tela
+      case 'retrato': { const f = c.quem === 'alvo' ? target : actor; if (f) (b.efTela = b.efTela || {}).retrato = { t0: FF.Clock.t, d: c.d || 1.2, f, de: c.de || (f.isHero ? 'esquerda' : 'direita'), cor: c.cor || null }; return; }
       case 'mensagem': b.banner(c.texto || '', c.d || 1.3); return;
       case 'camera': {
         b.cam = b.cam || { zoom: 1, x: 0, y: 0 };

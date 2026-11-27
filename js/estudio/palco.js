@@ -55,6 +55,7 @@ FF.EstudioPalco = class {
     const ui = { chooseMove: () => new Promise(() => {}), chooseTarget: (f) => Promise.resolve(f[0]), showEnd: () => {} };
     const listeners = FF.Input.listeners.slice();
     const b = new FF.Battle(def, this.stage, ui);
+    b.semSparking = true;   // "Na batalha" do palco: sem a cena de entrada no Sparking depois do golpe
     FF.Input.listeners = listeners;          // a batalha do palco não escuta o teclado sozinha
     herois.forEach((id, i) => b.addFighter(this.defs[id], 'heroi', i));
     inimigos.forEach((id, i) => b.addFighter(this.defs[id], 'inimigo', i));
@@ -101,7 +102,12 @@ FF.EstudioPalco = class {
     // o resto (buffs, carregar ki…) = a formação
     {
       const mv = Object.assign({}, golpe, { roteiro: [{ linha }] });
-      if (FF.Battle.ofensivo(mv) && b.alvo && b.alvo !== b.atk && b.alvo.lado !== b.atk.lado) b.entrarCena(b.atk, b.alvo, mv, true);
+      const temAlvo = b.alvo && b.alvo !== b.atk && b.alvo.lado !== b.atk.lado;
+      if (golpe._cenaDoc && temAlvo) {   // 🎬 entrada (começa na formação) / saída (começa na cena) — o ✂ corte troca
+        const mvA = { roteiro: [{ linha: { trilhas: [{ tipo: 'acertos', clipes: [{ tipo: 'acerto', t: 0 }] }] } }] };
+        if (golpe._cenaDoc === 'saida') { b.entrarCena(b.atk, b.alvo, mvA, true); b._corte = () => b.sairCena(b.cena, true); }
+        else b._corte = () => b.entrarCena(b.atk, b.alvo, mvA, true);
+      } else if (FF.Battle.ofensivo(mv) && b.alvo && b.alvo !== b.atk && b.alvo.lado !== b.atk.lado) b.entrarCena(b.atk, b.alvo, mv, true);
       else b.alinharFileira(b.atk, b.alvo, mv, true);
     }
     // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;

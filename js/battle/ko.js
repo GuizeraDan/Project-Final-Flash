@@ -117,3 +117,102 @@ FF.Abertura = {
     await viva.fim;
   },
 };
+
+// ENTRADA e SAÍDA DA CENA DO GOLPE: linhas do tempo por tipo de golpe (normal | rush | supremo) e por personagem
+// (quem solta). Clipe de tela {tipo:"corte"} = o instante em que a formação vira a cena (na entrada) ou volta (na
+// saída); sem ele, o corte acontece no fim. Clarão = clipe "flash" (forca, d, cor).
+//   data/edicoes.js → entrada[tipo][<id>] → entrada[tipo].padrao → (supremo: a antiga abertura[<id>]/abertura.padrao
+//   + clarão e corte no fim) → FF.CenaGolpe.PADRAO.entrada[tipo]   (saída igual, em "saida")
+FF.CenaGolpe = {
+  TIPOS: ['normal', 'rush', 'supremo'],
+  trilhas(tela, sons) {
+    return [
+      { id: 'atacante', tipo: 'lutador', quem: 'atacante', nome: 'Quem solta', clipes: [] },
+      { id: 'alvo', tipo: 'lutador', quem: 'alvo', nome: 'Alvo', clipes: [] },
+      { id: 'efeitos', tipo: 'efeitos', nome: 'Efeitos', clipes: [] },
+      { id: 'sons', tipo: 'sons', nome: 'Sons e vozes', clipes: sons || [] },
+      { id: 'tela', tipo: 'tela', nome: 'Tela (clarão, corte, retrato, faixa, câmera)', clipes: tela },
+    ];
+  },
+  padrao(qual, tipo) {
+    const T = this.trilhas.bind(this);
+    if (qual === 'saida') return tipo === 'normal'
+      ? { duracao: 0.1, trilhas: T([{ id: 'sd1', tipo: 'corte', t: 0 }]) }
+      : { duracao: 0.25, trilhas: T([{ id: 'sd1', tipo: 'flash', t: 0, forca: 0.8, d: 0.3 }, { id: 'sd2', tipo: 'corte', t: 0.1 }]) };
+    if (tipo === 'normal') return { duracao: 0.13, trilhas: T([{ id: 'en1', tipo: 'corte', t: 0.05 }]) };
+    if (tipo === 'rush') return { duracao: 0.3, trilhas: T([{ id: 'en1', tipo: 'flash', t: 0, forca: 0.9, d: 0.3 }, { id: 'en2', tipo: 'corte', t: 0.12 }]) };
+    return this.comCorte(FF.Abertura.PADRAO);
+  },
+  // abertura antiga do Supremo (só a parte antes do golpe) + clarão e corte no fim
+  comCorte(ab) {
+    const l = JSON.parse(JSON.stringify(ab)), fim = l.duracao || 1.7;
+    let tela = (l.trilhas || []).find(t => t.tipo === 'tela');
+    if (!tela) { tela = { id: 'tela', tipo: 'tela', nome: 'Tela', clipes: [] }; (l.trilhas = l.trilhas || []).push(tela); }
+    if (!tela.clipes.some(c => c.tipo === 'corte')) tela.clipes.push({ id: 'abf', tipo: 'flash', t: fim, forca: 0.9, d: 0.3 }, { id: 'abc', tipo: 'corte', t: fim + 0.12 });
+    l.duracao = Math.max(fim + 0.3, l.duracao || 0);
+    return l;
+  },
+  salva(qual, tipo, id) {
+    const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}, s = (ed[qual] || {})[tipo] || {};
+    if (id && id !== 'padrao' && s[id]) return s[id];
+    if (qual === 'entrada' && tipo === 'supremo') {
+      const ab = ed.abertura || {};
+      if (id && id !== 'padrao' && ab[id]) return this.comCorte(ab[id]);
+      if (s.padrao) return s.padrao;
+      if (ab.padrao) return this.comCorte(ab.padrao);
+      return null;
+    }
+    return s.padrao || null;
+  },
+  temPropria(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!(id && ((ed[qual] || {})[tipo] || {})[id]) || (qual === 'entrada' && tipo === 'supremo' && !!(ed.abertura || {})[id] && id !== 'padrao'); },
+  temSalva(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!((ed[qual] || {})[tipo] || {})[id]; },
+  linhaDe(qual, tipo, id) { return JSON.parse(JSON.stringify(this.salva(qual, tipo, id) || this.padrao(qual, tipo))); },
+  // toca e espera; aoCortar roda no clipe "corte" (ou no fim, se a linha não tiver um)
+  async tocar(b, qual, tipo, actor, target, move, aoCortar) {
+    const linha = this.linhaDe(qual, tipo, actor.def && actor.def.id || actor.id);
+    let cortou = false;
+    b._corte = () => { if (!cortou) { cortou = true; aoCortar && aoCortar(); } };
+    try {
+      if (!linha.desligada && (linha.trilhas || []).some(t => (t.clipes || []).length)) {
+        if (!FF.Linha.pronta(linha)) await FF.Linha.preparar(linha);
+        const viva = FF.Linha.iniciar(b, actor, target, Object.assign({}, move, { roteiro: [] }), linha);
+        await viva.fim;
+      }
+    } finally { b._corte(); b._corte = null; }
+  },
+};
+
+// SPARKING POR PERSONAGEM: quando a Fúria enche, toca a "entrada no Sparking" (linha do tempo; trilha Quem solta =
+// quem entrou) e, enquanto ela estiver cheia, a aura em loop e a pose parada escolhidas no Estúdio.
+//   data/edicoes.js → sparking.entrada[<id>] → sparking.entrada.padrao → FF.Sparking.PADRAO
+//                     sparking.visual[<id>] = {aura: {sprite, anim, escala, dx, dy, fps, alpha, frente}, parado: "Anim"}
+FF.Sparking = {
+  PADRAO: {
+    duracao: 1.0,
+    trilhas: [
+      { id: 'atacante', tipo: 'lutador', quem: 'atacante', nome: 'Quem entra no Sparking', clipes: [] },
+      { id: 'efeitos', tipo: 'efeitos', nome: 'Efeitos', clipes: [] },
+      { id: 'sons', tipo: 'sons', nome: 'Sons e vozes', clipes: [{ id: 'sp1', tipo: 'som', t: 0, som: 'sprkngbrst_expl', vol: 70 }] },
+      { id: 'tela', tipo: 'tela', nome: 'Tela', clipes: [
+        { id: 'sp2', tipo: 'flash', t: 0, forca: 0.45, d: 0.15, cor: '#ffd21a' },
+        { id: 'sp3', tipo: 'escurecer', t: 0, d: 0.9, forca: 0.4 },
+        { id: 'sp4', tipo: 'camera', t: 0, d: 0.25, zoom: 1.2, foco: 'atacante' },
+      ] },
+    ],
+  },
+  ed() { return ((FF.Edicoes && FF.Edicoes.dados()) || {}).sparking || {}; },
+  linhaSalva(id) { const e = this.ed().entrada || {}; return (id && id !== 'padrao' && e[id]) || e.padrao || null; },
+  temPropria(id) { return !!(id && (this.ed().entrada || {})[id]); },
+  temSalva(id) { return !!(this.ed().entrada || {})[id]; },
+  linhaDe(id) { return JSON.parse(JSON.stringify(this.linhaSalva(id) || this.PADRAO)); },
+  visual(id) { return (this.ed().visual || {})[id] || null; },
+  async tocar(b, f, alvo) {
+    const linha = this.linhaDe(f.def && f.def.id || f.id);
+    const v = this.visual(f.def && f.def.id);
+    if (v && v.aura && v.aura.sprite && FF.Assets.loadSprite) { try { await FF.Assets.loadSprite(v.aura.sprite); } catch (e) { /* sem aura */ } }
+    if (linha.desligada || !(linha.trilhas || []).some(t => (t.clipes || []).length)) return;
+    if (!FF.Linha.pronta(linha)) await FF.Linha.preparar(linha);
+    const viva = FF.Linha.iniciar(b, f, alvo || null, { nome: 'Sparking', roteiro: [] }, linha);
+    await viva.fim;
+  },
+};

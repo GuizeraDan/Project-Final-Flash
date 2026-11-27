@@ -488,7 +488,16 @@ FF.Battle = class {
     actor.busy = true;
     this.acaoAtual = { actor, target };
     this.combo = null;   // cada ação começa um combo novo
-    if (move.supremo) await this.dramaSupremo(actor, move);
+    // 🎬 entrada da cena (por tipo e por quem solta, editável no Estúdio): o clipe "corte" troca a formação pela cena.
+    // Sem cena (opção do jogador), o Supremo ainda toca a entrada dele (a antiga abertura), sem o corte
+    const tipoCena = FF.Battle.categoria(move), vaiCena = this.querCena(actor, target, move);
+    let cena = null;
+    if (vaiCena || move.supremo) {
+      try { await FF.CenaGolpe.tocar(this, 'entrada', vaiCena ? tipoCena : 'supremo', actor, target, move, vaiCena ? () => { this.entrarCena(actor, target, move, true); } : null); }
+      catch (e) { console.error(e); if (vaiCena && !this.cena) this.entrarCena(actor, target, move, true); }
+      cena = vaiCena ? this.cena : null;
+      if (move.supremo) await FF.Clock.wait(0.15);
+    }
     this._escudoMarcado = new Set();   // escudos: cada golpe tira escudo uma vez por alvo
     this._guardaIA = new Map();        // inimigo decide se defende uma vez por golpe (vale para todos os acertos)
     this.posGolpe = [];                // contra-ataques / Percepção que acontecem depois do golpe
@@ -507,7 +516,6 @@ FF.Battle = class {
     // perspectiva: antes de golpear alguém de outra fileira, quem ataca desliza até a fileira do alvo
     // (raios, rajadas e projéteis saem alinhados com ele; no fim volta para a sua)
     // golpe em alguém do outro time: corta para a cena (só quem ataca e o alvo, palco fixo)
-    const cena = this.querCena(actor, target, move) ? await this.entrarCena(actor, target, move) : null;
     const alinhou = cena ? false : await this.alinharFileira(actor, target, move);
     // desafio de botão do golpe (só heróis): apertar rápido / 3 anéis / segurar e soltar → multiplica o dano
     actor.desafioMult = 1;
@@ -519,7 +527,12 @@ FF.Battle = class {
     await Promise.all(this.projectiles.map(p => p.done));
     await Promise.all(this.cenasKO || []);   // espera a cena de KO de quem caiu terminar
     this.cenasKO = [];
-    if (cena) await this.sairCena(cena);   // volta para a formação
+    // 🎬 saída da cena (editável como a entrada): o "corte" volta para a formação
+    if (cena) {
+      try { await FF.CenaGolpe.tocar(this, 'saida', tipoCena, actor, target, move, () => { this.sairCena(cena, true); }); }
+      catch (e) { console.error(e); }
+      if (this.cena === cena) this.sairCena(cena, true);
+    }
     // falas dos chefes (metade da vida)
     for (const f of (this.falasPendentes || []).splice(0)) {
       if (f.ko) continue;
@@ -536,6 +549,23 @@ FF.Battle = class {
     actor.desafioMult = 1;
     actor.idle();
     await Promise.all([this.resetPositions(), alinhou ? this.voltarFileira(actor) : null]);
+    await this.conferirSparking();
+  }
+
+  // ⚡ entrada no Sparking: quem ficou com a Fúria cheia neste golpe toca a cena dele (Estúdio → Golpes → Sparking)
+  async conferirSparking() {
+    for (const f of this.all) {
+      if (f.ko || !f.rageCheia) { if (!f.rageCheia) f._spkVisto = false; continue; }
+      if (f._spkVisto) continue;
+      f._spkVisto = true;
+      if (this.semSparking || !FF.Sparking) continue;
+      const alvo = (f.isHero ? this.enemies : this.heroes).find(o => !o.ko) || null;
+      const ocupado = f.busy;
+      f.busy = true;
+      try { await FF.Sparking.tocar(this, f, alvo); } catch (e) { console.error(e); }
+      f.busy = ocupado;
+      if (!f.ko) f.idle();
+    }
   }
 
   // ---------- 🎬 cena do golpe (todo golpe que acerta alguém do outro time) ----------
@@ -557,6 +587,7 @@ FF.Battle = class {
   // palco fixo da cena: escala da luta 1×1, sem campo de visão; quem ataca e o alvo na profundidade do 1×1,
   // parceiros nas outras fileiras do seu lado. instantaneo = sem o corte (palco do Estúdio)
   async entrarCena(actor, target, move, instantaneo) {
+    if (this.cena) return this.cena;
     const atores = this.atoresCena(actor, target, move);
     const ESC = 2.5, offX = (FF.W - FF.BW) / 2;
     const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa, latX: f.latX, latG: f.latG })) };
@@ -581,9 +612,9 @@ FF.Battle = class {
     if (!instantaneo) await FF.Clock.wait(comFlash ? 0.15 : 0.08);
     return this.cena;
   }
-  async sairCena(cena) {
+  async sairCena(cena, instantaneo) {
     if (!cena || this.cena !== cena) return;
-    if (cena.comFlash) { this.flash(0.8, 0.3); await FF.Clock.wait(0.1); }
+    if (!instantaneo && cena.comFlash) { this.flash(0.8, 0.3); await FF.Clock.wait(0.1); }
     this.scale = cena.salvo.scale; this.fov = cena.salvo.fov;
     cena.salvo.atores.forEach(v => {
       const f = v.f;
@@ -593,7 +624,7 @@ FF.Battle = class {
     });
     this.cena = null;
     this.fxList.length = 0;
-    await FF.Clock.wait(0.1);
+    if (!instantaneo) await FF.Clock.wait(0.1);
   }
 
   // ---------- mudança de fileira (perspectiva) ----------
@@ -1118,6 +1149,20 @@ FF.Battle = class {
         const a = i * 0.2417 * Math.PI * 2 + t * 0.6, r0 = 260 + ((i * 37 + t * 900) % 120);
         ctx.beginPath(); ctx.moveTo(FF.W / 2 + Math.cos(a) * r0, FF.H / 2 + Math.sin(a) * r0); ctx.lineTo(FF.W / 2 + Math.cos(a) * 900, FF.H / 2 + Math.sin(a) * 900); ctx.stroke();
       }
+      ctx.globalAlpha = 1;
+    }
+    // 🖼 retrato: a arte do personagem entra pelo lado dele, para no meio e sai pelo outro lado
+    const rt = ef.retrato;
+    if (rt && t >= rt.t0 && t <= rt.t0 + rt.d && rt.f && rt.f.def) {
+      const u = (t - rt.t0) / rt.d, ent = Math.min(1, u / 0.2), sai = Math.max(0, (u - 0.8) / 0.2);
+      const daEsq = rt.de !== 'direita', w = 360, h = 440, y = FF.H / 2 - h / 2 - 40;
+      const meio = FF.W / 2 - w / 2, longe = daEsq ? -w - 40 : FF.W + 40;
+      const ease = (k) => 1 - Math.pow(1 - k, 3);
+      const xs = sai > 0 ? meio + (daEsq ? 1 : -1) * FF.W * ease(sai) : longe + (meio - longe) * ease(ent);
+      ctx.globalAlpha = Math.min(1, ent * 2) * (1 - sai);
+      ctx.fillStyle = rt.cor || 'rgba(0,0,0,0.55)'; ctx.fillRect(0, y + h * 0.25, FF.W, h * 0.5);
+      ctx.globalAlpha = 1 - sai;
+      try { FF.Retrato.desenhar(ctx, rt.f.def, rt.f.formId, 'banner', xs, y, w, h, { fundo: false, espelhar: !daEsq }); } catch (e) { /* sem arte */ }
       ctx.globalAlpha = 1;
     }
     const kf = fase(ef.faixa);
@@ -1668,7 +1713,7 @@ FF.Battle = class {
   banner(text, dur) { this.bannerTxt = { text, until: FF.Clock.t + (dur || 1.2), start: FF.Clock.t }; }
   // d (s): tremor/flash com duração (clipe esticado no Estúdio) — segura a força até o fim e some nos últimos instantes
   shake(n, d) { this.shakeAmt = Math.max(this.shakeAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'shakeAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.15, d / 2) }); }
-  flash(n, d) { this.flashAmt = Math.max(this.flashAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'flashAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.2, d / 2) }); }
+  flash(n, d, cor) { this.flashCor = cor || null; this.flashAmt = Math.max(this.flashAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'flashAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.2, d / 2) }); }
 
   // ---------- loop ----------
   update(dt) {
@@ -1829,8 +1874,9 @@ FF.Battle = class {
     this.desenharDrama(ctx);
     this.desenharFala(ctx);
     if (this.flashAmt > 0) {
-      ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, this.flashAmt) + ')';
+      ctx.fillStyle = this.flashCor || '#ffffff'; ctx.globalAlpha = Math.min(1, this.flashAmt);
       ctx.fillRect(0, 0, FF.W, FF.H);
+      ctx.globalAlpha = 1;
     }
   }
 

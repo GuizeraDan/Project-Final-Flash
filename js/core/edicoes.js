@@ -30,7 +30,7 @@ FF.Edicoes = {
   TOKEN: 'ff_github_token',
 
   ULT: 'ff_edicoes_ultimo',
-  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko', 'abertura', 'favoritos', 'favSons', 'sons', 'favoritosPastas', 'favSonsPastas'],
+  SECOES: ['golpes', 'habilidades', 'sprites', 'personagens', 'spritesNovos', 'spritesInfo', 'ko', 'abertura', 'entrada', 'saida', 'sparking', 'favoritos', 'favSons', 'sons', 'favoritosPastas', 'favSonsPastas'],
   // publicado no site, ou a versão que este aparelho acabou de enviar (o site leva ~1 min para publicar):
   // vale a de "rev" mais nova
   base() {

@@ -197,6 +197,8 @@ FF.EstudioLinha = class {
       case 'acerto': return '✸ ' + (c.forca || 'leve') + ' ' + (c.fracao != null ? c.fracao : 1) + (c.lanca ? ' ⇠' : '') + (c.anel ? ' ◎' : '') + (c.som ? ' ♪' : '');
       case 'tremer': return '〰 ' + (c.forca || 6) + (c.d ? ' · ' + c.d + ' s' : '');
       case 'flash': return '✦ ' + (c.forca || 0.5) + (c.d ? ' · ' + c.d + ' s' : '');
+      case 'corte': return '✂ corte';
+      case 'retrato': return '🖼 retrato' + (c.quem === 'alvo' ? ' do alvo' : '');
       case 'mensagem': return '💬 ' + (c.texto || '');
       case 'camera': return '🎥 ×' + (c.zoom || 1) + ' ' + (c.foco || 'centro');
       case 'acao': return '⚙ ' + Object.keys(c.passo || {}).join(', ');

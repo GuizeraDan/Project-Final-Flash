@@ -360,6 +360,14 @@ FF.EstudioProps = {
       case 'tremer': case 'flash':
         g.appendChild(num(c, 'forca', 'Força', c.tipo === 'tremer' ? 'Ex.: 6 (fraco) a 20 (forte)' : '0 a 1', { passo: c.tipo === 'flash' ? 0.05 : 1 }));
         g.appendChild(num(c, 'd', 'Duração (s)', 'Vazio = só o impacto (some sozinho). Com duração, segura a força até o fim (dá para esticar a borda do clipe)', { passo: 0.05, min: 0.05 }));
+        if (c.tipo === 'flash') g.appendChild(E.campo('cor', 'Cor', c.cor || '#ffffff', (v) => { if (v && v.toLowerCase() !== '#ffffff') c.cor = v; else delete c.cor; host.mudou('Cor do clarão'); }));
+        break;
+      case 'corte': g.appendChild(E.el('p', 'es-dica', 'Neste instante a formação vira a cena do golpe (na entrada) ou a cena volta para a formação (na saída). Sem este clipe, o corte acontece no fim da linha. Num golpe comum ele não faz nada.')); break;
+      case 'retrato':
+        g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.2 }));
+        g.appendChild(sel(c, 'quem', 'De quem', [['', 'quem solta'], ['alvo', 'alvo']], null, ''));
+        g.appendChild(sel(c, 'de', 'Entra pela', [['', 'lado do personagem'], ['esquerda', 'esquerda'], ['direita', 'direita']], null, ''));
+        g.appendChild(E.campo('cor', 'Cor da faixa', c.cor || '#000000', (v) => { if (v && v !== '#000000') c.cor = v; else delete c.cor; host.mudou('Cor da faixa'); }, { dica: 'Faixa atrás da arte (preta = padrão, meio transparente)' }));
         break;
       case 'mensagem': g.appendChild(txt(c, 'texto', 'Texto')); g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1 })); break;
       case 'camera': {
@@ -405,7 +413,7 @@ FF.EstudioProps = {
   },
 
   titulo(c) {
-    return { anim: '🎬 Animação', mover: '➡ Movimento', caminho: '〰 Caminho', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
+    return { anim: '🎬 Animação', mover: '➡ Movimento', caminho: '〰 Caminho', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash / clarão', corte: '✂ Corte para a cena', retrato: '🖼 Retrato', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
   },
 
   trilha(tr, host, txt) {
@@ -425,7 +433,23 @@ FF.EstudioProps = {
     const E = FF.Estudio;
     const g = host.doc.golpe;
     const box = E.el('div');
-    if (host.doc.origem.tipo === 'abertura') {   // abertura do Supremo
+    const oc = host.doc.origem;
+    if (oc.tipo === 'cena') {   // 🎬 entrada / saída da cena do golpe
+      const nomesT = { normal: '👊 Normal', rush: '💥 Rush', supremo: '🔥 Supremo' };
+      const k = E.grupo(oc.qual === 'saida' ? '🎬 Saída da cena' : '🎬 Entrada da cena');
+      k.appendChild(E.el('p', 'es-dica', (oc.qual === 'saida'
+        ? 'Toca no fim de todo golpe <b>' + nomesT[oc.tipoCena] + '</b>, quando a cena volta para a formação.'
+        : 'Toca no começo de todo golpe <b>' + nomesT[oc.tipoCena] + '</b>, antes do golpe em si.') +
+        ' Trilha <b>Tela</b>: ✂ <b>Corte para a cena</b> (o instante da troca; sem ele, a troca é no fim), ✦ Clarão (com cor), 🖼 Retrato, 🌑 Escurecer, 💨 Linhas, 🎌 Faixa com o nome (<b>{golpe}</b> = nome do golpe), 🎥 Câmera. ' +
+        (oc.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm uma própria.' : 'Esta é a própria deste personagem.') + ' Sem nenhum clipe = corte seco.'));
+      box.appendChild(k);
+    } else if (oc.tipo === 'sparking') {   // ⚡ entrada no Sparking
+      const k = E.grupo('⚡ Entrada no Sparking');
+      k.appendChild(E.el('p', 'es-dica', 'Toca quando a Fúria de alguém enche, logo depois do golpe que encheu. Trilha <b>Quem solta</b> = quem entrou no Sparking (power-up, pose, voz…). ' +
+        (oc.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm uma própria.' : 'Esta é a própria deste personagem.') +
+        ' A aura e a pose enquanto dura ficam em Personagens → ⚡ Sparking. Sem nenhum clipe = sem cena.'));
+      box.appendChild(k);
+    } else if (host.doc.origem.tipo === 'abertura') {   // abertura do Supremo
       const k = E.grupo('⚡ Abertura do Supremo');
       k.appendChild(E.el('p', 'es-dica', 'Toca antes de todo golpe <b>Supremo</b>, antes do golpe em si. Trilha <b>Tela</b>: 🌑 Escurecer (só quem solta fica aceso), 💨 Linhas de velocidade, 🎌 Faixa com o nome (<b>{golpe}</b> vira o nome do golpe) e 🎥 Câmera. Dá para pôr sons, vozes, efeitos e animações em quem solta. ' +
         (host.doc.origem.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm abertura própria.' : 'Esta é a abertura própria deste personagem.') + ' A câmera volta ao normal sozinha no fim. Sem nenhum clipe = sem abertura.'));
@@ -461,7 +485,7 @@ FF.EstudioProps = {
     d.appendChild(E.campo('check', 'Automática', !L.duracaoManual, (v) => { if (v) { delete L.duracaoManual; host.autoDuracao(); } else L.duracaoManual = true; host.mudou('Duração automática'); }, { dica: 'Termina 0,1 s depois do último clipe' }));
     box.appendChild(d);
     const r = E.grupo('🔒 Regras', false);
-    if (host.doc.origem.tipo === 'ko' || host.doc.origem.tipo === 'abertura') r.style.display = 'none';
+    if (['ko', 'abertura', 'cena', 'sparking'].includes(host.doc.origem.tipo)) r.style.display = 'none';
     r.appendChild(E.el('p', 'es-dica', 'mostrar/esconder: {"buff": "kaioken"} ou {"forma": "ssj"}. requer: {"parceiro": {"id": "piccolo", "ki": 30}} para Sparking Combo, {"semBuff": "kaioken"}.'));
     ['mostrar', 'esconder', 'requer'].forEach(k => r.appendChild(E.campo('json', k, g[k], (v) => { if (v === undefined) delete g[k]; else g[k] = v; host.mudou('Regra ' + k); }, { linhas: 2 })));
     box.appendChild(r);

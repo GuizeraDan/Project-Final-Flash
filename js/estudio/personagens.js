@@ -277,6 +277,38 @@
       void f;
     },
 
+    // ---------- ⚡ Sparking (Fúria cheia): aura em loop e pose parada enquanto durar ----------
+    // grava direto em edicoes.sparking.visual[id] (não depende do 💾 do personagem); a cena de entrada fica na aba Golpes
+    grupoSparking() {
+      const id = this.pid, g = E().grupo('⚡ Sparking (Fúria cheia)', false);
+      const v = E().copia(FF.Sparking.visual(id) || {});
+      const gravar = (txt) => { const vazio = !v.parado && !(v.aura && v.aura.anim); FF.Edicoes.setDepois(['sparking', 'visual', id], vazio ? null : E().copia(v), 1500); E().aviso('⚡ ' + txt + ' — vale no jogo.', 'ok'); };
+      g.appendChild(E().el('p', 'es-dica', 'Enquanto a Fúria estiver cheia: uma aura em loop em volta dele e, se quiser, uma pose parada diferente. Volta ao normal quando a Fúria é gasta. A cena que toca quando ela enche: aba Golpes → ⚡ Entrada no Sparking.'));
+      const au = v.aura || null;
+      const rot = E().el('p', 'es-dica'); rot.textContent = au && au.anim ? 'Aura: ' + au.anim + (au.sprite ? ' (' + au.sprite + ')' : '') : 'Sem aura.';
+      g.appendChild(rot);
+      g.appendChild(E().botao('🎞 Escolher aura…', () => E().escolherSprite({ titulo: '⚡ Aura do Sparking', atual: au ? { sprite: au.sprite, anim: au.anim } : null, inicio: (au && au.sprite) || 'efeitos',
+        aoEscolher: (a, sid) => { v.aura = Object.assign({ escala: 1 }, v.aura || {}, { anim: a, sprite: sid }); gravar('Aura do Sparking'); this.renderPainel(); } })));
+      if (au && au.anim) {
+        const ch = (k, n, o) => g.appendChild(E().campo('numero', n, au[k], (x) => { if (x === '' || x == null || isNaN(x)) delete au[k]; else au[k] = +x; gravar(n); }, o));
+        ch('escala', 'Escala', { passo: 0.05, min: 0 });
+        ch('dx', 'Desloc. X', { passo: 1 });
+        ch('dy', 'Desloc. Y', { passo: 1 });
+        ch('alpha', 'Opacidade', { passo: 0.05, min: 0, max: 1 });
+        ch('fps', 'FPS', { passo: 1, min: 0 });
+        g.appendChild(E().campo('select', 'Presa em', au.em || 'pés', (x) => { if (x === 'pés') delete au.em; else au.em = x; gravar('Aura presa em'); }, { lista: [['pés', 'Pés'], ['peito', 'Peito']] }));
+        g.appendChild(E().campo('check', 'Na frente do personagem', !!au.frente, (x) => { if (x) au.frente = true; else delete au.frente; gravar('Aura na frente'); }));
+        g.appendChild(E().botao('✕ Tirar aura', () => { delete v.aura; gravar('Aura tirada'); this.renderPainel(); }));
+      }
+      const d = this.doc || {}, fi = (d.formas || {})[d.formaInicial] || Object.values(d.formas || {})[0] || {};
+      const sp = FF.Assets.sprites[fi.sprite];
+      const anims = sp ? Object.keys(sp.def.anims) : [];
+      if (v.parado && !anims.includes(v.parado)) anims.unshift(v.parado);
+      g.appendChild(E().campo('select', 'Pose parada no Sparking', v.parado || '', (x) => { if (x) v.parado = x; else delete v.parado; gravar('Pose do Sparking'); },
+        { lista: [['', '— a de sempre —']].concat(anims.map(a => [a, a])), dica: 'Animação do sprite da forma (em loop) enquanto a Fúria estiver cheia' }));
+      return g;
+    },
+
     // ---------- Atributos ----------
     pAtributos() {
       const d = this.doc;
@@ -294,6 +326,7 @@
       });
       a.appendChild(E().el('p', 'es-dica', 'Velocidade decide a ordem dos turnos. Ki por turno pode ser trocado por forma.'));
       this.painel.appendChild(a);
+      this.painel.appendChild(this.grupoSparking());
       const v = E().grupo('Vozes (todas as formas)');
       d.vozes = d.vozes || {};
       const pre = this.prefixoVoz();

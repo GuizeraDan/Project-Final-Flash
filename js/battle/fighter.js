@@ -64,7 +64,12 @@ FF.Fighter = class {
   idle(name) {
     this.react = null; this.semReagirAte = 0;
     if (this.ko) { this.anim.play(this.animName('caido')); return; }
-    this.anim.play(name || this.paradoBuff() || this.animName('parado'), { loop: true });
+    this.anim.play(name || this.paradoSparking() || this.paradoBuff() || this.animName('parado'), { loop: true });
+  }
+  // ⚡ Sparking: pose parada própria (Estúdio → Personagens → Sparking), se o sprite tiver
+  paradoSparking() {
+    const v = this.rageCheia && FF.Sparking ? FF.Sparking.visual(this.def.id) : null;
+    return v && v.parado && this.sprite.has(v.parado) ? v.parado : null;
   }
 
   // buff com pose própria (ex.: Kaioken → "Special_Kaioken_Parado"), se o sprite da forma atual tiver
@@ -75,6 +80,9 @@ FF.Fighter = class {
 
   // aura presa a um buff: efeito em loop que acompanha o lutador enquanto o buff durar (não trava o turno)
   auraAtual() {
+    // ⚡ Sparking (Fúria cheia): aura escolhida no Estúdio para este personagem
+    const v = this.rageCheia && FF.Sparking ? FF.Sparking.visual(this.def.id) : null;
+    if (v && v.aura && v.aura.anim) return Object.assign({ fx: v.aura.anim }, v.aura);
     for (const b of Object.values(this.buffs)) if (b.aura && b.aura.fx) return b.aura;
     return null;
   }
@@ -139,12 +147,13 @@ FF.Fighter = class {
   desenharAura(ctx, frente) {
     const au = this.auraAtual();
     if (!au || !!au.frente !== frente || this.ko || !FF.battle) { if (!au) this._aura = null; return; }
-    if (!this._aura || this._aura.fx !== au.fx) {
-      const set = FF.battle.fxSet(au.fx);
+    if (!this._aura || this._aura.fx !== au.fx || this._aura.sprite !== au.sprite) {
+      if (au.sprite && !FF.Assets.sprites[au.sprite] && FF.Assets.loadSprite && !this._carregandoAura) { this._carregandoAura = true; FF.Assets.loadSprite(au.sprite).catch(() => {}); }
+      const set = FF.battle.fxSet(au.fx, au.sprite);
       if (!set) return;
       const a = new FF.Animator(set);
       a.play(au.fx, { loop: true, fps: au.fps });
-      this._aura = { fx: au.fx, set, a };
+      this._aura = { fx: au.fx, sprite: au.sprite, set, a };
     }
     const base = au.em === 'peito' ? this.peito() : { x: this.x, y: this.y };
     FF.drawFrame(ctx, this._aura.set, this._aura.a.frame(), base.x + (au.dx || 0) * this.dir, base.y + (au.dy || 0),
@@ -202,6 +211,13 @@ FF.Fighter = class {
 
   update(dt) {
     this.anim.update(dt);
+    // a Fúria encheu ou foi gasta: troca a pose parada do Sparking (se ele tiver uma) quando estiver parado
+    const spk = this.rageCheia;
+    if (spk !== this._spkPose) {
+      this._spkPose = spk;
+      const v = FF.Sparking && FF.Sparking.visual(this.def.id);
+      if (v && v.parado && !this.busy && !this.react && !this.ko) this.idle();
+    }
     if (this._aura) this._aura.a.update(dt);
     if (this.vx) {
       this.x += this.vx * dt;
