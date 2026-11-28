@@ -25,7 +25,7 @@ const { chromium } = require('playwright');
   const r2 = await p.evaluate(async () => { const G = FF.Estudio.Golpes; await G.aplicarCfg(Object.assign({}, G.cfg, { alvo: 'krillin' }), true); const tr = G.trAlvo(); const a = [tr._ver || null, tr.clipes.some(c => c.id === 'tstA')];
     await G.aplicarCfg(Object.assign({}, G.cfg, { alvo: 'raditz' }), true); const t2 = G.trAlvo(); return a.concat([t2._ver, t2.clipes.some(c => c.id === 'tstA')]); });
   ok(r2[0] === null && !r2[1] && r2[2] === 'raditz' && r2[3], 'trocar o alvo do palco: Kuririn vê a padrão, Raditz volta com a dele ' + JSON.stringify(r2));
-  const r3 = await p.evaluate(async () => { const G = FF.Estudio.Golpes; E0 = FF.Estudio.confirmar; FF.Estudio.confirmar = async () => true; await G.usarBaseAlvo(); FF.Estudio.confirmar = E0; const tr = G.trAlvo(); const g = G.montarGolpe(); const trS = g.roteiro[0].linha.trilhas.find(t => t.quem === 'alvo'); return [tr._ver || null, !!trS.porAlvo]; });
+  const r3 = await p.evaluate(async () => { const G = FF.Estudio.Golpes; E0 = FF.Estudio.confirmar; FF.Estudio.confirmar = async () => true; await G.usarBaseAlvo(); FF.Estudio.confirmar = E0; const tr = G.trAlvo(); const g = G.montarGolpe(); const trS = g.roteiro[0].linha.trilhas.find(t => t.quem === 'alvo'); return [tr._ver || null, !!(trS.porAlvo && trS.porAlvo.raditz)]; });
   ok(r3[0] === null && !r3[1], '"Usar a padrão" apaga a trilha própria');
   ok(!erros.length, 'sem erros' + (erros.length ? ': ' + erros.join(' | ') : ''));
   await b.close();

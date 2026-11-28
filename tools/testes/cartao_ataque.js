@@ -42,6 +42,21 @@ const fs = require('fs'), path = require('path');
   const ca = await p.evaluate(() => _ca);
   ok(ca.texto && /arte_goku_combo_/.test(ca.img) && ca.pronta, 'na luta: cartão com a arte e o nome "' + ca.texto + '"');
   await p.waitForFunction(() => FF.Estudio.Golpes.palco._fimBatalha, null, { timeout: 30000 });
+  // ⏳ gatilho: o golpe só começa depois que o cartão sai (ligado por padrão); desligado = junto
+  const gap = async (esperar) => {
+    await p.evaluate((esperar) => {
+      const G = FF.Estudio.Golpes; if (esperar) delete G.doc.golpe.esperarCartao; else G.doc.golpe.esperarCartao = false;
+      window._g = {}; if (!FF.Linha._tocarOrig) FF.Linha._tocarOrig = FF.Linha.tocar;
+      FF.Linha.tocar = function (b) { if (_g.golpe == null && b.cartaoAtk) _g.golpe = FF.Clock.t - b.cartaoAtk.start; return FF.Linha._tocarOrig.apply(this, arguments); };
+      G.naBatalha();
+    }, esperar);
+    await p.waitForFunction(() => window._g.golpe != null, null, { timeout: 20000 });
+    const r = await p.evaluate(() => _g.golpe);
+    await p.waitForFunction(() => FF.Estudio.Golpes.palco._fimBatalha, null, { timeout: 30000 });
+    return r;
+  };
+  const com = await gap(true), sem = await gap(false);
+  ok(com >= 1.3 + 0.25 - 0.05 && sem < 0.2, '⏳ golpe começa depois do cartão sair (' + com.toFixed(2) + ' s) e, desligado, junto (' + sem.toFixed(2) + ' s)');
   // aba Personagens
   await p.evaluate(() => FF.Estudio.abrir('personagens'));
   await p.waitForTimeout(800);

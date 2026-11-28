@@ -197,6 +197,7 @@ FF.EstudioPalco = class {
 
   // ---------- batalha real ----------
   async naBatalha(golpe, linha, aoFim) {
+    clearTimeout(this._fimTimer);   // a luta anterior não pode tirar esta do modo batalha
     this.modo = 'batalha';
     this.zerarRelogio();
     const b = this.novaBatalha();
@@ -206,8 +207,9 @@ FF.EstudioPalco = class {
     this._fimBatalha = false;
     try { await b.execute(b.atk, b.alvo, mv); }
     catch (e) { console.error(e); FF.Estudio.aviso('Erro ao rodar o golpe: ' + e.message, 'erro'); }
+    if (this._b !== b) return;   // outra luta (ou a edição) já tomou o palco
     this._fimBatalha = true;
-    setTimeout(() => { this.modo = 'edicao'; aoFim && aoFim(b); }, 600);
+    this._fimTimer = setTimeout(() => { if (this._b === b) this.modo = 'edicao'; aoFim && aoFim(b); }, 600);
   }
   quadroBatalha(dtReal) {
     const g = FF.Clock.tick(dtReal);

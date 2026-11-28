@@ -75,6 +75,7 @@ FF.Retrato = {
 //   golpe.arte → edicoes.artes["<personagem>:<forma>"] → edicoes.artes["<personagem>"] → banner do sprite "retratos"
 FF.Cartao = {
   W: 520, H: 170,   // tamanho do cartão (o recorte da arte tem essa proporção)
+  ENTRADA: 0.22, SAIDA: 0.25,   // tempo (s) de deslizar para dentro / para fora
   _carregando: {},
   arte(def, formId, move) {
     if (move && move.arte && move.arte.img) return move.arte;

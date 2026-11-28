@@ -508,8 +508,12 @@ FF.Battle = class {
     // 🪪 cartão de ataque (arte de quem ataca + nome do golpe) em todo golpe que acerta alguém; o resto ganha a faixa
     if (move.anuncio !== false) {
       const txt = move.nome + (n ? '  ×' + (n + 1) : '');
-      if (target && target !== actor && FF.Battle.ofensivo(move) && FF.Cartao) this.cartao(actor, move, txt, move.supremo ? 2.0 : 1.3);
-      else this.banner(txt, move.supremo ? 2.0 : 1.2);
+      if (target && target !== actor && FF.Battle.ofensivo(move) && FF.Cartao) {
+        const dur = move.tempoCartao > 0 ? move.tempoCartao : (move.supremo ? 2.0 : 1.3);
+        this.cartao(actor, move, txt, dur);
+        // ⏳ gatilho: o golpe só começa quando o cartão sai da tela (golpe.esperarCartao === false = junto)
+        if (move.esperarCartao !== false) await FF.Clock.wait(dur + FF.Cartao.SAIDA);
+      } else this.banner(txt, move.supremo ? 2.0 : 1.2);
     }
     if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
       // (a explosão azul que saía aqui foi tirada: a aura do Impulso já mostra a força)

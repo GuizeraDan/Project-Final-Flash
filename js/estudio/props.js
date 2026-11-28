@@ -486,6 +486,10 @@ FF.EstudioProps = {
         titulo: '🪪 Arte do cartão — ' + (g.nome || 'golpe'),
         herdada: her ? 'Sem arte própria: usa a arte padrão do personagem (aba Personagens).' : 'Sem arte própria: usa a arte do Z Legends 3. Importe uma para este golpe, ou uma padrão do personagem na aba Personagens.',
         aoSalvar: (arte) => { if (arte) g.arte = arte; else delete g.arte; host.mudou('Arte do cartão'); host.renderProps(); } }));
+      k.appendChild(E.campo('check', '⏳ Golpe começa depois que o cartão sai', g.esperarCartao !== false, (v) => { if (v) delete g.esperarCartao; else g.esperarCartao = false; host.mudou('Esperar o cartão'); },
+        { dica: 'Ligado: o cartão entra, fica e sai da tela, e só então o golpe começa. Desligado: o golpe começa junto com o cartão.' }));
+      k.appendChild(E.campo('numero', 'Tempo do cartão na tela (s)', g.tempoCartao != null ? g.tempoCartao : '', (v) => { if (v > 0) g.tempoCartao = v; else delete g.tempoCartao; host.mudou('Tempo do cartão'); },
+        { passo: 0.1, min: 0.3, placeholder: g.supremo ? '2,0' : '1,3', dica: 'Quanto tempo ele fica parado na tela antes de sair (vazio = 1,3 s; Supremo 2 s)' }));
       k.appendChild(E.el('p', 'es-dica', 'Aparece em todo golpe que acerta alguém, com o nome do golpe (desmarque "Anunciar o nome" para esconder). Salve o golpe (💾) para valer no jogo.'));
       box.appendChild(k);
     }
