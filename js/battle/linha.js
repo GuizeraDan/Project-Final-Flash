@@ -15,8 +15,6 @@
 //           (rot/esc de cada ponto: giro e tamanho ali, suave entre os pontos; rot0/esc0 = pose na saída;
 //            escala/rot no clipe = jeito antigo, só na chegada)
 //           (curva suave do lugar atual do lutador passando pelos pontos; x na tela antiga, y = altura a partir do chão)
-//  ajustes: {"frente>meio": {dx, dy, x, y, pontos, …}} = campos que mudam só quando quem solta e o alvo estão
-//           nessas fileiras (luta em diagonal); o resto do clipe vale para todas (FF.Linha.comAjuste)
 //  (mover aceita reto: true = começa sem o giro/tamanho/espelhar herdados da animação anterior; mover/teleporte aceitam flip)
 //  (efeito aceita junto: true = fica junto do lutador na perspectiva (sem diagonal/inclinação); padrão = seguir)
 //  (efeito aceita fixar: true = o ponto "em" é o do começo do golpe — não muda se o clipe andar na trilha)
@@ -51,19 +49,6 @@ FF.Linha = {
 
   // ---------- utilidades ----------
   // combinação de fileiras de quem solta e do alvo (luta em diagonal): "frente>meio", "fundo>fundo"…
-  fila(p) { return p == null ? null : p < 0.3 ? 'frente' : p > 0.7 ? 'fundo' : 'meio'; },
-  chaveFileiras(b, actor, target) {
-    if (!b || b.cena || !b.persp || !actor || !target || actor === target || actor.prof == null || target.prof == null) return null;
-    return this.fila(actor.prof) + '>' + this.fila(target.prof);
-  },
-  // clipe com os campos ajustados para uma combinação (null no ajuste = sem o campo)
-  comAjuste(c, chave) {
-    const a = chave && c.ajustes && c.ajustes[chave];
-    if (!a) return c;
-    const o = Object.assign({}, c);
-    for (const k of Object.keys(a)) { if (a[k] === null) delete o[k]; else o[k] = JSON.parse(JSON.stringify(a[k])); }
-    return o;
-  },
   // 🎭 trilha do Alvo por personagem: tr.porAlvo[<id do alvo>] = clipes próprios (sem versão própria = a base).
   // target = quem leva o golpe (sem target: a base). tr._ver = o Estúdio já trocou os clipes (palco)
   clipes(linha, target, todas) {
@@ -138,9 +123,7 @@ FF.Linha = {
   iniciar(b, actor, target, move, linha, opts) {
     const ehKO = !!(opts && opts.ko);
     const dur = linha.duracao || 1;
-    // ajustes por combinação de fileiras (Estúdio: "✏ Só nesta combinação"): o clipe usa os campos daquela combinação
-    const chave = b && b.semAjustes ? null : this.chaveFileiras(b, actor, target);
-    const lista = this.clipes(linha, target).map(x => this.comAjuste(Object.assign({ t: 0 }, x.c, { _tr: x.tr }), chave)).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
+    const lista = this.clipes(linha, target).map(x => Object.assign({ t: 0 }, x.c, { _tr: x.tr })).filter(c => !(ehKO && c.tipo === 'acerto')).sort((a, c) => (a.t || 0) - (c.t || 0));
     // anéis de guarda/crítico: agrupa os acertos e abre cada anel LEAD s antes do 1º acerto do grupo
     const mode = target ? b.qteMode(actor, target) : null;
     const acertos = lista.filter(c => c.tipo === 'acerto');
@@ -320,7 +303,7 @@ FF.Linha = {
         this.devolverSprite(f);
         this.emprestar(f, c.spriteMov);
         let dest = this.destino(b, f, outro, c);
-        if (b.persp && c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
+        if (c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
         // ponto da tela: também muda a altura (sem "y" = volta ao chão). Altura medida a partir do chão do lutador:
         // na perspectiva o chão muda de fileira durante o movimento (vai para a fileira do alvo e volta)
         const alt0 = f.groundY - f.y, altDest = c.para === 'x' ? -(c.y || 0) : alt0;
@@ -387,14 +370,14 @@ FF.Linha = {
         let inclina = 0;
         // "Ficar junto do lutador": sem a diagonal nem a inclinação automática (padrão: ligado se "Acompanha o lutador")
         const junto = this.efeitoJunto(c);
-        if (b.persp && !junto && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
+        if (!junto && c.em !== 'alvo' && c.em !== 'alvoPes' && !(c.em === 'tela' && ey < 140)) {
           ({ x: ex, y: ey } = this.mapaPersp(b, A0, T0, ex, ey, c.em === 'tela'));
           // raios e rajadas presos na mão inclinam na direção do alvo (fileiras em alturas diferentes)
           if (c.em !== 'tela' && target && actor && target !== actor && target.homeG != null && actor.homeG != null) { const bx = actor.base ? actor.base.x : actor.homeX, bg = actor.base ? actor.base.g - 4 : actor.homeG; if (Math.abs(target.homeX - bx) > 20) inclina = Math.atan2(target.homeG - bg, Math.abs(target.homeX - bx)) * 180 / Math.PI; }
         }
         // perspectiva: efeito preso em alguém acompanha o tamanho dele (fileira de trás = menor)
         const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? T0 : A0;
-        const kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
+        const kp = dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
         const e = b.spawnFx(c.fx, ex, ey, (dir < 0) !== !!c.flip, (c.escala || 1) * kp,
           { duracao: c.d, fps: c.fps, alpha: c.alpha, sprite: c.sprite, atras: c.atras, ordem: c.ordem, prof: !c.atras && c.prof ? (c.prof === 'alvo' ? target : actor) : null });
         if (e && (c.rot || inclina)) e.rot = ((c.rot || 0) + inclina) * dir;
@@ -477,7 +460,7 @@ FF.Linha = {
   // a linha lateral "quem solta → alvo" até a linha real entre os dois (posição e altura). Assim um especial que
   // explode "no meio do campo" ou "em cima do inimigo" continua indo para lá. absoluto = x/y já são da visão lateral.
   mapaPersp(b, actor, target, x, y, absoluto) {
-    if (!b || !b.persp || !actor || !target || actor === target || actor.latX == null || target.latX == null) return { x, y };
+    if (!b || !actor || !target || actor === target || actor.latX == null || target.latX == null) return { x, y };
     const Al = { x: actor.latX, y: actor.latG }, Ap = actor.base ? { x: actor.base.x, y: actor.base.g } : { x: actor.homeX, y: actor.homeG };
     const Tl = { x: target.latX, y: target.latG }, Tp = { x: target.homeX, y: target.homeG };
     const lx = absoluto ? x : x - (Ap.x - Al.x), ly = absoluto ? y : y - (Ap.y - Al.y);
@@ -493,7 +476,7 @@ FF.Linha = {
     const lx = FF.legado().x;
     return (c.pontos || []).map(q => {
       let x = this.telaX(b, (q.x != null ? q.x : 542) + lx);
-      if (b && b.persp && actor && target) x = this.mapaPersp(b, actor, target, x, b.groundY, true).x;
+      if (b && actor && target) x = this.mapaPersp(b, actor, target, x, b.groundY, true).x;
       return { x, y: f.groundY + (q.y || 0) };
     });
   },

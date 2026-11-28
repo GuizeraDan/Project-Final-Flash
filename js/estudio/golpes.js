@@ -233,9 +233,6 @@ window.FF = window.FF || {};
       };
       const par = cfg.parceiros || [], ali = cfg.aliadosAlvo || [];
       const ladoAtk = cfg.lado === 'inimigo' ? 'direita' : 'esquerda', ladoAlvo = cfg.lado === 'inimigo' ? 'esquerda' : 'direita';
-      // fileira de quem solta e do alvo (visão Diagonal): testar o golpe nos 3 lugares onde os lutadores aparecem
-      const FILAS = [['', 'a do jogo'], ['frente', '1 · frente (embaixo)'], ['meio', '2 · meio'], ['fundo', '3 · fundo (perto do horizonte)']];
-      const mudarFila = (k, v) => { const aj = this.ajuste; if (aj) this.desligarAjuste(true); cfg[k] = v || null; if (!v) delete cfg[k]; E.rascunho.gravar('golpe_cfg', cfg); this.irPara(this.t); if (this.renderFilas) this.renderFilas(); if (aj) this.ligarAjuste(); };
       pb.appendChild(E.el('div', 'es-dica', 'Na cena do golpe só aparecem quem solta, o alvo e os parceiros com trilha.'));
       pb.appendChild(E.campo('select', 'Parceiro 1 (' + ladoAtk + ')', par[0] || '', (v) => mudarLista('parceiros', 0, v), { lista: lista1(cfg.atacante), dica: 'Entra no time de quem solta (Sparking Combo: o parceiro ganha uma trilha própria)' }));
       if (par[0]) pb.appendChild(E.campo('select', 'Parceiro 2 (' + ladoAtk + ')', par[1] || '', (v) => mudarLista('parceiros', 1, v), { lista: lista1(cfg.atacante), dica: 'Terceiro lutador do time de quem solta' }));
@@ -282,13 +279,6 @@ window.FF = window.FF || {};
       const nome = id === 'padrao' ? 'Cena de KO (padrão)' : id === 'supremo' ? 'KO por Supremo (vaporizado)' : 'KO de ' + ((this.defs[id] || {}).nome || id);
       this.abrirDoc({ origem: { tipo: 'ko', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome }, linha: FF.KO.linhaDe(id) });
       if (id !== 'padrao' && id !== 'supremo' && !FF.KO.temPropria(id)) E.aviso('💀 ' + nome + ': começa pela cena padrão. Ao salvar, vira a cena própria dele.');
-    },
-    abrirAbertura(id) {
-      const d = this.defs[this.cfg.atacante] || {};
-      const sup = Object.values(d.golpes || {}).find(g => g.supremo);
-      const nome = id === 'padrao' ? 'Abertura do Supremo (padrão)' : 'Abertura do Supremo de ' + (d.nome || id);
-      this.abrirDoc({ origem: { tipo: 'abertura', id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome, nomeFaixa: sup ? sup.nome : 'Golpe Supremo' }, linha: FF.Abertura.linhaDe(id) });
-      if (id !== 'padrao' && !FF.Abertura.temPropria(id)) E.aviso('⚡ ' + nome + ': começa pela padrão. Ao salvar, vira a abertura própria dele.');
     },
     nomeSupremo() { const d = this.defs[this.cfg.atacante] || {}; const sup = Object.values(d.golpes || {}).find(g => g.supremo); return sup ? sup.nome : 'Golpe Supremo'; },
     abrirCena(qual, tipo, id) {
@@ -348,8 +338,7 @@ window.FF = window.FF || {};
       this.pausar();
       // garante ids e trilhas
       doc.linha.trilhas = doc.linha.trilhas || [];
-      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).concat(...Object.values(tr.porAlvo || {})).forEach(c => { if (!c.id) c.id = novoId(); this.restaurarBase(c); }));
-      this.ajuste = null;
+      doc.linha.trilhas.forEach(tr => (tr.clipes = tr.clipes || []).concat(...Object.values(tr.porAlvo || {})).forEach(c => { if (!c.id) c.id = novoId(); delete c._base; }));
       this.extrairImpactos(doc.linha);
       this.doc = doc;
       this.sincAlvo();
@@ -449,7 +438,6 @@ window.FF = window.FF || {};
     },
     // rotulo: texto para o desfazer; juntar: agrupa mudanças seguidas; arrastando: ainda no meio de um arraste
     mudou(rot, juntar, arrastando) {
-      if (this.ajuste) this.guardarAjuste();
       this.sincronizarPresos();
       this.autoDuracao();
       this.sujo = true;
@@ -752,7 +740,6 @@ window.FF = window.FF || {};
       this.ckLarga = larga.querySelector('input');
       this.ckLarga.onchange = () => this.trocarLarga(this.ckLarga.checked);
       b.appendChild(larga);
-      this.palco.opts.persp = true;   // sempre diagonal (a visão lateral foi tirada)
       this.palco.opts.defendido = false;   // 🛡 começa sempre desligado
       // fileiras rápidas (Diagonal): 🧍 quem solta e 🎯 alvo nos lugares 1 (frente), 2 (meio), 3 (fundo)
       // fileiras e ajustes por combinação saíram: todo golpe que acerta alguém vira cena (palco fixo)
@@ -785,14 +772,13 @@ window.FF = window.FF || {};
       r.appendChild(salvar);
       if (o.tipo === 'golpe' && FF.Edicoes.golpeAlterado(o.personagem, o.id)) r.appendChild(E.botao('↺ Original', () => this.original(), 'Volta este golpe ao original do jogo'));
       if (o.tipo === 'ko' && (FF.Edicoes.dados().ko || {})[o.id]) r.appendChild(E.botao('↺ Original', () => this.original(), o.id === 'padrao' ? 'Volta a cena de KO padrão à do jogo' : 'Apaga a cena própria (volta a usar a padrão)'));
-      if (o.tipo === 'abertura' && (FF.Edicoes.dados().abertura || {})[o.id]) r.appendChild(E.botao('↺ Original', () => this.original(), o.id === 'padrao' ? 'Volta a abertura padrão à do jogo' : 'Apaga a abertura própria (volta a usar a padrão)'));
       if (o.tipo === 'cena' && FF.CenaGolpe.temSalva(o.qual, o.tipoCena, o.id)) r.appendChild(E.botao('↺ Original', () => this.original(), 'Volta à original (padrão) / apaga a própria'));
       if (o.tipo === 'sparking' && FF.Sparking.temSalva(o.id)) r.appendChild(E.botao('↺ Original', () => this.original(), 'Volta à original (padrão) / apaga a própria'));
-      if (!['ko', 'abertura', 'cena', 'sparking'].includes(o.tipo)) r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
+      if (!['ko', 'cena', 'sparking'].includes(o.tipo)) r.appendChild(E.botao('⧉', () => this.duplicarGolpe(), 'Duplicar como habilidade nova'));
       if (o.tipo === 'habilidade') r.appendChild(E.botao('🗑', () => this.apagarHab(), 'Apagar esta habilidade', 'es-bt-perigo'));
       r.appendChild(E.botao('🎮', () => this.testarNoJogo(), 'Abrir uma Batalha Livre com este personagem para testar (salve antes)'));
       r.appendChild(E.botao('{ }', () => this.verJson(), 'Ver/colar o JSON do golpe'));
-      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)', ko: '💀 cena de KO', abertura: '⚡ abertura do Supremo', cena: '🎬 cena do golpe', sparking: '⚡ Sparking' }[o.tipo];
+      const tipo = { golpe: 'golpe do jogo', habilidade: '⭐ habilidade', novo: 'novo (vira ⭐ habilidade ao salvar)', ko: '💀 cena de KO', cena: '🎬 cena do golpe', sparking: '⚡ Sparking' }[o.tipo];
       this.titProps.innerHTML = '';
       const t = E.el('span'); t.textContent = (this.doc.golpe.nome || '') + ' · ' + tipo; this.titProps.appendChild(t);
     },
@@ -826,10 +812,6 @@ window.FF = window.FF || {};
         if (o.tipo === 'cena' && o.qual === 'entrada' && !linha.trilhas.some(tr => tr.clipes.some(c => c.tipo === 'cartao'))) linha.semCartao = true;
         if (o.tipo === 'cena') E.salvarNoJogo([o.qual, o.tipoCena, o.id], linha, '🎬 ' + g.nome + ' salva no jogo.');
         else E.salvarNoJogo(['sparking', 'entrada', o.id], linha, '⚡ ' + g.nome + ' salva no jogo.');
-      } else if (o.tipo === 'abertura') {
-        const linha = this.linhaBase();
-        if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
-        E.salvarNoJogo(['abertura', o.id], linha, '⚡ ' + g.nome + ' salva no jogo.');
       } else if (o.tipo === 'ko') {
         const linha = this.linhaBase();
         if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
@@ -857,13 +839,6 @@ window.FF = window.FF || {};
         E.salvarNoJogo(o.tipo === 'cena' ? [o.qual, o.tipoCena, o.id] : ['sparking', 'entrada', o.id], null, '↺ Voltou ao original.');
         this.sujo = false;
         return o.tipo === 'cena' ? this.abrirCena(o.qual, o.tipoCena, o.id) : this.abrirSparking(o.id);
-      }
-      if (o.tipo === 'abertura') {
-        const txt = o.id === 'padrao' ? 'Voltar a abertura padrão à original do jogo?' : 'Apagar a abertura própria? Ele volta a usar a padrão.';
-        if (!(await E.confirmar('Voltar ao original', txt + ' (em todos os aparelhos)', '↺ Voltar', true))) return;
-        E.salvarNoJogo(['abertura', o.id], null, '↺ Abertura voltou ao original.');
-        this.sujo = false;
-        return this.abrirAbertura(o.id);
       }
       if (o.tipo === 'ko') {
         const txt = o.id === 'padrao' ? 'Voltar a cena de KO padrão à original do jogo?' : 'Apagar a cena de KO própria? Ele volta a usar a padrão.';
@@ -902,7 +877,7 @@ window.FF = window.FF || {};
       const h = [this.cfg.atacante, ...(this.cfg.parceiros || [])].slice(0, 3), i = [this.cfg.alvo, ...(this.cfg.aliadosAlvo || [])].slice(0, 3);
       const herois = this.cfg.lado === 'inimigo' ? i : h, inimigos = this.cfg.lado === 'inimigo' ? h : i;
       const posH = { 1: [170], 2: [250, 150], 3: [250, 150, 350] }[herois.length], posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] }[inimigos.length];
-      const def = { id: 'livre', saga: 'livre', titulo: 'Teste do Estúdio', cenario: 'campo', musica: 'tournament_theme', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois, inimigos, ajustes: {}, perspectiva: this.palco.opts.persp ? true : undefined };
+      const def = { id: 'livre', saga: 'livre', titulo: 'Teste do Estúdio', cenario: 'campo', musica: 'tournament_theme', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2, posicoes: { herois: posH, inimigos: posI }, herois, inimigos, ajustes: {} };
       try { sessionStorage.setItem('ff_livre_def', JSON.stringify(def)); } catch (e) { /* nada */ }
       const w = window.open('index.html?livre=1', '_blank');
       if (!w) location.href = 'index.html?livre=1';
@@ -1147,20 +1122,7 @@ window.FF = window.FF || {};
       this.mudou('Preso em');
       this.renderProps();
     },
-    // ---------- ✏ ajustes por combinação de fileiras (luta em diagonal) ----------
-    // Ligado: os clipes mostram os campos da combinação atual (🧍 × 🎯) e o que mudar de posição fica só nela
-    // (c.ajustes["fundo>meio"]); o motor usa o ajuste quando quem solta e o alvo estão nessas fileiras.
-    // Enquanto ligado, cada clipe guarda a versão base em c._base (nunca vai para o jogo: linhaBase/restaurarBase).
-    CAMPOS_AJUSTE: ['dx', 'dy', 'x', 'y', 'rot', 'escala', 'pontos', 'rot0', 'esc0', 'deDx', 'deDy', 'alvoDx', 'alvoDy', 'spriteDx', 'spriteDy', 'chaves', 'arco', 'dist', 'flip', 'alpha'],
-    cadaClipe(fn) { if (this.doc) this.doc.linha.trilhas.forEach(tr => tr.clipes.forEach(c => fn(c, tr))); },
-    chaveAtual() { const b = this.palco && this.palco._b; return b ? FF.Linha.chaveFileiras(b, b.atk, b.alvo) : null; },
-    nomeChave(k) { const n = { frente: '1', meio: '2', fundo: '3' }; const [a, t] = (k || '').split('>'); return '🧍' + (n[a] || '?') + ' → 🎯' + (n[t] || '?'); },
-    restaurarBase(c) {
-      if (!c._base) return;
-      this.CAMPOS_AJUSTE.forEach(f => { if (f in c._base) c[f] = E.copia(c._base[f]); else delete c[f]; });
-      delete c._base;
-    },
-    linhaBase() { const L = this.juntarAlvo(E.copia(this.doc.linha)); L.trilhas.forEach(tr => tr.clipes.forEach(c => this.restaurarBase(c))); return L; },
+    linhaBase() { return this.juntarAlvo(E.copia(this.doc.linha)); },
     // ---------- 🎭 trilha do Alvo por personagem (tr.porAlvo[id]) ----------
     // No Estúdio, quando o Alvo do palco tem versão própria, os clipes dela ficam em tr.clipes (a base guardada em
     // tr._base, tr._ver = id); ao salvar (linhaBase) tudo volta para o formato do jogo.
@@ -1206,111 +1168,6 @@ window.FF = window.FF || {};
       this.montarLado(); this.tudo();
     },
     nomeDe(id) { return (this.defs[id] || {}).nome || id; },
-    guardarAjuste() {
-      const k = this.ajuste; if (!k) return;
-      this.cadaClipe(c => {
-        if (!c._base) return;
-        const d = {};
-        this.CAMPOS_AJUSTE.forEach(f => { const v0 = c._base[f], v1 = c[f]; if (JSON.stringify(v0) !== JSON.stringify(v1)) d[f] = v1 === undefined ? null : E.copia(v1); });
-        if (Object.keys(d).length) { c.ajustes = c.ajustes || {}; c.ajustes[k] = d; }
-        else if (c.ajustes) { delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes; }
-      });
-    },
-    ligarAjuste() {
-      if (!this.doc) return;
-      const k = this.chaveAtual();
-      if (!k) { E.aviso('Os ajustes por combinação são para a visão Diagonal (botão ◢ na barra do palco).', 'erro'); return; }
-      this.ajuste = k;
-      this.cadaClipe(c => {
-        const b = {}; this.CAMPOS_AJUSTE.forEach(f => { if (c[f] !== undefined) b[f] = E.copia(c[f]); }); c._base = b;
-        const a = c.ajustes && c.ajustes[k];
-        if (a) Object.keys(a).forEach(f => { if (a[f] === null) delete c[f]; else c[f] = E.copia(a[f]); });
-      });
-      this.irPara(this.t); this.tl.render(); this.renderProps(); this.renderAjuste();
-      E.aviso('✏ Ajustando só ' + this.nomeChave(k) + ': o que você mover agora vale só nessa combinação.', 'ok');
-    },
-    desligarAjuste(semAviso) {
-      if (!this.ajuste) return;
-      this.guardarAjuste();
-      this.cadaClipe(c => this.restaurarBase(c));
-      this.ajuste = null;
-      this.irPara(this.t); this.tl.render(); this.renderProps(); this.renderAjuste();
-      if (!semAviso) E.aviso('✏ Ajustes guardados. Voltou a editar a versão base (vale para todas as combinações).', 'ok');
-    },
-    // tira o ajuste do clipe selecionado (ou de todos) nesta combinação: volta a usar o base
-    tirarAjuste(todos) {
-      const k = this.ajuste; if (!k) return;
-      const alvo = todos ? null : this.clipe();
-      this.cadaClipe(c => {
-        if (alvo && c !== alvo) return;
-        if (c._base) { this.CAMPOS_AJUSTE.forEach(f => { if (f in c._base) c[f] = E.copia(c._base[f]); else delete c[f]; }); }
-        if (c.ajustes) { delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes; }
-      });
-      this.mudou('Tirar ajuste'); this.renderProps();
-    },
-    // ⤴ Usar como base: o que está ajustado nesta combinação vira a versão base (vale para todas as combinações sem
-    // ajuste próprio). Só os clipes com ajuste aqui (ou só o selecionado).
-    usarComoBase(soClipe) {
-      const k = this.ajuste; if (!k) return;
-      this.guardarAjuste();
-      let n = 0;
-      const alvo = soClipe ? this.clipe() : null;
-      this.cadaClipe(c => {
-        if (alvo && c !== alvo) return;
-        if (!(c.ajustes && c.ajustes[k])) return;
-        const b = {}; this.CAMPOS_AJUSTE.forEach(f => { if (c[f] !== undefined) b[f] = E.copia(c[f]); }); c._base = b;
-        delete c.ajustes[k]; if (!Object.keys(c.ajustes).length) delete c.ajustes;
-        n++;
-      });
-      if (!n) { E.aviso('Nenhum clipe com ajuste nesta combinação.'); return; }
-      this.mudou('Usar como base'); this.renderProps();
-      E.aviso('⤴ ' + n + ' clipe(s): o ajuste de ' + this.nomeChave(k) + ' virou a versão base.', 'ok');
-    },
-    // ⧉ Copiar para…: copia os ajustes desta combinação para outras
-    copiarAjustePara() {
-      const k = this.ajuste; if (!k) return;
-      this.guardarAjuste();
-      const com = []; this.cadaClipe(c => { if (c.ajustes && c.ajustes[k]) com.push(c); });
-      if (!com.length) { E.aviso('Nenhum clipe com ajuste nesta combinação para copiar.'); return; }
-      const filas = ['frente', 'meio', 'fundo'], n = { frente: '1', meio: '2', fundo: '3' };
-      const c0 = E.el('div', 'es-copiar-aj');
-      c0.appendChild(E.el('p', null, 'Copiar os ajustes de ' + this.nomeChave(k) + ' (' + com.length + ' clipe(s)) para:'));
-      const grade = E.el('div', 'es-copiar-grade');
-      grade.appendChild(E.el('span', 'es-copiar-cab', '🧍 \ 🎯'));
-      filas.forEach(t => grade.appendChild(E.el('span', 'es-copiar-cab', '🎯' + n[t])));
-      const cks = [];
-      filas.forEach(a => {
-        grade.appendChild(E.el('span', 'es-copiar-cab', '🧍' + n[a]));
-        filas.forEach(t => {
-          const key = a + '>' + t, l = E.el('label', 'es-copiar-cel');
-          const i = document.createElement('input'); i.type = 'checkbox'; i.disabled = key === k; i.checked = key === k;
-          l.appendChild(i); if (com.some(c => c.ajustes[key]) && key !== k) l.title = 'Já tem ajuste aqui (será substituído)';
-          if (key !== k && com.some(c => c.ajustes[key])) l.classList.add('tem');
-          cks.push([key, i]); l.appendChild(document.createTextNode(key === k ? ' (esta)' : ''));
-          grade.appendChild(l);
-        });
-      });
-      c0.appendChild(grade);
-      const bts = E.el('div', 'es-escolha-bts');
-      const m = E.modal('⧉ Copiar ajuste para outras combinações', c0);
-      bts.append(E.botao('Todas', () => cks.forEach(([key, i]) => { if (key !== k) i.checked = true; })),
-        E.botao('⧉ Copiar', () => {
-          const dest = cks.filter(([key, i]) => key !== k && i.checked).map(([key]) => key);
-          if (!dest.length) { E.aviso('Marque pelo menos uma combinação.'); return; }
-          com.forEach(c => dest.forEach(key => { c.ajustes[key] = E.copia(c.ajustes[k]); }));
-          m.fechar(); this.mudou('Copiar ajuste'); this.renderProps();
-          E.aviso('⧉ Ajustes copiados para ' + dest.map(x => this.nomeChave(x)).join(', ') + '.', 'ok');
-        }, null, 'es-bt-ouro'));
-      c0.appendChild(bts);
-    },
-    // trocou a fileira com o modo ligado: guarda, volta ao base e liga de novo na combinação nova
-    trocouFileira() { if (this.ajuste) { this.desligarAjuste(true); this.ligarAjuste(); } },
-    renderAjuste() {
-      if (!this.btAjuste) return;
-      this.btAjuste.classList.toggle('es-bt-ouro', !!this.ajuste);
-      this.btAjuste.textContent = this.ajuste ? '✏ Só ' + this.nomeChave(this.ajuste) : '✏ Só nesta combinação';
-      if (this.btsAjuste) this.btsAjuste.style.display = this.ajuste ? '' : 'none';
-    },
     // ⌖ Trazer para a tela: põe o clipe selecionado de volta num lugar visível (pelo tipo)
     podeTrazer(c) { return !!c && ['efeito', 'anim', 'camada', 'projetil', 'caminho'].includes(c.tipo) || (!!c && (c.tipo === 'mover' || c.tipo === 'teleporte') && c.para === 'x'); },
     trazerParaTela() {

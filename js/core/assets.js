@@ -126,7 +126,7 @@ FF.Assets = {
     // imagens extras (quadros trazidos do computador para um sprite do jogo, no Estúdio)
     if (info && Array.isArray(info.atlas) && info.atlas.length) { def._atlasBase = def.atlases.length; def.atlases = def.atlases.concat(info.atlas); }
     // imagens importadas (assets/img/usr/): usa a cópia do aparelho enquanto existir
-    const caminhos = await Promise.all(def.atlases.map(p => (FF.ImagensUsr && /assets\/img\/usr\//.test(p)) ? FF.ImagensUsr.url(p).catch(() => p) : p));
+    const caminhos = await Promise.all(def.atlases.map(p => (FF.ImagensUsr && /assets\/img\/usr\//.test(p)) ? FF.ImagensUsr.url(p).catch(() => p) : (FF.urlAcervo ? FF.urlAcervo(p) : p)));
     const imgs = await Promise.all(caminhos.map(p => this.loadImage(p)));
     const set = new FF.SpriteSet(def, imgs);
     if (FF.Mods) FF.Mods.aplicar(id, set);          // quadros editados pelo usuário (aba Sprites do Estúdio)

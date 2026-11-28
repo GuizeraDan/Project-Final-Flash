@@ -251,7 +251,7 @@ FF.start = async function (escolhida) {
   // personagens e todos os sprites de todas as formas (transformação sem espera)
   const heroDefs = await Promise.all(def.herois.map(id => FF.Assets.loadCharacter(id)));
   const foeDefs = await Promise.all(def.inimigos.map(id => FF.Assets.loadCharacter(id)));
-  const spriteIds = new Set(['fx', 'fx_extra', 'hud_zl3', 'retratos', stage.sprite]);
+  const spriteIds = new Set(['fx', 'fx_extra', 'retratos', stage.sprite]);
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.formas).forEach(f => spriteIds.add(f.sprite)));
   // sprites de outros personagens usados em golpes (efeitos/animações emprestadas no Estúdio)
   heroDefs.concat(foeDefs).forEach(c => Object.values(c.golpes || {}).forEach(g => {

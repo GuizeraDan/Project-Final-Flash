@@ -1,5 +1,5 @@
 // HUD desenhado no canvas: barras de vida e ki, nomes, textos flutuantes e faixas.
-// Usa as artes originais do HUD do Z Legends 3 (hud_zl3), com Rage Gauge.
+// HUD novo com a arte do usuário (assets/img/hud_moderno.png); sem a imagem, um painel simples desenhado por código.
 window.FF = window.FF || {};
 
 FF.HUD = {
@@ -30,88 +30,14 @@ FF.HUD = {
     ctx.fillRect(rtl ? x + w - fw : x, y, fw, Math.max(2, h * 0.3));
   },
 
-  // ---- painel com as artes originais do HUD do Z Legends 3 (hud_zl3) ----
-  S: 1.6,          // escala do painel (241x73 na arte original)
-  PW: 241,
-
-  // desenha um quadro de animação do hud_zl3 recortado (frac = parte visível, da esquerda ou da direita)
-  part(ctx, set, anim, i, x, y, frac, fromRight) {
-    const a = set.anim(anim); if (!a) return;
-    const f = a.frames[Math.min(i, a.frames.length - 1)];
-    const S = this._s || this.S;
-    frac = Math.max(0, Math.min(1, frac == null ? 1 : frac));
-    const w = Math.round(f[3] * frac); if (w <= 0) return;
-    const sx = fromRight ? f[1] + f[3] - w : f[1];
-    const dx = fromRight ? x + (f[3] - w) * S : x;
-    ctx.drawImage(set.images[f[0]], sx, f[2], w, f[4], dx, y, w * S, f[4] * S);
-  },
+  S: 1.6,          // escala de referência do painel com um lutador por lado (menor = 3 empilhados)
 
   // S: escala (1.6 com um lutador por lado; menor quando há 3 heróis empilhados), Y: topo do painel
   // largura do painel novo: 400 px com um lutador por lado; 288 px empilhado (3 por lado)
   LARG: 400, LARG3: 288,
   panel(ctx, f, rtl, S, Y) {
     if (this.img()) return this.panelModerno(ctx, f, rtl, S && S < this.S ? this.LARG3 : this.LARG, Y == null ? 4 : Y);
-    const set = FF.Assets.sprites.hud_zl3;
-    if (!set) return this.panelSimples(ctx, f, rtl ? FF.W - 24 : 24, rtl);
-    S = S || this.S; Y = Y == null ? 4 : Y;
-    this._s = S;
-    const PW = this.PW;
-    const X = rtl ? FF.W - 6 - PW * S : 6;
-    const T = S / this.S;   // fator para o tamanho dos textos
-    // converte x da arte (metade do jogador) para tela; o inimigo usa a metade espelhada
-    const sxp = (xs, w) => X + (rtl ? (PW - xs - (w || 0)) : xs) * S;
-    const bg = set.anim('fundo_barras').frames[0];
-    ctx.drawImage(set.images[bg[0]], bg[1] + (rtl ? PW : 0), bg[2], PW, bg[4], X, Y, PW * S, bg[4] * S);
-
-    // retrato: arte de seleção do Z Legends 3 (acompanha a forma atual; sem arte, usa o sprite)
-    const bx = sxp(13, 37), by = Y + 9 * S, bw = 37 * S, bh = 53 * S;
-    const trans = f.formId !== (f.def.formaInicial || 'base');
-    FF.Retrato.desenhar(ctx, f.def, f.formId, 'retrato', bx, by, bw, bh, {
-      espelhar: rtl, cor1: trans ? '#7a5a10' : '#24305a', escurecer: f.ko ? 'rgba(60,0,0,0.6)' : null });
-
-    // vida (com rastro vermelho)
-    if (f._hpShow == null) f._hpShow = f.hp;
-    f._hpShow += (f.hp - f._hpShow) * 0.08;
-    if (Math.abs(f._hpShow - f.hp) < 0.5) f._hpShow = f.hp;
-    const lado = rtl ? 'inimigo' : 'jogador';
-    const hx = sxp(57, 121), hy = Y + 17 * S;
-    const fr = f.hp / f.hpMax;
-    this.part(ctx, set, 'vida_red_' + lado, 0, hx, hy, f._hpShow / f.hpMax, rtl);
-    this.part(ctx, set, 'vida_' + lado, fr > 0.5 ? 0 : fr > 0.25 ? 1 : 2, hx, hy, fr, rtl);
-    this.text(ctx, Math.ceil(f.hp) + '/' + f.hpMax, rtl ? hx + 6 : hx + 121 * S - 6, hy + 5 * S, Math.round(12 * Math.max(0.75, T)), '#fff', rtl ? 'left' : 'right');
-
-    // ki (barra segmentada)
-    const kx = sxp(57, 127), ky = Y + 31 * S;
-    this.part(ctx, set, 'fundo_ki_jogador', 0, kx, ky, 1, false);
-    this.part(ctx, set, 'ki_' + lado, 5, kx, ky, f.ki / f.kiMax, rtl);
-
-    // nome e ki na parte de baixo da placa
-    const nomeCor = f.formId !== (f.def.formaInicial || 'base') ? '#ffe25a' : '#fff';
-    this.text(ctx, f.nome, rtl ? sxp(57) : sxp(60), Y + 47 * S, Math.round(18 * Math.max(0.75, T)), nomeCor, rtl ? 'right' : 'left');
-    this.text(ctx, 'KI ' + Math.floor(f.ki), rtl ? sxp(172) : sxp(172), Y + 47 * S, Math.round(13 * Math.max(0.75, T)), '#9fe2ff', rtl ? 'left' : 'right');
-
-    // Rage Gauge: barra abaixo da placa + ícone (vazio / cheio pulsando)
-    const rw = 104 * S, rh = Math.round(9 * T), rx = rtl ? sxp(60, 104) : sxp(60), ry = Y + 59 * S;
-    ctx.fillStyle = 'rgba(10,8,20,0.85)'; ctx.fillRect(rx - 2, ry - 2, rw + 4, rh + 4);
-    const rf = f.rage / 100, rfw = rw * rf;
-    const cheia = f.rageCheia;
-    const rg = ctx.createLinearGradient(0, ry, 0, ry + rh);
-    const pulse = 0.5 + 0.5 * Math.sin(FF.Clock.t * 12);
-    rg.addColorStop(0, cheia ? 'rgb(255,' + Math.round(230 + 25 * pulse) + ',120)' : '#ffb347'); rg.addColorStop(1, cheia ? '#ff5a00' : '#c0300a');
-    ctx.fillStyle = rg; ctx.fillRect(rtl ? rx + rw - rfw : rx, ry, rfw, rh);
-    ctx.fillStyle = 'rgba(0,0,0,0.35)';
-    for (let k = 1; k < 10; k++) ctx.fillRect(rx + rw * k / 10, ry, 1, rh);
-    const ix = rtl ? rx - 14 : rx + rw + 14, iy = ry + rh / 2;
-    const ic = set.anim(cheia ? 'Full' : 'Empty');
-    if (ic) {
-      const fi = ic.frames[Math.floor(FF.Clock.t * 10) % ic.frames.length];
-      FF.drawFrame(ctx, set, fi, ix, iy, (cheia ? 0.62 + 0.06 * pulse : 0.75) * T, false);
-    }
-    this.text(ctx, cheia ? 'SUPREMO PRONTO!' : 'RAGE', rtl ? rx + rw : rx, ry + rh + 10 * T, Math.round(11 * Math.max(0.75, T)), cheia ? '#ffe25a' : '#ffb39a', rtl ? 'right' : 'left');
-
-    // buffs
-    const tags = Object.values(f.buffs).map(b => (b.nome || b.id) + ' (' + b.turnos + ')');
-    if (tags.length) this.text(ctx, tags.join('  '), rtl ? rx : rx + rw, ry + rh + 10 * T, Math.round(13 * Math.max(0.75, T)), '#ff9c9c', rtl ? 'left' : 'right');
+    return this.panelSimples(ctx, f, rtl ? FF.W - 24 : 24, rtl);   // sem a arte do HUD (não carregou)
   },
 
   // ---- HUD novo (arte do usuário: assets/img/hud_moderno.png, montado por tools/hud_moderno.py) ----
@@ -338,7 +264,7 @@ FF.HUD = {
     ctx.restore();
   },
 
-  // painel antigo (sem as artes), usado se o hud_zl3 não carregar
+  // painel simples (sem arte), usado se a imagem do HUD não carregar
   panelSimples(ctx, f, x, rtl) {
     const w = 330;
     const bx = rtl ? x - w : x;
@@ -376,7 +302,7 @@ FF.HUD = {
       ctx.lineWidth = 3;
       ctx.shadowColor = '#ffd23a'; ctx.shadowBlur = 10;
       if (this.img()) ctx.strokeRect(4, y, this.LARG3 + 4, this.L.H * this.LARG3 / this.L.W + 2);
-      else ctx.strokeRect(4, y, this.PW * S + 4, 73 * S);
+      else ctx.strokeRect(4, y, 330 * S / 1.6 + 4, 90 * S / 1.6);
     }
     if (!f.busy) {
       const p = f.peito();

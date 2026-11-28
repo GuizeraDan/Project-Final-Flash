@@ -80,12 +80,15 @@ FF.KO = {
   },
 };
 
-// ABERTURA DO SUPREMO: cena que toca antes de todo golpe Supremo (tela escurece, zoom em quem solta, linhas de
-// velocidade, faixa com o nome do golpe). Também é uma linha do tempo comum, editável no Estúdio:
-//   data/edicoes.js → abertura[<id de quem solta>] → abertura.padrao → FF.Abertura.PADRAO
+// ENTRADA e SAÍDA DA CENA DO GOLPE: linhas do tempo por tipo de golpe (normal | rush | supremo) e por personagem
+// (quem solta). Clipe de tela {tipo:"corte"} = o instante em que a formação vira a cena (na entrada) ou volta (na
+// saída); sem ele, o corte acontece no fim. Clarão = clipe "flash" (forca, d, cor).
+//   data/edicoes.js → entrada[tipo][<id>] → entrada[tipo].padrao → FF.CenaGolpe.padrao(qual, tipo)   (saída igual, em "saida")
 // Clipes de tela próprios: {tipo:"escurecer", d, forca} · {tipo:"linhas", d} · {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
-FF.Abertura = {
-  PADRAO: {
+FF.CenaGolpe = {
+  TIPOS: ['normal', 'rush', 'supremo'],
+  // o que toca antes do Supremo (escurece, zoom em quem solta, linhas, faixa com o nome) — vira a entrada com o corte no fim
+  ABERTURA_SUPREMO: {
     duracao: 1.7,
     trilhas: [
       { id: 'atacante', tipo: 'lutador', quem: 'atacante', nome: 'Quem solta', clipes: [] },
@@ -102,29 +105,6 @@ FF.Abertura = {
       ] },
     ],
   },
-  linhaSalva(id) {
-    const ab = (FF.Edicoes && FF.Edicoes.dados().abertura) || {};
-    return (id && id !== 'padrao' && ab[id]) || ab.padrao || null;
-  },
-  temPropria(id) { const ab = (FF.Edicoes && FF.Edicoes.dados().abertura) || {}; return !!(id && ab[id]); },
-  linhaDe(id) { return JSON.parse(JSON.stringify(this.linhaSalva(id) || this.PADRAO)); },
-  // toca a cena e espera terminar (devolve a câmera ao normal no fim)
-  async tocar(b, actor, target, move) {
-    const linha = this.linhaDe(actor.def && actor.def.id || actor.id);
-    if (linha.desligada || !(linha.trilhas || []).some(t => (t.clipes || []).length)) return;
-    if (!FF.Linha.pronta(linha)) await FF.Linha.preparar(linha);
-    const viva = FF.Linha.iniciar(b, actor, target, Object.assign({}, move, { roteiro: [] }), linha);
-    await viva.fim;
-  },
-};
-
-// ENTRADA e SAÍDA DA CENA DO GOLPE: linhas do tempo por tipo de golpe (normal | rush | supremo) e por personagem
-// (quem solta). Clipe de tela {tipo:"corte"} = o instante em que a formação vira a cena (na entrada) ou volta (na
-// saída); sem ele, o corte acontece no fim. Clarão = clipe "flash" (forca, d, cor).
-//   data/edicoes.js → entrada[tipo][<id>] → entrada[tipo].padrao → (supremo: a antiga abertura[<id>]/abertura.padrao
-//   + clarão e corte no fim) → FF.CenaGolpe.PADRAO.entrada[tipo]   (saída igual, em "saida")
-FF.CenaGolpe = {
-  TIPOS: ['normal', 'rush', 'supremo'],
   trilhas(tela, sons) {
     return [
       { id: 'atacante', tipo: 'lutador', quem: 'atacante', nome: 'Quem solta', clipes: [] },
@@ -139,11 +119,11 @@ FF.CenaGolpe = {
     if (qual === 'saida') return tipo === 'normal'
       ? { duracao: 0.1, trilhas: T([{ id: 'sd1', tipo: 'corte', t: 0 }]) }
       : { duracao: 0.25, trilhas: T([{ id: 'sd1', tipo: 'flash', t: 0, forca: 0.8, d: 0.3 }, { id: 'sd2', tipo: 'corte', t: 0.1 }]) };
-    if (tipo === 'normal') return { duracao: 1.8, trilhas: T([{ id: 'en1', tipo: 'corte', t: 0.05 }, { id: 'en3', tipo: 'cartao', t: 0.13 }]) };
-    if (tipo === 'rush') return { duracao: 1.95, trilhas: T([{ id: 'en1', tipo: 'flash', t: 0, forca: 0.9, d: 0.3 }, { id: 'en2', tipo: 'corte', t: 0.12 }, { id: 'en3', tipo: 'cartao', t: 0.3 }]) };
-    return this.comCorte(FF.Abertura.PADRAO);
+    if (tipo === 'normal') return { duracao: 0.2, trilhas: T([{ id: 'en1', tipo: 'corte', t: 0.05 }, { id: 'en3', tipo: 'cartao', t: 0.13 }]) };
+    if (tipo === 'rush') return { duracao: 0.35, trilhas: T([{ id: 'en1', tipo: 'flash', t: 0, forca: 0.9, d: 0.3 }, { id: 'en2', tipo: 'corte', t: 0.12 }, { id: 'en3', tipo: 'cartao', t: 0.3 }]) };
+    return this.comCorte(this.ABERTURA_SUPREMO);
   },
-  // abertura antiga do Supremo (só a parte antes do golpe) + clarão e corte no fim
+  // abertura do Supremo (só a parte antes do golpe) + clarão, corte e cartão no fim
   comCorte(ab) {
     const l = JSON.parse(JSON.stringify(ab)), fim = l.duracao || 1.7;
     let tela = (l.trilhas || []).find(t => t.tipo === 'tela');
@@ -156,21 +136,32 @@ FF.CenaGolpe = {
   salva(qual, tipo, id) {
     const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}, s = (ed[qual] || {})[tipo] || {};
     if (id && id !== 'padrao' && s[id]) return s[id];
-    if (qual === 'entrada' && tipo === 'supremo') {
-      const ab = ed.abertura || {};
-      if (id && id !== 'padrao' && ab[id]) return this.comCorte(ab[id]);
-      if (s.padrao) return s.padrao;
-      if (ab.padrao) return this.comCorte(ab.padrao);
-      return null;
-    }
     return s.padrao || null;
   },
-  temPropria(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!(id && ((ed[qual] || {})[tipo] || {})[id]) || (qual === 'entrada' && tipo === 'supremo' && !!(ed.abertura || {})[id] && id !== 'padrao'); },
+  temPropria(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!(id && ((ed[qual] || {})[tipo] || {})[id]); },
   temSalva(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!((ed[qual] || {})[tipo] || {})[id]; },
   linhaDe(qual, tipo, id) { return JSON.parse(JSON.stringify(this.salva(qual, tipo, id) || this.padrao(qual, tipo))); },
   // toca e espera; aoCortar roda no clipe "corte" (ou no fim, se a linha não tiver um)
+  // a entrada acaba quando o último clipe que não é o 🪪 cartão acaba (o cartão segue sozinho e o "⏳ esperar o
+  // cartão" do golpe decide se o golpe espera) — a linha guardada continua longa para a prévia do palco
+  fimUtil(linha, b, actor, target) {
+    let fim = 0, tem = false;
+    for (const tr of linha.trilhas || []) for (const c of tr.clipes || []) {
+      if (c.tipo === 'cartao') { tem = true; fim = Math.max(fim, (c.t || 0) + 0.05); continue; }
+      let d = c.d || 0;
+      if (c.d == null && (c.tipo === 'anim' || c.tipo === 'teleporte' || c.tipo === 'mover') && tr.quem) {
+        const f = FF.Linha.lutadorDe(b, actor, target, tr.quem), nm = c.tipo === 'anim' ? c.anim : c.animMov;
+        const a = f && nm && f.sprite && f.sprite.anim(f.animName ? f.animName(nm) : nm);
+        if (a) d = FF.Linha.duracaoAnim(a, c.fps || undefined) + (c.segurar || 0);
+        if (c.tipo === 'mover') d = Math.max(d, c.d || 0.22);
+      }
+      fim = Math.max(fim, (c.t || 0) + d);
+    }
+    return tem ? Math.min(linha.duracao || fim, fim + 0.05) : linha.duracao;
+  },
   async tocar(b, qual, tipo, actor, target, move, aoCortar, aoLer) {
     const linha = this.linhaDe(qual, tipo, actor.def && actor.def.id || actor.id);
+    linha.duracao = this.fimUtil(linha, b, actor, target);
     if (aoLer) aoLer(linha);
     let cortou = false;
     b._corte = () => { if (!cortou) { cortou = true; aoCortar && aoCortar(); } };

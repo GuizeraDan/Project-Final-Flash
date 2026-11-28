@@ -100,14 +100,6 @@ FF.EstudioProps = {
         { lista: [['', 'automático: ' + (auto ? 'não toca' : 'toca')], ['tocar', 'toca mesmo assim'], ['pular', 'não toca']],
           dica: 'Vale para clipes depois do último acerto (ou do único). Automático: a trilha do Alvo e os efeitos presos no alvo não tocam (o alvo fica na guarda e recua); o resto toca. Veja no palco com 🛡 Defendido.' }));
     }
-    if (host.ajuste) {   // ✏ modo de ajuste por combinação de fileiras
-      const aj = E.el('div', 'es-ajuste-aviso');
-      const tem = c.ajustes && c.ajustes[host.ajuste];
-      aj.appendChild(E.el('span', null, '✏ Ajustando só ' + host.nomeChave(host.ajuste) + (tem ? ' · este clipe tem ajuste' : ' · este clipe usa o base')));
-      if (tem) aj.append(E.botao('↺ Usar o base aqui', () => host.tirarAjuste(false), 'Tira o ajuste deste clipe nesta combinação (volta à versão base)'),
-        E.botao('⤴ Tornar base', () => host.usarComoBase(true), 'O ajuste deste clipe nesta combinação vira a versão base dele (vale para as outras combinações sem ajuste)'));
-      g.appendChild(aj);
-    }
     if (host.podeTrazer && host.podeTrazer(c)) g.appendChild(E.botao('⌖ Trazer para a tela', () => host.trazerParaTela(), 'Sumiu da tela? Põe este clipe de volta num lugar visível (perto de quem solta ou no meio da tela)', 'es-trazer-tela'));
     g.appendChild(num(c, 't', 'Início (s)', 'Quando o clipe começa na linha do tempo', { passo: 0.01, min: 0 }));
     box.appendChild(g);
@@ -463,11 +455,6 @@ FF.EstudioProps = {
         (oc.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm uma própria.' : 'Esta é a própria deste personagem.') +
         ' A aura e a pose enquanto dura ficam em Personagens → ⚡ Sparking. Sem nenhum clipe = sem cena.'));
       box.appendChild(k);
-    } else if (host.doc.origem.tipo === 'abertura') {   // abertura do Supremo
-      const k = E.grupo('⚡ Abertura do Supremo');
-      k.appendChild(E.el('p', 'es-dica', 'Toca antes de todo golpe <b>Supremo</b>, antes do golpe em si. Trilha <b>Tela</b>: 🌑 Escurecer (só quem solta fica aceso), 💨 Linhas de velocidade, 🎌 Faixa com o nome (<b>{golpe}</b> vira o nome do golpe) e 🎥 Câmera. Dá para pôr sons, vozes, efeitos e animações em quem solta. ' +
-        (host.doc.origem.id === 'padrao' ? 'Esta é a padrão: vale para todos que não têm abertura própria.' : 'Esta é a abertura própria deste personagem.') + ' A câmera volta ao normal sozinha no fim. Sem nenhum clipe = sem abertura.'));
-      box.appendChild(k);
     } else if (host.doc.origem.tipo === 'ko') {   // cena de KO: não tem nome, custo nem poder
       const k = E.grupo('💀 Cena de KO');
       k.appendChild(E.el('p', 'es-dica', 'Toca quando a vida de alguém chega a zero, junto com o golpe que derrubou. Trilha <b>Alvo</b> = quem caiu (use as animações "lancado" e "caido", empurrão, efeitos "peito/pés do alvo"); trilha <b>Quem solta</b> = quem deu o golpe final. ' +
@@ -517,7 +504,7 @@ FF.EstudioProps = {
     d.appendChild(E.campo('check', 'Automática', !L.duracaoManual, (v) => { if (v) { delete L.duracaoManual; host.autoDuracao(); } else L.duracaoManual = true; host.mudou('Duração automática'); }, { dica: 'Termina 0,1 s depois do último clipe' }));
     box.appendChild(d);
     const r = E.grupo('🔒 Regras', false);
-    if (['ko', 'abertura', 'cena', 'sparking'].includes(host.doc.origem.tipo)) r.style.display = 'none';
+    if (['ko', 'cena', 'sparking'].includes(host.doc.origem.tipo)) r.style.display = 'none';
     r.appendChild(E.el('p', 'es-dica', 'mostrar/esconder: {"buff": "kaioken"} ou {"forma": "ssj"}. requer: {"parceiro": {"id": "piccolo", "ki": 30}} para Sparking Combo, {"semBuff": "kaioken"}.'));
     ['mostrar', 'esconder', 'requer'].forEach(k => r.appendChild(E.campo('json', k, g[k], (v) => { if (v === undefined) delete g[k]; else g[k] = v; host.mudou('Regra ' + k); }, { linhas: 2 })));
     box.appendChild(r);

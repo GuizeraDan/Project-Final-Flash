@@ -11,7 +11,7 @@ FF.EstudioPalco = class {
     this.DT = 1 / 60;
     this._b = null;
     this.ref = {};          // clipe id → pontos de referência gravados quando o clipe disparou
-    this.opts = { grade: false, refs: true, cebola: false, hud: false, persp: true };
+    this.opts = { grade: false, refs: true, cebola: false, hud: false };
     this.modo = 'edicao';   // 'edicao' | 'batalha'
   }
 
@@ -50,7 +50,7 @@ FF.EstudioPalco = class {
     const inimigos = heroiAtaca ? timeAlvo : timeAtk;
     const pos = { 1: [170], 2: [250, 150], 3: [250, 150, 350] };
     const posI = { 1: [915], 2: [870, 990], 3: [820, 930, 1020] };
-    const def = { id: 'estudio', titulo: 'Estúdio', cenario: 'campo', perspectiva: !!this.opts.persp, escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2,
+    const def = { id: 'estudio', titulo: 'Estúdio', cenario: 'campo', escala: herois.length === 1 && inimigos.length === 1 ? 2.5 : 2.2,
       posicoes: { herois: pos[herois.length], inimigos: posI[inimigos.length] }, herois, inimigos };
     const ui = { chooseMove: () => new Promise(() => {}), chooseTarget: (f) => Promise.resolve(f[0]), showEnd: () => {} };
     const listeners = FF.Input.listeners.slice();
@@ -67,10 +67,7 @@ FF.EstudioPalco = class {
     if (cfg.alvoForma && tAlvo[0].def.formas[cfg.alvoForma]) tAlvo[0].setForm(cfg.alvoForma);
     if (cfg.buff && atk.def.buffs && atk.def.buffs[cfg.buff]) { atk.buffs[cfg.buff] = Object.assign({ id: cfg.buff }, atk.def.buffs[cfg.buff]); atk.idle(); }
     // fileira forçada (painel Palco do Estúdio): 'frente' | 'meio' | 'fundo' (vazio = a do jogo)
-    const FILA = { frente: 0, meio: 0.5, fundo: 1 };
-    if (FILA[cfg.filaAtk] != null) atk.profFixa = FILA[cfg.filaAtk];
-    if (FILA[cfg.filaAlvo] != null) alvo.profFixa = FILA[cfg.filaAlvo];
-    if (b.persp) { b.montarPerspectiva(); b.acaoAtual = { actor: atk, target: alvo }; }
+    b.montarPerspectiva(); b.acaoAtual = { actor: atk, target: alvo };
     b.semDesafios = true;   // os desafios de botão ficam para o jogo
     b.atk = atk; b.alvo = alvo;
     FF.battle = b;
@@ -110,9 +107,6 @@ FF.EstudioPalco = class {
       } else if (FF.Battle.ofensivo(mv) && b.alvo && b.alvo !== b.atk && b.alvo.lado !== b.atk.lado) b.entrarCena(b.atk, b.alvo, mv, true);
       else b.alinharFileira(b.atk, b.alvo, mv, true);
     }
-    // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;
-    // desligado, o palco mostra e edita a versão base
-    b.semAjustes = true;
     b.forcarDefesa = !!this.opts.defendido;   // 🛡 palco: ver como defendido
     b.atk.busy = true;
     const orig = FF.Linha.disparar;
@@ -151,13 +145,13 @@ FF.EstudioPalco = class {
       r.kf = b.fov || 1;
       // perspectiva: o motor leva o efeito para a diagonal entre quem solta e o alvo (FF.Linha.mapaPersp) e muda o
       // tamanho pelo da fileira. As alças usam a mesma conta (com as posições deste instante) para ficar em cima dele.
-      if (b.persp && !FF.Linha.efeitoJunto(c) && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
+      if (!FF.Linha.efeitoJunto(c) && c.em !== 'alvo' && c.em !== 'alvoPes' && a && t && a !== t) {
         const foto = (f) => ({ latX: f.latX, latG: f.latG, homeX: f.homeX, homeG: f.homeG, base: f.base ? { x: f.base.x, g: f.base.g } : null });
         const A = foto(fx && fx.actor || a), T = foto(fx && fx.target || t), tela = c.em === 'tela';
         r.mapa = (x, y) => (tela && y < 140) ? { x, y } : FF.Linha.mapaPersp(b, A, T, x, y, tela);
       }
       const dono = c.em === 'tela' ? null : (c.em === 'alvo' || c.em === 'alvoPes') ? (fx && fx.target || t) : (fx && fx.actor || a);
-      r.kp = b.persp && dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
+      r.kp = dono && dono.scale && b.scale ? dono.scale / b.scale : 1;
     }
     if (c.tipo === 'projetil') { r.de = a.pontoDisparo(); r.ate = t ? t.peito() : null; }
     if (c.tipo === 'acerto' && t) r.p = t.peito();

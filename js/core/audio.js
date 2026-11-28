@@ -26,7 +26,8 @@ FF.Audio = {
   locais: {},
   url(name) {
     if (this.locais[name]) return this.locais[name];
-    return this.base + name + (/\.(ogg|mp3|wav|m4a|aac|webm)$/i.test(name) ? '' : this.ext);
+    const p = this.base + name + (/\.(ogg|mp3|wav|m4a|aac|webm)$/i.test(name) ? '' : this.ext);
+    return FF.urlAcervo ? FF.urlAcervo(p) : p;   // sons do acervo podem morar no repositório separado
   },
   async prepararLocais() {
     if (!FF.ImagensUsr) return;

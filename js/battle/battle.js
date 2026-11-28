@@ -29,9 +29,9 @@ FF.FOV = {
 };
 if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.FOV.ligar());
 // CENAS DE GOLPE (Opções / pausa; FF.Save "cenas"): golpes 💥 rush e 🔥 supremo viram uma cena só com quem ataca e o
-// alvo, num palco fixo (o mesmo do palco do Estúdio); 👊 normais acontecem na formação. ligadas | supremos | desligadas
+// alvo, num palco fixo (o mesmo do palco do Estúdio). ligadas (todo golpe que acerta) | supremos (só o Supremo; os outros na formação)
 FF.Cenas = {
-  ids: ['ligadas', 'supremos', 'desligadas'],
+  ids: ['ligadas', 'supremos'],   // ("desligadas" saiu: quem tinha escolhido volta para "ligadas")
   id() { const v = FF.Save && FF.Save.get && FF.Save.get().cenas; return this.ids.includes(v) ? v : 'ligadas'; },
   ligar() {
     document.querySelectorAll('#cenas, [data-p="cenas"]').forEach(sel => {
@@ -226,7 +226,7 @@ FF.Battle = class {
 
   // ---------- fluxo ----------
   async run() {
-    if (this.persp) this.montarPerspectiva();
+    this.montarPerspectiva();
     // estatísticas para a nota do fim da luta
     this.stats = { maiorCombo: 0, danoRecebido: 0, guardasPerfeitas: 0, criticos: 0, quebras: 0, contra: 0, embates: 0, supremoFinal: false, ataqueZ: false, rodadas: 0 };
     // Radar do Dragão: revela as fraquezas de todos os inimigos
@@ -583,9 +583,9 @@ FF.Battle = class {
 
   // ---------- 🎬 cena do golpe (todo golpe que acerta alguém do outro time) ----------
   querCena(actor, target, move) {
-    if (this.semCenas || !this.persp || !target || target === actor || actor.lado === target.lado || !FF.Battle.ofensivo(move)) return false;
+    if (this.semCenas || !target || target === actor || actor.lado === target.lado || !FF.Battle.ofensivo(move)) return false;
     const cat = FF.Battle.categoria(move), op = FF.Cenas.id();
-    return op === 'ligadas' ? true : op === 'supremos' ? cat === 'supremo' : false;
+    return op === 'supremos' ? cat === 'supremo' : true;
   }
   // quem aparece na cena: quem ataca, o alvo e os parceiros das trilhas do golpe
   atoresCena(actor, target, move) {
@@ -644,7 +644,7 @@ FF.Battle = class {
 
   // ---------- mudança de fileira (perspectiva) ----------
   async alinharFileira(actor, target, move, instantaneo) {
-    if (!this.persp || !target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
+    if (!target || target === actor || actor.lado === target.lado || actor.homeG == null || target.homeG == null) return false;
     if (Math.abs(target.homeG - actor.homeG) < 10 || !FF.Battle.ofensivo(move) || actor.ko) return false;
     // golpe que avança até o alvo: o próprio avanço já vai na diagonal até a fileira dele (sem passo para o lado)
     if (FF.Battle.vaiAteAlvo(move)) return false;
@@ -1145,12 +1145,6 @@ FF.Battle = class {
     }
   }
 
-  // ABERTURA DO SUPREMO: cena editável no Estúdio (FF.Abertura, js/battle/ko.js)
-  async dramaSupremo(actor, move) {
-    const alvo = this.acaoAtual && this.acaoAtual.target;
-    try { await FF.Abertura.tocar(this, actor, alvo, move); } catch (e) { /* sem abertura */ }
-    await FF.Clock.wait(0.15);
-  }
   // clipes "linhas" e "faixa" (o "escurecer" é desenhado antes, junto dos lutadores)
   desenharDrama(ctx) {
     const ef = this.efTela;
@@ -1508,7 +1502,7 @@ FF.Battle = class {
       res();
     };
     // perspectiva: o projétil reto aponta para o alvo (fileiras em alturas diferentes)
-    if (this.persp && !p.curva && !p.girar && !p.rot && Math.abs(to.x - from.x) > 20) p.ang = Math.atan2(to.y - from.y, Math.abs(to.x - from.x)) * p.dir;
+    if (!p.curva && !p.girar && !p.rot && Math.abs(to.x - from.x) > 20) p.ang = Math.atan2(to.y - from.y, Math.abs(to.x - from.x)) * p.dir;
     this.projectiles.push(p);
   }
 
@@ -1749,7 +1743,7 @@ FF.Battle = class {
       if (tr.furia) f.rage = 100;
       if (this.vidaInfinita(f) && f.hp <= 0) f.hp = 1;
     }
-    if (this.persp) this.atualizarPerspectiva();
+    this.atualizarPerspectiva();
     this.atualizarDesafio();
     if (this.embateAtual && this.embateAtual.tick) this.embateAtual.tick(dt);
     this.fxList.forEach(e => {
@@ -1838,8 +1832,8 @@ FF.Battle = class {
     // em cada uma: camadas, projéteis e efeitos (entre efeitos, o que começou depois fica por cima)
     // "Na profundidade de quem solta / do alvo" (Estúdio, só com perspectiva): o efeito entra entre os lutadores,
     // na altura de chão dele — quem está mais embaixo (na frente) cobre, quem está mais em cima (no fundo) fica coberto
-    const persp = !!this.persp;
-    const naProf = (x) => persp && x.prof && !x.atras;
+    const persp = true;   // sempre diagonal
+    const naProf = (x) => x.prof && !x.atras;
     const camada = (atras) => {
       ['baixo', '', 'cima'].forEach(ord => {
         (this.cenasVivas || []).forEach(v => FF.Cena.desenhar(ctx, this, v.actor, v.target, v.cena, v.t, atras, ord, persp));
@@ -1849,13 +1843,11 @@ FF.Battle = class {
     };
     camada(true);
     // quem está agindo fica na frente; "naFrente"/"atras" do clipe de animação (Estúdio) mandam mais
-    const prio = this.persp
-      ? (f) => (f.camadaExtra || 0) * 10000 + f.groundY + (f.busy ? 0.5 : 0)   // perspectiva: o que está mais embaixo fica na frente
-      : (f) => (f.camadaExtra || 0) * 10 + (f.busy ? 1 : 0);
+    const prio = (f) => (f.camadaExtra || 0) * 10000 + f.groundY + (f.busy ? 0.5 : 0);   // o que está mais embaixo fica na frente
     const order = this.all.filter(f => !this.cena || f.naCena).sort((a, b) => prio(a) - prio(b));
     // itens na profundidade: logo acima de quem é a referência (por cima dele, por baixo de quem está mais à frente)
     const profs = [];
-    if (persp) {
+    {
       const ORD = { baixo: 0, '': 1, cima: 2 };
       const add = (ref, ord, fn) => { if (ref && ref.groundY != null) profs.push({ k: prio(ref) + 0.75, o: ORD[ord || ''] || 1, i: profs.length, fn }); };
       (this.cenasVivas || []).forEach(v => (v.cena.camadas || []).forEach(c => { if (!c.oculta && !c.atras && c.prof) add(c.prof === 'alvo' ? v.target : v.actor, c.ordem, () => FF.Cena.desenharCamada(ctx, FF.Cena.naTela(this, v.actor, v.target, c, v.t))); }));
@@ -1865,7 +1857,7 @@ FF.Battle = class {
     }
     let ip = 0;
     const profAte = (k) => { while (ip < profs.length && profs[ip].k < k) profs[ip++].fn(); };
-    if (this.persp) {
+    {
       this.desenharSombras(ctx);
       order.forEach(f => {
         profAte(prio(f));
@@ -1876,7 +1868,7 @@ FF.Battle = class {
         f.draw(ctx, this.fx);
       });
       profAte(Infinity);
-    } else order.forEach(f => f.draw(ctx, this.fx));
+    }
     // supremo: escurece tudo e redesenha só quem solta, aceso
     const esc = this.efTela && this.efTela.escuro;
     if (esc) {
@@ -1993,23 +1985,7 @@ FF.Battle = class {
     return c;
   }
 
-  drawStage(ctx) {
-    if (this.persp) return this.drawStagePersp(ctx);
-    const set = this.stageSprite;
-    const st = this.stage;
-    const ceu = set.anim(st.ceu).frames[0];
-    // céu cobre a tela inteira, alinhado pela base no chão
-    const sc = Math.max(FF.W / ceu[3], (this.groundY + (st.ceuDesce || 40)) / ceu[4]);
-    ctx.drawImage(set.images[ceu[0]], ceu[1], ceu[2], ceu[3], ceu[4],
-      (FF.W - ceu[3] * sc) / 2, this.groundY + (st.ceuDesce || 40) - ceu[4] * sc, ceu[3] * sc, ceu[4] * sc);
-    const chao = set.anim(st.chao).frames[0];
-    // o chão tem árvores nas pontas: em vez de repetir (fica emendado), amplia até cobrir a largura toda
-    const cs = Math.max(st.chaoEscala || 2, FF.W / chao[3]);
-    const ch = chao[4] * cs;
-    ctx.drawImage(set.images[chao[0]], chao[1], chao[2], chao[3], chao[4], (FF.W - chao[3] * cs) / 2, this.groundY - (st.chaoTopo || 18) * cs, chao[3] * cs, ch);
-    const base = this.groundY - (st.chaoTopo || 18) * cs + ch;
-    if (base < FF.H) { ctx.fillStyle = st.corTerra || '#5a8f2a'; ctx.fillRect(0, base, FF.W, FF.H - base); }
-  }
+  drawStage(ctx) { return this.drawStagePersp(ctx); }
 
   drawQtes(ctx) {
     const now = FF.Clock.t;
