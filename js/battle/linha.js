@@ -39,6 +39,7 @@
 //  tela     {tipo:"tremer", forca, d?} | {tipo:"flash", forca, d?} | {tipo:"mensagem", texto, d?}   (d = duração: segura a força até o fim; sem d = só o impacto)
 //           {tipo:"escurecer", d, forca} | {tipo:"linhas", d} | {tipo:"faixa", d, texto} ("{golpe}" = nome do golpe)
 //           {tipo:"flash", forca, d, cor} | {tipo:"corte"} (entrada/saída da cena) | {tipo:"retrato", d, quem, de, cor}
+//           {tipo:"cartao", d, lado, y, estilo} (🪪 cartão de ataque com a arte do golpe/personagem)
 //           {tipo:"camera", d, zoom, foco: "centro"|"atacante"|"alvo"|"entre", dx?, dy?}
 //  acoes    {tipo:"acao", passo: {qualquer passo de roteiro: transformar, aplicar, ki, curar, atordoar, objeto,
 //           lancarObjeto, autoNocaute, removerBuff, vozTipo...}}
@@ -396,6 +397,13 @@ FF.Linha = {
       }
       case 'tremer': b.shake(c.forca || 6, c.d); return;
       case 'flash': b.flash(c.forca || 0.5, c.d, c.cor); return;
+      // 🪪 cartão de ataque (arte de quem solta + nome do golpe): d = tempo parado; lado, y, estilo
+      case 'cartao': {
+        if (!actor || !b.cartao || !FF.Cartao || (move && move.anuncio === false)) return;
+        const dur = move && move.tempoCartao > 0 ? move.tempoCartao : (c.d || (move && move.supremo ? 2.0 : 1.3));
+        b.cartao(actor, move, b.textoGolpe ? b.textoGolpe(actor, move) : (move && move.nome) || '', dur, { lado: c.lado, y: c.y, estilo: c.estilo });
+        return;
+      }
       // ✂ corte para a cena (entrada/saída da cena do golpe): quem toca a linha decide o que acontece
       case 'corte': if (b._corte) b._corte(); return;
       // 🖼 retrato: a arte (banner) de quem solta ou do alvo passa pela tela

@@ -295,7 +295,15 @@ window.FF = window.FF || {};
       const d = this.defs[this.cfg.atacante] || {};
       const nomesT = { normal: 'Normal', rush: 'Rush', supremo: 'Supremo' };
       const nome = (qual === 'saida' ? 'Saída' : 'Entrada') + ' da cena · ' + nomesT[tipo] + (id === 'padrao' ? ' (padrão)' : ' · ' + (d.nome || id));
-      this.abrirDoc({ origem: { tipo: 'cena', qual, tipoCena: tipo, id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome, nomeFaixa: tipo === 'supremo' ? this.nomeSupremo() : 'Nome do golpe', _cenaDoc: qual }, linha: FF.CenaGolpe.linhaDe(qual, tipo, id) });
+      const linha = FF.CenaGolpe.linhaDe(qual, tipo, id);
+      // entradas salvas antes do clipe 🪪 Cartão: o cartão aparecia depois da entrada — mostra o clipe no fim
+      if (qual === 'entrada' && !linha.semCartao && !linha.trilhas.some(tr => (tr.clipes || []).some(c => c.tipo === 'cartao'))) {
+        const tela = linha.trilhas.find(tr => tr.tipo === 'tela');
+        const fim = Math.max(0, ...linha.trilhas.map(tr => Math.max(0, ...(tr.clipes || []).map(c => c.t || 0)))) + 0.08;
+        if (tela) { tela.clipes.push({ id: novoId(), tipo: 'cartao', t: +fim.toFixed(3) }); linha.duracao = Math.max(linha.duracao || 0, fim + 0.1); }
+      }
+      delete linha.semCartao;
+      this.abrirDoc({ origem: { tipo: 'cena', qual, tipoCena: tipo, id, personagem: this.cfg.atacante, forma: this.cfg.forma }, golpe: { nome, nomeFaixa: tipo === 'supremo' ? this.nomeSupremo() : 'Nome do golpe', _cenaDoc: qual }, linha });
       if (id !== 'padrao' && !FF.CenaGolpe.temPropria(qual, tipo, id)) E.aviso('🎬 ' + nome + ': começa pela padrão. Ao salvar, vira a própria dele.');
     },
     abrirSparking(id) {
@@ -387,7 +395,7 @@ window.FF = window.FF || {};
       const lx = FF.legado().x, x0 = f ? f.x - lx : 300, dir = f ? f.dir : 1;
       return { tipo: 'caminho', d: 0.6, ritmo: 'suave', animMov: 'avancar', pontos: [{ x: Math.round(x0 + 180 * dir), y: -120 }, { x: Math.round(x0 + 360 * dir), y: 0 }] };
     },
-    redimensionavel(c) { return ['anim', 'mover', 'caminho', 'efeito', 'projetil', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash', 'retrato'].includes(c.tipo); },
+    redimensionavel(c) { return ['anim', 'mover', 'caminho', 'efeito', 'projetil', 'camada', 'mensagem', 'camera', 'vaporizar', 'escurecer', 'linhas', 'faixa', 'tremer', 'flash', 'retrato', 'cartao'].includes(c.tipo); },
     dur(c, tr) {
       switch (c.tipo) {
         case 'anim': { if (c.d != null) return c.d + (c.segurar || 0); const a = this.animDoClipe(c, tr); return (c.segurar || 0) + (a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3); }
@@ -397,6 +405,7 @@ window.FF = window.FF || {};
         case 'vaporizar': return c.d || 1.2;
         case 'escurecer': case 'linhas': case 'faixa': return c.d || 1.5;
         case 'retrato': return c.d || 1.2;
+        case 'cartao': return (c.d || 1.3) + (FF.Cartao ? FF.Cartao.ENTRADA + FF.Cartao.SAIDA : 0.5);
         case 'corte': return 0.05;
         case 'efeito': { if (c.d) return c.d; const s = c.sprite ? FF.Assets.sprites[c.sprite] : (FF.Assets.sprites.fx.has(c.fx) ? FF.Assets.sprites.fx : FF.Assets.sprites.fx_extra); const a = s && s.anim(c.fx); return a ? FF.Linha.duracaoAnim(a, c.fps || undefined) : 0.3; }
         case 'camada': return c.d != null ? c.d : 1;
@@ -531,7 +540,7 @@ window.FF = window.FF || {};
       const opcoes = {
         lutador: [['🎬 Animação', () => criar({ tipo: 'anim', anim: (s && Object.keys(s.def.anims)[0]) || 'parado' })], ['➡ Mover', () => criar({ tipo: 'mover', d: 0.22, para: 'alvo', dist: 24, animMov: 'avancar' })], ['⚡ Teleporte', () => criar({ tipo: 'teleporte', para: 'casa' })], ['〰 Caminho', () => criar(this.novoCaminho(tr))], ['🙈 Sumir', () => criar({ tipo: 'visivel', alpha: 0 })], ['👁 Aparecer', () => criar({ tipo: 'visivel', alpha: 1 })], ['💨 Vaporizar', () => criar({ tipo: 'vaporizar', d: 1.2 })]],
         sons: [['♪ Som', () => criar({ tipo: 'som', som: 'hit_small-a' })], ['🗣 Voz', () => criar({ tipo: 'voz', voz: ((this.defs[this.cfg.atacante].vozes || {}).dano || ['vgkn100'])[0] })]],
-        tela: [['🌑 Escurecer', () => criar({ tipo: 'escurecer', d: 1.5, forca: 0.65 })], ['💨 Linhas de velocidade', () => criar({ tipo: 'linhas', d: 1.5 })], ['🎌 Faixa com o nome', () => criar({ tipo: 'faixa', d: 1.5, texto: '{golpe}' })], ['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash / clarão', () => criar({ tipo: 'flash', forca: 0.5 })], ['✂ Corte para a cena', () => criar({ tipo: 'corte' })], ['🖼 Retrato', () => criar({ tipo: 'retrato', d: 1.2 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
+        tela: [['🌑 Escurecer', () => criar({ tipo: 'escurecer', d: 1.5, forca: 0.65 })], ['💨 Linhas de velocidade', () => criar({ tipo: 'linhas', d: 1.5 })], ['🎌 Faixa com o nome', () => criar({ tipo: 'faixa', d: 1.5, texto: '{golpe}' })], ['〰 Tremor', () => criar({ tipo: 'tremer', forca: 8 })], ['✦ Flash / clarão', () => criar({ tipo: 'flash', forca: 0.5 })], ['✂ Corte para a cena', () => criar({ tipo: 'corte' })], ['🪪 Cartão de ataque', () => criar({ tipo: 'cartao', d: 1.3 })], ['🖼 Retrato', () => criar({ tipo: 'retrato', d: 1.2 })], ['🎥 Câmera', () => criar({ tipo: 'camera', d: 0.3, zoom: 1.4, foco: 'alvo' })], ['💬 Mensagem', () => criar({ tipo: 'mensagem', texto: 'Texto', d: 1.3 })]],
       }[tr.tipo];
       if (opcoes) {
         const c = E.el('div', 'es-menu-clipes');
@@ -806,6 +815,8 @@ window.FF = window.FF || {};
       if (o.tipo === 'cena' || o.tipo === 'sparking') {
         const linha = this.linhaBase();
         if (g.spritesUsados) linha.spritesUsados = g.spritesUsados;
+        // entrada sem o clipe 🪪 Cartão = sem cartão (as antigas, sem a marca, mostravam o cartão no fim)
+        if (o.tipo === 'cena' && o.qual === 'entrada' && !linha.trilhas.some(tr => tr.clipes.some(c => c.tipo === 'cartao'))) linha.semCartao = true;
         if (o.tipo === 'cena') E.salvarNoJogo([o.qual, o.tipoCena, o.id], linha, '🎬 ' + g.nome + ' salva no jogo.');
         else E.salvarNoJogo(['sparking', 'entrada', o.id], linha, '⚡ ' + g.nome + ' salva no jogo.');
       } else if (o.tipo === 'abertura') {

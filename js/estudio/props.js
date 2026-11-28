@@ -362,6 +362,13 @@ FF.EstudioProps = {
         g.appendChild(num(c, 'd', 'Duração (s)', 'Vazio = só o impacto (some sozinho). Com duração, segura a força até o fim (dá para esticar a borda do clipe)', { passo: 0.05, min: 0.05 }));
         if (c.tipo === 'flash') g.appendChild(E.campo('cor', 'Cor', c.cor || '#ffffff', (v) => { if (v && v.toLowerCase() !== '#ffffff') c.cor = v; else delete c.cor; host.mudou('Cor do clarão'); }));
         break;
+      case 'cartao':
+        g.appendChild(E.el('p', 'es-dica', 'O cartão com a arte de quem solta (a do golpe, senão a do personagem) e o nome do golpe. Ponha sons, clarão e efeitos junto dele nas outras trilhas. Sem este clipe na entrada = sem cartão.'));
+        g.appendChild(num(c, 'd', 'Tempo parado na tela (s)', 'O golpe pode trocar com "Tempo do cartão" nas propriedades dele', { passo: 0.1, min: 0.2 }));
+        g.appendChild(sel(c, 'lado', 'Entra pela', [['', 'lado de quem solta'], ['esquerda', 'esquerda'], ['direita', 'direita']], null, ''));
+        g.appendChild(sel(c, 'estilo', 'Jeito de entrar', [['', 'deslizando'], ['zoom', 'surgindo com zoom']], null, ''));
+        g.appendChild(num(c, 'y', 'Altura na tela (px)', '250 = logo abaixo das barras; 720 = embaixo', { passo: 5, min: 0, max: 600, placeholder: '250' }));
+        break;
       case 'corte': g.appendChild(E.el('p', 'es-dica', 'Neste instante a formação vira a cena do golpe (na entrada) ou a cena volta para a formação (na saída). Sem este clipe, o corte acontece no fim da linha. Num golpe comum ele não faz nada.')); break;
       case 'retrato':
         g.appendChild(num(c, 'd', 'Duração (s)', null, { passo: 0.1, min: 0.2 }));
@@ -413,7 +420,7 @@ FF.EstudioProps = {
   },
 
   titulo(c) {
-    return { anim: '🎬 Animação', mover: '➡ Movimento', caminho: '〰 Caminho', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash / clarão', corte: '✂ Corte para a cena', retrato: '🖼 Retrato', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
+    return { anim: '🎬 Animação', mover: '➡ Movimento', caminho: '〰 Caminho', teleporte: '⚡ Teleporte', visivel: '👁 Aparecer/sumir', vaporizar: '💨 Vaporizar', escurecer: '🌑 Escurecer', linhas: '💨 Linhas de velocidade', faixa: '🎌 Faixa com o nome', efeito: '✺ Efeito visual', projetil: '➶ Projétil', camada: '▣ Camada livre', som: '♪ Som', voz: '🗣 Voz', acerto: '✸ Acerto', tremer: '〰 Tremor', flash: '✦ Flash / clarão', corte: '✂ Corte para a cena', cartao: '🪪 Cartão de ataque', retrato: '🖼 Retrato', mensagem: '💬 Mensagem', camera: '🎥 Câmera', acao: '⚙ Ação' }[c.tipo] || c.tipo;
   },
 
   trilha(tr, host, txt) {
@@ -486,6 +493,8 @@ FF.EstudioProps = {
         titulo: '🪪 Arte do cartão — ' + (g.nome || 'golpe'),
         herdada: her ? 'Sem arte própria: usa a arte padrão do personagem (aba Personagens).' : 'Sem arte própria: usa a arte do Z Legends 3. Importe uma para este golpe, ou uma padrão do personagem na aba Personagens.',
         aoSalvar: (arte) => { if (arte) g.arte = arte; else delete g.arte; host.mudou('Arte do cartão'); host.renderProps(); } }));
+      k.appendChild(E.campo('som', '♪ Som do cartão', g.somCartao || '', (v) => { if (v) g.somCartao = v; else delete g.somCartao; host.mudou('Som do cartão'); },
+        { dica: 'Toca quando o cartão deste golpe aparece (vários separados por vírgula = sorteia um). Sons e efeitos para todos os golpes: na 🎬 Entrada da cena.' }));
       k.appendChild(E.campo('check', '⏳ Golpe começa depois que o cartão sai', g.esperarCartao !== false, (v) => { if (v) delete g.esperarCartao; else g.esperarCartao = false; host.mudou('Esperar o cartão'); },
         { dica: 'Ligado: o cartão entra, fica e sai da tela, e só então o golpe começa. Desligado: o golpe começa junto com o cartão.' }));
       k.appendChild(E.campo('numero', 'Tempo do cartão na tela (s)', g.tempoCartao != null ? g.tempoCartao : '', (v) => { if (v > 0) g.tempoCartao = v; else delete g.tempoCartao; host.mudou('Tempo do cartão'); },

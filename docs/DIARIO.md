@@ -711,4 +711,5 @@ Cache do app: `finalflash-v47`.
 - 📱 Tela larga: a cena se espalha na largura da tela (golpes encostados na borda no palco ficam na borda no celular); botão "📱 Tela larga" no palco para conferir.
 - 🪪 Cartão de ataque (estilo Attack of the Saiyans) em todo golpe que acerta: arte importada por golpe (propriedades do golpe) ou padrão por personagem/forma (aba Personagens), com recorte; sem arte, usa o banner do ZL3.
 - ⏳ O golpe só começa depois que o cartão de ataque sai da tela (opção por golpe e tempo do cartão). Corrigido: "⚔ Na batalha" rodado de novo logo em seguida ficava parado.
+- 🪪 O cartão de ataque virou um clipe da 🎬 Entrada da cena (quando aparece, lado, altura, deslizar/zoom; sons, clarão e efeitos junto); "♪ Som do cartão" por golpe. Teste `tools/testes/cartao_entrada.js`.
 

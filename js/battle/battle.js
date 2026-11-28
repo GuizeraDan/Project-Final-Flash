@@ -493,8 +493,9 @@ FF.Battle = class {
     // Sem cena (opção do jogador), o Supremo ainda toca a entrada dele (a antiga abertura), sem o corte
     const tipoCena = FF.Battle.categoria(move), vaiCena = this.querCena(actor, target, move);
     let cena = null;
+    this.cartaoAtk = null; this._entradaSemCartao = false;
     if (vaiCena || move.supremo) {
-      try { await FF.CenaGolpe.tocar(this, 'entrada', vaiCena ? tipoCena : 'supremo', actor, target, move, vaiCena ? () => { this.entrarCena(actor, target, move, true); } : null); }
+      try { await FF.CenaGolpe.tocar(this, 'entrada', vaiCena ? tipoCena : 'supremo', actor, target, move, vaiCena ? () => { this.entrarCena(actor, target, move, true); } : null, (l) => { this._entradaSemCartao = !!l.semCartao; }); }
       catch (e) { console.error(e); if (vaiCena && !this.cena) this.entrarCena(actor, target, move, true); }
       cena = vaiCena ? this.cena : null;
       if (move.supremo) await FF.Clock.wait(0.15);
@@ -506,13 +507,15 @@ FF.Battle = class {
     this._furou = false; this._guardaIAVista = new Set();
     const n = actor.boost || 0;
     // 🪪 cartão de ataque (arte de quem ataca + nome do golpe) em todo golpe que acerta alguém; o resto ganha a faixa
+    // (o clipe 🪪 Cartão da entrada da cena já pode ter mostrado o cartão; sem ele, aparece aqui)
     if (move.anuncio !== false) {
-      const txt = move.nome + (n ? '  ×' + (n + 1) : '');
+      const txt = this.textoGolpe(actor, move);
       if (target && target !== actor && FF.Battle.ofensivo(move) && FF.Cartao) {
-        const dur = move.tempoCartao > 0 ? move.tempoCartao : (move.supremo ? 2.0 : 1.3);
-        this.cartao(actor, move, txt, dur);
+        const ca = this.cartaoAtk;
+        if (!(ca && ca.mv === move) && !this._entradaSemCartao) this.cartao(actor, move, txt);
         // ⏳ gatilho: o golpe só começa quando o cartão sai da tela (golpe.esperarCartao === false = junto)
-        if (move.esperarCartao !== false) await FF.Clock.wait(dur + FF.Cartao.SAIDA);
+        const c2 = this.cartaoAtk;
+        if (move.esperarCartao !== false && c2 && c2.mv === move) { const falta = c2.until + FF.Cartao.SAIDA - FF.Clock.t; if (falta > 0) await FF.Clock.wait(falta); }
       } else this.banner(txt, move.supremo ? 2.0 : 1.2);
     }
     if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
@@ -1722,7 +1725,15 @@ FF.Battle = class {
     const p = f.peito();
     this.texts.push({ text, color: color || '#fff', x: p.x + (Math.random() * 16 - 8), y: p.y - 40 + (dy || 0), t: 0, life: 1.0 });
   }
-  cartao(f, move, texto, dur) { this.cartaoAtk = { f, def: f.def, formId: f.formId, arte: FF.Cartao.arte(f.def, f.formId, move), texto, start: FF.Clock.t, until: FF.Clock.t + (dur || 1.3), esp: !f.isHero }; }
+  textoGolpe(f, move) { if (move && move._cenaDoc) return move.nomeFaixa || 'Nome do golpe'; const n = (f && f.boost) || 0; return ((move && move.nome) || '') + (n ? '  ×' + (n + 1) : ''); }
+  // 🪪 mostra o cartão de ataque. o: {lado: 'esquerda'|'direita', y, estilo: 'deslizar'|'zoom'} (clipe da entrada)
+  cartao(f, move, texto, dur, o) {
+    o = o || {};
+    if (!dur) dur = move && move.tempoCartao > 0 ? move.tempoCartao : (move && move.supremo ? 2.0 : 1.3);
+    if (move && move.somCartao) FF.Audio.play(FF.Script.pick(move.somCartao), null, FF.Audio.pct(move.volSomCartao));
+    const esp = o.lado === 'direita' ? true : o.lado === 'esquerda' ? false : !f.isHero;
+    this.cartaoAtk = { f, mv: (move && move._origem) || move, def: f.def, formId: f.formId, arte: FF.Cartao.arte(f.def, f.formId, move), texto, start: FF.Clock.t, until: FF.Clock.t + dur, esp, y: o.y != null ? o.y : 250, estilo: o.estilo || 'deslizar' };
+  }
   banner(text, dur) { this.bannerTxt = { text, until: FF.Clock.t + (dur || 1.2), start: FF.Clock.t }; }
   // d (s): tremor/flash com duração (clipe esticado no Estúdio) — segura a força até o fim e some nos últimos instantes
   shake(n, d) { this.shakeAmt = Math.max(this.shakeAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'shakeAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.15, d / 2) }); }

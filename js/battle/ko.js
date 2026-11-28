@@ -139,8 +139,8 @@ FF.CenaGolpe = {
     if (qual === 'saida') return tipo === 'normal'
       ? { duracao: 0.1, trilhas: T([{ id: 'sd1', tipo: 'corte', t: 0 }]) }
       : { duracao: 0.25, trilhas: T([{ id: 'sd1', tipo: 'flash', t: 0, forca: 0.8, d: 0.3 }, { id: 'sd2', tipo: 'corte', t: 0.1 }]) };
-    if (tipo === 'normal') return { duracao: 0.13, trilhas: T([{ id: 'en1', tipo: 'corte', t: 0.05 }]) };
-    if (tipo === 'rush') return { duracao: 0.3, trilhas: T([{ id: 'en1', tipo: 'flash', t: 0, forca: 0.9, d: 0.3 }, { id: 'en2', tipo: 'corte', t: 0.12 }]) };
+    if (tipo === 'normal') return { duracao: 1.8, trilhas: T([{ id: 'en1', tipo: 'corte', t: 0.05 }, { id: 'en3', tipo: 'cartao', t: 0.13 }]) };
+    if (tipo === 'rush') return { duracao: 1.95, trilhas: T([{ id: 'en1', tipo: 'flash', t: 0, forca: 0.9, d: 0.3 }, { id: 'en2', tipo: 'corte', t: 0.12 }, { id: 'en3', tipo: 'cartao', t: 0.3 }]) };
     return this.comCorte(FF.Abertura.PADRAO);
   },
   // abertura antiga do Supremo (só a parte antes do golpe) + clarão e corte no fim
@@ -149,7 +149,8 @@ FF.CenaGolpe = {
     let tela = (l.trilhas || []).find(t => t.tipo === 'tela');
     if (!tela) { tela = { id: 'tela', tipo: 'tela', nome: 'Tela', clipes: [] }; (l.trilhas = l.trilhas || []).push(tela); }
     if (!tela.clipes.some(c => c.tipo === 'corte')) tela.clipes.push({ id: 'abf', tipo: 'flash', t: fim, forca: 0.9, d: 0.3 }, { id: 'abc', tipo: 'corte', t: fim + 0.12 });
-    l.duracao = Math.max(fim + 0.3, l.duracao || 0);
+    if (!tela.clipes.some(c => c.tipo === 'cartao') && !l.semCartao) tela.clipes.push({ id: 'abk', tipo: 'cartao', t: fim + 0.3 });
+    l.duracao = Math.max(fim + 0.35, l.duracao || 0);
     return l;
   },
   salva(qual, tipo, id) {
@@ -168,14 +169,15 @@ FF.CenaGolpe = {
   temSalva(qual, tipo, id) { const ed = (FF.Edicoes && FF.Edicoes.dados()) || {}; return !!((ed[qual] || {})[tipo] || {})[id]; },
   linhaDe(qual, tipo, id) { return JSON.parse(JSON.stringify(this.salva(qual, tipo, id) || this.padrao(qual, tipo))); },
   // toca e espera; aoCortar roda no clipe "corte" (ou no fim, se a linha não tiver um)
-  async tocar(b, qual, tipo, actor, target, move, aoCortar) {
+  async tocar(b, qual, tipo, actor, target, move, aoCortar, aoLer) {
     const linha = this.linhaDe(qual, tipo, actor.def && actor.def.id || actor.id);
+    if (aoLer) aoLer(linha);
     let cortou = false;
     b._corte = () => { if (!cortou) { cortou = true; aoCortar && aoCortar(); } };
     try {
       if (!linha.desligada && (linha.trilhas || []).some(t => (t.clipes || []).length)) {
         if (!FF.Linha.pronta(linha)) await FF.Linha.preparar(linha);
-        const viva = FF.Linha.iniciar(b, actor, target, Object.assign({}, move, { roteiro: [] }), linha);
+        const viva = FF.Linha.iniciar(b, actor, target, Object.assign({}, move, { roteiro: [], _origem: move }), linha);
         await viva.fim;
       }
     } finally { b._corte(); b._corte = null; }

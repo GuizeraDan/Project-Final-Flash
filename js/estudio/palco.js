@@ -234,6 +234,7 @@ FF.EstudioPalco = class {
       this.aplicarVista(ctx);
     }
     try { b.draw(ctx); } finally { FF.HUD.draw = hud; }
+    if (!(this.modo === 'batalha' || this.opts.hud) && b.cartaoAtk) FF.HUD.cartao(ctx, b);   // 🪪 o cartão aparece mesmo sem o HUD
     if (fora) {   // a borda da tela do jogo e um véu no que está fora dela
       ctx.save();
       ctx.strokeStyle = 'rgba(255,216,74,0.9)'; ctx.lineWidth = 3; ctx.setLineDash([10, 6]); ctx.strokeRect(0, 0, FF.W, FF.H); ctx.setLineDash([]);
