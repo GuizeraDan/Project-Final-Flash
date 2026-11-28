@@ -66,7 +66,28 @@ FF.HUD = {
     ctx.restore();
   },
 
+  // ⚡ desempenho: o painel parado (sem Sparking pulsando, sem a vida descendo) é desenhado uma vez numa imagem guardada
+  // e só copiado nos quadros seguintes — refaz quando muda vida, ki, fúria, forma, buffs, nome, tamanho ou resolução
   panelModerno(ctx, f, rtl, W, Y) {
+    const animado = f.rageCheia || (f.impulsoReservado || 0) > 0 || (f._hpShow != null && Math.abs(f._hpShow - f.hp) >= 0.5) || !ctx.getTransform;
+    if (animado || this.semCache) { if (f._hud) f._hud.chave = null; return this.panelModernoDireto(ctx, f, rtl, W, Y); }
+    const R = FF.RES || 1;
+    const chave = [rtl, W, Y, FF.W, R, f.formId, f.ko, Math.ceil(f.hp), f.hpMax, Math.floor(f.ki), Math.round(f.rage), f.impulso || 0, f.nome,
+      Object.values(f.buffs || {}).map(b => (b.nome || b.id) + b.turnos).join(','), !!(f.def.formas[f.formId] || {}).retrato].join('|');
+    const c = f._hud || (f._hud = { cv: document.createElement('canvas'), chave: null });
+    const H = this.L.H * W / this.L.W, X = rtl ? FF.W - 6 - W : 6;
+    const ox = Math.floor(X - 24), oy = Math.floor(Y - 12), bw = Math.ceil(W + 48), bh = Math.ceil(H + 60);
+    if (c.chave !== chave) {
+      if (c.cv.width !== bw * R || c.cv.height !== bh * R) { c.cv.width = bw * R; c.cv.height = bh * R; }
+      const g = c.cv.getContext('2d');
+      g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.cv.width, c.cv.height);
+      g.setTransform(R, 0, 0, R, -ox * R, -oy * R);
+      this.panelModernoDireto(g, f, rtl, W, Y);
+      c.chave = chave;
+    }
+    ctx.drawImage(c.cv, ox, oy, bw, bh);
+  },
+  panelModernoDireto(ctx, f, rtl, W, Y) {
     const img = this.img(), L = this.L;
     const k = W / L.W, H = L.H * k;
     const X = rtl ? FF.W - 6 - W : 6;

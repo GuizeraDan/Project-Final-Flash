@@ -208,30 +208,63 @@ FF.UI = {
   },
 };
 
+// ⚡ QUALIDADE (Opções e pausa; FF.Save "qualidade"): alta = resolução da tela (até 2×) · leve = 1× (bem menos
+// pixels por quadro) · auto = começa na alta e, se a luta ficar abaixo de ~45 quadros/s por uns segundos, passa para 1×
+FF.Qualidade = {
+  ids: ['auto', 'alta', 'leve'],
+  rebaixada: false,
+  id() { const v = FF.Save && FF.Save.get && FF.Save.get().qualidade; return this.ids.includes(v) ? v : 'auto'; },
+  ligar() {
+    document.querySelectorAll('#qualidade, [data-p="qualidade"]').forEach(sel => {
+      sel.value = this.id();
+      sel.onchange = () => {
+        if (FF.Save) FF.Save.set({ qualidade: sel.value });
+        document.querySelectorAll('#qualidade, [data-p="qualidade"]').forEach(o => (o.value = sel.value));
+        this.rebaixada = false; this._lentos = 0; FF.aplicarResolucao();
+      };
+    });
+  },
+  // chamado a cada quadro da luta com o tempo real entre quadros (s)
+  medir(real) {
+    if (this.id() !== 'auto' || this.rebaixada || (FF.RES || 1) <= 1) return;
+    this._n = (this._n || 0) + 1; this._soma = (this._soma || 0) + real;
+    if (this._soma < 1) return;   // janelas de ~1 s de jogo
+    const media = this._soma / this._n; this._n = 0; this._soma = 0;
+    this._lentos = media > 1 / 45 ? (this._lentos || 0) + 1 : 0;
+    if (this._lentos >= 3) { this.rebaixada = true; FF.aplicarResolucao(); console.log('[FF] qualidade automática: resolução 1× (aparelho lento)'); }
+  },
+};
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', () => FF.Qualidade.ligar());
+
 // Ajusta a largura lógica do jogo à proporção da tela (celulares compridos ganham campo mais largo
 // em vez de faixas pretas). Altura fixa em FF.H (720); largura entre FF.BW (1280, 16:9) e 1600.
 FF.ajustarTela = function () {
   const canvas = document.getElementById('tela');
   const asp = Math.max(FF.BW / FF.H, Math.min(1600 / FF.H, window.innerWidth / Math.max(1, window.innerHeight)));
   FF.W = Math.round(FF.H * asp);
-  // resolução interna maior que a lógica (FF.W × FF.H): o jogo continua desenhando em 1280×720, mas a tela
-  // tem N× mais pixels, então o HUD, os textos e a arte em alta não ficam borrados ao ampliar
+  FF.aplicarResolucao(true);
+  document.getElementById('jogo').style.setProperty('--asp', (FF.W / FF.H).toFixed(4));
+};
+// resolução interna maior que a lógica (FF.W × FF.H): o jogo continua desenhando em 1280×720, mas a tela tem N× mais
+// pixels, então o HUD, os textos e a arte em alta não ficam borrados ao ampliar. Não muda o tamanho lógico (FF.W).
+FF.resolucao = function () {
   const dpr = window.devicePixelRatio || 1;
   let R = Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / FF.H));
   R = Math.max(1, Math.min(2, R));   // 3× pesava demais em telas grandes (2560×1440 = 5 milhões de pixels por quadro)
   while (R > 1 && FF.W * R * FF.H * R > 9e6) R--;   // limite de pixels (aparelhos fracos)
-  FF.RES = R;
-  canvas.width = FF.W * R;
-  canvas.height = FF.H * R;
-  document.getElementById('jogo').style.setProperty('--asp', (FF.W / FF.H).toFixed(4));
+  // ⚡ Opções → Qualidade: "leve" desenha na resolução lógica; "automática" baixa sozinha se o aparelho não aguentar
+  const q = FF.Qualidade.id();
+  if (q === 'leve' || (q === 'auto' && FF.Qualidade.rebaixada)) R = 1;
+  return R;
+};
+FF.aplicarResolucao = function (sempre) {
+  const c = document.getElementById('tela'); if (!c || !FF.W) return;
+  const R = FF.resolucao();
+  if (sempre || R !== FF.RES || c.width !== FF.W * R) { FF.RES = R; c.width = FF.W * R; c.height = FF.H * R; }
 };
 // girar o celular / mudar o tamanho da janela: recalcula a resolução (o tamanho lógico só muda ao abrir a luta)
 window.addEventListener('resize', () => {
-  const c = document.getElementById('tela'); if (!c || !FF.W) return;
-  const dpr = window.devicePixelRatio || 1;
-  let R = Math.max(1, Math.min(3, Math.ceil(Math.max(window.innerWidth * dpr / FF.W, window.innerHeight * dpr / FF.H))));
-  while (R > 1 && FF.W * R * FF.H * R > 9e6) R--;
-  if (R !== FF.RES) { FF.RES = R; c.width = FF.W * R; c.height = FF.H * R; }
+  FF.aplicarResolucao();
 });
 
 FF.start = async function (escolhida) {
@@ -290,6 +323,7 @@ FF.start = async function (escolhida) {
   function frame(now) {
     const real = Math.min(0.05, (now - last) / 1000);
     last = now;
+    FF.Qualidade.medir(real);
     const dt = FF.Clock.tick(real);
     battle.update(dt);
     ctx.setTransform(FF.RES || 1, 0, 0, FF.RES || 1, 0, 0);   // desenha em coordenadas lógicas (FF.W×720)

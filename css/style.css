@@ -736,3 +736,5 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* menu de golpes centralizado com o Impulso junto: o painel do Impulso (~17cqw) fica à esquerda das esferas,
    então o conjunto anda metade disso para a direita */
 #menu.mg-mini { transform: translateX(calc(-50% + 9.5cqw)); }
+/* ⚡ toque mais rápido no celular: sem espera de "toque duplo" nem destaque azul nos botões e menus */
+button, select, input, label, [data-acao], [data-golpe], [data-p] { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }

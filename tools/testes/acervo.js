@@ -60,11 +60,11 @@ const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALHA ') + m); if (!c) proces
   s = await p.evaluate(async () => {
     const ruins = [];
     for (const id of Object.keys(FF.Assets.acervo())) {
-      try { const d = await FF.Assets.defAcervo(id); if (!d.anims || !Object.keys(d.anims).length) ruins.push(id + ':vazio'); } catch (e) { ruins.push(id + ':' + e.message); }
+      try { const d = await FF.Assets.defAcervo(id); if (!d.anims || !Object.keys(d.anims).length) window._vazios = (window._vazios || 0) + 1; } catch (e) { ruins.push(id + ':' + e.message); }
     }
     return ruins;
   });
-  ok(!s.length, 'todos os ' + nIdx + ' arquivos do acervo abrem' + (s.length ? ' — ' + s.slice(0, 5).join(', ') : ''));
+  ok(!s.length, 'todos os ' + nIdx + ' arquivos do acervo abrem' + (s.length ? ' — ' + s.slice(0, 5).join(', ') : '') + ' (' + (await p.evaluate(() => window._vazios || 0)) + ' sem animações: tudo apagado/separado no Estúdio)');
   const faltando = [];
   // confere os caminhos que estão na definição (sprites do KODAIKA também usam atlas compartilhados kaw_comum_*)
   for (const id of Object.keys(indice.sprites)) {
