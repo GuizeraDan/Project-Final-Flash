@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_rage_4",{"id":"sep_rage_4","atlases":["assets/img/acervo/mc_b_114_0.png"],"anims":{"Rage":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1805,94,40,50,17,50,1,[[23,-29]]],[0,1238,148,40,47,21,47,1,[[19,-23]]]]}},"separadoDe":"mc_b_114#Rage","acervo":{"nome":"Rage","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_114#Rage"}});

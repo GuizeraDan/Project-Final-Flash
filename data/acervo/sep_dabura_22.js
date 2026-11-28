@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dabura_22",{"id":"sep_dabura_22","atlases":["assets/img/acervo/lw_dabura_0.png"],"anims":{"dabura_22":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,339,69,27,40,14,37,1]]}},"separadoDe":"lw_dabura#dabura_22","acervo":{"nome":"dabura_22","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_dabura#dabura_22"}});

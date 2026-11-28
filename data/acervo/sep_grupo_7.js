@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_grupo_7",{"id":"sep_grupo_7","atlases":["assets/img/acervo/lw_begamo_0.png"],"anims":{"grupo":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1357,0,51,29,26,29,1],[0,1409,0,51,22,26,22,1]]}},"separadoDe":"lw_begamo#grupo","acervo":{"nome":"grupo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_begamo#grupo"}});

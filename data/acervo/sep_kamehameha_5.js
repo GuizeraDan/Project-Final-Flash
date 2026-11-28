@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_kamehameha_5",{"id":"sep_kamehameha_5","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Kamehameha":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,211,83,106,83,1]]}},"separadoDe":"ast_gogeta#Kamehameha","acervo":{"nome":"Kamehameha","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Kamehameha"}});

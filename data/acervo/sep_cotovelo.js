@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_cotovelo",{"id":"sep_cotovelo","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Cotovelo":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1464,0,25,52,16,53,1]]}},"separadoDe":"ast_bills#Cotovelo","acervo":{"nome":"Cotovelo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Cotovelo"}});

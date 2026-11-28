@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_grupo_17",{"id":"sep_grupo_17","atlases":["assets/img/acervo/lw_caulifla_0.png"],"anims":{"grupo":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1434,0,51,29,26,29,1],[0,1486,0,51,22,26,22,1]]}},"separadoDe":"lw_caulifla#grupo","acervo":{"nome":"grupo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_caulifla#grupo"}});

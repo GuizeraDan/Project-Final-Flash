@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_26",{"id":"sep_caido_26","atlases":["assets/img/acervo/zl3_superbaby2_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,420,1691,57,21,25,18,1]]}},"separadoDe":"zl3_superbaby2#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_superbaby2#Caido"}});

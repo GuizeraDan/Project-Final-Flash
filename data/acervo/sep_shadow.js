@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_shadow",{"id":"sep_shadow","atlases":["assets/img/acervo/lw_android16_0.png"],"anims":{"shadow":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,487,73,52,15,26,8,1]]}},"separadoDe":"lw_android16#shadow","acervo":{"nome":"shadow","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_android16#shadow"}});

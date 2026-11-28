@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_shadow_2",{"id":"sep_shadow_2","atlases":["assets/img/acervo/lw_buu_intro_0.png"],"anims":{"shadow":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,822,0,52,15,26,8,1]]}},"separadoDe":"lw_buu_intro#shadow","acervo":{"nome":"shadow","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_buu_intro#shadow"}});

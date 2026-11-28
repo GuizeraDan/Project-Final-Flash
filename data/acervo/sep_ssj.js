@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_ssj",{"id":"sep_ssj","atlases":["assets/img/acervo/ast_caulifla_0.png"],"anims":{"SSJ":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,280,124,27,50,14,50,1]]}},"separadoDe":"ast_caulifla#SSJ","acervo":{"nome":"SSJ","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_caulifla#SSJ"}});

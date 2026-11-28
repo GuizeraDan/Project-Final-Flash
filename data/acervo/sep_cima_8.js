@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_cima_8",{"id":"sep_cima_8","atlases":["assets/img/acervo/uh_android16_0.png"],"anims":{"Cima":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,746,0,46,68,26,68,1]]}},"separadoDe":"uh_android16#Cima","acervo":{"nome":"Cima","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16#Cima"}});

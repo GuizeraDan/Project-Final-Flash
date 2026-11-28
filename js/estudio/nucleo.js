@@ -231,7 +231,7 @@ FF.Estudio = {
   mudarInfoSprite(id, patch) {
     const v = Object.assign({}, FF.Assets.infoSprite(id), patch);
     Object.keys(v).forEach(k => { if (v[k] == null || v[k] === '' || v[k] === false) delete v[k]; });
-    FF.Edicoes.setDepois(['spritesInfo', id], Object.keys(v).length ? v : null);
+    FF.Edicoes.setDepois(['spritesInfo', id], FF.Edicoes.infoGravar(id, v));
   },
   renomearAnim(id, anim, nome) {
     const m = Object.assign({}, FF.Assets.infoSprite(id).nomesAnims || {});

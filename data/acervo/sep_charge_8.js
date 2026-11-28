@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_charge_8",{"id":"sep_charge_8","atlases":["assets/img/acervo/uh_android16_0.png"],"anims":{"Charge":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,305,0,48,70,23,69,1],[0,354,0,48,70,23,69,1]]}},"separadoDe":"uh_android16#Charge","acervo":{"nome":"Charge","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16#Charge"}});

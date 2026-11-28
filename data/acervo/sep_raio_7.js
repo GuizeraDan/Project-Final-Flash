@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_raio_7",{"id":"sep_raio_7","atlases":["assets/img/acervo/ast_caulifla_0.png"],"anims":{"Raio":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,735,0,246,73,123,73,1]]}},"separadoDe":"ast_caulifla#Raio","acervo":{"nome":"Raio","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_caulifla#Raio"}});

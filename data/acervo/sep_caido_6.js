@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_6",{"id":"sep_caido_6","atlases":["assets/img/acervo/zl3_cell_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1534,1797,65,23,30,21,1]]}},"separadoDe":"zl3_cell#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_cell#Caido"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_avanco_4",{"id":"sep_avanco_4","atlases":["assets/img/acervo/ast_janemba_0.png"],"anims":{"Avanco":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1659,0,36,44,18,44,1]]}},"separadoDe":"ast_janemba#Avanco","acervo":{"nome":"Avanco","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_janemba#Avanco"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_poses_12",{"id":"sep_poses_12","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Poses":{"fps":4,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,807,84,35,45,18,45,1],[0,734,84,36,45,18,45,1]]}},"separadoDe":"ast_gogeta#Poses","acervo":{"nome":"Poses","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Poses"}});

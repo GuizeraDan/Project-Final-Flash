@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_der2_6",{"id":"sep_der2_6","atlases":["assets/img/acervo/uh_bardock1_bot_0.png"],"anims":{"Der2":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1146,90,58,31,31,25,1]]}},"separadoDe":"uh_bardock1_bot#Der2","acervo":{"nome":"Der2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock1_bot#Der2"}});

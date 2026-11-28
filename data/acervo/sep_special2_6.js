@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_special2_6",{"id":"sep_special2_6","atlases":["assets/img/acervo/uh_bardock1_bot_0.png"],"anims":{"Special2":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1099,90,46,38,24,38,1]]}},"separadoDe":"uh_bardock1_bot#Special2","acervo":{"nome":"Special2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock1_bot#Special2"}});

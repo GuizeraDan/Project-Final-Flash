@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_bola",{"id":"sep_bola","atlases":["assets/img/acervo/twiss_beerus_0.png"],"anims":{"bola":{"fps":12,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1233,0,35,20,20,9,1]]}},"separadoDe":"twiss_beerus#bola","acervo":{"nome":"bola","fonte":"Separados no Estúdio","tipo":"personagens","origem":"twiss_beerus#bola"}});

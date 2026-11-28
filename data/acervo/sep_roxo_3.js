@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_roxo_3",{"id":"sep_roxo_3","atlases":["assets/img/acervo/zl3_kamehameha_pt2_0.png"],"anims":{"Roxo":{"fps":13,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,117,0,2,7,0,4,1,[[2,0]]]]}},"separadoDe":"zl3_kamehameha_pt2#Roxo","tipo":"efeito","acervo":{"nome":"Roxo","fonte":"Separados no Estúdio","tipo":"efeitos","origem":"zl3_kamehameha_pt2#Roxo"}});

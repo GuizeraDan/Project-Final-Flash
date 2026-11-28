@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_34",{"id":"sep_caido_34","atlases":["assets/img/acervo/zl3_brolyikari_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,537,1974,69,29,33,25,1]]}},"separadoDe":"zl3_brolyikari#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_brolyikari#Caido"}});

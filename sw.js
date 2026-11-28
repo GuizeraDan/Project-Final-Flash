@@ -6,7 +6,7 @@ const CACHE = 'finalflash-v50';
 const ESSENCIAIS = [
   './', 'index.html', 'estudio.html', 'manifest.webmanifest', 'versao.json',
   'css/style.css', 'css/estudio.css', 'css/estudio_sprites.css', 'css/estudio_personagens.css', 'data/bundle.js', 'data/acervo/indice.js',
-  'js/core/clock.js', 'data/edicoes.js', 'js/core/edicoes.js', 'js/core/modificacoes.js', 'js/core/assets.js', 'js/core/sprite.js', 'js/core/audio.js', 'js/core/input.js', 'js/core/retrato.js',
+  'js/core/clock.js', 'data/edicoes.js', 'data/acervo/organizacao.js', 'js/core/edicoes.js', 'js/core/modificacoes.js', 'js/core/assets.js', 'js/core/sprite.js', 'js/core/audio.js', 'js/core/input.js', 'js/core/retrato.js',
   'js/core/habilidades.js', 'js/ui/selecao.js', 'js/ui/menu_golpes.js', 'js/ui/tutorial.js', 'js/ui/treinar.js', 'js/ui/pausa.js',
   'js/battle/fighter.js', 'js/battle/script.js', 'js/battle/ai.js', 'js/battle/hud.js', 'js/battle/battle.js', 'js/battle/cena.js', 'js/battle/linha.js', 'js/battle/ko.js', 'js/core/imagens_usr.js',
   'js/pwa.js', 'js/main.js',

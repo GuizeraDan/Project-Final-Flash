@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_atkq_2",{"id":"sep_atkq_2","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"AtkQ":{"fps":12,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1932,0,48,64,25,64,1]]}},"separadoDe":"uh_android16_bot#AtkQ","acervo":{"nome":"AtkQ","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#AtkQ"}});

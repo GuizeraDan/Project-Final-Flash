@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_soco_4",{"id":"sep_soco_4","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Soco":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1566,0,36,51,18,51,1],[0,271,98,44,49,21,52,1]]}},"separadoDe":"ast_bills#Soco","acervo":{"nome":"Soco","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Soco"}});

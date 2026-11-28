@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_frente_4",{"id":"sep_frente_4","atlases":["assets/img/acervo/uh_bardockt1_0.png"],"anims":{"Frente":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,975,0,48,49,25,49,1]]}},"separadoDe":"uh_bardockt1#Frente","acervo":{"nome":"Frente","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt1#Frente"}});

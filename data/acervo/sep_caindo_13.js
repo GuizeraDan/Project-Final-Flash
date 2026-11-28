@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caindo_13",{"id":"sep_caindo_13","atlases":["assets/img/acervo/mc_b_5f2_0.png"],"anims":{"Caindo":{"fps":9,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1084,119,53,64,31,64,1]]}},"separadoDe":"mc_b_5f2#Caindo","acervo":{"nome":"Caindo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_5f2#Caindo"}});

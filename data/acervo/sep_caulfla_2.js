@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caulfla_2",{"id":"sep_caulfla_2","atlases":["assets/img/acervo/lw_caulifla_ssj_0.png"],"anims":{"caulfla":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1369,0,30,51,18,46,1]]}},"separadoDe":"lw_caulifla_ssj#caulfla","acervo":{"nome":"caulfla","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_caulifla_ssj#caulfla"}});

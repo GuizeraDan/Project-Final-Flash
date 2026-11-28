@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_esfera_7",{"id":"sep_esfera_7","atlases":["assets/img/acervo/ast_turles_0.png"],"anims":{"Esfera":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,289,83,35,35,18,35,1]]}},"separadoDe":"ast_turles#Esfera","acervo":{"nome":"Esfera","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_turles#Esfera"}});

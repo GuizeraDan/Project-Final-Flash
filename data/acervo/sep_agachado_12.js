@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_12",{"id":"sep_agachado_12","atlases":["assets/img/acervo/zl3_superbaby2_0.png"],"anims":{"Agachado":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1488,1643,31,42,14,42,1]]}},"separadoDe":"zl3_superbaby2#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_superbaby2#Agachado"}});

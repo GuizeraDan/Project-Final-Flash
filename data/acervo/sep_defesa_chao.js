@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defesa_chao",{"id":"sep_defesa_chao","atlases":["assets/img/acervo/zl3_cell_0.png"],"anims":{"Defesa_Chao":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1168,1694,34,52,17,52,1]]}},"separadoDe":"zl3_cell#Defesa_Chao","acervo":{"nome":"Defesa_Chao","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_cell#Defesa_Chao"}});

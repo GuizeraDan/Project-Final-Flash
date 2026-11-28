@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_forma_4",{"id":"sep_forma_4","atlases":["assets/img/acervo/mc_b_5f3_0.png"],"anims":{"Forma":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1610,0,32,44,15,44,1],[0,517,86,40,41,26,41,1]]}},"separadoDe":"mc_b_5f3#Forma","acervo":{"nome":"Forma","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_5f3#Forma"}});

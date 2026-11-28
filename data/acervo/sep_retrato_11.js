@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_retrato_11",{"id":"sep_retrato_11","atlases":["assets/img/acervo/kaw_android_18_0.png"],"anims":{"Retrato":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,254,1327,102,120,0,0,1]]}},"separadoDe":"kaw_android_18#Retrato","acervo":{"nome":"Retrato","fonte":"Separados no Estúdio","tipo":"personagens","origem":"kaw_android_18#Retrato"}});

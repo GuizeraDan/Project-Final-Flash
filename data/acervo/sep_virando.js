@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_virando",{"id":"sep_virando","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Virando":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,773,0,28,56,14,56,1]]}},"separadoDe":"ast_bills#Virando","acervo":{"nome":"Virando","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Virando"}});

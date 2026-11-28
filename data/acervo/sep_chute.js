@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_chute",{"id":"sep_chute","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Chute":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,426,200,69,38,34,38,1],[0,496,200,67,38,34,38,1]]}},"separadoDe":"ast_piccolo#Chute","acervo":{"nome":"Chute","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Chute"}});

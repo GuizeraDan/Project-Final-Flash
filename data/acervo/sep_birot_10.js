@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_birot_10",{"id":"sep_birot_10","atlases":["assets/img/acervo/lw_beerus_0.png"],"anims":{"birot_10":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,371,0,31,62,20,56,1]]}},"separadoDe":"lw_beerus#birot_10","acervo":{"nome":"birot_10","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_beerus#birot_10"}});

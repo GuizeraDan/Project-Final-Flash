@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_postura",{"id":"sep_postura","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Postura":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,528,153,45,40,24,40,1]]}},"separadoDe":"ast_piccolo#Postura","acervo":{"nome":"Postura","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Postura"}});

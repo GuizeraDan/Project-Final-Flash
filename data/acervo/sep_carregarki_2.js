@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_carregarki_2",{"id":"sep_carregarki_2","atlases":["assets/img/acervo/mc_b_10_0.png"],"anims":{"CarregarKi":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,671,55,40,46,22,46,1]]}},"separadoDe":"mc_b_10#CarregarKi","acervo":{"nome":"CarregarKi","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_10#CarregarKi"}});

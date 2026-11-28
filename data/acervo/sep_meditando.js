@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_meditando",{"id":"sep_meditando","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Meditando":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,599,98,30,44,15,44,1]]}},"separadoDe":"ast_bills#Meditando","acervo":{"nome":"Meditando","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Meditando"}});

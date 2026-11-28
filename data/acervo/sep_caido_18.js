@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_18",{"id":"sep_caido_18","atlases":["assets/img/acervo/zl3_vegetaegosuperior_1.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1017,532,55,20,25,17,1]]}},"separadoDe":"zl3_vegetaegosuperior#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_vegetaegosuperior#Caido"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_pulo_4",{"id":"sep_pulo_4","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Pulo":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1968,0,38,50,19,50,1],[0,646,0,39,58,20,58,1]]}},"separadoDe":"ast_bills#Pulo","acervo":{"nome":"Pulo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Pulo"}});

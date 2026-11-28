@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_golpe_10",{"id":"sep_golpe_10","atlases":["assets/img/acervo/ast_cooler_0.png"],"anims":{"Golpe":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1532,0,43,42,22,42,1]]}},"separadoDe":"ast_cooler#Golpe","acervo":{"nome":"Golpe","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cooler#Golpe"}});

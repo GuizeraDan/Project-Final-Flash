@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_retrato_13",{"id":"sep_retrato_13","atlases":["assets/img/acervo/kaw_babyvegeta_0.png"],"anims":{"Retrato":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1475,1317,117,137,0,0,1]]}},"separadoDe":"kaw_babyvegeta#Retrato","acervo":{"nome":"Retrato","fonte":"Separados no Estúdio","tipo":"personagens","origem":"kaw_babyvegeta#Retrato"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano_14",{"id":"sep_dano_14","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"Dano":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,606,78,44,48,18,48,1,[[4,-31]]]]}},"separadoDe":"uh_android16_bot#Dano","acervo":{"nome":"Dano","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#Dano"}});

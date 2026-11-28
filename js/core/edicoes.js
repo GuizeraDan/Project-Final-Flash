@@ -42,7 +42,29 @@ FF.Edicoes = {
     } catch (x) { /* sem armazenamento */ }
     const o = {};
     this.SECOES.forEach(k => { o[k] = e[k] || {}; });
+    // organização do acervo assada (data/acervo/organizacao.js, só o Estúdio carrega — tools/assar_edicoes.py):
+    // fica por baixo; o edicoes.js manda por cima, campo a campo (null = campo tirado)
+    const B = window.FF_EDICOES_BASE;
+    if (B && B.spritesInfo) o.spritesInfo = this.juntarInfo(B.spritesInfo, o.spritesInfo);
     return o;
+  },
+  juntarInfo(b, e) {
+    const r = {};
+    for (const id of new Set(Object.keys(b).concat(Object.keys(e || {})))) {
+      const v = Object.assign({}, b[id] || {}, (e || {})[id] || {});
+      for (const k of Object.keys(v)) if (v[k] === null) delete v[k];
+      if (Object.keys(v).length) r[id] = v;
+    }
+    return r;
+  },
+  // o que gravar em spritesInfo[id] para a informação ficar igual a v (completa, sem os campos tirados):
+  // campos da organização assada que saíram viram null (senão voltariam de baixo)
+  infoGravar(id, v) {
+    const b = ((window.FF_EDICOES_BASE || {}).spritesInfo || {})[id];
+    const r = {};
+    Object.keys(v || {}).forEach(k => { if (v[k] != null) r[k] = v[k]; });
+    if (b) Object.keys(b).forEach(k => { if (!(k in r)) r[k] = null; });
+    return Object.keys(r).length ? r : null;
   },
   pendentes() { try { return JSON.parse(localStorage.getItem(this.PEND) || '[]'); } catch (e) { return []; } },
   // armazenamento cheio: a mudança vale na tela, mas não ficou guardada no aparelho — avisa (antes era silencioso)

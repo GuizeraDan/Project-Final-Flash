@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_golpe_braco",{"id":"sep_golpe_braco","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Golpe_Braco":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1673,0,53,50,26,50,1]]}},"separadoDe":"ast_piccolo#Golpe_Braco","acervo":{"nome":"Golpe_Braco","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Golpe_Braco"}});

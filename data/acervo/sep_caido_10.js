@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_10",{"id":"sep_caido_10","atlases":["assets/img/acervo/ast_janemba_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1089,84,60,21,30,21,1]]}},"separadoDe":"ast_janemba#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_janemba#Caido"}});

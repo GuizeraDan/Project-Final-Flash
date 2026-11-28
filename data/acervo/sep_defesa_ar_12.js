@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defesa_ar_12",{"id":"sep_defesa_ar_12","atlases":["assets/img/acervo/zl3_brolyikari_0.png"],"anims":{"Defesa_Ar":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,1807,37,57,16,57,1]]}},"separadoDe":"zl3_brolyikari#Defesa_Ar","acervo":{"nome":"Defesa_Ar","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_brolyikari#Defesa_Ar"}});

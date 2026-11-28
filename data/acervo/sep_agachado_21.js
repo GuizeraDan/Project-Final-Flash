@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_21",{"id":"sep_agachado_21","atlases":["assets/img/acervo/zl3_freeza_0.png"],"anims":{"Agachado":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,158,962,45,31,27,31,1]]}},"separadoDe":"zl3_freeza#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_freeza#Agachado"}});

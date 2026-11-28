@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_52",{"id":"sep_caido_52","atlases":["assets/img/acervo/ast_turles_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,378,83,45,28,22,28,1]]}},"separadoDe":"ast_turles#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_turles#Caido"}});

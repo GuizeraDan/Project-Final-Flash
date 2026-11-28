@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano_7",{"id":"sep_dano_7","atlases":["assets/img/acervo/uh_bardockt1_0.png"],"anims":{"Dano":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1797,0,46,39,25,39,1,[[4,-21]]]]}},"separadoDe":"uh_bardockt1#Dano","acervo":{"nome":"Dano","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt1#Dano"}});

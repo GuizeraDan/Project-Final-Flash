@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_ghan",{"id":"sep_ghan","atlases":["assets/img/acervo/lw_buu_intro_0.png"],"anims":{"ghan":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,455,0,29,52,14,48,1],[0,596,0,33,44,16,40,1]]}},"separadoDe":"lw_buu_intro#ghan","acervo":{"nome":"ghan","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_buu_intro#ghan"}});

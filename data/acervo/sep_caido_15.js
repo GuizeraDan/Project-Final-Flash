@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_15",{"id":"sep_caido_15","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1766,84,55,25,28,25,1]]}},"separadoDe":"ast_gogeta#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Caido"}});

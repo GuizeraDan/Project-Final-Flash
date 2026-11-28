@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_30",{"id":"sep_caido_30","atlases":["assets/img/acervo/zl3_gokublackrose_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1438,802,59,28,25,27,1]]}},"separadoDe":"zl3_gokublackrose#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_gokublackrose#Caido"}});

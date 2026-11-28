@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_esfera_ki_4",{"id":"sep_esfera_ki_4","atlases":["assets/img/acervo/ast_caulifla_0.png"],"anims":{"Esfera_Ki":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,175,32,32,16,32,1]]}},"separadoDe":"ast_caulifla#Esfera_Ki","acervo":{"nome":"Esfera_Ki","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_caulifla#Esfera_Ki"}});

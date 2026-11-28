@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_charge_4",{"id":"sep_charge_4","atlases":["assets/img/acervo/uh_bardockt11_0.png"],"anims":{"Charge":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,796,0,35,58,18,58,1],[0,832,0,35,58,18,58,1]]}},"separadoDe":"uh_bardockt11#Charge","acervo":{"nome":"Charge","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt11#Charge"}});

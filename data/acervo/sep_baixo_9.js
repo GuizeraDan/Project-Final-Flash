@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_baixo_9",{"id":"sep_baixo_9","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"Baixo":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,746,0,46,68,26,68,1]]}},"separadoDe":"uh_android16_bot#Baixo","acervo":{"nome":"Baixo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#Baixo"}});

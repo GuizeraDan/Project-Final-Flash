@@ -1344,7 +1344,7 @@
     if (!semPerguntar && !(await confirmar('🗑 Apagar sprite', 'Apagar o sprite importado "' + id + '" com todas as animações, em todos os aparelhos? Personagens e golpes que usam ele vão ficar sem imagem.', '🗑 Apagar sprite', true))) return;
     if (id === st.id) { E.rascunho.gravar(RASC, null); st.anim = null; st.novo = false; }
     Object.keys(FF.Mods.ler()[id] || {}).forEach(n => FF.Edicoes.set(['sprites', id, n], null));
-    if ((FF.Edicoes.dados().spritesInfo || {})[id]) FF.Edicoes.set(['spritesInfo', id], null);
+    if ((FF.Edicoes.dados().spritesInfo || {})[id]) FF.Edicoes.set(['spritesInfo', id], FF.Edicoes.infoGravar(id, {}));
     E.salvarNoJogo(['spritesNovos', id], null, '🗑 Sprite "' + id + '" apagado.');
     FF.Assets.descarregarSprite(id);
     if (id === st.id) return abrirSprite(FF.Assets.listaSprites()[0], null, true);

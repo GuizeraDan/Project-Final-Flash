@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_palma_ki",{"id":"sep_palma_ki","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Palma_Ki":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,989,0,45,54,22,54,1],[0,1035,0,45,54,22,54,1]]}},"separadoDe":"ast_bills#Palma_Ki","acervo":{"nome":"Palma_Ki","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Palma_Ki"}});

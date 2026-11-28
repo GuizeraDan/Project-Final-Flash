@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_lancado_7",{"id":"sep_lancado_7","atlases":["assets/img/acervo/ast_cooler_0.png"],"anims":{"Lancado":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1136,98,43,35,22,35,1],[0,1498,0,33,43,16,43,1]]}},"separadoDe":"ast_cooler#Lancado","acervo":{"nome":"Lancado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cooler#Lancado"}});

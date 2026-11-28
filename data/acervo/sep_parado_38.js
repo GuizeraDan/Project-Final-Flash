@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_parado_38",{"id":"sep_parado_38","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Parado":{"fps":3,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1152,0,34,53,17,53,1],[0,963,0,25,55,12,55,1]]}},"separadoDe":"ast_bills#Parado","acervo":{"nome":"Parado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Parado"}});

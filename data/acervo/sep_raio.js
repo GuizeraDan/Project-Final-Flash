@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_raio",{"id":"sep_raio","atlases":["assets/img/acervo/ast_janemba_0.png"],"anims":{"Raio":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,175,83,88,83,1]]}},"separadoDe":"ast_janemba#Raio","acervo":{"nome":"Raio","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_janemba#Raio"}});

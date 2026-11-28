@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_pose_2_3",{"id":"sep_pose_2_3","atlases":["assets/img/acervo/ast_cooler_0.png"],"anims":{"Pose_2":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1319,98,61,28,30,28,1]]}},"separadoDe":"ast_cooler#Pose_2","acervo":{"nome":"Pose_2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cooler#Pose_2"}});

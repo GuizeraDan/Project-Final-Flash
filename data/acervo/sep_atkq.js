@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_atkq",{"id":"sep_atkq","atlases":["assets/img/acervo/uh_bardock1_0.png"],"anims":{"AtkQ":{"fps":12,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,779,0,32,57,15,57,1]]}},"separadoDe":"uh_bardock1#AtkQ","acervo":{"nome":"AtkQ","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock1#AtkQ"}});

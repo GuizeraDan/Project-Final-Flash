@@ -14,11 +14,7 @@
 "objs": [
 "04ee4ffb27ad0af4da16ffbebed3207c"
 ],
-"anims": {
-"Todos": 54,
-"grupo": 3,
-"baby_vgta": 51
-}
+"anims": {}
 },
 "dw_beam_fight_06": {
 "nome": "beam_fight_06",
@@ -143,9 +139,7 @@
 "21e27f3a56518164eaad10203e39598d"
 ],
 "anims": {
-"Todos": 57,
-"grupo": 2,
-"tut_s4": 55
+"grupo": 2
 }
 },
 "dw_hidetoshi": {
@@ -864,11 +858,7 @@
 "objs": [
 "febce176446761a4f80f4b1d5a3ea236"
 ],
-"anims": {
-"Todos": 42,
-"grupo": 3,
-"omega": 39
-}
+"anims": {}
 },
 "dw_uisprite": {
 "nome": "UISprite",
@@ -1071,9 +1061,7 @@
 "00000000000000000000000000000000"
 ],
 "anims": {
-"Todos": 15,
-"big_bang_charge_1": 12,
-"big_bang_charge_2": 3
+"Todos": 15
 }
 },
 "dw_sactx_128x128_uncompressed_energy_ball_pack_69ca47b0": {
@@ -1161,10 +1149,6 @@
 ],
 "anims": {
 "Todos": 26,
-"dash_normal_fx": 5,
-"ground_charge_gust": 11,
-"jump_fx": 4,
-"ki_fire": 5,
 "One_Color": 1
 }
 },

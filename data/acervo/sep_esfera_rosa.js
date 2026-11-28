@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_esfera_rosa",{"id":"sep_esfera_rosa","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Esfera_Rosa":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1274,200,30,30,15,30,1]]}},"separadoDe":"ast_piccolo#Esfera_Rosa","acervo":{"nome":"Esfera_Rosa","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Esfera_Rosa"}});

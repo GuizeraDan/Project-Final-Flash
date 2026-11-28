@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_especial2_7",{"id":"sep_especial2_7","atlases":["assets/img/acervo/mc_p_35_0.png"],"anims":{"Especial2":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1269,88,56,51,38,51,1,[[0,-29]]]]}},"separadoDe":"mc_p_35#Especial2","acervo":{"nome":"Especial2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_p_35#Especial2"}});

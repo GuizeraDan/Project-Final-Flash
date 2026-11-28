@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_8",{"id":"sep_agachado_8","atlases":["assets/img/acervo/zl3_bardock_1.png"],"anims":{"Agachado":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,751,44,33,38,14,38,1]]}},"separadoDe":"zl3_bardock#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_bardock#Agachado"}});

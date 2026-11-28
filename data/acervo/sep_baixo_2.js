@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_baixo_2",{"id":"sep_baixo_2","atlases":["assets/img/acervo/uh_bardock_0.png"],"anims":{"Baixo":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1011,0,30,58,15,58,1]]}},"separadoDe":"uh_bardock#Baixo","acervo":{"nome":"Baixo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock#Baixo"}});

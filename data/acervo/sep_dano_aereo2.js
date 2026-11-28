@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano_aereo2",{"id":"sep_dano_aereo2","atlases":["assets/img/acervo/zl3_cell_0.png"],"anims":{"Dano_Aereo2":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,565,1634,36,57,20,57,1,[[6,-32]]]]}},"separadoDe":"zl3_cell#Dano_Aereo2","acervo":{"nome":"Dano_Aereo2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_cell#Dano_Aereo2"}});

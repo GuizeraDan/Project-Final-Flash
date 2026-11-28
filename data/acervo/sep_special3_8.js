@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_special3_8",{"id":"sep_special3_8","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"Special3":{"fps":6,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,793,0,46,68,26,68,1]]}},"separadoDe":"uh_android16_bot#Special3","acervo":{"nome":"Special3","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#Special3"}});

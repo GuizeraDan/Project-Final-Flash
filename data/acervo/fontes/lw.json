@@ -150,11 +150,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 67,
-"broly_dbs": 2,
-"broly_dbs_base": 65
-}
+"anims": {}
 },
 "lw_cooler_golden": {
 "nome": "cooler_golden",
@@ -165,11 +161,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 62,
-"grupo": 3,
-"cooler_golden": 59
-}
+"anims": {}
 },
 "lw_and17_cell": {
 "nome": "and17_cell",
@@ -213,11 +205,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 73,
-"bardock_base": 72,
-"bardock_base_68": 1
-}
+"anims": {}
 },
 "lw_trunks_cell_ssj": {
 "nome": "trunks_cell_ssj",
@@ -350,9 +338,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 56
-}
+"anims": {}
 },
 "lw_buu_dbs": {
 "nome": "buu_dbs",
@@ -420,12 +406,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 61,
-"turlle": 5,
-"turtles_ssj": 55,
-"turtles_ssj_28": 1
-}
+"anims": {}
 },
 "lw_vegito_base": {
 "nome": "vegito_base",
@@ -481,12 +462,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 53,
-"grupo": 2,
-"caufla": 50,
-"caulfla": 1
-}
+"anims": {}
 },
 "lw_trunks_cell_base": {
 "nome": "trunks_cell_base",
@@ -612,12 +588,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 52,
-"android_16": 49,
-"android_16_08": 2,
-"shadow": 1
-}
+"anims": {}
 },
 "lw_vegeta_xeno": {
 "nome": "vegeta_xeno",
@@ -641,12 +612,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 53,
-"grupo": 3,
-"black_ssr": 3,
-"goku_black": 47
-}
+"anims": {}
 },
 "lw_dyspo": {
 "nome": "dyspo",
@@ -688,11 +654,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 52,
-"grupo": 3,
-"cooler_f1": 49
-}
+"anims": {}
 },
 "lw_tournament": {
 "nome": "tournament",
@@ -784,13 +746,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"cooler": 42,
-"cooler_f1": 4,
-"cooler_f3": 6
-}
+"anims": {}
 },
 "lw_lucky_wheel": {
 "nome": "lucky_wheel",
@@ -814,12 +770,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 56,
-"grupo": 3,
-"birot": 52,
-"birot_10": 1
-}
+"anims": {}
 },
 "lw_namek_atlas": {
 "nome": "Namek_atlas",
@@ -1127,11 +1078,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 31,
-"grupo": 3,
-"Appule": 28
-}
+"anims": {}
 },
 "lw_vegeta_gt_ssj": {
 "nome": "vegeta_gt_ssj",
@@ -1158,9 +1105,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 50
-}
+"anims": {}
 },
 "lw_cell_jr": {
 "nome": "cell_jr",
@@ -1229,12 +1174,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 62,
-"dabura": 60,
-"dabura_22": 1,
-"dabura_67": 1
-}
+"anims": {}
 },
 "lw_invander": {
 "nome": "invander",
@@ -1258,13 +1198,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 46,
-"frieza_0": 12,
-"frieza_f1": 31,
-"frieza_f1_08": 2,
-"shadow": 1
-}
+"anims": {}
 },
 "lw_skill_bg_break": {
 "nome": "skill_bg_break",
@@ -1314,12 +1248,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 21,
-"buu_intro": 18,
-"ghan": 2,
-"shadow": 1
-}
+"anims": {}
 },
 "lw_hit_effect": {
 "nome": "hit_effect",
@@ -1347,12 +1276,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 49,
-"grupo": 2,
-"buu_super": 46,
-"shadow": 1
-}
+"anims": {}
 },
 "lw_yamu": {
 "nome": "yamu",
@@ -1616,11 +1540,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 37,
-"grupo": 2,
-"begamo": 35
-}
+"anims": {}
 },
 "lw_tien": {
 "nome": "tien",
@@ -1631,11 +1551,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 49,
-"grupo": 3,
-"thien_shin": 46
-}
+"anims": {}
 },
 "lw_aura_thunder_old": {
 "nome": "aura_thunder_old",
@@ -1646,9 +1562,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 12
-}
+"anims": {}
 },
 "lw_active_skill2": {
 "nome": "active_skill2",
@@ -1854,11 +1768,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 55,
-"grupo": 3,
-"fraizza": 52
-}
+"anims": {}
 },
 "lw_baby_vgta": {
 "nome": "baby_vgta",
@@ -1869,11 +1779,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 46,
-"grupo": 3,
-"baby_vgta": 43
-}
+"anims": {}
 },
 "lw_trunks_dbs_ssj": {
 "nome": "trunks_dbs_ssj",
@@ -1900,12 +1806,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 58,
-"grupo": 3,
-"bdolly": 46,
-"bdolly_intro": 9
-}
+"anims": {}
 },
 "lw_dark_ball_pack": {
 "nome": "DARK_BALL_PACK",
@@ -1944,11 +1845,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 48,
-"grupo": 3,
-"buu_beo": 45
-}
+"anims": {}
 },
 "lw_vegeta_young": {
 "nome": "vegeta_young",
@@ -2017,11 +1914,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 42,
-"grupo": 3,
-"xen_broolly": 39
-}
+"anims": {}
 },
 "lw_cloud3": {
 "nome": "cloud3",
@@ -2045,11 +1938,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 88,
-"grupo": 3,
-"black_ssr": 85
-}
+"anims": {}
 },
 "lw_horizontal": {
 "nome": "horizontal",
@@ -2100,9 +1989,7 @@
 "resources.assets"
 ],
 "anims": {
-"Todos": 26,
-"aura_trans": 18,
-"aura_transform": 8
+"Todos": 26
 }
 },
 "lw_dark_judgement": {
@@ -2271,11 +2158,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 47,
-"grupo": 3,
-"cabba": 44
-}
+"anims": {}
 },
 "lw_caulifla": {
 "nome": "caulifla",
@@ -2286,11 +2169,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 40,
-"grupo": 2,
-"caulfla": 38
-}
+"anims": {}
 },
 "lw_big_exp": {
 "nome": "big_exp",
@@ -2327,12 +2206,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 54,
-"grupo": 3,
-"baby_kefla": 1,
-"ke_ba": 50
-}
+"anims": {}
 },
 "lw_turles": {
 "nome": "turles",
@@ -2343,11 +2217,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 47,
-"grupo": 3,
-"turlle": 44
-}
+"anims": {}
 },
 "lw_ball_charge": {
 "nome": "ball_charge",
@@ -2524,11 +2394,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 67,
-"grupo": 4,
-"buu_kid": 63
-}
+"anims": {}
 },
 "lw_kale": {
 "nome": "kale",
@@ -2597,11 +2463,7 @@
 "objs": [
 "resources.assets"
 ],
-"anims": {
-"Todos": 44,
-"grupo": 3,
-"cabba_ssj": 41
-}
+"anims": {}
 },
 "lw_skill_bg_normal": {
 "nome": "skill_bg_normal",

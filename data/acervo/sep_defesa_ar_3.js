@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defesa_ar_3",{"id":"sep_defesa_ar_3","atlases":["assets/img/acervo/zl3_janemba_0.png"],"anims":{"Defesa_Ar":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,187,739,52,52,35,52,1]]}},"separadoDe":"zl3_janemba#Defesa_Ar","acervo":{"nome":"Defesa_Ar","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_janemba#Defesa_Ar"}});

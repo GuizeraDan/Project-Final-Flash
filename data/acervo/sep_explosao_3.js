@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_explosao_3",{"id":"sep_explosao_3","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Explosao":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,174,0,175,142,88,142,1]]}},"separadoDe":"ast_piccolo#Explosao","acervo":{"nome":"Explosao","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Explosao"}});

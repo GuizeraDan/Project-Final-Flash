@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_golpes_12",{"id":"sep_golpes_12","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Golpes":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,207,84,31,47,14,48,1],[0,1041,84,34,44,16,44,1]]}},"separadoDe":"ast_gogeta#Golpes","acervo":{"nome":"Golpes","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Golpes"}});

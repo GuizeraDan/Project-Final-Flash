@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_pulo_2",{"id":"sep_pulo_2","atlases":["assets/img/acervo/ast_bardock_fases_bardock_0.png"],"anims":{"Pulo":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,752,0,34,47,17,47,1]]}},"separadoDe":"ast_bardock_fases_bardock#Pulo","acervo":{"nome":"Pulo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bardock_fases_bardock#Pulo"}});

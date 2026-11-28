@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_rajada_azul",{"id":"sep_rajada_azul","atlases":["assets/img/acervo/ast_janemba_0.png"],"anims":{"Rajada_Azul":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,176,0,183,75,92,75,1]]}},"separadoDe":"ast_janemba#Rajada_Azul","acervo":{"nome":"Rajada_Azul","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_janemba#Rajada_Azul"}});

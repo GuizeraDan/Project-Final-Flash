@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_esfera_ki_3",{"id":"sep_esfera_ki_3","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Esfera_Ki":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1895,84,20,14,10,14,1]]}},"separadoDe":"ast_gogeta#Esfera_Ki","acervo":{"nome":"Esfera_Ki","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Esfera_Ki"}});

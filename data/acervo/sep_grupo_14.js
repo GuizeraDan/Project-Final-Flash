@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_grupo_14",{"id":"sep_grupo_14","atlases":["assets/img/acervo/lw_buu_super_0.png"],"anims":{"grupo":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1721,0,51,29,26,29,1],[0,1828,0,51,22,26,22,1]]}},"separadoDe":"lw_buu_super#grupo","acervo":{"nome":"grupo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_buu_super#grupo"}});

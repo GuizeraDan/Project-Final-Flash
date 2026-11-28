@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_cima_2",{"id":"sep_cima_2","atlases":["assets/img/acervo/uh_bardock_0.png"],"anims":{"Cima":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1082,0,32,57,19,57,1]]}},"separadoDe":"uh_bardock#Cima","acervo":{"nome":"Cima","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock#Cima"}});

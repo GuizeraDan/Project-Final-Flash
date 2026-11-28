@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_retrato",{"id":"sep_retrato","atlases":["assets/img/acervo/ast_cell_2nd_form_3.png"],"anims":{"Retrato":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,375,532,188,532,1]]}},"separadoDe":"ast_cell_2nd_form#Retrato","acervo":{"nome":"Retrato","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cell_2nd_form#Retrato"}});

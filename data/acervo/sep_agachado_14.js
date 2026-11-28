@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_14",{"id":"sep_agachado_14","atlases":["assets/img/acervo/zl3_brolyikari_0.png"],"anims":{"Agachado":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,409,1921,39,51,20,51,1]]}},"separadoDe":"zl3_brolyikari#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_brolyikari#Agachado"}});

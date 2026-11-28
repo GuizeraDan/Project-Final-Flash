@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_palma",{"id":"sep_palma","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Palma":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1389,0,38,52,19,52,1]]}},"separadoDe":"ast_bills#Palma","acervo":{"nome":"Palma","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Palma"}});

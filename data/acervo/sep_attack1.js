@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_attack1",{"id":"sep_attack1","atlases":["assets/img/acervo/ast_assets_separados_personagens_24_cell_1st_0.png"],"anims":{},"separadoDe":"ast_assets_separados_personagens_24_cell_1st#Attack1","acervo":{"nome":"Attack1","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_assets_separados_personagens_24_cell_1st#Attack1"}});

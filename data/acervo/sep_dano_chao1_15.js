@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano_chao1_15",{"id":"sep_dano_chao1_15","atlases":["assets/img/acervo/zl3_kidbuu_0.png"],"anims":{"Dano_Chao1":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,247,1019,31,40,18,40,1]]}},"separadoDe":"zl3_kidbuu#Dano_Chao1","acervo":{"nome":"Dano_Chao1","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_kidbuu#Dano_Chao1"}});

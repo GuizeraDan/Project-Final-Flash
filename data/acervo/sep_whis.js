@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_whis",{"id":"sep_whis","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Whis":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,614,0,31,64,16,64,1]]}},"separadoDe":"ast_bills#Whis","acervo":{"nome":"Whis","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Whis"}});

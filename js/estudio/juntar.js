@@ -134,7 +134,7 @@
         if (!extras.length) delete infoNova.atlas;
         if (cRen.i.checked && !deAnims) infoNova.nome = inNome.value.trim() || nome;
         if (JSON.stringify(infoNova) !== JSON.stringify(infoAntes)) {
-          FF.Edicoes.set(['spritesInfo', alvo], Object.keys(infoNova).length ? infoNova : null);   // atlas e nome numa mudança só
+          FF.Edicoes.set(['spritesInfo', alvo], FF.Edicoes.infoGravar(alvo, infoNova));   // atlas e nome numa mudança só
           FF.Assets.descarregarSprite(alvo);
           setA = await FF.Assets.loadSprite(alvo);
         }

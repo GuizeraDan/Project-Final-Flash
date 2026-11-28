@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dabura_67",{"id":"sep_dabura_67","atlases":["assets/img/acervo/lw_dabura_0.png"],"anims":{"dabura_67":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,629,0,70,50,43,46,1]]}},"separadoDe":"lw_dabura#dabura_67","acervo":{"nome":"dabura_67","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_dabura#dabura_67"}});

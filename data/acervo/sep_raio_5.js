@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_raio_5",{"id":"sep_raio_5","atlases":["assets/img/acervo/ast_kyabe_fases_kyabe_0.png"],"anims":{"Raio":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,212,80,106,80,1]]}},"separadoDe":"ast_kyabe_fases_kyabe#Raio","acervo":{"nome":"Raio","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_kyabe_fases_kyabe#Raio"}});

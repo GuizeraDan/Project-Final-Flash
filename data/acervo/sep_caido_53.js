@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_53",{"id":"sep_caido_53","atlases":["assets/img/acervo/zl3_tienshihan_0.png"],"anims":{"Caido":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1451,838,60,18,31,17,1]]}},"separadoDe":"zl3_tienshihan#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_tienshihan#Caido"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_47",{"id":"sep_caido_47","atlases":["assets/img/acervo/ast_kyabe_fases_kyabe_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1861,0,46,18,23,18,1]]}},"separadoDe":"ast_kyabe_fases_kyabe#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_kyabe_fases_kyabe#Caido"}});

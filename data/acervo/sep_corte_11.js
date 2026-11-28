@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_corte_11",{"id":"sep_corte_11","atlases":["assets/img/acervo/ast_turles_0.png"],"anims":{"Corte":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1439,0,34,45,17,45,1]]}},"separadoDe":"ast_turles#Corte","acervo":{"nome":"Corte","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_turles#Corte"}});

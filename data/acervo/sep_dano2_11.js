@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano2_11",{"id":"sep_dano2_11","atlases":["assets/img/acervo/mc_b_5_0.png"],"anims":{"Dano2":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1486,0,32,42,15,42,3]]}},"separadoDe":"mc_b_5#Dano2","acervo":{"nome":"Dano2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_5#Dano2"}});

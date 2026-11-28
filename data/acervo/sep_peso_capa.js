@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_peso_capa",{"id":"sep_peso_capa","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Peso_Capa":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,2013,0,29,46,14,46,1]]}},"separadoDe":"ast_piccolo#Peso_Capa","acervo":{"nome":"Peso_Capa","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Peso_Capa"}});

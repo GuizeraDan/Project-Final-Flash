@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_22",{"id":"sep_agachado_22","atlases":["assets/img/acervo/zl3_miraigohan_0.png"],"anims":{"Agachado":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,335,1140,30,40,15,40,1]]}},"separadoDe":"zl3_miraigohan#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_miraigohan#Agachado"}});

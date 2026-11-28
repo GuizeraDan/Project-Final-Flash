@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_golpe_9",{"id":"sep_golpe_9","atlases":["assets/img/acervo/ast_caulifla_0.png"],"anims":{"Golpe":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1632,124,30,43,15,43,1],[0,1489,124,35,45,18,45,1]]}},"separadoDe":"ast_caulifla#Golpe","acervo":{"nome":"Golpe","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_caulifla#Golpe"}});

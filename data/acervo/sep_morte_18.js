@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_morte_18",{"id":"sep_morte_18","atlases":["assets/img/acervo/mc_b_7_0.png"],"anims":{"Morte":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,461,132,48,30,24,26,5]]}},"separadoDe":"mc_b_7#Morte","acervo":{"nome":"Morte","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_7#Morte"}});

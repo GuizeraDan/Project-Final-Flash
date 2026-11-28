@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_intro_8",{"id":"sep_intro_8","atlases":["assets/img/acervo/uh_bardockt1_0.png"],"anims":{"Intro":{"fps":12,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,461,0,33,55,17,55,4]]}},"separadoDe":"uh_bardockt1#Intro","acervo":{"nome":"Intro","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt1#Intro"}});

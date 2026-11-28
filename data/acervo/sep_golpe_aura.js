@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_golpe_aura",{"id":"sep_golpe_aura","atlases":["assets/img/acervo/ast_caulifla_0.png"],"anims":{"Golpe_Aura":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1491,0,77,59,38,59,1]]}},"separadoDe":"ast_caulifla#Golpe_Aura","acervo":{"nome":"Golpe_Aura","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_caulifla#Golpe_Aura"}});

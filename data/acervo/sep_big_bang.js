@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_big_bang",{"id":"sep_big_bang","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Big_Bang":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1470,84,36,42,18,42,1]]}},"separadoDe":"ast_gogeta#Big_Bang","acervo":{"nome":"Big_Bang","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Big_Bang"}});

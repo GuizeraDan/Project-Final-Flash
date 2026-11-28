@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_supernova",{"id":"sep_supernova","atlases":["assets/img/acervo/ast_cooler_0.png"],"anims":{"Supernova":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,98,0,96,96,48,96,1]]}},"separadoDe":"ast_cooler#Supernova","acervo":{"nome":"Supernova","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cooler#Supernova"}});

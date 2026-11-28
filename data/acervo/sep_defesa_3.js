@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defesa_3",{"id":"sep_defesa_3","atlases":["assets/img/acervo/uh_bardockt1_0.png"],"anims":{"Defesa":{"fps":10,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,566,0,35,52,19,52,1,[[6,-27]]]]}},"separadoDe":"uh_bardockt1#Defesa","acervo":{"nome":"Defesa","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt1#Defesa"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defesa_ar_15",{"id":"sep_defesa_ar_15","atlases":["assets/img/acervo/zl3_kidbuu_0.png"],"anims":{"Defesa_Ar":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1990,1019,19,36,7,36,1]]}},"separadoDe":"zl3_kidbuu#Defesa_Ar","acervo":{"nome":"Defesa_Ar","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_kidbuu#Defesa_Ar"}});

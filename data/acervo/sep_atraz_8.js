@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_atraz_8",{"id":"sep_atraz_8","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"Atraz":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,650,0,48,68,26,68,1]]}},"separadoDe":"uh_android16_bot#Atraz","acervo":{"nome":"Atraz","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#Atraz"}});

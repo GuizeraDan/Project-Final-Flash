@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_caido_8",{"id":"sep_caido_8","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Caido":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1305,200,56,29,28,29,1]]}},"separadoDe":"ast_piccolo#Caido","acervo":{"nome":"Caido","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Caido"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_rastro_roxo",{"id":"sep_rastro_roxo","atlases":["assets/img/acervo/ast_janemba_0.png"],"anims":{"Rastro_Roxo":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,958,84,68,32,34,32,1]]}},"separadoDe":"ast_janemba#Rastro_Roxo","acervo":{"nome":"Rastro_Roxo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_janemba#Rastro_Roxo"}});

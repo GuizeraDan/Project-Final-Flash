@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_disputa2_12",{"id":"sep_disputa2_12","atlases":["assets/img/acervo/mc_b_5f1_0.png"],"anims":{"Disputa2":{"fps":8,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,447,75,62,59,27,59,1,[[34,-36]]]]}},"separadoDe":"mc_b_5f1#Disputa2","acervo":{"nome":"Disputa2","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_5f1#Disputa2"}});

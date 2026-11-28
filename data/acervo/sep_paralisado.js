@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_paralisado",{"id":"sep_paralisado","atlases":["assets/img/acervo/uh_bardock_0.png"],"anims":{"Paralisado":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1333,110,44,42,16,42,1,[[6,-21]]]]}},"separadoDe":"uh_bardock#Paralisado","acervo":{"nome":"Paralisado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardock#Paralisado"}});

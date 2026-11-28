@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_frente_10",{"id":"sep_frente_10","atlases":["assets/img/acervo/uh_android16_bot_0.png"],"anims":{"Frente":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,651,78,67,34,36,34,1]]}},"separadoDe":"uh_android16_bot#Frente","acervo":{"nome":"Frente","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_android16_bot#Frente"}});

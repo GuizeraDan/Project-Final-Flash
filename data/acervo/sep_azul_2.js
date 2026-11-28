@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_azul_2",{"id":"sep_azul_2","atlases":["assets/img/acervo/zl3_kamehameha_pt2_0.png"],"anims":{"Azul":{"fps":15,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,114,0,2,7,0,4,1,[[2,0]]]]}},"separadoDe":"zl3_kamehameha_pt2#Azul","tipo":"efeito","acervo":{"nome":"Azul","fonte":"Separados no Estúdio","tipo":"efeitos","origem":"zl3_kamehameha_pt2#Azul"}});

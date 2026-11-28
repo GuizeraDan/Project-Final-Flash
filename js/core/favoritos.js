@@ -85,7 +85,7 @@ FF.criarFavoritos = (secao, TIPOS, plural) => ({
     ids.forEach(id => {
       const v = Object.assign({}, FF.Assets.infoSprite(id));
       if (nome) v.pasta = nome; else delete v.pasta;
-      FF.Edicoes.setDepois(['spritesInfo', id], Object.keys(v).length ? v : null);
+      FF.Edicoes.setDepois(['spritesInfo', id], FF.Edicoes.infoGravar(id, v));
     });
   },
   naPasta(nome, sprite, anim) { return (this.pastas()[nome] || []).includes(this.chave(sprite, anim)); },

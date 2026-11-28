@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_raio_roxo_2",{"id":"sep_raio_roxo_2","atlases":["assets/img/acervo/ast_piccolo_0.png"],"anims":{"Raio_Roxo":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1152,200,121,30,60,30,1]]}},"separadoDe":"ast_piccolo#Raio_Roxo","acervo":{"nome":"Raio_Roxo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_piccolo#Raio_Roxo"}});

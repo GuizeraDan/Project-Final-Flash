@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_disparo_8",{"id":"sep_disparo_8","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Disparo":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1123,0,40,51,20,51,1],[0,697,84,36,45,18,45,1]]}},"separadoDe":"ast_gogeta#Disparo","acervo":{"nome":"Disparo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Disparo"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_atraz_2",{"id":"sep_atraz_2","atlases":["assets/img/acervo/uh_bardockt1_0.png"],"anims":{"Atraz":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,529,0,36,53,18,53,1]]}},"separadoDe":"uh_bardockt1#Atraz","acervo":{"nome":"Atraz","fonte":"Separados no Estúdio","tipo":"personagens","origem":"uh_bardockt1#Atraz"}});

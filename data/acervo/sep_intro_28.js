@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_intro_28",{"id":"sep_intro_28","atlases":["assets/img/acervo/mc_b_6_0.png"],"anims":{"Intro":{"fps":6,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,149,0,28,49,13,49,1],[0,58,0,30,49,15,49,3]]}},"separadoDe":"mc_b_6#Intro","acervo":{"nome":"Intro","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_6#Intro"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_brilho_2",{"id":"sep_brilho_2","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Brilho":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1026,0,54,58,27,58,1],[0,1739,0,45,49,22,49,1]]}},"separadoDe":"ast_gogeta#Brilho","acervo":{"nome":"Brilho","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Brilho"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_avanco_20",{"id":"sep_avanco_20","atlases":["assets/img/acervo/ast_turles_0.png"],"anims":{"Avanco":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1002,0,34,47,17,47,1],[0,1247,0,39,46,20,46,1]]}},"separadoDe":"ast_turles#Avanco","acervo":{"nome":"Avanco","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_turles#Avanco"}});

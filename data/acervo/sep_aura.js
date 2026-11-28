@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_aura",{"id":"sep_aura","atlases":["assets/img/acervo/ast_cell_2nd_form_4.png"],"anims":{"Aura":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,754,469,308,390,154,390,1]]}},"separadoDe":"ast_cell_2nd_form#Aura","acervo":{"nome":"Aura","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_cell_2nd_form#Aura"}});

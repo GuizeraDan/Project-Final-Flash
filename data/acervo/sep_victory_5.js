@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_victory_5",{"id":"sep_victory_5","atlases":["assets/img/acervo/mc_b_114f1_0.png"],"anims":{"Victory":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1092,0,29,57,16,57,1],[0,1122,0,29,57,16,57,1]]}},"separadoDe":"mc_b_114f1#Victory","acervo":{"nome":"Victory","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_114f1#Victory"}});

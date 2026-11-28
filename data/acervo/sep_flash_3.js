@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_flash_3",{"id":"sep_flash_3","atlases":["assets/img/acervo/ast_gogeta_0.png"],"anims":{"Flash":{"fps":0,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,893,0,91,64,46,64,1]]}},"separadoDe":"ast_gogeta#Flash","acervo":{"nome":"Flash","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_gogeta#Flash"}});

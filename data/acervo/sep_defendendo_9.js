@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_defendendo_9",{"id":"sep_defendendo_9","atlases":["assets/img/acervo/mc_b_110_0.png"],"anims":{"Defendendo":{"fps":11,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,1820,0,27,47,13,47,1]]}},"separadoDe":"mc_b_110#Defendendo","acervo":{"nome":"Defendendo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_110#Defendendo"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_agachado_10",{"id":"sep_agachado_10","atlases":["assets/img/acervo/zl3_bills_0.png"],"anims":{"Agachado":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,750,710,35,42,19,42,1]]}},"separadoDe":"zl3_bills#Agachado","acervo":{"nome":"Agachado","fonte":"Separados no Estúdio","tipo":"personagens","origem":"zl3_bills#Agachado"}});

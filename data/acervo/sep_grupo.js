@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_grupo",{"id":"sep_grupo","atlases":["assets/img/acervo/lw_appule_0.png"],"anims":{"grupo":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,0,0,25,51,12,47,1],[0,26,0,25,51,12,47,1],[0,158,0,21,47,10,43,1]]}},"separadoDe":"lw_appule#grupo","acervo":{"nome":"grupo","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_appule#grupo"}});

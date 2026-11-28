@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_dano3_16",{"id":"sep_dano3_16","atlases":["assets/img/acervo/mc_b_6_0.png"],"anims":{"Dano3":{"fps":8,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,1581,53,53,25,29,20,5]]}},"separadoDe":"mc_b_6#Dano3","acervo":{"nome":"Dano3","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_6#Dano3"}});

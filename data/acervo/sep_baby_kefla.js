@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_baby_kefla",{"id":"sep_baby_kefla","atlases":["assets/img/acervo/lw_baby_kefla_0.png"],"anims":{"baby_kefla":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,358,0,40,55,19,48,1]]}},"separadoDe":"lw_baby_kefla#baby_kefla","acervo":{"nome":"baby_kefla","fonte":"Separados no Estúdio","tipo":"personagens","origem":"lw_baby_kefla#baby_kefla"}});

@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_pulando_28",{"id":"sep_pulando_28","atlases":["assets/img/acervo/mc_b_5_0.png"],"anims":{"Pulando":{"fps":5,"loop":false,"repeatTo":0,"pingpong":false,"frames":[[0,262,0,27,46,17,46,1]]}},"separadoDe":"mc_b_5#Pulando","acervo":{"nome":"Pulando","fonte":"Separados no Estúdio","tipo":"personagens","origem":"mc_b_5#Pulando"}});

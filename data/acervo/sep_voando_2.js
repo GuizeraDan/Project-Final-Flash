@@ -1,0 +1,1 @@
+FF_ACERVO_DEF("sep_voando_2",{"id":"sep_voando_2","atlases":["assets/img/acervo/ast_bills_0.png"],"anims":{"Voando":{"fps":10,"loop":true,"repeatTo":0,"pingpong":false,"frames":[[0,704,98,54,40,27,40,1],[0,759,98,53,40,26,40,1]]}},"separadoDe":"ast_bills#Voando","acervo":{"nome":"Voando","fonte":"Separados no Estúdio","tipo":"personagens","origem":"ast_bills#Voando"}});
