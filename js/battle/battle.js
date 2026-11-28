@@ -951,6 +951,7 @@ FF.Battle = class {
     }
 
     dmg = guard && guardaRes === 'perfeito' ? 0 : Math.max(1, Math.round(dmg));
+    this.ultimoAcerto = { def, guarda: guard, res: guardaRes };   // 🛡 regra da defesa no último acerto (linha.js)
     const hpAntes = def.hp;
     def.hp = Math.max(0, def.hp - dmg);
     if (def.hp <= 0 && this.vidaInfinita(def)) def.hp = 1;   // treino: vida infinita (enche de novo no fim do golpe)

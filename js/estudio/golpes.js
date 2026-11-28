@@ -740,6 +740,12 @@ window.FF = window.FF || {};
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
       b.appendChild(op('fora', '🔍 Fora', 'Ver fora da tela: o palco encolhe e mostra uma faixa em volta da tela do jogo, para pegar e posicionar o que está fora dela'));
+      // 🛡 ver o golpe como se o último acerto fosse defendido (regra da defesa)
+      const dfd = E.el('label', '', '<input type="checkbox"> 🛡 Defendido');
+      dfd.title = 'Ver o golpe como se o alvo defendesse o último acerto: o que vem depois na trilha do Alvo (queda, lançado, bater na parede) e os efeitos presos no alvo não tocam (cada clipe pode mudar em "🛡 Se o último golpe for defendido")';
+      this.ckDefendido = dfd.querySelector('input');
+      this.ckDefendido.onchange = () => { this.palco.opts.defendido = this.ckDefendido.checked; this.irPara(this.t); this.redesenhar(); };
+      b.appendChild(dfd);
       // 📱 tela larga (1600, como num celular deitado): só para ver como o golpe fica — a cena se espalha até a borda
       const larga = E.el('label', '', '<input type="checkbox"> 📱 Tela larga');
       larga.title = 'Ver na tela mais larga do jogo (1600 de largura, como num celular deitado). Na cena, as posições se espalham até a borda. Só para conferir: as alças de edição somem; desligue para editar.';
@@ -747,6 +753,7 @@ window.FF = window.FF || {};
       this.ckLarga.onchange = () => this.trocarLarga(this.ckLarga.checked);
       b.appendChild(larga);
       this.palco.opts.persp = true;   // sempre diagonal (a visão lateral foi tirada)
+      this.palco.opts.defendido = false;   // 🛡 começa sempre desligado
       // fileiras rápidas (Diagonal): 🧍 quem solta e 🎯 alvo nos lugares 1 (frente), 2 (meio), 3 (fundo)
       // fileiras e ajustes por combinação saíram: todo golpe que acerta alguém vira cena (palco fixo)
       this.renderFilas = () => {};

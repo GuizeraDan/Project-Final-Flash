@@ -113,6 +113,7 @@ FF.EstudioPalco = class {
     // os ajustes por combinação já vêm aplicados no golpe aberto quando o modo "✏ Só nesta combinação" está ligado;
     // desligado, o palco mostra e edita a versão base
     b.semAjustes = true;
+    b.forcarDefesa = !!this.opts.defendido;   // 🛡 palco: ver como defendido
     b.atk.busy = true;
     const orig = FF.Linha.disparar;
     const self = this;

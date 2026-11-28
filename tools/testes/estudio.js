@@ -118,6 +118,7 @@ const ok = (c, m) => { if (!c) { console.log('FALHOU:', m); process.exitCode = 1
   const nomes = await g.evaluate(() => [...document.querySelectorAll('#menu [data-golpe]')].map(x => FF.battle.heroes[0].def.golpes[x.dataset.golpe].nome));
   const i = nomes.findIndex(n => n.includes('Rajada Teste'));
   ok(i >= 0, 'habilidade ⭐ aparece no menu de golpes');
+  await g.evaluate(() => { FF.Battle.prototype.guardaDaIA = () => null; });   // sem defesa da IA (a perfeita zera o dano por sorte)
   const hp0 = await g.evaluate(() => FF.battle.enemies[0].hp);
   await g.evaluate((k) => document.querySelectorAll('#menu [data-golpe]')[k].click(), i);
   await g.waitForTimeout(800);

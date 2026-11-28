@@ -176,10 +176,13 @@ FF.Linha = {
       }
       // animações que começam no 0 seguram o 1º quadro durante o atraso do anel
       const t0 = c.t <= 0 && c.tipo === 'anim' ? -atraso : c.t;
-      eventos.push({ t: t0, ordem: 0, fn: () => this.disparar(b, viva, c, c.t <= 0 && c.tipo === 'anim' ? atraso : 0, guardar) });
+      // acertos antes dos outros clipes do mesmo instante (a regra da defesa precisa saber se o último foi defendido)
+      eventos.push({ t: t0, ordem: c.tipo === 'acerto' ? -0.5 : 0, fn: () => { if (this.pularPorDefesa(viva, c)) return; this.disparar(b, viva, c, c.t <= 0 && c.tipo === 'anim' ? atraso : 0, guardar); if (c === viva.ultAcerto) this.conferirDefesa(b, viva); } });
     });
     eventos.sort((a, c) => a.t - c.t || a.ordem - c.ordem);
     viva.eventos = eventos;
+    // 🛡 último acerto (ou o único): se for defendido, a queda/lançado/bater na parede do alvo não toca (pularPorDefesa)
+    viva.ultAcerto = acertos.length ? acertos[acertos.length - 1] : null;
 
     // lutadores com animação na linha ficam "ocupados" (na frente, sem reação automática), menos o alvo
     lista.filter(c => c._tr.tipo === 'lutador' && c._tr.quem !== 'alvo' && !ehKO).forEach(c => {
@@ -208,6 +211,31 @@ FF.Linha = {
     return viva;
   },
 
+  // 🛡 REGRA DA DEFESA: o último acerto do golpe (ou o único) foi defendido → depois dele não tocam a trilha do Alvo
+  // (lançado, quedas, bater na parede, movimentos) nem efeitos/camadas presos no alvo; o alvo fica na guarda, é
+  // empurrado um pouco e volta. Cada clipe pode mudar isso: c.seDefender = 'tocar' | 'pular' (sem = automático)
+  pulaSeDefender(c) {
+    if (c.seDefender === 'tocar') return false;
+    if (c.seDefender === 'pular') return true;
+    if (c.tipo === 'acerto') return false;
+    if (c._tr && c._tr.tipo === 'lutador' && c._tr.quem === 'alvo') return true;
+    if (c.tipo === 'efeito') return c.em === 'alvo' || c.em === 'alvoPes';
+    if (c.tipo === 'camada') return c.ancora === 'alvo';
+    return false;
+  },
+  pularPorDefesa(viva, c) { return !!(viva.defendido && viva.ultAcerto && c !== viva.ultAcerto && (c.t || 0) >= (viva.ultAcerto.t || 0) && this.pulaSeDefender(c)); },
+  conferirDefesa(b, viva) {
+    const ua = b.ultimoAcerto, alvo = viva.target;
+    const def = !!(alvo && !alvo.ko && ((ua && ua.def === alvo && ua.guarda) || b.forcarDefesa));
+    if (!def) return;
+    viva.defendido = true;
+    const t0 = viva.ultAcerto.t || 0;
+    viva.cena.camadas = viva.cena.camadas.filter(k => !((k.inicio || 0) >= t0 && this.pulaSeDefender(k)));
+    // o alvo segura a guarda, recua um pouco (sem voar) e volta para o lugar no fim do golpe
+    alvo.react = null; alvo.semReagirAte = 0;
+    alvo.vx = -alvo.dir * 220; alvo.voando = false;
+    alvo.reagir && alvo.reagir('guarda', 0.45);
+  },
   // animação de outro sprite durante um Mover/Teleporte/Caminho (spriteMov): troca o desenho até o próximo clipe
   emprestar(f, sid) {
     const s = sid && FF.Assets.sprites[sid];

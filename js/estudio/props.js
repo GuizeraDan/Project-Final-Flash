@@ -93,6 +93,13 @@ FF.EstudioProps = {
       return;
     }
     const g = E.grupo(this.titulo(c));
+    // 🛡 regra da defesa: se o último acerto do golpe for defendido, este clipe (depois dele) toca ou não
+    if (c.tipo !== 'acerto' && host.doc && ['golpe', 'habilidade', 'novo'].includes(host.doc.origem.tipo)) {
+      const auto = FF.Linha.pulaSeDefender(Object.assign({}, c, { seDefender: undefined, _tr: tr }));
+      g.appendChild(E.campo('select', '🛡 Se o último golpe for defendido', c.seDefender || '', (v) => { if (v) c.seDefender = v; else delete c.seDefender; host.mudou('Se for defendido'); },
+        { lista: [['', 'automático: ' + (auto ? 'não toca' : 'toca')], ['tocar', 'toca mesmo assim'], ['pular', 'não toca']],
+          dica: 'Vale para clipes depois do último acerto (ou do único). Automático: a trilha do Alvo e os efeitos presos no alvo não tocam (o alvo fica na guarda e recua); o resto toca. Veja no palco com 🛡 Defendido.' }));
+    }
     if (host.ajuste) {   // ✏ modo de ajuste por combinação de fileiras
       const aj = E.el('div', 'es-ajuste-aviso');
       const tem = c.ajustes && c.ajustes[host.ajuste];

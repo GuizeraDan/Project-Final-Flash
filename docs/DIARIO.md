@@ -713,4 +713,5 @@ Cache do app: `finalflash-v47`.
 - ⏳ O golpe só começa depois que o cartão de ataque sai da tela (opção por golpe e tempo do cartão). Corrigido: "⚔ Na batalha" rodado de novo logo em seguida ficava parado.
 - 🪪 O cartão de ataque virou um clipe da 🎬 Entrada da cena (quando aparece, lado, altura, deslizar/zoom; sons, clarão e efeitos junto); "♪ Som do cartão" por golpe. Teste `tools/testes/cartao_entrada.js`.
 - Animação de Mover/Teleporte/Caminho (inclusive na trilha do Alvo) escolhida no seletor completo de sprites, de qualquer sprite (`spriteMov`).
+- 🛡 Regra da defesa: último acerto defendido = sem queda/lançado/bater na parede do alvo (e efeitos presos nele); opção por clipe e "🛡 Defendido" no palco. Teste do Estúdio não falha mais quando a IA defende perfeito por sorte.
 
