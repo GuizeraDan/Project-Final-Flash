@@ -106,7 +106,7 @@ FF.Linha = {
   // sprites que a linha usa (camadas, efeitos e projéteis de sprites importados)
   spritesUsados(linha) {
     const s = new Set();
-    const add = (o) => { if (!o) return; ['sprite', 'disparoSprite', 'impactoSprite'].forEach(k => { if (o[k]) s.add(o[k]); }); };
+    const add = (o) => { if (!o) return; ['sprite', 'spriteMov', 'disparoSprite', 'impactoSprite'].forEach(k => { if (o[k]) s.add(o[k]); }); };
     this.clipes(linha, null, true).forEach(({ c }) => {
       add(c); add(c.acerto);
       [].concat(c.acertos || [], c.impacto && typeof c.impacto === 'object' ? c.impacto : []).forEach(add);
@@ -208,6 +208,14 @@ FF.Linha = {
     return viva;
   },
 
+  // animação de outro sprite durante um Mover/Teleporte/Caminho (spriteMov): troca o desenho até o próximo clipe
+  emprestar(f, sid) {
+    const s = sid && FF.Assets.sprites[sid];
+    if (!f || !s || s === f.sprite) return false;
+    if (!f._spriteOrig) f._spriteOrig = { sprite: f.sprite, anim: f.anim };
+    f.sprite = s; f.anim = new FF.Animator(s);
+    return true;
+  },
   devolverSprite(f) {
     if (!f || !f._spriteOrig) return;
     f.sprite = f._spriteOrig.sprite; f.anim = f._spriteOrig.anim; delete f._spriteOrig;
@@ -282,6 +290,7 @@ FF.Linha = {
         }
         if (c.tipo === 'caminho') { this.andarCaminho(b, viva, f, c); return; }
         this.devolverSprite(f);
+        this.emprestar(f, c.spriteMov);
         let dest = this.destino(b, f, outro, c);
         if (b.persp && c.para === 'x' && c.x != null) dest = this.mapaPersp(b, actor, target, dest, b.groundY, true).x;
         // ponto da tela: também muda a altura (sem "y" = volta ao chão). Altura medida a partir do chão do lutador:
@@ -509,6 +518,7 @@ FF.Linha = {
   andarCaminho(b, viva, f, c) {
     const { actor, target } = viva;
     this.devolverSprite(f);
+    this.emprestar(f, c.spriteMov);
     // o deslocamento da animação anterior vira posição (sem pulo no começo)
     f.x += f.offX || 0; f.y += f.offY || 0; f.offX = 0; f.offY = 0;
     if (c.reto) { f.rotExtra = 0; f.escExtra = 1; f.flipExtra = false; }

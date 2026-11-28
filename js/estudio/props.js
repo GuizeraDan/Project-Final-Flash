@@ -201,8 +201,8 @@ FF.EstudioProps = {
         g.appendChild(sel(c, 'ritmo', 'Ritmo', [['', 'Velocidade constante'], ['suave', 'Acelera e freia'], ['freia', 'Só freia no fim']], null, ''));
         g.appendChild(this.comEscolha(
           E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do caminho'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: 'Vazio = avançar' }),
-          () => this.escolherAnim(host.spriteDe(quem), (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov, (a) => { c.animMov = a; host.mudou('Animação'); }),
-          this.fonteAnim(host, quem, { anim: c.animMov || 'avancar' })));
+          () => this.escolherAnimMov(host, quem, c),
+          this.fonteAnim(host, quem, { anim: c.animMov || 'avancar', sprite: c.spriteMov })));
         g.appendChild(E.el('p', 'es-dica', '↻ giro e ⤢ tamanho de cada ponto: o boneco vai mudando suavemente de um ponto para o outro (vazio = mantém o anterior).'));
         g.appendChild(E.campo('check', '↗ Girar seguindo o caminho', !!c.girarCaminho, (v) => { if (v) c.girarCaminho = true; else delete c.girarCaminho; host.mudou('Girar seguindo o caminho'); host.renderProps(); }, { dica: 'Inclina para onde está indo; o ↻ de cada ponto vira um ajuste em cima disso' }));
         g.appendChild(num(c, 'girar', 'Girar (voltas)', 'Piruetas durante o caminho (ex.: 1.5); negativo = ao contrário', { passo: 0.25 }));
@@ -230,8 +230,8 @@ FF.EstudioProps = {
         // animação do movimento: campo + 🖼 escolher vendo as miniaturas (animações do próprio lutador)
         g.appendChild(this.comEscolha(
           E.campo('anim', 'Animação', c.animMov, set(c, 'animMov', 'Animação do movimento'), { sugestoes: this.BASICAS.concat(host.animsDe(quem)), dica: c.tipo === 'mover' ? 'Vazio = avançar/recuar' : 'Vazio = teleporte' }),
-          () => this.escolherAnim(host.spriteDe(quem), (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov, (a) => { c.animMov = a; host.mudou('Animação'); }),
-          this.fonteAnim(host, quem, { anim: c.animMov || (c.tipo === 'mover' ? 'avancar' : 'teleporte') })));
+          () => this.escolherAnimMov(host, quem, c),
+          this.fonteAnim(host, quem, { anim: c.animMov || (c.tipo === 'mover' ? 'avancar' : 'teleporte'), sprite: c.spriteMov })));
         if (c.tipo === 'mover') {
           g.appendChild(E.campo('check', 'Suave', c.suave !== false, (v) => { if (v) delete c.suave; else c.suave = false; host.mudou('Suave'); }));
           g.appendChild(num(c, 'arco', 'Arco (px)', 'Curva do caminho: positivo = sobe no meio (arremesso), negativo = desce'));
@@ -646,6 +646,14 @@ FF.EstudioProps = {
     k.addEventListener('mouseleave', () => { ligado = false; FF.Estudio.miniatura(cv, set, anim, Math.floor(set.anim(anim).frames.length / 2)); });
   },
 
+  // animação de Mover/Teleporte/Caminho: o seletor completo (qualquer animação de qualquer sprite, com pastas e
+  // favoritos); começa no sprite de quem está na trilha. Outra sprite = c.spriteMov (o motor empresta o desenho)
+  escolherAnimMov(host, quem, c, aoMudar) {
+    const set = host.spriteDe(quem), pid = set && (set.def.id || Object.keys(FF.Assets.sprites).find(k => FF.Assets.sprites[k] === set));
+    const nome = (((host.formaDe && host.formaDe(quem)) || {}).anims || {})[c.animMov] || c.animMov;
+    FF.Estudio.escolherSprite({ titulo: '🎬 Animação do movimento (de qualquer sprite)', atual: { anim: nome, sprite: c.spriteMov || pid }, inicio: c.spriteMov || pid,
+      aoEscolher: (a, id) => { c.animMov = a; if (id && id !== pid) c.spriteMov = id; else delete c.spriteMov; host.mudou('Animação'); if (aoMudar) aoMudar(); else host.renderProps(); } });
+  },
   escolherAnim(set, atual, cb) {
     const E = FF.Estudio;
     if (!set) return E.aviso('Sprite não carregado.', 'erro');

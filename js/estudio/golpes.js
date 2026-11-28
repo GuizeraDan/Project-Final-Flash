@@ -594,7 +594,7 @@ window.FF = window.FF || {};
             aoEscolher: (a, id) => { c.anim = a; if (id && id !== pid) c.sprite = id; else delete c.sprite; pronto('Animação'); } });
         }
         case 'mover': case 'teleporte': case 'caminho':
-          return P.escolherAnim(this.spriteDe(quem), c.animMov, (a) => { c.animMov = a; pronto('Animação'); });
+          return P.escolherAnimMov(this, quem, c);
         case 'camada':
           return E.escolherSprite({ titulo: '▣ Sprite da camada', atual: { anim: c.anim, sprite: c.sprite }, inicio: c.sprite, aoEscolher: (a, id) => { c.sprite = id; c.anim = a; pronto('Sprite da camada'); } });
         default: return null;   // os outros (tremor, câmera, ação…) se mudam pelas propriedades
