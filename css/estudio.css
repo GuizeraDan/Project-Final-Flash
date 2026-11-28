@@ -392,3 +392,12 @@ a { color: var(--ouro); }
 /* 🎭 trilha do Alvo própria de um personagem (painel do palco) */
 .es-alvo-proprio { display: flex; flex-direction: column; gap: 4px; margin: 2px 0 8px; padding: 6px; border: 1px dashed #5a4a8a; border-radius: 6px; }
 .es-alvo-proprio .es-dica { margin: 0; }
+/* 🪪 arte do cartão de ataque */
+.es-arte { display: flex; flex-direction: column; gap: 8px; }
+.es-arte-topo { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.es-arte-cv { width: 100%; max-width: 720px; aspect-ratio: 720 / 420; border-radius: 6px; cursor: move; touch-action: none; align-self: center; }
+.es-arte-pv { width: 100%; max-width: 520px; aspect-ratio: 520 / 170; align-self: center; }
+.es-arte-zoom { display: flex; gap: 8px; align-items: center; }
+.es-arte-zoom input { flex: 1; }
+.es-arte-mini { width: 100%; aspect-ratio: 520 / 170; display: block; margin-bottom: 4px; }
+.es-bts-linha { display: flex; gap: 6px; flex-wrap: wrap; }

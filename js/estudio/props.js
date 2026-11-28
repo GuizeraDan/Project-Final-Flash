@@ -477,6 +477,18 @@ FF.EstudioProps = {
     }
     a.appendChild(E.campo('check', 'Anunciar o nome', g.anuncio !== false, (v) => { if (v) delete g.anuncio; else g.anuncio = false; host.mudou('Anúncio'); }));
     box.appendChild(a);
+    // 🪪 cartão de ataque: arte própria deste golpe (sem ela: a da forma / do personagem / a do Z Legends 3)
+    if (FF.EstudioArte && FF.Cartao) {
+      const k = E.grupo('🪪 Cartão de ataque', !!g.arte);
+      const pid = host.cfg.atacante, def = host.defs[pid], fid = host.cfg.forma;
+      const her = FF.Cartao.arte(def, fid, null);
+      k.appendChild(FF.EstudioArte.painel({ def, formId: fid, texto: g.nome, atual: g.arte || null, herdadaArte: her, chave: pid + '_' + (host.doc.origem.id || 'golpe'),
+        titulo: '🪪 Arte do cartão — ' + (g.nome || 'golpe'),
+        herdada: her ? 'Sem arte própria: usa a arte padrão do personagem (aba Personagens).' : 'Sem arte própria: usa a arte do Z Legends 3. Importe uma para este golpe, ou uma padrão do personagem na aba Personagens.',
+        aoSalvar: (arte) => { if (arte) g.arte = arte; else delete g.arte; host.mudou('Arte do cartão'); host.renderProps(); } }));
+      k.appendChild(E.el('p', 'es-dica', 'Aparece em todo golpe que acerta alguém, com o nome do golpe (desmarque "Anunciar o nome" para esconder). Salve o golpe (💾) para valer no jogo.'));
+      box.appendChild(k);
+    }
     }
     const L = host.doc.linha;
     const d = E.grupo('⏱ Duração');

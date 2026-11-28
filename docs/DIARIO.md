@@ -709,4 +709,5 @@ Cache do app: `finalflash-v47`.
 - Falta: o usuário montar as entradas/aura no Estúdio e dizer se o retrato e os tempos padrão estão bons.
 - 🎭 Trilha do Alvo por personagem em cada golpe ("✏ Trilha só para <Alvo>" no painel do palco; os outros alvos usam a padrão). Teste da batalha passou a dar 300 s (as lutas ficaram mais longas com as cenas).
 - 📱 Tela larga: a cena se espalha na largura da tela (golpes encostados na borda no palco ficam na borda no celular); botão "📱 Tela larga" no palco para conferir.
+- 🪪 Cartão de ataque (estilo Attack of the Saiyans) em todo golpe que acerta: arte importada por golpe (propriedades do golpe) ou padrão por personagem/forma (aba Personagens), com recorte; sem arte, usa o banner do ZL3.
 

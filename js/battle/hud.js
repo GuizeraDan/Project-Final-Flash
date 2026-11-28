@@ -474,6 +474,16 @@ FF.HUD = {
       ctx.restore();
       this.text(ctx, bn.text, FF.W / 2, yb + 27, 34 * (0.7 + 0.3 * k), '#ffe25a', 'center');
     }
+    // 🪪 cartão de ataque: entra pelo lado de quem ataca, fica e sai pelo mesmo lado
+    const ca = b.cartaoAtk;
+    if (ca && FF.Clock.t < ca.until + 0.25 && FF.Cartao) {
+      const t = FF.Clock.t, w = FF.Cartao.W, ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
+      const entra = ease((t - ca.start) / 0.22), sai = t > ca.until ? ease((t - ca.until) / 0.25) : 0, k = entra * (1 - sai);
+      const x = ca.esp ? FF.W - w * k : -w + w * k;
+      ctx.save(); ctx.globalAlpha = Math.min(1, k * 1.5);
+      FF.Cartao.desenhar(ctx, ca.def, ca.formId, ca.arte, ca.texto, x, 250, w, { espelhar: ca.esp });
+      ctx.restore();
+    }
     if (FF.Tutorial && b.def && b.def.tutorial) FF.Tutorial.desenharDica(ctx, b);   // luta de treino: dicas
   },
 };

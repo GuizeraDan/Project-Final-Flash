@@ -107,6 +107,7 @@ FF.Battle = class {
   }
 
   addFighter(charDef, lado, idx) {
+    if (FF.Cartao) FF.Cartao.preparar(charDef);   // 🪪 artes do cartão de ataque já carregando
     const pos = lado === 'heroi' ? this.def.posicoes.herois : this.def.posicoes.inimigos;
     // ajustes por batalha (ex.: Raditz com mais vida contra 3 heróis)
     // ajustes valem para o lado inimigo (na Batalha Livre o mesmo personagem pode estar nos dois lados)
@@ -504,7 +505,12 @@ FF.Battle = class {
     this._contraFeito = false;
     this._furou = false; this._guardaIAVista = new Set();
     const n = actor.boost || 0;
-    if (move.anuncio !== false) this.banner(move.nome + (n ? '  ×' + (n + 1) : ''), move.supremo ? 2.0 : 1.2);
+    // 🪪 cartão de ataque (arte de quem ataca + nome do golpe) em todo golpe que acerta alguém; o resto ganha a faixa
+    if (move.anuncio !== false) {
+      const txt = move.nome + (n ? '  ×' + (n + 1) : '');
+      if (target && target !== actor && FF.Battle.ofensivo(move) && FF.Cartao) this.cartao(actor, move, txt, move.supremo ? 2.0 : 1.3);
+      else this.banner(txt, move.supremo ? 2.0 : 1.2);
+    }
     if (n) {   // Impulso: explosão de ki antes do golpe (mais forte a cada nível)
       // (a explosão azul que saía aqui foi tirada: a aura do Impulso já mostra a força)
       this.popup(actor, 'IMPULSO ×' + (n + 1) + '!', '#ffcf3a', -50);
@@ -1712,6 +1718,7 @@ FF.Battle = class {
     const p = f.peito();
     this.texts.push({ text, color: color || '#fff', x: p.x + (Math.random() * 16 - 8), y: p.y - 40 + (dy || 0), t: 0, life: 1.0 });
   }
+  cartao(f, move, texto, dur) { this.cartaoAtk = { f, def: f.def, formId: f.formId, arte: FF.Cartao.arte(f.def, f.formId, move), texto, start: FF.Clock.t, until: FF.Clock.t + (dur || 1.3), esp: !f.isHero }; }
   banner(text, dur) { this.bannerTxt = { text, until: FF.Clock.t + (dur || 1.2), start: FF.Clock.t }; }
   // d (s): tremor/flash com duração (clipe esticado no Estúdio) — segura a força até o fim e some nos últimos instantes
   shake(n, d) { this.shakeAmt = Math.max(this.shakeAmt, n); if (d > 0) (this.telaDur = this.telaDur || []).push({ k: 'shakeAmt', n, ate: FF.Clock.t + d, sai: Math.min(0.15, d / 2) }); }

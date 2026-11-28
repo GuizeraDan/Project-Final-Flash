@@ -277,6 +277,25 @@
       void f;
     },
 
+    // ---------- 🪪 arte padrão do cartão de ataque (todas as formas ou uma forma) — grava direto em edicoes.artes ----------
+    grupoArte() {
+      const id = this.pid, d = this.doc || {}, g = E().grupo('🪪 Arte de ataque (padrão)', false);
+      g.appendChild(E().el('p', 'es-dica', 'Vale para os golpes dele que não têm arte própria (a do golpe se importa nas propriedades do golpe, aba Golpes). Pode ter uma por forma.'));
+      const formas = Object.keys(d.formas || {});
+      this._arteForma = this._arteForma != null ? this._arteForma : '';
+      if (formas.length > 1) g.appendChild(E().campo('select', 'Para', this._arteForma, (v) => { this._arteForma = v; this.renderPainel(); },
+        { lista: [['', 'todas as formas']].concat(formas.map(f => [f, 'forma ' + ((d.formas[f] || {}).nome || f)])) }));
+      const fid = this._arteForma || d.formaInicial || formas[0];
+      const chave = this._arteForma ? id + ':' + this._arteForma : id;
+      const ed = (FF.Edicoes.dados().artes || {});
+      const her = this._arteForma ? ed[id] || null : null;
+      g.appendChild(FF.EstudioArte.painel({ def: Object.assign({ id }, d), formId: fid, texto: 'Nome do golpe', atual: ed[chave] || null, herdadaArte: her, chave: chave.replace(':', '_'),
+        titulo: '🪪 Arte de ataque — ' + (d.nome || id) + (this._arteForma ? ' (' + this._arteForma + ')' : ''),
+        herdada: her ? 'Esta forma usa a arte de todas as formas.' : 'Sem arte: os golpes usam a arte do Z Legends 3.',
+        aoSalvar: (arte) => { FF.Edicoes.set(['artes', chave], arte || null); E().aviso(arte ? '🪪 Arte salva — vale no jogo.' : '🪪 Arte tirada.', 'ok'); this.renderPainel(); } }));
+      return g;
+    },
+
     // ---------- ⚡ Sparking (Fúria cheia): aura em loop e pose parada enquanto durar ----------
     // grava direto em edicoes.sparking.visual[id] (não depende do 💾 do personagem); a cena de entrada fica na aba Golpes
     grupoSparking() {
@@ -327,6 +346,7 @@
       a.appendChild(E().el('p', 'es-dica', 'Velocidade decide a ordem dos turnos. Ki por turno pode ser trocado por forma.'));
       this.painel.appendChild(a);
       this.painel.appendChild(this.grupoSparking());
+      this.painel.appendChild(this.grupoArte());
       const v = E().grupo('Vozes (todas as formas)');
       d.vozes = d.vozes || {};
       const pre = this.prefixoVoz();

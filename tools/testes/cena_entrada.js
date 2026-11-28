@@ -46,7 +46,7 @@ const { chromium } = require('playwright');
     FF.Sparking.tocar(B, f, B.alvo).then(() => { fim = true; });
     while (!fim && n++ < 200) { const g = FF.Clock.tick(0.05); B.update(g); await new Promise(res => setTimeout(res, 0)); }
     r.tempo = Math.round((FF.Clock.t - t0) * 1000);
-    f.rage = 0; f.update(0.01); r.volta = f.anim.name !== pose && !f.auraAtual();
+    f.busy = false; f.idle(); f.rage = 0; f.update(0.01); r.volta = f.anim.name !== pose && !(f.auraAtual() && f.auraAtual().fx === fx); r.depois = [f.anim.name, f.auraAtual() && f.auraAtual().fx, f.busy, !!f.react];
     return r;
   });
   ok(spk.pose && spk.aura && spk.volta && spk.tempo > 300, 'Sparking: pose e aura com a Fúria cheia, cena de entrada toca e tudo volta ' + JSON.stringify(spk));
