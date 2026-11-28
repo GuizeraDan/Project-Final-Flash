@@ -227,10 +227,14 @@ FF.Linha = {
     if (b.cam && (b.cam.zoom !== 1 || b.cam.x || b.cam.y)) b.camAlvo = { zoom: 1, x: 0, y: 0, d: 0.3, t: 0, de: Object.assign({}, b.cam) };
   },
 
+  // 📱 tela mais larga que 1280 (celular deitado, monitor largo): dentro da cena as posições na horizontal se espalham
+  // na mesma proporção — o que encosta na borda no palco do Estúdio encosta na borda em qualquer tela
+  esticar(b) { return b && b.cena && FF.W > FF.BW ? FF.W / FF.BW : 1; },
+  telaX(b, x) { const k = this.esticar(b); return k === 1 ? x : FF.W / 2 + (x - FF.W / 2) * k; },
   destino(b, f, outro, c) {
     const dist = (c.dist != null ? c.dist : 22) * f.scale;
     if (c.para === 'casa') return f.homeX;
-    if (c.para === 'x') return c.x != null ? c.x + FF.legado().x : f.x;
+    if (c.para === 'x') return c.x != null ? this.telaX(b, c.x + FF.legado().x) : f.x;
     if (c.para === 'frente') return f.x + f.dir * dist;
     if (c.para === 'tras') return f.x - f.dir * dist;
     return outro ? outro.x - f.dir * dist : f.x;
@@ -339,6 +343,7 @@ FF.Linha = {
         const dir = actor ? actor.dir : 1;
         const kf = c.em === 'tela' ? 1 : (b.fov || 1);
         let ex = p.x + (c.dx || 0) * (c.em === 'tela' ? 1 : dir) * kf, ey = p.y + (c.dy || 0) * kf;
+        if (c.em === 'tela') ex = this.telaX(b, ex);
         // perspectiva: efeitos presos em quem solta ou na tela vão para o lugar certo entre ele e o alvo
         // (os de tela bem no alto, como faixas e brilhos de tela cheia, ficam onde estão)
         let inclina = 0;
@@ -442,7 +447,7 @@ FF.Linha = {
   pontosCaminho(b, actor, target, f, c) {
     const lx = FF.legado().x;
     return (c.pontos || []).map(q => {
-      let x = (q.x != null ? q.x : 542) + lx;
+      let x = this.telaX(b, (q.x != null ? q.x : 542) + lx);
       if (b && b.persp && actor && target) x = this.mapaPersp(b, actor, target, x, b.groundY, true).x;
       return { x, y: f.groundY + (q.y || 0) };
     });

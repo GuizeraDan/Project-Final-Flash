@@ -590,6 +590,8 @@ FF.Battle = class {
     if (this.cena) return this.cena;
     const atores = this.atoresCena(actor, target, move);
     const ESC = 2.5, offX = (FF.W - FF.BW) / 2;
+    // 📱 tela larga: as posições se espalham na proporção da largura (FF.Linha.telaX), o tamanho dos desenhos não muda
+    const kx = FF.W > FF.BW ? FF.W / FF.BW : 1, estica = (x) => Math.round(FF.W / 2 + (x - FF.W / 2) * kx);
     const salvo = { scale: this.scale, fov: this.fov, atores: atores.map(f => ({ f, x: f.x, y: f.y, groundY: f.groundY, scale: f.scale, homeX: f.homeX, homeG: f.homeG, homeS: f.homeS, prof: f.prof, base: f.base, faixa: f.faixa, latX: f.latX, latG: f.latG })) };
     // entrada: 👊 normal = corte seco; 💥 rush / 🔥 supremo = flash
     const comFlash = FF.Battle.categoria(move) !== 'normal';
@@ -600,11 +602,11 @@ FF.Battle = class {
     atores.forEach(f => {
       const lado = f.lado, i = porLado[lado] = (porLado[lado] || 0) + 1;
       const d = (f === actor || f === target) ? 0.45 : outras[(i - 2 + 3) % 3];
-      const x = Math.round(offX + (f.isHero ? 210 + 290 * d : FF.BW - 210 - 290 * d));
+      const x = estica(offX + (f.isHero ? 210 + 290 * d : FF.BW - 210 - 290 * d));
       const g = Math.round(this.PERSP.frente - (this.PERSP.frente - this.PERSP.fundo) * d), sc = ESC * (1.14 - 0.36 * d);
       // referência "lateral" dos pontos de tela (Mover para x, Caminho, efeitos na tela) = a de uma luta 1×1,
       // senão o mesmo ponto cairia em lugares diferentes conforme o tamanho dos times
-      const latX = (f.isHero ? (f === actor || f === target ? 170 : 250) : (f === actor || f === target ? 915 : 870)) + (FF.W - 1084) / 2;
+      const latX = estica((f.isHero ? (f === actor || f === target ? 170 : 250) : (f === actor || f === target ? 915 : 870)) + (FF.W - 1084) / 2);
       Object.assign(f, { homeX: x, homeG: g, homeS: sc, prof: d, x, groundY: g, y: g, scale: sc, base: null, faixa: null, latX, latG: this.groundY });
       f.naCena = true;
     });

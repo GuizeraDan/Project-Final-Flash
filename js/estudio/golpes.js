@@ -81,7 +81,15 @@ window.FF = window.FF || {};
       this.novo();
     },
 
-    mostrar() { FF.W = FF.BW; if (this.doc) this.redesenharTudo(); },
+    mostrar() { FF.W = this.larga ? 1600 : FF.BW; if (this.doc) this.redesenharTudo(); },
+    trocarLarga(on) {
+      this.larga = !!on;
+      FF.W = this.larga ? 1600 : FF.BW;
+      this.cv.width = FF.W;
+      if (this.ckLarga) this.ckLarga.checked = this.larga;
+      if (this.doc) { this.irPara(this.t); this.redesenhar(); }
+      if (this.larga) E.aviso('📱 Tela larga (1600): só para ver. Desligue para editar as posições.');
+    },
     esconder() { this.pausar(); },
 
     async carregarDefs() {
@@ -723,6 +731,12 @@ window.FF = window.FF || {};
       b.appendChild(op('refs', '✚', 'Pontos de referência: pés (verde), peito (rosa), disparo (amarelo)'));
       b.appendChild(op('hud', 'HUD', 'Mostrar as barras de vida/ki'));
       b.appendChild(op('fora', '🔍 Fora', 'Ver fora da tela: o palco encolhe e mostra uma faixa em volta da tela do jogo, para pegar e posicionar o que está fora dela'));
+      // 📱 tela larga (1600, como num celular deitado): só para ver como o golpe fica — a cena se espalha até a borda
+      const larga = E.el('label', '', '<input type="checkbox"> 📱 Tela larga');
+      larga.title = 'Ver na tela mais larga do jogo (1600 de largura, como num celular deitado). Na cena, as posições se espalham até a borda. Só para conferir: as alças de edição somem; desligue para editar.';
+      this.ckLarga = larga.querySelector('input');
+      this.ckLarga.onchange = () => this.trocarLarga(this.ckLarga.checked);
+      b.appendChild(larga);
       this.palco.opts.persp = true;   // sempre diagonal (a visão lateral foi tirada)
       // fileiras rápidas (Diagonal): 🧍 quem solta e 🎯 alvo nos lugares 1 (frente), 2 (meio), 3 (fundo)
       // fileiras e ajustes por combinação saíram: todo golpe que acerta alguém vira cena (palco fixo)
@@ -1005,6 +1019,7 @@ window.FF = window.FF || {};
       return L;
     },
     desenharSelecao(ctx) {
+      if (this.larga) return;   // 📱 tela larga: só para ver
       const L = this.alcas();
       ctx.save();
       const proj = L.filter(h => (h.k === 'de' || h.k === 'ate') && !h.caixa);
@@ -1338,7 +1353,7 @@ window.FF = window.FF || {};
       const cv = this.cv;
       cv.addEventListener('pointerdown', (e) => {
         if (this.palco.modo === 'batalha') { this.palco.apertar(); return; }
-        if (!this.doc) return;
+        if (!this.doc || this.larga) return;
         const p = this.palco.pontoTela(e);
         const k = this.palco.escalaFora ? this.palco.escalaFora() : 1;
         const perto = (h) => { const q = this.prender(h); return Math.hypot(q.x - p.x, q.y - p.y) < 14 / k; };
