@@ -10,12 +10,16 @@ FF.Audio = {
   musica: null,
   pool: {},
 
+  novo(name) {   // Audio com a reserva do acervo (file:// sem a cópia local → site)
+    const u = this.url(name), a = new Audio(u);
+    return FF.comReservaAcervo ? FF.comReservaAcervo(a, u) : a;
+  },
   _get(name) {
     let list = this.pool[name];
     if (!list) list = this.pool[name] = [];
     let a = list.find(x => x.paused || x.ended);
     if (!a) {
-      a = new Audio(this.url(name));
+      a = this.novo(name);
       a.preload = 'auto';
       list.push(a);
     }
@@ -60,7 +64,7 @@ FF.Audio = {
 
   // Loop contínuo (ex.: carregar ki). Retorna função para parar.
   loop(name, vol) {
-    const a = new Audio(this.url(name));
+    const a = this.novo(name);
     a.loop = true;
     a.volume = vol == null ? this.volSfx : vol;
     a.play().catch(() => {});
@@ -75,7 +79,7 @@ FF.Audio = {
     if (this.musica) { this.musica.pause(); this.musica = null; }
     this.musicaNome = name || null;
     if (!name) return null;
-    const a = new Audio(this.url(name));
+    const a = this.novo(name);
     a.loop = true;
     a.volume = this.volMusica;
     // o navegador só deixa tocar som depois de um toque/tecla: se bloquear, tenta de novo no 1º gesto

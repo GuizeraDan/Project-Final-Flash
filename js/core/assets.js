@@ -27,7 +27,8 @@ FF.Assets = {
     return new Promise((ok, fail) => {
       const img = new Image();
       img.onload = () => { this.images[path] = img; ok(img); };
-      img.onerror = () => fail(new Error('Falha ao carregar ' + path));
+      let reserva = FF.reservaAcervo ? FF.reservaAcervo(path) : null;   // acervo por file:// sem a cópia local → site
+      img.onerror = () => { if (reserva) { img.src = reserva; reserva = null; } else fail(new Error('Falha ao carregar ' + path)); };
       img.src = path;
     });
   },

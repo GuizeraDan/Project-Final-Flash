@@ -725,3 +725,7 @@ Cache do app: `finalflash-v47`.
 - Desempenho: cache dos painéis do HUD (desenho da luta parada de ~5 ms para ~3 ms com CPU 4×; painéis 2,4 → 0,2 ms); `FF.Qualidade` (auto/alta/leve: no auto cai para 1× de resolução se ficar abaixo de 45 fps); toque sem atraso nos botões. Medido com `desempenho.js` (versão anterior × nova): golpe com CPU 4× 49 → 56 fps, draw 4,9 → 2,2 ms; CPU 1× draw 2,3 → 0,7 ms. Abrir a luta 3×3: igual (~2 s com CPU 4×).
 - Testes: batalha OK; cenas_golpe, cena_entrada, cartao_entrada, cartao_ataque, defesa_final, alvo_por_personagem, tela_larga, caminho, anim_movimento, estudio OK. Falhas que já existiam no ponto de restauração (dependem dos dados do usuário: sprites movidos para pastas, categoria Cenários vazia): fim do acervo.js (seletor em cat:cenarios), estudio_separar/estudio_juntar/estudio_organizar (sprites de exemplo já movidos) e 5 itens do estudio_melhorias.
 - Não mexido (pedido): itens 3 a 6 (converter formato dos golpes, pular/acelerar cenas, dividir arquivos grandes, modo de teste rápido).
+
+### 2026-11-28 (tarde) — Acervo no repositório separado
+- O usuário criou `GuizeraDan/Final-Flash-Acervo` (público) e ligou o Pages. Enviados 13.336 arquivos (1,1 GB) em 8 commits de ~150 MB.
+- Aqui: `assets/img/acervo` e `assets/audio/acervo` saíram do Git (`.gitignore`), `FF.ACERVO_SEPARADO = true`. Por `file://` vale a cópia local, com reserva no site (`FF.reservaAcervo`). Testado num servidor local imitando o Pages (sprite e som carregam do repositório vizinho) e a luta de teste.
